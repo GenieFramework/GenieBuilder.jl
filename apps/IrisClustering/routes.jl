@@ -6,9 +6,11 @@ using GenieAutoReload
 
 using Iris
 
-route("/") do
-  html(path"views/iris.jl", layout = path"views/layouts/app.jl.html",
-        context = @__MODULE__,
-        model = init_from_storage(IrisModel) |> Iris.handlers
-  )
-end
+using Stipple.Pages
+using Stipple.ModelStorage.Sessions
+
+
+Page("/", view = "views/iris.jl",
+          layout = "views/layouts/app.jl.html",
+          model = () -> (init_from_storage(IrisModel) |> Iris.handlers),
+          context = @__MODULE__)

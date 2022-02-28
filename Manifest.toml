@@ -149,9 +149,9 @@ uuid = "781609d7-10c4-51f6-84f2-b8444358ff6d"
 
 [[deps.Genie]]
 deps = ["ArgParse", "Dates", "Distributed", "EzXML", "FilePathsBase", "HTTP", "HttpCommon", "Inflector", "JSON3", "JuliaFormatter", "Logging", "Markdown", "MbedTLS", "Millboard", "Nettle", "OrderedCollections", "Pkg", "REPL", "Random", "Reexport", "Revise", "SHA", "Serialization", "Sockets", "UUIDs", "Unicode", "VersionCheck", "YAML"]
-git-tree-sha1 = "5183460073f6d3cc488ced730aa3593c8c5b0499"
+path = "/Users/adrian/.julia/dev/Genie"
 uuid = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
-version = "4.14.1"
+version = "4.15.0"
 
 [[deps.GenieAutoReload]]
 deps = ["Distributed", "Genie", "Logging", "Revise"]
@@ -160,10 +160,8 @@ uuid = "c6228e60-a24f-11e9-1776-c313472ebacc"
 version = "1.0.0"
 
 [[deps.GenieDevTools]]
-deps = ["Dates", "Genie", "Revise"]
-git-tree-sha1 = "6a2722e1c4c3321c4f642bed69b61db5e4a59ed8"
-repo-rev = "main"
-repo-url = "https://github.com/genieframework/geniedevtools.jl"
+deps = ["Dates", "Genie", "Revise", "Stipple"]
+path = "/Users/adrian/.julia/dev/GenieDevTools"
 uuid = "4e5d9629-6565-4102-a9ff-45c707eb060e"
 version = "0.1.0"
 
@@ -186,10 +184,9 @@ uuid = "6d011eab-0732-4556-8808-e463c76bf3b6"
 version = "1.0.1"
 
 [[deps.IniFile]]
-deps = ["Test"]
-git-tree-sha1 = "098e4d2c533924c921f9f9847274f2ad89e018b8"
+git-tree-sha1 = "f550e6e32074c939295eb5ea6de31849ac2c9625"
 uuid = "83e8ac13-25f8-5344-8a64-a9f2b223428f"
-version = "0.5.0"
+version = "0.5.1"
 
 [[deps.InlineStrings]]
 deps = ["Parsers"]
@@ -237,9 +234,9 @@ version = "0.22.4"
 
 [[deps.JuliaInterpreter]]
 deps = ["CodeTracking", "InteractiveUtils", "Random", "UUIDs"]
-git-tree-sha1 = "531e06ca93ac37ba0883496f53c647bef396d071"
+git-tree-sha1 = "8a50f8b3e6b261561df26f5718a6b59a3c947221"
 uuid = "aa1ae85d-cabe-5617-a682-6adf51b2e16a"
-version = "0.9.5"
+version = "0.9.6"
 
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
@@ -386,9 +383,9 @@ version = "1.4.0"
 
 [[deps.Preferences]]
 deps = ["TOML"]
-git-tree-sha1 = "2cf929d64681236a2e074ffafb8d568733d2e6af"
+git-tree-sha1 = "de893592a221142f3db370f48290e3a2ef39998f"
 uuid = "21216c6a-2e73-6563-6e65-726566657250"
-version = "1.2.3"
+version = "1.2.4"
 
 [[deps.PrettyTables]]
 deps = ["Crayons", "Formatting", "Markdown", "Reexport", "Tables"]
@@ -442,9 +439,9 @@ version = "1.4.0"
 
 [[deps.SQLite_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg", "Zlib_jll"]
-git-tree-sha1 = "cca82caa0b6bf7f0bc977e69063c0cf5d7da36e5"
+git-tree-sha1 = "f79c1c58951ea4f5bb63bb96b99bf7f440a3f774"
 uuid = "76ed43ae-9a5d-5a62-8c75-30186b810ce8"
-version = "3.37.0+0"
+version = "3.38.0+0"
 
 [[deps.Scratch]]
 deps = ["Dates"]
@@ -490,15 +487,15 @@ uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [[deps.Stipple]]
 deps = ["FilePathsBase", "Genie", "JSON3", "Logging", "Mixers", "Observables", "OrderedCollections", "Parameters", "Pkg", "Random", "Reexport", "Requires", "StructTypes"]
-git-tree-sha1 = "a3921e3db84d92e73b76724ca2dbb83c37c955bf"
+path = "/Users/adrian/.julia/dev/Stipple"
 uuid = "4acbeb90-81a0-11ea-1966-bdaff8155998"
-version = "0.21.0"
+version = "0.21.1"
 
 [[deps.StippleUI]]
 deps = ["Colors", "DataFrames", "Dates", "Genie", "Stipple"]
-git-tree-sha1 = "48c39c6a3a162db26cb158224d8ccb5d17e71529"
+path = "/Users/adrian/.julia/dev/StippleUI"
 uuid = "a3c5d34a-b254-4859-a8fa-b86abb7e84a3"
-version = "0.15.3"
+version = "0.16.0"
 
 [[deps.StringEncodings]]
 deps = ["Libiconv_jll"]
