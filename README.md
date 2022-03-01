@@ -219,3 +219,87 @@ Returns any compilation errors that can cause the app building to fail. If no er
 }
 ```
 
+### List pages
+
+#### `/api/v1/apps/<app_id>/pages` `GET`
+
+Returns the list of pages registered in the app. Pages are bundles of views, layouts, models and route.
+
+#### Response
+
+```json
+{
+  "pages": [
+    {
+      "view": "views/iris.jl",
+      "route": {
+        "method": "GET",
+        "path": "/"
+      },
+      "layout": "views/layouts/app.jl.html",
+      "model": {
+        "name": "Iris.IrisModel",
+        "fields": [
+          "iris_data",
+          "credit_data_pagination",
+          "features",
+          "xfeature",
+          "yfeature",
+          "iris_plot_data",
+          "cluster_plot_data",
+          "layout",
+          "no_of_clusters",
+          "no_of_iterations",
+          "channel__",
+          "isready",
+          "isreadydelay",
+          "isprocessing"
+        ],
+        "types": [
+          "Stipple.Reactive{StippleUI.Tables.DataTable}",
+          "StippleUI.Tables.DataTablePagination",
+          "Stipple.Reactive{Vector{String}}",
+          "Stipple.Reactive{String}",
+          "Stipple.Reactive{String}",
+          "Stipple.Reactive{Vector{StipplePlotly.Charts.PlotData}}",
+          "Stipple.Reactive{Vector{StipplePlotly.Charts.PlotData}}",
+          "Stipple.Reactive{StipplePlotly.Charts.PlotLayout}",
+          "Stipple.Reactive{Int64}",
+          "Stipple.Reactive{Int64}",
+          "String",
+          "Stipple.Reactive{Bool}",
+          "Stipple.Reactive{Int64}",
+          "Stipple.Reactive{Bool}"
+        ]
+      }
+    }
+  ]
+}
+```
+
+### List assets
+
+#### `/api/v1/apps/<app_id>/assets` `GET`
+
+Lists the CSS and JS assets used by the application.
+
+#### Response
+
+```json
+{
+  "deps": {
+    "styles": [
+      "<link href=\"/stippleui.jl/master/assets/css/quasar.min.css\" rel=\"stylesheet\" />"
+    ],
+    "scripts": [
+      "<script src=\"/stippleui.jl/master/assets/js/quasar.umd.min.js\"></script>",
+      "<script src=\"/stippleplotly.jl/master/assets/js/plotly2.min.js\"></script>",
+      "<script src=\"/stippleplotly.jl/master/assets/js/resizesensor.min.js\"></script>",
+      "<script src=\"/stippleplotly.jl/master/assets/js/lodash.min.js\"></script>",
+      "<script src=\"/stippleplotly.jl/master/assets/js/vueresize.min.js\"></script>",
+      "<script src=\"/stippleplotly.jl/master/assets/js/vueplotly.min.js\"></script>",
+      "<script src=\"/stipple.jl/master/assets/js/irisirismodel.js\" defer></script>"
+    ]
+  }
+}
+```

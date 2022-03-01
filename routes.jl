@@ -51,3 +51,11 @@ end
 route("$api_route$app_route/errors") do
   ApplicationsController.errors(params(:appid) |> ApplicationsController.get)
 end
+
+route("$api_route$app_route/pages") do
+  ApplicationsController.pages(params(:appid) |> ApplicationsController.get)
+end
+
+route("$api_route$app_route/assets") do
+  ApplicationsController.assets(params(:appid) |> ApplicationsController.get)
+end

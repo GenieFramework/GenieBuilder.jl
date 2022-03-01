@@ -35,8 +35,6 @@ function status_request(app)
     end
   end
 
-  @show status
-
   status
 end
 
@@ -83,62 +81,53 @@ function up(app)
   String(res.body) |> JSON3.read |> json
 end
 
-function down(app)
-  appstatus = status_request(app)
-  appstatus != :online && return (:status => appstatus) |> json
+macro ifonline(app)
+  quote
+    appstatus = status_request($(esc(app)))
+    appstatus != :online && return json(:status => appstatus)
 
-  res = HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/down")
+    true
+  end
+end
 
+function json2json(res)
   String(res.body) |> JSON3.read |> json
+end
+
+function down(app)
+  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/down") |> json2json
 end
 
 function dir(app)
-  appstatus = status_request(app)
-  appstatus != :online && return (:status => appstatus) |> json
-
-  res = HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/dir?path=$(params(:path, "."))")
-
-  String(res.body) |> JSON3.read |> json
+  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/dir?path=$(params(:path, "."))") |> json2json
 end
 
 function edit(app)
-  appstatus = status_request(app)
-  appstatus != :online && return (:status => appstatus) |> json
-
-  res = HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/edit?path=$(params(:path, "."))")
-
-  String(res.body) |> JSON3.read |> json
+  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/edit?path=$(params(:path, "."))") |> json2json
 end
 
 function save(app)
-  appstatus = status_request(app)
-  appstatus != :online && return (:status => appstatus) |> json
-
-  res = HTTP.request("POST",
+  @ifonline(app) && HTTP.request("POST",
                       "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/edit?path=$(params(:path, "."))",
                       [],
                       HTTP.Form(Dict("payload" => params(:payload)))
-                    )
-
-  String(res.body) |> JSON3.read |> json
+                    ) |> json2json
 end
 
 function log(app)
-  appstatus = status_request(app)
-  appstatus != :online && return (:status => appstatus) |> json
-
-  res = HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/log")
-
-  String(res.body) |> JSON3.read |> json
+  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/log") |> json2json
 end
 
 function errors(app)
-  appstatus = status_request(app)
-  appstatus != :online && return (:status => appstatus) |> json
+  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/errors") |> json2json
+end
 
-  res = HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/errors")
+function pages(app)
+  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/pages") |> json2json
+end
 
-  String(res.body) |> JSON3.read |> json
+function assets(app)
+  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/assets") |> json2json
 end
 
 end
