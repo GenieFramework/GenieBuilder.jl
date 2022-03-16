@@ -131,11 +131,11 @@ uuid = "781609d7-10c4-51f6-84f2-b8444358ff6d"
 
 [[deps.Genie]]
 deps = ["ArgParse", "Dates", "Distributed", "EzXML", "FilePathsBase", "HTTP", "HttpCommon", "Inflector", "JSON3", "JuliaFormatter", "Logging", "Markdown", "MbedTLS", "Millboard", "Nettle", "OrderedCollections", "Pkg", "REPL", "Random", "Reexport", "Revise", "SHA", "Serialization", "Sockets", "UUIDs", "Unicode", "VersionCheck", "YAML"]
-git-tree-sha1 = "1c2c4d37b1967c24575e7b7602feba11cc1b54f2"
+git-tree-sha1 = "b7e18741ea88b48cb38f57c434415de8cb52457b"
 repo-rev = "master"
 repo-url = "https://github.com/GenieFramework/Genie.jl.git"
 uuid = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
-version = "4.16.0"
+version = "4.16.1"
 
 [[deps.GenieAutoReload]]
 deps = ["Distributed", "Genie", "Logging", "Revise"]
@@ -144,12 +144,12 @@ uuid = "c6228e60-a24f-11e9-1776-c313472ebacc"
 version = "1.0.0"
 
 [[deps.GenieDevTools]]
-deps = ["Dates", "Genie", "Revise", "Stipple"]
-git-tree-sha1 = "a049b45d4604b0129f7ac68fcd79b3341d58eb34"
+deps = ["Dates", "Genie", "RemoteREPL", "Revise", "Stipple"]
+git-tree-sha1 = "759b8590a48e4764d52d6063f16f874816252fb7"
 repo-rev = "main"
 repo-url = "https://github.com/GenieFramework/GenieDevTools.jl.git"
 uuid = "4e5d9629-6565-4102-a9ff-45c707eb060e"
-version = "0.1.0"
+version = "0.1.1"
 
 [[deps.HTTP]]
 deps = ["Base64", "Dates", "IniFile", "Logging", "MbedTLS", "NetworkOptions", "Sockets", "URIs"]
@@ -340,6 +340,18 @@ version = "0.4.0"
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
 
+[[deps.OpenSSH_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "OpenSSL_jll", "Pkg", "Zlib_jll"]
+git-tree-sha1 = "937b1d50c6f1fd90968bf648f92a9b1d9f7be604"
+uuid = "9bd350c2-7e96-507f-8002-3f2e150b4e1b"
+version = "8.9.0+0"
+
+[[deps.OpenSSL_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
+git-tree-sha1 = "ab05aa4cc89736e95915b01e7279e61b1bfe33b8"
+uuid = "458c3c95-2e84-50aa-8efc-19380b2a3a95"
+version = "1.1.14+0"
+
 [[deps.OrderedCollections]]
 git-tree-sha1 = "85f8e6578bf1f9ee0d11e7bb1b1456435479d47c"
 uuid = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
@@ -401,6 +413,18 @@ uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 git-tree-sha1 = "45e428421666073eab6f2da5c9d310d99bb12f9b"
 uuid = "189a3867-3050-52da-a836-e630ba90ab69"
 version = "1.2.2"
+
+[[deps.RemoteREPL]]
+deps = ["Logging", "OpenSSH_jll", "REPL", "ReplMaker", "Serialization", "Sockets"]
+git-tree-sha1 = "3b65e77e648abe190da2d331e9dec7c2467b273e"
+uuid = "1bd9f7bb-701c-4338-bec7-ac987af7c555"
+version = "0.2.15"
+
+[[deps.ReplMaker]]
+deps = ["REPL", "Unicode"]
+git-tree-sha1 = "f8bb680b97ee232c4c6591e213adc9c1e4ba0349"
+uuid = "b873ce64-0db9-51f5-a568-4457d8e49576"
+version = "0.2.7"
 
 [[deps.Requires]]
 deps = ["UUIDs"]

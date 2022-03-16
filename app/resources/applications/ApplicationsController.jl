@@ -57,8 +57,6 @@ function stop(app)
   appstatus = status_request(app)
   appstatus != :online && return (:status => appstatus) |> json
 
-  # HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/down")
-
   try
     HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit")
   catch ex
@@ -136,6 +134,10 @@ end
 
 function assets(app)
   @ifonline(app) && HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/assets") |> json2json
+end
+
+function startrepl(app)
+  @ifonline(app) && HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/startrepl") |> json2json
 end
 
 end

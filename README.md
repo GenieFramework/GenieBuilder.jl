@@ -303,3 +303,26 @@ Lists the CSS and JS assets used by the application.
   }
 }
 ```
+
+### Start REPL
+
+#### `/api/v1/apps/<app_id>/startrepl` `GET`
+
+Starts a remote repl session in the guest app. You can use another Julia REPL with the `RemoteREPL.jl` package to
+connect to the guest reply using the port number returned by this endpoint.
+
+The REPL is always started on a remote port for security considerations -- and the port is returned in the response.
+
+#### Response
+
+```json
+{"status":"OK","port":44659}
+```
+
+#### Example for connecting
+
+```julia
+using RemoteREPL
+
+connect_repl(44659)
+```
