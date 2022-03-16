@@ -12,4 +12,7 @@ const config = Settings(
   cors_allowed_origins            = ["*"]
 )
 
+config.cors_headers["Access-Control-Allow-Origin"] = "*"
+config.cors_headers["Access-Control-Allow-Headers"] = "Content-Type"
+
 ENV["JULIA_REVISE"] = "auto"
