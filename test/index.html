@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <script>
+        const apiBaseUrl = 'http://127.0.0.1:8000/api/v1/apps';
+        axios.post( apiBaseUrl + '/1/save?path=views/test.jl', {payload:"hello"} )
+        .then(  (response) => {
+          console.log( "[AppAppsDataProvider] save Response: ", response );
+        } )
+        .catch( (error) => {
+          console.log( "[AppAppsDataProvider::save::catch. ", error );
+        });
+    </script>
+</body>
+</html>

@@ -4,6 +4,7 @@ using Applications
 using SearchLight
 using Genie.Router
 using Genie.Renderers.Json
+using Genie.Requests
 using HTTP
 using JSON3
 using GenieDevTools
@@ -108,9 +109,9 @@ end
 
 function save(app)
   @ifonline(app) && HTTP.request("POST",
-                      "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/edit?path=$(params(:path, "."))",
+                      "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/save?path=$(params(:path, "."))",
                       [],
-                      HTTP.Form(Dict("payload" => params(:payload)))
+                      HTTP.Form(Dict("payload" => jsonpayload()["payload"]))
                     ) |> json2json
 end
 
