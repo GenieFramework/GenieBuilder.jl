@@ -10,6 +10,7 @@ using JSON3
 using GenieDevTools
 
 const appsthreads = Dict()
+const apphost = "http://localhost"
 
 fullpath(app::Application) = "." * app.path * app.name
 get(appid) = SearchLight.findone(Application, id = parse(Int, appid))
@@ -20,7 +21,7 @@ end
 
 function status_request(app)
   status = try
-    res = HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/id")
+    res = HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/id")
     if res.status >= 500
       :error
     elseif res.status == 404
@@ -56,13 +57,19 @@ function stop(app)
   appstatus = status_request(app)
   appstatus != :online && return (:status => appstatus) |> json
 
-  HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/down")
-  HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/exit")
+  # HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/down")
+
+  try
+    HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit")
+  catch ex
+    @error ex
+  end
 
   (:status => if haskey(appsthreads, fullpath(app))
     try
       Base.throwto(appsthreads[fullpath(app)], InterruptException())
-    catch
+    catch ex
+      @error ex
     end
 
     delete!(appsthreads, fullpath(app))
@@ -77,7 +84,7 @@ function up(app)
   appstatus = status_request(app)
   appstatus != :offline && return (:status => appstatus) |> json
 
-  res = HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/up")
+  res = HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/up")
 
   String(res.body) |> JSON3.read |> json
 end
@@ -96,39 +103,39 @@ function json2json(res)
 end
 
 function down(app)
-  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/down") |> json2json
+  @ifonline(app) && HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/down") |> json2json
 end
 
 function dir(app)
-  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/dir?path=$(params(:path, "."))") |> json2json
+  @ifonline(app) && HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/dir?path=$(params(:path, "."))") |> json2json
 end
 
 function edit(app)
-  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/edit?path=$(params(:path, "."))") |> json2json
+  @ifonline(app) && HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/edit?path=$(params(:path, "."))") |> json2json
 end
 
 function save(app)
   @ifonline(app) && HTTP.request("POST",
-                      "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/save?path=$(params(:path, "."))",
+                      "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/save?path=$(params(:path, "."))",
                       [],
                       HTTP.Form(Dict("payload" => jsonpayload()["payload"]))
                     ) |> json2json
 end
 
 function log(app)
-  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/log") |> json2json
+  @ifonline(app) && HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/log") |> json2json
 end
 
 function errors(app)
-  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/errors") |> json2json
+  @ifonline(app) && HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/errors") |> json2json
 end
 
 function pages(app)
-  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/pages") |> json2json
+  @ifonline(app) && HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/pages") |> json2json
 end
 
 function assets(app)
-  @ifonline(app) && HTTP.request("GET", "http://localhost:$(app.port)$(GenieDevTools.defaultroute)/assets") |> json2json
+  @ifonline(app) && HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/assets") |> json2json
 end
 
 end

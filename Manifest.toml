@@ -26,27 +26,15 @@ version = "0.5.10"
 
 [[deps.CSTParser]]
 deps = ["Tokenize"]
-git-tree-sha1 = "6cc1759204bed5a4e2a5c2f00901fd5d90bc7a62"
+git-tree-sha1 = "b66abc140f8b90a1d6bc7bfad5c80070f8c1ddc6"
 uuid = "00ebfdb7-1f24-5e51-bd34-a7502290713f"
-version = "3.3.1"
+version = "3.3.3"
 
 [[deps.CodeTracking]]
 deps = ["InteractiveUtils", "UUIDs"]
-git-tree-sha1 = "759a12cefe1cd1bb49e477bc3702287521797483"
+git-tree-sha1 = "9fb640864691a0936f94f89150711c36072b0e8f"
 uuid = "da1fd8a2-8d9e-5ec2-8556-3022fb5608a2"
-version = "1.0.7"
-
-[[deps.ColorTypes]]
-deps = ["FixedPointNumbers", "Random"]
-git-tree-sha1 = "024fe24d83e4a5bf5fc80501a314ce0d1aa35597"
-uuid = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
-version = "0.11.0"
-
-[[deps.Colors]]
-deps = ["ColorTypes", "FixedPointNumbers", "Reexport"]
-git-tree-sha1 = "417b0ed7b8b838aa6ca0a87aadf1bb9eb111ce40"
-uuid = "5ae59095-9a9b-59fe-a467-6f913c188581"
-version = "0.12.8"
+version = "1.0.8"
 
 [[deps.CommonMark]]
 deps = ["Crayons", "JSON", "URIs"]
@@ -56,9 +44,9 @@ version = "0.8.6"
 
 [[deps.Compat]]
 deps = ["Base64", "Dates", "DelimitedFiles", "Distributed", "InteractiveUtils", "LibGit2", "Libdl", "LinearAlgebra", "Markdown", "Mmap", "Pkg", "Printf", "REPL", "Random", "SHA", "Serialization", "SharedArrays", "Sockets", "SparseArrays", "Statistics", "Test", "UUIDs", "Unicode"]
-git-tree-sha1 = "44c37b4636bc54afac5c574d2d02b625349d6582"
+git-tree-sha1 = "96b0bc6c52df76506efc8a441c6cf1adcb1babc4"
 uuid = "34da2185-b29b-5c13-b0c7-acf172513d20"
-version = "3.41.0"
+version = "3.42.0"
 
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
@@ -127,12 +115,6 @@ version = "0.9.17"
 [[deps.FileWatching]]
 uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
-[[deps.FixedPointNumbers]]
-deps = ["Statistics"]
-git-tree-sha1 = "335bfdceacc84c5cdf16aadc768aa5ddfc5383cc"
-uuid = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
-version = "0.8.4"
-
 [[deps.Formatting]]
 deps = ["Printf"]
 git-tree-sha1 = "8339d61043228fdd3eb658d86c926cb282ae72a8"
@@ -149,11 +131,11 @@ uuid = "781609d7-10c4-51f6-84f2-b8444358ff6d"
 
 [[deps.Genie]]
 deps = ["ArgParse", "Dates", "Distributed", "EzXML", "FilePathsBase", "HTTP", "HttpCommon", "Inflector", "JSON3", "JuliaFormatter", "Logging", "Markdown", "MbedTLS", "Millboard", "Nettle", "OrderedCollections", "Pkg", "REPL", "Random", "Reexport", "Revise", "SHA", "Serialization", "Sockets", "UUIDs", "Unicode", "VersionCheck", "YAML"]
-git-tree-sha1 = "c18330243f86f1184786dc311a7bf9d6b98caa3b"
+git-tree-sha1 = "1c2c4d37b1967c24575e7b7602feba11cc1b54f2"
 repo-rev = "master"
 repo-url = "https://github.com/GenieFramework/Genie.jl.git"
 uuid = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
-version = "4.15.2"
+version = "4.16.0"
 
 [[deps.GenieAutoReload]]
 deps = ["Distributed", "Genie", "Logging", "Revise"]
@@ -163,7 +145,7 @@ version = "1.0.0"
 
 [[deps.GenieDevTools]]
 deps = ["Dates", "Genie", "Revise", "Stipple"]
-git-tree-sha1 = "18ef35c3479e30b7b58653137c954a6683134d63"
+git-tree-sha1 = "a049b45d4604b0129f7ac68fcd79b3341d58eb34"
 repo-rev = "main"
 repo-url = "https://github.com/GenieFramework/GenieDevTools.jl.git"
 uuid = "4e5d9629-6565-4102-a9ff-45c707eb060e"
@@ -226,21 +208,21 @@ version = "0.21.3"
 
 [[deps.JSON3]]
 deps = ["Dates", "Mmap", "Parsers", "StructTypes", "UUIDs"]
-git-tree-sha1 = "7d58534ffb62cd947950b3aa9b993e63307a6125"
+git-tree-sha1 = "8c1f668b24d999fb47baf80436194fdccec65ad2"
 uuid = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
-version = "1.9.2"
+version = "1.9.4"
 
 [[deps.JuliaFormatter]]
 deps = ["CSTParser", "CommonMark", "DataStructures", "Pkg", "Tokenize"]
-git-tree-sha1 = "fcfaddc61f766211b2c835d3eceaf999b6ea9555"
+git-tree-sha1 = "7a6717e8055dc3ee240c8d44668e5908d40efd2a"
 uuid = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
-version = "0.22.4"
+version = "0.22.7"
 
 [[deps.JuliaInterpreter]]
 deps = ["CodeTracking", "InteractiveUtils", "Random", "UUIDs"]
-git-tree-sha1 = "8a50f8b3e6b261561df26f5718a6b59a3c947221"
+git-tree-sha1 = "9c43a2eb47147a8776ca2ba489f15a9f6f2906f8"
 uuid = "aa1ae85d-cabe-5617-a682-6adf51b2e16a"
-version = "0.9.6"
+version = "0.9.11"
 
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
@@ -371,9 +353,9 @@ version = "0.12.3"
 
 [[deps.Parsers]]
 deps = ["Dates"]
-git-tree-sha1 = "13468f237353112a01b2d6b32f3d0f80219944aa"
+git-tree-sha1 = "85b5da0fa43588c75bb1ff986493443f821c70b7"
 uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
-version = "2.2.2"
+version = "2.2.3"
 
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
@@ -387,9 +369,9 @@ version = "1.4.0"
 
 [[deps.Preferences]]
 deps = ["TOML"]
-git-tree-sha1 = "de893592a221142f3db370f48290e3a2ef39998f"
+git-tree-sha1 = "d3538e7f8a790dc8903519090857ef8e1283eecd"
 uuid = "21216c6a-2e73-6563-6e65-726566657250"
-version = "1.2.4"
+version = "1.2.5"
 
 [[deps.PrettyTables]]
 deps = ["Crayons", "Formatting", "Markdown", "Reexport", "Tables"]
@@ -428,9 +410,9 @@ version = "1.3.0"
 
 [[deps.Revise]]
 deps = ["CodeTracking", "Distributed", "FileWatching", "JuliaInterpreter", "LibGit2", "LoweredCodeUtils", "OrderedCollections", "Pkg", "REPL", "Requires", "UUIDs", "Unicode"]
-git-tree-sha1 = "606ddc4d3d098447a09c9337864c73d017476424"
+git-tree-sha1 = "4d4239e93531ac3e7ca7e339f15978d0b5149d03"
 uuid = "295af30f-e4ad-537b-8983-00126c2a3abe"
-version = "3.3.2"
+version = "3.3.3"
 
 [[deps.SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
@@ -491,19 +473,9 @@ uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [[deps.Stipple]]
 deps = ["FilePathsBase", "Genie", "JSON3", "Logging", "Mixers", "Observables", "OrderedCollections", "Parameters", "Pkg", "Random", "Reexport", "Requires", "StructTypes"]
-git-tree-sha1 = "372f28ed392f8e964b36cc5323fc21f1cbcaf423"
-repo-rev = "master"
-repo-url = "https://github.com/GenieFramework/Stipple.jl.git"
+git-tree-sha1 = "c3840b4b93413692e21685a8336bb50d3068080a"
 uuid = "4acbeb90-81a0-11ea-1966-bdaff8155998"
-version = "0.21.3"
-
-[[deps.StippleUI]]
-deps = ["Colors", "DataFrames", "Dates", "Genie", "Stipple"]
-git-tree-sha1 = "7953a55a25b7a85a55f1be0b9d49e278708e5632"
-repo-rev = "master"
-repo-url = "https://github.com/GenieFramework/StippleUI.jl.git"
-uuid = "a3c5d34a-b254-4859-a8fa-b86abb7e84a3"
-version = "0.16.1"
+version = "0.21.2"
 
 [[deps.StringEncodings]]
 deps = ["Libiconv_jll"]
@@ -528,10 +500,10 @@ uuid = "3783bdb8-4a98-5b6b-af9a-565f29a5fe9c"
 version = "1.0.1"
 
 [[deps.Tables]]
-deps = ["DataAPI", "DataValueInterfaces", "IteratorInterfaceExtensions", "LinearAlgebra", "TableTraits", "Test"]
-git-tree-sha1 = "bb1064c9a84c52e277f1096cf41434b675cd368b"
+deps = ["DataAPI", "DataValueInterfaces", "IteratorInterfaceExtensions", "LinearAlgebra", "OrderedCollections", "TableTraits", "Test"]
+git-tree-sha1 = "5ce79ce186cc678bbb5c5681ca3379d1ddae11a1"
 uuid = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
-version = "1.6.1"
+version = "1.7.0"
 
 [[deps.Tar]]
 deps = ["ArgTools", "SHA"]
@@ -588,9 +560,9 @@ version = "0.2.0"
 
 [[deps.WeakRefStrings]]
 deps = ["DataAPI", "InlineStrings", "Parsers"]
-git-tree-sha1 = "c69f9da3ff2f4f02e811c3323c22e5dfcb584cfa"
+git-tree-sha1 = "b1be2855ed9ed8eac54e5caff2afcdb442d52c23"
 uuid = "ea10d353-3f73-51f8-a26c-33c1cb351aa5"
-version = "1.4.1"
+version = "1.4.2"
 
 [[deps.XML2_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Libiconv_jll", "Pkg", "Zlib_jll"]

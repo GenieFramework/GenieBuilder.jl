@@ -1,8 +1,4 @@
 using Genie.Router
-using DashboardsController
-
-route("/", DashboardsController.index)
-
 using ApplicationsController
 
 const api_route = "/api/v1"
