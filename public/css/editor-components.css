@@ -1,0 +1,32 @@
+/*  
+------------------------------------------
+Stylesheet for components UI in edit-mode
+These are loaded inside the editor's canvas iframe
+------------------------------------------ 
+*/
+
+q-slider, q-range, q-select, q-table, q-checkbox, q-input, q-date, q-btn, q-expansion-item, plotly {
+  background: #f0f0f0;
+  position: relative;
+  min-height: 20px;
+  display: block;
+  text-align: center;
+  margin: 1px;
+  border: dashed 1.9px #00000050;
+  padding: 5px;
+  font-size: 12px;
+}
+
+q-slider img, q-range img, q-select img, q-checkbox img, q-input img, q-date img, q-btn img, q-expansion-item img  {
+  max-height: 30px;
+  max-width: 100%;
+}
+
+q-table img, plotly img {
+  max-height: 60px;
+  max-width: 100%;
+}
+
+.loop-iterator, .conditional-block{
+  min-height: 20px;
+}

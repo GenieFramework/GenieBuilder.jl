@@ -1,0 +1,192 @@
+/*  
+------------------------------------------
+Stylesheet for the shell app
+------------------------------------------ 
+*/
+
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+
+#topBar{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 57px;
+  z-index: 10000000;
+  background-color: #fff;
+  border-bottom: solid 1px #ccc;
+  padding: 14px;
+  box-sizing: border-box;
+  display: none;
+}
+
+#topBar img.logo{
+  height: 19px;
+  margin-top: 6px;
+}
+
+.topbar-btn{
+  border: solid 1px #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.topbar-btn:hover{
+  border: solid 1px #F2F0EC;
+  background-color: #F9F8F6;
+  color: #333;
+}
+
+.topbar-btn-icon{
+  font-size: 15px;
+  margin-right: 6px;
+}
+
+.split-pane{
+  position: absolute;
+  height: calc(100% - 57px);
+  width: 100%;
+  overflow: auto;
+  z-index: 0;
+  top: 57px;
+  box-sizing: content-box;
+}
+
+.panel__right {
+  flex-basis: 230px;
+  position: relative;
+  overflow-y: auto;
+}
+
+#genie_model {
+  display: none;
+  position: fixed;
+  right: 200px;
+  width: 300px;
+  z-index: 11;
+  padding: 0px 0px;
+  text-align: left;
+  top: 40px;
+  box-sizing: border-box;
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  border-right: solid 2px #362c2e;
+  border-top: solid 2px #362c2e;
+}
+
+#genie_model .gn_model_container {
+  padding: 20px;
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+
+#genie_model .gn_field_label {
+  margin-bottom: 3px;
+  text-transform: capitalize;
+}
+
+#genie_model .gn_title {
+  font-weight: lighter;
+  background-color: rgba(0, 0, 0, .1);
+  letter-spacing: 1px;
+  padding: 9px 10px 9px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, .25);
+}
+
+.gn_input {  
+  background-color: white!important;
+  border: 1px solid #E7E6E3!important;
+  border-radius: 3px!important;
+  box-shadow: none;
+  box-sizing: border-box; 
+  width: 100%;
+  padding: 5px;
+  z-index: 1;
+  color: inherit;
+}
+
+.gn_input:focus {
+  outline: none;
+}
+
+img.blockIcon{
+  max-width: 30px;
+  max-height: 11px;
+}
+
+#codeEditor{
+  display: flex;
+  position: fixed;
+  top: 57px;
+  left: 200px;
+  width: calc(100% - 200px);
+  height: calc(100% - 57px);
+}
+
+.tree-anchor, .tree-default .tree-node {
+  font-size: 12px !important;
+  color: #555;
+}
+
+.tree-leaf .tree-icon {
+  color: #999;
+}
+
+#codeEditor .fileTree{
+  background-color: #fff;
+  width: 200px;
+  border-right: solid 1px #ccc;
+}
+
+/* #codeEditorContainer{
+  width: 100%; 
+  height: 100%; 
+  position: absolute;
+} */
+
+.tree-selected{
+  color: #000;
+  font-weight: bold;
+}
+
+#explorerBar{
+  position: fixed;
+    top: 57px;
+    background-color: #ffffff;
+    left: 0px;
+    height: calc(100% - 57px);
+    width: 200px;
+    border-right: solid 1px #00000030;
+    overflow: auto;
+}
+/* #fileExplorer{
+  position: fixed;
+    top: 57px;
+    background-color: #dddddd;
+    left: 0px;
+    height: calc(100% - 57px);
+    width: 200px;
+} */
+.sidebar-panel{
+  position: relative;
+  padding-bottom: 10px;
+  overflow: auto;
+}
+.sidebar-panel-title{
+  background-color: rgba(0, 0, 0, .05);
+  font-size: 12px;
+  padding: 3px;
+  font-weight: bold;
+  color: #000000a0;
+}
