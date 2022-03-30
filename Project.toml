@@ -1,10 +1,9 @@
-name = "GenieCloud"
-uuid = "ec25756f-3f99-4095-a8dc-b65d8ebe19ae"
-authors = ["adrian "]
+name = "GenieBuilder"
+uuid = "c9453c14-af8a-11ec-351d-c7c9a2035d70"
+authors = ["Adrian Salceanu"]
 version = "0.1.0"
 
 [deps]
-DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
 GenieAutoReload = "c6228e60-a24f-11e9-1776-c313472ebacc"

@@ -10,7 +10,7 @@ using JSON3
 using GenieDevTools
 
 const appsthreads = Dict()
-const apphost = "http://localhost"
+const apphost = "http://127.0.0.1"
 
 fullpath(app::Application) = "." * app.path * app.name
 get(appid) = SearchLight.findone(Application, id = parse(Int, appid))

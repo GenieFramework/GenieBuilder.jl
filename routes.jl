@@ -59,3 +59,7 @@ end
 route("$api_route$app_route/startrepl") do
   ApplicationsController.startrepl(params(:appid) |> ApplicationsController.get)
 end
+
+route("/") do
+  serve_static_file("index.html")
+end

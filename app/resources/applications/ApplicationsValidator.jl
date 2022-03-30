@@ -15,8 +15,10 @@ function is_int(field::Symbol, m::T, args::Vararg{Any})::ValidationResult where 
 end
 
 function is_unique(field::Symbol, m::T, args::Vararg{Any})::ValidationResult where {T<:AbstractModel}
-  findone(typeof(m); NamedTuple(field => getfield(m, field))... ) === nothing ||
+  obj = findone(typeof(m); NamedTuple(field => getfield(m, field))... )
+  if ( obj !== nothing && ! ispersisted(m) )
     return ValidationResult(invalid, :is_unique, "already exists")
+  end
 
   ValidationResult(valid)
 end
