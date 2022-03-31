@@ -1,6 +1,8 @@
 using Genie.Router
 using ApplicationsController
 
+Genie.config.websockets_server = true
+
 const api_route = "/api/v1"
 const app_route = "/apps/:appid"
 
@@ -62,4 +64,12 @@ end
 
 route("/") do
   serve_static_file("index.html")
+end
+
+channel("/geniebuilder/subscribe") do
+  Genie.WebChannels.subscribe(params(:WS_CLIENT), "geniebuilder")
+end
+
+channel("/geniebuilder/unsubscribe") do
+  Genie.WebChannels.unsubscribe(params(:WS_CLIENT), "geniebuilder")
 end
