@@ -14,7 +14,7 @@ end
 function go()
   cd(normpath(@__DIR__, ".."))
   Genie.go()
-  Genie.Generator.write_secrets_file()
+  Genie.Generator.write_secrets_file() # TODO: check this, will write it every time
   @eval Genie.up(; async = false)
 end
 
