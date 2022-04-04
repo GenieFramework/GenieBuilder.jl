@@ -10,6 +10,10 @@ route("$api_route/apps") do
   ApplicationsController.apps()
 end
 
+route("$api_route/apps/create") do
+  ApplicationsController.create(params(:name), params(:path, ""), params(:port, rand(45_000:60_000)))
+end
+
 route("$api_route$app_route/status") do
   ApplicationsController.status(params(:appid) |> ApplicationsController.get)
 end
