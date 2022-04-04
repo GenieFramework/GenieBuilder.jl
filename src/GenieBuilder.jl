@@ -13,9 +13,9 @@ function main()
   Core.eval(Main, :(Genie.up()))
 end
 
-function go()
+function go(; kwargs...)
   cd(normpath(@__DIR__, ".."))
-  Genie.go()
+  Genie.go(; kwargs...)
 end
 
 end
