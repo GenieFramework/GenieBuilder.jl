@@ -15,7 +15,8 @@ end
 
 function go(; kwargs...)
   cd(normpath(@__DIR__, ".."))
-  Genie.go(; kwargs...)
+  Genie.go()
+  Genie.up(; kwargs...)
 end
 
 end
