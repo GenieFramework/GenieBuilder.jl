@@ -9,8 +9,6 @@ function main()
 
   Core.eval(Main, :(const Genie = UserApp.Genie))
   Core.eval(Main, :(using Genie))
-
-  # Core.eval(Main, :(Genie.up()))
 end
 
 function go()

@@ -47,7 +47,7 @@ end
 
 function postcreate()
   pkgcmd = "develop"
-  `julia -e "using Pkg;Pkg.activate(\".\");Pkg.$(pkgcmd)(\"GenieAutoReload\");Pkg.$(pkgcmd)(\"GenieDevTools\");Pkg.$(pkgcmd)(\"Stipple\");Pkg.$(pkgcmd)(\"StippleUI\");Pkg.$(pkgcmd)(\"StipplePlotly\");"` |> run
+  `julia -e "using Pkg;Pkg.activate(\".\");Pkg.$(pkgcmd)(\"GenieAutoReload\");Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools\");Pkg.$(pkgcmd)(\"Stipple\");Pkg.$(pkgcmd)(\"StippleUI\");Pkg.$(pkgcmd)(\"StipplePlotly\");"` |> run
 
   open(joinpath(Genie.config.path_initializers, "autoload.jl"), "w") do io
     write(io,
@@ -111,7 +111,7 @@ function postcreate()
       </head>
       <body>
         <% @yield %>
-        <% Stipple.deps(Stipple.channel_js_name) %>
+        <% Genie.Assets.channels_support() %>
         <% GenieAutoReload.assets() %>
       </body>
     </html>
@@ -154,6 +154,8 @@ function create(name, path, port)
 
   app = Application(; name, path, port)
   app = save!(app)
+
+  # make sure apps/ folder exists
 
   current_path = pwd()
   output = (:application => app)
