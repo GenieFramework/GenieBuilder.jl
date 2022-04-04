@@ -10,13 +10,14 @@ function main()
   Core.eval(Main, :(const Genie = UserApp.Genie))
   Core.eval(Main, :(using Genie))
 
-  Core.eval(Main, :(Genie.up()))
+  # Core.eval(Main, :(Genie.up()))
 end
 
-function go(; kwargs...)
+function go()
   cd(normpath(@__DIR__, ".."))
   Genie.go()
-  Genie.up(; kwargs...)
+  Genie.Generator.write_secrets_file()
+  @eval Genie.up(; async = false)
 end
 
 end
