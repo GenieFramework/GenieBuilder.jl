@@ -4,8 +4,8 @@ function installgb()
   isdir(gbdir) || mkdir(gbdir)
   cd(gbdir)
 
-  # `julia -e 'using Pkg;Pkg.activate(".");Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl")'` |> run
-  `julia -e 'using Pkg;Pkg.activate(".");Pkg.develop("GenieBuilder")'` |> run
+  `julia -e 'using Pkg;Pkg.activate(".");Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl")'` |> run
+  # `julia -e 'using Pkg;Pkg.activate(".");Pkg.develop("GenieBuilder")'` |> run
 end
 
 function startgb()
