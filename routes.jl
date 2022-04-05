@@ -1,4 +1,5 @@
 using Genie.Router
+using GenieBuilder
 using ApplicationsController
 
 Genie.config.websockets_server = true
@@ -70,10 +71,18 @@ route("/") do
   serve_static_file("index.html")
 end
 
+route("/geniebuilder/stop") do
+  GenieBuilder.stop()
+end
+
 channel("/geniebuilder/subscribe") do
   Genie.WebChannels.subscribe(params(:WS_CLIENT), "geniebuilder")
 end
 
 channel("/geniebuilder/unsubscribe") do
   Genie.WebChannels.unsubscribe(params(:WS_CLIENT), "geniebuilder")
+end
+
+channel("/geniebuilder/stop") do
+  GenieBuilder.stop()
 end

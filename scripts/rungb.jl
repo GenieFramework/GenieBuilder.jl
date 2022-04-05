@@ -20,4 +20,10 @@ function startgb()
   `julia --project --startup-file=no --history-file=no --depwarn=no -e 'using GenieBuilder;GenieBuilder.go();'` |> run
 end
 
-startgb()
+try
+  startgb()
+catch ex
+  @error ex
+finally
+  exit()
+end

@@ -14,12 +14,18 @@ end
 function go()
   cd(normpath(@__DIR__, ".."))
   Genie.go()
-  @eval Genie.up(; async = false)
+  try
+    @eval Genie.up(; async = false)
+  catch ex
+    @error ex
+    stop()
+  finally
+    stop()
+  end
 end
 
 function postinstall()
   cd(normpath(joinpath(@__DIR__, "..")))
-  # chmod(normpath("."), 0o775; recursive = true)
   Genie.Generator.write_secrets_file()
   dbpath = normpath(joinpath(".", "db"))
   ispath(dbpath) ? chmod(dbpath, 0o775; recursive = true) : @warn("db path $dbpath does not exist")
@@ -27,6 +33,7 @@ end
 
 function stop()
   Genie.AppServer.down!()
+  exit()
 end
 
 end
