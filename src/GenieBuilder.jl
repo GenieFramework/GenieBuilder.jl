@@ -25,4 +25,8 @@ function postinstall()
   ispath(dbpath) ? chmod(dbpath, 0o775; recursive = true) : @warn("db path $dbpath does not exist")
 end
 
+function stop()
+  Genie.AppServer.down!()
+end
+
 end

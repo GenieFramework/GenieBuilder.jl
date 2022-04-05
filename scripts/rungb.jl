@@ -11,8 +11,8 @@ function installgb()
 
   cd(gbdir)
 
-  # `julia -e 'using Pkg;Pkg.activate(".");Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl");using GenieBuilder;GenieBuilder.postinstall();'` |> run
-  `julia -e 'using Pkg;Pkg.activate(".");Pkg.develop("GenieBuilder");using GenieBuilder;GenieBuilder.postinstall();'` |> run
+  `julia -e 'using Pkg;Pkg.activate(".");Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl");using GenieBuilder;GenieBuilder.postinstall();'` |> run
+  # `julia -e 'using Pkg;Pkg.activate(".");Pkg.develop("GenieBuilder");using GenieBuilder;GenieBuilder.postinstall();'` |> run
 end
 
 function startgb()
