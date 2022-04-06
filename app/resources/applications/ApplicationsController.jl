@@ -47,7 +47,7 @@ end
 
 function postcreate()
   pkgcmd = "add"
-  `julia -e "using Pkg;Pkg.activate(\".\");Pkg.$(pkgcmd)(\"GenieAutoReload\");Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools\");Pkg.$(pkgcmd)(\"Stipple\");Pkg.$(pkgcmd)(\"StippleUI\");Pkg.$(pkgcmd)(\"StipplePlotly\");"` |> run
+  `julia -e "using Pkg;Pkg.activate(\".\");Pkg.$(pkgcmd)(\"GenieAutoReload\");Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");Pkg.$(pkgcmd)(\"Stipple\");Pkg.$(pkgcmd)(\"StippleUI\");Pkg.$(pkgcmd)(\"StipplePlotly\");"` |> run
 
   open(joinpath(Genie.config.path_initializers, "autoload.jl"), "w") do io
     write(io,
