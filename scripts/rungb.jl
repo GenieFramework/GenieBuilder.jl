@@ -2,7 +2,7 @@
 # $ julia rungb.jl
 # to be distributed with the VSCode plugin
 
-const gbdir = joinpath(homedir(), ".julia", "geniecloud")
+const gbdir = joinpath(homedir(), ".julia", "geniebuilder")
 const appsdir = joinpath(gbdir, "apps")
 
 function installgb()
@@ -11,8 +11,11 @@ function installgb()
 
   cd(gbdir)
 
-  `julia -e 'using Pkg;Pkg.activate(".");Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl");using GenieBuilder;GenieBuilder.postinstall();'` |> run
-  # `julia -e 'using Pkg;Pkg.activate(".");Pkg.develop("GenieBuilder");using GenieBuilder;GenieBuilder.postinstall();'` |> run
+  # `julia -e 'using Pkg;Pkg.activate(".");Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl");using GenieBuilder;GenieBuilder.postinstall();'` |> run
+  `julia -e 'using Pkg;Pkg.activate(".");
+              Pkg.develop("GenieBuilder");
+              using GenieBuilder;
+              GenieBuilder.postinstall();'` |> run
 end
 
 function startgb()

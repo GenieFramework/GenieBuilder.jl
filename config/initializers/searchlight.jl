@@ -1,20 +1,14 @@
+import GenieBuilder
+
 using SearchLight
 using Genie
 
-try
-  dbpath = normpath(joinpath("..", "..", "db", "$(Genie.config.app_env).sqlite3"))
-  isfile(dbpath) && chmod(dbpath, "0o664")
-catch ex
-  @error ex
-end
+dbpath = normpath(joinpath(GenieBuilder.DB_FOLDER, GenieBuilder.DB_NAME))
+isfile(dbpath) && chmod(dbpath, 0o664)
 
-try
-  SearchLight.Configuration.load()
+SearchLight.Configuration.load(joinpath(DB_FOLDER, DB_CONFIG_FILE))
 
-  if SearchLight.config.db_config_settings["adapter"] !== nothing
-    eval(Meta.parse("using SearchLight$(SearchLight.config.db_config_settings["adapter"])"))
-    SearchLight.connect()
-  end
-catch ex
-  @error ex
+if SearchLight.config.db_config_settings["adapter"] !== nothing
+  eval(Meta.parse("using SearchLight$(SearchLight.config.db_config_settings["adapter"])"))
+  SearchLight.connect()
 end

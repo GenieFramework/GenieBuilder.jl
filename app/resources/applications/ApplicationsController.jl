@@ -1,5 +1,7 @@
 module ApplicationsController
 
+import GenieBuilder
+
 using Applications
 using SearchLight
 using Genie.Router
@@ -13,7 +15,6 @@ using Dates
 
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
-const apps_folder = joinpath(homedir(), ".julia", "geniecloud", "apps")
 
 const FAILSTATUS = "KO"
 
@@ -47,7 +48,12 @@ end
 
 function postcreate()
   pkgcmd = "add"
-  `julia -e "using Pkg;Pkg.activate(\".\");Pkg.$(pkgcmd)(\"GenieAutoReload\");Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");Pkg.$(pkgcmd)(\"Stipple\");Pkg.$(pkgcmd)(\"StippleUI\");Pkg.$(pkgcmd)(\"StipplePlotly\");"` |> run
+  `julia -e "using Pkg;Pkg.activate(\".\");
+              Pkg.$(pkgcmd)(\"GenieAutoReload\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");
+              Pkg.$(pkgcmd)(\"Stipple\");
+              Pkg.$(pkgcmd)(\"StippleUI\");
+              Pkg.$(pkgcmd)(\"StipplePlotly\");"` |> run
 
   open(joinpath(Genie.config.path_initializers, "autoload.jl"), "w") do io
     write(io,
@@ -110,8 +116,7 @@ function postcreate()
         <% Genie.Assets.favicon_support() %>
       </head>
       <body>
-        <% @yield %>
-        <% Genie.Assets.channels_support() %>
+        <% page(model, partial = true, [@yield]) %>
         <% GenieAutoReload.assets() %>
       </body>
     </html>
@@ -149,7 +154,7 @@ end
 
 function create(name, path, port)
   name = Genie.Generator.validname(name)
-  isempty(path) && (path = apps_folder)
+  isempty(path) && (path = GenieBuilder.APPS_FOLDER)
   endswith(path, "/") || (path = "$path/")
 
   app = Application(; name, path, port)
