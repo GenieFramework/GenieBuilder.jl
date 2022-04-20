@@ -20,7 +20,7 @@ function initNoCodeEditor(){
     ------------------------------------------------------- */
     plugins: [myNewComponentTypes, 'gjs-preset-webpage'],
     pluginsOpts: {
-      'gjs-preset-webpage': { showStylesOnChange:0 }
+      'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }
     },
     container: '#gjs',
     canvas: {
