@@ -3,8 +3,9 @@ class ApiConnector{
       console.log( "new APiConnector created!");
     }
     static hostName = "127.0.0.1";
+    static port = "10101";
     static get baseUrl(){
-      return `http://${ApiConnector.hostName}:8000/api/v1/apps/`
+      return `http://${ApiConnector.hostName}:${ApiConnector.port}/api/v1/apps/`
     }
     static projectId = null;
     static appsList = [];

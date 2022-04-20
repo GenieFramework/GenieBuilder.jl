@@ -39,37 +39,75 @@ window.onload = () => {
         // To-do: these hardcoded dependencies should come from the API
         appConfig.contentScripts = [      
             "scripts/channelInject.js"    , 
-            "https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/underscore-min.js", 
+            /* "https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/underscore-min.js", 
             "https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/vue.min.js", 
             "https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/stipplecore.js", 
             "https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/vue_filters.js", 
             "https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/watchers.js", 
-            "https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/keepalive.js", 
+            "https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/keepalive.js",  */
             //"https://cdn.statically.io/gh/genieframework/stippleplotly.jl/master/assets/js/plotly2.min.js", 
             //"https://cdn.statically.io/gh/genieframework/stippleplotly.jl/master/assets/js/resizesensor.min.js", 
             //"https://cdn.statically.io/gh/genieframework/stippleplotly.jl/master/assets/js/lodash.min.js", 
-            "https://cdn.statically.io/gh/genieframework/stippleplotly.jl/master/assets/js/vueresize.min.js", 
+           // "https://cdn.statically.io/gh/genieframework/stippleplotly.jl/master/assets/js/vueresize.min.js", 
             //"https://cdn.statically.io/gh/genieframework/stippleplotly.jl/master/assets/js/vueplotly.min.js", 
             //"https://cdn.statically.io/gh/genieframework/stippleui.jl/master/assets/js/quasar.umd.min.js", 
 
             //"http://127.0.0.1:24838/genie.jl/master/assets/js/1507798244867743252/channels.js", 
-            "scripts/genie/channels.js", 
+            //"scripts/genie/channels.js", 
     
             //"scripts/genie/channelsPkgs.js",
             //"scripts/genie/modelPkgs.js",
             "./libs/jquery.min.js",
-            "scripts/contentMain.js"    
+            "scripts/contentMain.js"    , 
+            // -------------
+            /* "http://127.0.0.1:48493/genie.jl/master/assets/js/channels.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/underscore-min.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/vue.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/stipplecore.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/vue_filters.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/watchers.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/keepalive.js",
+            "http://127.0.0.1:48493/stippleui.jl/master/assets/js/quasar.umd.min.js",
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/plotly2.min.js",
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/resizesensor.min.js",
+            
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/lodash.min.js",
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/vueresize.min.js",
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/vueplotly.min.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/stipplepagesemptymodel.js",
+            "http://127.0.0.1:48493/js/plugins/autoreload.js" */
+            // -------------
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/vue.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/vue_filters.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/underscore-min.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/stipplecore.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/watchers.js",
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/keepalive.js",
+            //"http://127.0.0.1:48493/stipple.jl/master/assets/js/irisirismodel.js",
+            
+            "http://127.0.0.1:48493/genie.jl/master/assets/js/channels.js",
+            "http://127.0.0.1:48493/stippleui.jl/master/assets/js/quasar.umd.min.js",
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/plotly2.min.js",
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/resizesensor.min.js",
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/lodash.min.js",
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/vueresize.min.js",
+            "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/vueplotly.min.js", 
+            "http://127.0.0.1:48493/stipple.jl/master/assets/js/stipplepagesemptymodel.js",
+            "http://127.0.0.1:48493/js/plugins/autoreload.js"
         ];
         result.scripts.forEach( (item)=>{
+            /* 
             let regex = /<script.*?src="(.*?)"/gmi;
             let url = regex.exec(item);
             appConfig.contentScripts.push( appConfig.url + url[1] );
+            */
+           //appConfig.contentScripts.push( appConfig.url + item );
           } );
         
           appConfig.contentStyles = [
               "https://fonts.googleapis.com/css?family=Material+Icons", 
-              "http://127.0.0.1:24838/stipple.jl/master/assets/css/stipplecore.css", 
-              "http://127.0.0.1:24838/stippleui.jl/master/assets/css/quasar.min.css", 
+              //"http://127.0.0.1:24838/stipple.jl/master/assets/css/stipplecore.css", 
+              //"http://127.0.0.1:24838/stippleui.jl/master/assets/css/quasar.min.css", 
               "css/editor-components.css"
           ];
 

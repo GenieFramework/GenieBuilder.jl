@@ -30,3 +30,21 @@ q-table img, plotly img {
 .loop-iterator, .conditional-block{
   min-height: 20px;
 }
+
+
+
+/* custom components */
+.row{
+  /* height: 200px; */
+  display: table;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  width: 100%;
+}
+.col{
+  width: 8%;
+  display: table-cell;
+  height: 75px;
+}
