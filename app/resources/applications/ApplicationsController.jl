@@ -26,24 +26,42 @@ function notify(message::String,
                 status::String = "OK",
                 type::String = "info",
                 eventid::String = params(:eventid, "0")) :: Bool
-  Genie.WebChannels.unsubscribe_disconnected_clients()
+  try
+    Genie.WebChannels.unsubscribe_disconnected_clients()
+  catch ex
+    @error ex
+  end
 
-  Genie.WebChannels.broadcast(
-    Dict(
-      :message    => message,
-      :appid      => isnothing(appid) ? 0 : appid.value,
-      :status     => status,
-      :type       => type,
-      :eventid    => eventid,
-      :timestamp  => Dates.now()
-    ) |> JSON3.write
-  )
+  try
+    appid !== nothing && type == "error" && persist_status(SearchLight.findone(Application, id = appid.value), "error")
+  catch ex
+    @error ex
+  end
+
+  try
+    Genie.WebChannels.broadcast(
+      Dict(
+        :message    => message,
+        :appid      => isnothing(appid) ? 0 : appid.value,
+        :status     => status,
+        :type       => type,
+        :eventid    => eventid,
+        :timestamp  => Dates.now()
+      ) |> JSON3.write
+    )
+  catch ex
+    @error ex
+  end
 
   true
 end
 
 function apps()
   (:applications => all(Application)) |> json
+end
+
+function info(app)
+  (:application => app) |> json
 end
 
 function postcreate()
@@ -69,26 +87,17 @@ function postcreate()
   isdir("models") || mkdir("models")
   isdir("views") || mkdir("views")
 
-  open(joinpath(Genie.config.path_plugins, "autoreload.jl"), "w") do io
-    write(io,
-    """
-    using GenieAutoReload
-
-    if ( Genie.Configuration.isdev() )
-      Genie.config.websockets_server = true
-      @async GenieAutoReload.autoreload(pwd())
-    end
-    """
-    )
-  end
-
   open(joinpath(Genie.config.path_plugins, "devtools.jl"), "w") do io
     write(io,
     """
     using GenieDevTools
+    using Stipple
+    using GenieAutoReload
 
     if ( Genie.Configuration.isdev() )
       GenieDevTools.register_routes()
+      Stipple.deps!(GenieAutoReload, GenieAutoReload.deps)
+      GenieAutoReload.watch([pwd()])
     end
     """
     )
@@ -117,7 +126,6 @@ function postcreate()
       </head>
       <body>
         <% page(model, partial = true, [@yield]) %>
-        <% GenieAutoReload.assets() %>
       </body>
     </html>
     """
@@ -138,8 +146,6 @@ function postcreate()
     using Stipple
     using StippleUI
     using StipplePlotly
-
-    using GenieAutoReload
 
     using Stipple.Pages
     using Stipple.ModelStorage.Sessions
@@ -174,7 +180,7 @@ function create(name, path, port)
   catch ex
     @error ex
     delete(app)
-    notify("failed:create_app", app.id)
+    notify("failed:create_app", app.id, FAILSTATUS, "error")
 
     output = (:error => ex)
   finally
@@ -182,6 +188,17 @@ function create(name, path, port)
   end
 
   output|> json
+end
+
+function persist_status(app, status) :: Nothing
+  app.status = string(status)
+  try
+    save!(app)
+  catch ex
+    @error ex
+  end
+
+  nothing
 end
 
 function status_request(app, donotify::Bool = true)
@@ -203,7 +220,9 @@ function status_request(app, donotify::Bool = true)
       :error
     end
   end
+
   donotify && notify("ended:status_request", app.id)
+  persist_status(app, status)
 
   status
 end
@@ -221,7 +240,9 @@ function start(app)
   appstatus != :offline && notify("failed:start:$appstatus", app.id, FAILSTATUS, "error") && return (:status => appstatus) |> json
 
   try
+    persist_status(app, "starting")
     notify("started:start", app.id)
+
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
         `julia -e "cd(\"$(fullpath(app))\");ENV[\"PORT\"]=$(app.port);using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();up(async = false)"` |> run
@@ -233,7 +254,7 @@ function start(app)
 
     @async begin
       while status_request(app, false) == :offline
-        sleep(0.5)
+        sleep(1)
       end
 
       notify("ended:start", app.id)
@@ -250,7 +271,9 @@ function stop(app)
   appstatus != :online && notify("failed:stop:$appstatus", app.id, FAILSTATUS, "error") && return (:status => appstatus) |> json
 
   try
+    persist_status(app, "stopping")
     notify("started:stop", app.id)
+
     HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit")
   catch ex
     @error ex
@@ -265,7 +288,9 @@ function stop(app)
     end
 
     delete!(appsthreads, fullpath(app))
+
     notify("ended:stop", app.id)
+    persist_status(app, "offline")
 
     :ok
   else
@@ -279,21 +304,25 @@ function up(app)
   appstatus != :offline && notify("failed:up:$appstatus", app.id, FAILSTATUS, "error") && return (:status => appstatus) |> json
 
   res = try
+    persist_status(app, "starting")
     notify("started:up", app.id)
+
     HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/up")
   catch ex
     @error ex
     notify("failed:up", app.id, FAILSTATUS, "error")
   end
 
+  persist_status(app, "online")
   notify("ended:up", app.id)
+
   String(res.body) |> JSON3.read |> json
 end
 
-macro isonline(app, event)
+macro isonline(app)
   quote
     appstatus = status_request($(esc(app)))
-    appstatus != :online && notify("failed:$(esc(event))", app.id, FAILSTATUS, "error") && return json(:status => appstatus)
+    appstatus != :online && return json(:status => appstatus)
 
     true
   end
@@ -304,24 +333,29 @@ function json2json(res)
 end
 
 function down(app)
-  if @isonline(app, "down")
+  if @isonline(app)
     res = try
+      persist_status(app, "stopping")
       notify("started:down", app.id)
+
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/down")
     catch ex
       @error ex
       notify("failed:down", app.id, FAILSTATUS, "error")
     end
 
+    persist_status(app, "offline")
     notify("ended:down", app.id)
+
     res |> json2json
   end
 end
 
 function dir(app)
-  if @isonline(app, "dir")
+  if @isonline(app)
     res = try
       notify("started:dir", app.id)
+
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/dir?path=$(params(:path, "."))")
     catch ex
       @error ex
@@ -329,14 +363,16 @@ function dir(app)
     end
 
     notify("ended:dir", app.id)
+
     res |> json2json
   end
 end
 
 function edit(app)
-  if @isonline(app, "edit")
+  if @isonline(app)
     res = try
       notify("started:edit", app.id)
+
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/edit?path=$(params(:path, "."))")
     catch ex
       @error ex
@@ -344,14 +380,16 @@ function edit(app)
     end
 
     notify("ended:edit", app.id)
+
     res |> json2json
   end
 end
 
 function save(app)
-  if @isonline(app, "save")
+  if @isonline(app)
     res = try
       notify("started:save", app.id)
+
       HTTP.request( "POST",
                     "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/save?path=$(params(:path, "."))",
                       [], HTTP.Form(Dict("payload" => jsonpayload()["payload"])))
@@ -361,14 +399,16 @@ function save(app)
     end
 
     notify("ended:save", app.id)
+
     res |> json2json
   end
 end
 
 function log(app)
-  if @isonline(app, "log")
+  if @isonline(app)
     res = try
       notify("started:log", app.id)
+
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/log")
     catch ex
       @error ex
@@ -376,14 +416,16 @@ function log(app)
     end
 
     notify("ended:log", app.id)
+
     res |> json2json
   end
 end
 
 function errors(app)
-  if @isonline(app, "errors")
+  if @isonline(app)
     res = try
       notify("started:errors", app.id)
+
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/errors")
     catch ex
       @error ex
@@ -391,14 +433,16 @@ function errors(app)
     end
 
     notify("ended:errors", app.id)
+
     res |> json2json
   end
 end
 
 function pages(app)
-  if @isonline(app, "pages")
+  if @isonline(app)
     res = try
       notify("started:pages", app.id)
+
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/pages")
     catch ex
       @error ex
@@ -406,14 +450,16 @@ function pages(app)
     end
 
     notify("ended:pages", app.id)
+
     res |> json2json
   end
 end
 
 function assets(app)
-  if @isonline(app, "assets")
+  if @isonline(app)
     res = try
       notify("started:assets", app.id)
+
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/assets")
     catch ex
       @error ex
@@ -421,22 +467,62 @@ function assets(app)
     end
 
     notify("ended:assets", app.id)
+
     res |> json2json
   end
 end
 
+function valid_replport()
+  replport = rand(50_000:60_000)
+  isempty(find(Application, replport = replport)) || valid_replport()
+
+  replport
+end
+
 function startrepl(app)
-  if @isonline(app, "startrepl")
+  if @isonline(app)
     res = try
       notify("started:startrepl", app.id)
-      HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/startrepl")
+
+      HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/startrepl?port=$(app.replport != 0 ? app.replport : valid_replport())")
     catch ex
       @error ex
       notify("failed:startrepl", app.id, FAILSTATUS, "error")
     end
 
+    status = try
+      status = String(res.body) |> JSON3.read
+      if status.status == "OK"
+        app.replport = status.port
+        save!(app)
+      end
+
+      status
+    catch ex
+      @error ex
+    end
+
     notify("ended:startrepl", app.id)
-    res |> json2json
+
+    status |> json
+  end
+end
+
+function cleanup()
+  for app in find(Application, status = "online")
+    stop(app)
+  end
+end
+
+function reset_app_status()
+  for app in find(Application)
+    app.status = "offline"
+
+    try
+      save!(app)
+    catch ex
+      @error ex
+    end
   end
 end
 

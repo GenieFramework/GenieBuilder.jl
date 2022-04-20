@@ -52,7 +52,7 @@ end
 
 function stop()
   Genie.AppServer.down!()
-  exit()
+  Base.exit()
 end
 
 end

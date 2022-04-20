@@ -9,10 +9,12 @@ import SearchLight.Validation: ModelValidator, ValidationRule
 export Application
 
 @kwdef mutable struct Application <: AbstractModel
-  id::DbId = DbId()
-  name::String = ""
-  port::Int = rand(10_000:65_535)
-  path::String = "/apps/"
+  id::DbId        = DbId()
+  name::String    = ""
+  port::Int       = rand(10_000:65_535)
+  path::String    = "/apps/"
+  status::String  = "offline"
+  replport::Int   = 0
 end
 
 function SearchLight.Validation.validator(::Type{Application})
