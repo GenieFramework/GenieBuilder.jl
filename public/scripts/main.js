@@ -136,6 +136,14 @@ window.onload = () => {
               //"http://127.0.0.1:24838/stippleui.jl/master/assets/css/quasar.min.css", 
               "css/editor-components.css"
           ];
+          result.styles.forEach( (item)=>{
+            /* 
+            let regex = /<script.*?src="(.*?)"/gmi;
+            let url = regex.exec(item);
+            appConfig.contentScripts.push( appConfig.url + url[1] );
+            */
+           appConfig.contentStyles.push( appConfig.url + item );
+          } );
 
           // Inject same scripts in editor context (root)
           for (let i = 0; i < appConfig.contentScripts.length; i++) {

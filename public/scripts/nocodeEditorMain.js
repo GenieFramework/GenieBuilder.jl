@@ -144,23 +144,46 @@ function initNoCodeEditor(){
   console.log( "viewTemplate used");
   // Change the main container id to "#editableDOM"
   let currentTemplate = appConfiguration.template;
-  currentTemplate = currentTemplate.replaceAll(`id="${appName}"`, `id="editableDOM"`);    
+  let containerDivPresent = currentTemplate.indexOf( `id="${appName}"` );
+  if( containerDivPresent >= 0 )
+    currentTemplate = currentTemplate.replaceAll(`id="${appName}"`, `id="editableDOM"`);    
+  else{
+    let containerHtml = '<div id="editableDOM" class="container">';
+    currentTemplate = containerHtml + currentTemplate + '</div>';
+  }
   editor.addComponents( currentTemplate );
+
+
+  runVue();
 }
 
-window.parse_payload = function(payload){
+/* window.parse_payload = function(payload){
   console.log( "parse_payload() editorMain");
     if (payload.key) {
         window[appName].revive_payload(payload)
         window[appName].updateField(payload.key, payload.value);
         window.updateEditorElements(payload);
     }
-}
+} */
 
 function savePage(){
-  console.log( "savePage() called");
-  let currentTemplate = editor.getHtml();
-    currentTemplate = currentTemplate.replaceAll( `id="editableDOM"`, `id="${appName}"` );   
+  let currentTemplate = editor.getHtml( { cleanId:true } );
+  //currentTemplate = currentTemplate.replaceAll( `id="editableDOM"`, `id="${appName}"` );   
+  
+  // remove body tag
+  currentTemplate = currentTemplate.replaceAll( `<body>`, `` ).replaceAll( `</body>`, `` );   
+
+  let containerHtml = '<div id="editableDOM" class="container">';
+
+  let containerDivPresent = currentTemplate.indexOf( containerHtml );
+  if( containerDivPresent >= 0 ){
+    currentTemplate = currentTemplate.replace( containerHtml, ``);    
+    currentTemplate = currentTemplate.replace(new RegExp( '</div>' + '$'), '');
+
+  }
+
+  console.log( "savePage() called" );
+  //console.log( "savePage() called: \n", currentTemplate );
   parent.postMessage( 
     {
       command: "saveContent", 
@@ -172,10 +195,11 @@ function savePage(){
 
 function runVue(){
   let checker = setInterval( ()=>{
-      let rootElement = canvasDocument.getElementById('editableDOM');
+    let rootElement = document.getElementById('app_panel');
+      console.log("runVue #app_panel", rootElement )
       if( rootElement ){
           initStipple("#app_panel");
-          initLocalVueModelWatcher();
+          //initLocalVueModelWatcher();
           clearInterval(checker);
           /* if( app_ready )
             app_ready(); */
@@ -183,7 +207,7 @@ function runVue(){
   }, 1000);
 }
 
-function initLocalVueModelWatcher(){
+/* function initLocalVueModelWatcher(){
   for( let p in window[appName].$data ){
     window[appName].$watch(function(){return this[p]}, function(newVal, oldVal){
       let payload = { key:p, value:newVal }
@@ -191,9 +215,9 @@ function initLocalVueModelWatcher(){
     }, {deep: true});
 
   }
-}
+} */
 
-function startPreview(){
+/* function startPreview(){
   console.log( "inner iframe :: startPreview()" );
   canvasWindow.initStipple('#'+appName);
   canvasWindow.app_ready();
@@ -204,9 +228,9 @@ function stopPreview(){
   console.log( "inner iframe :: stopPreview()" );
   canvasWindow[appName].$destroy();
   canvasDocument.querySelector(`#editableDOM`).style.display = "";  
-}
+} */
 
-function updateEditorElements( payload ){
+/* function updateEditorElements( payload ){
   // Update views with text bindings
   let selector = `*[v-text='${payload.key}']`;
   let results = canvasDocument.querySelectorAll(selector);
@@ -219,13 +243,13 @@ function updateEditorElements( payload ){
   results.forEach( el =>{
     el.setAttribute( 'src', payload.value );
   });
-}
+} */
 
-function showCodeEditor(){
+/* function showCodeEditor(){
     //$('div.split-pane').splitPane('lastComponentSize', 500);
     $('#codeEditor').css( 'display', 'flex');
 }
 function hideCodeEditor(){
     //$('div.split-pane').splitPane('lastComponentSize', 0);
     $('#codeEditor').css( 'display', 'none');
-}
+} */
