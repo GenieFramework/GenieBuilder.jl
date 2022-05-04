@@ -77,7 +77,7 @@ window.onload = () => {
             "http://127.0.0.1:48493/stipple.jl/master/assets/js/stipplepagesemptymodel.js",
             "http://127.0.0.1:48493/js/plugins/autoreload.js" */
             // -------------
-            "http://127.0.0.1:48493/stipple.jl/master/assets/js/vue.js",
+            /* "http://127.0.0.1:48493/stipple.jl/master/assets/js/vue.js",
             "http://127.0.0.1:48493/stipple.jl/master/assets/js/vue_filters.js",
             "http://127.0.0.1:48493/stipple.jl/master/assets/js/underscore-min.js",
             "http://127.0.0.1:48493/stipple.jl/master/assets/js/stipplecore.js",
@@ -93,7 +93,33 @@ window.onload = () => {
             "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/vueresize.min.js",
             "http://127.0.0.1:48493/stippleplotly.jl/master/assets/js/vueplotly.min.js", 
             "http://127.0.0.1:48493/stipple.jl/master/assets/js/stipplepagesemptymodel.js",
-            "http://127.0.0.1:48493/js/plugins/autoreload.js"
+            "http://127.0.0.1:48493/js/plugins/autoreload.js" */
+            
+            
+            /* "http://127.0.0.1:53754/stipple.jl/master/assets/js/underscore-min.js",
+            "http://127.0.0.1:53754/stipple.jl/master/assets/js/vue.js",
+            "http://127.0.0.1:53754/stipple.jl/master/assets/js/stipplecore.js",
+            "http://127.0.0.1:53754/stipple.jl/master/assets/js/vue_filters.js",
+            "http://127.0.0.1:53754/stipple.jl/master/assets/js/watchers.js",
+            "http://127.0.0.1:53754/stipple.jl/master/assets/js/keepalive.js",
+            "http://127.0.0.1:53754/stipple.jl/master/assets/js/stipplepagesemptymodel.js",
+            "http://127.0.0.1:53754/js/plugins/autoreload.js" */
+
+            /* appConfig.url + "/genie.jl/master/assets/js/channels.js", 
+            appConfig.url + "/stipple.jl/master/assets/js/underscore-min.js", 
+            appConfig.url + "/stipple.jl/master/assets/js/vue.js", 
+            appConfig.url + "/stipple.jl/master/assets/js/stipplecore.js", 
+            appConfig.url + "/stipple.jl/master/assets/js/watchers.js", 
+            appConfig.url + "/stippleui.jl/master/assets/js/quasar.umd.min.js", 
+            appConfig.url + "/stippleplotly.jl/master/assets/js/plotly2.min.js", 
+            appConfig.url + "/stippleplotly.jl/master/assets/js/resizesensor.min.js", 
+            appConfig.url + "/stippleplotly.jl/master/assets/js/lodash.min.js", 
+            appConfig.url + "/stippleplotly.jl/master/assets/js/vueresize.min.js", 
+            appConfig.url + "/stippleplotly.jl/master/assets/js/vueplotly.min.js", 
+            appConfig.url + "/stipple.jl/master/assets/js/vue_filters.js", 
+            appConfig.url + "/stipple.jl/master/assets/js/keepalive.js", 
+            appConfig.url + "/stipple.jl/master/assets/js/stipplepagesemptymodel.js", 
+            appConfig.url + "/js/plugins/autoreload.js" */
         ];
         result.scripts.forEach( (item)=>{
             /* 
@@ -101,7 +127,7 @@ window.onload = () => {
             let url = regex.exec(item);
             appConfig.contentScripts.push( appConfig.url + url[1] );
             */
-           //appConfig.contentScripts.push( appConfig.url + item );
+           appConfig.contentScripts.push( appConfig.url + item );
           } );
         
           appConfig.contentStyles = [
@@ -110,6 +136,14 @@ window.onload = () => {
               //"http://127.0.0.1:24838/stippleui.jl/master/assets/css/quasar.min.css", 
               "css/editor-components.css"
           ];
+          result.styles.forEach( (item)=>{
+            /* 
+            let regex = /<script.*?src="(.*?)"/gmi;
+            let url = regex.exec(item);
+            appConfig.contentScripts.push( appConfig.url + url[1] );
+            */
+           appConfig.contentStyles.push( appConfig.url + item );
+          } );
 
           // Inject same scripts in editor context (root)
           for (let i = 0; i < appConfig.contentScripts.length; i++) {
