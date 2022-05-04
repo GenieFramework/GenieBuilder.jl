@@ -48,3 +48,7 @@ q-table img, plotly img {
   display: table-cell;
   height: 75px;
 }
+
+#editableDOM{
+  height: 100%;
+}

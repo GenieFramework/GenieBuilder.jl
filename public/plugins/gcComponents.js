@@ -733,9 +733,9 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( '1 Column', { label: '1 Column', content: `<div class="row"><div class="col"></div></div>`, media: `<img src="images/icons/components/row-1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '2 Column', { label: '2 Columns', content: `<div class="row"><div class="col"></div><div class="col"></div></div>`, media: `<img src="images/icons/components/row-2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '3 Column', { label: '3 Columns', content: `<div class="row"><div class="col"></div><div class="col"></div><div class="col"></div></div>`, media: `<img src="images/icons/components/row-3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '1 Column', { label: '1 Column', content: `<div class="row"><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/row-1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '2 Column', { label: '2 Columns', content: `<div class="row"><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/row-2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '3 Column', { label: '3 Columns', content: `<div class="row"><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/row-3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
     /* --------------------------------------------
                       COLUMN
@@ -781,7 +781,7 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col"></div>`, media: `<img src="images/icons/components/row-1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col col-12 col-sm st-module"></div>`, media: `<img src="images/icons/components/row-1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
 
   /* --------------------------------------------
