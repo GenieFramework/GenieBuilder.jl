@@ -1,6 +1,6 @@
 using Genie.Router
 using GenieBuilder
-using ApplicationsController
+using GenieBuilder.ApplicationsController
 
 Genie.config.websockets_server = true
 
