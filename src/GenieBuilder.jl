@@ -51,7 +51,7 @@ function postinstall()
 end
 
 function stop()
-  Genie.AppServer.down!()
+  Genie.Server.down!()
   Base.exit()
 end
 
