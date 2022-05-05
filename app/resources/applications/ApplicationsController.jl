@@ -2,7 +2,7 @@ module ApplicationsController
 
 import GenieBuilder
 
-using Applications
+using GenieBuilder.Applications
 using SearchLight
 using Genie.Router
 using Genie.Renderers.Json
@@ -201,7 +201,9 @@ function persist_status(app, status) :: Nothing
   nothing
 end
 
-function status_request(app, donotify::Bool = true)
+function status_request(app, donotify::Bool = true; statuscheck::Bool = false, persist::Bool = true)
+  params(:statuscheck, statuscheck) || return Symbol(app.status)
+
   status = try
     donotify && notify("started:status_request", app.id)
     res = HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/id")
@@ -222,14 +224,14 @@ function status_request(app, donotify::Bool = true)
   end
 
   donotify && notify("ended:status_request", app.id)
-  persist_status(app, status)
+  persist && persist_status(app, status)
 
   status
 end
 
 function status(app)
   notify("started:status", app.id)
-  status = status_request(app)
+  status = status_request(app; statuscheck = true)
 
   notify("ended:status:$status", app.id)
   (:status => status) |> json
@@ -253,7 +255,7 @@ function start(app)
     end
 
     @async begin
-      while status_request(app, false) == :offline
+      while status_request(app, false; statuscheck = true, persist = false) in [:starting, :offline]
         sleep(1)
       end
 
@@ -267,20 +269,30 @@ function start(app)
 end
 
 function stop(app)
-  appstatus = status_request(app)
-  appstatus != :online && notify("failed:stop:$appstatus", app.id, FAILSTATUS, "error") && return (:status => appstatus) |> json
+  status = :ok
+  # err = ""
 
   try
     persist_status(app, "stopping")
     notify("started:stop", app.id)
 
-    HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit")
+    @async HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit")
+
+    sleep(1)
+
+    if status_request(app, false; statuscheck = true) == :offline
+      notify("ended:stop", app.id)
+      persist_status(app, "offline")
+    end
   catch ex
     @error ex
     notify("failed:stop", app.id, FAILSTATUS, "error")
+
+    status = :error
+    # err = string(ex)
   end
 
-  (:status => if haskey(appsthreads, fullpath(app))
+  if haskey(appsthreads, fullpath(app))
     try
       Base.throwto(appsthreads[fullpath(app)], InterruptException())
     catch ex
@@ -288,15 +300,9 @@ function stop(app)
     end
 
     delete!(appsthreads, fullpath(app))
+  end
 
-    notify("ended:stop", app.id)
-    persist_status(app, "offline")
-
-    :ok
-  else
-    notify("failed:stop:notfound", app.id, FAILSTATUS, "error")
-    :notfound
-  end) |> json
+  (:status => status) |> json
 end
 
 function up(app)

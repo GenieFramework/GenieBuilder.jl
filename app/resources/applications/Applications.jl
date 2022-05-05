@@ -1,6 +1,7 @@
 module Applications
 
-using SearchLight, ApplicationsValidator
+using SearchLight
+using GenieBuilder.ApplicationsValidator
 
 import SearchLight: AbstractModel, DbId
 import Base: @kwdef
