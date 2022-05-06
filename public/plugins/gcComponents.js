@@ -77,6 +77,8 @@ const myNewComponentTypes = editor => {
     { type:'h2', tagName:'H2', label:'Heading 2' }, 
     { type:'h3', tagName:'H3', label:'Heading 3' }, 
     { type:'h4', tagName:'H4', label:'Heading 4' }, 
+    { type:'h5', tagName:'H5', label:'Heading 5' }, 
+    { type:'h6', tagName:'H6', label:'Heading 6' }, 
   ];
 
   /* --------------------------------------------
@@ -128,6 +130,7 @@ const myNewComponentTypes = editor => {
     });
     editor.BlockManager.add( item.type, { label: item.label, content: `<${item.type} v-text="">Default content</${item.type}>`, media: `<img src="images/icons/components/default.png" class="blockIcon"/>`, category: 'Texts'   }); 
   } );
+
 
   /* editor.DomComponents.addType( "stpl-image", {
     isComponent: el => el.tagName == 'IMG',
@@ -782,6 +785,49 @@ const myNewComponentTypes = editor => {
       },
     });
     editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col col-12 col-sm st-module"></div>`, media: `<img src="images/icons/components/row-1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
+
+
+    /* --------------------------------------------
+                      HEADER
+     -------------------------------------------- */
+        
+     editor.DomComponents.addType( "header", {
+      isComponent: el => {
+        if( el.tagName == 'HEADER' ){
+          return { type: 'header' }
+        }
+      },
+      model: {
+        defaults: { 
+          traits: [          
+          ], 
+          droppable: true,
+          draggable: true,
+          editable: true,
+        },
+        init() {  
+          this.on('change:attributes', this.handleAttrChange);
+        },
+        handleAttrChange() {
+          this.render();
+        },
+        render: function(){
+          this.view.onRender();
+        },
+        updateGenieModelProperties(properties){
+         /*  var vtextTrait = this.get('traits').where({name: 'v-model'})[0];
+          vtextTrait.set('options', properties ); */
+        }
+      }, 
+      view: {
+        onRender(){
+          const { $el, model } = this;
+          //const bindTextTraitValue = model.getAttributes()['v-model']
+          
+        }
+      },
+    });
+    editor.BlockManager.add( 'header', { label: 'Header', content: `<header class="st-header q-pa-sm"><h1 class="st-header__title text-h3">Header Text</h1></header>`, media: `<img src="images/icons/components/row-1column.png" class="blockIcon"/>`, category: 'Layout'   }); ;
 
 
   /* --------------------------------------------
