@@ -145,12 +145,25 @@ window.onload = () => {
            appConfig.contentStyles.push( appConfig.url + item );
           } );
 
+          // Define a list of libraries/Assets not needed in the editor context
+          // and avoid loading them to optimise newtwork/memory/cpu resources
+          const blackList = [ "plotly", "quasar", "vueresize", "vueplotly" ];
           // Inject same scripts in editor context (root)
           for (let i = 0; i < appConfig.contentScripts.length; i++) {
               const scriptPath = appConfig.contentScripts[i];
-              let myScript = document.createElement("script");
+              let blackListed = false;
+              for (let j = 0; j < blackList.length; j++) {
+                  const blackListedElement = blackList[j];
+                  if( scriptPath.indexOf( blackListedElement ) >= 0 ){
+                      blackListed = true;
+                      break;
+                  }
+              }
+              if( !blackListed ){
+                let myScript = document.createElement("script");
                 myScript.setAttribute("src", scriptPath);
                 document.body.appendChild(myScript);              
+              }
           }
           //return ApiConnector.getProjectPages();
           return ApiConnector.readFileContents( filePath );
