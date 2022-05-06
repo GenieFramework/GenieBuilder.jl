@@ -260,6 +260,7 @@ function start(app)
       end
 
       notify("ended:start", app.id)
+      persist_status(app, "online")
     end
   catch
     notify("failed:start", app.id, FAILSTATUS, "error")
