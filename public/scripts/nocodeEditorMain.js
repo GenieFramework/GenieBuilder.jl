@@ -194,17 +194,15 @@ function savePage(){
 }
 
 function runVue(){
-  let checker = setInterval( ()=>{
+  /* let checker = setInterval( ()=>{
     let rootElement = document.getElementById('app_panel');
       console.log("runVue #app_panel", rootElement )
-      if( rootElement ){
+      if( rootElement && window.initStipple ){
           initStipple("#app_panel");
           //initLocalVueModelWatcher();
           clearInterval(checker);
-          /* if( app_ready )
-            app_ready(); */
       }
-  }, 1000);
+  }, 2000); */
 }
 
 /* function initLocalVueModelWatcher(){
