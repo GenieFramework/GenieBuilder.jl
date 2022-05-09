@@ -10,6 +10,7 @@
     runVue();
   })
 }; */
+window.CHANNEL = 'GBMDJANMDQBDXNZLLYDHRRXFYDLZXYNS';
 
 function initNoCodeEditor(){
   console.log( "initNoCodeEditor()" );
@@ -129,12 +130,14 @@ function initNoCodeEditor(){
   editor.on('component:selected', (model) => {
     // do stuff...
     console.log("component selected: ", model);
-    let modelProps = [];
+    /* let modelProps = [];
     for( let p in window[appName].$data ){
       modelProps.push( {value:p, name:p } );
     }
     if( model.updateGenieModelProperties )
-      model.updateGenieModelProperties(modelProps);
+      model.updateGenieModelProperties(modelProps); */
+    if( model.updateGenieModelProperties )
+      model.updateGenieModelProperties(appConfiguration.modelFields);
   });
 
 
@@ -194,7 +197,7 @@ function savePage(){
 }
 
 function runVue(){
-  /* let checker = setInterval( ()=>{
+  let checker = setInterval( ()=>{
     let rootElement = document.getElementById('app_panel');
       console.log("runVue #app_panel", rootElement )
       if( rootElement && window.initStipple ){
@@ -202,7 +205,7 @@ function runVue(){
           //initLocalVueModelWatcher();
           clearInterval(checker);
       }
-  }, 2000); */
+  }, 2000);
 }
 
 /* function initLocalVueModelWatcher(){
