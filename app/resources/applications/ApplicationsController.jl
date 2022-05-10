@@ -17,6 +17,7 @@ const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
 
 const FAILSTATUS = "KO"
+const OKSTATUS = "OK"
 
 fullpath(app::Application) = abspath(app.path * app.name)
 get(appid) = SearchLight.findone(Application, id = parse(Int, appid))
@@ -66,17 +67,24 @@ end
 
 function postcreate()
   pkgcmd = "add"
-  `julia -e "using Pkg;Pkg.activate(\".\");
-              Pkg.$(pkgcmd)(\"GenieAutoReload\");
+  branch = "Geniev5"
+  `julia -e  "using Pkg;
+              Pkg.activate(\".\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/Genie.jl\", rev=\"v5\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieSession.jl\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieSessionFileSession.jl\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieAutoReload.jl\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/Stipple.jl\", rev=\"$(branch)\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StippleUI.jl\", rev=\"$(branch)\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StipplePlotly.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");
-              Pkg.$(pkgcmd)(\"Stipple\");
-              Pkg.$(pkgcmd)(\"StippleUI\");
-              Pkg.$(pkgcmd)(\"StipplePlotly\");"` |> run
+  "` |> run
 
   open(joinpath(Genie.config.path_initializers, "autoload.jl"), "w") do io
     write(io,
     """
-    push!(LOAD_PATH,  "controllers", "models")
+    # Optional flat/non-resource MVC folder structure
+    Genie.Loader.autoload(abspath("models"), abspath("controllers"))
     """
     )
   end
@@ -103,17 +111,6 @@ function postcreate()
     )
   end
 
-  open(joinpath(Genie.config.path_plugins, "sessionstorage.jl"), "w") do io
-    write(io,
-    """
-    using Stipple
-    using Stipple.ModelStorage.Sessions
-
-    Stipple.ModelStorage.Sessions.init()
-    """
-    )
-  end
-
   open(joinpath("layouts", "app.jl.html"), "w") do io
     write(io,
     """
@@ -121,6 +118,7 @@ function postcreate()
     <html>
       <head>
         <meta charset="utf-8">
+        <% Stipple.sesstoken() %>
         <title>Hello Genie</title>
         <% Genie.Assets.favicon_support() %>
       </head>
@@ -136,6 +134,8 @@ function postcreate()
     write(io,
     """
     <h1>Welcome!</h1>
+    <p>This is the default view for the application.</p>
+    <p>You can change this view by editing the file <code>views/hello.jl.html</code>.</p>
     """
     )
   end
@@ -190,15 +190,17 @@ function create(name, path, port)
   output|> json
 end
 
-function persist_status(app, status) :: Nothing
+function persist_status(app, status) :: Bool
   app.status = string(status)
+
   try
     save!(app)
   catch ex
     @error ex
+    false
   end
 
-  nothing
+  true
 end
 
 function status_request(app, donotify::Bool = true; statuscheck::Bool = false, persist::Bool = true)
@@ -239,7 +241,7 @@ end
 
 function start(app)
   appstatus = status_request(app)
-  appstatus != :offline && notify("failed:start:$appstatus", app.id, FAILSTATUS, "error") && return (:status => appstatus) |> json
+  # appstatus != :offline && notify("failed:start:$appstatus", app.id, FAILSTATUS, "error") && return (:status => appstatus) |> json
 
   try
     persist_status(app, "starting")
@@ -247,7 +249,7 @@ function start(app)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
-        `julia -e "cd(\"$(fullpath(app))\");ENV[\"PORT\"]=$(app.port);using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();up(async = false)"` |> run
+        `julia -e "cd(\"$(fullpath(app))\");ENV[\"PORT\"]=$(app.port);using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();Genie.Router.params!(:CHANNEL__, \"$(app.channel)\");up(async = false)"` |> run
       catch ex
         @error ex
         notify("failed:start", app.id, FAILSTATUS, "error")
@@ -270,7 +272,7 @@ function start(app)
 end
 
 function stop(app)
-  status = :ok
+  status = OKSTATUS
   # err = ""
 
   try
@@ -333,6 +335,52 @@ macro isonline(app)
 
     true
   end
+end
+
+function delete(app)
+  notify("started:delete", app.id)
+  stop(app)
+
+  persist_status(app, "deleted")
+  notify("ended:delete", app.id)
+
+  (:status => OKSTATUS) |> json
+end
+
+function restore(app)
+  notify("started:restore", app.id)
+
+  status = if app.status == "deleted"
+    persist_status(app, "offline") ? notify("ended:restore", app.id) : notify("failed:restore", app.id)
+    OKSTATUS
+  else
+    notify("failed:restore", app.id)
+    FAILSTATUS
+  end
+
+  (:status => status) |> json
+end
+
+function purge(app)
+  notify("started:purge", app.id)
+
+  status = if app.status == "deleted"
+    SearchLight.delete(app)
+
+    try
+      rm(fullpath(app); recursive = true)
+      notify("ended:purge", app.id)
+      OKSTATUS
+    catch ex
+      notify("failed:purge", app.id)
+      FAILSTATUS
+    end
+  else
+    notify("failed:purge", app.id)
+    FAILSTATUS
+  end
+
+  (:status => status) |> json
 end
 
 function json2json(res)
@@ -450,32 +498,17 @@ function pages(app)
     res = try
       notify("started:pages", app.id)
 
-      HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/pages")
+      HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/pages?CHANNEL__=$(app.channel)") |> json2json
     catch ex
       @error ex
       notify("failed:pages", app.id, FAILSTATUS, "error")
+
+      (:status => :error) |> json
     end
 
     notify("ended:pages", app.id)
 
-    res |> json2json
-  end
-end
-
-function assets(app)
-  if @isonline(app)
-    res = try
-      notify("started:assets", app.id)
-
-      HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/assets")
-    catch ex
-      @error ex
-      notify("failed:assets", app.id, FAILSTATUS, "error")
-    end
-
-    notify("ended:assets", app.id)
-
-    res |> json2json
+    res
   end
 end
 

@@ -60,16 +60,24 @@ function routes()
     ApplicationsController.pages(params(:appid) |> ApplicationsController.get)
   end
 
-  route("$api_route$app_route/assets") do
-    ApplicationsController.assets(params(:appid) |> ApplicationsController.get)
-  end
-
   route("$api_route$app_route/startrepl") do
     ApplicationsController.startrepl(params(:appid) |> ApplicationsController.get)
   end
 
   route("$api_route$app_route/info") do
     ApplicationsController.info(params(:appid) |> ApplicationsController.get)
+  end
+
+  route("$api_route$app_route/delete") do
+    ApplicationsController.delete(params(:appid) |> ApplicationsController.get)
+  end
+
+  route("$api_route$app_route/restore") do
+    ApplicationsController.restore(params(:appid) |> ApplicationsController.get)
+  end
+
+  route("$api_route$app_route/purge") do
+    ApplicationsController.purge(params(:appid) |> ApplicationsController.get)
   end
 
   route("/") do
