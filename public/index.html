@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./css/libs/grapes.min.css">
     <link rel="stylesheet" href="./css/libs/grapesjs-preset-webpage.min.css">
-    <link rel="stylesheet" href="./css/libs/split-pane.css">
 
     <!-- App-specific styles, 3rd-party lib override styles -->
     <link rel="stylesheet" href="./css/shell-styles.css">
@@ -21,17 +20,6 @@
 <body>
     <div id="gjs">
     </div>
-    <!-- Split panel, containing no-code editor (Grapes) and code-editor (Monaco) -->
-    <!-- <div class="split-pane fixed-left">
-        <div class="split-pane-component" id="left-component">
-            <div id="gjs" style="">
-            </div>
-        </div>
-        <div class="split-pane-divider" id="my-divider"></div>
-        <div class="split-pane-component" id="right-component">
-            <iframe src="codeEditor.html" frameborder="0" style="width: 100%; height: 100%;"></iframe>
-        </div>
-    </div> -->
    
     <!-- Julia Model panel within no-code editor -->
     <div id="app_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right">
@@ -73,16 +61,7 @@
         <div id="codeEditor" style="width: calc(100% - 200px);">
         </div>
 
-        <div id="explorerBar">
-            <div id="pageExplorer" class="sidebar-panel">
-                <div class="sidebar-panel-title">Pages</div>
-                <v-jstree :data="projectPages" :multiple="false" whole-row @item-click="itemClick"></v-jstree>
-            </div>
-            <div id="fileExplorer" class="sidebar-panel">
-                <div class="sidebar-panel-title">Files</div>
-                <v-jstree :data="projectFileTree" :multiple="false" whole-row @item-click="itemClick"></v-jstree>
-            </div>
-        </div>
+       
     </div>
     <!-- 3rd party libs -->
     <!-- <script src="./libs/vs/loader.js"></script> -->
@@ -91,11 +70,9 @@
     <script src="https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/vue.min.js"></script>
     <script src="https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/stipplecore.js"></script>
     <script src="./libs/jquery.min.js"></script>
-    <script src="./libs/split-pane.js"></script>
     <!-- <script src="//unpkg.com/grapesjs"></script> -->
     <script src="./libs/grapes.min.js"></script>
     <script src="./plugins/grapesjs-preset-webpage.min.js"></script>
-    <script src="./libs/vue-jstree.js"></script>
     <!-- <script src="./libs/vs/loader.js"></script> -->
 
     <!-- Genie / Stipple common scripts -->
@@ -117,9 +94,6 @@
     <script src="./scripts/main.js"></script>
 
     <script>
-        /* $(function() {
-            $('div.split-pane').splitPane();
-        }); */
     </script>
 </body>
 </html>

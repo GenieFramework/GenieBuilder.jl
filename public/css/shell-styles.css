@@ -190,3 +190,16 @@ img.blockIcon{
   font-weight: bold;
   color: #000000a0;
 }
+
+.gjs-pn-buttons .gjs-pn-btn.fa.fa-desktop, 
+.gjs-pn-buttons .gjs-pn-btn.fa.fa-tablet, 
+.gjs-pn-buttons .gjs-pn-btn.fa.fa-mobile, 
+.gjs-pn-buttons .gjs-pn-btn.fa.fa-eye, 
+.gjs-pn-buttons .gjs-pn-btn.fa.fa-arrows-alt, 
+.gjs-pn-buttons .gjs-pn-btn.fa.fa-code, 
+.gjs-pn-buttons .gjs-pn-btn.fa.fa-download, 
+.gjs-pn-buttons .gjs-pn-btn.fa.fa-trash
+
+{
+  display: none;
+}
