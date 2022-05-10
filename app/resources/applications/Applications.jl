@@ -6,6 +6,7 @@ using GenieBuilder.ApplicationsValidator
 import SearchLight: AbstractModel, DbId
 import Base: @kwdef
 import SearchLight.Validation: ModelValidator, ValidationRule
+import Stipple
 
 export Application
 
@@ -15,6 +16,7 @@ export Application
   port::Int       = rand(10_000:65_535)
   path::String    = "/apps/"
   status::String  = "offline"
+  channel::String = Stipple.channelfactory()
   replport::Int   = 0
 end
 
