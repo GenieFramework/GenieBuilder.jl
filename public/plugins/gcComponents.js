@@ -173,7 +173,7 @@ const myNewComponentTypes = editor => {
     },
     model: {
       defaults: { 
-        traits: [ { label: 'Vue Model', name: 'v-model', type:'select', options: [] } ], 
+        traits: [ { label: 'Reactive Model', name: 'v-model', type:'select', options: [] } ], 
       },
       init() {  
         this.on('change:attributes', this.handleAttrChange);
@@ -216,7 +216,7 @@ const myNewComponentTypes = editor => {
       },
       model: {
         defaults: { 
-          traits: [ { label: 'Vue Model', name: 'v-model', type:'select', options: [] } , 
+          traits: [ { label: 'Reactive Model', name: 'v-model', type:'select', options: [] } , 
           { label: 'Min', name: ':min', type:'number' }, 
           { label: 'Max', name: ':max', type:'number' } ]
         },
@@ -259,7 +259,7 @@ const myNewComponentTypes = editor => {
       },
       model: {
         defaults: { 
-          traits: [ { label: 'Vue Model', name: 'v-model', type:'select', options: [] }, 
+          traits: [ { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
                     { label: 'Options', name: ':options', type:'select', options: [] }, 
                     { label: 'Hide-bottom-space', name: 'hide-bottom-space', type:'checkbox' }, 
                     { label: 'Label', name: 'label', type:'text' }, 
@@ -322,7 +322,7 @@ const myNewComponentTypes = editor => {
       },
       model: {
         defaults: { 
-          traits: [ { label: 'Vue Model', name: 'v-model', type:'select', options: [] }, 
+          traits: [ { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
                     { label: 'Mask', name: 'mask', type:'text' }, 
                     { label: 'Landscape', name: 'landscape', type:'checkbox' }, 
                     { label: 'Multiple', name: 'multiple', type:'checkbox' }, 
@@ -417,7 +417,7 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ 
-            { label: 'Vue Model', name: 'v-model', type:'text' }, 
+            { label: 'Reactive Model', name: 'v-model', type:'text' }, 
             { label: 'Columns', name: ':columns', type:'text' }, 
             { label: 'Data', name: ':data', type:'text' }, 
             { label: 'Row-key', name: 'row-key', type:'text' }, 
@@ -461,7 +461,7 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ 
-            { label: 'Vue Model', name: 'v-model', type:'select', options: [] }, 
+            { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
             { label: 'Label', name: 'label', type:'text' },                     
           ], 
         },
@@ -565,7 +565,7 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ 
-            { label: 'Vue Model', name: 'v-model', type:'select', options: [] }, 
+            { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
             { label: 'Type', name: 'type', type:'select', options: ["text", "password", "textarea", "email", "search", "tel", "file", "number", "url", "time", "date"] }, 
             { label: 'Label', name: 'label', type:'text' },                     
             { label: 'Hint', name: 'hint', type:'text' },                     
@@ -705,7 +705,7 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ 
-            /* { label: 'Vue Model', name: 'v-model', type:'select', options: [] }, 
+            /* { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
             { label: 'Label', name: 'label', type:'text' },                     
             { label: 'Hint', name: 'hint', type:'text' },                     
             { label: 'Max Length', name: 'maxlength', type:'number' },       */               
@@ -753,7 +753,7 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ 
-            /* { label: 'Vue Model', name: 'v-model', type:'select', options: [] }, 
+            /* { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
             { label: 'Label', name: 'label', type:'text' },                     
             { label: 'Hint', name: 'hint', type:'text' },                     
             { label: 'Max Length', name: 'maxlength', type:'number' },       */               
