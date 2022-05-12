@@ -71,24 +71,25 @@ html, body {
 
 #genie_model {
   display: none;
-  position: fixed;
-  right: 200px;
-  width: 300px;
-  z-index: 11;
-  padding: 0px 0px;
-  text-align: left;
-  top: 40px;
-  box-sizing: border-box;
-  font-family: Helvetica, sans-serif;
-  font-size: 12px;
-  border-right: solid 2px #362c2e;
-  border-top: solid 2px #362c2e;
+    position: fixed;
+    right: 200px;
+    width: 300px;
+    z-index: 11;
+    padding: 0px 0px;
+    text-align: left;
+    top: 40px;
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+    font-size: 12px;
+    border: solid 1px #d4d4d4;
+    box-shadow: 2px 5px 8px #00000050;
 }
 
 #genie_model .gn_model_container {
   padding: 20px;
-  overflow: auto;
   overflow-wrap: anywhere;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 #genie_model .gn_field_label {
