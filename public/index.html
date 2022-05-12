@@ -26,7 +26,7 @@
         <div id="genie_model" class="gjs-one-bg">
             <div class="gn_title">Genie Model</div>
             <div class="gn_model_container">
-                <div v-for="(value, propertyName) in $data" style="margin-bottom: 10px;">
+                <div v-for="(value, propertyName) in $data" style="margin-bottom: 10px;" v-if="value.toString() != '[object Object]'">
                     <div class="gn_field_label">{{propertyName}}</div>
                     <input type="text" class="gn_input" v-model="$data[propertyName]">
                 </div>

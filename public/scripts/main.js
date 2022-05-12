@@ -19,7 +19,8 @@ window.onload = () => {
         fileTree: null, 
         pages: null, 
         currentPage: null, 
-        modelFields: []
+        modelFields: [], 
+        modelFieldsTypes: [], 
       };
   
     ApiConnector.projectId = projectId;
@@ -43,9 +44,18 @@ window.onload = () => {
         } );
         currentPage = currentPage[0];
         let fields = currentPage.model.fields;
-        let parsedFields = currentPage.model.fields.map( field=>{
+        let parsedFields = [];
+        for (let i = 0; i < fields.length; i++) {
+            const fieldName = fields[i];
+            const fieldType = currentPage.model.types[i];
+            // to-do: use a whitelist or dictionary instead of these hardcoded values
+            const typeSupported = fieldType.indexOf("String") >= 0 || fieldType.indexOf("Bool") >= 0 || fieldType.indexOf("Int64") >= 0;
+            let fieldObject = { name: fieldName, value:fieldName, type: fieldType, typeSupported: typeSupported };
+            parsedFields.push( fieldObject );            
+        }
+        /* currentPage.model.fields.map( field=>{
             return { name: field, value:field };
-        } );
+        } ); */
         appConfig.modelFields = parsedFields;
         console.log( "[chained] 2 Current Page: ", currentPage, fields, parsedFields );
 
