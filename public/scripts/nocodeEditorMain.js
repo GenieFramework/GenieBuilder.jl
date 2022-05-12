@@ -10,7 +10,7 @@
     runVue();
   })
 }; */
-window.CHANNEL = 'GBMDJANMDQBDXNZLLYDHRRXFYDLZXYNS';
+//window.CHANNEL = 'GBMDJANMDQBDXNZLLYDHRRXFYDLZXYNS';
 
 function initNoCodeEditor(){
   console.log( "initNoCodeEditor()" );
