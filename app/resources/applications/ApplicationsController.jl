@@ -241,7 +241,6 @@ end
 
 function start(app)
   appstatus = status_request(app)
-  # appstatus != :offline && notify("failed:start:$appstatus", app.id, FAILSTATUS, "error") && return (:status => appstatus) |> json
 
   try
     persist_status(app, "starting")
@@ -249,7 +248,7 @@ function start(app)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
-        `julia -e "cd(\"$(fullpath(app))\");ENV[\"PORT\"]=$(app.port);using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();Genie.Router.params!(:CHANNEL__, \"$(app.channel)\");up(async = false)"` |> run
+        @debug `julia -e "cd(\"$(fullpath(app))\");ENV[\"PORT\"]=$(app.port);ENV[\"CHANNEL__\"]=\"$(app.channel)\";using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();up(async = false)"` |> run
       catch ex
         @error ex
         notify("failed:start", app.id, FAILSTATUS, "error")
