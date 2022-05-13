@@ -5,3 +5,5 @@ function createPreviewElements( htmlTemplate ){
     //$('div[data-gjs-type="wrapper"]').append(`<h1 id="LILO">PEPEPEP</h1>`)
     $('div[data-gjs-type="wrapper"]').append(htmlTemplate)
 }
+
+/* window.autorun = false; */
