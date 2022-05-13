@@ -13,7 +13,7 @@
 //window.CHANNEL = 'GBMDJANMDQBDXNZLLYDHRRXFYDLZXYNS';
 
 
-/* window.autorun = false; */
+window.autorun = false;
 
 function initNoCodeEditor(){
   console.log( "initNoCodeEditor()" );
@@ -204,7 +204,7 @@ function runVue(){
     let vueApp = window[ appConfiguration.vueAppName ];
     let rootElement = document.getElementById('app_panel');
       console.log("runVue #app_panel", rootElement, vueApp )
-      if( rootElement && window.initStipple && vueApp ){
+      if( rootElement && window.initStipple /* && vueApp */ ){ 
           initStipple("#app_panel");
           initWatchers();
           app_ready();
