@@ -12,6 +12,9 @@
 }; */
 //window.CHANNEL = 'GBMDJANMDQBDXNZLLYDHRRXFYDLZXYNS';
 
+
+window.autorun = false;
+
 function initNoCodeEditor(){
   console.log( "initNoCodeEditor()" );
   // Initialize the editor instance
@@ -198,10 +201,13 @@ function savePage(){
 
 function runVue(){
   let checker = setInterval( ()=>{
+    let vueApp = window[ appConfiguration.vueAppName ];
     let rootElement = document.getElementById('app_panel');
-      console.log("runVue #app_panel", rootElement )
-      if( rootElement && window.initStipple ){
+      console.log("runVue #app_panel", rootElement, vueApp )
+      if( rootElement && window.initStipple /* && vueApp */ ){ 
           initStipple("#app_panel");
+          initWatchers();
+          app_ready();
           //initLocalVueModelWatcher();
           clearInterval(checker);
       }
