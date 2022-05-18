@@ -2,8 +2,6 @@
 # $ julia rungb.jl
 # to be distributed with the VSCode plugin
 
-@show ARGS
-
 const DEFAULT_GBDIR = joinpath(homedir(), ".julia", "geniebuilder")
 
 # allow passing the GBDIR as an environment variable
