@@ -3,11 +3,6 @@ module GenieBuilder
 using Genie, Logging, LoggingExtras
 using Scratch, TOML
 
-@info ENV
-@info ARGS
-
-const GBDIR = Ref{String}("")
-
 function persist_settings()
   KEYNAME = "GBDIR"
 
@@ -28,7 +23,7 @@ function persist_settings()
     TOML.print(io, settings)
   end
 
-  GBDIR[] = settings[KEYNAME]
+  settings[KEYNAME]
 end
 
 function main()
@@ -54,10 +49,10 @@ function go()
 end
 
 function postinstall()
-  persist_settings()
+  GBDIR = persist_settings()
 
-  APPS_FOLDER = joinpath(GBDIR[], "apps")
-  DB_FOLDER = joinpath(GBDIR[], "db")
+  APPS_FOLDER = joinpath(GBDIR, "apps")
+  DB_FOLDER = joinpath(GBDIR, "db")
   DB_NAME = "client.sqlite3"
   DB_CONFIG_FILE = "connection.yml"
 
