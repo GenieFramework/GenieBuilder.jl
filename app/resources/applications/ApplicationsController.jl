@@ -163,7 +163,9 @@ function create(name, path, port)
   isempty(path) && (path = GenieBuilder.APPS_FOLDER)
   endswith(path, "/") || (path = "$path/")
 
+
   app = Application(; name, path, port)
+  persist_status(app, :creating)
   app = save!(app)
 
   # make sure apps/ folder exists
@@ -173,10 +175,15 @@ function create(name, path, port)
 
   try
     notify("started:create_app")
-    cd(path)
-    Genie.Generator.newapp(name, autostart = false, interactive = false)
-    postcreate()
-    notify("ended:create_app", app.id)
+
+    Base.Threads.@spawn begin
+      cd(path)
+      Genie.Generator.newapp(name, autostart = false, interactive = false)
+      postcreate()
+      persist_status(app, :offline)
+
+      notify("ended:create_app", app.id)
+    end
   catch ex
     @error ex
     delete(app)
@@ -187,7 +194,7 @@ function create(name, path, port)
     cd(current_path)
   end
 
-  output|> json
+  output |> json
 end
 
 function persist_status(app, status) :: Bool
