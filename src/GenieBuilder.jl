@@ -3,6 +3,8 @@ module GenieBuilder
 using Genie, Logging, LoggingExtras
 using Scratch, TOML
 
+@show ENV
+
 const GBDIR = Ref{String}("")
 
 function persist_settings()
@@ -36,6 +38,9 @@ const APPS_FOLDER = joinpath(GBDIR[], "apps")
 const DB_FOLDER = joinpath(GBDIR[], "db")
 const DB_NAME = "client.sqlite3"
 const DB_CONFIG_FILE = "connection.yml"
+
+@show APPS_FOLDER
+@show DB_FOLDER
 
 function main()
   Core.eval(Main, :(const UserApp = $(@__MODULE__)))
