@@ -1,3 +1,10 @@
-using GenieCloud, Test
-# implement your tests here
-@test 1 == 1
+cd(@__DIR__)
+
+using Test, TestSetExtensions, SafeTestsets, Logging
+using GenieBuilder
+
+Logging.global_logger(NullLogger())
+
+@testset ExtendedTestSet "GenieBuilder backend tests" begin
+  @includetests ARGS
+end

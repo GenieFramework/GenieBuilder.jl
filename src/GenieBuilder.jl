@@ -1,9 +1,39 @@
 module GenieBuilder
 
 using Genie, Logging, LoggingExtras
+using Scratch, TOML
 
-const APPS_FOLDER = joinpath(homedir(), ".julia", "geniebuilder", "apps")
-const DB_FOLDER = joinpath(homedir(), ".julia", "geniebuilder", "db")
+const GBDIR = Ref{String}("")
+
+function persist_settings()
+  KEYNAME = "GBDIR"
+
+  settings_folder = get_scratch!(Main, "geniebuilder")
+  settings_file = joinpath(settings_folder, "settings.toml")
+
+  if isfile(settings_file)
+    settings = TOML.tryparsefile(settings_file)
+    isa(settings, Dict) || (settings = Dict{String,Any}())
+  else
+    settings = Dict{String,Any}()
+  end
+
+  haskey(ENV, KEYNAME) && (settings[KEYNAME] = ENV[KEYNAME])
+  haskey(settings, KEYNAME) || (settings[KEYNAME] = joinpath(homedir(), ".julia", "geniebuilder"))
+
+  open(settings_file, "w") do io
+    TOML.print(io, settings)
+  end
+
+  GBDIR[] = settings[KEYNAME]
+end
+
+function __init__()
+  persist_settings()
+end
+
+const APPS_FOLDER = joinpath(GBDIR[], "apps")
+const DB_FOLDER = joinpath(GBDIR[], "db")
 const DB_NAME = "client.sqlite3"
 const DB_CONFIG_FILE = "connection.yml"
 
