@@ -3,7 +3,8 @@ module GenieBuilder
 using Genie, Logging, LoggingExtras
 using Scratch, TOML
 
-@show ENV
+@info ENV
+@info ARGS
 
 const GBDIR = Ref{String}("")
 

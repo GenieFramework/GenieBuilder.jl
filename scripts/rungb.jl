@@ -2,6 +2,8 @@
 # $ julia rungb.jl
 # to be distributed with the VSCode plugin
 
+@show ARGS
+
 const DEFAULT_GBDIR = joinpath(homedir(), ".julia", "geniebuilder")
 
 # allow passing the GBDIR as an environment variable
@@ -31,6 +33,7 @@ function installgb()
   cmd = `julia --startup-file=no --depwarn=no -e 'using Pkg;Pkg.activate(".");Pkg.instantiate();
               Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl");
               using GenieBuilder;GenieBuilder.postinstall();'`
+  @show gbdir
   setenv(cmd, "GBDIR" => gbdir)
   cmd |> run
 

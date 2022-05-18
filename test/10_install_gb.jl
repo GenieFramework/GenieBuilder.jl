@@ -7,7 +7,8 @@
     rm(gbdir, recursive = true)
   end
 
-  push!(ARGS, "GBDIR=$gbdir")
+  push!(ARGS, "GBDIR=$(gbdir)")
+  @show ARGS
   include("../scripts/rungb.jl")
 
 end
