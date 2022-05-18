@@ -30,9 +30,7 @@ function persist_settings()
   GBDIR[] = settings[KEYNAME]
 end
 
-function __init__()
-  persist_settings()
-end
+persist_settings()
 
 const APPS_FOLDER = joinpath(GBDIR[], "apps")
 const DB_FOLDER = joinpath(GBDIR[], "db")
