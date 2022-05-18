@@ -31,13 +31,6 @@ function persist_settings()
   GBDIR[] = settings[KEYNAME]
 end
 
-persist_settings()
-
-const APPS_FOLDER = joinpath(GBDIR[], "apps")
-const DB_FOLDER = joinpath(GBDIR[], "db")
-const DB_NAME = "client.sqlite3"
-const DB_CONFIG_FILE = "connection.yml"
-
 function main()
   Core.eval(Main, :(const UserApp = $(@__MODULE__)))
 
@@ -61,8 +54,12 @@ function go()
 end
 
 function postinstall()
-  @info APPS_FOLDER
-  @info DB_FOLDER
+  persist_settings()
+
+  APPS_FOLDER = joinpath(GBDIR[], "apps")
+  DB_FOLDER = joinpath(GBDIR[], "db")
+  DB_NAME = "client.sqlite3"
+  DB_CONFIG_FILE = "connection.yml"
 
   cd(normpath(joinpath(@__DIR__, "..")))
   Genie.Generator.write_secrets_file()
