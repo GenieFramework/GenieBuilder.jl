@@ -164,7 +164,7 @@ function create(name, path, port)
   endswith(path, "/") || (path = "$path/")
 
 
-  app = Application(; name, path, port)
+  app = Application(; name, path, port, replport = valid_replport())
   persist_status(app, :creating)
   app = save!(app)
 
