@@ -49,7 +49,12 @@ function go()
 end
 
 function postinstall()
+  @show ENV
+  @show ARGS
+
   GBDIR = persist_settings()
+
+  @show GBDIR
 
   APPS_FOLDER = joinpath(GBDIR, "apps")
   DB_FOLDER = joinpath(GBDIR, "db")
