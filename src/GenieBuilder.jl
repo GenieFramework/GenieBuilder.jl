@@ -62,8 +62,8 @@ function go()
 end
 
 function postinstall()
-  @debug APPS_FOLDER
-  @debug DB_FOLDER
+  @info APPS_FOLDER
+  @info DB_FOLDER
 
   cd(normpath(joinpath(@__DIR__, "..")))
   Genie.Generator.write_secrets_file()
