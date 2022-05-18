@@ -33,8 +33,6 @@ function installgb()
   cmd = `julia --startup-file=no --depwarn=no -e 'using Pkg;Pkg.activate(".");Pkg.instantiate();
               Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl");
               using GenieBuilder;GenieBuilder.postinstall();'`
-  @show gbdir
-  setenv(cmd, "GBDIR" => gbdir)
   cmd |> run
 
   # `julia -e 'using Pkg;Pkg.activate(".");

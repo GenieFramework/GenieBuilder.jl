@@ -1,30 +1,6 @@
 module GenieBuilder
 
 using Genie, Logging, LoggingExtras
-using Scratch, TOML
-
-function persist_settings()
-  KEYNAME = "GBDIR"
-
-  settings_folder = get_scratch!(Main, "geniebuilder")
-  settings_file = joinpath(settings_folder, "settings.toml")
-
-  if isfile(settings_file)
-    settings = TOML.tryparsefile(settings_file)
-    isa(settings, Dict) || (settings = Dict{String,Any}())
-  else
-    settings = Dict{String,Any}()
-  end
-
-  haskey(ENV, KEYNAME) && (settings[KEYNAME] = ENV[KEYNAME])
-  haskey(settings, KEYNAME) || (settings[KEYNAME] = joinpath(homedir(), ".julia", "geniebuilder"))
-
-  open(settings_file, "w") do io
-    TOML.print(io, settings)
-  end
-
-  settings[KEYNAME]
-end
 
 function main()
   Core.eval(Main, :(const UserApp = $(@__MODULE__)))
@@ -49,10 +25,7 @@ function go()
 end
 
 function postinstall()
-  @show ENV
-  @show ARGS
-
-  GBDIR = persist_settings()
+  GBDIR = pwd()
 
   @show GBDIR
 
