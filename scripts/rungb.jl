@@ -28,10 +28,11 @@ function installgb()
   cp(joinpath(@__DIR__, "Manifest.toml"), joinpath(gbdir, "Manifest.toml"))
   cd(gbdir)
 
-  `julia --startup-file=no --depwarn=no -e 'using Pkg;Pkg.activate(".");Pkg.instantiate();
+  cmd = `julia --startup-file=no --depwarn=no -e 'using Pkg;Pkg.activate(".");Pkg.instantiate();
               Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl");
-              ENV["GBDIR"] = "\$gbdir";
-              using GenieBuilder;GenieBuilder.postinstall();'` |> run
+              using GenieBuilder;GenieBuilder.postinstall();'`
+  setenv(cmd, "GBDIR" => gbdir)
+  cmd |> run
 
   # `julia -e 'using Pkg;Pkg.activate(".");
   #             Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl");

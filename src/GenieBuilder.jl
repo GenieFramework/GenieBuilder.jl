@@ -39,8 +39,8 @@ const DB_FOLDER = joinpath(GBDIR[], "db")
 const DB_NAME = "client.sqlite3"
 const DB_CONFIG_FILE = "connection.yml"
 
-@show APPS_FOLDER
-@show DB_FOLDER
+@debug APPS_FOLDER
+@debug DB_FOLDER
 
 function main()
   Core.eval(Main, :(const UserApp = $(@__MODULE__)))
