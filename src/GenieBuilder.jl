@@ -39,9 +39,6 @@ const DB_FOLDER = joinpath(GBDIR[], "db")
 const DB_NAME = "client.sqlite3"
 const DB_CONFIG_FILE = "connection.yml"
 
-@debug APPS_FOLDER
-@debug DB_FOLDER
-
 function main()
   Core.eval(Main, :(const UserApp = $(@__MODULE__)))
 
@@ -65,6 +62,9 @@ function go()
 end
 
 function postinstall()
+  @debug APPS_FOLDER
+  @debug DB_FOLDER
+
   cd(normpath(joinpath(@__DIR__, "..")))
   Genie.Generator.write_secrets_file()
 
