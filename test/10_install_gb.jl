@@ -76,6 +76,8 @@
     # we should get a response that our app is being created
     @test app["application"]["id"]["value"] == 1
     @test app["application"]["name"] == appname
+    @show app["application"]["path"]
+    @show joinpath(gbdir, "apps")
     @test startswith(app["application"]["path"], joinpath(gbdir, "apps")) == true
     @test app["application"]["status"] == "creating"
 
