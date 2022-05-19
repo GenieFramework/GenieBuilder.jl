@@ -5,13 +5,6 @@
   gbdir = mktempdir() # joinpath(@__DIR__, "geniebuilder") |> abspath
   chmod(gbdir, 0x775)
 
-  if isdir(gbdir)
-    @warn "Deleting existing geniebuilder directory"
-    rm(gbdir, recursive = true)
-  end
-
-  @test isdir(gbdir) == false
-
   push!(ARGS, "GBDIR=$(gbdir)")
   server = @async include("../scripts/rungb.jl")
 
@@ -76,9 +69,7 @@
     # we should get a response that our app is being created
     @test app["application"]["id"]["value"] == 1
     @test app["application"]["name"] == appname
-    @show app["application"]["path"]
-    @show joinpath(gbdir, "apps")
-    @test startswith(app["application"]["path"], joinpath(gbdir, "apps")) == true
+    @test contains(app["application"]["path"], joinpath(gbdir, "apps")) == true
     @test app["application"]["status"] == "creating"
 
     # now let's check if the app has been created
@@ -96,7 +87,7 @@
       app = apps["applications"][1]
       @test app["id"]["value"] == 1
       @test app["name"] == appname
-      @test startswith(app["path"], joinpath(gbdir, "apps")) == true
+      @test contains(app["path"], joinpath(gbdir, "apps")) == true
       @test app["status"] == "offline"
 
       break
@@ -126,7 +117,7 @@
       app = apps["applications"][1]
       @test app["id"]["value"] == 1
       @test app["name"] == appname
-      @test startswith(app["path"], joinpath(gbdir, "apps")) == true
+      @test contains(app["path"], joinpath(gbdir, "apps")) == true
       @test app["status"] == "online"
 
       break

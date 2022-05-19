@@ -3,20 +3,18 @@
 # to be distributed with the VSCode plugin
 
 # allow passing the GBDIR as an environment variable
-const DEFAULT_GBDIR = joinpath(homedir(), ".julia", "geniebuilder")
+gbdir = joinpath(homedir(), ".julia", "geniebuilder")
 
-const gbdir = if ! isempty(ARGS)
-  argpath = filter(ARGS) do x
-    startswith(x, "GBDIR=") # the argument is "appsdir=..."
-  end
+function __init__()
+  if ! isempty(ARGS)
+    argpath = filter(ARGS) do x
+      startswith(x, "GBDIR=") # the argument is "appsdir=..."
+    end
 
-  if ! isempty(argpath)
-    normpath(argpath[1][7:end]) |> abspath
-  else
-    DEFAULT_GBDIR
+    if ! isempty(argpath)
+      global gbdir = normpath(argpath[1][7:end]) |> abspath
+    end
   end
-else
-  DEFAULT_GBDIR
 end
 
 const appsdir = joinpath(gbdir, "apps")
