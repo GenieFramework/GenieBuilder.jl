@@ -3,11 +3,14 @@
   using JSON
 
   gbdir = joinpath(@__DIR__, "geniebuilder") |> abspath
+  chmod(gbdir, 0x775)
 
   if isdir(gbdir)
     @warn "Deleting existing geniebuilder directory"
     rm(gbdir, recursive = true)
   end
+
+  @test isdir(gbdir) == false
 
   push!(ARGS, "GBDIR=$(gbdir)")
   server = @async include("../scripts/rungb.jl")
@@ -73,7 +76,7 @@
     # we should get a response that our app is being created
     @test app["application"]["id"]["value"] == 1
     @test app["application"]["name"] == appname
-    @test app["application"]["path"] == "$gbdir/apps/"
+    @test startswith(app["application"]["path"], joinpath(gbdir, "apps")) == true
     @test app["application"]["status"] == "creating"
 
     # now let's check if the app has been created
@@ -91,7 +94,7 @@
       app = apps["applications"][1]
       @test app["id"]["value"] == 1
       @test app["name"] == appname
-      @test app["path"] == "$gbdir/apps/"
+      @test startswith(app["path"], joinpath(gbdir, "apps")) == true
       @test app["status"] == "offline"
 
       break
@@ -121,7 +124,7 @@
       app = apps["applications"][1]
       @test app["id"]["value"] == 1
       @test app["name"] == appname
-      @test app["path"] == "$gbdir/apps/"
+      @test startswith(app["path"], joinpath(gbdir, "apps")) == true
       @test app["status"] == "online"
 
       break
@@ -140,14 +143,14 @@
     response = HTTP.get("$gburl/api/v1/apps/1/pages")
     @test response.status == 200
     appdata = (String(response.body) |> JSON.parse)["pages"][1]
-    @test appdata["view"] == "views/hello.jl.html"
+    @test appdata["view"] == joinpath("views", "hello.jl.html")
     @test appdata["route"]["method"] == "GET"
     @test appdata["route"]["path"] == "/"
     @test isa(appdata["deps"]["styles"], Vector) == true
     @test isempty(appdata["deps"]["styles"]) == false
     @test isa(appdata["deps"]["scripts"], Vector) == true
     @test isempty(appdata["deps"]["scripts"]) == false
-    @test appdata["layout"] == "layouts/app.jl.html"
+    @test appdata["layout"] == joinpath("layouts", "app.jl.html")
     @test appdata["model"]["name"] == "Stipple.Pages.EmptyModel"
   end
 
@@ -159,4 +162,11 @@
       @test isa(ex, HTTP.IOExtras.IOError) == true
     end
   end
+
+  if isdir(gbdir)
+    @warn "Deleting geniebuilder directory to clean up"
+    rm(gbdir, recursive = true)
+  end
+
+  @test isdir(gbdir) == false
 end
