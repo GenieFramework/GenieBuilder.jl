@@ -45,8 +45,6 @@ function installgb()
 end
 
 function startgb()
-  @show gbdir
-
   isdir(gbdir) ? cd(gbdir) : installgb()
   `julia --project --startup-file=no --history-file=no --depwarn=no -e 'using GenieBuilder;GenieBuilder.go();'` |> run
 end
