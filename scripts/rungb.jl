@@ -17,7 +17,7 @@ function __init__()
   end
 end
 
-const appsdir = joinpath(gbdir, "apps")
+appsdir = joinpath(gbdir, "apps")
 
 function installgb()
   isdir(gbdir) || mkdir(gbdir)
