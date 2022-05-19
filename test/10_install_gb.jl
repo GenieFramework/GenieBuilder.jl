@@ -162,11 +162,4 @@
       @test isa(ex, HTTP.IOExtras.IOError) == true
     end
   end
-
-  if isdir(gbdir)
-    @warn "Deleting geniebuilder directory to clean up"
-    rm(gbdir, recursive = true)
-  end
-
-  @test isdir(gbdir) == false
 end
