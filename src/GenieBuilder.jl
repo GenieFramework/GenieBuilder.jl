@@ -2,11 +2,11 @@ module GenieBuilder
 
 using Genie, Logging, LoggingExtras
 
-GBDIR = pwd()
-APPS_FOLDER = joinpath(GBDIR, "apps")
-DB_FOLDER = joinpath(GBDIR, "db")
-DB_NAME = "client.sqlite3"
-DB_CONFIG_FILE = "connection.yml"
+GBDIR = ""
+APPS_FOLDER = ""
+DB_FOLDER = ""
+DB_NAME = ""
+DB_CONFIG_FILE = ""
 
 function __init__()
   global GBDIR = pwd()
