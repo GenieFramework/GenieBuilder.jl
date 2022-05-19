@@ -255,7 +255,9 @@ function start(app)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
-        `julia -e "cd(\"$(fullpath(app))\");ENV[\"PORT\"]=$(app.port);ENV[\"WSEXPPORT\"]=$(app.port);ENV[\"CHANNEL__\"]=\"$(app.channel)\";using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();up(async = false)"` |> run
+        cmd = Cmd(`julia -e "using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();up(async = false)"`; dir = fullpath(app))
+        cmd = addenv(cmd, "PORT" => app.port, "WSEXPPORT" => app.port, "CHANNEL__" => app.channel)
+        cmd |> run
       catch ex
         @error ex
         notify("failed:start", app.id, FAILSTATUS, "error")
