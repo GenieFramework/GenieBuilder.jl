@@ -2,18 +2,18 @@
 # $ julia rungb.jl
 # to be distributed with the VSCode plugin
 
+module RunGB
 # allow passing the GBDIR as an environment variable
 gbdir = joinpath(homedir(), ".julia", "geniebuilder")
 
-function __init__()
-  if ! isempty(ARGS)
-    argpath = filter(ARGS) do x
-      startswith(x, "GBDIR=") # the argument is "appsdir=..."
-    end
 
-    if ! isempty(argpath)
-      global gbdir = normpath(argpath[1][7:end]) |> abspath
-    end
+if ! isempty(ARGS)
+  argpath = filter(ARGS) do x
+    startswith(x, "GBDIR=") # the argument is "appsdir=..."
+  end
+
+  if ! isempty(argpath)
+    global gbdir = normpath(argpath[1][7:end]) |> abspath
   end
 end
 
@@ -22,6 +22,9 @@ appsdir = joinpath(gbdir, "apps")
 function installgb()
   isdir(gbdir) || mkdir(gbdir)
   isdir(appsdir) || mkdir(appsdir)
+
+  @show gbdir
+  @show appsdir
 
   cp(joinpath(@__DIR__, "Manifest.toml"), joinpath(gbdir, "Manifest.toml"))
   cd(gbdir)
@@ -42,8 +45,13 @@ function installgb()
 end
 
 function startgb()
+  @show gbdir
+
   isdir(gbdir) ? cd(gbdir) : installgb()
   `julia --project --startup-file=no --history-file=no --depwarn=no -e 'using GenieBuilder;GenieBuilder.go();'` |> run
 end
 
-startgb()
+end
+
+using .RunGB
+RunGB.startgb()

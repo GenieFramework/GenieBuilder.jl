@@ -2,8 +2,8 @@
   using HTTP
   using JSON
 
-  gbdir = mktempdir() # joinpath(@__DIR__, "geniebuilder") |> abspath
-  chmod(gbdir, 0x775)
+  gbdir = joinpath(@__DIR__, "geniebuilder") |> abspath
+  isdir(gbdir) && chmod(gbdir, 0x775)
 
   push!(ARGS, "GBDIR=$(gbdir)")
   server = @async include("../scripts/rungb.jl")
@@ -155,4 +155,8 @@
       @test isa(ex, HTTP.IOExtras.IOError) == true
     end
   end
+
+  # cleanup
+  isdir(gbdir) && rm(gbdir; force = true, recursive = true)
+  @test isdir(gbdir) == false
 end
