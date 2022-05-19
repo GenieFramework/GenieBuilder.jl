@@ -2,7 +2,7 @@
   using HTTP
   using JSON
 
-  gbdir = joinpath(@__DIR__, "geniebuilder") |> abspath
+  gbdir = mktempdir() # joinpath(@__DIR__, "geniebuilder") |> abspath
   chmod(gbdir, 0x775)
 
   if isdir(gbdir)
@@ -47,8 +47,8 @@
     @test isdir(joinpath(gbdir, "db")) == true
     @test isfile(joinpath(gbdir, "Manifest.toml")) == true
     @test isfile(joinpath(gbdir, "db", "client.sqlite3")) == true
-    chmod(joinpath(gbdir, "db", "client.sqlite3"), 0o775)
     @test isfile(joinpath(gbdir, "db", "connection.yml")) == true
+    chmod(joinpath(gbdir), 0o775; recursive = true)
   end
 
   # once GB is installed and running, the /apps endpoint should be accessible
