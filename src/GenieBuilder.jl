@@ -2,10 +2,19 @@ module GenieBuilder
 
 using Genie, Logging, LoggingExtras
 
-const APPS_FOLDER = joinpath(homedir(), ".julia", "geniebuilder", "apps")
-const DB_FOLDER = joinpath(homedir(), ".julia", "geniebuilder", "db")
-const DB_NAME = "client.sqlite3"
-const DB_CONFIG_FILE = "connection.yml"
+GBDIR = ""
+APPS_FOLDER = ""
+DB_FOLDER = ""
+DB_NAME = ""
+DB_CONFIG_FILE = ""
+
+function __init__()
+  global GBDIR = pwd()
+  global APPS_FOLDER = joinpath(GBDIR, "apps")
+  global DB_FOLDER = joinpath(GBDIR, "db")
+  global DB_NAME = "client.sqlite3"
+  global DB_CONFIG_FILE = "connection.yml"
+end
 
 function main()
   Core.eval(Main, :(const UserApp = $(@__MODULE__)))
