@@ -14,6 +14,7 @@
 
 
 window.autorun = false;
+window.unsavedChanges = false;
 
 function initNoCodeEditor(){
   console.log( "initNoCodeEditor()" );
@@ -101,6 +102,12 @@ function initNoCodeEditor(){
 
 
   // Custom events
+  editor.on('change:changesCount', e => {
+    console.log( "no-code editor content has changed: ", e );
+    document.querySelector("#unsavedChangesAlert").style.display = "block";
+    window.unsavedChanges = true;
+   });
+
   editor.on('run:preview', () => {
     // do stuff...
     console.log("entered preview");
@@ -197,6 +204,9 @@ function savePage(){
       path: window.filePath,
       content:currentTemplate
     }, "*");
+    // Update the "unsaved changes" alert status and visibility
+    document.querySelector("#unsavedChangesAlert").style.display = "none";
+    window.unsavedChanges = false;
 }
 
 function runVue(){
