@@ -217,8 +217,8 @@ function persist_status(app, status) :: Bool
   true
 end
 
-function status_request(app, donotify::Bool = true; statuscheck::Bool = false, persist::Bool = true)
-  params(:statuscheck, statuscheck) || return Symbol(app.status)
+function status_request(app, donotify::Bool = true; statuscheck::Bool = false, persist::Bool = true) :: String
+  params(:statuscheck, statuscheck) || return app.status
 
   status = try
     donotify && notify("started:status_request", app.id)
@@ -242,7 +242,7 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
   donotify && notify("ended:status_request", app.id)
   persist && persist_status(app, status)
 
-  status
+  status |> string
 end
 const status_request! = status_request # alias to express invocation for side effects
 
