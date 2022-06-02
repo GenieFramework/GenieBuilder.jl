@@ -607,7 +607,7 @@ const myNewComponentTypes = editor => {
                       Loop Iterator
      -------------------------------------------- */
         
-     editor.DomComponents.addType( "loop Iterator", {
+     /* editor.DomComponents.addType( "loop Iterator", {
       isComponent: el => {
         if( el.tagName == 'DIV' && el.classList.contains('loop-iterator') ){
           return { type: 'loop Iterator' }
@@ -632,8 +632,8 @@ const myNewComponentTypes = editor => {
           this.view.onRender();
         },
         updateGenieModelProperties(properties){
-         /*  var vtextTrait = this.get('traits').where({name: 'v-model'})[0];
-          vtextTrait.set('options', properties ); */
+          //var vtextTrait = this.get('traits').where({name: 'v-model'})[0];
+          //vtextTrait.set('options', properties );
         }
       }, 
       view: {
@@ -645,12 +645,12 @@ const myNewComponentTypes = editor => {
       },
     });
     editor.BlockManager.add( 'loop Iterator', { label: 'Loop Iterator', content: `<div v-for="" class="loop-iterator"></div>`, media: `<img src="images/icons/components/default.png" class="blockIcon"/>`, category: 'Control Logic'   }); 
-
+ */
     /* --------------------------------------------
                       Conditional
      -------------------------------------------- */
         
-     editor.DomComponents.addType( "conditional Block", {
+     /* editor.DomComponents.addType( "conditional Block", {
       isComponent: el => {
         if( el.tagName == 'DIV' && el.classList.contains('conditional-block') ){
           return { type: 'conditional Block' }
@@ -676,8 +676,8 @@ const myNewComponentTypes = editor => {
           this.view.onRender();
         },
         updateGenieModelProperties(properties){
-         /*  var vtextTrait = this.get('traits').where({name: 'v-model'})[0];
-          vtextTrait.set('options', properties ); */
+          //var vtextTrait = this.get('traits').where({name: 'v-model'})[0];
+          //vtextTrait.set('options', properties );
         }
       }, 
       view: {
@@ -689,7 +689,7 @@ const myNewComponentTypes = editor => {
       },
     });
     editor.BlockManager.add( 'conditional Block', { label: 'Conditional Block', content: `<div class="conditional-block"></div>`, media: `<img src="images/icons/components/default.png" class="blockIcon"/>`, category: 'Control Logic'   }); 
-
+ */
 
 
     /* --------------------------------------------
