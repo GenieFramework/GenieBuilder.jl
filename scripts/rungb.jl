@@ -23,9 +23,6 @@ function installgb()
   isdir(gbdir) || mkdir(gbdir)
   isdir(appsdir) || mkdir(appsdir)
 
-  @show gbdir
-  @show appsdir
-
   cp(joinpath(@__DIR__, "Manifest.toml"), joinpath(gbdir, "Manifest.toml"))
   cd(gbdir)
 

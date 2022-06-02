@@ -19,12 +19,19 @@ const apphost = "http://127.0.0.1"
 const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
 
+const DELETED_STATUS = "deleted"
+const OFFLINE_STATUS = "offline"
+const ONLINE_STATUS = "online"
+const ERROR_STATUS = "error"
+const STARTING_STATUS = "starting"
+const STOPPING_STATUS = "stopping"
+
 fullpath(app::Application) = abspath(app.path * app.name)
 get(appid) = SearchLight.findone(Application, id = parse(Int, appid))
 
 function notify(message::String,
                 appid::Union{SearchLight.DbId,Nothing} = nothing,
-                status::String = "OK",
+                status::String = OKSTATUS,
                 type::String = "info",
                 eventid::String = params(:eventid, "0")) :: Bool
   try
@@ -34,7 +41,7 @@ function notify(message::String,
   end
 
   try
-    appid !== nothing && type == "error" && persist_status(SearchLight.findone(Application, id = appid.value), "error")
+    appid !== nothing && type == ERROR_STATUS && persist_status(SearchLight.findone(Application, id = appid.value), ERROR_STATUS)
   catch ex
     @error ex
   end
@@ -180,14 +187,14 @@ function create(name, path, port)
       cd(path)
       Genie.Generator.newapp(name, autostart = false, interactive = false)
       postcreate()
-      persist_status(app, :offline)
+      persist_status(app, OFFLINE_STATUS)
 
       notify("ended:create_app", app.id)
     end
   catch ex
     @error ex
     delete(app)
-    notify("failed:create_app", app.id, FAILSTATUS, "error")
+    notify("failed:create_app", app.id, FAILSTATUS, ERROR_STATUS)
 
     output = (:error => ex)
   finally
@@ -217,18 +224,18 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
     donotify && notify("started:status_request", app.id)
     res = HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/id")
     if res.status >= 500
-      :error
+      ERROR_STATUS
     elseif res.status == 404
-      :offline
+      OFFLINE_STATUS
     elseif res.status == 200
-      :online
+      ONLINE_STATUS
     end
   catch ex
     if isa(ex, HTTP.IOExtras.IOError)
-      :offline
+      OFFLINE_STATUS
     else
       donotify && notify("failed:status_request", app.id)
-      :error
+      ERROR_STATUS
     end
   end
 
@@ -237,6 +244,7 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
 
   status
 end
+const status_request! = status_request # alias to express invocation for side effects
 
 function status(app)
   notify("started:status", app.id)
@@ -246,11 +254,20 @@ function status(app)
   (:status => status) |> json
 end
 
+function isdeleted(app)
+  app.status == DELETED_STATUS
+end
+
 function start(app)
-  appstatus = status_request(app)
+  if isdeleted(app)
+    notify("failed:start", app.id, FAILSTATUS, DELETED_STATUS)
+    return (:status => DELETED_STATUS) |> json
+  end
+
+  status_request!(app)
 
   try
-    persist_status(app, "starting")
+    persist_status(app, STARTING_STATUS)
     notify("started:start", app.id)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
@@ -260,47 +277,45 @@ function start(app)
         cmd |> run
       catch ex
         @error ex
-        notify("failed:start", app.id, FAILSTATUS, "error")
+        notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
       end
     end
 
     @async begin
-      while status_request(app, false; statuscheck = true, persist = false) in [:starting, :offline]
+      while status_request(app, false; statuscheck = true, persist = false) in [STARTING_STATUS, OFFLINE_STATUS]
         sleep(1)
       end
 
       notify("ended:start", app.id)
-      persist_status(app, "online")
+      persist_status(app, ONLINE_STATUS)
     end
   catch
-    notify("failed:start", app.id, FAILSTATUS, "error")
+    notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
   end
 
-  (:status => :ok) |> json
+  (:status => OKSTATUS) |> json
 end
 
 function stop(app)
   status = OKSTATUS
-  # err = ""
 
   try
-    persist_status(app, "stopping")
+    persist_status(app, STOPPING_STATUS)
     notify("started:stop", app.id)
 
     @async HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit")
 
     sleep(1)
 
-    if status_request(app, false; statuscheck = true) == :offline
+    if status_request(app, false; statuscheck = true) == OFFLINE_STATUS
       notify("ended:stop", app.id)
-      persist_status(app, "offline")
+      persist_status(app, OFFLINE_STATUS)
     end
   catch ex
     @error ex
-    notify("failed:stop", app.id, FAILSTATUS, "error")
+    notify("failed:stop", app.id, FAILSTATUS, ERROR_STATUS)
 
-    status = :error
-    # err = string(ex)
+    status = ERROR_STATUS
   end
 
   if haskey(appsthreads, fullpath(app))
@@ -318,19 +333,19 @@ end
 
 function up(app)
   appstatus = status_request(app)
-  appstatus != :offline && notify("failed:up:$appstatus", app.id, FAILSTATUS, "error") && return (:status => appstatus) |> json
+  appstatus != OFFLINE_STATUS && notify("failed:up:$appstatus", app.id, FAILSTATUS, ERROR_STATUS) && return (:status => appstatus) |> json
 
   res = try
-    persist_status(app, "starting")
+    persist_status(app, STARTING_STATUS)
     notify("started:up", app.id)
 
     HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/up")
   catch ex
     @error ex
-    notify("failed:up", app.id, FAILSTATUS, "error")
+    notify("failed:up", app.id, FAILSTATUS, ERROR_STATUS)
   end
 
-  persist_status(app, "online")
+  persist_status(app, ONLINE_STATUS)
   notify("ended:up", app.id)
 
   String(res.body) |> JSON3.read |> json
@@ -339,7 +354,7 @@ end
 macro isonline(app)
   quote
     appstatus = status_request($(esc(app)))
-    appstatus != :online && return json(:status => appstatus)
+    appstatus != ONLINE_STATUS && return json(:status => appstatus)
 
     true
   end
@@ -349,7 +364,7 @@ function delete(app)
   notify("started:delete", app.id)
   stop(app)
 
-  persist_status(app, "deleted")
+  persist_status(app, DELETED_STATUS)
   notify("ended:delete", app.id)
 
   (:status => OKSTATUS) |> json
@@ -358,8 +373,8 @@ end
 function restore(app)
   notify("started:restore", app.id)
 
-  status = if app.status == "deleted"
-    persist_status(app, "offline") ? notify("ended:restore", app.id) : notify("failed:restore", app.id)
+  status = if app.status == DELETED_STATUS
+    persist_status(app, OFFLINE_STATUS) ? notify("ended:restore", app.id) : notify("failed:restore", app.id)
     OKSTATUS
   else
     notify("failed:restore", app.id)
@@ -372,7 +387,7 @@ end
 function purge(app)
   notify("started:purge", app.id)
 
-  status = if app.status == "deleted"
+  status = if app.status == DELETED_STATUS
     SearchLight.delete(app)
 
     try
@@ -398,16 +413,16 @@ end
 function down(app)
   if @isonline(app)
     res = try
-      persist_status(app, "stopping")
+      persist_status(app, STOPPING_STATUS)
       notify("started:down", app.id)
 
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/down")
     catch ex
       @error ex
-      notify("failed:down", app.id, FAILSTATUS, "error")
+      notify("failed:down", app.id, FAILSTATUS, ERROR_STATUS)
     end
 
-    persist_status(app, "offline")
+    persist_status(app, OFFLINE_STATUS)
     notify("ended:down", app.id)
 
     res |> json2json
@@ -422,7 +437,7 @@ function dir(app)
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/dir?path=$(params(:path, "."))")
     catch ex
       @error ex
-      notify("failed:dir", app.id, FAILSTATUS, "error")
+      notify("failed:dir", app.id, FAILSTATUS, ERROR_STATUS)
     end
 
     notify("ended:dir", app.id)
@@ -439,7 +454,7 @@ function edit(app)
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/edit?path=$(params(:path, "."))")
     catch ex
       @error ex
-      notify("failed:edit", app.id, FAILSTATUS, "error")
+      notify("failed:edit", app.id, FAILSTATUS, ERROR_STATUS)
     end
 
     notify("ended:edit", app.id)
@@ -458,7 +473,7 @@ function save(app)
                       [], HTTP.Form(Dict("payload" => jsonpayload()["payload"])))
     catch ex
       @error ex
-      notify("failed:save", app.id, FAILSTATUS, "error")
+      notify("failed:save", app.id, FAILSTATUS, ERROR_STATUS)
     end
 
     notify("ended:save", app.id)
@@ -475,7 +490,7 @@ function log(app)
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/log")
     catch ex
       @error ex
-      notify("failed:log", app.id, FAILSTATUS, "error")
+      notify("failed:log", app.id, FAILSTATUS, ERROR_STATUS)
     end
 
     notify("ended:log", app.id)
@@ -492,7 +507,7 @@ function errors(app)
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/errors")
     catch ex
       @error ex
-      notify("failed:errors", app.id, FAILSTATUS, "error")
+      notify("failed:errors", app.id, FAILSTATUS, ERROR_STATUS)
     end
 
     notify("ended:errors", app.id)
@@ -509,7 +524,7 @@ function pages(app)
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/pages?CHANNEL__=$(app.channel)") |> json2json
     catch ex
       @error ex
-      notify("failed:pages", app.id, FAILSTATUS, "error")
+      notify("failed:pages", app.id, FAILSTATUS, ERROR_STATUS)
 
       (:status => :error) |> json
     end
@@ -535,12 +550,12 @@ function startrepl(app)
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/startrepl?port=$(app.replport != 0 ? app.replport : valid_replport())")
     catch ex
       @error ex
-      notify("failed:startrepl", app.id, FAILSTATUS, "error")
+      notify("failed:startrepl", app.id, FAILSTATUS, ERROR_STATUS)
     end
 
     status = try
       status = String(res.body) |> JSON3.read
-      if status.status == "OK"
+      if status.status == OKSTATUS
         app.replport = status.port
         save!(app)
       end
@@ -557,15 +572,16 @@ function startrepl(app)
 end
 
 function cleanup()
-  for app in find(Application, status = "online")
+  for app in find(Application, status = ONLINE_STATUS)
     stop(app)
   end
 end
 
 function reset_app_status()
   for app in find(Application)
-    app.status = "offline"
+    app.status == DELETED_STATUS && continue
 
+    app.status = OFFLINE_STATUS
     try
       save!(app)
     catch ex

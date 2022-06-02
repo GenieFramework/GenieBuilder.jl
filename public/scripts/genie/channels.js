@@ -63,14 +63,10 @@ Genie.WebChannels.load_channels = function() {
   }
 };
 
-// connecting to 0.0.0.0 (ex in prod) fails
-let wshost = Genie.Settings.server_host;
-//let wshost = Genie.Settings.server_host == "0.0.0.0" ? window.location.hostname : Genie.Settings.server_host;
-
-function newSocketConnection(host = wshost) {
-  //return new WebSocket(window.location.protocol.replace('http', 'ws') + '//' + host +
-  return new WebSocket('http:'.replace('http', 'ws') + '//' + host +
-      ':' + Genie.WebChannels.port + (Genie.Settings.base_path == '' ? '' : '/' + Genie.Settings.base_path));
+function newSocketConnection(host = Genie.Settings.server_host) {
+  return new WebSocket('http:'.replace('http', 'ws') + '//' + host
+      + (Genie.WebChannels.port !== undefined ? (':' + Genie.WebChannels.port) : '')
+      + ((Genie.Settings.base_path.trim() === '' || Genie.Settings.base_path.startsWith('/') ? '' : '/') + Genie.Settings.base_path));
 }
 
 Genie.WebChannels.port = /* Genie.Settings.websockets_port == Genie.Settings.server_port ? window.location.port :  */Genie.Settings.websockets_port;
