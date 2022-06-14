@@ -2,18 +2,18 @@ module GenieBuilder
 
 using Genie, Logging, LoggingExtras
 
-GBDIR = ""
-APPS_FOLDER = ""
-DB_FOLDER = ""
-DB_NAME = ""
-DB_CONFIG_FILE = ""
+const GBDIR = Ref{String}("")
+const APPS_FOLDER = Ref{String}("")
+const DB_FOLDER = Ref{String}("")
+const DB_NAME = Ref{String}("")
+const DB_CONFIG_FILE = Ref{String}("")
 
 function __init__()
-  global GBDIR = pwd()
-  global APPS_FOLDER = joinpath(GBDIR, "apps")
-  global DB_FOLDER = joinpath(GBDIR, "db")
-  global DB_NAME = "client.sqlite3"
-  global DB_CONFIG_FILE = "connection.yml"
+  GBDIR[] = pwd()
+  APPS_FOLDER[] = joinpath(GBDIR[], "apps")
+  DB_FOLDER[] = joinpath(GBDIR[], "db")
+  DB_NAME[] = "client.sqlite3"
+  DB_CONFIG_FILE[] = "connection.yml"
 end
 
 function main()
@@ -45,15 +45,15 @@ function postinstall()
   dbpath = normpath(joinpath(".", "db"))
   ispath(dbpath) ? chmod(dbpath, 0o775; recursive = true) : @warn("db path $dbpath does not exist")
 
-  isdir(DB_FOLDER) || mkdir(DB_FOLDER)
-  cp(joinpath(dbpath, DB_NAME), joinpath(DB_FOLDER, DB_NAME))
-  open(joinpath(DB_FOLDER, DB_CONFIG_FILE), "w") do io
+  isdir(DB_FOLDER[]) || mkdir(DB_FOLDER[])
+  cp(joinpath(dbpath, DB_NAME[]), joinpath(DB_FOLDER[], DB_NAME[]))
+  open(joinpath(DB_FOLDER[], DB_CONFIG_FILE[]), "w") do io
     write(io, """
       env: ENV["GENIE_ENV"]
 
       dev:
         adapter:  SQLite
-        database: $DB_FOLDER/client.sqlite3
+        database: $DB_FOLDER[]/client.sqlite3
         config:
     """)
   end

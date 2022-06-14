@@ -167,7 +167,7 @@ end
 
 function create(name, path, port)
   name = Genie.Generator.validname(name)
-  isempty(path) && (path = GenieBuilder.APPS_FOLDER)
+  isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
 
 
@@ -184,7 +184,9 @@ function create(name, path, port)
     notify("started:create_app")
 
     Base.Threads.@spawn begin
+      isdir(path) || mkdir(path)
       cd(path)
+
       Genie.Generator.newapp(name, autostart = false, interactive = false)
       postcreate()
       persist_status(app, OFFLINE_STATUS)
