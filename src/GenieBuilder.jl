@@ -53,7 +53,7 @@ function postinstall()
 
       dev:
         adapter:  SQLite
-        database: $DB_FOLDER[]/client.sqlite3
+        database: $(DB_FOLDER[])/client.sqlite3
         config:
     """)
   end
