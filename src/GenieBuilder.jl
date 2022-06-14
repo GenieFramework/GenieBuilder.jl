@@ -1,6 +1,6 @@
 module GenieBuilder
 
-using Genie, Logging, LoggingExtras
+using Genie, Logging
 
 const GBDIR = Ref{String}("")
 const APPS_FOLDER = Ref{String}("")
