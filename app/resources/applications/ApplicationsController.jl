@@ -91,6 +91,16 @@ function postcreate()
   # TODO: remove this after Genie 5 release
   isfile(joinpath(Genie.config.path_initializers, "ssl.jl")) && rm(joinpath(Genie.config.path_initializers, "ssl.jl"))
 
+  # TODO: remove this after Genie 5 release
+  open(joinpath(Genie.config.path_initializers, "logging.jl"), "w") do io
+    write(io,
+    """
+    import Genie
+    Genie.Logger.initialize_logging()
+    """
+    )
+  end
+
   open(joinpath(Genie.config.path_initializers, "autoload.jl"), "w") do io
     write(io,
     """
