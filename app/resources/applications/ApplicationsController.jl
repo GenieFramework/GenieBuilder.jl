@@ -85,7 +85,6 @@ function postcreate()
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StippleUI.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StipplePlotly.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");
-              Pkg.rm(\"LoggingExtras\");
   "` |> run # TODO: remove these after Genie 5 release
 
   # TODO: remove this after Genie 5 release
