@@ -85,7 +85,11 @@ function postcreate()
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StippleUI.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StipplePlotly.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");
-  "` |> run
+              Pkg.rm(\"MbedTLS\");Pkg.rm(\"LoggingExtras\");
+  "` |> run # TODO: remove these after Genie 5 release
+
+  # TODO: remove this after Genie 5 release
+  isfile(joinpath(Genie.config.path_initializers, "ssl.jl")) && rm(joinpath(Genie.config.path_initializers, "ssl.jl"))
 
   open(joinpath(Genie.config.path_initializers, "autoload.jl"), "w") do io
     write(io,
