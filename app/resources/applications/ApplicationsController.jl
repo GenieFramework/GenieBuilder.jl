@@ -72,10 +72,12 @@ function info(app)
   (:application => app) |> json
 end
 
-function postcreate()
+function postcreate(path) :: Nothing
+  current_path = pwd()
+
   pkgcmd = "add"
   branch = "Geniev5"
-  `julia -e  "using Pkg;
+  cmd = Cmd(`julia -e  "using Pkg;
               Pkg.activate(\".\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/Genie.jl\", rev=\"v5\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieSession.jl\");
@@ -85,12 +87,15 @@ function postcreate()
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StippleUI.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StipplePlotly.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");
-  "` |> run # TODO: remove these after Genie 5 release
+  "`; dir = path) # TODO: remove these after Genie 5 release
+  cmd |> run
+
+  cd(path)
 
   # TODO: remove this after Genie 5 release
   isfile(joinpath(Genie.config.path_initializers, "ssl.jl")) && rm(joinpath(Genie.config.path_initializers, "ssl.jl"))
 
-  # TODO: remove this after Genie 5 release
+  # TODO: Logger errors out for some reason
   open(joinpath(Genie.config.path_initializers, "logging.jl"), "w") do io
     write(io,
     """
@@ -176,6 +181,10 @@ function postcreate()
     """
     )
   end
+
+  cd(current_path)
+
+  nothing
 end
 
 function create(name, path, port)
@@ -195,22 +204,35 @@ function create(name, path, port)
 
   try
     notify("started:create_app")
+    isdir(path) || mkdir(path)
+    cd(path)
 
     Base.Threads.@spawn begin
-      isdir(path) || mkdir(path)
-      cd(path)
+      new_app_path = joinpath(path, name)
 
-      Genie.Generator.newapp(name, autostart = false, interactive = false)
-      postcreate()
+      try
+        cmd = Cmd(`julia --project -e "using Genie;Genie.Generator.newapp(\"$(name)\", autostart = false, interactive = false)"`; dir = path)
+        cmd |> run
+      catch ex
+        @error ex
+        isdir(new_app_path) && rm(new_app_path)
+        delete(app)
+        rethrow(ex)
+      end
+
+      try
+        postcreate(new_app_path)
+      catch ex
+        @error ex
+        rethrow(ex)
+      end
+
       persist_status(app, OFFLINE_STATUS)
-
       notify("ended:create_app", app.id)
     end
   catch ex
     @error ex
-    delete(app)
     notify("failed:create_app", app.id, FAILSTATUS, ERROR_STATUS)
-
     output = (:error => ex)
   finally
     cd(current_path)
