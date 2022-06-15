@@ -190,7 +190,7 @@ function create(name, path, port)
 
   # make sure apps/ folder exists
 
-  current_path = pwd()
+  # current_path = pwd()
   output = (:application => app)
 
   try
@@ -213,7 +213,7 @@ function create(name, path, port)
 
     output = (:error => ex)
   finally
-    cd(current_path)
+    # cd(current_path)
   end
 
   output |> json
