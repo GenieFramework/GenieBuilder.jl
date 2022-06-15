@@ -14,7 +14,7 @@ function __init__()
   DB_FOLDER[] = joinpath(GBDIR[], "db")
   DB_NAME[] = "client.sqlite3"
   DB_CONFIG_FILE[] = "connection.yml"
-  Genie.config.server_document_root = abspath(joinpath("..", "public"))
+  Genie.config.server_document_root = abspath(joinpath(@__DIR__, "..", "public"))
 end
 
 function main()
