@@ -207,9 +207,18 @@ img.blockIcon{
 
 #unsavedChangesAlert{
   position: fixed;
-  top:10px;
-  left: 10px;
-  background-color: #ff0000;
-  color: #ffffff;
+  top: 5px;
+  right: 205px;
+  color: #ff6600;
   display: none;
+  z-index: 10000;
+  font-size: 14px;
+}
+
+
+.warningIcon.gjs-pn-btn{
+  color: #ff6600;
+}
+.warningIcon.gjs-pn-btn:hover{
+  color: #ff6600 !important;
 }

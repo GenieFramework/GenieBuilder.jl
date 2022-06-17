@@ -66,7 +66,7 @@ function initNoCodeEditor(){
     //label: 'Gn',
     className: 'fa fa-floppy-disk',
     command: 'save-content',
-    attributes: { title: 'Save Design' },
+    attributes: { title: 'Save Design', id:'saveButton' },
     active: false,
   });
 
@@ -104,6 +104,7 @@ function initNoCodeEditor(){
   // Custom events
   editor.on('change:changesCount', e => {
     console.log( "no-code editor content has changed: ", e );
+    document.querySelector("#saveButton").classList.add('warningIcon');
     document.querySelector("#unsavedChangesAlert").style.display = "block";
     window.unsavedChanges = true;
    });
@@ -205,6 +206,7 @@ function savePage(){
       content:currentTemplate
     }, "*");
     // Update the "unsaved changes" alert status and visibility
+    document.querySelector("#saveButton").classList.remove('warningIcon');
     document.querySelector("#unsavedChangesAlert").style.display = "none";
     window.unsavedChanges = false;
 }
