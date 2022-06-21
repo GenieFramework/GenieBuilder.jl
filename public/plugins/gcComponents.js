@@ -72,7 +72,7 @@ const myNewComponentTypes = editor => {
   // -----------------------------------
   let vtext_components = [
     { type:'p', tagName:'P', label:'Paragraph', icon:'html_elements/p.png' }, 
-    { type:'span', tagName:'SPAN', label:'Span', icon:'default.png' }, 
+    { type:'span', tagName:'SPAN', label:'Span', icon:'html_elements/span.png' }, 
     { type:'h1', tagName:'H1', label:'Heading 1', icon:'ui_components/H1.png' }, 
     { type:'h2', tagName:'H2', label:'Heading 2', icon:'ui_components/H2.png' }, 
     { type:'h3', tagName:'H3', label:'Heading 3', icon:'ui_components/H3.png' }, 
@@ -784,7 +784,7 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col col-12 col-sm st-module"></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col col-12 col-sm st-module"></div>`, media: `<img src="images/icons/components/ui_components/container.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
 
     /* --------------------------------------------
@@ -871,12 +871,12 @@ const myNewComponentTypes = editor => {
           const bindTextTraitValue = model.getAttributes()[':data']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/plotly-chart.png" />
+          <img src="images/icons/components/ui_components/chart.png" />
           <div>{${bindTextTraitValue}}</div>` );
         }
       },
     });
-    editor.BlockManager.add( 'plotly', { label: 'Plotly Chart', content: `<plotly />`, media: `<img src="images/icons/components/plotly-chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    editor.BlockManager.add( 'plotly', { label: 'Plotly Chart', content: `<plotly />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
 
 
   /*     
