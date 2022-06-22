@@ -82,7 +82,7 @@ function postcreate(path) :: Nothing
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/Genie.jl\", rev=\"v5\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieSession.jl\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieSessionFileSession.jl\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieAutoReload.jl\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieAutoReload.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/Stipple.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StippleUI.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StipplePlotly.jl\", rev=\"$(branch)\");
@@ -295,6 +295,17 @@ function isdeleted(app)
   app.status == DELETED_STATUS
 end
 
+function watch(path, appid)
+  Genie.config.watch_handlers[appid.value] = [()->ApplicationsController.notify("changed:files", appid)]
+
+  Genie.Watch.watch(path)
+end
+
+function unwatch(path, appid)
+  delete!(Genie.config.watch_handlers, appid.value)
+  Genie.Watch.unwatch(path)
+end
+
 function start(app)
   if isdeleted(app)
     notify("failed:start", app.id, FAILSTATUS, DELETED_STATUS)
@@ -325,6 +336,7 @@ function start(app)
 
       notify("ended:start", app.id)
       persist_status(app, ONLINE_STATUS)
+      watch(fullpath(app), app.id)
     end
   catch
     notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
@@ -364,6 +376,8 @@ function stop(app)
 
     delete!(appsthreads, fullpath(app))
   end
+
+  unwatch(fullpath(app), app.id)
 
   (:status => status) |> json
 end
