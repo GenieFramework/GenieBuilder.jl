@@ -1,6 +1,7 @@
 using Genie.Router
 using GenieBuilder
 using GenieBuilder.ApplicationsController
+using RemoteREPL
 
 Genie.config.websockets_server = true
 
@@ -87,6 +88,14 @@ function routes()
   route("/geniebuilder/stop") do
     ApplicationsController.cleanup()
     GenieBuilder.stop()
+  end
+
+  route("/geniebuilder/startrepl") do
+    port = rand(40_000:50_000)
+
+    @async serve_repl(port)
+
+    port
   end
 
   channel("/geniebuilder/subscribe") do
