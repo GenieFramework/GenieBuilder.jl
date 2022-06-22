@@ -71,14 +71,14 @@ const myNewComponentTypes = editor => {
   // Custom components
   // -----------------------------------
   let vtext_components = [
-    { type:'p', tagName:'P', label:'Paragraph' }, 
-    { type:'span', tagName:'SPAN', label:'Span' }, 
-    { type:'h1', tagName:'H1', label:'Heading 1' }, 
-    { type:'h2', tagName:'H2', label:'Heading 2' }, 
-    { type:'h3', tagName:'H3', label:'Heading 3' }, 
-    { type:'h4', tagName:'H4', label:'Heading 4' }, 
-    { type:'h5', tagName:'H5', label:'Heading 5' }, 
-    { type:'h6', tagName:'H6', label:'Heading 6' }, 
+    { type:'p', tagName:'P', label:'Paragraph', icon:'html_elements/p.png' }, 
+    { type:'span', tagName:'SPAN', label:'Span', icon:'default.png' }, 
+    { type:'h1', tagName:'H1', label:'Heading 1', icon:'ui_components/H1.png' }, 
+    { type:'h2', tagName:'H2', label:'Heading 2', icon:'ui_components/H2.png' }, 
+    { type:'h3', tagName:'H3', label:'Heading 3', icon:'ui_components/H3.png' }, 
+    { type:'h4', tagName:'H4', label:'Heading 4', icon:'ui_components/H4.png' }, 
+    { type:'h5', tagName:'H5', label:'Heading 5', icon:'ui_components/H5.png' }, 
+    { type:'h6', tagName:'H6', label:'Heading 6', icon:'ui_components/H6.png' }, 
   ];
 
   /* --------------------------------------------
@@ -128,7 +128,7 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( item.type, { label: item.label, content: `<${item.type} v-text="">Default content</${item.type}>`, media: `<img src="images/icons/components/default.png" class="blockIcon"/>`, category: 'Texts'   }); 
+    editor.BlockManager.add( item.type, { label: item.label, content: `<${item.type} v-text="">Default content</${item.type}>`, media: `<img src="images/icons/components/${item.icon}" class="blockIcon"/>`, category: 'Texts'   }); 
   } );
 
 
@@ -195,12 +195,12 @@ const myNewComponentTypes = editor => {
         const bindTextTraitValue = model.getAttributes()['v-model']
         $el.empty();
         $el.append( `
-        <img src="images/icons/components/q-slider.png" />
+        <img src="images/icons/components/ui_components/slider.png" />
         <div>{${bindTextTraitValue}}</div>` );
       }
     },
   });
-  editor.BlockManager.add( 'slider', { label: 'Slider', content: `<q-slider />`, media: `<img src="images/icons/components/q-slider.png" class="blockIcon"/>`, category: 'Forms'   }); 
+  editor.BlockManager.add( 'slider', { label: 'Slider', content: `<q-slider />`, media: `<img src="images/icons/components/ui_components/slider.png" class="blockIcon"/>`, category: 'Forms'   }); 
 
 
   
@@ -240,12 +240,12 @@ const myNewComponentTypes = editor => {
           const bindTextTraitValue = model.getAttributes()['v-model']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/q-range.png" />
+          <img src="images/icons/components/ui_components/range.png" />
           <div>{${bindTextTraitValue}}</div>` );
         }
       },
     });
-    editor.BlockManager.add( 'range', { label: 'Range', content: `<q-range />`, media: `<img src="images/icons/components/q-range.png" class="blockIcon"/>`, category: 'Forms'   }); 
+    editor.BlockManager.add( 'range', { label: 'Range', content: `<q-range />`, media: `<img src="images/icons/components/ui_components/range.png" class="blockIcon"/>`, category: 'Forms'   }); 
   
   /* --------------------------------------------
                       Q-SELECT 
@@ -303,12 +303,12 @@ const myNewComponentTypes = editor => {
           const bindTextTraitValue = model.getAttributes()['v-model']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/q-select.png" />
+          <img src="images/icons/components/ui_components/select.png" />
           <div>{${bindTextTraitValue}}</div>` );
         }
       },
     });
-    editor.BlockManager.add( 'dropdown select', { label: 'Select', content: `<q-select />`, media: `<img src="images/icons/components/q-select.png" class="blockIcon"/>`, category: 'Forms'   }); 
+    editor.BlockManager.add( 'dropdown select', { label: 'Select', content: `<q-select />`, media: `<img src="images/icons/components/ui_components/select.png" class="blockIcon"/>`, category: 'Forms'   }); 
   
   /* --------------------------------------------
                       Q-DATE 
@@ -352,12 +352,12 @@ const myNewComponentTypes = editor => {
           const bindTextTraitValue = model.getAttributes()['v-model']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/default.png" />
+          <img src="images/icons/components/ui_components/date_picker.png" />
           <div>{${bindTextTraitValue}}</div>` );
         }
       },
     });
-    editor.BlockManager.add( 'date picker', { label: 'Date Picker', content: `<q-date />`, media: `<img src="images/icons/components/default.png" class="blockIcon"/>`, category: 'Forms'   }); 
+    editor.BlockManager.add( 'date picker', { label: 'Date Picker', content: `<q-date />`, media: `<img src="images/icons/components/ui_components/date_picker.png" class="blockIcon"/>`, category: 'Forms'   }); 
 
   /* --------------------------------------------
                       Q-EXPANSION-ITEM 
@@ -401,7 +401,7 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( 'Expansion Item', { label: 'Expansion Item', content: `<q-expansion-item />`, media: `<img src="images/icons/components/default.png" class="blockIcon"/>`, category: 'Forms'   }); 
+    editor.BlockManager.add( 'Expansion Item', { label: 'Expansion Item', content: `<q-expansion-item />`, media: `<img src="images/icons/components/ui_components/expansion_item.png" class="blockIcon"/>`, category: 'Forms'   }); 
 
 
   /* --------------------------------------------
@@ -441,12 +441,12 @@ const myNewComponentTypes = editor => {
           const bindTextTraitValue = model.getAttributes()['v-model']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/q-table.png" />
+          <img src="images/icons/components/ui_components/table.png" />
           <div>{${bindTextTraitValue}}</div>` );
         }
       },
     });
-    editor.BlockManager.add( 'table', { label: 'Table', content: `<q-table />`, media: `<img src="images/icons/components/q-table.png" class="blockIcon"/>`, category: 'Forms'   }); 
+    editor.BlockManager.add( 'table', { label: 'Table', content: `<q-table />`, media: `<img src="images/icons/components/ui_components/table.png" class="blockIcon"/>`, category: 'Forms'   }); 
 
     /* --------------------------------------------
                       Q-CHECKBOX
@@ -485,12 +485,12 @@ const myNewComponentTypes = editor => {
           const bindTextTraitValue = model.getAttributes()['v-model']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/q-checkbox.png" />
+          <img src="images/icons/components/ui_components/ui_components/checkbox.png" />
           <div>{${bindTextTraitValue}}</div>` );
         }
       },
     });
-    editor.BlockManager.add( 'Checkbox', { label: 'Checkbox', content: `<q-checkbox />`, media: `<img src="images/icons/components/q-checkbox.png" class="blockIcon"/>`, category: 'Forms'   }); 
+    editor.BlockManager.add( 'Checkbox', { label: 'Checkbox', content: `<q-checkbox />`, media: `<img src="images/icons/components/ui_components/checkbox.png" class="blockIcon"/>`, category: 'Forms'   }); 
     
     
     /* --------------------------------------------
@@ -545,12 +545,12 @@ const myNewComponentTypes = editor => {
           const bindTextTraitValue = model.getAttributes()['v-model']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/default.png" />
+          <img src="images/icons/components/ui_components/button.png" />
           <div>{${bindTextTraitValue}}</div>` );
         }
       },
     });
-    editor.BlockManager.add( 'Button', { label: 'Button', content: `<q-btn label="Button"/>`, media: `<img src="images/icons/components/default.png" class="blockIcon"/>`, category: 'Forms'   }); 
+    editor.BlockManager.add( 'Button', { label: 'Button', content: `<q-btn label="Button"/>`, media: `<img src="images/icons/components/ui_components/button.png" class="blockIcon"/>`, category: 'Forms'   }); 
 
     /* --------------------------------------------
                       Q-INPUT
@@ -595,12 +595,12 @@ const myNewComponentTypes = editor => {
           const bindTextTraitValue = model.getAttributes()['v-model']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/q-input.png" />
+          <img src="images/icons/components/ui_components/input_text_field.png" />
           <div>{${bindTextTraitValue}}</div>` );
         }
       },
     });
-    editor.BlockManager.add( 'Input', { label: 'Input', content: `<q-input />`, media: `<img src="images/icons/components/q-input.png" class="blockIcon"/>`, category: 'Forms'   }); 
+    editor.BlockManager.add( 'Input', { label: 'Input', content: `<q-input />`, media: `<img src="images/icons/components/ui_components/input_text_field.png" class="blockIcon"/>`, category: 'Forms'   }); 
 
 
     /* --------------------------------------------
@@ -736,9 +736,9 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( '1 Column', { label: '1 Column', content: `<div class="row"><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/row-1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '2 Column', { label: '2 Columns', content: `<div class="row"><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/row-2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '3 Column', { label: '3 Columns', content: `<div class="row"><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/row-3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '1 Column', { label: '1 Column', content: `<div class="row"><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '2 Column', { label: '2 Columns', content: `<div class="row"><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/ui_components/2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '3 Column', { label: '3 Columns', content: `<div class="row"><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/ui_components/3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
     /* --------------------------------------------
                       COLUMN
@@ -784,7 +784,7 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col col-12 col-sm st-module"></div>`, media: `<img src="images/icons/components/row-1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col col-12 col-sm st-module"></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
 
     /* --------------------------------------------
@@ -827,7 +827,7 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( 'header', { label: 'Header', content: `<header class="st-header q-pa-sm"><h1 class="st-header__title text-h3">Header Text</h1></header>`, media: `<img src="images/icons/components/row-1column.png" class="blockIcon"/>`, category: 'Layout'   }); ;
+    editor.BlockManager.add( 'header', { label: 'Header', content: `<header class="st-header q-pa-sm"><h1 class="st-header__title text-h3">Header Text</h1></header>`, media: `<img src="images/icons/components/html_elements/header.png" class="blockIcon"/>`, category: 'Layout'   }); ;
 
 
   /* --------------------------------------------
