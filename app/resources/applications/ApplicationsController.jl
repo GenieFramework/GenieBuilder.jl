@@ -335,7 +335,7 @@ function start(app)
 
       notify("ended:start", app.id)
       persist_status(app, ONLINE_STATUS)
-      watch(fullpath(app), app.id)
+      # watch(fullpath(app), app.id)
     end
   catch
     notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
@@ -376,7 +376,7 @@ function stop(app)
     delete!(appsthreads, fullpath(app))
   end
 
-  unwatch(fullpath(app), app.id)
+  # unwatch(fullpath(app), app.id)
 
   (:status => status) |> json
 end
