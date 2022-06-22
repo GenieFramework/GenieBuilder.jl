@@ -17,3 +17,7 @@ Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
 SearchLight = "340e8cb6-72eb-11e8-37ce-c97ebeb32050"
 SearchLightSQLite = "21a827c4-482a-11ea-3a19-4d2243a4a2c5"
 Stipple = "4acbeb90-81a0-11ea-1966-bdaff8155998"
+
+[compat]
+Genie = "5.1"
+julia = "1.6"
