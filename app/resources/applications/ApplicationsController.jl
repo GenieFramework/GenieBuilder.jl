@@ -297,8 +297,7 @@ end
 
 function watch(path, appid)
   Genie.config.watch_handlers[appid.value] = [()->ApplicationsController.notify("changed:files", appid)]
-
-  Genie.Watch.watch(path)
+  Genie.Watch.watchpath(path)
 end
 
 function unwatch(path, appid)
