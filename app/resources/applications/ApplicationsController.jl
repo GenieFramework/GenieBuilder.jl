@@ -130,7 +130,7 @@ function postcreate(path) :: Nothing
     if ( Genie.Configuration.isdev() )
       GenieDevTools.register_routes()
       Stipple.deps!(GenieAutoReload, GenieAutoReload.deps)
-      GenieAutoReload.watch([pwd()])
+      autoreload(pwd())
     end
     """
     )
