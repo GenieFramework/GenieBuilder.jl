@@ -82,7 +82,7 @@ function postcreate(path) :: Nothing
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/Genie.jl\", rev=\"v5\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieSession.jl\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieSessionFileSession.jl\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieAutoReload.jl\");
+              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieAutoReload.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/Stipple.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StippleUI.jl\", rev=\"$(branch)\");
               Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StipplePlotly.jl\", rev=\"$(branch)\");
@@ -302,7 +302,7 @@ function watch(path, appid)
 end
 
 function unwatch(path, appid)
-  delete!(Genie.config.watch_handlers[appid.value])
+  delete!(Genie.config.watch_handlers, appid.value)
   Genie.Watch.unwatch(path)
 end
 
