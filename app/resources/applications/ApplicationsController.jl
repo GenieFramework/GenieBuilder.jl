@@ -130,7 +130,7 @@ function postcreate(path) :: Nothing
     if ( Genie.Configuration.isdev() )
       GenieDevTools.register_routes()
       Stipple.deps!(GenieAutoReload, GenieAutoReload.deps)
-      GenieAutoReload.watch([pwd()])
+      autoreload(pwd())
     end
     """
     )
@@ -297,8 +297,8 @@ end
 
 function watch(path, appid)
   Genie.config.watch_handlers[appid.value] = [()->ApplicationsController.notify("changed:files", appid)]
-
-  Genie.Watch.watch(path)
+  Genie.Watch.watchpath(path)
+  @async Genie.Watch.watch()
 end
 
 function unwatch(path, appid)
