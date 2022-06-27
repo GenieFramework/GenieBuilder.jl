@@ -92,7 +92,7 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ 
-            { label: 'Binded Text', name: 'v-text', type:'select', options: [] }, 
+            //{ label: 'Binded Text', name: 'v-text', type:'select', options: [] }, 
           ] 
         },
         init() { 
@@ -112,7 +112,7 @@ const myNewComponentTypes = editor => {
       }, 
       view: {
         onRender(changedProps){
-          const { $el, model } = this;
+          /* const { $el, model } = this;
           let innerText = '';
           const bindTextTraitValue = model.getAttributes()['v-text'];
           if( bindTextTraitValue == null )
@@ -124,11 +124,11 @@ const myNewComponentTypes = editor => {
           }else{
               innerText = `{${bindTextTraitValue}}`;
           }
-          $el.append( innerText );
+          $el.append( innerText ); */
         }
       },
     });
-    editor.BlockManager.add( item.type, { label: item.label, content: `<${item.type} v-text="">Default content</${item.type}>`, media: `<img src="images/icons/components/${item.icon}" class="blockIcon"/>`, category: 'Texts'   }); 
+    editor.BlockManager.add( item.type, { label: item.label, content: `<${item.type} >Default content</${item.type}>`, media: `<img src="images/icons/components/${item.icon}" class="blockIcon"/>`, category: 'Texts'   }); 
   } );
 
 
