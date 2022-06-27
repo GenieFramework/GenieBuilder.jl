@@ -70,6 +70,31 @@ const myNewComponentTypes = editor => {
 
   // Custom components
   // -----------------------------------
+
+
+
+  /* --------------------------------------------
+                      Blocks
+    -------------------------------------------- */
+  
+    editor.BlockManager.add( 
+      'titleAndContent', 
+      { 
+        label: 'Title + Content', 
+        content: `<div class="row">
+            <div class="col col-12">
+                <h6>Title</h6>
+                <div>Placeholder</div>
+            </div>
+          </div>`, 
+        media: `<img src="images/icons/components/html_elements/header.png" class="blockIcon"/>`, 
+        category: 'Blocks'   
+      }
+    ); 
+
+
+    
+
   let vtext_components = [
     { type:'p', tagName:'P', label:'Paragraph', icon:'html_elements/p.png' }, 
     { type:'span', tagName:'SPAN', label:'Span', icon:'html_elements/span.png' }, 
@@ -105,6 +130,8 @@ const myNewComponentTypes = editor => {
         
         updateGenieModelProperties(properties){
           var vtextTrait = this.get('traits').where({name: 'v-text'})[0];
+          if( !vtextTrait )
+            return;
           let modelProps = [ { name:"** None **", value:"" }, ...properties];
           console.log( 'modelProps: ', modelProps, modelProps===properties );
           vtextTrait.set('options', modelProps );
@@ -201,8 +228,8 @@ const myNewComponentTypes = editor => {
     },
   });
   editor.BlockManager.add( 'slider', { label: 'Slider', content: `<q-slider />`, media: `<img src="images/icons/components/ui_components/slider.png" class="blockIcon"/>`, category: 'Forms'   }); 
-
-
+  
+  
   
   /* --------------------------------------------
                       Q-RANGE 
