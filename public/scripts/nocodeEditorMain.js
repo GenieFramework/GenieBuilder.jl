@@ -35,9 +35,13 @@ function initNoCodeEditor(){
     fromElement: true,
     height: '100%', // Size of the editor
     panels: { defaults: [] }, // Remove default panel
-    storageManager: { autoload: 0 },
+    storageManager: { autoload: 0, type: 'onChange' },
   }); // End of "grapesjs.init()" 
   editor.setStyle("body { background-color: unset}");
+
+  editor.on('storage:start', (evt)=>{
+    console.log( "Contents changed! " )
+  });
   
   // Shorcuts to the editor's canvas window and document
   // (used later to communicate/access with the iframe's scope and contents)
@@ -136,8 +140,12 @@ function initNoCodeEditor(){
   });
   editor.on('component:update', (model) => {
     // do stuff...
-    console.log("component updated: ", model)
+    let currentTemplate = editor.getHtml( { cleanId:true } );
+    let hasChanged = window.lastSavedHTML != currentTemplate;
+    //window.lastSavedHTML = currentTemplate;
+    console.log("component updated. Has changed? ", hasChanged, model)
   });
+
   editor.on('component:selected', (model) => {
     // do stuff...
     console.log("component selected: ", model);
@@ -167,6 +175,8 @@ function initNoCodeEditor(){
   }
   editor.addComponents( currentTemplate );
 
+  window.lastSavedHTML = editor.getHtml( { cleanId:true } );
+
 
   runVue();
 }
@@ -182,6 +192,7 @@ function initNoCodeEditor(){
 
 function savePage(){
   let currentTemplate = editor.getHtml( { cleanId:true } );
+  window.lastSavedHTML = currentTemplate;
   //currentTemplate = currentTemplate.replaceAll( `id="editableDOM"`, `id="${appName}"` );   
   
   // remove body tag
