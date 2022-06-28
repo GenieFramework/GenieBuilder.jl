@@ -435,10 +435,10 @@ const myNewComponentTypes = editor => {
                       Q-TABLE 
      -------------------------------------------- */
         
-     editor.DomComponents.addType( "table", {
+     editor.DomComponents.addType( "q-table", {
       isComponent: el => {
         if( el.tagName == 'Q-TABLE' ){
-          return { type: 'table'}
+          return { type: 'q-table'}
         }
       },
       model: {
@@ -473,7 +473,7 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( 'table', { label: 'Table', content: `<q-table />`, media: `<img src="images/icons/components/ui_components/table.png" class="blockIcon"/>`, category: 'Forms'   }); 
+    editor.BlockManager.add( 'q-table', { label: 'Table', content: `<q-table />`, media: `<img src="images/icons/components/ui_components/table.png" class="blockIcon"/>`, category: 'Forms'   }); 
 
     /* --------------------------------------------
                       Q-CHECKBOX
