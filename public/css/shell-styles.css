@@ -222,3 +222,12 @@ img.blockIcon{
 .warningIcon.gjs-pn-btn:hover{
   color: #ff6600 !important;
 }
+
+.gjs-trt-trait{
+  display: block !important;
+  margin-top: 5px !important;
+}
+
+.gjs-label-wrp{
+  width: unset !important;
+}
