@@ -763,9 +763,9 @@ const myNewComponentTypes = editor => {
         }
       },
     });
-    editor.BlockManager.add( '1 Column', { label: '1 Column', content: `<div class="row"><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '2 Column', { label: '2 Columns', content: `<div class="row"><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/ui_components/2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '3 Column', { label: '3 Columns', content: `<div class="row"><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div><div class="col col-12 col-sm st-module"></div></div>`, media: `<img src="images/icons/components/ui_components/3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '1 Column', { label: '1 Column', content: `<div class="row"><div class="col col-12"></div></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '2 Column', { label: '2 Columns', content: `<div class="row"><div class="col col-6 col-sm"></div><div class="col col-6 col-sm"></div></div>`, media: `<img src="images/icons/components/ui_components/2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '3 Column', { label: '3 Columns', content: `<div class="row"><div class="col col-4 col-sm"></div><div class="col col-4 col-sm"></div><div class="col col-4 col-sm"></div></div>`, media: `<img src="images/icons/components/ui_components/3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
     /* --------------------------------------------
                       COLUMN
