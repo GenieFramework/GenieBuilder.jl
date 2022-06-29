@@ -234,4 +234,4 @@ let appConfigs = {
     }, 
 }
 const appConfiguration = appConfigs.pkgDownloads;
-const appName = appConfiguration.vueAppName;
+const vueAppName = appConfiguration.vueAppName;
