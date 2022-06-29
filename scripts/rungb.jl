@@ -4,7 +4,7 @@
 
 module RunGB
 # allow passing the GBDIR as an environment variable
-gbdir = joinpath(homedir(), ".julia", "geniebuilder")
+const gbdir = Ref{String}(joinpath(homedir(), ".julia", "geniebuilder"))
 
 
 if ! isempty(ARGS)
@@ -13,18 +13,18 @@ if ! isempty(ARGS)
   end
 
   if ! isempty(argpath)
-    global gbdir = normpath(argpath[1][7:end]) |> abspath
+    gbdir[] = normpath(argpath[1][7:end]) |> abspath
   end
 end
 
-appsdir = joinpath(gbdir, "apps")
+appsdir = joinpath(gbdir[], "apps")
 
 function installgb()
-  isdir(gbdir) || mkdir(gbdir)
+  isdir(gbdir[]) || mkdir(gbdir[])
   isdir(appsdir) || mkdir(appsdir)
 
-  cp(joinpath(@__DIR__, "Manifest.toml"), joinpath(gbdir, "Manifest.toml"))
-  cd(gbdir)
+  cp(joinpath(@__DIR__, "Manifest.toml"), joinpath(gbdir[], "Manifest.toml"))
+  cd(gbdir[])
 
   cmd = `julia --startup-file=no --depwarn=no -e 'using Pkg;Pkg.activate(".");Pkg.instantiate();Pkg.update();
               Pkg.add(url="https://github.com/GenieFramework/GenieBuilder.jl");Pkg.update();
@@ -42,7 +42,7 @@ function installgb()
 end
 
 function startgb()
-  isdir(gbdir) ? cd(gbdir) : installgb()
+  isdir(gbdir[]) ? cd(gbdir[]) : installgb()
   `julia --project --startup-file=no --history-file=no --depwarn=no -e 'using GenieBuilder;GenieBuilder.go();'` |> run
 end
 
