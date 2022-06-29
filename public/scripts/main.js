@@ -3,6 +3,8 @@ window.onload = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const projectId = window.projectId = urlParams.get('appid');
+    const appName = window.appName = urlParams.get('appname');
+    const appPath = window.appPath = urlParams.get('apppath');
     const filePath = window.filePath = urlParams.get('filepath');
     const modelName = urlParams.get('modelname');
     if( !projectId || !filePath ){
@@ -100,7 +102,7 @@ window.onload = () => {
     .then( (fileContents)=>{
         appConfig.template = fileContents;
         window.appConfiguration = appConfig;
-        window.appName = appConfiguration.vueAppName;
+        window.vueAppName = appConfiguration.vueAppName;
         initNoCodeEditor();  
     })
   };

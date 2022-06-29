@@ -45,7 +45,7 @@ const myNewComponentTypes = editor => {
 
 
   let getModelValue = function( propName ){
-    let vueApp = window[appName];
+    let vueApp = window[vueAppName];
     if( !propName )
       return null;
     if( !vueApp )
@@ -59,7 +59,7 @@ const myNewComponentTypes = editor => {
 
   let renderTextFunction = function (target, newValue) {  
     console.log( "renderTextFunction: ", target, newValue );
-    let vueApp = window[appName];
+    let vueApp = window[vueAppName];
     let vueProp = vueApp[newValue];
       if( vueProp != null )
         target.view.el.textContent = vueProp;
@@ -159,32 +159,7 @@ const myNewComponentTypes = editor => {
   } );
 
 
-  /* editor.DomComponents.addType( "stpl-image", {
-    isComponent: el => el.tagName == 'IMG',
-    model: {
-      defaults: { traits: [ { label: 'Binded Source', name: ':src', type:'select', options: [] } ], resizable: true },
-      init() {  
-        this.on('change:attributes::src', this.render)
-      },
-      render: function (target, newValue) {  
-        let vueApp = window[appName];
-        let vueProp = vueApp[newValue];
-        setTimeout( ()=>{
-          if( vueProp != null ){
-            target.view.el.setAttribute( 'src', vueProp );
-          }else{
-            target.view.el.setAttribute( 'src', newValue );
-          }
-        }, 100)
-          return this;
-      },
-      updateGenieModelProperties(properties){
-        var vtextTrait = this.get('traits').where({name: ':src'})[0];
-        vtextTrait.set('options', properties );
-      }
-    }, 
-  });
-  editor.BlockManager.add( 'img', { label: 'Stipple Image', content: `<img :src="" src="empty" />`, category: 'Stipple'   });  */
+  
     
 
   
