@@ -179,7 +179,7 @@ function postcreate(path) :: Nothing
     using Stipple.Pages
     using Stipple.ModelStorage.Sessions
 
-    using Main.UserApp.$(model_name)s
+    using Base.Main.UserApp.$(model_name)s
 
     Page("/", view = "views/hello.jl.html",
               layout = "layouts/app.jl.html",
@@ -198,7 +198,7 @@ function postcreate(path) :: Nothing
 
     export $(model_name)
 
-    @reactive mutable struct $(model_name)
+    @reactive mutable struct $(model_name) <: ReactiveModel
       # message::R{<:String} = "Hello World!"
     end
 
