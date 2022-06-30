@@ -96,9 +96,7 @@ function initNoCodeEditor(){
   // Custom events
   editor.on('change:changesCount', e => {
     console.log( "no-code editor content has changed: ", e );
-    document.querySelector("#saveButton").classList.add('warningIcon');
-    document.querySelector("#unsavedChangesAlert").style.display = "block";
-    window.unsavedChanges = true;
+    markUnsavedChanges(true);
    });
 
   editor.on('run:preview', () => {
@@ -121,10 +119,12 @@ function initNoCodeEditor(){
       console.error( "Preview element not found");
     } */
   });
-  editor.on('component:update', (model) => {
+  editor.on('component:input', (model) => {
     // do stuff...
+    console.log("component::input ", model);
     let currentTemplate = editor.getHtml( { cleanId:true } );
     let hasChanged = window.lastSavedHTML != currentTemplate;
+    markUnsavedChanges(true);
     //window.lastSavedHTML = currentTemplate;
     console.log("component updated. Has changed? ", hasChanged, model)
   });
@@ -157,6 +157,12 @@ function initNoCodeEditor(){
 
 
   runVue();
+}
+
+function markUnsavedChanges( yesNo ){
+  document.querySelector("#saveButton").classList.add('warningIcon');
+  document.querySelector("#unsavedChangesAlert").style.display = "block";
+  window.unsavedChanges = true;
 }
 
 
