@@ -192,7 +192,7 @@ function postcreate(path) :: Nothing
   open(joinpath("models", "$(model_name)s.jl"), "w") do io
     write(io,
     """
-    module $(model_name)s"
+    module $(model_name)s
 
     using Stipple
 
@@ -219,7 +219,7 @@ function postcreate(path) :: Nothing
     )
   end
 
-  open(joinpath(Genie.config.server_document_root, "css", "app.css"), "w") do io
+  open(joinpath("public", "css", "app.css"), "w") do io
     write(io,
     """
     /* place your custom css here */
@@ -227,7 +227,7 @@ function postcreate(path) :: Nothing
     )
   end
 
-  open(joinpath(Genie.config.server_document_root, "css", "grapes.css"), "w") do io
+  open(joinpath("public", "css", "grapes.css"), "w") do io
     write(io,
     """
     /* WARNING!!! */
@@ -237,7 +237,7 @@ function postcreate(path) :: Nothing
     )
   end
 
-  open(joinpath(Genie.config.server_document_root, "js", "app.js"), "w") do io
+  open(joinpath("public", "js", "app.js"), "w") do io
     write(io,
     """
     /* place your custom js here */
