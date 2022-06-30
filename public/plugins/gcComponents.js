@@ -177,34 +177,34 @@ const myNewComponentTypes = editor => {
       defaults: { 
         //traits: [ { label: 'Reactive Model', name: 'v-model', type:'select', options: [] } ], 
         traits: [
-          { label: 'Reactive Model', name: 'v-model', type:'select', options: [] },
-          { label: 'name', name: 'name', type: 'text' },
+          { label: 'Reactive Model 2', name: 'v-model', type:'select', options: [] },
+          { label: 'name', name: ':name', type: 'text' },
           { label: 'snap', name: 'snap', type: 'checkbox' },
           { label: 'reverse', name: 'reverse', type: 'checkbox' },
           { label: 'vertical', name: 'vertical', type: 'checkbox' },
 
-          { label: 'min', name: ':min', type: 'number' },
-          { label: 'max', name: ':max', type: 'number' },
-          { label: 'inner-min', name: ':inner-min', type: 'number' },
-          { label: 'inner-max', name: ':inner-max', type: 'number' },
-          { label: 'step', name: ':step', type: 'number' },
-          { label: 'color', name: 'color', type: 'text' },
-          { label: 'track-color', name: 'track-color', type: 'text' },
-          { label: 'track-img', name: 'track-img', type: 'text' },
+          { label: 'min', name: ':min', type: 'text' },
+          { label: 'max', name: ':max', type: 'text' },
+          { label: 'inner-min', name: ':inner-min', type: 'text' },
+          { label: 'inner-max', name: ':inner-max', type: 'text' },
+          { label: 'step', name: ':step', type: 'text' },
+          { label: 'color', name: ':color', type: 'text' },
+          { label: 'track-color', name: ':track-color', type: 'text' },
+          { label: 'track-img', name: ':track-img', type: 'text' },
           {
             label: 'inner-track-color',
-            name: 'inner-track-color',
+            name: ':inner-track-color',
             type: 'text'
           },
-          { label: 'inner-track-img', name: 'inner-track-img', type: 'text' },
-          { label: 'selection-color', name: 'selection-color', type: 'text' },
-          { label: 'selection-img', name: 'selection-img', type: 'text' },
+          { label: 'inner-track-img', name: ':inner-track-img', type: 'text' },
+          { label: 'selection-color', name: ':selection-color', type: 'text' },
+          { label: 'selection-img', name: ':selection-img', type: 'text' },
           { label: 'label', name: 'label', type: 'checkbox' },
-          { label: 'label-color', name: 'label-color', type: 'text' },
-          { label: 'label-text-color', name: 'label-text-color', type: 'text' },
+          { label: 'label-color', name: ':label-color', type: 'text' },
+          { label: 'label-text-color', name: ':label-text-color', type: 'text' },
           {
             label: 'switch-label-side',
-            name: 'switch-label-side',
+            name: ':switch-label-side',
             type: 'checkbox'
           },
           { label: 'label-always', name: 'label-always', type: 'checkbox' },
@@ -220,16 +220,16 @@ const myNewComponentTypes = editor => {
             name: 'switch-marker-labels-side',
             type: 'checkbox'
           },
-          { label: 'track-size', name: 'track-size', type: 'text' },
-          { label: 'thumb-size', name: 'thumb-size', type: 'text' },
-          { label: 'thumb-color', name: 'thumb-color', type: 'text' },
-          { label: 'thumb-path', name: 'thumb-path', type: 'text' },
+          { label: 'track-size', name: ':track-size', type: 'text' },
+          { label: 'thumb-size', name: ':thumb-size', type: 'text' },
+          { label: 'thumb-color', name: ':thumb-color', type: 'text' },
+          { label: 'thumb-path', name: ':thumb-path', type: 'text' },
           { label: 'dark', name: 'dark', type: 'checkbox' },
           { label: 'dense', name: 'dense', type: 'checkbox' },
           { label: 'disable', name: 'disable', type: 'checkbox' },
           { label: 'readonly', name: 'readonly', type: 'checkbox' },
-          { label: 'tabindex', name: ':tabindex', type: 'number' },
-          { label: 'label-value', name: 'label-value', type: 'text' }
+          { label: 'tabindex', name: ':tabindex', type: 'text' },
+          { label: 'label-value', name: ':label-value', type: 'text' }
         ], 
       },
       init() {  
@@ -276,28 +276,28 @@ const myNewComponentTypes = editor => {
           traits: [ 
             { label: 'Reactive Model', name: 'v-model', type:'select', options: [] } , 
             { label: 'name', name: 'name', type: 'text' },
-            { label: 'min', name: ':min', type: 'number' },
-            { label: 'max', name: ':max', type: 'number' },
-            { label: 'inner-min', name: ':inner-min', type: 'number' },
-            { label: 'inner-max', name: ':inner-max', type: 'number' },
-            { label: 'step', name: ':step', type: 'number' },
+            { label: 'min', name: ':min', type: 'text' },
+            { label: 'max', name: ':max', type: 'text' },
+            { label: 'inner-min', name: ':inner-min', type: 'text' },
+            { label: 'inner-max', name: ':inner-max', type: 'text' },
+            { label: 'step', name: ':step', type: 'text' },
             { label: 'snap', name: 'snap', type: 'checkbox' },
             { label: 'reverse', name: 'reverse', type: 'checkbox' },
             { label: 'vertical', name: 'vertical', type: 'checkbox' },
-            { label: 'color', name: 'color', type: 'text' },
-            { label: 'track-color', name: 'track-color', type: 'text' },
-            { label: 'track-img', name: 'track-img', type: 'text' },
+            { label: 'color', name: ':color', type: 'text' },
+            { label: 'track-color', name: ':track-color', type: 'text' },
+            { label: 'track-img', name: ':track-img', type: 'text' },
             {
               label: 'inner-track-color',
-              name: 'inner-track-color',
+              name: ':inner-track-color',
               type: 'text'
             },
-            { label: 'inner-track-img', name: 'inner-track-img', type: 'text' },
-            { label: 'selection-color', name: 'selection-color', type: 'text' },
-            { label: 'selection-img', name: 'selection-img', type: 'text' },
+            { label: 'inner-track-img', name: ':inner-track-img', type: 'text' },
+            { label: 'selection-color', name: ':selection-color', type: 'text' },
+            { label: 'selection-img', name: ':selection-img', type: 'text' },
             { label: 'label', name: 'label', type: 'checkbox' },
-            { label: 'label-color', name: 'label-color', type: 'text' },
-            { label: 'label-text-color', name: 'label-text-color', type: 'text' },
+            { label: 'label-color', name: ':label-color', type: 'text' },
+            { label: 'label-text-color', name: ':label-text-color', type: 'text' },
             {
               label: 'switch-label-side',
               name: 'switch-label-side',
@@ -308,7 +308,7 @@ const myNewComponentTypes = editor => {
             { label: 'marker-labels', name: 'marker-labels', type: 'checkbox' },
             {
               label: 'marker-labels-class',
-              name: 'marker-labels-class',
+              name: ':marker-labels-class',
               type: 'text'
             },
             {
@@ -316,47 +316,47 @@ const myNewComponentTypes = editor => {
               name: 'switch-marker-labels-side',
               type: 'checkbox'
             },
-            { label: 'track-size', name: 'track-size', type: 'text' },
-            { label: 'thumb-size', name: 'thumb-size', type: 'text' },
-            { label: 'thumb-color', name: 'thumb-color', type: 'text' },
-            { label: 'thumb-path', name: 'thumb-path', type: 'text' },
+            { label: 'track-size', name: ':track-size', type: 'text' },
+            { label: 'thumb-size', name: ':thumb-size', type: 'text' },
+            { label: 'thumb-color', name: ':thumb-color', type: 'text' },
+            { label: 'thumb-path', name: ':thumb-path', type: 'text' },
             { label: 'dark', name: 'dark', type: 'checkbox' },
             { label: 'dense', name: 'dense', type: 'checkbox' },
             { label: 'disable', name: 'disable', type: 'checkbox' },
             { label: 'readonly', name: 'readonly', type: 'checkbox' },
-            { label: 'tabindex', name: ':tabindex', type: 'number' },
+            { label: 'tabindex', name: ':tabindex', type: 'text' },
             { label: 'drag-range', name: 'drag-range', type: 'checkbox' },
             {
               label: 'drag-only-range',
               name: 'drag-only-range',
               type: 'checkbox'
             },
-            { label: 'left-label-color', name: 'left-label-color', type: 'text' },
+            { label: 'left-label-color', name: ':left-label-color', type: 'text' },
             {
               label: 'left-label-text-color',
-              name: 'left-label-text-color',
+              name: ':left-label-text-color',
               type: 'text'
             },
             {
               label: 'right-label-color',
-              name: 'right-label-color',
+              name: ':right-label-color',
               type: 'text'
             },
             {
               label: 'right-label-text-color',
-              name: 'right-label-text-color',
+              name: ':right-label-text-color',
               type: 'text'
             },
-            { label: 'left-label-value', name: 'left-label-value', type: 'text' },
+            { label: 'left-label-value', name: ':left-label-value', type: 'text' },
             {
               label: 'right-label-value',
-              name: 'right-label-value',
+              name: ':right-label-value',
               type: 'text'
             },
-            { label: 'left-thumb-color', name: 'left-thumb-color', type: 'text' },
+            { label: 'left-thumb-color', name: ':left-thumb-color', type: 'text' },
             {
               label: 'right-thumb-color',
-              name: 'right-thumb-color',
+              name: ':right-thumb-color',
               type: 'text'
             }
         ]
@@ -412,53 +412,53 @@ const myNewComponentTypes = editor => {
             {
               label: 'virtual-scroll-slice-size',
               name: ':virtual-scroll-slice-size',
-              type: 'number'
+              type: 'text'
             },
             {
               label: 'virtual-scroll-slice-ratio-before',
               name: 'virtual-scroll-slice-ratio-before',
-              type: ':number'
+              type: ':text'
             },
             {
               label: 'virtual-scroll-slice-ratio-after',
               name: ':virtual-scroll-slice-ratio-after',
-              type: 'number'
+              type: 'text'
             },
             {
               label: 'virtual-scroll-item-size',
               name: ':virtual-scroll-item-size',
-              type: 'number'
+              type: 'text'
             },
             {
               label: 'virtual-scroll-sticky-size-start',
               name: ':virtual-scroll-sticky-size-start',
-              type: 'number'
+              type: 'text'
             },
             {
               label: 'virtual-scroll-sticky-size-end',
               name: ':virtual-scroll-sticky-size-end',
-              type: 'number'
+              type: 'text'
             },
-            { label: 'table-colspan', name: ':table-colspan', type: 'number' },
+            { label: 'table-colspan', name: ':table-colspan', type: 'text' },
             { label: 'error', name: 'error', type: 'checkbox' },
-            { label: 'error-message', name: 'error-message', type: 'text' },
+            { label: 'error-message', name: ':error-message', type: 'text' },
             { label: 'no-error-icon', name: 'no-error-icon', type: 'checkbox' },
             /* { label: 'rules', name: 'rules', type: undefined }, */
             { label: 'reactive-rules', name: 'reactive-rules', type: 'checkbox' },
             { label: 'lazy-rules', name: 'lazy-rules', type: 'checkbox' },
-            { label: 'label', name: 'label', type: 'text' },
+            { label: 'label', name: ':label', type: 'text' },
             { label: 'stack-label', name: 'stack-label', type: 'checkbox' },
-            { label: 'hint', name: 'hint', type: 'text' },
+            { label: 'hint', name: ':hint', type: 'text' },
             { label: 'hide-hint', name: 'hide-hint', type: 'checkbox' },
-            { label: 'prefix', name: 'prefix', type: 'text' },
-            { label: 'suffix', name: 'suffix', type: 'text' },
-            { label: 'label-color', name: 'label-color', type: 'text' },
-            { label: 'color', name: 'color', type: 'text' },
-            { label: 'bg-color', name: 'bg-color', type: 'text' },
+            { label: 'prefix', name: ':prefix', type: 'text' },
+            { label: 'suffix', name: ':suffix', type: 'text' },
+            { label: 'label-color', name: ':label-color', type: 'text' },
+            { label: 'color', name: ':color', type: 'text' },
+            { label: 'bg-color', name: ':bg-color', type: 'text' },
             { label: 'dark', name: 'dark', type: 'checkbox' },
             { label: 'loading', name: 'loading', type: 'checkbox' },
             { label: 'clearable', name: 'clearable', type: 'checkbox' },
-            { label: 'clear-icon', name: 'clear-icon', type: 'text' },
+            { label: 'clear-icon', name: ':clear-icon', type: 'text' },
             { label: 'filled', name: 'filled', type: 'checkbox' },
             { label: 'outlined', name: 'outlined', type: 'checkbox' },
             { label: 'borderless', name: 'borderless', type: 'checkbox' },
@@ -478,9 +478,9 @@ const myNewComponentTypes = editor => {
             { label: 'disable', name: 'disable', type: 'checkbox' },
             { label: 'readonly', name: 'readonly', type: 'checkbox' },
             { label: 'autofocus', name: 'autofocus', type: 'checkbox' },
-            { label: 'for', name: 'for', type: 'text' },
+            { label: 'for', name: ':for', type: 'text' },
             { label: 'multiple', name: 'multiple', type: 'checkbox' },
-            { label: 'display-value', name: ':display-value', type: 'number' },
+            { label: 'display-value', name: ':display-value', type: 'text' },
             {
               label: 'display-value-html',
               name: 'display-value-html',
@@ -496,50 +496,50 @@ const myNewComponentTypes = editor => {
               name: 'hide-dropdown-icon',
               type: 'checkbox'
             },
-            { label: 'dropdown-icon', name: 'dropdown-icon', type: 'text' },
-            { label: 'max-values', name: ':max-values', type: 'number' },
+            { label: 'dropdown-icon', name: ':dropdown-icon', type: 'text' },
+            { label: 'max-values', name: ':max-values', type: 'text' },
             { label: 'options-dense', name: 'options-dense', type: 'checkbox' },
             { label: 'options-dark', name: 'options-dark', type: 'checkbox' },
             {
               label: 'options-selected-class',
-              name: 'options-selected-class',
+              name: ':options-selected-class',
               type: 'text'
             },
             { label: 'options-html', name: 'options-html', type: 'checkbox' },
             { label: 'options-cover', name: 'options-cover', type: 'checkbox' },
             { label: 'menu-shrink', name: 'menu-shrink', type: 'checkbox' },
-            { label: 'menu-anchor', name: 'menu-anchor', type: 'text' },
-            { label: 'menu-self', name: 'menu-self', type: 'text' },
+            { label: 'menu-anchor', name: ':menu-anchor', type: 'text' },
+            { label: 'menu-self', name: ':menu-self', type: 'text' },
             /* { label: 'menu-offset', name: 'menu-offset', type: undefined }, */
             {
               label: 'popup-content-class',
-              name: 'popup-content-class',
+              name: ':popup-content-class',
               type: 'text'
             },
             {
               label: 'popup-content-style',
-              name: 'popup-content-style',
+              name: ':popup-content-style',
               type: 'text'
             },
             { label: 'use-input', name: 'use-input', type: 'checkbox' },
             { label: 'use-chips', name: 'use-chips', type: 'checkbox' },
             { label: 'fill-input', name: 'fill-input', type: 'checkbox' },
-            { label: 'new-value-mode', name: 'new-value-mode', type: 'text' },
+            { label: 'new-value-mode', name: ':new-value-mode', type: 'text' },
             { label: 'map-options', name: 'map-options', type: 'checkbox' },
             { label: 'emit-value', name: 'emit-value', type: 'checkbox' },
-            { label: 'input-debounce', name: ':input-debounce', type: 'number' },
-            { label: 'input-class', name: 'input-class', type: 'text' },
-            { label: 'input-style', name: 'input-style', type: 'text' },
-            { label: 'tabindex', name: ':tabindex', type: 'number' },
-            { label: 'autocomplete', name: 'autocomplete', type: 'text' },
-            { label: 'transition-show', name: 'transition-show', type: 'text' },
-            { label: 'transition-hide', name: 'transition-hide', type: 'text' },
+            { label: 'input-debounce', name: ':input-debounce', type: 'text' },
+            { label: 'input-class', name: ':input-class', type: 'text' },
+            { label: 'input-style', name: ':input-style', type: 'text' },
+            { label: 'tabindex', name: ':tabindex', type: 'text' },
+            { label: 'autocomplete', name: ':autocomplete', type: 'text' },
+            { label: 'transition-show', name: ':transition-show', type: 'text' },
+            { label: 'transition-hide', name: ':transition-hide', type: 'text' },
             {
               label: 'transition-duration',
-              name: 'transition-duration',
+              name: ':transition-duration',
               type: 'text'
             },
-            { label: 'behavior', name: 'behavior', type: 'text' }
+            { label: 'behavior', name: ':behavior', type: 'text' }
                     /* { label: 'Options', name: ':options', type:'select', options: [] }, 
                     { label: 'Hide-bottom-space', name: 'hide-bottom-space', type:'checkbox' }, 
                     { label: 'Label', name: 'label', type:'text' }, 
@@ -603,13 +603,13 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
-                    { label: 'Mask', name: 'mask', type:'text' }, 
+                    { label: 'Mask', name: ':mask', type:'text' }, 
                     { label: 'Landscape', name: 'landscape', type:'checkbox' }, 
                     { label: 'Multiple', name: 'multiple', type:'checkbox' }, 
                     { label: 'Range', name: 'range', type:'checkbox' }, 
                     { label: 'Years in month view', name: 'years-in-month-view', type:'checkbox' }, 
-                    { label: 'Navigation min year month', name: 'navigation-min-year-month', type:'text' }, 
-                    { label: 'Navigation max year month', name: 'navigation-max-year-month', type:'text' }
+                    { label: 'Navigation min year month', name: ':navigation-min-year-month', type:'text' }, 
+                    { label: 'Navigation max year month', name: ':navigation-max-year-month', type:'text' }
                   ], 
         },
         init() {  
@@ -714,39 +714,39 @@ const myNewComponentTypes = editor => {
             {
               label: 'virtual-scroll-slice-size',
               name: ':virtual-scroll-slice-size',
-              type: 'number'
+              type: 'text'
             },
             {
               label: 'virtual-scroll-slice-ratio-before',
               name: ':virtual-scroll-slice-ratio-before',
-              type: 'number'
+              type: 'text'
             },
             {
               label: 'virtual-scroll-slice-ratio-after',
               name: ':virtual-scroll-slice-ratio-after',
-              type: 'number'
+              type: 'text'
             },
             {
               label: 'virtual-scroll-item-size',
               name: ':virtual-scroll-item-size',
-              type: 'number'
+              type: 'text'
             },
             {
               label: 'virtual-scroll-sticky-size-start',
               name: ':virtual-scroll-sticky-size-start',
-              type: 'number'
+              type: 'text'
             },
             {
               label: 'virtual-scroll-sticky-size-end',
               name: ':virtual-scroll-sticky-size-end',
-              type: 'number'
+              type: 'text'
             },
-            { label: 'table-colspan', name: ':table-colspan', type: 'number' },
-            { label: 'color', name: 'color', type: 'text' },
-            { label: 'icon-first-page', name: 'icon-first-page', type: 'text' },
-            { label: 'icon-prev-page', name: 'icon-prev-page', type: 'text' },
-            { label: 'icon-next-page', name: 'icon-next-page', type: 'text' },
-            { label: 'icon-last-page', name: 'icon-last-page', type: 'text' },
+            { label: 'table-colspan', name: ':table-colspan', type: 'text' },
+            { label: 'color', name: ':color', type: 'text' },
+            { label: 'icon-first-page', name: ':icon-first-page', type: 'text' },
+            { label: 'icon-prev-page', name: ':icon-prev-page', type: 'text' },
+            { label: 'icon-next-page', name: ':icon-next-page', type: 'text' },
+            { label: 'icon-last-page', name: ':icon-last-page', type: 'text' },
             { label: 'grid', name: 'grid', type: 'checkbox' },
             { label: 'grid-header', name: 'grid-header', type: 'checkbox' },
             { label: 'dense', name: 'dense', type: 'checkbox' },
@@ -769,7 +769,7 @@ const myNewComponentTypes = editor => {
             { label: 'flat', name: 'flat', type: 'checkbox' },
             { label: 'bordered', name: 'bordered', type: 'checkbox' },
             { label: 'square', name: 'square', type: 'checkbox' },
-            { label: 'separator', name: 'separator', type: 'text' },
+            { label: 'separator', name: ':separator', type: 'text' },
             { label: 'wrap-cells', name: 'wrap-cells', type: 'checkbox' },
             {
               label: 'binary-state-sort',
@@ -778,44 +778,44 @@ const myNewComponentTypes = editor => {
             },
             {
               label: 'column-sort-order',
-              name: 'column-sort-order',
+              name: ':column-sort-order',
               type: 'text'
             },
-            { label: 'no-data-label', name: 'no-data-label', type: 'text' },
-            { label: 'no-results-label', name: 'no-results-label', type: 'text' },
-            { label: 'loading-label', name: 'loading-label', type: 'text' },
+            { label: 'no-data-label', name: ':no-data-label', type: 'text' },
+            { label: 'no-results-label', name: ':no-results-label', type: 'text' },
+            { label: 'loading-label', name: ':loading-label', type: 'text' },
             {
               label: 'rows-per-page-label',
-              name: 'rows-per-page-label',
+              name: ':rows-per-page-label',
               type: 'text'
             },
-            { label: 'table-style', name: 'table-style', type: 'text' },
-            { label: 'table-class', name: 'table-class', type: 'text' },
+            { label: 'table-style', name: ':table-style', type: 'text' },
+            { label: 'table-class', name: ':table-class', type: 'text' },
             {
               label: 'table-header-style',
-              name: 'table-header-style',
+              name: ':table-header-style',
               type: 'text'
             },
             {
               label: 'table-header-class',
-              name: 'table-header-class',
+              name: ':table-header-class',
               type: 'text'
             },
             {
               label: 'card-container-style',
-              name: 'card-container-style',
+              name: ':card-container-style',
               type: 'text'
             },
             {
               label: 'card-container-class',
-              name: 'card-container-class',
+              name: ':card-container-class',
               type: 'text'
             },
-            { label: 'card-style', name: 'card-style', type: 'text' },
-            { label: 'card-class', name: 'card-class', type: 'text' },
-            { label: 'title-class', name: 'title-class', type: 'text' },
-            { label: 'filter', name: 'filter', type: 'text' },
-            { label: 'selection', name: 'selection', type: 'text' }
+            { label: 'card-style', name: ':card-style', type: 'text' },
+            { label: 'card-class', name: ':card-class', type: 'text' },
+            { label: 'title-class', name: ':title-class', type: 'text' },
+            { label: 'filter', name: ':filter', type: 'text' },
+            { label: 'selection', name: ':selection', type: 'text' }
             /* { label: 'Reactive Model', name: 'v-model', type:'text' }, 
             { label: 'Columns', name: ':columns', type:'text' }, 
             { label: 'Data', name: ':data', type:'text' }, 
@@ -971,7 +971,7 @@ const myNewComponentTypes = editor => {
               options: []
             },
             { label: 'name', name: 'name', type: 'text' },
-            { label: 'mask', name: 'mask', type: 'text' },
+            { label: 'mask', name: ':mask', type: 'text' },
             { label: 'fill-mask', name: 'fill-mask', type: 'checkbox' },
             {
               label: 'reverse-fill-mask',
@@ -980,24 +980,24 @@ const myNewComponentTypes = editor => {
             },
             { label: 'unmasked-value', name: 'unmasked-value', type: 'checkbox' },
             { label: 'error', name: 'error', type: 'checkbox' },
-            { label: 'error-message', name: 'error-message', type: 'text' },
+            { label: 'error-message', name: ':error-message', type: 'text' },
             { label: 'no-error-icon', name: 'no-error-icon', type: 'checkbox' },
-            { label: 'rules', name: 'rules', type: undefined },
+            { label: 'rules', name: 'rules', type: 'text' },
             { label: 'reactive-rules', name: 'reactive-rules', type: 'checkbox' },
             { label: 'lazy-rules', name: 'lazy-rules', type: 'checkbox' },
-            { label: 'label', name: 'label', type: 'text' },
+            { label: 'label', name: ':label', type: 'text' },
             { label: 'stack-label', name: 'stack-label', type: 'checkbox' },
-            { label: 'hint', name: 'hint', type: 'text' },
+            { label: 'hint', name: ':hint', type: 'text' },
             { label: 'hide-hint', name: 'hide-hint', type: 'checkbox' },
-            { label: 'prefix', name: 'prefix', type: 'text' },
-            { label: 'suffix', name: 'suffix', type: 'text' },
-            { label: 'label-color', name: 'label-color', type: 'text' },
-            { label: 'color', name: 'color', type: 'text' },
-            { label: 'bg-color', name: 'bg-color', type: 'text' },
+            { label: 'prefix', name: ':prefix', type: 'text' },
+            { label: 'suffix', name: ':suffix', type: 'text' },
+            { label: 'label-color', name: ':label-color', type: 'text' },
+            { label: 'color', name: ':color', type: 'text' },
+            { label: 'bg-color', name: ':bg-color', type: 'text' },
             { label: 'dark', name: 'dark', type: 'checkbox' },
             { label: 'loading', name: 'loading', type: 'checkbox' },
             { label: 'clearable', name: 'clearable', type: 'checkbox' },
-            { label: 'clear-icon', name: 'clear-icon', type: 'text' },
+            { label: 'clear-icon', name: ':clear-icon', type: 'text' },
             { label: 'filled', name: 'filled', type: 'checkbox' },
             { label: 'outlined', name: 'outlined', type: 'checkbox' },
             { label: 'borderless', name: 'borderless', type: 'checkbox' },
@@ -1017,14 +1017,14 @@ const myNewComponentTypes = editor => {
             { label: 'disable', name: 'disable', type: 'checkbox' },
             { label: 'readonly', name: 'readonly', type: 'checkbox' },
             { label: 'autofocus', name: 'autofocus', type: 'checkbox' },
-            { label: 'for', name: 'for', type: 'text' },
-            { label: 'shadow-text', name: 'shadow-text', type: 'text' },
+            { label: 'for', name: ':for', type: 'text' },
+            { label: 'shadow-text', name: ':shadow-text', type: 'text' },
             { label: 'type', name: 'type', type:'select', options: ["text", "password", "textarea", "email", "search", "tel", "file", "number", "url", "time", "date"] },
-            { label: 'debounce', name: 'debounce', type: 'text' },
+            { label: 'debounce', name: ':debounce', type: 'text' },
             { label: 'maxlength', name: 'maxlength', type: 'text' },
             { label: 'autogrow', name: 'autogrow', type: 'checkbox' },
-            { label: 'input-class', name: 'input-class', type: 'text' },
-            { label: 'input-style', name: 'input-style', type: 'text' }
+            { label: 'input-class', name: ':input-class', type: 'text' },
+            { label: 'input-style', name: ':input-style', type: 'text' }
             /* { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
             { label: 'Type', name: 'type', type:'select', options: ["text", "password", "textarea", "email", "search", "tel", "file", "number", "url", "time", "date"] }, 
             { label: 'Label', name: 'label', type:'text' },                     
