@@ -152,6 +152,8 @@ function initNoCodeEditor(){
     currentTemplate = containerHtml + currentTemplate + '</div>';
   }
   editor.addComponents( currentTemplate );
+  editor.setStyle( appConfiguration.grapesStyles );
+  console.log( "grapesjs styles injected: ", appConfiguration.grapesStyles );
 
   window.lastSavedHTML = editor.getHtml( { cleanId:true } );
 
@@ -168,7 +170,7 @@ function markUnsavedChanges( yesNo ){
 
 function savePage(){
   let currentTemplate = editor.getHtml( { cleanId:true } );
-  let currentStyles = editor.getCss();
+  let currentStyles = editor.getCss({ avoidProtected: true });
   console.log( "Grapes CSS styles: ", currentStyles );
 
   window.lastSavedHTML = currentTemplate;

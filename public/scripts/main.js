@@ -12,6 +12,8 @@ window.onload = () => {
         return;
     }
 
+    let currentPage;
+
     let appConfig = {
         url: null,
         vueAppName: modelName, 
@@ -23,6 +25,7 @@ window.onload = () => {
         currentPage: null, 
         modelFields: [], 
         modelFieldsTypes: [], 
+        grapesStyles: ''
       };
   
     ApiConnector.projectId = projectId;
@@ -41,7 +44,7 @@ window.onload = () => {
 
     .then( (result)=>{
         console.log( "[chained] 2 pages list retrieved: ", result );
-        let currentPage = result.filter( (page)=>{
+        currentPage = result.filter( (page)=>{
             return page.view == filePath;
         } );
         currentPage = currentPage[0];
@@ -103,6 +106,20 @@ window.onload = () => {
         appConfig.template = fileContents;
         window.appConfiguration = appConfig;
         window.vueAppName = appConfiguration.vueAppName;
+
+        let grapesCssFile;
+        for (let i = 0; i < currentPage.assets.length; i++) {
+            const asset = currentPage.assets[i];
+            if( asset.indexOf('grapes.css') > -1 )
+            {
+                grapesCssFile = asset;
+                break;
+            }
+        }
+        return ApiConnector.readFileContents( grapesCssFile );  //'public/css/grapes.css'
+    })
+    .then( (fileContents)=>{
+        appConfig.grapesStyles = fileContents;
         initNoCodeEditor();  
     })
   };
