@@ -162,7 +162,7 @@ function postcreate(path) :: Nothing
   open(joinpath("views", "hello.jl.html"), "w") do io
     write(io,
     """
-    <h1>Welcome!</h1>
+    <h1>{{message}}</h1>
     <p>This is the default view for the application.</p>
     <p>You can change this view by editing the file <code>views/hello.jl.html</code>.</p>
     """
@@ -179,7 +179,7 @@ function postcreate(path) :: Nothing
     using Stipple.Pages
     using Stipple.ModelStorage.Sessions
 
-    using Main.UserApp.$(model_name)s
+    using Base.Main.UserApp.$(model_name)s
 
     Page("/", view = "views/hello.jl.html",
               layout = "layouts/app.jl.html",
@@ -198,8 +198,8 @@ function postcreate(path) :: Nothing
 
     export $(model_name)
 
-    @reactive mutable struct $(model_name)
-      # message::R{<:String} = "Hello World!"
+    @reactive mutable struct $(model_name) <: ReactiveModel
+      message::R{String} = "Hello World!"
     end
 
     function handlers(model::$(model_name)) :: $(model_name)
