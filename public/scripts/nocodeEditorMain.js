@@ -56,6 +56,15 @@ function initNoCodeEditor(){
   editor.Panels.addButton('options', {  // Fist argument is part of container element's class (i.e. "gjs-pn-options")
     //id: 'myNewButton',
     //label: 'Gn',
+    className: 'fa fa-repeat',
+    command: 'refresh-nocode-editor',
+    attributes: { title: 'Refresh no-code editor' },
+    active: false,
+  });
+
+  editor.Panels.addButton('options', {  // Fist argument is part of container element's class (i.e. "gjs-pn-options")
+    //id: 'myNewButton',
+    //label: 'Gn',
     className: 'fa fa-floppy-disk',
     command: 'save-content',
     attributes: { title: 'Save Design', id:'saveButton' },
@@ -85,6 +94,13 @@ function initNoCodeEditor(){
         panel.style.display = "none";
     }
   });
+  editor.Commands.add('refresh-nocode-editor', {
+    run: editor => {
+      console.log("command 'refresh-nocode-editor' has run");
+      window.location.reload()
+    }
+  });
+
   editor.Commands.add('save-content', {
     run: editor => {
       console.log("command 'save-content' has run");
