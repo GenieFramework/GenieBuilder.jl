@@ -1199,6 +1199,31 @@ const myNewComponentTypes = editor => {
     editor.BlockManager.add( '1 Column', { label: '1 Column', content: `<div class="row"><div class="col col-12 col-sm"></div></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
     editor.BlockManager.add( '2 Column', { label: '2 Columns', content: `<div class="row"><div class="col col-6 col-sm"></div><div class="col col-6 col-sm"></div></div>`, media: `<img src="images/icons/components/ui_components/2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
     editor.BlockManager.add( '3 Column', { label: '3 Columns', content: `<div class="row"><div class="col col-4 col-sm"></div><div class="col col-4 col-sm"></div><div class="col col-4 col-sm"></div></div>`, media: `<img src="images/icons/components/ui_components/3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    
+    editor.BlockManager.add( 'Sidebar Left', { label: 'Sidebar Left', content: `<header class="st-header q-pa-sm">
+          <h1 class="st-header__title text-h3">Header Text</h1>
+      </header>
+      <div class="row">
+          <div class="col col-3"></div>
+          <div class="col"></div>
+      </div>`, media: `<img src="images/icons/components/ui_components/sidebar_left.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    
+    editor.BlockManager.add( 'Sidebar Right', { label: 'Sidebar Right', content: `<header class="st-header q-pa-sm">
+          <h1 class="st-header__title text-h3">Header Text</h1>
+      </header>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col col-3"></div>
+      </div>`, media: `<img src="images/icons/components/ui_components/sidebar_right.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    
+    editor.BlockManager.add( 'Sidebars', { label: 'Sidebars', content: `<header class="st-header q-pa-sm">
+          <h1 class="st-header__title text-h3">Header Text</h1>
+      </header>
+      <div class="row">
+          <div class="col col-3"></div>
+          <div class="col"></div>
+          <div class="col col-3"></div>
+      </div>`, media: `<img src="images/icons/components/ui_components/sidebars.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
     /* --------------------------------------------
                       COLUMN
