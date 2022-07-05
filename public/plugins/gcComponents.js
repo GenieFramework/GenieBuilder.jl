@@ -177,7 +177,7 @@ const myNewComponentTypes = editor => {
       defaults: { 
         //traits: [ { label: 'Reactive Model', name: 'v-model', type:'select', options: [] } ], 
         traits: [
-          { label: 'Reactive Model 2', name: 'v-model', type:'select', options: [] },
+          { label: 'Reactive Model', name: 'v-model', type:'select', options: [] },
           { label: 'name', name: ':name', type: 'text' },
           { label: 'snap', name: 'snap', type: 'checkbox' },
           { label: 'reverse', name: 'reverse', type: 'checkbox' },

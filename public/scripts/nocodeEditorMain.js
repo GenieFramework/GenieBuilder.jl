@@ -27,6 +27,33 @@ function initNoCodeEditor(){
   }); // End of "grapesjs.init()" 
   editor.setStyle("body { background-color: unset}");
 
+  editor.on('load', () => {
+    console.log( "manage non-removable items");
+
+    const notRemovableTags = ['body'];
+    const notRemovableIds = ['editableDOM'];
+
+    // recursive function to traverse component tree
+    const updateRecursive = componentModel => {
+      let bannedTag = notRemovableTags.indexOf(componentModel.attributes.tagName) !== -1;
+      let bannedId = notRemovableIds.indexOf(componentModel.attributes.attributes.id) !== -1;
+        if (bannedId || bannedTag) {
+            // set not removable
+            componentModel.set({removable: false, selectable: false, hoverable: false});
+            // remove remove icon from toolbar
+            componentModel.set({
+               toolbar: componentModel.get('toolbar')?.filter(tlb => tlb.command !== 'tlb-delete')
+            });
+        }
+        // recurse
+        componentModel.get('components').each(model => updateRecursive(model));
+    }
+    // start recursion
+    let rootComponent = this.editor.DomComponents.getComponent();
+    console.log( "manage non-removable item components: ", rootComponent);
+    updateRecursive(rootComponent);
+});
+
   editor.on('storage:start', (evt)=>{
     console.log( "Contents changed! " )
   });
@@ -115,7 +142,7 @@ function initNoCodeEditor(){
     markUnsavedChanges(true);
    });
 
-  editor.on('run:preview', () => {
+  /* editor.on('run:preview', () => {
     // do stuff...
     console.log("entered preview");
 
@@ -131,10 +158,7 @@ function initNoCodeEditor(){
     window.stopPreview();
    
       canvasDocument.querySelector(`#${vueAppName}`).remove();
-    /* }else{
-      console.error( "Preview element not found");
-    } */
-  });
+  }); */
   editor.on('component:input', (model) => {
     // do stuff...
     console.log("component::input ", model);
