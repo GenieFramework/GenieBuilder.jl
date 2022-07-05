@@ -52,6 +52,12 @@ function initNoCodeEditor(){
     let rootComponent = this.editor.DomComponents.getComponent();
     console.log( "manage non-removable item components: ", rootComponent);
     updateRecursive(rootComponent);
+
+    setTimeout( ()=>{
+      document.querySelector("#saveButton").classList.remove('warningIcon');
+      document.querySelector("#unsavedChangesAlert").style.display = "none";
+      window.unsavedChanges = false;
+    }, 100)
 });
 
   editor.on('storage:start', (evt)=>{
