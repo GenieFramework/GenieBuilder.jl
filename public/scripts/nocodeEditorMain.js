@@ -11,7 +11,51 @@ function initNoCodeEditor(){
     /* -------------------------------------------------------
            Editor's Basic properties
     ------------------------------------------------------- */
-    plugins: [myNewComponentTypes, 'gjs-preset-webpage'],
+    plugins: [myNewComponentTypes, 'gjs-preset-webpage', 
+    /* "bootstrap.bundle", 
+    "bootstrap.bundle.min", 
+    "bootstrap", 
+    "bootstrap.min", 
+    "change-styles-html", 
+    "grapes.min", 
+    */
+    "grapesjs-blocks-avance", 
+    "grapesjs-blocks-basic", 
+    "grapesjs-echarts", 
+    "grapesjs-ga", 
+    "grapesjs-navbar", 
+    "grapesjs-page-break", 
+
+    "grapesjs-plugin-forms", 
+    "grapesjs-plugin-header", 
+    "grapesjs-rte-extensions", 
+    "grapesjs-rulers", 
+    
+    /*"grapesjs-blocks-bootstrap4.min", 
+    "grapesjs-blocks-flexbox.min", 
+    "grapesjs-code-editor.min", 
+    "grapesjs-component-code-editor.min", 
+    "grapesjs-custom-code.min", 
+    "grapesjs-echarts.min", 
+    "grapesjs-ga.min", 
+    "grapesjs-navbar.min", 
+    "grapesjs-page-break.min", 
+    "grapesjs-parser-postcss.min", 
+    "grapesjs-plugin-actions.min", 
+    "grapesjs-plugin-carousel.min", 
+    "grapesjs-plugin-export.min", 
+    "grapesjs-plugin-forms.min", 
+    "grapesjs-plugin-header.min", 
+    "grapesjs-rte-extensions.min", 
+    "grapesjs-rulers.min", 
+    "grapesjs-script-editor.min", 
+    "grapesjs-shape-divider.min", 
+    "grapesjs-table.min", 
+    "grapesjs-touch.min", 
+    "jquery.slim.min", 
+    "nocode", 
+    "popper.min" */
+    ],
     pluginsOpts: {
       'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }
     },
