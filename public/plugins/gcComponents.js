@@ -1244,7 +1244,7 @@ const myNewComponentTypes = editor => {
             { label: 'Max Length', name: 'maxlength', type:'number' },       */               
           ], 
           droppable: true,
-          draggable: true,
+          draggable: '.row',
           editable: true,
         },
         init() {  
