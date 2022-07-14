@@ -1,0 +1,9 @@
+{
+    "type": "chip", 
+    "label": "chip", 
+    "tagName": "Q-CHIP", 
+    "category": "Quasar", 
+    "content": "<q-chip />", 
+    "media": "images/icons/components/ui_components/chip.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"dense","name":":dense","type":"text"},{"label":"size","name":":size","type":"text"},{"label":"dark","name":":dark","type":"text"},{"label":"icon","name":":icon","type":"text"},{"label":"icon-right","name":":icon-right","type":"text"},{"label":"icon-remove","name":":icon-remove","type":"text"},{"label":"icon-selected","name":":icon-selected","type":"text"},{"label":"label","name":":label","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"text-color","name":":text-color","type":"text"},{"label":"model-value","name":":model-value","type":"text"},{"label":"selected","name":":selected","type":"text"},{"label":"square","name":":square","type":"text"},{"label":"outline","name":":outline","type":"text"},{"label":"clickable","name":":clickable","type":"text"},{"label":"removable","name":":removable","type":"text"},{"label":"ripple","name":":ripple","type":"text"},{"label":"tabindex","name":":tabindex","type":"text"},{"label":"disable","name":":disable","type":"text"}]
+}

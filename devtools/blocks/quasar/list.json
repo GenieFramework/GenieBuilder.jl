@@ -1,0 +1,9 @@
+{
+    "type": "list", 
+    "label": "list", 
+    "tagName": "Q-LIST", 
+    "category": "Quasar", 
+    "content": "<q-list />", 
+    "media": "images/icons/components/ui_components/list.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"bordered","name":":bordered","type":"text"},{"label":"dense","name":":dense","type":"text"},{"label":"separator","name":":separator","type":"text"},{"label":"dark","name":":dark","type":"text"},{"label":"padding","name":":padding","type":"text"}]
+}

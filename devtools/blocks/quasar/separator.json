@@ -1,0 +1,9 @@
+{
+    "type": "separator", 
+    "label": "separator", 
+    "tagName": "Q-SEPARATOR", 
+    "category": "Quasar", 
+    "content": "<q-separator />", 
+    "media": "images/icons/components/ui_components/separator.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"dark","name":":dark","type":"text"},{"label":"spaced","name":":spaced","type":"text"},{"label":"inset","name":":inset","type":"text"},{"label":"vertical","name":":vertical","type":"text"},{"label":"size","name":":size","type":"text"},{"label":"color","name":":color","type":"text"}]
+}

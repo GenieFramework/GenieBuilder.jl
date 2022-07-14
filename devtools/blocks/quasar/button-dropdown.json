@@ -1,0 +1,9 @@
+{
+    "type": "button-dropdown", 
+    "label": "button-dropdown", 
+    "tagName": "Q-BUTTON-DROPDOWN", 
+    "category": "Quasar", 
+    "content": "<q-button-dropdown />", 
+    "media": "images/icons/components/ui_components/button-dropdown.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]}]
+}

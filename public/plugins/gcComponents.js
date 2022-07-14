@@ -896,7 +896,7 @@ const myNewComponentTypes = editor => {
                     Q-BTN (BUTTON)
      -------------------------------------------- */
         
-     editor.DomComponents.addType( "Button", {
+     /* editor.DomComponents.addType( "Button", {
       isComponent: el => {
         if( el.tagName == 'Q-BTN' ){
           return { type: 'Button'}
@@ -934,8 +934,8 @@ const myNewComponentTypes = editor => {
           this.view.onRender();
         },
         updateGenieModelProperties(properties){
-          /* var vtextTrait = this.get('traits').where({name: 'v-model'})[0];
-          vtextTrait.set('options', properties ); */
+          //var vtextTrait = this.get('traits').where({name: 'v-model'})[0];
+          //vtextTrait.set('options', properties );
         }
       }, 
       view: {
@@ -950,7 +950,7 @@ const myNewComponentTypes = editor => {
       },
     });
     editor.BlockManager.add( 'Button', { label: 'Button', content: `<q-btn label="Button"/>`, media: `<img src="images/icons/components/ui_components/button.png" class="blockIcon"/>`, category: 'Forms'   }); 
-
+ */
     /* --------------------------------------------
                       Q-INPUT
      -------------------------------------------- */

@@ -5,10 +5,13 @@ These are loaded inside the editor's canvas iframe
 ------------------------------------------ 
 */
 
-q-slider, q-range, q-select, q-table, q-checkbox, q-input, q-date, q-btn, q-expansion-item, plotly {
+q-slider, q-range, q-select, q-table, q-checkbox, q-input, q-date, q-btn, q-expansion-item, plotly, 
+
+q-avatar, q-badge, q-banner, q-button-dropdown, q-button-group, q-button, q-chip, q-editor, q-icon, q-item, q-knob, q-list, q-popup-proxy, q-radio, q-rating, q-separator, q-space, q-spinner, q-time, q-timeline-entry, q-timeline, q-toggle, q-toolbar, q-tree, q-video
+{
   background: #f0f0f0;
   position: relative;
-  min-height: 20px;
+  min-height: 40px;
   display: block;
   text-align: center;
   margin: 1px;
@@ -17,9 +20,15 @@ q-slider, q-range, q-select, q-table, q-checkbox, q-input, q-date, q-btn, q-expa
   font-size: 12px;
 }
 
-q-slider img, q-range img, q-select img, q-checkbox img, q-input img, q-date img, q-btn img, q-expansion-item img  {
+q-slider img, q-range img, q-select img, q-checkbox img, q-input img, q-date img, q-btn img, q-expansion-item img, 
+
+q-avatar img, q-badge img, q-banner img, q-button-dropdown img, q-button-group img, q-button img, q-chip img, q-editor img, q-icon img, q-item img, q-knob img, q-list img, q-popup-proxy img, q-radio img, q-rating img, q-separator img, q-space img, q-spinner img, q-time img, q-timeline-entry img, q-timeline img, q-toggle img, q-toolbar img, q-tree img, q-video img
+{
   max-height: 30px;
-  max-width: 100%;
+  max-width: 30px;
+  position: absolute;
+  top: 4px;
+  left: 0px;
 }
 
 q-table img, plotly img {

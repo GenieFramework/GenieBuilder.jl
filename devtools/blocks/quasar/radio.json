@@ -1,0 +1,9 @@
+{
+    "type": "radio", 
+    "label": "radio", 
+    "tagName": "Q-RADIO", 
+    "category": "Quasar", 
+    "content": "<q-radio />", 
+    "media": "images/icons/components/ui_components/radio.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"name","name":":name","type":"text"},{"label":"size","name":":size","type":"text"},{"label":"model-value","name":":model-value","type":"text"},{"label":"val","name":":val","type":"text"},{"label":"label","name":":label","type":"text"},{"label":"left-label","name":":left-label","type":"text"},{"label":"checked-icon","name":":checked-icon","type":"text"},{"label":"unchecked-icon","name":":unchecked-icon","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"keep-color","name":":keep-color","type":"text"},{"label":"dark","name":":dark","type":"text"},{"label":"dense","name":":dense","type":"text"},{"label":"disable","name":":disable","type":"text"},{"label":"tabindex","name":":tabindex","type":"text"}]
+}

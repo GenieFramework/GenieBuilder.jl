@@ -1,0 +1,9 @@
+{
+    "type": "video", 
+    "label": "video", 
+    "tagName": "Q-VIDEO", 
+    "category": "Quasar", 
+    "content": "<q-video />", 
+    "media": "images/icons/components/ui_components/video.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"ratio","name":":ratio","type":"text"},{"label":"src","name":":src","type":"text"},{"label":"title","name":":title","type":"text"},{"label":"fetchpriority","name":":fetchpriority","type":"text"},{"label":"loading","name":":loading","type":"text"},{"label":"referrerpolicy","name":":referrerpolicy","type":"text"}]
+}

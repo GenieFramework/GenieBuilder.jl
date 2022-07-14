@@ -1,0 +1,9 @@
+{
+    "type": "knob", 
+    "label": "knob", 
+    "tagName": "Q-KNOB", 
+    "category": "Quasar", 
+    "content": "<q-knob />", 
+    "media": "images/icons/components/ui_components/knob.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"name","name":":name","type":"text"},{"label":"size","name":":size","type":"text"},{"label":"model-value","name":":model-value","type":"text"},{"label":"min","name":":min","type":"text"},{"label":"max","name":":max","type":"text"},{"label":"inner-min","name":":inner-min","type":"text"},{"label":"inner-max","name":":inner-max","type":"text"},{"label":"step","name":":step","type":"text"},{"label":"reverse","name":":reverse","type":"text"},{"label":"instant-feedback","name":":instant-feedback","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"center-color","name":":center-color","type":"text"},{"label":"track-color","name":":track-color","type":"text"},{"label":"font-size","name":":font-size","type":"text"},{"label":"thickness","name":":thickness","type":"text"},{"label":"angle","name":":angle","type":"text"},{"label":"show-value","name":":show-value","type":"text"},{"label":"tabindex","name":":tabindex","type":"text"},{"label":"disable","name":":disable","type":"text"},{"label":"readonly","name":":readonly","type":"text"}]
+}

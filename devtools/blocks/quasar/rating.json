@@ -1,0 +1,9 @@
+{
+    "type": "rating", 
+    "label": "rating", 
+    "tagName": "Q-RATING", 
+    "category": "Quasar", 
+    "content": "<q-rating />", 
+    "media": "images/icons/components/ui_components/rating.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"name","name":":name","type":"text"},{"label":"size","name":":size","type":"text"},{"label":"model-value","name":":model-value","type":"text"},{"label":"max","name":":max","type":"text"},{"label":"icon","name":":icon","type":"text"},{"label":"icon-selected","name":":icon-selected","type":"text"},{"label":"icon-half","name":":icon-half","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"color-selected","name":":color-selected","type":"text"},{"label":"color-half","name":":color-half","type":"text"},{"label":"no-dimming","name":":no-dimming","type":"text"},{"label":"no-reset","name":":no-reset","type":"text"},{"label":"readonly","name":":readonly","type":"text"},{"label":"disable","name":":disable","type":"text"}]
+}

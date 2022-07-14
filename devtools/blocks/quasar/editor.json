@@ -1,0 +1,9 @@
+{
+    "type": "editor", 
+    "label": "editor", 
+    "tagName": "Q-EDITOR", 
+    "category": "Quasar", 
+    "content": "<q-editor />", 
+    "media": "images/icons/components/ui_components/editor.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"fullscreen","name":":fullscreen","type":"text"},{"label":"no-route-fullscreen-exit","name":":no-route-fullscreen-exit","type":"text"},{"label":"model-value","name":":model-value","type":"text"},{"label":"readonly","name":":readonly","type":"text"},{"label":"square","name":":square","type":"text"},{"label":"flat","name":":flat","type":"text"},{"label":"dense","name":":dense","type":"text"},{"label":"dark","name":":dark","type":"text"},{"label":"disable","name":":disable","type":"text"},{"label":"min-height","name":":min-height","type":"text"},{"label":"max-height","name":":max-height","type":"text"},{"label":"height","name":":height","type":"text"},{"label":"definitions","name":":definitions","type":"text"},{"label":"fonts","name":":fonts","type":"text"},{"label":"toolbar","name":":toolbar","type":"text"},{"label":"toolbar-color","name":":toolbar-color","type":"text"},{"label":"toolbar-text-color","name":":toolbar-text-color","type":"text"},{"label":"toolbar-toggle-color","name":":toolbar-toggle-color","type":"text"},{"label":"toolbar-bg","name":":toolbar-bg","type":"text"},{"label":"toolbar-outline","name":":toolbar-outline","type":"text"},{"label":"toolbar-push","name":":toolbar-push","type":"text"},{"label":"toolbar-rounded","name":":toolbar-rounded","type":"text"},{"label":"paragraph-tag","name":":paragraph-tag","type":"text"},{"label":"content-style","name":":content-style","type":"text"},{"label":"content-class","name":":content-class","type":"text"},{"label":"placeholder","name":":placeholder","type":"text"}]
+}

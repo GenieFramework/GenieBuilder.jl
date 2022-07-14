@@ -1,0 +1,9 @@
+{
+    "type": "badge", 
+    "label": "badge", 
+    "tagName": "Q-BADGE", 
+    "category": "Quasar", 
+    "content": "<q-badge />", 
+    "media": "images/icons/components/ui_components/badge.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"color","name":":color","type":"text"},{"label":"text-color","name":":text-color","type":"text"},{"label":"floating","name":":floating","type":"text"},{"label":"transparent","name":":transparent","type":"text"},{"label":"multi-line","name":":multi-line","type":"text"},{"label":"label","name":":label","type":"text"},{"label":"align","name":":align","type":"text"},{"label":"outline","name":":outline","type":"text"},{"label":"rounded","name":":rounded","type":"text"}]
+}

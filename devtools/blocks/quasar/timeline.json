@@ -1,0 +1,9 @@
+{
+    "type": "timeline", 
+    "label": "timeline", 
+    "tagName": "Q-TIMELINE", 
+    "category": "Quasar", 
+    "content": "<q-timeline />", 
+    "media": "images/icons/components/ui_components/timeline.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"color","name":":color","type":"text"},{"label":"side","name":":side","type":"text"},{"label":"layout","name":":layout","type":"text"},{"label":"dark","name":":dark","type":"text"}]
+}

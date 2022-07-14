@@ -1,0 +1,9 @@
+{
+    "type": "time", 
+    "label": "time", 
+    "tagName": "Q-TIME", 
+    "category": "Quasar", 
+    "content": "<q-time />", 
+    "media": "images/icons/components/ui_components/time.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"name","name":":name","type":"text"},{"label":"landscape","name":":landscape","type":"text"},{"label":"mask","name":":mask","type":"text"},{"label":"locale","name":":locale","type":"text"},{"label":"calendar","name":":calendar","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"text-color","name":":text-color","type":"text"},{"label":"dark","name":":dark","type":"text"},{"label":"square","name":":square","type":"text"},{"label":"flat","name":":flat","type":"text"},{"label":"bordered","name":":bordered","type":"text"},{"label":"readonly","name":":readonly","type":"text"},{"label":"disable","name":":disable","type":"text"},{"label":"model-value","name":":model-value","type":"text"},{"label":"format24h","name":":format24h","type":"text"},{"label":"default-date","name":":default-date","type":"text"},{"label":"options","name":":options","type":"text"},{"label":"hour-options","name":":hour-options","type":"text"},{"label":"minute-options","name":":minute-options","type":"text"},{"label":"second-options","name":":second-options","type":"text"},{"label":"with-seconds","name":":with-seconds","type":"text"},{"label":"now-btn","name":":now-btn","type":"text"}]
+}

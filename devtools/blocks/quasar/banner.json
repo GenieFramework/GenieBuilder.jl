@@ -1,0 +1,9 @@
+{
+    "type": "banner", 
+    "label": "banner", 
+    "tagName": "Q-BANNER", 
+    "category": "Quasar", 
+    "content": "<q-banner />", 
+    "media": "images/icons/components/ui_components/banner.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"inline-actions","name":":inline-actions","type":"text"},{"label":"dense","name":":dense","type":"text"},{"label":"rounded","name":":rounded","type":"text"},{"label":"dark","name":":dark","type":"text"}]
+}

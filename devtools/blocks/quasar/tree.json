@@ -1,0 +1,9 @@
+{
+    "type": "tree", 
+    "label": "tree", 
+    "tagName": "Q-TREE", 
+    "category": "Quasar", 
+    "content": "<q-tree />", 
+    "media": "images/icons/components/ui_components/tree.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"nodes","name":":nodes","type":"text"},{"label":"node-key","name":":node-key","type":"text"},{"label":"label-key","name":":label-key","type":"text"},{"label":"children-key","name":":children-key","type":"text"},{"label":"no-connectors","name":":no-connectors","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"control-color","name":":control-color","type":"text"},{"label":"text-color","name":":text-color","type":"text"},{"label":"selected-color","name":":selected-color","type":"text"},{"label":"dense","name":":dense","type":"text"},{"label":"dark","name":":dark","type":"text"},{"label":"icon","name":":icon","type":"text"},{"label":"tick-strategy","name":":tick-strategy","type":"text"},{"label":"ticked","name":":ticked","type":"text"},{"label":"expanded","name":":expanded","type":"text"},{"label":"selected","name":":selected","type":"text"},{"label":"no-selection-unset","name":":no-selection-unset","type":"text"},{"label":"default-expand-all","name":":default-expand-all","type":"text"},{"label":"accordion","name":":accordion","type":"text"},{"label":"filter","name":":filter","type":"text"},{"label":"filter-method","name":":filter-method","type":"text"},{"label":"duration","name":":duration","type":"text"},{"label":"no-nodes-label","name":":no-nodes-label","type":"text"},{"label":"no-results-label","name":":no-results-label","type":"text"}]
+}

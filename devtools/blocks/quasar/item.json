@@ -1,0 +1,9 @@
+{
+    "type": "item", 
+    "label": "item", 
+    "tagName": "Q-ITEM", 
+    "category": "Quasar", 
+    "content": "<q-item />", 
+    "media": "images/icons/components/ui_components/item.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"to","name":":to","type":"text"},{"label":"exact","name":":exact","type":"text"},{"label":"replace","name":":replace","type":"text"},{"label":"active-class","name":":active-class","type":"text"},{"label":"exact-active-class","name":":exact-active-class","type":"text"},{"label":"href","name":":href","type":"text"},{"label":"target","name":":target","type":"text"},{"label":"disable","name":":disable","type":"text"},{"label":"active","name":":active","type":"text"},{"label":"dark","name":":dark","type":"text"},{"label":"clickable","name":":clickable","type":"text"},{"label":"dense","name":":dense","type":"text"},{"label":"inset-level","name":":inset-level","type":"text"},{"label":"tabindex","name":":tabindex","type":"text"},{"label":"tag","name":":tag","type":"text"},{"label":"manual-focus","name":":manual-focus","type":"text"},{"label":"focused","name":":focused","type":"text"}]
+}

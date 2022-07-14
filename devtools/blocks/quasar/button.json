@@ -1,0 +1,9 @@
+{
+    "type": "button", 
+    "label": "button", 
+    "tagName": "Q-BUTTON", 
+    "category": "Quasar", 
+    "content": "<q-button />", 
+    "media": "images/icons/components/ui_components/button.png", 
+    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]}]
+}
