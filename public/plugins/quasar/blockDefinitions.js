@@ -69,9 +69,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/avatar.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -159,9 +159,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -224,9 +224,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/banner.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -269,9 +269,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/button-dropdown.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -314,9 +314,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/button-group.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -511,9 +511,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/chip.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -686,9 +686,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/editor.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -761,9 +761,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/icon.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -891,9 +891,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/item.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1036,9 +1036,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/knob.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1106,9 +1106,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/list.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1176,9 +1176,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/popup-proxy.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1291,9 +1291,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/radio.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1406,9 +1406,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/rating.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1481,9 +1481,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/separator.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1526,9 +1526,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/space.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1586,9 +1586,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/spinner.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1741,9 +1741,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/time.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1831,9 +1831,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/timeline-entry.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -1896,9 +1896,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/timeline.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -2051,9 +2051,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/toggle.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -2101,9 +2101,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/toolbar.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -2266,9 +2266,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/tree.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });
@@ -2341,9 +2341,9 @@
             view: {
                 onRender() {
                     const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
+                    /* const bindTextTraitValue = model.getAttributes()['v-model']
                     $el.empty();
-                    $el.append( '<img src="images/icons/components/ui_components/video.png" />' );
+                    $el.append( '<img src="images/icons/components/ui_components/badge.png" />' ); */
                 }
             },
         });

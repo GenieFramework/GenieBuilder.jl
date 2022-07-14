@@ -18,11 +18,40 @@ q-avatar, q-badge, q-banner, q-button-dropdown, q-button-group, q-button, q-chip
   border: dashed 1.9px #00000050;
   padding: 5px;
   font-size: 12px;
+
+  
+  background-repeat: no-repeat;
+  background-size: auto 25px;
 }
 
-q-slider img, q-range img, q-select img, q-checkbox img, q-input img, q-date img, q-btn img, q-expansion-item img, 
+q-avatar{   background-image: url(../images/icons/components/ui_components/avatar.png); }
+q-badge{   background-image: url(../images/icons/components/ui_components/badge.png); }
+q-banner{   background-image: url(../images/icons/components/ui_components/banner.png); }
+q-button-dropdown{   background-image: url(../images/icons/components/ui_components/button-dropdown.png); }
+q-button-group{   background-image: url(../images/icons/components/ui_components/button-group.png); }
+q-button{   background-image: url(../images/icons/components/ui_components/button.png); }
+q-chip{   background-image: url(../images/icons/components/ui_components/chip.png); }
+q-editor{   background-image: url(../images/icons/components/ui_components/editor.png); }
+q-icon{   background-image: url(../images/icons/components/ui_components/icon.png); }
+q-item{   background-image: url(../images/icons/components/ui_components/item.png); }
+q-knob{   background-image: url(../images/icons/components/ui_components/knob.png); }
+q-list{   background-image: url(../images/icons/components/ui_components/list.png); }
+q-popup-proxy{   background-image: url(../images/icons/components/ui_components/popup-proxy.png); }
+q-radio{   background-image: url(../images/icons/components/ui_components/radio.png); }
+q-rating{   background-image: url(../images/icons/components/ui_components/rating.png); }
+q-separator{   background-image: url(../images/icons/components/ui_components/separator.png); }
+q-space{   background-image: url(../images/icons/components/ui_components/space.png); }
+q-spinner{   background-image: url(../images/icons/components/ui_components/spinner.png); }
+q-time{   background-image: url(../images/icons/components/ui_components/time.png); }
+q-timeline-entry{   background-image: url(../images/icons/components/ui_components/timeline-entry.png); }
+q-timeline{   background-image: url(../images/icons/components/ui_components/timeline.png); }
+q-toggle{   background-image: url(../images/icons/components/ui_components/toggle.png); }
+q-toolbar{   background-image: url(../images/icons/components/ui_components/toolbar.png); }
+q-tree{   background-image: url(../images/icons/components/ui_components/tree.png); }
+q-video{   background-image: url(../images/icons/components/ui_components/video.png); }
 
-q-avatar img, q-badge img, q-banner img, q-button-dropdown img, q-button-group img, q-button img, q-chip img, q-editor img, q-icon img, q-item img, q-knob img, q-list img, q-popup-proxy img, q-radio img, q-rating img, q-separator img, q-space img, q-spinner img, q-time img, q-timeline-entry img, q-timeline img, q-toggle img, q-toolbar img, q-tree img, q-video img
+/* q-avatar img, q-badge img, q-banner img, q-button-dropdown img, q-button-group img, q-button img, q-chip img, q-editor img, q-icon img, q-item img, q-knob img, q-list img, q-popup-proxy img, q-radio img, q-rating img, q-separator img, q-space img, q-spinner img, q-time img, q-timeline-entry img, q-timeline img, q-toggle img, q-toolbar img, q-tree img, q-video img */
+q-slider img, q-range img, q-select img, q-checkbox img, q-input img, q-date img, q-btn img, q-expansion-item img
 {
   max-height: 30px;
   max-width: 30px;
