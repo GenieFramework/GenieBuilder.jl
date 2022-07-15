@@ -25,7 +25,7 @@ function initNoCodeEditor(){
     */
     "grapesjs-blocks-avance", 
     "grapesjs-blocks-basic", 
-    "grapesjs-echarts", 
+    /* "grapesjs-echarts",  */
     "grapesjs-ga", 
     "grapesjs-navbar", 
     "grapesjs-page-break", 

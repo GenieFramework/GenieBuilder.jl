@@ -13,31 +13,35 @@ const myNewComponentTypes = editor => {
       }, 
       setText(text){
         this.text = text;
-        console.log( "setText: ", this.text);
+        //console.log( "setText: ", this.text);
       }, 
       onChanged(){
-        console.log( "onChanged: ", this.text);
+        //console.log( "onChanged: ", this.text);
       }
     },
-    template: '<textarea v-on:change="onChanged"></textarea>'
+    template: '<textarea v-on:change="onChanged" v-model="text" ></textarea>'
   });
 
   editor.TraitManager.addType('textarea', {
     createInput({ trait }) {
+      //console.log( "textArea :: createInput: ", trait);
       const vueInst = new Vue({ render: h => h(TextAreaVueComponent) }).$mount();
       const textAreaInst = vueInst.$children[0];
       textAreaInst.$on('change', ev => this.onChange(ev)); // Use onChange to trigger onEvent
       this.textAreaInst = textAreaInst;
+      this.traitId = trait.id;
       return vueInst.$el;
     },
   
     onEvent({ component }) {
+      //console.log( "textArea :: onEvent: ", component, this.textAreaInst, component.getAttributes());
       const value = this.textAreaInst.getText() || 0;
       component.addAttributes({ value });
     },
-  
+    
     onUpdate({ component }) {
-      const value = component.getAttributes().value || 0;
+      //console.log( "textArea :: onUpdate: ", component, this.textAreaInst, component.getAttributes());
+      const value = component.getAttributes()[this.traitId] || '';
       this.textAreaInst.setText(value);
     },
   });
@@ -1328,9 +1332,9 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ 
-            { label: 'Data', name: ':data', type:'select', options:[] }, 
-            { label: 'Layout', name: ':layout', type:'select', options:[] }, 
-            { label: 'Config', name: ':config', type:'text' }, 
+            { label: 'Data', name: ':data', type:'textarea' }, 
+            { label: 'Layout', name: ':layout', type:'textarea' }, 
+            { label: 'Config', name: ':config', type:'textarea' }, 
                     
           ], 
         },
@@ -1344,10 +1348,10 @@ const myNewComponentTypes = editor => {
           this.view.onRender();
         },
         updateGenieModelProperties(properties){
-          let vtextTrait = this.get('traits').where({name: ':data'})[0];
+          /* let vtextTrait = this.get('traits').where({name: ':data'})[0];
           vtextTrait.set('options', properties );
           vtextTrait = this.get('traits').where({name: ':layout'})[0];
-          vtextTrait.set('options', properties );
+          vtextTrait.set('options', properties ); */
         }
       }, 
       view: {
@@ -1356,12 +1360,186 @@ const myNewComponentTypes = editor => {
           const bindTextTraitValue = model.getAttributes()[':data']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/ui_components/chart.png" />
-          <div>{${bindTextTraitValue}}</div>` );
+          <img src="images/icons/components/ui_components/chart.png" />` );
         }
       },
     });
     editor.BlockManager.add( 'plotly', { label: 'Plotly Chart', content: `<plotly />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    editor.BlockManager.add( 'scatterChart', { label: 'Scatter Chart', content: `<plotly :data="[{
+      x: [1, 2, 3, 4],
+      y: [10, 15, 13, 17],
+      mode: 'markers',
+      type: 'scatter'
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    editor.BlockManager.add( 'lineChart', { label: 'Line Chart', content: `<plotly :data="[{
+      x: [2, 3, 4, 5],
+      y: [16, 5, 11, 9],
+      mode: 'lines',
+      type: 'scatter'
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    editor.BlockManager.add( 'mapboxChart', { label: 'Mapbox Chart', content: `<plotly :data="[{
+      type: 'scattermapbox',
+      text: [ 10, 5 ],
+      lon: [ -90.1744208, -90.9007405 ],
+      lat: [ 38.0032799, 38.0021822 ],
+      marker: { color: 'fuchsia', size: 4 }
+    }]" :layout="{
+      dragmode: 'zoom',
+      mapbox: { style: 'open-street-map', center: { lat: 38, lon: -90 }, zoom: 3 }
+    }" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+
+
+    editor.BlockManager.add( 'barChart', { label: 'Bar Chart', content: `<plotly :data="[{
+      x: ['giraffes', 'orangutans', 'monkeys'],
+      y: [20, 14, 23],
+      type: 'bar'
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'pieChart', { label: 'Pie Chart', content: `<plotly :data="[{
+      values: [19, 26, 55],
+      labels: ['Residential', 'Non-Residential', 'Utility'],
+      type: 'pie'
+    }]" :layout="{
+      height: 400,
+      width: 500
+    }" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'bubbleChart', { label: 'Bubble Chart', content: `<plotly :data="[{
+      x: [1, 2, 3, 4],
+      y: [10, 11, 12, 13],
+      mode: 'markers',
+      marker: {
+        size: [40, 60, 80, 100]
+      }
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'heatmapsChart', { label: 'Heatmaps Chart', content: `<plotly :data="[{
+      z: [[1, null, 30, 50, 1], [20, 1, 60, 80, 30], [30, 60, 1, -10, 20]],
+      x: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      y: ['Morning', 'Afternoon', 'Evening'],
+      type: 'heatmap',
+      hoverongaps: false
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'contourChart', { label: 'Contour Chart', content: `<plotly :data="[{
+      z: [[10, 10.625, 12.5, 15.625, 20],
+           [5.625, 6.25, 8.125, 11.25, 15.625],
+           [2.5, 3.125, 5., 8.125, 12.5],
+           [0.625, 1.25, 3.125, 6.25, 10.625],
+           [0, 0.625, 2.5, 5.625, 10]],
+      x: [-9, -6, -5 , -3, -1],
+      y: [0, 1, 4, 5, 7],
+      type: 'contour'
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'boxChart', { label: 'Box Chart', content: `<plotly :data="[{
+      y: [0, 1, 1, 2, 3, 5, 8, 13, 21],
+      type: 'box'
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'histogramChart', { label: 'Histogram Chart', content: `<plotly :data="[{
+      x: [2, 12, 4, 6, 9, 5],
+      type: 'histogram',
+  }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'funnelChart', { label: 'FunnelChart', content: `<plotly :data="[{
+      type: 'funnel', 
+      y: ['Website visit', 'Downloads', 'Potential customers', 'Invoice sent', 'Closed delas'], 
+      x: [13873, 10533, 5443, 2703, 908], 
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'indicatorChart', { label: 'Indicator Chart', content: `<plotly :data="[{
+      domain: { x: [0, 1], y: [0, 1] },
+      value: 450,
+      title: { text: 'Speed' },
+      type: 'indicator',
+      mode: 'gauge+number',
+      delta: { reference: 400 },
+      gauge: { axis: { range: [null, 500] } }
+    }
+  ]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'scatter3dChart', { label: 'Scatter3D Chart', content: `<plotly :data="[{
+      x: [1,2,3,4,5], 
+      y: [1,1,1,2,3], 
+      z: [5,4,4,3,2],
+      mode: 'markers',
+      type: 'scatter3d'
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'surface3dChart', { label: '3dSurface', content: `<plotly :data="[{
+      z: [ [1,2,3,4,5], [1,1,1,2,3], [5,4,4,3,2] ],
+      type: 'surface'
+    }]"  />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'mesh3dChart', { label: 'Mesh3D Chart', content: `<plotly :data="[{
+      x: [1,2,3,4,5], 
+      y: [1,1,1,2,3], 
+      z: [5,4,4,3,2],
+      type: 'mesh3d'
+    }]" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+
+    editor.BlockManager.add( 'bubbleMapChart', { label: 'Bubblemap Chart', content: `<plotly :data="[{
+      type: 'scattergeo',
+      mode: 'markers',
+      locations: ['FRA', 'DEU', 'RUS', 'ESP'],
+      marker: {
+          size: [20, 30, 15, 10],
+          color: [10, 20, 40, 50],
+          cmin: 0,
+          cmax: 50,
+          colorscale: 'Greens',
+          colorbar: {
+              title: 'Some rate',
+              ticksuffix: '%',
+              showticksuffix: 'last'
+          },
+  
+          line: {
+              color: 'black'
+          }
+      },
+      name: 'europe data'
+  }]" :layout="{
+    'geo': {
+        'scope': 'europe',
+        'resolution': 50
+    }
+}" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+    
+/* 
+    editor.BlockManager.add( 'XXXXXXXXXX', { label: 'XXXXXXXXXX', content: `<plotly :data="XXXXXXXXXX" :layout="XXXXXXXXXX" />`, media: `<img src="images/icons/components/ui_components/chart.png" class="blockIcon"/>`, category: 'Charts'   }); 
+    
+     */
+   
 
 
   /*     
