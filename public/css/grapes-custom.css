@@ -499,3 +499,8 @@ button.gjs-btn-prim{
     font-family:'Inter', sans-serif!important;
 
 }
+
+.gjs-rte-actionbar {
+    /* max-width: 600px; */
+    flex-wrap: inherit;
+}

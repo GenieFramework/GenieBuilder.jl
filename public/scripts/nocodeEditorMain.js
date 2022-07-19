@@ -61,7 +61,55 @@ function initNoCodeEditor(){
     "popper.min" */
     ],
     pluginsOpts: {
-      'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }
+      'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }, 
+      'grapesjs-rte-extensions': {
+        // default options
+        base: {
+          bold: true,
+          italic: true,
+          underline: true,
+          strikethrough: true,
+          link: true,
+        },
+        //fonts: {
+        //  fontName: ['font1',...,'fontn'],
+        //  fontSize: true,
+        //  //An array of strings representing colors
+        //  fontColor: ['#fff',...],
+        //  //An array of strings representing colors
+        //  hilite: ['#fff',...],
+        //}
+        fonts: {
+          //fontColor: true,
+          hilite: true,
+        },
+        format: {
+          heading1: true,
+          heading2: true,
+          heading3: true,
+          heading4: false,
+          heading5: false,
+          heading6: false,
+          paragraph: true,
+          quote: false,
+          clearFormatting: true,
+        },
+        subscriptSuperscript: false,//|true
+        indentOutdent: false,//|true
+        list: false,//|true
+        align: true,//|true
+        /* actions: {
+          copy: true,
+          cut: true,
+          paste: true,
+          delete: true,
+        }, */
+        //actions: false,//|true
+        //undoredo: true,//|true
+        extra: true,//|true
+        darkColorPicker: true,//|false
+        maxWidth: '800px'
+      }
     },
     container: '#gjs',
     canvas: {
@@ -110,6 +158,25 @@ function initNoCodeEditor(){
 
   editor.on('storage:start', (evt)=>{
     console.log( "Contents changed! " )
+  });
+
+
+  // Make sure the RTE tools stay within viewport
+  editor.on('rteToolbarPosUpdate', (pos) => {
+    let toolbarDiv = editor.RichTextEditor.getToolbarEl()
+    let toolbarHeight = toolbarDiv.scrollHeight
+    let toolbarWidth = toolbarDiv.scrollWidth
+    let rect = editor.Canvas.getRect()
+    if (pos.top <= 0 && pos.top > -8) 
+    {	
+      pos.top = (rect.height - toolbarHeight) + (pos.top - pos.canvasOffsetTop)
+    }
+    //check to see if the tool bar will go out of the screen and offset the left pos if it will.
+    let overhangLeft = rect.width - (toolbarWidth + pos.canvasOffsetLeft);
+    if(overhangLeft < 0)
+    {
+      pos.left = (overhangLeft -5)
+    }
   });
   
   // Shorcuts to the editor's canvas window and document
