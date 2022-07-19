@@ -35,33 +35,48 @@ function initNoCodeEditor(){
     "grapesjs-rte-extensions", 
     "grapesjs-rulers", 
     
-    /*"grapesjs-blocks-bootstrap4.min", 
-    "grapesjs-blocks-flexbox.min", 
-    "grapesjs-code-editor.min", 
-    "grapesjs-component-code-editor.min", 
-    "grapesjs-custom-code.min", 
-    "grapesjs-echarts.min", 
-    "grapesjs-ga.min", 
-    "grapesjs-navbar.min", 
-    "grapesjs-page-break.min", 
-    "grapesjs-parser-postcss.min", 
-    "grapesjs-plugin-actions.min", 
-    "grapesjs-plugin-carousel.min", 
-    "grapesjs-plugin-export.min", 
-    "grapesjs-plugin-forms.min", 
-    "grapesjs-plugin-header.min", 
-    "grapesjs-rte-extensions.min", 
-    "grapesjs-rulers.min", 
-    "grapesjs-script-editor.min", 
-    "grapesjs-shape-divider.min", 
-    "grapesjs-table.min", 
-    "grapesjs-touch.min", 
-    "jquery.slim.min", 
+    /*"grapesjs-blocks-bootstrap4", 
+    "grapesjs-blocks-flexbox", 
+    "grapesjs-code-editor", */
+    "grapesjs-component-code-editor", 
+    /*"grapesjs-custom-code", 
+    "grapesjs-echarts", 
+    "grapesjs-ga", 
+    "grapesjs-navbar", 
+    "grapesjs-page-break",  */
+    "grapesjs-parser-postcss", 
+    /* "grapesjs-plugin-actions", 
+    "grapesjs-plugin-carousel", 
+    "grapesjs-plugin-export", 
+    "grapesjs-plugin-forms", 
+    "grapesjs-plugin-header", 
+    "grapesjs-rte-extensions", 
+    "grapesjs-rulers", 
+    "grapesjs-script-editor", 
+    "grapesjs-shape-divider", 
+    "grapesjs-table", 
+    "grapesjs-touch", 
+    "jquery.slim", 
     "nocode", 
-    "popper.min" */
+    "popper" */
     ],
     pluginsOpts: {
       'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }, 
+      'grapesjs-component-code-editor': {
+        openState: { pn: '500px', cv: 'calc( 100% - 500px)' }, 
+        closedState: { pn: '200px', cv: 'calc( 100% - 200px)' }, 
+        //clearData: true, 
+        codeViewOptions: { 
+          codeName: 'htmlmixed', 
+          autoBeautify: true,
+          autoCloseTags: true,
+          autoCloseBrackets: true,
+          lineWrapping: true,
+          styleActiveLine: true,
+          smartIndent: true,
+          indentWithTabs: true
+        }
+      }, 
       'grapesjs-rte-extensions': {
         // default options
         base: {
@@ -218,6 +233,23 @@ function initNoCodeEditor(){
     attributes: { title: 'Save Design', id:'saveButton' },
     active: false,
   });
+
+  const pn = editor.Panels;
+  const panelViews = pn.addPanel({
+    id: "views"
+  });
+  panelViews.get("buttons").add([
+    {
+      attributes: {
+        title: "Open Code"
+      },
+      className: "fa fa-file-code-o",
+      command: "open-code",
+      togglable: false, //do not close when button is clicked again
+      id: "open-code"
+    }
+  ]);
+
 
 
   /* -------------------------------------------------------

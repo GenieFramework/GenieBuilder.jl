@@ -504,3 +504,7 @@ button.gjs-btn-prim{
     /* max-width: 600px; */
     flex-wrap: inherit;
 }
+
+.CodeMirror {
+    font-size: 13px !important;
+}
