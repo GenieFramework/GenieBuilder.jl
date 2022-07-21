@@ -59,6 +59,8 @@ function initNoCodeEditor(){
     "jquery.slim", 
     "nocode", 
     "popper" */
+    "grapesjs-style-filter", 
+    "grapesjs-style-bg"
     ],
     pluginsOpts: {
       'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }, 
@@ -137,6 +139,9 @@ function initNoCodeEditor(){
     storageManager: { autoload: 0, type: 'onChange' },
   }); // End of "grapesjs.init()" 
   editor.setStyle("body { background-color: unset}");
+
+  editor.StyleManager.addProperty('extra', { extend: 'filter' });
+  editor.StyleManager.addProperty('extra', { extend: 'filter', property: 'backdrop-filter' });
 
   editor.on('load', () => {
     console.log( "manage non-removable items");
