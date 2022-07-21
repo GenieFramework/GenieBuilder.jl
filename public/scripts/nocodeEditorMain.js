@@ -60,7 +60,8 @@ function initNoCodeEditor(){
     "nocode", 
     "popper" */
     "grapesjs-style-filter", 
-    "grapesjs-style-bg"
+    "grapesjs-style-bg", 
+    "grapesjs-tooltip"
     ],
     pluginsOpts: {
       'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }, 
