@@ -7,7 +7,7 @@ These are loaded inside the editor's canvas iframe
 
 q-slider, q-range, q-select, q-table, q-checkbox, q-input, q-date, q-btn, q-expansion-item, plotly, 
 
-q-avatar, q-badge, q-banner, q-button-dropdown, q-button-group, q-button, q-chip, q-editor, q-icon, q-item, q-knob, q-list, q-popup-proxy, q-radio, q-rating, q-separator, q-space, q-spinner, q-time, q-timeline-entry, q-timeline, q-toggle, q-toolbar, q-tree, q-video
+q-avatar, q-badge, q-banner, q-button-dropdown, q-button-group, q-button, q-chip, q-editor, q-icon, q-item, q-item-label, q-knob, q-list, q-popup-proxy, q-radio, q-rating, q-separator, q-space, q-spinner, q-time, q-timeline-entry, q-timeline, q-toggle, q-toolbar, q-tree, q-img, q-video, audio
 {
   background: #f0f0f0;
   position: relative;
@@ -29,11 +29,12 @@ q-badge{   background-image: url(../images/icons/components/ui_components/badge.
 q-banner{   background-image: url(../images/icons/components/ui_components/banner.png); }
 q-button-dropdown{   background-image: url(../images/icons/components/ui_components/button-dropdown.png); }
 q-button-group{   background-image: url(../images/icons/components/ui_components/button-group.png); }
-q-button{   background-image: url(../images/icons/components/ui_components/button.png); }
+q-btn{   background-image: url(../images/icons/components/ui_components/button.png); }
 q-chip{   background-image: url(../images/icons/components/ui_components/chip.png); }
 q-editor{   background-image: url(../images/icons/components/ui_components/editor.png); }
 q-icon{   background-image: url(../images/icons/components/ui_components/icon.png); }
 q-item{   background-image: url(../images/icons/components/ui_components/item.png); }
+q-item-label{   background-image: url(../images/icons/components/ui_components/list-item-label.png); }
 q-knob{   background-image: url(../images/icons/components/ui_components/knob.png); }
 q-list{   background-image: url(../images/icons/components/ui_components/list.png); }
 q-popup-proxy{   background-image: url(../images/icons/components/ui_components/popup-proxy.png); }
@@ -48,10 +49,12 @@ q-timeline{   background-image: url(../images/icons/components/ui_components/tim
 q-toggle{   background-image: url(../images/icons/components/ui_components/toggle.png); }
 q-toolbar{   background-image: url(../images/icons/components/ui_components/toolbar.png); }
 q-tree{   background-image: url(../images/icons/components/ui_components/tree.png); }
+q-img{   background-image: url(../images/icons/components/ui_components/img.png); }
 q-video{   background-image: url(../images/icons/components/ui_components/video.png); }
+audio{   background-image: url(../images/icons/components/default.png); }
 
 /* q-avatar img, q-badge img, q-banner img, q-button-dropdown img, q-button-group img, q-button img, q-chip img, q-editor img, q-icon img, q-item img, q-knob img, q-list img, q-popup-proxy img, q-radio img, q-rating img, q-separator img, q-space img, q-spinner img, q-time img, q-timeline-entry img, q-timeline img, q-toggle img, q-toolbar img, q-tree img, q-video img */
-q-slider img, q-range img, q-select img, q-checkbox img, q-input img, q-date img, q-btn img, q-expansion-item img
+q-slider img, q-range img, q-select img, q-checkbox img, q-input img, q-date img, q-expansion-item img
 {
   max-height: 30px;
   max-width: 30px;

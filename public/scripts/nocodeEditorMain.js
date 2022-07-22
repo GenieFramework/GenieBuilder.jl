@@ -5,7 +5,7 @@ window.autorun = false;
 window.unsavedChanges = false;
 
 const customPlugins = [ myNewComponentTypes, 
-  customblock_quasar_avatar, customblock_quasar_badge, customblock_quasar_banner, customblock_quasar_button_dropdown, customblock_quasar_button_group, customblock_quasar_button, customblock_quasar_chip, customblock_quasar_editor, customblock_quasar_icon, customblock_quasar_item, customblock_quasar_knob, customblock_quasar_list, customblock_quasar_popup_proxy, customblock_quasar_radio, customblock_quasar_rating, customblock_quasar_separator, customblock_quasar_space, customblock_quasar_spinner, customblock_quasar_time, customblock_quasar_timeline_entry, customblock_quasar_timeline, customblock_quasar_toggle, customblock_quasar_toolbar, customblock_quasar_tree, customblock_quasar_video
+  customblock_quasar_avatar, customblock_quasar_badge, customblock_quasar_banner, customblock_quasar_chip, customblock_quasar_icon, customblock_quasar_item, customblock_quasar_list, customblock_quasar_popup_proxy, customblock_quasar_rating, customblock_quasar_spinner, customblock_quasar_timeline_entry, customblock_quasar_timeline, customblock_quasar_toggle, customblock_quasar_tree
 ];
 
 function initNoCodeEditor(){
