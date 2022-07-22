@@ -255,10 +255,16 @@ function create(name, path, port)
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
 
-
   app = Application(; name, path, port, replport = valid_replport())
   persist_status(app, :creating)
-  app = save!(app)
+
+  try
+    app = save!(app)
+  catch ex
+    @error(ex)
+    notify("failed:create_app", nothing, FAILSTATUS, ERROR_STATUS)
+    return (:error => ex)
+  end
 
   # make sure apps/ folder exists
 
@@ -270,9 +276,26 @@ function create(name, path, port)
     isdir(path) || mkdir(path)
     cd(path)
 
-    Base.Threads.@spawn begin
-      new_app_path = joinpath(path, name)
+    new_app_path = joinpath(path, name)
+    if isdir(new_app_path) && ! isempty(readdir(new_app_path))
+      if isfile(joinpath(new_app_path, "routes.jl"))
+        @error("An application already exists at $new_app_path and looks like a Genie app -- importing app instead")
+        persist_status(app, OFFLINE_STATUS)
+        notify("ended:import_app", app.id)
+        notify("ended:create_app", app.id)
 
+        return output |> json
+      else
+        ex = "$new_app_path app directory already exists and is not empty -- exiting"
+        @error(ex)
+        delete(app)
+        SearchLight.delete(app)
+        notify("failed:create_app", app.id, FAILSTATUS, ERROR_STATUS)
+        error(ex)
+      end
+    end
+
+    Base.Threads.@spawn begin
       try
         cmd = Cmd(`julia --project -e "using Genie;Genie.Generator.newapp(\"$(name)\", autostart = false, interactive = false)"`; dir = path)
         cmd |> run
@@ -304,7 +327,9 @@ function create(name, path, port)
   output |> json
 end
 
-function persist_status(app, status) :: Bool
+function persist_status(app::Union{Application,Nothing}, status) :: Bool
+  app === nothing && return false
+
   app.status = string(status)
 
   try
@@ -384,7 +409,7 @@ function start(app)
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
         cmd = Cmd(`julia -e "using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();up(async = false)"`; dir = fullpath(app))
-        cmd = addenv(cmd, "PORT" => app.port, "WSEXPPORT" => app.port, "CHANNEL__" => app.channel)
+        cmd = addenv(cmd, "PORT" => app.port, "WSEXPPORT" => app.port, "CHANNEL__" => app.channel, "GENIE_ENV" => "dev")
         cmd |> run
       catch ex
         @error ex

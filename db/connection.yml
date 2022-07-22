@@ -4,3 +4,8 @@ dev:
   adapter:  SQLite
   database: db/client.sqlite3
   config:
+
+prod:
+  adapter:  SQLite
+  database: db/client.sqlite3
+  config:
