@@ -23,14 +23,14 @@ function initNoCodeEditor(){
     "change-styles-html", 
     "grapes.min", 
     */
-    "grapesjs-blocks-avance", 
-    "grapesjs-blocks-basic", 
+    /* "grapesjs-blocks-avance",  */
+    /* "grapesjs-blocks-basic",  */
     /* "grapesjs-echarts",  */
     "grapesjs-ga", 
-    "grapesjs-navbar", 
-    "grapesjs-page-break", 
+    /* "grapesjs-navbar", 
+    "grapesjs-page-break",  */
 
-    "grapesjs-plugin-forms", 
+    /* "grapesjs-plugin-forms",  */
     "grapesjs-plugin-header", 
     "grapesjs-rte-extensions", 
     "grapesjs-rulers", 
@@ -61,7 +61,7 @@ function initNoCodeEditor(){
     "popper" */
     "grapesjs-style-filter", 
     "grapesjs-style-bg", 
-    "grapesjs-tooltip"
+    /* "grapesjs-tooltip" */
     ],
     pluginsOpts: {
       'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }, 
