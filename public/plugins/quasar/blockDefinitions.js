@@ -75,7 +75,7 @@
                 }
             },
         });
-        editor.BlockManager.add('avatar', { label: 'avatar', content: '<q-avatar />', media: '<img src="images/icons/components/ui_components/avatar.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('avatar', { label: 'Avatar', content: '<q-avatar />', media: '<img src="images/icons/components/ui_components/avatar.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -165,7 +165,7 @@
                 }
             },
         });
-        editor.BlockManager.add('badge', { label: 'badge', content: '<q-badge />', media: '<img src="images/icons/components/ui_components/badge.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('badge', { label: 'Badge', content: '<q-badge />', media: '<img src="images/icons/components/ui_components/badge.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -230,7 +230,7 @@
                 }
             },
         });
-        editor.BlockManager.add('banner', { label: 'banner', content: '<q-banner />', media: '<img src="images/icons/components/ui_components/banner.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('banner', { label: 'Banner', content: '<q-banner />', media: '<img src="images/icons/components/ui_components/banner.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -430,7 +430,7 @@
                 }
             },
         });
-        editor.BlockManager.add('chip', { label: 'chip', content: '<q-chip />', media: '<img src="images/icons/components/ui_components/chip.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('chip', { label: 'Chip', content: '<q-chip />', media: '<img src="images/icons/components/ui_components/chip.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
      
@@ -507,7 +507,7 @@
                 }
             },
         });
-        editor.BlockManager.add('icon', { label: 'icon', content: '<q-icon />', media: '<img src="images/icons/components/ui_components/icon.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('icon', { label: 'Icon', content: '<q-icon />', media: '<img src="images/icons/components/ui_components/icon.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -637,7 +637,7 @@
                 }
             },
         });
-        editor.BlockManager.add('item', { label: 'item', content: '<q-item />', media: '<img src="images/icons/components/ui_components/item.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('item', { label: 'Item', content: '<q-item />', media: '<img src="images/icons/components/ui_components/item.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -709,7 +709,7 @@
                 }
             },
         });
-        editor.BlockManager.add('list', { label: 'list', content: '<q-list />', media: '<img src="images/icons/components/ui_components/list.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('list', { label: 'List', content: '<q-list />', media: '<img src="images/icons/components/ui_components/list.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -779,7 +779,7 @@
                 }
             },
         });
-        editor.BlockManager.add('popup-proxy', { label: 'popup-proxy', content: '<q-popup-proxy />', media: '<img src="images/icons/components/ui_components/popup-proxy.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('popup-proxy', { label: 'Popup Proxy', content: '<q-popup-proxy />', media: '<img src="images/icons/components/ui_components/popup-proxy.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
       
@@ -896,7 +896,7 @@
                 }
             },
         });
-        editor.BlockManager.add('rating', { label: 'rating', content: '<q-rating />', media: '<img src="images/icons/components/ui_components/rating.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('rating', { label: 'Rating', content: '<q-rating />', media: '<img src="images/icons/components/ui_components/rating.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -962,7 +962,7 @@
                 }
             },
         });
-        editor.BlockManager.add('spinner', { label: 'spinner', content: '<q-spinner />', media: '<img src="images/icons/components/ui_components/spinner.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('spinner', { label: 'Spinner', content: '<q-spinner />', media: '<img src="images/icons/components/ui_components/spinner.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
        
@@ -1054,7 +1054,7 @@
                 }
             },
         });
-        editor.BlockManager.add('timeline-entry', { label: 'timeline-entry', content: '<q-timeline-entry />', media: '<img src="images/icons/components/ui_components/timeline-entry.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('timeline-entry', { label: 'Timeline Entry', content: '<q-timeline-entry />', media: '<img src="images/icons/components/ui_components/timeline-entry.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -1119,7 +1119,7 @@
                 }
             },
         });
-        editor.BlockManager.add('timeline', { label: 'timeline', content: '<q-timeline />', media: '<img src="images/icons/components/ui_components/timeline.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('timeline', { label: 'Timeline', content: '<q-timeline />', media: '<img src="images/icons/components/ui_components/timeline.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -1274,7 +1274,7 @@
                 }
             },
         });
-        editor.BlockManager.add('toggle', { label: 'toggle', content: '<q-toggle />', media: '<img src="images/icons/components/ui_components/toggle.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('toggle', { label: 'Toggle', content: '<q-toggle />', media: '<img src="images/icons/components/ui_components/toggle.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     
@@ -1442,7 +1442,7 @@
                 }
             },
         });
-        editor.BlockManager.add('tree', { label: 'tree', content: '<q-tree />', media: '<img src="images/icons/components/ui_components/tree.png" class="blockIcon" />', category: 'Quasar' });
+        editor.BlockManager.add('tree', { label: 'Tree', content: '<q-tree />', media: '<img src="images/icons/components/ui_components/tree.png" class="blockIcon" />', category: 'Quasar' });
     }    
 
     

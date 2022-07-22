@@ -169,36 +169,36 @@ const myNewComponentTypes = editor => {
       },
     });
 
-    editor.BlockManager.add( '1 Column', { label: '1 Column row', content: `<div class="row"><div class="col col-12 col-sm"></div></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '2 Column', { label: '2 Columns row', content: `<div class="row"><div class="col col-6 col-sm"></div><div class="col col-6 col-sm"></div></div>`, media: `<img src="images/icons/components/ui_components/2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '3 Column', { label: '3 Columns row', content: `<div class="row"><div class="col col-4 col-sm"></div><div class="col col-4 col-sm"></div><div class="col col-4 col-sm"></div></div>`, media: `<img src="images/icons/components/ui_components/3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '1 Column', { label: '1 Column row', content: `<div class="row"><div class="col col-12 col-sm">Column content</div></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '2 Column', { label: '2 Columns row', content: `<div class="row"><div class="col col-6 col-sm">Column 1 content</div><div class="col col-6 col-sm">Column 2 content</div></div>`, media: `<img src="images/icons/components/ui_components/2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '3 Column', { label: '3 Columns row', content: `<div class="row"><div class="col col-4 col-sm">Column 1 content</div><div class="col col-4 col-sm">Column 2 content</div><div class="col col-4 col-sm">Column 3 content</div></div>`, media: `<img src="images/icons/components/ui_components/3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
-    editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col col-12 col-sm st-module"></div>`, media: `<img src="images/icons/components/ui_components/container.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col col-12 col-sm st-module">Column content</div>`, media: `<img src="images/icons/components/ui_components/container.png" class="blockIcon"/>`, category: 'Layout'   }); 
     
     
     editor.BlockManager.add( 'Sidebar Left', { label: 'Sidebar Left', content: `<header class="st-header q-pa-sm">
           <h1 class="st-header__title text-h3">Header Text</h1>
       </header>
       <div class="row">
-          <div class="col col-3"></div>
-          <div class="col"></div>
+          <div class="col col-3">Column 1 content</div>
+          <div class="col">Column 2 content</div>
       </div>`, media: `<img src="images/icons/components/ui_components/sidebar_left.png" class="blockIcon"/>`, category: 'Layout'   }); 
     
     editor.BlockManager.add( 'Sidebar Right', { label: 'Sidebar Right', content: `<header class="st-header q-pa-sm">
           <h1 class="st-header__title text-h3">Header Text</h1>
       </header>
       <div class="row">
-        <div class="col"></div>
-        <div class="col col-3"></div>
+        <div class="col">Column 1 content</div>
+        <div class="col col-3">Column 2 content</div>
       </div>`, media: `<img src="images/icons/components/ui_components/sidebar_right.png" class="blockIcon"/>`, category: 'Layout'   }); 
     
     editor.BlockManager.add( 'Sidebars', { label: '2 Sidebars', content: `<header class="st-header q-pa-sm">
           <h1 class="st-header__title text-h3">Header Text</h1>
       </header>
       <div class="row">
-          <div class="col col-3"></div>
-          <div class="col"></div>
-          <div class="col col-3"></div>
+          <div class="col col-3">Column 1 content</div>
+          <div class="col">Column 2 content</div>
+          <div class="col col-3">Column 3 content</div>
       </div>`, media: `<img src="images/icons/components/ui_components/sidebars.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
     
@@ -390,7 +390,7 @@ const myNewComponentTypes = editor => {
           }
       },
   });
-  editor.BlockManager.add('separator', { label: 'separator', content: '<q-separator />', media: '<img src="images/icons/components/ui_components/separator.png" class="blockIcon" />', category: 'Content' });
+  editor.BlockManager.add('separator', { label: 'Separator', content: '<q-separator />', media: '<img src="images/icons/components/ui_components/separator.png" class="blockIcon" />', category: 'Content' });
 
 
 
@@ -437,7 +437,7 @@ const myNewComponentTypes = editor => {
               }
           },
       });
-      editor.BlockManager.add('space', { label: 'space', content: '<q-space />', media: '<img src="images/icons/components/ui_components/space.png" class="blockIcon" />', category: 'Content' });
+      editor.BlockManager.add('space', { label: 'Space', content: '<q-space />', media: '<img src="images/icons/components/ui_components/space.png" class="blockIcon" />', category: 'Content' });
 
 
 
@@ -486,7 +486,7 @@ const myNewComponentTypes = editor => {
             }
         },
     });
-    editor.BlockManager.add('toolbar', { label: 'toolbar', content: '<q-toolbar />', media: '<img src="images/icons/components/ui_components/toolbar.png" class="blockIcon" />', category: 'Content' });
+    editor.BlockManager.add('toolbar', { label: 'Toolbar', content: '<q-toolbar />', media: '<img src="images/icons/components/ui_components/toolbar.png" class="blockIcon" />', category: 'Content' });
   
 
 
@@ -1087,7 +1087,7 @@ const myNewComponentTypes = editor => {
           }
       },
   });
-  editor.BlockManager.add('radio', { label: 'radio', content: '<q-radio />', media: '<img src="images/icons/components/ui_components/radio.png" class="blockIcon" />', category: 'Forms' });
+  editor.BlockManager.add('radio', { label: 'Radio', content: '<q-radio />', media: '<img src="images/icons/components/ui_components/radio.png" class="blockIcon" />', category: 'Forms' });
 
 
 
@@ -2808,7 +2808,7 @@ editor.BlockManager.add('quasarItemLabel', { label: 'ListItem Label', content: '
           }
       },
   });
-  editor.BlockManager.add('video', { label: 'video', content: '<q-video />', media: '<img src="images/icons/components/ui_components/video.png" class="blockIcon" />', category: 'Multimedia' });
+  editor.BlockManager.add('video', { label: 'Video', content: '<q-video />', media: '<img src="images/icons/components/ui_components/video.png" class="blockIcon" />', category: 'Multimedia' });
 
     
     /* 
