@@ -22,7 +22,7 @@ Stipple = "4acbeb90-81a0-11ea-1966-bdaff8155998"
 [compat]
 Genie = "5"
 GenieAutoReload = "2"
-GenieDevTools = "1"
+GenieDevTools = "1, 0.1"
 GenieSession = "1"
 GenieSessionFileSession = "1"
 HTTP = "0.9"
