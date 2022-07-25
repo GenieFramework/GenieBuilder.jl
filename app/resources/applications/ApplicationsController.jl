@@ -76,18 +76,19 @@ function postcreate(path) :: Nothing
   model_name = "AppModel"
   current_path = pwd()
 
-  pkgcmd = "add"
   branch = "Geniev5"
-  cmd = Cmd(`julia -e  "using Pkg;
+  cmd = Cmd(`julia -e  "
+              using Pkg;
               Pkg.activate(\".\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/Genie.jl\", rev=\"v5\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieSession.jl\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieSessionFileSession.jl\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieAutoReload.jl\", rev=\"$(branch)\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/Stipple.jl\", rev=\"$(branch)\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StippleUI.jl\", rev=\"$(branch)\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/StipplePlotly.jl\", rev=\"$(branch)\");
-              Pkg.$(pkgcmd)(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");
+              Pkg.update();
+              Pkg.add(Pkg.PackageSpec(;name=\"Genie\", version=\"5\"));
+              Pkg.add(\"GenieSession\");
+              Pkg.add(url=\"https://github.com/GenieFramework/GenieSessionFileSession.jl\");
+              Pkg.add(Pkg.PackageSpec(;name=\"GenieAutoReload\", version=\"2\"));
+              Pkg.add(url=\"https://github.com/GenieFramework/Stipple.jl\", rev=\"$(branch)\");
+              Pkg.add(url=\"https://github.com/GenieFramework/StippleUI.jl\", rev=\"$(branch)\");
+              Pkg.add(url=\"https://github.com/GenieFramework/StipplePlotly.jl\", rev=\"$(branch)\");
+              Pkg.add(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");
   "`; dir = path) # TODO: remove these after Genie 5 release
   cmd |> run
 
