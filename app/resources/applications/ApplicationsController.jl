@@ -4,6 +4,7 @@ import GenieBuilder
 
 using GenieBuilder.Applications
 using SearchLight
+using Genie
 using Genie.Router
 using Genie.Renderers.Json
 using Genie.Requests
@@ -127,6 +128,9 @@ function postcreate(path) :: Nothing
     using GenieAutoReload
 
     if ( Genie.Configuration.isdev() )
+      Genie.config.log_to_file = true
+      Genie.Logger.initialize_logging()
+
       GenieDevTools.register_routes()
       Stipple.deps!(GenieAutoReload, GenieAutoReload.deps)
       autoreload(pwd())
@@ -170,6 +174,7 @@ function postcreate(path) :: Nothing
   open("routes.jl", "w") do io
     write(io,
     """
+    using Genie
     using Stipple
     using StippleUI
     using StipplePlotly
@@ -178,6 +183,10 @@ function postcreate(path) :: Nothing
     using Stipple.ModelStorage.Sessions
 
     using Base.Main.UserApp.$(model_name)s
+
+    if Genie.Configuration.isprod()
+      Genie.Assets.assets_config!([Genie, Stipple, StippleUI, StipplePlotly], host = "https://cdn.statically.io/gh/GenieFramework")
+    end
 
     Page("/", view = "views/hello.jl.html",
               layout = "layouts/app.jl.html",
@@ -543,6 +552,17 @@ function purge(app)
   (:status => status) |> json
 end
 
+function uuid()
+  (:uuid => Genie.Secrets.secret_token()[end-11:end]) |> json
+end
+
+function logs()
+  Dict(
+    :logs_folder => Genie.config.path_log,
+    :last_log => joinpath(Genie.config.path_log, Genie.Logger.default_log_name())
+  ) |> json
+end
+
 function json2json(res)
   String(res.body) |> JSON3.read |> json
 end
@@ -724,6 +744,30 @@ function reset_app_status()
     catch ex
       @error ex
     end
+  end
+end
+
+function subscribe()
+  try
+    Genie.WebChannels.subscribe(params(:WS_CLIENT), "geniebuilder")
+    (:status => OKSTATUS) |> JSON3.write
+  catch ex
+    Dict(
+      :status => FAILSTATUS,
+      :error => ex
+    ) |> JSON3.write
+  end
+end
+
+function unsubscribe()
+  try
+    Genie.WebChannels.unsubscribe(params(:WS_CLIENT), "geniebuilder")
+    (:status => OKSTATUS) |> JSON3.write
+  catch ex
+    Dict(
+      :status => FAILSTATUS,
+      :error => ex
+    ) |> JSON3.write
   end
 end
 

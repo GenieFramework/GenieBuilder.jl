@@ -20,7 +20,7 @@ SearchLightSQLite = "21a827c4-482a-11ea-3a19-4d2243a4a2c5"
 Stipple = "4acbeb90-81a0-11ea-1966-bdaff8155998"
 
 [compat]
-Genie = "5"
+Genie = "5.1"
 GenieAutoReload = "2"
 GenieDevTools = "1"
 GenieSession = "1"

@@ -98,12 +98,20 @@ function routes()
     port
   end
 
+  route("/geniebuilder/uuid") do
+    ApplicationsController.uuid()
+  end
+
+  route("/geniebuilder/logs") do
+    ApplicationsController.logs()
+  end
+
   channel("/geniebuilder/subscribe") do
-    Genie.WebChannels.subscribe(params(:WS_CLIENT), "geniebuilder")
+    ApplicationsController.subscribe()
   end
 
   channel("/geniebuilder/unsubscribe") do
-    Genie.WebChannels.unsubscribe(params(:WS_CLIENT), "geniebuilder")
+    ApplicationsController.unsubscribe()
   end
 
   channel("/geniebuilder/stop") do
