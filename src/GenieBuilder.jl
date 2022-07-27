@@ -7,6 +7,7 @@ const APPS_FOLDER = Ref{String}("")
 const DB_FOLDER = Ref{String}("")
 const DB_NAME = Ref{String}("")
 const DB_CONFIG_FILE = Ref{String}("")
+const LOG_FOLDER = Ref{String}("")
 
 function __init__()
   GBDIR[] = pwd()
@@ -15,6 +16,8 @@ function __init__()
   DB_NAME[] = "client.sqlite3"
   DB_CONFIG_FILE[] = "connection.yml"
   Genie.config.server_document_root = abspath(joinpath(@__DIR__, "..", "public"))
+  LOG_FOLDER[] = joinpath(GBDIR[], "log")
+  Genie.config.path_log = LOG_FOLDER[]
 end
 
 function main()
@@ -41,27 +44,32 @@ end
 
 function postinstall()
   cd(normpath(joinpath(@__DIR__, "..")))
-  Genie.Generator.write_secrets_file()
+  isfile(joinpath(pwd(), Genie.config.path_config, Genie.Secrets.SECRETS_FILE_NAME)) || Genie.Generator.write_secrets_file()
+
+  isdir(LOG_FOLDER[]) || mkpath(LOG_FOLDER[])
 
   dbpath = normpath(joinpath(".", "db"))
   ispath(dbpath) ? chmod(dbpath, 0o775; recursive = true) : @warn("db path $dbpath does not exist")
 
   isdir(DB_FOLDER[]) || mkdir(DB_FOLDER[])
-  cp(joinpath(dbpath, DB_NAME[]), joinpath(DB_FOLDER[], DB_NAME[]))
-  open(joinpath(DB_FOLDER[], DB_CONFIG_FILE[]), "w") do io
-    write(io, """
-      env: ENV["GENIE_ENV"]
+  isfile(joinpath(DB_FOLDER[], DB_NAME[])) || cp(joinpath(dbpath, DB_NAME[]), joinpath(DB_FOLDER[], DB_NAME[]))
 
-      dev:
-        adapter:  SQLite
-        database: $(DB_FOLDER[])/client.sqlite3
-        config:
+  if ! isfile(joinpath(DB_FOLDER[], DB_CONFIG_FILE[]))
+    open(joinpath(DB_FOLDER[], DB_CONFIG_FILE[]), "w") do io
+      write(io, """
+        env: ENV["GENIE_ENV"]
 
-      prod:
-        adapter:  SQLite
-        database: $(DB_FOLDER[])/client.sqlite3
-        config:
-    """)
+        dev:
+          adapter:  SQLite
+          database: $(DB_FOLDER[])/client.sqlite3
+          config:
+
+        prod:
+          adapter:  SQLite
+          database: $(DB_FOLDER[])/client.sqlite3
+          config:
+      """)
+    end
   end
 end
 

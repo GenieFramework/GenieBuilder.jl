@@ -94,9 +94,6 @@ function postcreate(path) :: Nothing
 
   cd(path)
 
-  # TODO: remove this after Genie 5 release
-  isfile(joinpath(Genie.config.path_initializers, "ssl.jl")) && rm(joinpath(Genie.config.path_initializers, "ssl.jl"))
-
   # TODO: Logger errors out for some reason
   open(joinpath(Genie.config.path_initializers, "logging.jl"), "w") do io
     write(io,
