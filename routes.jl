@@ -119,9 +119,14 @@ function routes()
   end
 end
 
+function ready()
+  ApplicationsController.ready()
+end
+
 function main()
   ApplicationsController.reset_app_status()
   routes()
+  ready()
 end
 
 main()

@@ -8,6 +8,7 @@ const DB_FOLDER = Ref{String}("")
 const DB_NAME = Ref{String}("")
 const DB_CONFIG_FILE = Ref{String}("")
 const LOG_FOLDER = Ref{String}("")
+const RUN_STATUS = Ref{Symbol}() # :install or :update
 
 function __init__()
   GBDIR[] = pwd()
@@ -30,6 +31,8 @@ function main()
 end
 
 function go()
+  RUN_STATUS[] = ENV["RUN_STATUS"] |> Symbol
+
   cd(normpath(@__DIR__, ".."))
   Genie.go()
   try

@@ -771,4 +771,16 @@ function unsubscribe()
   end
 end
 
+function ready() :: Nothing
+  @info "GenieBuilder ready! RUN_STATUS = $(GenieBuilder.RUN_STATUS[])"
+
+  notify("ended:gbstart", nothing)
+  GenieBuilder.RUN_STATUS[] == :install && @async begin
+    sleep(20)
+    notify("terms:show", nothing)
+  end
+
+  nothing
+end
+
 end
