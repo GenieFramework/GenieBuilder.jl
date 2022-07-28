@@ -31,7 +31,12 @@ function main()
 end
 
 function go()
-  RUN_STATUS[] = ENV["RUN_STATUS"] |> Symbol
+  if haskey(ENV, "RUN_STATUS")
+    RUN_STATUS[] = ENV["RUN_STATUS"] |> Symbol
+  else
+    @error "RUN_STATUS ENV was not set"
+    ENV["RUN_STATUS"] = RUN_STATUS[] = :install
+  end
 
   cd(normpath(@__DIR__, ".."))
   Genie.go()
