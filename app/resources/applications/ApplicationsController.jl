@@ -77,17 +77,17 @@ function postcreate(path) :: Nothing
   model_name = "AppModel"
   current_path = pwd()
 
-  cmd = Cmd(`julia -e  "
+  cmd = Cmd(`julia -e '
               using Pkg;
-              Pkg.activate(\".\");
+              Pkg.activate(".");
               Pkg.update();
-              Pkg.add(Pkg.PackageSpec(;name=\"Genie\", version=\"5\"));
-              Pkg.add(Pkg.PackageSpec(;name=\"GenieAutoReload\", version=\"2\"));
-              Pkg.add(Pkg.PackageSpec(;name=\"Stipple\", version=\"0.25\"));
-              Pkg.add(Pkg.PackageSpec(;name=\"StippleUI\", version=\"0.20\"));
-              Pkg.add(Pkg.PackageSpec(;name=\"StipplePlotly\", version=\"0.13\"));
-              Pkg.add(Pkg.PackageSpec(;name=\"GenieDevTools\", version=\"1\"));
-  "`; dir = path)
+              Pkg.add(Pkg.PackageSpec(;name="Genie", version="5"));
+              Pkg.add(Pkg.PackageSpec(;name="GenieAutoReload", version="2"));
+              Pkg.add(Pkg.PackageSpec(;name="Stipple", version="0.25"));
+              Pkg.add(Pkg.PackageSpec(;name="StippleUI", version="0.20"));
+              Pkg.add(Pkg.PackageSpec(;name="StipplePlotly", version="0.13"));
+              Pkg.add(Pkg.PackageSpec(;name="GenieDevTools", version="1"));
+  '`; dir = path)
   cmd |> run
 
   cd(path)
