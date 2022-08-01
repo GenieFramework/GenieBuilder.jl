@@ -1,5 +1,9 @@
 # GenieCloud backend
 
+This is the backend (web service) powering the GenieBuilder VSCode plugin. Unless you want to contribute to the backend, this repo is not what you want. 
+
+If you want to install the GenieBuilder VSCode plugin, please visit the VSCode marketplace or use this link to install it: https://marketplace.visualstudio.com/items?itemName=GenieBuilder.geniebuilder
+
 ## Install
 
 * Clone the repository
