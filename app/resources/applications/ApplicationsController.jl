@@ -77,20 +77,17 @@ function postcreate(path) :: Nothing
   model_name = "AppModel"
   current_path = pwd()
 
-  branch = "Geniev5"
-  cmd = Cmd(`julia -e  "
+  cmd = Cmd(`julia -e '
               using Pkg;
-              Pkg.activate(\".\");
+              Pkg.activate(".");
               Pkg.update();
-              Pkg.add(Pkg.PackageSpec(;name=\"Genie\", version=\"5\"));
-              Pkg.add(\"GenieSession\");
-              Pkg.add(url=\"https://github.com/GenieFramework/GenieSessionFileSession.jl\");
-              Pkg.add(Pkg.PackageSpec(;name=\"GenieAutoReload\", version=\"2\"));
-              Pkg.add(url=\"https://github.com/GenieFramework/Stipple.jl\", rev=\"$(branch)\");
-              Pkg.add(url=\"https://github.com/GenieFramework/StippleUI.jl\", rev=\"$(branch)\");
-              Pkg.add(url=\"https://github.com/GenieFramework/StipplePlotly.jl\", rev=\"$(branch)\");
-              Pkg.add(url=\"https://github.com/GenieFramework/GenieDevTools.jl\");
-  "`; dir = path) # TODO: remove these after Genie 5 release
+              Pkg.add(Pkg.PackageSpec(;name="Genie", version="5"));
+              Pkg.add(Pkg.PackageSpec(;name="GenieAutoReload", version="2"));
+              Pkg.add(Pkg.PackageSpec(;name="Stipple", version="0.25"));
+              Pkg.add(Pkg.PackageSpec(;name="StippleUI", version="0.20"));
+              Pkg.add(Pkg.PackageSpec(;name="StipplePlotly", version="0.13"));
+              Pkg.add(Pkg.PackageSpec(;name="GenieDevTools", version="1"));
+  '`; dir = path)
   cmd |> run
 
   cd(path)
