@@ -266,6 +266,64 @@ function initNoCodeEditor(){
     }
   ]);
 
+  let editPanel = null;
+  const panelViewsContainer = pn.addPanel({
+    id: "viewsContainer"
+  });
+  panelViews.get("buttons").add([
+    {
+      attributes: {
+        title: "Props Editor"
+      },
+      className: "fa fa-file-code-o",
+      command: "open-props-editor",
+      togglable: false, //do not close when button is clicked again
+      id: "open-props-editor", 
+      command: {
+        run: function (editor) {
+            if(editPanel == null){
+                const editMenuDiv = document.createElement('div')
+                editMenuDiv.innerHTML = `
+                <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right">
+                    <div class="gn_title">Component Properties</div>
+                        <div class="gjs-trt-traits">
+                            <div v-for="trait in traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 10px;">
+                                <div class="gjs-label-wrp">
+                                    <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.id)}}</div>
+                                </div>
+                                <div class="gjs-field gjs-field-text">
+                                    <input type="text" class="gn_input" v-model="trait.value" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)">
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                </div>
+            `
+                /* editMenuDiv.innerHTML = `
+                <div id="your-content">
+                     Input: <input/>
+                     <button>Button</button> 
+                      <!-- eg. bind a click event on button and do something with GrapesJS API -->
+                </div>
+            ` */
+                const panels = pn.getPanel('views-container')
+                panels.set('appendContent', editMenuDiv).trigger('change:appendContent')
+                editPanel = editMenuDiv;
+                initTraitsEditor();
+            }
+            editPanel.style.display = 'block'
+        },
+        stop: function (editor) {
+            if(editPanel != null){
+                editPanel.style.display = 'none'
+            }
+        }
+
+    }
+    }
+  ]);
+
 
 
   /* -------------------------------------------------------
@@ -341,6 +399,8 @@ function initNoCodeEditor(){
   editor.on('component:selected', (model) => {
     // do stuff...
     console.log("component selected: ", model);
+    //window.traitsEditor.update( model.attributes.tagName );
+    window.traitsEditor.assignComponent( model );
     
     if( model.updateGenieModelProperties )
       model.updateGenieModelProperties(appConfiguration.modelFields);
