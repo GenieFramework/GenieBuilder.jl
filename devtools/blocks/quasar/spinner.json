@@ -1,9 +1,51 @@
 {
     "type": "spinner", 
-    "label": "spinner", 
+    "label": "Spinner", 
     "tagName": "Q-SPINNER", 
-    "category": "Quasar", 
+    "category": "Widgets", 
     "content": "<q-spinner />", 
     "media": "images/icons/components/ui_components/spinner.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"size","name":":size","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"thickness","name":":thickness","type":"text"}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "size",
+    "name": ":size",
+    "type": "String",
+    "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+    "category": "style",
+    "examples": [
+      "16px",
+      "2rem",
+      "xs",
+      "md"
+    ]
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "thickness",
+    "name": ":thickness",
+    "type": "Number",
+    "desc": "Override value to use for stroke-width",
+    "category": "style",
+    "examples": [
+      "2",
+      "5"
+    ]
+  }
+]
 }

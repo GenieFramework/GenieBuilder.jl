@@ -1,9 +1,81 @@
 {
     "type": "separator", 
-    "label": "separator", 
+    "label": "Separator", 
     "tagName": "Q-SEPARATOR", 
-    "category": "Quasar", 
+    "category": "Content", 
     "content": "<q-separator />", 
     "media": "images/icons/components/ui_components/separator.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"dark","name":":dark","type":"text"},{"label":"spaced","name":":spaced","type":"text"},{"label":"inset","name":":inset","type":"text"},{"label":"vertical","name":":vertical","type":"text"},{"label":"size","name":":size","type":"text"},{"label":"color","name":":color","type":"text"}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "dark",
+    "name": ":dark",
+    "type": "Boolean",
+    "desc": "Notify the component that the background is a dark color",
+    "category": "style"
+  },
+  {
+    "label": "spaced",
+    "name": ":spaced",
+    "type": [
+      "Boolean",
+      "String"
+    ],
+    "desc": "If set to true, the corresponding direction margins will be set to 8px; It can also be set to a size in CSS units, including unit name, or one of the xs|sm|md|lg|xl predefined sizes",
+    "category": "content",
+    "examples": [
+      "12px",
+      "sm",
+      "md"
+    ]
+  },
+  {
+    "label": "inset",
+    "name": ":inset",
+    "type": [
+      "Boolean",
+      "String"
+    ],
+    "desc": "If set to Boolean true, the left and right margins will be set to 16px. If set to 'item' then it will match a QItem's design. If set to 'item-thumbnail' then it will match the design of a QItem with a thumbnail on the left side",
+    "category": "content",
+    "examples": [
+      "item",
+      "item-thumbnail"
+    ]
+  },
+  {
+    "label": "vertical",
+    "name": ":vertical",
+    "type": "Boolean",
+    "desc": "If set to true, the separator will be vertical.",
+    "category": "content"
+  },
+  {
+    "label": "size",
+    "name": ":size",
+    "type": "String",
+    "desc": "Size in CSS units, including unit name",
+    "category": "style",
+    "examples": [
+      "16px",
+      "2rem"
+    ]
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  }
+]
 }

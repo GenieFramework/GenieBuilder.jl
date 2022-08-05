@@ -1,9 +1,242 @@
 {
     "type": "tree", 
-    "label": "tree", 
+    "label": "Tree", 
     "tagName": "Q-TREE", 
-    "category": "Quasar", 
+    "category": "Widgets", 
     "content": "<q-tree />", 
     "media": "images/icons/components/ui_components/tree.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"nodes","name":":nodes","type":"text"},{"label":"node-key","name":":node-key","type":"text"},{"label":"label-key","name":":label-key","type":"text"},{"label":"children-key","name":":children-key","type":"text"},{"label":"no-connectors","name":":no-connectors","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"control-color","name":":control-color","type":"text"},{"label":"text-color","name":":text-color","type":"text"},{"label":"selected-color","name":":selected-color","type":"text"},{"label":"dense","name":":dense","type":"text"},{"label":"dark","name":":dark","type":"text"},{"label":"icon","name":":icon","type":"text"},{"label":"tick-strategy","name":":tick-strategy","type":"text"},{"label":"ticked","name":":ticked","type":"text"},{"label":"expanded","name":":expanded","type":"text"},{"label":"selected","name":":selected","type":"text"},{"label":"no-selection-unset","name":":no-selection-unset","type":"text"},{"label":"default-expand-all","name":":default-expand-all","type":"text"},{"label":"accordion","name":":accordion","type":"text"},{"label":"filter","name":":filter","type":"text"},{"label":"filter-method","name":":filter-method","type":"text"},{"label":"duration","name":":duration","type":"text"},{"label":"no-nodes-label","name":":no-nodes-label","type":"text"},{"label":"no-results-label","name":":no-results-label","type":"text"}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "nodes",
+    "name": ":nodes",
+    "type": "Array",
+    "desc": "The array of nodes that designates the tree structure",
+    "category": "content",
+    "examples": [
+      "[ {...}, {...} ]"
+    ]
+  },
+  {
+    "label": "node-key",
+    "name": ":node-key",
+    "type": "String",
+    "desc": "The property name of each node object that holds a unique node id",
+    "category": "content",
+    "examples": [
+      "key",
+      "id"
+    ]
+  },
+  {
+    "label": "label-key",
+    "name": ":label-key",
+    "type": "String",
+    "desc": "The property name of each node object that holds the label of the node",
+    "category": "content",
+    "examples": [
+      "name",
+      "description"
+    ]
+  },
+  {
+    "label": "children-key",
+    "name": ":children-key",
+    "type": "String",
+    "desc": "The property name of each node object that holds the list of children of the node",
+    "category": "content",
+    "examples": [
+      "roles",
+      "relatives"
+    ]
+  },
+  {
+    "label": "no-connectors",
+    "name": ":no-connectors",
+    "type": "Boolean",
+    "desc": "Do not display the connector lines between nodes",
+    "category": "style"
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "control-color",
+    "name": ":control-color",
+    "type": "String",
+    "desc": "Color name for controls (like checkboxes) from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "text-color",
+    "name": ":text-color",
+    "type": "String",
+    "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "selected-color",
+    "name": ":selected-color",
+    "type": "String",
+    "desc": "Color name for selected nodes (from the Quasar Color Palette)",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "dense",
+    "name": ":dense",
+    "type": "Boolean",
+    "desc": "Dense mode; occupies less space",
+    "category": "style"
+  },
+  {
+    "label": "dark",
+    "name": ":dark",
+    "type": "Boolean",
+    "desc": "Notify the component that the background is a dark color",
+    "category": "style"
+  },
+  {
+    "label": "icon",
+    "name": ":icon",
+    "type": "String",
+    "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+    "category": "content",
+    "examples": [
+      "map",
+      "ion-add",
+      "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+      "img:path/to/some_image.png"
+    ]
+  },
+  {
+    "label": "tick-strategy",
+    "name": ":tick-strategy",
+    "type": "String",
+    "desc": "The type of strategy to use for the selection of the nodes",
+    "category": "behavior"
+  },
+  {
+    "label": "ticked",
+    "name": ":ticked",
+    "type": "Array",
+    "desc": "Keys of nodes that are ticked",
+    "category": "state",
+    "examples": [
+      "v-model:ticked=\"tickedKeys\""
+    ]
+  },
+  {
+    "label": "expanded",
+    "name": ":expanded",
+    "type": "Array",
+    "desc": "Keys of nodes that are expanded",
+    "category": "state",
+    "examples": [
+      "v-model:expanded=\"expandedKeys\""
+    ]
+  },
+  {
+    "label": "selected",
+    "name": ":selected",
+    "type": "Any",
+    "desc": "Key of node currently selected",
+    "category": "state",
+    "examples": [
+      "v-model:selected=\"selectedKey\""
+    ]
+  },
+  {
+    "label": "no-selection-unset",
+    "name": ":no-selection-unset",
+    "type": "Boolean",
+    "desc": "Do not allow un-selection when clicking currently selected node",
+    "category": "behavior"
+  },
+  {
+    "label": "default-expand-all",
+    "name": ":default-expand-all",
+    "type": "Boolean",
+    "desc": "Allow the tree to have all its branches expanded, when first rendered",
+    "category": "behavior"
+  },
+  {
+    "label": "accordion",
+    "name": ":accordion",
+    "type": "Boolean",
+    "desc": "Allows the tree to be set in accordion mode",
+    "category": "behavior"
+  },
+  {
+    "label": "filter",
+    "name": ":filter",
+    "type": "String",
+    "desc": "The text value to be used for filtering nodes",
+    "category": "filter",
+    "examples": [
+      ":filter=\"searchText\""
+    ]
+  },
+  {
+    "label": "filter-method",
+    "name": ":filter-method",
+    "type": "Function",
+    "desc": "The function to use to filter the tree nodes; For best performance, reference it from your scope and do not define it inline",
+    "category": "filter"
+  },
+  {
+    "label": "duration",
+    "name": ":duration",
+    "type": "Number",
+    "desc": "Toggle animation duration (in milliseconds)",
+    "category": "style",
+    "examples": [
+      ":duration=\"500\""
+    ]
+  },
+  {
+    "label": "no-nodes-label",
+    "name": ":no-nodes-label",
+    "type": "String",
+    "desc": "Override default such label for when no nodes are available",
+    "category": "content",
+    "examples": [
+      "No nodes to show!"
+    ]
+  },
+  {
+    "label": "no-results-label",
+    "name": ":no-results-label",
+    "type": "String",
+    "desc": "Override default such label for when no nodes are available due to filtering",
+    "category": "content",
+    "examples": [
+      "No results"
+    ]
+  }
+]
 }

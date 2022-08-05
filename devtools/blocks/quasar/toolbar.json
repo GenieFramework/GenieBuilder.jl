@@ -1,9 +1,23 @@
 {
     "type": "toolbar", 
-    "label": "toolbar", 
+    "label": "Toolbar", 
     "tagName": "Q-TOOLBAR", 
-    "category": "Quasar", 
+    "category": "Content", 
     "content": "<q-toolbar />", 
     "media": "images/icons/components/ui_components/toolbar.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"inset","name":":inset","type":"text"}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "inset",
+    "name": ":inset",
+    "type": "Boolean",
+    "desc": "Apply an inset to content (useful for subsequent toolbars)",
+    "category": "content"
+  }
+]
 }

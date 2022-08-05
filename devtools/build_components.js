@@ -1,15 +1,20 @@
 
 const path = require('path');
 const fs = require('fs');
+const components = require('./blocksList.js');
 
 // definitions directory
 const directoryPath = path.join(__dirname, 'blocks', 'quasar');
 
 // fet list of definition files
-let files = fs.readdirSync(directoryPath);
+/* let files = fs.readdirSync(directoryPath);
 files = files.map(file => {
     return directoryPath + '/' + file;
-});
+}); */
+
+let files = components.map(component => {
+    return directoryPath + '/' + component.type + '.json';
+}); 
 
 // get block template
 console.log( files );
@@ -34,7 +39,7 @@ console.log( "Plugin classes: \n", pluginNames.join(', ') );
 console.log( "\n" );
 console.log( "CSS classes: \n", classNames.join(', ') );
 console.log( "\n" );
-console.log( "CSS Img classes: \n", clasImgsNames.join(', ') );
+console.log( "CSS Img classes: \n", clasImgsNames.join('\n') );
 
 
 
@@ -42,7 +47,8 @@ function generateBlockCode( blockDef ){
     let pluginName = `customblock_quasar_${blockDef.type}`;
     pluginNames.push( pluginName );
     classNames.push( blockDef.tagName.toLowerCase() );
-    clasImgsNames.push( blockDef.tagName.toLowerCase() + ' img' );
+    //clasImgsNames.push( blockDef.tagName.toLowerCase() + ' img' );
+    clasImgsNames.push( `${blockDef.tagName.toLowerCase()}{   background-image: url(../${blockDef.media}); }` );
     let blockCode = `
     const ${pluginName.split("-").join("_")} = editor => {
         editor.DomComponents.addType("${blockDef.type}", {
@@ -71,10 +77,7 @@ function generateBlockCode( blockDef ){
             },
             view: {
                 onRender() {
-                    const { $el, model } = this;
-                    const bindTextTraitValue = model.getAttributes()['v-model']
-                    $el.empty();
-                    $el.append( '<img src="${blockDef.media}" />' );
+                    
                 }
             },
         });

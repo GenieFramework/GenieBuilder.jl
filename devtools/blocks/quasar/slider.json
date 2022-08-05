@@ -1,0 +1,374 @@
+{
+    "type": "slider", 
+    "label": "Slider", 
+    "tagName": "Q-SLIDER", 
+    "category": "Forms", 
+    "content": "<q-slider />", 
+    "media": "images/icons/components/ui_components/slider.png", 
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "name",
+    "name": ":name",
+    "type": "String",
+    "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+    "category": "behavior",
+    "examples": [
+      "car_id"
+    ]
+  },
+  {
+    "label": "min",
+    "name": ":min",
+    "type": "Number",
+    "desc": "Minimum value of the model; Set track's minimum value",
+    "category": "model",
+    "examples": [
+      ":min=\"0\""
+    ]
+  },
+  {
+    "label": "max",
+    "name": ":max",
+    "type": "Number",
+    "desc": "Maximum value of the model; Set track's maximum value",
+    "category": "model",
+    "examples": [
+      ":max=\"100\""
+    ]
+  },
+  {
+    "label": "inner-min",
+    "name": ":inner-min",
+    "type": "Number",
+    "desc": "Inner minimum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be higher or equal to 'min' prop; Defaults to 'min' prop",
+    "category": "model",
+    "examples": [
+      ":inner-min=\"0\""
+    ]
+  },
+  {
+    "label": "inner-max",
+    "name": ":inner-max",
+    "type": "Number",
+    "desc": "Inner maximum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be lower or equal to 'max' prop; Defaults to 'max' prop",
+    "category": "model",
+    "examples": [
+      ":inner-max=\"100\""
+    ]
+  },
+  {
+    "label": "step",
+    "name": ":step",
+    "type": "Number",
+    "desc": "Specify step amount between valid values (> 0.0); When step equals to 0 it defines infinite granularity",
+    "category": "model",
+    "examples": [
+      ":step=\"1\""
+    ]
+  },
+  {
+    "label": "snap",
+    "name": ":snap",
+    "type": "Boolean",
+    "desc": "Snap on valid values, rather than sliding freely; Suggestion: use with 'step' prop",
+    "category": "behavior"
+  },
+  {
+    "label": "reverse",
+    "name": ":reverse",
+    "type": "Boolean",
+    "desc": "Work in reverse (changes direction)",
+    "category": "behavior"
+  },
+  {
+    "label": "vertical",
+    "name": ":vertical",
+    "type": "Boolean",
+    "desc": "Display in vertical direction",
+    "category": "behavior"
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "track-color",
+    "name": ":track-color",
+    "type": "String",
+    "desc": "Color name for the track (can be 'transparent' too) from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "track-img",
+    "name": ":track-img",
+    "type": "String",
+    "desc": "Apply a pattern image on the track",
+    "category": "style",
+    "examples": [
+      "~assets/my-pattern.png"
+    ]
+  },
+  {
+    "label": "inner-track-color",
+    "name": ":inner-track-color",
+    "type": "String",
+    "desc": "Color name for the inner track (can be 'transparent' too) from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "inner-track-img",
+    "name": ":inner-track-img",
+    "type": "String",
+    "desc": "Apply a pattern image on the inner track",
+    "category": "style",
+    "examples": [
+      "~assets/my-pattern.png"
+    ]
+  },
+  {
+    "label": "selection-color",
+    "name": ":selection-color",
+    "type": "String",
+    "desc": "Color name for the selection bar (can be 'transparent' too) from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "selection-img",
+    "name": ":selection-img",
+    "type": "String",
+    "desc": "Apply a pattern image on the selection bar",
+    "category": "style",
+    "examples": [
+      "~assets/my-pattern.png"
+    ]
+  },
+  {
+    "label": "label",
+    "name": ":label",
+    "type": "Boolean",
+    "desc": "Popup a label when user clicks/taps on the slider thumb and moves it",
+    "category": "content"
+  },
+  {
+    "label": "label-color",
+    "name": ":label-color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "label-text-color",
+    "name": ":label-text-color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "switch-label-side",
+    "name": ":switch-label-side",
+    "type": "Boolean",
+    "desc": "Switch the position of the label (top <-> bottom or left <-> right)",
+    "category": "style"
+  },
+  {
+    "label": "label-always",
+    "name": ":label-always",
+    "type": "Boolean",
+    "desc": "Always display the label",
+    "category": "behavior|content"
+  },
+  {
+    "label": "markers",
+    "name": ":markers",
+    "type": [
+      "Boolean",
+      "Number"
+    ],
+    "desc": "Display markers on the track, one for each possible value for the model or using a custom step (when specifying a Number)",
+    "category": "content",
+    "examples": [
+      "markers",
+      ":markers=\"5\""
+    ]
+  },
+  {
+    "label": "marker-labels",
+    "name": ":marker-labels",
+    "type": [
+      "Boolean",
+      "Array",
+      "Object",
+      "Function"
+    ],
+    "desc": "Configure the marker labels (or show the default ones if 'true'); Array of definition Objects or Object with key-value where key is the model and the value is the marker label definition",
+    "category": "content",
+    "examples": [
+      true,
+      "[ { value: 0, label: '0%' }, { value: 5, classes: 'my-class', style: { width: '24px' } } ]",
+      "{ 0: '0%', 5: { label: '5%', classes: 'my-class', style: { width: '24px' } } }",
+      "val => (10 * val) + '%'",
+      "val => ({ label: (10 * val) + '%', classes: 'my-class', style: { width: '24px' } })"
+    ]
+  },
+  {
+    "label": "marker-labels-class",
+    "name": ":marker-labels-class",
+    "type": "String",
+    "desc": "CSS class(es) to apply to the marker labels container",
+    "category": "style",
+    "examples": [
+      "text-orange"
+    ]
+  },
+  {
+    "label": "switch-marker-labels-side",
+    "name": ":switch-marker-labels-side",
+    "type": "Boolean",
+    "desc": "Switch the position of the marker labels (top <-> bottom or left <-> right)",
+    "category": "style"
+  },
+  {
+    "label": "track-size",
+    "name": ":track-size",
+    "type": "String",
+    "desc": "Track size (including CSS unit)",
+    "category": "style",
+    "examples": [
+      "35px"
+    ]
+  },
+  {
+    "label": "thumb-size",
+    "name": ":thumb-size",
+    "type": "String",
+    "desc": "Thumb size (including CSS unit)",
+    "category": "style",
+    "examples": [
+      "20px"
+    ]
+  },
+  {
+    "label": "thumb-color",
+    "name": ":thumb-color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "thumb-path",
+    "name": ":thumb-path",
+    "type": "String",
+    "desc": "Set custom thumb svg path",
+    "category": "style",
+    "examples": [
+      "M5 5 h10 v10 h-10 v-10"
+    ]
+  },
+  {
+    "label": "dark",
+    "name": ":dark",
+    "type": "Boolean",
+    "desc": "Notify the component that the background is a dark color",
+    "category": "style"
+  },
+  {
+    "label": "dense",
+    "name": ":dense",
+    "type": "Boolean",
+    "desc": "Dense mode; occupies less space",
+    "category": "style"
+  },
+  {
+    "label": "disable",
+    "name": ":disable",
+    "type": "Boolean",
+    "desc": "Put component in disabled mode",
+    "category": "state"
+  },
+  {
+    "label": "readonly",
+    "name": ":readonly",
+    "type": "Boolean",
+    "desc": "Put component in readonly mode",
+    "category": "state"
+  },
+  {
+    "label": "tabindex",
+    "name": ":tabindex",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "Tabindex HTML attribute value",
+    "category": "general",
+    "examples": [
+      "0",
+      "100"
+    ]
+  },
+  {
+    "label": "model-value",
+    "name": ":model-value",
+    "type": [
+      "Number",
+      "null",
+      "undefined"
+    ],
+    "desc": "Model of the component (must be between min/max); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+    "category": "model",
+    "examples": [
+      "v-model=\"positionModel\""
+    ]
+  },
+  {
+    "label": "label-value",
+    "name": ":label-value",
+    "type": [
+      "String",
+      "Number"
+    ],
+    "desc": "Override default label value",
+    "category": "content",
+    "examples": [
+      ":label-value=\"model + 'px'\""
+    ]
+  }
+]
+}

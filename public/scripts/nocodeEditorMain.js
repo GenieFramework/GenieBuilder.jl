@@ -5,7 +5,7 @@ window.autorun = false;
 window.unsavedChanges = false;
 
 const customPlugins = [ myNewComponentTypes, 
-  customblock_quasar_avatar, customblock_quasar_badge, customblock_quasar_banner, customblock_quasar_chip, customblock_quasar_icon, customblock_quasar_item, customblock_quasar_list, customblock_quasar_popup_proxy, customblock_quasar_rating, customblock_quasar_spinner, customblock_quasar_timeline_entry, customblock_quasar_timeline, customblock_quasar_toggle, customblock_quasar_tree
+  customblock_quasar_separator, customblock_quasar_space, customblock_quasar_toolbar, customblock_quasar_editor, customblock_quasar_radio, customblock_quasar_input, customblock_quasar_select, customblock_quasar_checkbox, customblock_quasar_slider, customblock_quasar_range, customblock_quasar_button, customblock_quasar_button_group, customblock_quasar_button_dropdown, customblock_quasar_knob, customblock_quasar_date, customblock_quasar_time, customblock_quasar_list, customblock_quasar_item, customblock_quasar_item_label, customblock_quasar_table, customblock_quasar_img, customblock_quasar_video, customblock_quasar_banner, customblock_quasar_chip, customblock_quasar_toggle, customblock_quasar_icon, customblock_quasar_popup_proxy, customblock_quasar_rating, customblock_quasar_spinner, customblock_quasar_timeline, customblock_quasar_timeline_entry, customblock_quasar_tree, customblock_quasar_avatar, customblock_quasar_badge, customblock_quasar_expansion_item
 ];
 
 function initNoCodeEditor(){
@@ -266,6 +266,9 @@ function initNoCodeEditor(){
     }
   ]);
 
+  // remove the default, offical, trait manager button
+  editor.Panels.getPanel('views').get('buttons').remove('open-tm');
+
   let editPanel = null;
   const panelViewsContainer = pn.addPanel({
     id: "viewsContainer"
@@ -275,7 +278,7 @@ function initNoCodeEditor(){
       attributes: {
         title: "Props Editor"
       },
-      className: "fa fa-file-code-o",
+      className: "fa fa-cog",
       command: "open-props-editor",
       togglable: false, //do not close when button is clicked again
       id: "open-props-editor", 
@@ -300,13 +303,7 @@ function initNoCodeEditor(){
 
                 </div>
             `
-                /* editMenuDiv.innerHTML = `
-                <div id="your-content">
-                     Input: <input/>
-                     <button>Button</button> 
-                      <!-- eg. bind a click event on button and do something with GrapesJS API -->
-                </div>
-            ` */
+               
                 const panels = pn.getPanel('views-container')
                 panels.set('appendContent', editMenuDiv).trigger('change:appendContent')
                 editPanel = editMenuDiv;

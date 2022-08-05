@@ -1,9 +1,94 @@
 {
     "type": "badge", 
-    "label": "badge", 
+    "label": "Badge", 
     "tagName": "Q-BADGE", 
-    "category": "Quasar", 
+    "category": "Other", 
     "content": "<q-badge />", 
     "media": "images/icons/components/ui_components/badge.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"color","name":":color","type":"text"},{"label":"text-color","name":":text-color","type":"text"},{"label":"floating","name":":floating","type":"text"},{"label":"transparent","name":":transparent","type":"text"},{"label":"multi-line","name":":multi-line","type":"text"},{"label":"label","name":":label","type":"text"},{"label":"align","name":":align","type":"text"},{"label":"outline","name":":outline","type":"text"},{"label":"rounded","name":":rounded","type":"text"}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "text-color",
+    "name": ":text-color",
+    "type": "String",
+    "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ]
+  },
+  {
+    "label": "floating",
+    "name": ":floating",
+    "type": "Boolean",
+    "desc": "Tell QBadge if it should float to the top right side of the relative positioned parent element or not",
+    "category": "content"
+  },
+  {
+    "label": "transparent",
+    "name": ":transparent",
+    "type": "Boolean",
+    "desc": "Applies a 0.8 opacity; Useful especially for floating QBadge",
+    "category": "style"
+  },
+  {
+    "label": "multi-line",
+    "name": ":multi-line",
+    "type": "Boolean",
+    "desc": "Content can wrap to multiple lines",
+    "category": "content"
+  },
+  {
+    "label": "label",
+    "name": ":label",
+    "type": [
+      "String",
+      "Number"
+    ],
+    "desc": "Badge's content as string; overrides default slot if specified",
+    "category": "content",
+    "examples": [
+      "John Doe",
+      22
+    ]
+  },
+  {
+    "label": "align",
+    "name": ":align",
+    "type": "String",
+    "desc": "Sets vertical-align CSS prop",
+    "category": "content"
+  },
+  {
+    "label": "outline",
+    "name": ":outline",
+    "type": "Boolean",
+    "desc": "Use 'outline' design (colored text and borders only)",
+    "category": "style"
+  },
+  {
+    "label": "rounded",
+    "name": ":rounded",
+    "type": "Boolean",
+    "desc": "Makes a rounded shaped badge",
+    "category": "style"
+  }
+]
 }

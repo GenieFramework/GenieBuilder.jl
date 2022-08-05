@@ -1,9 +1,44 @@
 {
     "type": "banner", 
-    "label": "banner", 
+    "label": "Banner", 
     "tagName": "Q-BANNER", 
-    "category": "Quasar", 
+    "category": "Widgets", 
     "content": "<q-banner />", 
     "media": "images/icons/components/ui_components/banner.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"inline-actions","name":":inline-actions","type":"text"},{"label":"dense","name":":dense","type":"text"},{"label":"rounded","name":":rounded","type":"text"},{"label":"dark","name":":dark","type":"text"}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "inline-actions",
+    "name": ":inline-actions",
+    "type": "Boolean",
+    "desc": "Display actions on same row as content",
+    "category": "content"
+  },
+  {
+    "label": "dense",
+    "name": ":dense",
+    "type": "Boolean",
+    "desc": "Dense mode; occupies less space",
+    "category": "style"
+  },
+  {
+    "label": "rounded",
+    "name": ":rounded",
+    "type": "Boolean",
+    "desc": "Applies a small standard border-radius for a squared shape of the component",
+    "category": "style"
+  },
+  {
+    "label": "dark",
+    "name": ":dark",
+    "type": "Boolean",
+    "desc": "Notify the component that the background is a dark color",
+    "category": "style"
+  }
+]
 }

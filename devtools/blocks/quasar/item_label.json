@@ -1,0 +1,52 @@
+{
+    "type": "item_label", 
+    "label": "Item Label", 
+    "tagName": "Q-ITEM-LABEL", 
+    "category": "Lists", 
+    "content": "<q-item-label />", 
+    "media": "images/icons/components/ui_components/item.png", 
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "overline",
+    "name": ":overline",
+    "type": "Boolean",
+    "desc": "Renders an overline label",
+    "category": "content"
+  },
+  {
+    "label": "caption",
+    "name": ":caption",
+    "type": "Boolean",
+    "desc": "Renders a caption label",
+    "category": "content"
+  },
+  {
+    "label": "header",
+    "name": ":header",
+    "type": "Boolean",
+    "desc": "Renders a header label",
+    "category": "content"
+  },
+  {
+    "label": "lines",
+    "name": ":lines",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "Apply ellipsis when there's not enough space to render on the specified number of lines;",
+    "category": "content|behavior",
+    "examples": [
+      "1",
+      "3",
+      ":lines=\"2\""
+    ]
+  }
+]
+}
