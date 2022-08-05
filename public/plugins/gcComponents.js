@@ -2060,6 +2060,10 @@ editor.BlockManager.add('quasarItemLabel', { label: 'ListItem Label', content: '
         render: function(){
           this.view.onRender();
         },
+         updateGenieModelProperties(properties){
+          var vtextTrait = this.get('traits').where({name: 'v-model'})[0];
+          vtextTrait.set('options', properties );
+        }
       }, 
       view: {
         onRender(){
@@ -2067,8 +2071,7 @@ editor.BlockManager.add('quasarItemLabel', { label: 'ListItem Label', content: '
           const bindTextTraitValue = model.getAttributes()['v-model']
           $el.empty();
           $el.append( `
-          <img src="images/icons/components/ui_components/table.png" />
-          <div>{${bindTextTraitValue}}</div>` );
+          <img src="images/icons/components/ui_components/table.png" />` );
         }
       },
     });
