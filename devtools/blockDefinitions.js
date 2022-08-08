@@ -20,7 +20,8 @@
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "spaced",
@@ -35,7 +36,8 @@
             "12px",
             "sm",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inset",
@@ -49,14 +51,16 @@
         "examples": [
             "item",
             "item-thumbnail"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "vertical",
         "name": ":vertical",
         "type": "Boolean",
         "desc": "If set to true, the separator will be vertical.",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "size",
@@ -67,7 +71,8 @@
         "examples": [
             "16px",
             "2rem"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -78,7 +83,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -169,7 +175,8 @@
         "name": ":inset",
         "type": "Boolean",
         "desc": "Apply an inset to content (useful for subsequent toolbars)",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     }
 ],
                 },
@@ -221,14 +228,16 @@
         "category": "behavior",
         "examples": [
             "v-model:fullscreen=\"isFullscreen\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-route-fullscreen-exit",
         "name": ":no-route-fullscreen-exit",
         "type": "Boolean",
         "desc": "Changing route app won't exit fullscreen",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -238,49 +247,56 @@
         "category": "model",
         "examples": [
             "v-model=\"content\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
         "desc": "Put component in readonly mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "square",
         "name": ":square",
         "type": "Boolean",
         "desc": "Removes border-radius so borders are squared",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "flat",
         "name": ":flat",
         "type": "Boolean",
         "desc": "Applies a 'flat' design (no borders)",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; toolbar buttons are shown on one-line only",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "min-height",
@@ -291,7 +307,8 @@
         "examples": [
             "15rem",
             "50vh"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "max-height",
@@ -302,7 +319,8 @@
         "examples": [
             "1000px",
             "90vh"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "height",
@@ -313,7 +331,8 @@
         "examples": [
             "100px",
             "50vh"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "definitions",
@@ -323,7 +342,8 @@
         "category": "toolbar",
         "examples": [
             ":definitions=\"{ save: { tip: 'Save your work', icon: 'save', label: 'Save', handler: saveWork }, upload: { tip: 'Upload to cloud', icon: 'cloud_upload', label: 'Upload', handler: uploadIt } }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "fonts",
@@ -333,7 +353,8 @@
         "category": "toolbar",
         "examples": [
             ":fonts=\"{ arial: 'Arial', arial_black: 'Arial Black', comic_sans: 'Comic Sans MS' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "toolbar",
@@ -348,7 +369,8 @@
                 "right",
                 "justify"
             ]
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "toolbar-color",
@@ -359,7 +381,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "toolbar-text-color",
@@ -370,7 +393,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "toolbar-toggle-color",
@@ -381,7 +405,8 @@
         "examples": [
             "secondary",
             "blue-3"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "toolbar-bg",
@@ -392,35 +417,40 @@
         "examples": [
             "secondary",
             "blue-3"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "toolbar-outline",
         "name": ":toolbar-outline",
         "type": "Boolean",
         "desc": "Toolbar buttons are rendered \"outlined\"",
-        "category": "toolbar|style"
+        "category": "toolbar|style",
+        "enabled": true
     },
     {
         "label": "toolbar-push",
         "name": ":toolbar-push",
         "type": "Boolean",
         "desc": "Toolbar buttons are rendered as a \"push-button\" type",
-        "category": "toolbar|style"
+        "category": "toolbar|style",
+        "enabled": true
     },
     {
         "label": "toolbar-rounded",
         "name": ":toolbar-rounded",
         "type": "Boolean",
         "desc": "Toolbar buttons are rendered \"rounded\"",
-        "category": "toolbar|style"
+        "category": "toolbar|style",
+        "enabled": true
     },
     {
         "label": "paragraph-tag",
         "name": ":paragraph-tag",
         "type": "String",
         "desc": "Paragraph tag to be used",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "content-style",
@@ -430,7 +460,8 @@
         "category": "style",
         "examples": [
             ":content-style=\"{ backgroundColor: '#C0C0C0' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "content-class",
@@ -445,7 +476,8 @@
         "examples": [
             "my-special-class",
             ":content-class=\"{ 'my-special-class': <condition> }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "placeholder",
@@ -455,7 +487,8 @@
         "category": "content",
         "examples": [
             "Type your story here ..."
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -507,7 +540,8 @@
         "category": "behavior",
         "examples": [
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "size",
@@ -520,7 +554,8 @@
             "2rem",
             "xs",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -535,7 +570,8 @@
         "category": "model",
         "examples": [
             "v-model=\"option\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "val",
@@ -551,7 +587,8 @@
         "examples": [
             "opt1",
             50
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label",
@@ -561,14 +598,16 @@
         "category": "label",
         "examples": [
             "label=\"Option 1\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "left-label",
         "name": ":left-label",
         "type": "Boolean",
         "desc": "Label (if any specified) should be displayed on the left side of the checkbox",
-        "category": "label"
+        "category": "label",
+        "enabled": true
     },
     {
         "label": "checked-icon",
@@ -578,7 +617,8 @@
         "category": "icons",
         "examples": [
             "visibility"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "unchecked-icon",
@@ -588,7 +628,8 @@
         "category": "icons",
         "examples": [
             "visibility_off"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -599,35 +640,40 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "keep-color",
         "name": ":keep-color",
         "type": "Boolean",
         "desc": "Should the color (if specified any) be kept when checkbox is unticked?",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -641,7 +687,8 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -694,7 +741,8 @@
         "examples": [
             "car_id",
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "mask",
@@ -710,7 +758,8 @@
             "fulltime",
             "phone",
             "card"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "fill-mask",
@@ -725,21 +774,24 @@
             "true",
             "'0'",
             "'_'"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "reverse-fill-mask",
         "name": ":reverse-fill-mask",
         "type": "Boolean",
         "desc": "Fills string from the right side of the mask",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "unmasked-value",
         "name": ":unmasked-value",
         "type": "Boolean",
         "desc": "Model will be unmasked (won't contain tokens/separation characters)",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -754,14 +806,16 @@
         "category": "model",
         "examples": [
             "v-model=\"myText\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "error",
         "name": ":error",
         "type": "Boolean",
         "desc": "Does field have validation errors?",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "error-message",
@@ -771,14 +825,16 @@
         "category": "content",
         "examples": [
             "Username must have at least 5 characters"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-error-icon",
         "name": ":no-error-icon",
         "type": "Boolean",
         "desc": "Hide error icon when there is an error",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "rules",
@@ -789,14 +845,16 @@
         "examples": [
             ":rules=\"[ val => val.length <= 3 || 'Please use maximum 3 characters' ]\"",
             ":rules=\"[ 'fulltime' ]\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "reactive-rules",
         "name": ":reactive-rules",
         "type": "Boolean",
         "desc": "By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "lazy-rules",
@@ -806,7 +864,8 @@
             "String"
         ],
         "desc": "If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "label",
@@ -816,14 +875,16 @@
         "category": "content",
         "examples": [
             "Username"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "stack-label",
         "name": ":stack-label",
         "type": "Boolean",
         "desc": "Label will be always shown above the field regardless of field content (if any)",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "hint",
@@ -833,14 +894,16 @@
         "category": "content",
         "examples": [
             "Fill in between 3 and 12 characters"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "hide-hint",
         "name": ":hide-hint",
         "type": "Boolean",
         "desc": "Hide the helper (hint) text when field doesn't have focus",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "prefix",
@@ -850,7 +913,8 @@
         "category": "content",
         "examples": [
             "$"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "suffix",
@@ -860,7 +924,8 @@
         "category": "content",
         "examples": [
             "@gmail.com"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label-color",
@@ -871,7 +936,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -882,7 +948,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "bg-color",
@@ -893,28 +960,32 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "loading",
         "name": ":loading",
         "type": "Boolean",
         "desc": "Signals the user a process is in progress by displaying a spinner; Spinner can be customized by using the 'loading' slot.",
-        "category": "behavior|content"
+        "category": "behavior|content",
+        "enabled": true
     },
     {
         "label": "clearable",
         "name": ":clearable",
         "type": "Boolean",
         "desc": "Appends clearable icon when a value (not undefined or null) is set; When clicked, model becomes null",
-        "category": "behavior|content"
+        "category": "behavior|content",
+        "enabled": true
     },
     {
         "label": "clear-icon",
@@ -924,28 +995,32 @@
         "category": "content",
         "examples": [
             "close"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "filled",
         "name": ":filled",
         "type": "Boolean",
         "desc": "Use 'filled' design for the field",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "outlined",
         "name": ":outlined",
         "type": "Boolean",
         "desc": "Use 'outlined' design for the field",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "borderless",
         "name": ":borderless",
         "type": "Boolean",
         "desc": "Use 'borderless' design for the field",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "standout",
@@ -959,84 +1034,96 @@
         "examples": [
             "standout",
             "standout=\"bg-primary text-white\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label-slot",
         "name": ":label-slot",
         "type": "Boolean",
         "desc": "Enables label slot; You need to set it to force use of the 'label' slot if the 'label' prop is not set",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "bottom-slots",
         "name": ":bottom-slots",
         "type": "Boolean",
         "desc": "Enables bottom slots ('error', 'hint', 'counter')",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "hide-bottom-space",
         "name": ":hide-bottom-space",
         "type": "Boolean",
         "desc": "Do not reserve space for hint/error/counter anymore when these are not used; As a result, it also disables the animation for those; It also allows the hint/error area to stretch vertically based on its content",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "counter",
         "name": ":counter",
         "type": "Boolean",
         "desc": "Show an automatic counter on bottom right",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "rounded",
         "name": ":rounded",
         "type": "Boolean",
         "desc": "Applies a small standard border-radius for a squared shape of the component",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "square",
         "name": ":square",
         "type": "Boolean",
         "desc": "Remove border-radius so borders are squared; Overrides 'rounded' prop",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "item-aligned",
         "name": ":item-aligned",
         "type": "Boolean",
         "desc": "Match inner content alignment to that of QItem",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
         "desc": "Put component in readonly mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "autofocus",
         "name": ":autofocus",
         "type": "Boolean",
         "desc": "Focus field on initial component render",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "for",
@@ -1046,7 +1133,8 @@
         "category": "behavior",
         "examples": [
             "myFieldsId"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "shadow-text",
@@ -1056,7 +1144,8 @@
         "category": "content",
         "examples": [
             "rest of the fill value"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "type",
@@ -1066,7 +1155,8 @@
         "category": "general",
         "examples": [
             "password"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "debounce",
@@ -1080,7 +1170,8 @@
         "examples": [
             "0",
             "530"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "maxlength",
@@ -1093,14 +1184,16 @@
         "category": "model",
         "examples": [
             "12"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "autogrow",
         "name": ":autogrow",
         "type": "Boolean",
         "desc": "Make field autogrow along with its content (uses a textarea)",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "input-class",
@@ -1115,7 +1208,8 @@
         "examples": [
             "my-special-class",
             ":input-class=\"{ 'my-special-class': <condition> }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "input-style",
@@ -1130,7 +1224,8 @@
         "examples": [
             "background-color: #ff0000",
             ":input-style=\"{ backgroundColor: '#ff0000' }\""
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -1183,14 +1278,16 @@
         "examples": [
             "car_id",
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-horizontal",
         "name": ":virtual-scroll-horizontal",
         "type": "Boolean",
         "desc": "Make virtual list work in horizontal mode",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "virtual-scroll-slice-size",
@@ -1203,7 +1300,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-slice-size=\"60\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-slice-ratio-before",
@@ -1216,7 +1314,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-slice-ratio-before=\"0.3\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-slice-ratio-after",
@@ -1229,7 +1328,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-slice-ratio-after=\"2\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-item-size",
@@ -1242,7 +1342,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-item-size=\"48\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-sticky-size-start",
@@ -1255,7 +1356,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-sticky-size-start=\"48\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-sticky-size-end",
@@ -1268,7 +1370,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-sticky-size-end=\"48\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "table-colspan",
@@ -1281,7 +1384,8 @@
         "category": "virtual-scroll|content",
         "examples": [
             "table-colspan=\"12\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -1291,14 +1395,16 @@
         "category": "model",
         "examples": [
             "v-model=\"myModel\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "error",
         "name": ":error",
         "type": "Boolean",
         "desc": "Does field have validation errors?",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "error-message",
@@ -1308,14 +1414,16 @@
         "category": "content",
         "examples": [
             "Username must have at least 5 characters"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-error-icon",
         "name": ":no-error-icon",
         "type": "Boolean",
         "desc": "Hide error icon when there is an error",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "rules",
@@ -1326,14 +1434,16 @@
         "examples": [
             ":rules=\"[ val => val.length <= 3 || 'Please use maximum 3 characters' ]\"",
             ":rules=\"[ 'fulltime' ]\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "reactive-rules",
         "name": ":reactive-rules",
         "type": "Boolean",
         "desc": "By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "lazy-rules",
@@ -1343,7 +1453,8 @@
             "String"
         ],
         "desc": "If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "label",
@@ -1353,14 +1464,16 @@
         "category": "content",
         "examples": [
             "Username"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "stack-label",
         "name": ":stack-label",
         "type": "Boolean",
         "desc": "Label will be always shown above the field regardless of field content (if any)",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "hint",
@@ -1370,14 +1483,16 @@
         "category": "content",
         "examples": [
             "Fill in between 3 and 12 characters"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "hide-hint",
         "name": ":hide-hint",
         "type": "Boolean",
         "desc": "Hide the helper (hint) text when field doesn't have focus",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "prefix",
@@ -1387,7 +1502,8 @@
         "category": "content",
         "examples": [
             "$"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "suffix",
@@ -1397,7 +1513,8 @@
         "category": "content",
         "examples": [
             "@gmail.com"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label-color",
@@ -1408,7 +1525,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -1419,7 +1537,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "bg-color",
@@ -1430,28 +1549,32 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "loading",
         "name": ":loading",
         "type": "Boolean",
         "desc": "Signals the user a process is in progress by displaying a spinner; Spinner can be customized by using the 'loading' slot.",
-        "category": "behavior|content"
+        "category": "behavior|content",
+        "enabled": true
     },
     {
         "label": "clearable",
         "name": ":clearable",
         "type": "Boolean",
         "desc": "Appends clearable icon when a value (not undefined or null) is set; When clicked, model becomes null",
-        "category": "behavior|content"
+        "category": "behavior|content",
+        "enabled": true
     },
     {
         "label": "clear-icon",
@@ -1461,28 +1584,32 @@
         "category": "content",
         "examples": [
             "close"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "filled",
         "name": ":filled",
         "type": "Boolean",
         "desc": "Use 'filled' design for the field",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "outlined",
         "name": ":outlined",
         "type": "Boolean",
         "desc": "Use 'outlined' design for the field",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "borderless",
         "name": ":borderless",
         "type": "Boolean",
         "desc": "Use 'borderless' design for the field",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "standout",
@@ -1496,84 +1623,96 @@
         "examples": [
             "standout",
             "standout=\"bg-primary text-white\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label-slot",
         "name": ":label-slot",
         "type": "Boolean",
         "desc": "Enables label slot; You need to set it to force use of the 'label' slot if the 'label' prop is not set",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "bottom-slots",
         "name": ":bottom-slots",
         "type": "Boolean",
         "desc": "Enables bottom slots ('error', 'hint', 'counter')",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "hide-bottom-space",
         "name": ":hide-bottom-space",
         "type": "Boolean",
         "desc": "Do not reserve space for hint/error/counter anymore when these are not used; As a result, it also disables the animation for those; It also allows the hint/error area to stretch vertically based on its content",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "counter",
         "name": ":counter",
         "type": "Boolean",
         "desc": "Show an automatic counter on bottom right",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "rounded",
         "name": ":rounded",
         "type": "Boolean",
         "desc": "Applies a small standard border-radius for a squared shape of the component",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "square",
         "name": ":square",
         "type": "Boolean",
         "desc": "Remove border-radius so borders are squared; Overrides 'rounded' prop",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "item-aligned",
         "name": ":item-aligned",
         "type": "Boolean",
         "desc": "Match inner content alignment to that of QItem",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
         "desc": "Put component in readonly mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "autofocus",
         "name": ":autofocus",
         "type": "Boolean",
         "desc": "Focus field on initial component render",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "for",
@@ -1583,14 +1722,16 @@
         "category": "behavior",
         "examples": [
             "myFieldsId"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "multiple",
         "name": ":multiple",
         "type": "Boolean",
         "desc": "Allow multiple selection; Model must be Array",
-        "category": "model|selection"
+        "category": "model|selection",
+        "enabled": true
     },
     {
         "label": "display-value",
@@ -1603,14 +1744,16 @@
         "category": "selection",
         "examples": [
             "Options: x, y, z"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "display-value-html",
         "name": ":display-value-html",
         "type": "Boolean",
         "desc": "Force render the selected option(s) as HTML; This can lead to XSS attacks so make sure that you sanitize the content; Does NOT apply when using 'selected' or 'selected-item' slots!",
-        "category": "selection"
+        "category": "selection",
+        "enabled": true
     },
     {
         "label": "options",
@@ -1621,7 +1764,8 @@
         "examples": [
             ":options=\"[ 'BMW', 'Samsung Phone' ]\"",
             ":options=\"[ { label: 'BMW', value: 'car' }, { label: 'Samsung Phone', value: 'phone' } ]\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "option-value",
@@ -1635,7 +1779,8 @@
         "examples": [
             "option-value=\"modelNumber\"",
             ":option-value=\"(item) => item === null ? null : item.modelNumber\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "option-label",
@@ -1649,7 +1794,8 @@
         "examples": [
             "option-label=\"itemName\"",
             ":option-label=\"(item) => item === null ? 'Null value' : item.itemName\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "option-disable",
@@ -1663,21 +1809,24 @@
         "examples": [
             "option-disable=\"cannotSelect\"",
             ":option-disable=\"(item) => item === null ? true : item.cannotSelect\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "hide-selected",
         "name": ":hide-selected",
         "type": "Boolean",
         "desc": "Hides selection; Use the underlying input tag to hold the label (instead of showing it to the right of the input) of the selected option; Only works for non 'multiple' Selects",
-        "category": "selection"
+        "category": "selection",
+        "enabled": true
     },
     {
         "label": "hide-dropdown-icon",
         "name": ":hide-dropdown-icon",
         "type": "Boolean",
         "desc": "Hides dropdown icon",
-        "category": "content|behavior"
+        "category": "content|behavior",
+        "enabled": true
     },
     {
         "label": "dropdown-icon",
@@ -1690,7 +1839,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "max-values",
@@ -1703,21 +1853,24 @@
         "category": "selection",
         "examples": [
             "5"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "options-dense",
         "name": ":options-dense",
         "type": "Boolean",
         "desc": "Dense mode for options list; occupies less space",
-        "category": "options"
+        "category": "options",
+        "enabled": true
     },
     {
         "label": "options-dark",
         "name": ":options-dark",
         "type": "Boolean",
         "desc": "Options menu will be colored with a dark color",
-        "category": "options"
+        "category": "options",
+        "enabled": true
     },
     {
         "label": "options-selected-class",
@@ -1727,28 +1880,32 @@
         "category": "options",
         "examples": [
             "text-orange"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "options-html",
         "name": ":options-html",
         "type": "Boolean",
         "desc": "Force render the options as HTML; This can lead to XSS attacks so make sure that you sanitize the content; Does NOT apply when using 'option' slot!",
-        "category": "options"
+        "category": "options",
+        "enabled": true
     },
     {
         "label": "options-cover",
         "name": ":options-cover",
         "type": "Boolean",
         "desc": "Expanded menu will cover the component (will not work along with 'use-input' prop for obvious reasons)",
-        "category": "options"
+        "category": "options",
+        "enabled": true
     },
     {
         "label": "menu-shrink",
         "name": ":menu-shrink",
         "type": "Boolean",
         "desc": "Allow the options list to be narrower than the field (only in menu mode)",
-        "category": "options"
+        "category": "options",
+        "enabled": true
     },
     {
         "label": "menu-anchor",
@@ -1759,7 +1916,8 @@
         "examples": [
             "top left",
             "bottom right"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "menu-self",
@@ -1770,7 +1928,8 @@
         "examples": [
             "top left",
             "bottom right"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "menu-offset",
@@ -1781,7 +1940,8 @@
         "examples": [
             "[8, 8]",
             "[5, 10]"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "popup-content-class",
@@ -1791,7 +1951,8 @@
         "category": "style",
         "examples": [
             "my-special-class"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "popup-content-style",
@@ -1806,49 +1967,56 @@
         "examples": [
             "background-color: #ff0000",
             ":popup-content-style=\"{ backgroundColor: '#ff0000' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "use-input",
         "name": ":use-input",
         "type": "Boolean",
         "desc": "Use an input tag where users can type",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "use-chips",
         "name": ":use-chips",
         "type": "Boolean",
         "desc": "Use QChip to show what is currently selected",
-        "category": "selection"
+        "category": "selection",
+        "enabled": true
     },
     {
         "label": "fill-input",
         "name": ":fill-input",
         "type": "Boolean",
         "desc": "Fills the input with current value; Useful along with 'hide-selected'; Does NOT works along with 'multiple' selection",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "new-value-mode",
         "name": ":new-value-mode",
         "type": "String",
         "desc": "Enables creation of new values and defines behavior when a new value is added: 'add' means it adds the value (even if possible duplicate), 'add-unique' adds only unique values, and 'toggle' adds or removes the value (based on if it exists or not already); When using this prop then listening for @new-value becomes optional (only to override the behavior defined by 'new-value-mode')",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "map-options",
         "name": ":map-options",
         "type": "Boolean",
         "desc": "Try to map labels of model from 'options' Array; has a small performance penalty; If you are using emit-value you will probably need to use map-options to display the label text in the select field rather than the value;  Refer to the 'Affecting model' section above",
-        "category": "options"
+        "category": "options",
+        "enabled": true
     },
     {
         "label": "emit-value",
         "name": ":emit-value",
         "type": "Boolean",
         "desc": "Update model with the value of the selected option instead of the whole option",
-        "category": "model"
+        "category": "model",
+        "enabled": true
     },
     {
         "label": "input-debounce",
@@ -1861,7 +2029,8 @@
         "category": "content",
         "examples": [
             650
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "input-class",
@@ -1876,7 +2045,8 @@
         "examples": [
             "my-special-class",
             ":input-class=\"{ 'my-special-class': <condition> }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "input-style",
@@ -1891,7 +2061,8 @@
         "examples": [
             "background-color: #ff0000",
             ":input-style=\"{ backgroundColor: '#ff0000' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -1905,7 +2076,8 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "autocomplete",
@@ -1915,7 +2087,8 @@
         "category": "behavior",
         "examples": [
             "autocomplete=\"country\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "transition-show",
@@ -1926,7 +2099,8 @@
         "examples": [
             "fade",
             "slide-down"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "transition-hide",
@@ -1937,7 +2111,8 @@
         "examples": [
             "fade",
             "slide-down"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "transition-duration",
@@ -1951,14 +2126,16 @@
         "examples": [
             500,
             "1200"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "behavior",
         "name": ":behavior",
         "type": "String",
         "desc": "Overrides the default dynamic mode of showing as menu on desktop and dialog on mobiles",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     }
 ],
                 },
@@ -2010,7 +2187,8 @@
         "category": "behavior",
         "examples": [
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "size",
@@ -2023,7 +2201,8 @@
             "2rem",
             "xs",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -2037,7 +2216,8 @@
         "examples": [
             "false",
             "['car', 'building']"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "val",
@@ -2047,7 +2227,8 @@
         "category": "model",
         "examples": [
             "car"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "true-value",
@@ -2057,7 +2238,8 @@
         "category": "model",
         "examples": [
             "Agreed"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "false-value",
@@ -2067,7 +2249,8 @@
         "category": "model",
         "examples": [
             "Disagree"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "indeterminate-value",
@@ -2078,21 +2261,24 @@
         "examples": [
             0,
             "not_answered"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "toggle-order",
         "name": ":toggle-order",
         "type": "String",
         "desc": "Determines toggle order of the two states ('t' stands for state of true, 'f' for state of false); If 'toggle-indeterminate' is true, then the order is: indet -> first state -> second state -> indet (and repeat), otherwise: indet -> first state -> second state -> first state -> second state -> ...",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "toggle-indeterminate",
         "name": ":toggle-indeterminate",
         "type": "Boolean",
         "desc": "When user clicks/taps on the component, should we toggle through the indeterminate state too?",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "label",
@@ -2102,14 +2288,16 @@
         "category": "label",
         "examples": [
             "I agree with the Terms and Conditions"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "left-label",
         "name": ":left-label",
         "type": "Boolean",
         "desc": "Label (if any specified) should be displayed on the left side of the component",
-        "category": "label"
+        "category": "label",
+        "enabled": true
     },
     {
         "label": "checked-icon",
@@ -2119,7 +2307,8 @@
         "category": "icons",
         "examples": [
             "visibility"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "unchecked-icon",
@@ -2129,7 +2318,8 @@
         "category": "icons",
         "examples": [
             "visibility_off"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "indeterminate-icon",
@@ -2139,7 +2329,8 @@
         "category": "icons",
         "examples": [
             "help"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -2150,35 +2341,40 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "keep-color",
         "name": ":keep-color",
         "type": "Boolean",
         "desc": "Should the color (if specified any) be kept when the component is unticked/ off?",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -2192,7 +2388,8 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -2244,7 +2441,8 @@
         "category": "behavior",
         "examples": [
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "min",
@@ -2254,7 +2452,8 @@
         "category": "model",
         "examples": [
             ":min=\"0\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "max",
@@ -2264,7 +2463,8 @@
         "category": "model",
         "examples": [
             ":max=\"100\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-min",
@@ -2274,7 +2474,8 @@
         "category": "model",
         "examples": [
             ":inner-min=\"0\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-max",
@@ -2284,7 +2485,8 @@
         "category": "model",
         "examples": [
             ":inner-max=\"100\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "step",
@@ -2294,28 +2496,32 @@
         "category": "model",
         "examples": [
             ":step=\"1\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "snap",
         "name": ":snap",
         "type": "Boolean",
         "desc": "Snap on valid values, rather than sliding freely; Suggestion: use with 'step' prop",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "reverse",
         "name": ":reverse",
         "type": "Boolean",
         "desc": "Work in reverse (changes direction)",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "vertical",
         "name": ":vertical",
         "type": "Boolean",
         "desc": "Display in vertical direction",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "color",
@@ -2326,7 +2532,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "track-color",
@@ -2337,7 +2544,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "track-img",
@@ -2347,7 +2555,8 @@
         "category": "style",
         "examples": [
             "~assets/my-pattern.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-track-color",
@@ -2358,7 +2567,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-track-img",
@@ -2368,7 +2578,8 @@
         "category": "style",
         "examples": [
             "~assets/my-pattern.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "selection-color",
@@ -2379,7 +2590,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "selection-img",
@@ -2389,14 +2601,16 @@
         "category": "style",
         "examples": [
             "~assets/my-pattern.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label",
         "name": ":label",
         "type": "Boolean",
         "desc": "Popup a label when user clicks/taps on the slider thumb and moves it",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "label-color",
@@ -2407,7 +2621,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label-text-color",
@@ -2418,21 +2633,24 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "switch-label-side",
         "name": ":switch-label-side",
         "type": "Boolean",
         "desc": "Switch the position of the label (top <-> bottom or left <-> right)",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "label-always",
         "name": ":label-always",
         "type": "Boolean",
         "desc": "Always display the label",
-        "category": "behavior|content"
+        "category": "behavior|content",
+        "enabled": true
     },
     {
         "label": "markers",
@@ -2446,7 +2664,8 @@
         "examples": [
             "markers",
             ":markers=\"5\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "marker-labels",
@@ -2465,7 +2684,8 @@
             "{ 0: '0%', 5: { label: '5%', classes: 'my-class', style: { width: '24px' } } }",
             "val => (10 * val) + '%'",
             "val => ({ label: (10 * val) + '%', classes: 'my-class', style: { width: '24px' } })"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "marker-labels-class",
@@ -2475,14 +2695,16 @@
         "category": "style",
         "examples": [
             "text-orange"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "switch-marker-labels-side",
         "name": ":switch-marker-labels-side",
         "type": "Boolean",
         "desc": "Switch the position of the marker labels (top <-> bottom or left <-> right)",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "track-size",
@@ -2492,7 +2714,8 @@
         "category": "style",
         "examples": [
             "35px"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "thumb-size",
@@ -2502,7 +2725,8 @@
         "category": "style",
         "examples": [
             "20px"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "thumb-color",
@@ -2513,7 +2737,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "thumb-path",
@@ -2523,35 +2748,40 @@
         "category": "style",
         "examples": [
             "M5 5 h10 v10 h-10 v-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
         "desc": "Put component in readonly mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -2565,7 +2795,8 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -2579,7 +2810,8 @@
         "category": "model",
         "examples": [
             "v-model=\"positionModel\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label-value",
@@ -2592,7 +2824,8 @@
         "category": "content",
         "examples": [
             ":label-value=\"model + 'px'\""
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -2644,7 +2877,8 @@
         "category": "behavior",
         "examples": [
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "min",
@@ -2654,7 +2888,8 @@
         "category": "model",
         "examples": [
             ":min=\"0\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "max",
@@ -2664,7 +2899,8 @@
         "category": "model",
         "examples": [
             ":max=\"100\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-min",
@@ -2674,7 +2910,8 @@
         "category": "model",
         "examples": [
             ":inner-min=\"0\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-max",
@@ -2684,7 +2921,8 @@
         "category": "model",
         "examples": [
             ":inner-max=\"100\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "step",
@@ -2694,28 +2932,32 @@
         "category": "model",
         "examples": [
             ":step=\"1\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "snap",
         "name": ":snap",
         "type": "Boolean",
         "desc": "Snap on valid values, rather than sliding freely; Suggestion: use with 'step' prop",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "reverse",
         "name": ":reverse",
         "type": "Boolean",
         "desc": "Work in reverse (changes direction)",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "vertical",
         "name": ":vertical",
         "type": "Boolean",
         "desc": "Display in vertical direction",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "color",
@@ -2726,7 +2968,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "track-color",
@@ -2737,7 +2980,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "track-img",
@@ -2747,7 +2991,8 @@
         "category": "style",
         "examples": [
             "~assets/my-pattern.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-track-color",
@@ -2758,7 +3003,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-track-img",
@@ -2768,7 +3014,8 @@
         "category": "style",
         "examples": [
             "~assets/my-pattern.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "selection-color",
@@ -2779,7 +3026,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "selection-img",
@@ -2789,14 +3037,16 @@
         "category": "style",
         "examples": [
             "~assets/my-pattern.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label",
         "name": ":label",
         "type": "Boolean",
         "desc": "Popup a label when user clicks/taps on the slider thumb and moves it",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "label-color",
@@ -2807,7 +3057,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label-text-color",
@@ -2818,21 +3069,24 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "switch-label-side",
         "name": ":switch-label-side",
         "type": "Boolean",
         "desc": "Switch the position of the label (top <-> bottom or left <-> right)",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "label-always",
         "name": ":label-always",
         "type": "Boolean",
         "desc": "Always display the label",
-        "category": "behavior|content"
+        "category": "behavior|content",
+        "enabled": true
     },
     {
         "label": "markers",
@@ -2846,7 +3100,8 @@
         "examples": [
             "markers",
             ":markers=\"5\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "marker-labels",
@@ -2865,7 +3120,8 @@
             "{ 0: '0%', 5: { label: '5%', classes: 'my-class', style: { width: '24px' } } }",
             "val => (10 * val) + '%'",
             "val => ({ label: (10 * val) + '%', classes: 'my-class', style: { width: '24px' } })"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "marker-labels-class",
@@ -2875,14 +3131,16 @@
         "category": "style",
         "examples": [
             "text-orange"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "switch-marker-labels-side",
         "name": ":switch-marker-labels-side",
         "type": "Boolean",
         "desc": "Switch the position of the marker labels (top <-> bottom or left <-> right)",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "track-size",
@@ -2892,7 +3150,8 @@
         "category": "style",
         "examples": [
             "35px"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "thumb-size",
@@ -2902,7 +3161,8 @@
         "category": "style",
         "examples": [
             "20px"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "thumb-color",
@@ -2913,7 +3173,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "thumb-path",
@@ -2923,35 +3184,40 @@
         "category": "style",
         "examples": [
             "M5 5 h10 v10 h-10 v-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
         "desc": "Put component in readonly mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -2965,7 +3231,8 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -2979,21 +3246,24 @@
         "category": "model",
         "examples": [
             "v-model=\"positionModel\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "drag-range",
         "name": ":drag-range",
         "type": "Boolean",
         "desc": "User can drag range instead of just the two thumbs",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "drag-only-range",
         "name": ":drag-only-range",
         "type": "Boolean",
         "desc": "User can drag only the range instead and NOT the two thumbs",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "left-label-color",
@@ -3004,7 +3274,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "left-label-text-color",
@@ -3015,7 +3286,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "right-label-color",
@@ -3026,7 +3298,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "right-label-text-color",
@@ -3037,7 +3310,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "left-label-value",
@@ -3050,7 +3324,8 @@
         "category": "labels",
         "examples": [
             ":left-label-value=\"model.min + 'px'\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "right-label-value",
@@ -3063,7 +3338,8 @@
         "category": "labels",
         "examples": [
             ":right-label-value=\"model.max + 'px'\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "left-thumb-color",
@@ -3074,7 +3350,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "right-thumb-color",
@@ -3085,7 +3362,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -3140,7 +3418,8 @@
             "2rem",
             "xs",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "type",
@@ -3155,7 +3434,8 @@
             "reset",
             "image/png",
             "href=\"https://quasar.dev\" target=\"_blank\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "to",
@@ -3169,14 +3449,16 @@
         "examples": [
             "/home/dashboard",
             ":to=\"{ name: 'my-route-name' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "replace",
         "name": ":replace",
         "type": "Boolean",
         "desc": "Equivalent to Vue Router <router-link> 'replace' property; Superseded by 'href' prop if used",
-        "category": "navigation"
+        "category": "navigation",
+        "enabled": true
     },
     {
         "label": "href",
@@ -3187,7 +3469,8 @@
         "examples": [
             "https://quasar.dev",
             "href=\"https://quasar.dev\" target=\"_blank\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "target",
@@ -3200,7 +3483,8 @@
             "_self",
             "_parent",
             "_top"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label",
@@ -3213,7 +3497,8 @@
         "category": "content",
         "examples": [
             "Button Label"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon",
@@ -3226,7 +3511,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-right",
@@ -3239,70 +3525,80 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "outline",
         "name": ":outline",
         "type": "Boolean",
         "desc": "Use 'outline' design",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "flat",
         "name": ":flat",
         "type": "Boolean",
         "desc": "Use 'flat' design",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "unelevated",
         "name": ":unelevated",
         "type": "Boolean",
         "desc": "Remove shadow",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "rounded",
         "name": ":rounded",
         "type": "Boolean",
         "desc": "Applies a more prominent border-radius for a squared shape button",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "push",
         "name": ":push",
         "type": "Boolean",
         "desc": "Use 'push' design",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "square",
         "name": ":square",
         "type": "Boolean",
         "desc": "Removes border-radius so borders are squared",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "glossy",
         "name": ":glossy",
         "type": "Boolean",
         "desc": "Applies a glossy effect",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "fab",
         "name": ":fab",
         "type": "Boolean",
         "desc": "Makes button size and shape to fit a Floating Action Button",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "fab-mini",
         "name": ":fab-mini",
         "type": "Boolean",
         "desc": "Makes button size and shape to fit a small Floating Action Button",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "padding",
@@ -3317,7 +3613,8 @@
             "xs",
             "md lg",
             "2px 2px 5px 7px"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -3328,7 +3625,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "text-color",
@@ -3339,28 +3637,32 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-caps",
         "name": ":no-caps",
         "type": "Boolean",
         "desc": "Avoid turning label text into caps (which happens by default)",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "no-wrap",
         "name": ":no-wrap",
         "type": "Boolean",
         "desc": "Avoid label text wrapping",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "ripple",
@@ -3374,7 +3676,8 @@
         "examples": [
             false,
             "{ early: true, center: true, color: 'teal', keyCodes: [] }"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -3388,49 +3691,56 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "align",
         "name": ":align",
         "type": "String",
         "desc": "Label or content alignment",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "stack",
         "name": ":stack",
         "type": "Boolean",
         "desc": "Stack icon and label vertically instead of on same line (like it is by default)",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "stretch",
         "name": ":stretch",
         "type": "Boolean",
         "desc": "When used on flexbox parent, button will stretch to parent's height",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "loading",
         "name": ":loading",
         "type": "Boolean",
         "desc": "Put button into loading state (displays a QSpinner -- can be overridden by using a 'loading' slot)",
-        "category": "behavior|state"
+        "category": "behavior|state",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "round",
         "name": ":round",
         "type": "Boolean",
         "desc": "Makes a circle shaped button",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "percentage",
@@ -3440,14 +3750,16 @@
         "category": "behavior",
         "examples": [
             23
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dark-percentage",
         "name": ":dark-percentage",
         "type": "Boolean",
         "desc": "Progress bar on the background should have dark color; To be used along with 'percentage' and 'loading' props",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     }
 ],
                 },
@@ -3583,7 +3895,8 @@
         "category": "behavior",
         "examples": [
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "size",
@@ -3596,7 +3909,8 @@
             "2rem",
             "xs",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -3606,7 +3920,8 @@
         "category": "model",
         "examples": [
             "v-model=\"myValue\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "min",
@@ -3617,7 +3932,8 @@
         "examples": [
             "20",
             "5"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "max",
@@ -3628,7 +3944,8 @@
         "examples": [
             "100",
             "50"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-min",
@@ -3638,7 +3955,8 @@
         "category": "model",
         "examples": [
             ":inner-min=\"0\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "inner-max",
@@ -3648,7 +3966,8 @@
         "category": "model",
         "examples": [
             ":inner-max=\"100\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "step",
@@ -3659,21 +3978,24 @@
         "examples": [
             "1",
             "5"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "reverse",
         "name": ":reverse",
         "type": "Boolean",
         "desc": "Reverses the direction of progress",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "instant-feedback",
         "name": ":instant-feedback",
         "type": "Boolean",
         "desc": "No animation when model changes",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "color",
@@ -3684,7 +4006,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "center-color",
@@ -3695,7 +4018,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "track-color",
@@ -3706,7 +4030,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "font-size",
@@ -3718,7 +4043,8 @@
             "1em",
             "16px",
             "2rem"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "thickness",
@@ -3729,7 +4055,8 @@
         "examples": [
             1,
             0.3
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "angle",
@@ -3741,14 +4068,16 @@
             0,
             40,
             90
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "show-value",
         "name": ":show-value",
         "type": "Boolean",
         "desc": "Enables the default slot and uses it (if available), otherwise it displays the 'value' prop as text; Make sure the text has enough space to be displayed inside the component",
-        "category": "content|behavior"
+        "category": "content|behavior",
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -3762,21 +4091,24 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
         "desc": "Put component in readonly mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     }
 ],
                 },
@@ -3828,14 +4160,16 @@
         "category": "behavior",
         "examples": [
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "landscape",
         "name": ":landscape",
         "type": "Boolean",
         "desc": "Display the component in landscape mode",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "mask",
@@ -3847,7 +4181,8 @@
             "YYYY-MM-DD",
             "MMMM Do, YYYY",
             "YYYY-MM-DD HH:mm:ss"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "locale",
@@ -3857,14 +4192,16 @@
         "category": "model",
         "examples": [
             ":locale=\"{ monthsShort: ['Ian', 'Feb', 'Mar', '...'] }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "calendar",
         "name": ":calendar",
         "type": "String",
         "desc": "Specify calendar type",
-        "category": "model"
+        "category": "model",
+        "enabled": true
     },
     {
         "label": "color",
@@ -3875,7 +4212,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "text-color",
@@ -3886,49 +4224,56 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "square",
         "name": ":square",
         "type": "Boolean",
         "desc": "Removes border-radius so borders are squared",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "flat",
         "name": ":flat",
         "type": "Boolean",
         "desc": "Applies a 'flat' design (no default shadow)",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "bordered",
         "name": ":bordered",
         "type": "Boolean",
         "desc": "Applies a default border to the component",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
         "desc": "Put component in readonly mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -3947,7 +4292,8 @@
             "v-model=\"[myDate1, myDate2]\"",
             "v-model=\"[{ from: myDateFrom, to: myDateTo }]\"",
             "v-model=\"[myDate1, { from: myDateFrom, to: myDateTo }, myDate2]\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "title",
@@ -3957,7 +4303,8 @@
         "category": "content",
         "examples": [
             "Birthday"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "subtitle",
@@ -3967,7 +4314,8 @@
         "category": "content",
         "examples": [
             "John Doe"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "default-year-month",
@@ -3977,21 +4325,24 @@
         "category": "model",
         "examples": [
             "1986/02"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "default-view",
         "name": ":default-view",
         "type": "String",
         "desc": "The view which will be displayed by default",
-        "category": "model"
+        "category": "model",
+        "enabled": true
     },
     {
         "label": "years-in-month-view",
         "name": ":years-in-month-view",
         "type": "Boolean",
         "desc": "Show the years selector in months view",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "events",
@@ -4005,7 +4356,8 @@
         "examples": [
             ":events=\"['2018/11/05', '2018/11/06', '2018/11/09', '2018/11/23']\"",
             ":events=\"date => date[9] % 3 === 0\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "event-color",
@@ -4019,7 +4371,8 @@
         "examples": [
             "teal-10",
             ":event-color=\"(date) => date[9] % 2 === 0 ? 'teal' : 'orange'\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "options",
@@ -4034,7 +4387,8 @@
             ":options=\"['2018/11/05', '2018/11/12', '2018/11/19', '2018/11/26' ]\"",
             ":options=\"date => date[9] % 3 === 0\"",
             ":options=\"date => date >= '2018/11/03' && date <= '2018/11/15'\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "navigation-min-year-month",
@@ -4044,7 +4398,8 @@
         "category": "selection",
         "examples": [
             "2020/07"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "navigation-max-year-month",
@@ -4054,14 +4409,16 @@
         "category": "selection",
         "examples": [
             "2020/10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-unset",
         "name": ":no-unset",
         "type": "Boolean",
         "desc": "Remove ability to unselect a date; It does not apply to selecting a range over already selected dates",
-        "category": "selection"
+        "category": "selection",
+        "enabled": true
     },
     {
         "label": "first-day-of-week",
@@ -4075,42 +4432,48 @@
         "examples": [
             "first-day-of-week=\"1\"",
             ":first-day-of-week=\"selectedFirstDayOfTheWeek\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "today-btn",
         "name": ":today-btn",
         "type": "Boolean",
         "desc": "Display a button that selects the current day",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "minimal",
         "name": ":minimal",
         "type": "Boolean",
         "desc": "Don’t display the header",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "multiple",
         "name": ":multiple",
         "type": "Boolean",
         "desc": "Allow multiple selection; Model must be Array",
-        "category": "model|selection"
+        "category": "model|selection",
+        "enabled": true
     },
     {
         "label": "range",
         "name": ":range",
         "type": "Boolean",
         "desc": "Allow range selection; Partial compatibility with 'options' prop: selected ranges might also include 'unselectable' days",
-        "category": "model|selection"
+        "category": "model|selection",
+        "enabled": true
     },
     {
         "label": "emit-immediately",
         "name": ":emit-immediately",
         "type": "Boolean",
         "desc": "Emit model when user browses month and year too; ONLY for single selection (non-multiple, non-range)",
-        "category": "model"
+        "category": "model",
+        "enabled": true
     }
 ],
                 },
@@ -4162,14 +4525,16 @@
         "category": "behavior",
         "examples": [
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "landscape",
         "name": ":landscape",
         "type": "Boolean",
         "desc": "Display the component in landscape mode",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "mask",
@@ -4181,7 +4546,8 @@
             "HH:mm:ss",
             "YYYY-MM-DD HH:mm:ss",
             "HH:mm MMMM Do, YYYY"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "locale",
@@ -4191,14 +4557,16 @@
         "category": "model",
         "examples": [
             ":locale=\"{ monthsShort: ['Ian', 'Feb', 'Mar', '...'] }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "calendar",
         "name": ":calendar",
         "type": "String",
         "desc": "Specify calendar type",
-        "category": "model"
+        "category": "model",
+        "enabled": true
     },
     {
         "label": "color",
@@ -4209,7 +4577,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "text-color",
@@ -4220,49 +4589,56 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "square",
         "name": ":square",
         "type": "Boolean",
         "desc": "Removes border-radius so borders are squared",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "flat",
         "name": ":flat",
         "type": "Boolean",
         "desc": "Applies a 'flat' design (no default shadow)",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "bordered",
         "name": ":bordered",
         "type": "Boolean",
         "desc": "Applies a default border to the component",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
         "desc": "Put component in readonly mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -4276,14 +4652,16 @@
         "category": "model",
         "examples": [
             "v-model=\"currentTime\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "format24h",
         "name": ":format24h",
         "type": "Boolean",
         "desc": "Forces 24 hour time display instead of AM/PM system",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "default-date",
@@ -4293,7 +4671,8 @@
         "category": "model",
         "examples": [
             "1995/02/23"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "options",
@@ -4303,7 +4682,8 @@
         "category": "behavior",
         "examples": [
             ":options=\"(hr, min, sec) => hr <= 6\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "hour-options",
@@ -4313,7 +4693,8 @@
         "category": "behavior",
         "examples": [
             ":hour-options=\"[ 3, 6, 9 ]\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "minute-options",
@@ -4323,7 +4704,8 @@
         "category": "behavior",
         "examples": [
             ":minute-options=\"[0, 15, 30, 45]\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "second-options",
@@ -4333,21 +4715,24 @@
         "category": "behavior",
         "examples": [
             ":second-options=\"[0, 7, 10, 23]\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "with-seconds",
         "name": ":with-seconds",
         "type": "Boolean",
         "desc": "Allow the time to be set with seconds",
-        "category": "model|behavior"
+        "category": "model|behavior",
+        "enabled": true
     },
     {
         "label": "now-btn",
         "name": ":now-btn",
         "type": "Boolean",
         "desc": "Display a button that selects the current time",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     }
 ],
                 },
@@ -4396,35 +4781,40 @@
         "name": ":bordered",
         "type": "Boolean",
         "desc": "Applies a default border to the component",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "separator",
         "name": ":separator",
         "type": "Boolean",
         "desc": "Applies a separator between contained items",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "padding",
         "name": ":padding",
         "type": "Boolean",
         "desc": "Applies a material design-like padding on top and bottom",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     }
 ],
                 },
@@ -4480,21 +4870,24 @@
         "examples": [
             "/home/dashboard",
             ":to=\"{ name: 'my-route-name' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "exact",
         "name": ":exact",
         "type": "Boolean",
         "desc": "Equivalent to Vue Router <router-link> 'exact' property; Superseded by 'href' prop if used",
-        "category": "navigation"
+        "category": "navigation",
+        "enabled": true
     },
     {
         "label": "replace",
         "name": ":replace",
         "type": "Boolean",
         "desc": "Equivalent to Vue Router <router-link> 'replace' property; Superseded by 'href' prop if used",
-        "category": "navigation"
+        "category": "navigation",
+        "enabled": true
     },
     {
         "label": "active-class",
@@ -4504,7 +4897,8 @@
         "category": "navigation",
         "examples": [
             "my-active-class"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "exact-active-class",
@@ -4514,7 +4908,8 @@
         "category": "navigation",
         "examples": [
             "my-exact-active-class"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "href",
@@ -4524,7 +4919,8 @@
         "category": "navigation",
         "examples": [
             "https://quasar.dev"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "target",
@@ -4537,42 +4933,48 @@
             "_self",
             "_parent",
             "_top"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "active",
         "name": ":active",
         "type": "Boolean",
         "desc": "Put item into 'active' state",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "clickable",
         "name": ":clickable",
         "type": "Boolean",
         "desc": "Is QItem clickable? If it's the case, then it will add hover effects and emit 'click' events",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "inset-level",
@@ -4582,7 +4984,8 @@
         "category": "content",
         "examples": [
             ":inset-level=\"1\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -4596,7 +4999,8 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "tag",
@@ -4610,21 +5014,24 @@
             "a",
             "label",
             "div"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "manual-focus",
         "name": ":manual-focus",
         "type": "Boolean",
         "desc": "Put item into a manual focus state; Enables 'focused' prop which will determine if item is focused or not, rather than relying on native hover/focus states",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "focused",
         "name": ":focused",
         "type": "Boolean",
         "desc": "Determines focus state, ONLY if 'manual-focus' is enabled / set to true",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     }
 ],
                 },
@@ -4673,21 +5080,24 @@
         "name": ":overline",
         "type": "Boolean",
         "desc": "Renders an overline label",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "caption",
         "name": ":caption",
         "type": "Boolean",
         "desc": "Renders a caption label",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "header",
         "name": ":header",
         "type": "Boolean",
         "desc": "Renders a header label",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "lines",
@@ -4702,7 +5112,8 @@
             "1",
             "3",
             ":lines=\"2\""
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -4754,14 +5165,16 @@
         "category": "behavior",
         "examples": [
             "v-model:fullscreen=\"isFullscreen\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-route-fullscreen-exit",
         "name": ":no-route-fullscreen-exit",
         "type": "Boolean",
         "desc": "Changing route app won't exit fullscreen",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "rows",
@@ -4771,7 +5184,8 @@
         "category": "general",
         "examples": [
             ":rows=\"myData\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "row-key",
@@ -4785,14 +5199,16 @@
         "examples": [
             "row-key=\"name\"",
             ":row-key=\"row => row.name\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll",
         "name": ":virtual-scroll",
         "type": "Boolean",
         "desc": "Display data using QVirtualScroll (for non-grid mode only)",
-        "category": "virtual-scroll"
+        "category": "virtual-scroll",
+        "enabled": true
     },
     {
         "label": "virtual-scroll-target",
@@ -4808,7 +5224,8 @@
             "scroll-target=\".scroll-target-class\"",
             "scroll-target=\"#scroll-target-id\"",
             "scroll-target=\"body\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-slice-size",
@@ -4821,7 +5238,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-slice-size=\"60\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-slice-ratio-before",
@@ -4834,7 +5252,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-slice-ratio-before=\"0.3\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-slice-ratio-after",
@@ -4847,7 +5266,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-slice-ratio-after=\"2\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-item-size",
@@ -4860,7 +5280,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-item-size=\"48\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-sticky-size-start",
@@ -4873,7 +5294,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-sticky-size-start=\"48\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "virtual-scroll-sticky-size-end",
@@ -4886,7 +5308,8 @@
         "category": "virtual-scroll",
         "examples": [
             "virtual-scroll-sticky-size-end=\"48\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "table-colspan",
@@ -4899,7 +5322,8 @@
         "category": "virtual-scroll|content",
         "examples": [
             "table-colspan=\"12\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -4910,7 +5334,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-first-page",
@@ -4923,7 +5348,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-prev-page",
@@ -4936,7 +5362,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-next-page",
@@ -4949,7 +5376,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-last-page",
@@ -4962,28 +5390,32 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "grid",
         "name": ":grid",
         "type": "Boolean",
         "desc": "Display data as a grid instead of the default table",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "grid-header",
         "name": ":grid-header",
         "type": "Boolean",
         "desc": "Display header for grid-mode also",
-        "category": "behavior|content"
+        "category": "behavior|content",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; Connect with $q.screen for responsive behavior",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "columns",
@@ -4993,7 +5425,8 @@
         "category": "column",
         "examples": [
             ":columns=\"tableColumns\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "visible-columns",
@@ -5004,14 +5437,16 @@
         "examples": [
             ":visible-columns=\"myCols\"",
             "[ 'desc', 'carbs', 'protein' ]"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "loading",
         "name": ":loading",
         "type": "Boolean",
         "desc": "Put Table into 'loading' state; Notify the user something is happening behind the scenes",
-        "category": "behavior|content"
+        "category": "behavior|content",
+        "enabled": true
     },
     {
         "label": "title",
@@ -5021,98 +5456,112 @@
         "category": "content",
         "examples": [
             "Device list"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "hide-header",
         "name": ":hide-header",
         "type": "Boolean",
         "desc": "Hide table header layer",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "hide-bottom",
         "name": ":hide-bottom",
         "type": "Boolean",
         "desc": "Hide table bottom layer regardless of what it has to display",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "hide-selected-banner",
         "name": ":hide-selected-banner",
         "type": "Boolean",
         "desc": "Hide the selected rows banner (if any)",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "hide-no-data",
         "name": ":hide-no-data",
         "type": "Boolean",
         "desc": "Hide the default no data bottom layer",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "hide-pagination",
         "name": ":hide-pagination",
         "type": "Boolean",
         "desc": "Hide the pagination controls at the bottom",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "flat",
         "name": ":flat",
         "type": "Boolean",
         "desc": "Applies a 'flat' design (no default shadow)",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "bordered",
         "name": ":bordered",
         "type": "Boolean",
         "desc": "Applies a default border to the component",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "square",
         "name": ":square",
         "type": "Boolean",
         "desc": "Removes border-radius so borders are squared",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "separator",
         "name": ":separator",
         "type": "String",
         "desc": "Use a separator/border between rows, columns or all cells",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "wrap-cells",
         "name": ":wrap-cells",
         "type": "Boolean",
         "desc": "Wrap text within table cells",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "binary-state-sort",
         "name": ":binary-state-sort",
         "type": "Boolean",
         "desc": "Skip the third state (unsorted) when user toggles column sort direction",
-        "category": "sorting"
+        "category": "sorting",
+        "enabled": true
     },
     {
         "label": "column-sort-order",
         "name": ":column-sort-order",
         "type": "String",
         "desc": "Set column sort order: 'ad' (ascending-descending) or 'da' (descending-ascending); It gets applied to all columns unless a column has its own sortOrder specified in the 'columns' definition prop",
-        "category": "sorting"
+        "category": "sorting",
+        "enabled": true
     },
     {
         "label": "no-data-label",
@@ -5122,7 +5571,8 @@
         "category": "content",
         "examples": [
             "No devices available"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-results-label",
@@ -5132,7 +5582,8 @@
         "category": "content",
         "examples": [
             "No matched records"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "loading-label",
@@ -5142,7 +5593,8 @@
         "category": "content",
         "examples": [
             "Loading devices..."
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "selected-rows-label",
@@ -5152,7 +5604,8 @@
         "category": "selection",
         "examples": [
             ":selected-rows-label=\"getSelectedString\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "rows-per-page-label",
@@ -5162,7 +5615,8 @@
         "category": "pagination",
         "examples": [
             "Records per page:"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "pagination-label",
@@ -5172,7 +5626,8 @@
         "category": "pagination",
         "examples": [
             ":pagination-label=\"getPaginationLabel\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "table-style",
@@ -5187,7 +5642,8 @@
         "examples": [
             "background-color: #ff0000",
             ":table-style=\"{ backgroundColor: '#ff0000' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "table-class",
@@ -5202,7 +5658,8 @@
         "examples": [
             "my-special-class",
             ":table-class=\"{ 'my-special-class': [Boolean condition] }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "table-header-style",
@@ -5217,7 +5674,8 @@
         "examples": [
             "background-color: #ff0000",
             ":table-header-style=\"{ backgroundColor: '#ff0000' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "table-header-class",
@@ -5232,7 +5690,8 @@
         "examples": [
             "my-special-class",
             ":table-header-class=\"{ 'my-special-class': [Boolean condition] }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "card-container-style",
@@ -5247,7 +5706,8 @@
         "examples": [
             "background-color: #ff0000",
             ":card-container-style=\"{ backgroundColor: '#ff0000' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "card-container-class",
@@ -5263,7 +5723,8 @@
             "my-special-class",
             "justify-center",
             ":card-container-class=\"{ 'my-special-class': [Boolean condition] }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "card-style",
@@ -5278,7 +5739,8 @@
         "examples": [
             "background-color: #ff0000",
             ":card-style=\"{ backgroundColor: '#ff0000' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "card-class",
@@ -5293,7 +5755,8 @@
         "examples": [
             "my-special-class",
             ":card-class=\"{ 'my-special-class': [Boolean condition] }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "title-class",
@@ -5309,7 +5772,8 @@
             "my-special-class",
             "text-h1",
             ":title-class=\"{ 'text-h1': [Boolean condition] }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "filter",
@@ -5322,7 +5786,8 @@
         "category": "filter",
         "examples": [
             ":filter=\"myFilterInput\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "filter-method",
@@ -5332,7 +5797,8 @@
         "category": "filter",
         "examples": [
             "(see source code)"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "pagination",
@@ -5343,7 +5809,8 @@
         "examples": [
             ":pagination=\"myInitialPagination\"",
             "v-model:pagination=\"myPagination\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "rows-per-page-options",
@@ -5353,7 +5820,8 @@
         "category": "pagination",
         "examples": [
             ":rows-per-page-options=\"[10, 20]\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "selection",
@@ -5363,7 +5831,8 @@
         "category": "selection",
         "examples": [
             "multiple"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "selected",
@@ -5373,7 +5842,8 @@
         "category": "selection",
         "examples": [
             "v-model:selected=\"selection\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "expanded",
@@ -5383,7 +5853,8 @@
         "category": "expansion",
         "examples": [
             "v-model:expanded=\"expanded\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "sort-method",
@@ -5393,7 +5864,8 @@
         "category": "sorting",
         "examples": [
             "(see source code)"
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -5452,7 +5924,8 @@
             "ratio=\"1\"",
             "(Number format) :ratio=\"16/9\"",
             "(String format) ratio=\"1\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "src",
@@ -5465,7 +5938,8 @@
             "(assets folder) src=\"~assets/my-img.gif\"",
             "(relative path format) :src=\"require('./my_img.jpg')\"",
             "(URL) src=\"https://placeimg.com/500/300/nature\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "srcset",
@@ -5475,7 +5949,8 @@
         "category": "model",
         "examples": [
             "elva-fairy-320w.jpg 320w, elva-fairy-480w.jpg 480w"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "sizes",
@@ -5485,7 +5960,8 @@
         "category": "model",
         "examples": [
             "(max-width: 320px) 280px, (max-width: 480px) 440px, 800px"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "placeholder-src",
@@ -5498,7 +5974,8 @@
             "(assets folder) src=\"~assets/my-placeholder.gif\"",
             "(relative path format) :src=\"require('./placeholder.jpg')\"",
             "(URL) src=\"https://placeimg.com/500/300/nature\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "initial-ratio",
@@ -5512,7 +5989,8 @@
         "examples": [
             "(Number format) :initial-ratio=\"16/9\"",
             "(String format) initial-ratio=\"1\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "width",
@@ -5523,7 +6001,8 @@
         "examples": [
             "280px",
             "70%"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "height",
@@ -5534,49 +6013,56 @@
         "examples": [
             "280px",
             "70%"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "loading",
         "name": ":loading",
         "type": "String",
         "desc": "Lazy or immediate load; Same syntax as <img> loading attribute",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "crossorigin",
         "name": ":crossorigin",
         "type": "String",
         "desc": "Same syntax as <img> crossorigin attribute",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "decoding",
         "name": ":decoding",
         "type": "String",
         "desc": "Same syntax as <img> decoding attribute",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "referrerpolicy",
         "name": ":referrerpolicy",
         "type": "String",
         "desc": "Same syntax as <img> referrerpolicy attribute",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "fetchpriority",
         "name": ":fetchpriority",
         "type": "String",
         "desc": "Provides a hint of the relative priority to use when fetching the image",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "fit",
         "name": ":fit",
         "type": "String",
         "desc": "How the image will fit into the container; Equivalent of the object-fit prop; Can be coordinated with 'position' prop",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "position",
@@ -5587,7 +6073,8 @@
         "examples": [
             "0 0",
             "20px 50px"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "alt",
@@ -5597,14 +6084,16 @@
         "category": "content",
         "examples": [
             "Two cats"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "draggable",
         "name": ":draggable",
         "type": "Boolean",
         "desc": "Adds the native 'draggable' attribute",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "img-class",
@@ -5614,7 +6103,8 @@
         "category": "style",
         "examples": [
             "my-special-class"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "img-style",
@@ -5624,7 +6114,8 @@
         "category": "style",
         "examples": [
             ":img-style=\"{ transform: 'rotate(45deg)' }\" "
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "spinner-color",
@@ -5635,7 +6126,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "spinner-size",
@@ -5646,28 +6138,32 @@
         "examples": [
             "16px",
             "2rem"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-spinner",
         "name": ":no-spinner",
         "type": "Boolean",
         "desc": "Do not display the default spinner while waiting for the image to be loaded; It is overriden by the 'loading' slot when one is present",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "no-native-menu",
         "name": ":no-native-menu",
         "type": "Boolean",
         "desc": "Disables the native context menu for the image",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "no-transition",
         "name": ":no-transition",
         "type": "Boolean",
         "desc": "Disable default transition when switching between old and new image",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     }
 ],
                 },
@@ -5724,7 +6220,8 @@
             ":ratio=\"4/3\"",
             ":ratio=\"16/9\"",
             "ratio=\"1\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "src",
@@ -5734,7 +6231,8 @@
         "category": "model",
         "examples": [
             "https://www.youtube.com/embed/k3_tw44QsZQ"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "title",
@@ -5744,28 +6242,32 @@
         "category": "accessibility",
         "examples": [
             "My Daily Marathon"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "fetchpriority",
         "name": ":fetchpriority",
         "type": "String",
         "desc": "Provides a hint of the relative priority to use when fetching the iframe document",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "loading",
         "name": ":loading",
         "type": "String",
         "desc": "Indicates how the browser should load the iframe",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "referrerpolicy",
         "name": ":referrerpolicy",
         "type": "String",
         "desc": "Indicates which referrer to send when fetching the frame's resource",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     }
 ],
                 },
@@ -5814,28 +6316,32 @@
         "name": ":inline-actions",
         "type": "Boolean",
         "desc": "Display actions on same row as content",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "rounded",
         "name": ":rounded",
         "type": "Boolean",
         "desc": "Applies a small standard border-radius for a squared shape of the component",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     }
 ],
                 },
@@ -5884,7 +6390,8 @@
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "size",
@@ -5900,14 +6407,16 @@
             "xl",
             "25px",
             "2rem"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "icon",
@@ -5920,7 +6429,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-right",
@@ -5933,7 +6443,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-remove",
@@ -5946,7 +6457,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-selected",
@@ -5959,7 +6471,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label",
@@ -5973,7 +6486,8 @@
         "examples": [
             "John Doe",
             "Book"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -5984,7 +6498,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "text-color",
@@ -5995,14 +6510,16 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "model-value",
         "name": ":model-value",
         "type": "Boolean",
         "desc": "Model of the component determining if QChip should be rendered or not",
-        "category": "model"
+        "category": "model",
+        "enabled": true
     },
     {
         "label": "selected",
@@ -6012,35 +6529,40 @@
         "category": "model",
         "examples": [
             "v-model:selected=\"myState\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "square",
         "name": ":square",
         "type": "Boolean",
         "desc": "Sets a low value for border-radius instead of the default one, making it close to a square",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "outline",
         "name": ":outline",
         "type": "Boolean",
         "desc": "Display using the 'outline' design",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "clickable",
         "name": ":clickable",
         "type": "Boolean",
         "desc": "Is QChip clickable? If it's the case, then it will add hover effects and emit 'click' events",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "removable",
         "name": ":removable",
         "type": "Boolean",
         "desc": "If set, then it displays a 'remove' icon that when clicked the QChip emits 'remove' event",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "ripple",
@@ -6054,7 +6576,8 @@
         "examples": [
             false,
             "{ early: true, center: true, color: 'teal', keyCodes: [] }"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -6068,14 +6591,16 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     }
 ],
                 },
@@ -6127,7 +6652,8 @@
         "category": "behavior",
         "examples": [
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "size",
@@ -6140,7 +6666,8 @@
             "2rem",
             "xs",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -6154,7 +6681,8 @@
         "examples": [
             "false",
             "['car', 'building']"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "val",
@@ -6164,7 +6692,8 @@
         "category": "model",
         "examples": [
             "car"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "true-value",
@@ -6174,7 +6703,8 @@
         "category": "model",
         "examples": [
             "Agreed"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "false-value",
@@ -6184,7 +6714,8 @@
         "category": "model",
         "examples": [
             "Disagree"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "indeterminate-value",
@@ -6195,21 +6726,24 @@
         "examples": [
             0,
             "not_answered"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "toggle-order",
         "name": ":toggle-order",
         "type": "String",
         "desc": "Determines toggle order of the two states ('t' stands for state of true, 'f' for state of false); If 'toggle-indeterminate' is true, then the order is: indet -> first state -> second state -> indet (and repeat), otherwise: indet -> first state -> second state -> first state -> second state -> ...",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "toggle-indeterminate",
         "name": ":toggle-indeterminate",
         "type": "Boolean",
         "desc": "When user clicks/taps on the component, should we toggle through the indeterminate state too?",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "label",
@@ -6219,14 +6753,16 @@
         "category": "label",
         "examples": [
             "I agree with the Terms and Conditions"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "left-label",
         "name": ":left-label",
         "type": "Boolean",
         "desc": "Label (if any specified) should be displayed on the left side of the component",
-        "category": "label"
+        "category": "label",
+        "enabled": true
     },
     {
         "label": "checked-icon",
@@ -6236,7 +6772,8 @@
         "category": "icons",
         "examples": [
             "visibility"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "unchecked-icon",
@@ -6246,7 +6783,8 @@
         "category": "icons",
         "examples": [
             "visibility_off"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "indeterminate-icon",
@@ -6256,7 +6794,8 @@
         "category": "icons",
         "examples": [
             "help"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -6267,35 +6806,40 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "keep-color",
         "name": ":keep-color",
         "type": "Boolean",
         "desc": "Should the color (if specified any) be kept when the component is unticked/ off?",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "tabindex",
@@ -6309,7 +6853,8 @@
         "examples": [
             "0",
             "100"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon",
@@ -6322,7 +6867,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-color",
@@ -6333,7 +6879,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -6388,7 +6935,8 @@
             "2rem",
             "xs",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "tag",
@@ -6401,7 +6949,8 @@
             "span",
             "div",
             "i"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "name",
@@ -6414,7 +6963,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -6425,21 +6975,24 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "left",
         "name": ":left",
         "type": "Boolean",
         "desc": "Useful if icon is on the left side of something: applies a standard margin on the right side of Icon",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "right",
         "name": ":right",
         "type": "Boolean",
         "desc": "Useful if icon is on the right side of something: applies a standard margin on the left side of Icon",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     }
 ],
                 },
@@ -6498,28 +7051,32 @@
             ":target=\"$refs.target\"",
             "target=\".my-parent\"",
             "target=\"#target-id\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-parent-event",
         "name": ":no-parent-event",
         "type": "Boolean",
         "desc": "Skips attaching events to the target DOM element (that trigger the element to get shown)",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "context-menu",
         "name": ":context-menu",
         "type": "Boolean",
         "desc": "Allows the component to behave like a context menu, which opens with a right mouse click (or long tap on mobile)",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "model-value",
         "name": ":model-value",
         "type": "Boolean",
         "desc": "Defines the state of the component (shown/hidden); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
-        "category": "model"
+        "category": "model",
+        "enabled": true
     },
     {
         "label": "breakpoint",
@@ -6533,7 +7090,8 @@
         "examples": [
             992,
             ":breakpoint=\"1024\""
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -6585,7 +7143,8 @@
         "category": "behavior",
         "examples": [
             "car_id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "size",
@@ -6598,7 +7157,8 @@
             "2rem",
             "xs",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "model-value",
@@ -6610,7 +7170,8 @@
             "v-model=\"rating\"",
             ":model-value=\"rating\"",
             ":model-value=\"2\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "max",
@@ -6624,7 +7185,8 @@
         "examples": [
             "3",
             ":max=\"5\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon",
@@ -6640,7 +7202,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-selected",
@@ -6656,7 +7219,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon-half",
@@ -6672,7 +7236,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -6689,7 +7254,8 @@
             "primary",
             "teal-10",
             "[\"accent\", \"grey-7\"] "
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color-selected",
@@ -6703,7 +7269,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color-half",
@@ -6717,35 +7284,40 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-dimming",
         "name": ":no-dimming",
         "type": "Boolean",
         "desc": "Does not lower opacity for unselected icons",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "no-reset",
         "name": ":no-reset",
         "type": "Boolean",
         "desc": "When used, disables default behavior of clicking/tapping on icon which represents current model value to reset model to 0",
-        "category": "model"
+        "category": "model",
+        "enabled": true
     },
     {
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
         "desc": "Put component in readonly mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     }
 ],
                 },
@@ -6800,7 +7372,8 @@
             "2rem",
             "xs",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -6811,7 +7384,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "thickness",
@@ -6822,7 +7396,8 @@
         "examples": [
             "2",
             "5"
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -6875,28 +7450,32 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "side",
         "name": ":side",
         "type": "String",
         "desc": "Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overridden by QTimelineEntry side prop",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "layout",
         "name": ":layout",
         "type": "String",
         "desc": "Layout of the timeline. Dense keeps content and labels on one side. Comfortable keeps content on one side and labels on the opposite side. Loose puts content on both sides.",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     }
 ],
                 },
@@ -6945,7 +7524,8 @@
         "name": ":heading",
         "type": "Boolean",
         "desc": "Defines a heading timeline item",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "tag",
@@ -6957,14 +7537,16 @@
             "div",
             "span",
             "h1"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "side",
         "name": ":side",
         "type": "String",
         "desc": "Side to place the timeline entry; Works only if QTimeline layout is loose.",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "icon",
@@ -6977,7 +7559,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "avatar",
@@ -6990,7 +7573,8 @@
             "(assets folder) src=\"~assets/my-img.png\"",
             "(relative path format) :src=\"require('./my_img.jpg')\"",
             "(URL) src=\"https://placeimg.com/500/300/nature\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -7001,7 +7585,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "title",
@@ -7011,7 +7596,8 @@
         "category": "content",
         "examples": [
             "December party"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "subtitle",
@@ -7021,7 +7607,8 @@
         "category": "content",
         "examples": [
             "All invited"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "body",
@@ -7031,7 +7618,8 @@
         "category": "content",
         "examples": [
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -7083,7 +7671,8 @@
         "category": "content",
         "examples": [
             "[ {...}, {...} ]"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "node-key",
@@ -7094,7 +7683,8 @@
         "examples": [
             "key",
             "id"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label-key",
@@ -7105,7 +7695,8 @@
         "examples": [
             "name",
             "description"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "children-key",
@@ -7116,14 +7707,16 @@
         "examples": [
             "roles",
             "relatives"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-connectors",
         "name": ":no-connectors",
         "type": "Boolean",
         "desc": "Do not display the connector lines between nodes",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "color",
@@ -7134,7 +7727,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "control-color",
@@ -7145,7 +7739,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "text-color",
@@ -7156,7 +7751,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "selected-color",
@@ -7167,21 +7763,24 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "icon",
@@ -7194,14 +7793,16 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "tick-strategy",
         "name": ":tick-strategy",
         "type": "String",
         "desc": "The type of strategy to use for the selection of the nodes",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "ticked",
@@ -7211,7 +7812,8 @@
         "category": "state",
         "examples": [
             "v-model:ticked=\"tickedKeys\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "expanded",
@@ -7221,7 +7823,8 @@
         "category": "state",
         "examples": [
             "v-model:expanded=\"expandedKeys\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "selected",
@@ -7231,28 +7834,32 @@
         "category": "state",
         "examples": [
             "v-model:selected=\"selectedKey\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-selection-unset",
         "name": ":no-selection-unset",
         "type": "Boolean",
         "desc": "Do not allow un-selection when clicking currently selected node",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "default-expand-all",
         "name": ":default-expand-all",
         "type": "Boolean",
         "desc": "Allow the tree to have all its branches expanded, when first rendered",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "accordion",
         "name": ":accordion",
         "type": "Boolean",
         "desc": "Allows the tree to be set in accordion mode",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "filter",
@@ -7262,14 +7869,16 @@
         "category": "filter",
         "examples": [
             ":filter=\"searchText\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "filter-method",
         "name": ":filter-method",
         "type": "Function",
         "desc": "The function to use to filter the tree nodes; For best performance, reference it from your scope and do not define it inline",
-        "category": "filter"
+        "category": "filter",
+        "enabled": true
     },
     {
         "label": "duration",
@@ -7279,7 +7888,8 @@
         "category": "style",
         "examples": [
             ":duration=\"500\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-nodes-label",
@@ -7289,7 +7899,8 @@
         "category": "content",
         "examples": [
             "No nodes to show!"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "no-results-label",
@@ -7299,7 +7910,8 @@
         "category": "content",
         "examples": [
             "No results"
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },
@@ -7354,7 +7966,8 @@
             "2rem",
             "xs",
             "md"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "font-size",
@@ -7365,7 +7978,8 @@
         "examples": [
             "18px",
             "2rem"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "color",
@@ -7376,7 +7990,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "text-color",
@@ -7387,7 +8002,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "icon",
@@ -7400,21 +8016,24 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "square",
         "name": ":square",
         "type": "Boolean",
         "desc": "Removes border-radius so borders are squared",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "rounded",
         "name": ":rounded",
         "type": "Boolean",
         "desc": "Applies a small standard border-radius for a squared shape of the component",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     }
 ],
                 },
@@ -7467,7 +8086,8 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "text-color",
@@ -7478,28 +8098,32 @@
         "examples": [
             "primary",
             "teal-10"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "floating",
         "name": ":floating",
         "type": "Boolean",
         "desc": "Tell QBadge if it should float to the top right side of the relative positioned parent element or not",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "transparent",
         "name": ":transparent",
         "type": "Boolean",
         "desc": "Applies a 0.8 opacity; Useful especially for floating QBadge",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "multi-line",
         "name": ":multi-line",
         "type": "Boolean",
         "desc": "Content can wrap to multiple lines",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "label",
@@ -7513,28 +8137,32 @@
         "examples": [
             "John Doe",
             22
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "align",
         "name": ":align",
         "type": "String",
         "desc": "Sets vertical-align CSS prop",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "outline",
         "name": ":outline",
         "type": "Boolean",
         "desc": "Use 'outline' design (colored text and borders only)",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "rounded",
         "name": ":rounded",
         "type": "Boolean",
         "desc": "Makes a rounded shaped badge",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     }
 ],
                 },
@@ -7590,21 +8218,24 @@
         "examples": [
             "/home/dashboard",
             ":to=\"{ name: 'my-route-name' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "exact",
         "name": ":exact",
         "type": "Boolean",
         "desc": "Equivalent to Vue Router <router-link> 'exact' property; Superseded by 'href' prop if used",
-        "category": "navigation"
+        "category": "navigation",
+        "enabled": true
     },
     {
         "label": "replace",
         "name": ":replace",
         "type": "Boolean",
         "desc": "Equivalent to Vue Router <router-link> 'replace' property; Superseded by 'href' prop if used",
-        "category": "navigation"
+        "category": "navigation",
+        "enabled": true
     },
     {
         "label": "active-class",
@@ -7614,7 +8245,8 @@
         "category": "navigation",
         "examples": [
             "my-active-class"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "exact-active-class",
@@ -7624,7 +8256,8 @@
         "category": "navigation",
         "examples": [
             "my-exact-active-class"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "href",
@@ -7634,7 +8267,8 @@
         "category": "navigation",
         "examples": [
             "https://quasar.dev"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "target",
@@ -7647,21 +8281,24 @@
             "_self",
             "_parent",
             "_top"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
         "desc": "Put component in disabled mode",
-        "category": "state"
+        "category": "state",
+        "enabled": true
     },
     {
         "label": "model-value",
         "name": ":model-value",
         "type": "Boolean",
         "desc": "Model of the component defining 'open' state; Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
-        "category": "model"
+        "category": "model",
+        "enabled": true
     },
     {
         "label": "icon",
@@ -7674,7 +8311,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "expand-icon",
@@ -7687,7 +8325,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "expanded-icon",
@@ -7700,7 +8339,8 @@
             "ion-add",
             "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
             "img:path/to/some_image.png"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "expand-icon-class",
@@ -7714,7 +8354,8 @@
         "category": "style",
         "examples": [
             "text-purple"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label",
@@ -7724,7 +8365,8 @@
         "category": "content",
         "examples": [
             "My expansion item"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "label-lines",
@@ -7739,7 +8381,8 @@
             "1",
             "3",
             ":label-lines=\"2\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "caption",
@@ -7749,7 +8392,8 @@
         "category": "content",
         "examples": [
             "Unread message: 5"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "caption-lines",
@@ -7764,21 +8408,24 @@
             "1",
             "3",
             ":caption-lines=\"2\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
         "desc": "Notify the component that the background is a dark color",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
         "desc": "Dense mode; occupies less space",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "duration",
@@ -7788,7 +8435,8 @@
         "category": "behavior",
         "examples": [
             ":duration=\"1000\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "header-inset-level",
@@ -7798,7 +8446,8 @@
         "category": "content",
         "examples": [
             ":header-inset-level=\"1\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "content-inset-level",
@@ -7808,42 +8457,48 @@
         "category": "content",
         "examples": [
             ":content-inset-level=\"1\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "expand-separator",
         "name": ":expand-separator",
         "type": "Boolean",
         "desc": "Apply a top and bottom separator when expansion item is opened",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "default-opened",
         "name": ":default-opened",
         "type": "Boolean",
         "desc": "Puts expansion item into open state on initial render; Overridden by v-model if used",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "expand-icon-toggle",
         "name": ":expand-icon-toggle",
         "type": "Boolean",
         "desc": "Applies the expansion events to the expand icon only and not to the whole header",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "switch-toggle-side",
         "name": ":switch-toggle-side",
         "type": "Boolean",
         "desc": "Switch expand icon side (from default 'right' to 'left')",
-        "category": "content"
+        "category": "content",
+        "enabled": true
     },
     {
         "label": "dense-toggle",
         "name": ":dense-toggle",
         "type": "Boolean",
         "desc": "Use dense mode for expand icon",
-        "category": "style"
+        "category": "style",
+        "enabled": true
     },
     {
         "label": "group",
@@ -7853,14 +8508,16 @@
         "category": "content|behavior",
         "examples": [
             "my-emails"
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "popup",
         "name": ":popup",
         "type": "Boolean",
         "desc": "Put expansion list into 'popup' mode",
-        "category": "behavior"
+        "category": "behavior",
+        "enabled": true
     },
     {
         "label": "header-style",
@@ -7875,7 +8532,8 @@
         "examples": [
             "background: '#ff0000'",
             ":header-style=\"{ backgroundColor: '#ff0000' }\""
-        ]
+        ],
+        "enabled": true
     },
     {
         "label": "header-class",
@@ -7890,7 +8548,8 @@
         "examples": [
             "my-custom-class",
             ":header-class=\"{ 'my-custom-class': someCondition }\""
-        ]
+        ],
+        "enabled": true
     }
 ],
                 },

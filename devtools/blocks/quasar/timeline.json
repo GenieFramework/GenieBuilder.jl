@@ -21,28 +21,32 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "side",
     "name": ":side",
     "type": "String",
     "desc": "Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overridden by QTimelineEntry side prop",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "layout",
     "name": ":layout",
     "type": "String",
     "desc": "Layout of the timeline. Dense keeps content and labels on one side. Comfortable keeps content on one side and labels on the opposite side. Loose puts content on both sides.",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   }
 ]
 }

@@ -20,7 +20,8 @@
     "category": "behavior",
     "examples": [
       "car_id"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "size",
@@ -33,7 +34,8 @@
       "2rem",
       "xs",
       "md"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "model-value",
@@ -43,7 +45,8 @@
     "category": "model",
     "examples": [
       "v-model=\"myValue\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "min",
@@ -54,7 +57,8 @@
     "examples": [
       "20",
       "5"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "max",
@@ -65,7 +69,8 @@
     "examples": [
       "100",
       "50"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "inner-min",
@@ -75,7 +80,8 @@
     "category": "model",
     "examples": [
       ":inner-min=\"0\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "inner-max",
@@ -85,7 +91,8 @@
     "category": "model",
     "examples": [
       ":inner-max=\"100\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "step",
@@ -96,21 +103,24 @@
     "examples": [
       "1",
       "5"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "reverse",
     "name": ":reverse",
     "type": "Boolean",
     "desc": "Reverses the direction of progress",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "instant-feedback",
     "name": ":instant-feedback",
     "type": "Boolean",
     "desc": "No animation when model changes",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "color",
@@ -121,7 +131,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "center-color",
@@ -132,7 +143,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "track-color",
@@ -143,7 +155,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "font-size",
@@ -155,7 +168,8 @@
       "1em",
       "16px",
       "2rem"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "thickness",
@@ -166,7 +180,8 @@
     "examples": [
       1,
       0.3
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "angle",
@@ -178,14 +193,16 @@
       0,
       40,
       90
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "show-value",
     "name": ":show-value",
     "type": "Boolean",
     "desc": "Enables the default slot and uses it (if available), otherwise it displays the 'value' prop as text; Make sure the text has enough space to be displayed inside the component",
-    "category": "content|behavior"
+    "category": "content|behavior",
+    "enabled": true
   },
   {
     "label": "tabindex",
@@ -199,21 +216,24 @@
     "examples": [
       "0",
       "100"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
     "desc": "Put component in disabled mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "readonly",
     "name": ":readonly",
     "type": "Boolean",
     "desc": "Put component in readonly mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   }
 ]
 }

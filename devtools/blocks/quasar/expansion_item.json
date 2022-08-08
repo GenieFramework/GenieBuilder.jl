@@ -24,21 +24,24 @@
     "examples": [
       "/home/dashboard",
       ":to=\"{ name: 'my-route-name' }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "exact",
     "name": ":exact",
     "type": "Boolean",
     "desc": "Equivalent to Vue Router <router-link> 'exact' property; Superseded by 'href' prop if used",
-    "category": "navigation"
+    "category": "navigation",
+    "enabled": true
   },
   {
     "label": "replace",
     "name": ":replace",
     "type": "Boolean",
     "desc": "Equivalent to Vue Router <router-link> 'replace' property; Superseded by 'href' prop if used",
-    "category": "navigation"
+    "category": "navigation",
+    "enabled": true
   },
   {
     "label": "active-class",
@@ -48,7 +51,8 @@
     "category": "navigation",
     "examples": [
       "my-active-class"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "exact-active-class",
@@ -58,7 +62,8 @@
     "category": "navigation",
     "examples": [
       "my-exact-active-class"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "href",
@@ -68,7 +73,8 @@
     "category": "navigation",
     "examples": [
       "https://quasar.dev"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "target",
@@ -81,21 +87,24 @@
       "_self",
       "_parent",
       "_top"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
     "desc": "Put component in disabled mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "model-value",
     "name": ":model-value",
     "type": "Boolean",
     "desc": "Model of the component defining 'open' state; Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
-    "category": "model"
+    "category": "model",
+    "enabled": true
   },
   {
     "label": "icon",
@@ -108,7 +117,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "expand-icon",
@@ -121,7 +131,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "expanded-icon",
@@ -134,7 +145,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "expand-icon-class",
@@ -148,7 +160,8 @@
     "category": "style",
     "examples": [
       "text-purple"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "label",
@@ -158,7 +171,8 @@
     "category": "content",
     "examples": [
       "My expansion item"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "label-lines",
@@ -173,7 +187,8 @@
       "1",
       "3",
       ":label-lines=\"2\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "caption",
@@ -183,7 +198,8 @@
     "category": "content",
     "examples": [
       "Unread message: 5"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "caption-lines",
@@ -198,21 +214,24 @@
       "1",
       "3",
       ":caption-lines=\"2\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "dense",
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; occupies less space",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "duration",
@@ -222,7 +241,8 @@
     "category": "behavior",
     "examples": [
       ":duration=\"1000\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "header-inset-level",
@@ -232,7 +252,8 @@
     "category": "content",
     "examples": [
       ":header-inset-level=\"1\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "content-inset-level",
@@ -242,42 +263,48 @@
     "category": "content",
     "examples": [
       ":content-inset-level=\"1\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "expand-separator",
     "name": ":expand-separator",
     "type": "Boolean",
     "desc": "Apply a top and bottom separator when expansion item is opened",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "default-opened",
     "name": ":default-opened",
     "type": "Boolean",
     "desc": "Puts expansion item into open state on initial render; Overridden by v-model if used",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "expand-icon-toggle",
     "name": ":expand-icon-toggle",
     "type": "Boolean",
     "desc": "Applies the expansion events to the expand icon only and not to the whole header",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "switch-toggle-side",
     "name": ":switch-toggle-side",
     "type": "Boolean",
     "desc": "Switch expand icon side (from default 'right' to 'left')",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "dense-toggle",
     "name": ":dense-toggle",
     "type": "Boolean",
     "desc": "Use dense mode for expand icon",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "group",
@@ -287,14 +314,16 @@
     "category": "content|behavior",
     "examples": [
       "my-emails"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "popup",
     "name": ":popup",
     "type": "Boolean",
     "desc": "Put expansion list into 'popup' mode",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "header-style",
@@ -309,7 +338,8 @@
     "examples": [
       "background: '#ff0000'",
       ":header-style=\"{ backgroundColor: '#ff0000' }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "header-class",
@@ -324,7 +354,8 @@
     "examples": [
       "my-custom-class",
       ":header-class=\"{ 'my-custom-class': someCondition }\""
-    ]
+    ],
+    "enabled": true
   }
 ]
 }

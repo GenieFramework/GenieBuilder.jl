@@ -17,21 +17,24 @@
     "name": ":overline",
     "type": "Boolean",
     "desc": "Renders an overline label",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "caption",
     "name": ":caption",
     "type": "Boolean",
     "desc": "Renders a caption label",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "header",
     "name": ":header",
     "type": "Boolean",
     "desc": "Renders a header label",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "lines",
@@ -46,7 +49,8 @@
       "1",
       "3",
       ":lines=\"2\""
-    ]
+    ],
+    "enabled": true
   }
 ]
 }

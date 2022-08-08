@@ -20,14 +20,16 @@
     "category": "behavior",
     "examples": [
       "car_id"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "landscape",
     "name": ":landscape",
     "type": "Boolean",
     "desc": "Display the component in landscape mode",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "mask",
@@ -39,7 +41,8 @@
       "HH:mm:ss",
       "YYYY-MM-DD HH:mm:ss",
       "HH:mm MMMM Do, YYYY"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "locale",
@@ -49,14 +52,16 @@
     "category": "model",
     "examples": [
       ":locale=\"{ monthsShort: ['Ian', 'Feb', 'Mar', '...'] }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "calendar",
     "name": ":calendar",
     "type": "String",
     "desc": "Specify calendar type",
-    "category": "model"
+    "category": "model",
+    "enabled": true
   },
   {
     "label": "color",
@@ -67,7 +72,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "text-color",
@@ -78,49 +84,56 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "square",
     "name": ":square",
     "type": "Boolean",
     "desc": "Removes border-radius so borders are squared",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "flat",
     "name": ":flat",
     "type": "Boolean",
     "desc": "Applies a 'flat' design (no default shadow)",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "bordered",
     "name": ":bordered",
     "type": "Boolean",
     "desc": "Applies a default border to the component",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "readonly",
     "name": ":readonly",
     "type": "Boolean",
     "desc": "Put component in readonly mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
     "desc": "Put component in disabled mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "model-value",
@@ -134,14 +147,16 @@
     "category": "model",
     "examples": [
       "v-model=\"currentTime\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "format24h",
     "name": ":format24h",
     "type": "Boolean",
     "desc": "Forces 24 hour time display instead of AM/PM system",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "default-date",
@@ -151,7 +166,8 @@
     "category": "model",
     "examples": [
       "1995/02/23"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "options",
@@ -161,7 +177,8 @@
     "category": "behavior",
     "examples": [
       ":options=\"(hr, min, sec) => hr <= 6\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "hour-options",
@@ -171,7 +188,8 @@
     "category": "behavior",
     "examples": [
       ":hour-options=\"[ 3, 6, 9 ]\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "minute-options",
@@ -181,7 +199,8 @@
     "category": "behavior",
     "examples": [
       ":minute-options=\"[0, 15, 30, 45]\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "second-options",
@@ -191,21 +210,24 @@
     "category": "behavior",
     "examples": [
       ":second-options=\"[0, 7, 10, 23]\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "with-seconds",
     "name": ":with-seconds",
     "type": "Boolean",
     "desc": "Allow the time to be set with seconds",
-    "category": "model|behavior"
+    "category": "model|behavior",
+    "enabled": true
   },
   {
     "label": "now-btn",
     "name": ":now-btn",
     "type": "Boolean",
     "desc": "Display a button that selects the current time",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   }
 ]
 }

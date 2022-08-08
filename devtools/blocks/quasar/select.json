@@ -21,14 +21,16 @@
     "examples": [
       "car_id",
       "car_id"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-horizontal",
     "name": ":virtual-scroll-horizontal",
     "type": "Boolean",
     "desc": "Make virtual list work in horizontal mode",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "virtual-scroll-slice-size",
@@ -41,7 +43,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-slice-size=\"60\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-slice-ratio-before",
@@ -54,7 +57,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-slice-ratio-before=\"0.3\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-slice-ratio-after",
@@ -67,7 +71,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-slice-ratio-after=\"2\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-item-size",
@@ -80,7 +85,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-item-size=\"48\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-sticky-size-start",
@@ -93,7 +99,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-sticky-size-start=\"48\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-sticky-size-end",
@@ -106,7 +113,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-sticky-size-end=\"48\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "table-colspan",
@@ -119,7 +127,8 @@
     "category": "virtual-scroll|content",
     "examples": [
       "table-colspan=\"12\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "model-value",
@@ -129,14 +138,16 @@
     "category": "model",
     "examples": [
       "v-model=\"myModel\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "error",
     "name": ":error",
     "type": "Boolean",
     "desc": "Does field have validation errors?",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "error-message",
@@ -146,14 +157,16 @@
     "category": "content",
     "examples": [
       "Username must have at least 5 characters"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-error-icon",
     "name": ":no-error-icon",
     "type": "Boolean",
     "desc": "Hide error icon when there is an error",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "rules",
@@ -164,14 +177,16 @@
     "examples": [
       ":rules=\"[ val => val.length <= 3 || 'Please use maximum 3 characters' ]\"",
       ":rules=\"[ 'fulltime' ]\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "reactive-rules",
     "name": ":reactive-rules",
     "type": "Boolean",
     "desc": "By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "lazy-rules",
@@ -181,7 +196,8 @@
       "String"
     ],
     "desc": "If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "label",
@@ -191,14 +207,16 @@
     "category": "content",
     "examples": [
       "Username"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "stack-label",
     "name": ":stack-label",
     "type": "Boolean",
     "desc": "Label will be always shown above the field regardless of field content (if any)",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "hint",
@@ -208,14 +226,16 @@
     "category": "content",
     "examples": [
       "Fill in between 3 and 12 characters"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "hide-hint",
     "name": ":hide-hint",
     "type": "Boolean",
     "desc": "Hide the helper (hint) text when field doesn't have focus",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "prefix",
@@ -225,7 +245,8 @@
     "category": "content",
     "examples": [
       "$"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "suffix",
@@ -235,7 +256,8 @@
     "category": "content",
     "examples": [
       "@gmail.com"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "label-color",
@@ -246,7 +268,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color",
@@ -257,7 +280,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "bg-color",
@@ -268,28 +292,32 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "loading",
     "name": ":loading",
     "type": "Boolean",
     "desc": "Signals the user a process is in progress by displaying a spinner; Spinner can be customized by using the 'loading' slot.",
-    "category": "behavior|content"
+    "category": "behavior|content",
+    "enabled": true
   },
   {
     "label": "clearable",
     "name": ":clearable",
     "type": "Boolean",
     "desc": "Appends clearable icon when a value (not undefined or null) is set; When clicked, model becomes null",
-    "category": "behavior|content"
+    "category": "behavior|content",
+    "enabled": true
   },
   {
     "label": "clear-icon",
@@ -299,28 +327,32 @@
     "category": "content",
     "examples": [
       "close"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "filled",
     "name": ":filled",
     "type": "Boolean",
     "desc": "Use 'filled' design for the field",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "outlined",
     "name": ":outlined",
     "type": "Boolean",
     "desc": "Use 'outlined' design for the field",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "borderless",
     "name": ":borderless",
     "type": "Boolean",
     "desc": "Use 'borderless' design for the field",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "standout",
@@ -334,84 +366,96 @@
     "examples": [
       "standout",
       "standout=\"bg-primary text-white\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "label-slot",
     "name": ":label-slot",
     "type": "Boolean",
     "desc": "Enables label slot; You need to set it to force use of the 'label' slot if the 'label' prop is not set",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "bottom-slots",
     "name": ":bottom-slots",
     "type": "Boolean",
     "desc": "Enables bottom slots ('error', 'hint', 'counter')",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "hide-bottom-space",
     "name": ":hide-bottom-space",
     "type": "Boolean",
     "desc": "Do not reserve space for hint/error/counter anymore when these are not used; As a result, it also disables the animation for those; It also allows the hint/error area to stretch vertically based on its content",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "counter",
     "name": ":counter",
     "type": "Boolean",
     "desc": "Show an automatic counter on bottom right",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "rounded",
     "name": ":rounded",
     "type": "Boolean",
     "desc": "Applies a small standard border-radius for a squared shape of the component",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "square",
     "name": ":square",
     "type": "Boolean",
     "desc": "Remove border-radius so borders are squared; Overrides 'rounded' prop",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "dense",
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; occupies less space",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "item-aligned",
     "name": ":item-aligned",
     "type": "Boolean",
     "desc": "Match inner content alignment to that of QItem",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
     "desc": "Put component in disabled mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "readonly",
     "name": ":readonly",
     "type": "Boolean",
     "desc": "Put component in readonly mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "autofocus",
     "name": ":autofocus",
     "type": "Boolean",
     "desc": "Focus field on initial component render",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "for",
@@ -421,14 +465,16 @@
     "category": "behavior",
     "examples": [
       "myFieldsId"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "multiple",
     "name": ":multiple",
     "type": "Boolean",
     "desc": "Allow multiple selection; Model must be Array",
-    "category": "model|selection"
+    "category": "model|selection",
+    "enabled": true
   },
   {
     "label": "display-value",
@@ -441,14 +487,16 @@
     "category": "selection",
     "examples": [
       "Options: x, y, z"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "display-value-html",
     "name": ":display-value-html",
     "type": "Boolean",
     "desc": "Force render the selected option(s) as HTML; This can lead to XSS attacks so make sure that you sanitize the content; Does NOT apply when using 'selected' or 'selected-item' slots!",
-    "category": "selection"
+    "category": "selection",
+    "enabled": true
   },
   {
     "label": "options",
@@ -459,7 +507,8 @@
     "examples": [
       ":options=\"[ 'BMW', 'Samsung Phone' ]\"",
       ":options=\"[ { label: 'BMW', value: 'car' }, { label: 'Samsung Phone', value: 'phone' } ]\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "option-value",
@@ -473,7 +522,8 @@
     "examples": [
       "option-value=\"modelNumber\"",
       ":option-value=\"(item) => item === null ? null : item.modelNumber\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "option-label",
@@ -487,7 +537,8 @@
     "examples": [
       "option-label=\"itemName\"",
       ":option-label=\"(item) => item === null ? 'Null value' : item.itemName\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "option-disable",
@@ -501,21 +552,24 @@
     "examples": [
       "option-disable=\"cannotSelect\"",
       ":option-disable=\"(item) => item === null ? true : item.cannotSelect\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "hide-selected",
     "name": ":hide-selected",
     "type": "Boolean",
     "desc": "Hides selection; Use the underlying input tag to hold the label (instead of showing it to the right of the input) of the selected option; Only works for non 'multiple' Selects",
-    "category": "selection"
+    "category": "selection",
+    "enabled": true
   },
   {
     "label": "hide-dropdown-icon",
     "name": ":hide-dropdown-icon",
     "type": "Boolean",
     "desc": "Hides dropdown icon",
-    "category": "content|behavior"
+    "category": "content|behavior",
+    "enabled": true
   },
   {
     "label": "dropdown-icon",
@@ -528,7 +582,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "max-values",
@@ -541,21 +596,24 @@
     "category": "selection",
     "examples": [
       "5"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "options-dense",
     "name": ":options-dense",
     "type": "Boolean",
     "desc": "Dense mode for options list; occupies less space",
-    "category": "options"
+    "category": "options",
+    "enabled": true
   },
   {
     "label": "options-dark",
     "name": ":options-dark",
     "type": "Boolean",
     "desc": "Options menu will be colored with a dark color",
-    "category": "options"
+    "category": "options",
+    "enabled": true
   },
   {
     "label": "options-selected-class",
@@ -565,28 +623,32 @@
     "category": "options",
     "examples": [
       "text-orange"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "options-html",
     "name": ":options-html",
     "type": "Boolean",
     "desc": "Force render the options as HTML; This can lead to XSS attacks so make sure that you sanitize the content; Does NOT apply when using 'option' slot!",
-    "category": "options"
+    "category": "options",
+    "enabled": true
   },
   {
     "label": "options-cover",
     "name": ":options-cover",
     "type": "Boolean",
     "desc": "Expanded menu will cover the component (will not work along with 'use-input' prop for obvious reasons)",
-    "category": "options"
+    "category": "options",
+    "enabled": true
   },
   {
     "label": "menu-shrink",
     "name": ":menu-shrink",
     "type": "Boolean",
     "desc": "Allow the options list to be narrower than the field (only in menu mode)",
-    "category": "options"
+    "category": "options",
+    "enabled": true
   },
   {
     "label": "menu-anchor",
@@ -597,7 +659,8 @@
     "examples": [
       "top left",
       "bottom right"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "menu-self",
@@ -608,7 +671,8 @@
     "examples": [
       "top left",
       "bottom right"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "menu-offset",
@@ -619,7 +683,8 @@
     "examples": [
       "[8, 8]",
       "[5, 10]"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "popup-content-class",
@@ -629,7 +694,8 @@
     "category": "style",
     "examples": [
       "my-special-class"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "popup-content-style",
@@ -644,49 +710,56 @@
     "examples": [
       "background-color: #ff0000",
       ":popup-content-style=\"{ backgroundColor: '#ff0000' }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "use-input",
     "name": ":use-input",
     "type": "Boolean",
     "desc": "Use an input tag where users can type",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "use-chips",
     "name": ":use-chips",
     "type": "Boolean",
     "desc": "Use QChip to show what is currently selected",
-    "category": "selection"
+    "category": "selection",
+    "enabled": true
   },
   {
     "label": "fill-input",
     "name": ":fill-input",
     "type": "Boolean",
     "desc": "Fills the input with current value; Useful along with 'hide-selected'; Does NOT works along with 'multiple' selection",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "new-value-mode",
     "name": ":new-value-mode",
     "type": "String",
     "desc": "Enables creation of new values and defines behavior when a new value is added: 'add' means it adds the value (even if possible duplicate), 'add-unique' adds only unique values, and 'toggle' adds or removes the value (based on if it exists or not already); When using this prop then listening for @new-value becomes optional (only to override the behavior defined by 'new-value-mode')",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "map-options",
     "name": ":map-options",
     "type": "Boolean",
     "desc": "Try to map labels of model from 'options' Array; has a small performance penalty; If you are using emit-value you will probably need to use map-options to display the label text in the select field rather than the value;  Refer to the 'Affecting model' section above",
-    "category": "options"
+    "category": "options",
+    "enabled": true
   },
   {
     "label": "emit-value",
     "name": ":emit-value",
     "type": "Boolean",
     "desc": "Update model with the value of the selected option instead of the whole option",
-    "category": "model"
+    "category": "model",
+    "enabled": true
   },
   {
     "label": "input-debounce",
@@ -699,7 +772,8 @@
     "category": "content",
     "examples": [
       650
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "input-class",
@@ -714,7 +788,8 @@
     "examples": [
       "my-special-class",
       ":input-class=\"{ 'my-special-class': <condition> }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "input-style",
@@ -729,7 +804,8 @@
     "examples": [
       "background-color: #ff0000",
       ":input-style=\"{ backgroundColor: '#ff0000' }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "tabindex",
@@ -743,7 +819,8 @@
     "examples": [
       "0",
       "100"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "autocomplete",
@@ -753,7 +830,8 @@
     "category": "behavior",
     "examples": [
       "autocomplete=\"country\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "transition-show",
@@ -764,7 +842,8 @@
     "examples": [
       "fade",
       "slide-down"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "transition-hide",
@@ -775,7 +854,8 @@
     "examples": [
       "fade",
       "slide-down"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "transition-duration",
@@ -789,14 +869,16 @@
     "examples": [
       500,
       "1200"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "behavior",
     "name": ":behavior",
     "type": "String",
     "desc": "Overrides the default dynamic mode of showing as menu on desktop and dialog on mobiles",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   }
 ]
 }

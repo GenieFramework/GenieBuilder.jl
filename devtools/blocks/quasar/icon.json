@@ -23,7 +23,8 @@
       "2rem",
       "xs",
       "md"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "tag",
@@ -36,7 +37,8 @@
       "span",
       "div",
       "i"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "name",
@@ -49,7 +51,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color",
@@ -60,21 +63,24 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "left",
     "name": ":left",
     "type": "Boolean",
     "desc": "Useful if icon is on the left side of something: applies a standard margin on the right side of Icon",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "right",
     "name": ":right",
     "type": "Boolean",
     "desc": "Useful if icon is on the right side of something: applies a standard margin on the left side of Icon",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   }
 ]
 }

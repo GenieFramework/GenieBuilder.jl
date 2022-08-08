@@ -17,35 +17,40 @@
     "name": ":bordered",
     "type": "Boolean",
     "desc": "Applies a default border to the component",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "dense",
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; occupies less space",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "separator",
     "name": ":separator",
     "type": "Boolean",
     "desc": "Applies a separator between contained items",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "padding",
     "name": ":padding",
     "type": "Boolean",
     "desc": "Applies a material design-like padding on top and bottom",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   }
 ]
 }

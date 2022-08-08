@@ -17,7 +17,8 @@
     "name": ":heading",
     "type": "Boolean",
     "desc": "Defines a heading timeline item",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "tag",
@@ -29,14 +30,16 @@
       "div",
       "span",
       "h1"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "side",
     "name": ":side",
     "type": "String",
     "desc": "Side to place the timeline entry; Works only if QTimeline layout is loose.",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "icon",
@@ -49,7 +52,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "avatar",
@@ -62,7 +66,8 @@
       "(assets folder) src=\"~assets/my-img.png\"",
       "(relative path format) :src=\"require('./my_img.jpg')\"",
       "(URL) src=\"https://placeimg.com/500/300/nature\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color",
@@ -73,7 +78,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "title",
@@ -83,7 +89,8 @@
     "category": "content",
     "examples": [
       "December party"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "subtitle",
@@ -93,7 +100,8 @@
     "category": "content",
     "examples": [
       "All invited"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "body",
@@ -103,7 +111,8 @@
     "category": "content",
     "examples": [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-    ]
+    ],
+    "enabled": true
   }
 ]
 }

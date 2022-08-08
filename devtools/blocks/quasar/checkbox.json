@@ -20,7 +20,8 @@
     "category": "behavior",
     "examples": [
       "car_id"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "size",
@@ -33,7 +34,8 @@
       "2rem",
       "xs",
       "md"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "model-value",
@@ -47,7 +49,8 @@
     "examples": [
       "false",
       "['car', 'building']"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "val",
@@ -57,7 +60,8 @@
     "category": "model",
     "examples": [
       "car"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "true-value",
@@ -67,7 +71,8 @@
     "category": "model",
     "examples": [
       "Agreed"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "false-value",
@@ -77,7 +82,8 @@
     "category": "model",
     "examples": [
       "Disagree"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "indeterminate-value",
@@ -88,21 +94,24 @@
     "examples": [
       0,
       "not_answered"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "toggle-order",
     "name": ":toggle-order",
     "type": "String",
     "desc": "Determines toggle order of the two states ('t' stands for state of true, 'f' for state of false); If 'toggle-indeterminate' is true, then the order is: indet -> first state -> second state -> indet (and repeat), otherwise: indet -> first state -> second state -> first state -> second state -> ...",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "toggle-indeterminate",
     "name": ":toggle-indeterminate",
     "type": "Boolean",
     "desc": "When user clicks/taps on the component, should we toggle through the indeterminate state too?",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "label",
@@ -112,14 +121,16 @@
     "category": "label",
     "examples": [
       "I agree with the Terms and Conditions"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "left-label",
     "name": ":left-label",
     "type": "Boolean",
     "desc": "Label (if any specified) should be displayed on the left side of the component",
-    "category": "label"
+    "category": "label",
+    "enabled": true
   },
   {
     "label": "checked-icon",
@@ -129,7 +140,8 @@
     "category": "icons",
     "examples": [
       "visibility"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "unchecked-icon",
@@ -139,7 +151,8 @@
     "category": "icons",
     "examples": [
       "visibility_off"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "indeterminate-icon",
@@ -149,7 +162,8 @@
     "category": "icons",
     "examples": [
       "help"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color",
@@ -160,35 +174,40 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "keep-color",
     "name": ":keep-color",
     "type": "Boolean",
     "desc": "Should the color (if specified any) be kept when the component is unticked/ off?",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "dense",
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; occupies less space",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
     "desc": "Put component in disabled mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "tabindex",
@@ -202,7 +221,8 @@
     "examples": [
       "0",
       "100"
-    ]
+    ],
+    "enabled": true
   }
 ]
 }

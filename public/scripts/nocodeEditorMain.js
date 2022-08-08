@@ -290,7 +290,7 @@ function initNoCodeEditor(){
                 <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right">
                     <div class="gn_title">Component Properties</div>
                         <div class="gjs-trt-traits">
-                            <div v-for="trait in traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 10px;">
+                            <div v-for="trait in enabledTraits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 10px;">
                                 <div class="gjs-label-wrp">
                                     <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.id)}}</div>
                                 </div>

@@ -21,7 +21,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "text-color",
@@ -32,28 +33,32 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "floating",
     "name": ":floating",
     "type": "Boolean",
     "desc": "Tell QBadge if it should float to the top right side of the relative positioned parent element or not",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "transparent",
     "name": ":transparent",
     "type": "Boolean",
     "desc": "Applies a 0.8 opacity; Useful especially for floating QBadge",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "multi-line",
     "name": ":multi-line",
     "type": "Boolean",
     "desc": "Content can wrap to multiple lines",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "label",
@@ -67,28 +72,32 @@
     "examples": [
       "John Doe",
       22
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "align",
     "name": ":align",
     "type": "String",
     "desc": "Sets vertical-align CSS prop",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "outline",
     "name": ":outline",
     "type": "Boolean",
     "desc": "Use 'outline' design (colored text and borders only)",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "rounded",
     "name": ":rounded",
     "type": "Boolean",
     "desc": "Makes a rounded shaped badge",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   }
 ]
 }

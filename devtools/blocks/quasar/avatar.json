@@ -23,7 +23,8 @@
       "2rem",
       "xs",
       "md"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "font-size",
@@ -34,7 +35,8 @@
     "examples": [
       "18px",
       "2rem"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color",
@@ -45,7 +47,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "text-color",
@@ -56,7 +59,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon",
@@ -69,21 +73,24 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "square",
     "name": ":square",
     "type": "Boolean",
     "desc": "Removes border-radius so borders are squared",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "rounded",
     "name": ":rounded",
     "type": "Boolean",
     "desc": "Applies a small standard border-radius for a squared shape of the component",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   }
 ]
 }

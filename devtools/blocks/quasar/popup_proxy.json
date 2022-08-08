@@ -27,28 +27,32 @@
       ":target=\"$refs.target\"",
       "target=\".my-parent\"",
       "target=\"#target-id\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-parent-event",
     "name": ":no-parent-event",
     "type": "Boolean",
     "desc": "Skips attaching events to the target DOM element (that trigger the element to get shown)",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "context-menu",
     "name": ":context-menu",
     "type": "Boolean",
     "desc": "Allows the component to behave like a context menu, which opens with a right mouse click (or long tap on mobile)",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "model-value",
     "name": ":model-value",
     "type": "Boolean",
     "desc": "Defines the state of the component (shown/hidden); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
-    "category": "model"
+    "category": "model",
+    "enabled": true
   },
   {
     "label": "breakpoint",
@@ -62,7 +66,8 @@
     "examples": [
       992,
       ":breakpoint=\"1024\""
-    ]
+    ],
+    "enabled": true
   }
 ]
 }

@@ -23,7 +23,8 @@
       "2rem",
       "xs",
       "md"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color",
@@ -34,7 +35,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "thickness",
@@ -45,7 +47,8 @@
     "examples": [
       "2",
       "5"
-    ]
+    ],
+    "enabled": true
   }
 ]
 }

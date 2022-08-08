@@ -17,28 +17,32 @@
     "name": ":inline-actions",
     "type": "Boolean",
     "desc": "Display actions on same row as content",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "dense",
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; occupies less space",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "rounded",
     "name": ":rounded",
     "type": "Boolean",
     "desc": "Applies a small standard border-radius for a squared shape of the component",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   }
 ]
 }

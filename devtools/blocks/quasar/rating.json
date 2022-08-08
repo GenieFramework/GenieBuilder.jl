@@ -20,7 +20,8 @@
     "category": "behavior",
     "examples": [
       "car_id"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "size",
@@ -33,7 +34,8 @@
       "2rem",
       "xs",
       "md"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "model-value",
@@ -45,7 +47,8 @@
       "v-model=\"rating\"",
       ":model-value=\"rating\"",
       ":model-value=\"2\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "max",
@@ -59,7 +62,8 @@
     "examples": [
       "3",
       ":max=\"5\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon",
@@ -75,7 +79,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon-selected",
@@ -91,7 +96,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon-half",
@@ -107,7 +113,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color",
@@ -124,7 +131,8 @@
       "primary",
       "teal-10",
       "[\"accent\", \"grey-7\"] "
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color-selected",
@@ -138,7 +146,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color-half",
@@ -152,35 +161,40 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-dimming",
     "name": ":no-dimming",
     "type": "Boolean",
     "desc": "Does not lower opacity for unselected icons",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "no-reset",
     "name": ":no-reset",
     "type": "Boolean",
     "desc": "When used, disables default behavior of clicking/tapping on icon which represents current model value to reset model to 0",
-    "category": "model"
+    "category": "model",
+    "enabled": true
   },
   {
     "label": "readonly",
     "name": ":readonly",
     "type": "Boolean",
     "desc": "Put component in readonly mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
     "desc": "Put component in disabled mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   }
 ]
 }

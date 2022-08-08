@@ -20,7 +20,8 @@
     "category": "content",
     "examples": [
       "[ {...}, {...} ]"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "node-key",
@@ -31,7 +32,8 @@
     "examples": [
       "key",
       "id"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "label-key",
@@ -42,7 +44,8 @@
     "examples": [
       "name",
       "description"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "children-key",
@@ -53,14 +56,16 @@
     "examples": [
       "roles",
       "relatives"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-connectors",
     "name": ":no-connectors",
     "type": "Boolean",
     "desc": "Do not display the connector lines between nodes",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "color",
@@ -71,7 +76,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "control-color",
@@ -82,7 +88,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "text-color",
@@ -93,7 +100,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "selected-color",
@@ -104,21 +112,24 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "dense",
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; occupies less space",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "icon",
@@ -131,14 +142,16 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "tick-strategy",
     "name": ":tick-strategy",
     "type": "String",
     "desc": "The type of strategy to use for the selection of the nodes",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "ticked",
@@ -148,7 +161,8 @@
     "category": "state",
     "examples": [
       "v-model:ticked=\"tickedKeys\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "expanded",
@@ -158,7 +172,8 @@
     "category": "state",
     "examples": [
       "v-model:expanded=\"expandedKeys\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "selected",
@@ -168,28 +183,32 @@
     "category": "state",
     "examples": [
       "v-model:selected=\"selectedKey\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-selection-unset",
     "name": ":no-selection-unset",
     "type": "Boolean",
     "desc": "Do not allow un-selection when clicking currently selected node",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "default-expand-all",
     "name": ":default-expand-all",
     "type": "Boolean",
     "desc": "Allow the tree to have all its branches expanded, when first rendered",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "accordion",
     "name": ":accordion",
     "type": "Boolean",
     "desc": "Allows the tree to be set in accordion mode",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "filter",
@@ -199,14 +218,16 @@
     "category": "filter",
     "examples": [
       ":filter=\"searchText\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "filter-method",
     "name": ":filter-method",
     "type": "Function",
     "desc": "The function to use to filter the tree nodes; For best performance, reference it from your scope and do not define it inline",
-    "category": "filter"
+    "category": "filter",
+    "enabled": true
   },
   {
     "label": "duration",
@@ -216,7 +237,8 @@
     "category": "style",
     "examples": [
       ":duration=\"500\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-nodes-label",
@@ -226,7 +248,8 @@
     "category": "content",
     "examples": [
       "No nodes to show!"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-results-label",
@@ -236,7 +259,8 @@
     "category": "content",
     "examples": [
       "No results"
-    ]
+    ],
+    "enabled": true
   }
 ]
 }

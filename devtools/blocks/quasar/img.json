@@ -27,7 +27,8 @@
       "ratio=\"1\"",
       "(Number format) :ratio=\"16/9\"",
       "(String format) ratio=\"1\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "src",
@@ -40,7 +41,8 @@
       "(assets folder) src=\"~assets/my-img.gif\"",
       "(relative path format) :src=\"require('./my_img.jpg')\"",
       "(URL) src=\"https://placeimg.com/500/300/nature\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "srcset",
@@ -50,7 +52,8 @@
     "category": "model",
     "examples": [
       "elva-fairy-320w.jpg 320w, elva-fairy-480w.jpg 480w"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "sizes",
@@ -60,7 +63,8 @@
     "category": "model",
     "examples": [
       "(max-width: 320px) 280px, (max-width: 480px) 440px, 800px"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "placeholder-src",
@@ -73,7 +77,8 @@
       "(assets folder) src=\"~assets/my-placeholder.gif\"",
       "(relative path format) :src=\"require('./placeholder.jpg')\"",
       "(URL) src=\"https://placeimg.com/500/300/nature\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "initial-ratio",
@@ -87,7 +92,8 @@
     "examples": [
       "(Number format) :initial-ratio=\"16/9\"",
       "(String format) initial-ratio=\"1\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "width",
@@ -98,7 +104,8 @@
     "examples": [
       "280px",
       "70%"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "height",
@@ -109,49 +116,56 @@
     "examples": [
       "280px",
       "70%"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "loading",
     "name": ":loading",
     "type": "String",
     "desc": "Lazy or immediate load; Same syntax as <img> loading attribute",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "crossorigin",
     "name": ":crossorigin",
     "type": "String",
     "desc": "Same syntax as <img> crossorigin attribute",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "decoding",
     "name": ":decoding",
     "type": "String",
     "desc": "Same syntax as <img> decoding attribute",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "referrerpolicy",
     "name": ":referrerpolicy",
     "type": "String",
     "desc": "Same syntax as <img> referrerpolicy attribute",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "fetchpriority",
     "name": ":fetchpriority",
     "type": "String",
     "desc": "Provides a hint of the relative priority to use when fetching the image",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "fit",
     "name": ":fit",
     "type": "String",
     "desc": "How the image will fit into the container; Equivalent of the object-fit prop; Can be coordinated with 'position' prop",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "position",
@@ -162,7 +176,8 @@
     "examples": [
       "0 0",
       "20px 50px"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "alt",
@@ -172,14 +187,16 @@
     "category": "content",
     "examples": [
       "Two cats"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "draggable",
     "name": ":draggable",
     "type": "Boolean",
     "desc": "Adds the native 'draggable' attribute",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "img-class",
@@ -189,7 +206,8 @@
     "category": "style",
     "examples": [
       "my-special-class"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "img-style",
@@ -199,7 +217,8 @@
     "category": "style",
     "examples": [
       ":img-style=\"{ transform: 'rotate(45deg)' }\" "
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "spinner-color",
@@ -210,7 +229,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "spinner-size",
@@ -221,28 +241,32 @@
     "examples": [
       "16px",
       "2rem"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-spinner",
     "name": ":no-spinner",
     "type": "Boolean",
     "desc": "Do not display the default spinner while waiting for the image to be loaded; It is overriden by the 'loading' slot when one is present",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "no-native-menu",
     "name": ":no-native-menu",
     "type": "Boolean",
     "desc": "Disables the native context menu for the image",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "no-transition",
     "name": ":no-transition",
     "type": "Boolean",
     "desc": "Disable default transition when switching between old and new image",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   }
 ]
 }

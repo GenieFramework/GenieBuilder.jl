@@ -25,7 +25,8 @@
       ":ratio=\"4/3\"",
       ":ratio=\"16/9\"",
       "ratio=\"1\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "src",
@@ -35,7 +36,8 @@
     "category": "model",
     "examples": [
       "https://www.youtube.com/embed/k3_tw44QsZQ"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "title",
@@ -45,28 +47,32 @@
     "category": "accessibility",
     "examples": [
       "My Daily Marathon"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "fetchpriority",
     "name": ":fetchpriority",
     "type": "String",
     "desc": "Provides a hint of the relative priority to use when fetching the iframe document",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "loading",
     "name": ":loading",
     "type": "String",
     "desc": "Indicates how the browser should load the iframe",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "referrerpolicy",
     "name": ":referrerpolicy",
     "type": "String",
     "desc": "Indicates which referrer to send when fetching the frame's resource",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   }
 ]
 }

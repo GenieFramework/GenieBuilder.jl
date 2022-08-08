@@ -17,7 +17,8 @@
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; occupies less space",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "size",
@@ -33,14 +34,16 @@
       "xl",
       "25px",
       "2rem"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "icon",
@@ -53,7 +56,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon-right",
@@ -66,7 +70,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon-remove",
@@ -79,7 +84,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon-selected",
@@ -92,7 +98,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "label",
@@ -106,7 +113,8 @@
     "examples": [
       "John Doe",
       "Book"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color",
@@ -117,7 +125,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "text-color",
@@ -128,14 +137,16 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "model-value",
     "name": ":model-value",
     "type": "Boolean",
     "desc": "Model of the component determining if QChip should be rendered or not",
-    "category": "model"
+    "category": "model",
+    "enabled": true
   },
   {
     "label": "selected",
@@ -145,35 +156,40 @@
     "category": "model",
     "examples": [
       "v-model:selected=\"myState\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "square",
     "name": ":square",
     "type": "Boolean",
     "desc": "Sets a low value for border-radius instead of the default one, making it close to a square",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "outline",
     "name": ":outline",
     "type": "Boolean",
     "desc": "Display using the 'outline' design",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "clickable",
     "name": ":clickable",
     "type": "Boolean",
     "desc": "Is QChip clickable? If it's the case, then it will add hover effects and emit 'click' events",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "removable",
     "name": ":removable",
     "type": "Boolean",
     "desc": "If set, then it displays a 'remove' icon that when clicked the QChip emits 'remove' event",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "ripple",
@@ -187,7 +203,8 @@
     "examples": [
       false,
       "{ early: true, center: true, color: 'teal', keyCodes: [] }"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "tabindex",
@@ -201,14 +218,16 @@
     "examples": [
       "0",
       "100"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
     "desc": "Put component in disabled mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   }
 ]
 }

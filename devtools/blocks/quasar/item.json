@@ -24,21 +24,24 @@
     "examples": [
       "/home/dashboard",
       ":to=\"{ name: 'my-route-name' }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "exact",
     "name": ":exact",
     "type": "Boolean",
     "desc": "Equivalent to Vue Router <router-link> 'exact' property; Superseded by 'href' prop if used",
-    "category": "navigation"
+    "category": "navigation",
+    "enabled": true
   },
   {
     "label": "replace",
     "name": ":replace",
     "type": "Boolean",
     "desc": "Equivalent to Vue Router <router-link> 'replace' property; Superseded by 'href' prop if used",
-    "category": "navigation"
+    "category": "navigation",
+    "enabled": true
   },
   {
     "label": "active-class",
@@ -48,7 +51,8 @@
     "category": "navigation",
     "examples": [
       "my-active-class"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "exact-active-class",
@@ -58,7 +62,8 @@
     "category": "navigation",
     "examples": [
       "my-exact-active-class"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "href",
@@ -68,7 +73,8 @@
     "category": "navigation",
     "examples": [
       "https://quasar.dev"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "target",
@@ -81,42 +87,48 @@
       "_self",
       "_parent",
       "_top"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
     "desc": "Put component in disabled mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "active",
     "name": ":active",
     "type": "Boolean",
     "desc": "Put item into 'active' state",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "clickable",
     "name": ":clickable",
     "type": "Boolean",
     "desc": "Is QItem clickable? If it's the case, then it will add hover effects and emit 'click' events",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "dense",
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; occupies less space",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "inset-level",
@@ -126,7 +138,8 @@
     "category": "content",
     "examples": [
       ":inset-level=\"1\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "tabindex",
@@ -140,7 +153,8 @@
     "examples": [
       "0",
       "100"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "tag",
@@ -154,21 +168,24 @@
       "a",
       "label",
       "div"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "manual-focus",
     "name": ":manual-focus",
     "type": "Boolean",
     "desc": "Put item into a manual focus state; Enables 'focused' prop which will determine if item is focused or not, rather than relying on native hover/focus states",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "focused",
     "name": ":focused",
     "type": "Boolean",
     "desc": "Determines focus state, ONLY if 'manual-focus' is enabled / set to true",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   }
 ]
 }

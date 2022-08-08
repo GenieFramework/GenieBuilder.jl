@@ -20,7 +20,8 @@
     "category": "behavior",
     "examples": [
       "car_id"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "min",
@@ -30,7 +31,8 @@
     "category": "model",
     "examples": [
       ":min=\"0\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "max",
@@ -40,7 +42,8 @@
     "category": "model",
     "examples": [
       ":max=\"100\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "inner-min",
@@ -50,7 +53,8 @@
     "category": "model",
     "examples": [
       ":inner-min=\"0\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "inner-max",
@@ -60,7 +64,8 @@
     "category": "model",
     "examples": [
       ":inner-max=\"100\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "step",
@@ -70,28 +75,32 @@
     "category": "model",
     "examples": [
       ":step=\"1\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "snap",
     "name": ":snap",
     "type": "Boolean",
     "desc": "Snap on valid values, rather than sliding freely; Suggestion: use with 'step' prop",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "reverse",
     "name": ":reverse",
     "type": "Boolean",
     "desc": "Work in reverse (changes direction)",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "vertical",
     "name": ":vertical",
     "type": "Boolean",
     "desc": "Display in vertical direction",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "color",
@@ -102,7 +111,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "track-color",
@@ -113,7 +123,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "track-img",
@@ -123,7 +134,8 @@
     "category": "style",
     "examples": [
       "~assets/my-pattern.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "inner-track-color",
@@ -134,7 +146,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "inner-track-img",
@@ -144,7 +157,8 @@
     "category": "style",
     "examples": [
       "~assets/my-pattern.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "selection-color",
@@ -155,7 +169,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "selection-img",
@@ -165,14 +180,16 @@
     "category": "style",
     "examples": [
       "~assets/my-pattern.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "label",
     "name": ":label",
     "type": "Boolean",
     "desc": "Popup a label when user clicks/taps on the slider thumb and moves it",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "label-color",
@@ -183,7 +200,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "label-text-color",
@@ -194,21 +212,24 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "switch-label-side",
     "name": ":switch-label-side",
     "type": "Boolean",
     "desc": "Switch the position of the label (top <-> bottom or left <-> right)",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "label-always",
     "name": ":label-always",
     "type": "Boolean",
     "desc": "Always display the label",
-    "category": "behavior|content"
+    "category": "behavior|content",
+    "enabled": true
   },
   {
     "label": "markers",
@@ -222,7 +243,8 @@
     "examples": [
       "markers",
       ":markers=\"5\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "marker-labels",
@@ -241,7 +263,8 @@
       "{ 0: '0%', 5: { label: '5%', classes: 'my-class', style: { width: '24px' } } }",
       "val => (10 * val) + '%'",
       "val => ({ label: (10 * val) + '%', classes: 'my-class', style: { width: '24px' } })"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "marker-labels-class",
@@ -251,14 +274,16 @@
     "category": "style",
     "examples": [
       "text-orange"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "switch-marker-labels-side",
     "name": ":switch-marker-labels-side",
     "type": "Boolean",
     "desc": "Switch the position of the marker labels (top <-> bottom or left <-> right)",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "track-size",
@@ -268,7 +293,8 @@
     "category": "style",
     "examples": [
       "35px"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "thumb-size",
@@ -278,7 +304,8 @@
     "category": "style",
     "examples": [
       "20px"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "thumb-color",
@@ -289,7 +316,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "thumb-path",
@@ -299,35 +327,40 @@
     "category": "style",
     "examples": [
       "M5 5 h10 v10 h-10 v-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "dense",
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; occupies less space",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
     "desc": "Put component in disabled mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "readonly",
     "name": ":readonly",
     "type": "Boolean",
     "desc": "Put component in readonly mode",
-    "category": "state"
+    "category": "state",
+    "enabled": true
   },
   {
     "label": "tabindex",
@@ -341,7 +374,8 @@
     "examples": [
       "0",
       "100"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "model-value",
@@ -355,7 +389,8 @@
     "category": "model",
     "examples": [
       "v-model=\"positionModel\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "label-value",
@@ -368,7 +403,8 @@
     "category": "content",
     "examples": [
       ":label-value=\"model + 'px'\""
-    ]
+    ],
+    "enabled": true
   }
 ]
 }

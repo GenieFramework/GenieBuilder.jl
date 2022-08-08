@@ -20,14 +20,16 @@
     "category": "behavior",
     "examples": [
       "v-model:fullscreen=\"isFullscreen\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-route-fullscreen-exit",
     "name": ":no-route-fullscreen-exit",
     "type": "Boolean",
     "desc": "Changing route app won't exit fullscreen",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "rows",
@@ -37,7 +39,8 @@
     "category": "general",
     "examples": [
       ":rows=\"myData\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "row-key",
@@ -51,14 +54,16 @@
     "examples": [
       "row-key=\"name\"",
       ":row-key=\"row => row.name\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll",
     "name": ":virtual-scroll",
     "type": "Boolean",
     "desc": "Display data using QVirtualScroll (for non-grid mode only)",
-    "category": "virtual-scroll"
+    "category": "virtual-scroll",
+    "enabled": true
   },
   {
     "label": "virtual-scroll-target",
@@ -74,7 +79,8 @@
       "scroll-target=\".scroll-target-class\"",
       "scroll-target=\"#scroll-target-id\"",
       "scroll-target=\"body\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-slice-size",
@@ -87,7 +93,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-slice-size=\"60\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-slice-ratio-before",
@@ -100,7 +107,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-slice-ratio-before=\"0.3\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-slice-ratio-after",
@@ -113,7 +121,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-slice-ratio-after=\"2\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-item-size",
@@ -126,7 +135,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-item-size=\"48\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-sticky-size-start",
@@ -139,7 +149,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-sticky-size-start=\"48\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "virtual-scroll-sticky-size-end",
@@ -152,7 +163,8 @@
     "category": "virtual-scroll",
     "examples": [
       "virtual-scroll-sticky-size-end=\"48\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "table-colspan",
@@ -165,7 +177,8 @@
     "category": "virtual-scroll|content",
     "examples": [
       "table-colspan=\"12\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "color",
@@ -176,7 +189,8 @@
     "examples": [
       "primary",
       "teal-10"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon-first-page",
@@ -189,7 +203,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon-prev-page",
@@ -202,7 +217,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon-next-page",
@@ -215,7 +231,8 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "icon-last-page",
@@ -228,28 +245,32 @@
       "ion-add",
       "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
       "img:path/to/some_image.png"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "grid",
     "name": ":grid",
     "type": "Boolean",
     "desc": "Display data as a grid instead of the default table",
-    "category": "behavior"
+    "category": "behavior",
+    "enabled": true
   },
   {
     "label": "grid-header",
     "name": ":grid-header",
     "type": "Boolean",
     "desc": "Display header for grid-mode also",
-    "category": "behavior|content"
+    "category": "behavior|content",
+    "enabled": true
   },
   {
     "label": "dense",
     "name": ":dense",
     "type": "Boolean",
     "desc": "Dense mode; Connect with $q.screen for responsive behavior",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "columns",
@@ -259,7 +280,8 @@
     "category": "column",
     "examples": [
       ":columns=\"tableColumns\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "visible-columns",
@@ -270,14 +292,16 @@
     "examples": [
       ":visible-columns=\"myCols\"",
       "[ 'desc', 'carbs', 'protein' ]"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "loading",
     "name": ":loading",
     "type": "Boolean",
     "desc": "Put Table into 'loading' state; Notify the user something is happening behind the scenes",
-    "category": "behavior|content"
+    "category": "behavior|content",
+    "enabled": true
   },
   {
     "label": "title",
@@ -287,98 +311,112 @@
     "category": "content",
     "examples": [
       "Device list"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "hide-header",
     "name": ":hide-header",
     "type": "Boolean",
     "desc": "Hide table header layer",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "hide-bottom",
     "name": ":hide-bottom",
     "type": "Boolean",
     "desc": "Hide table bottom layer regardless of what it has to display",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "hide-selected-banner",
     "name": ":hide-selected-banner",
     "type": "Boolean",
     "desc": "Hide the selected rows banner (if any)",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "hide-no-data",
     "name": ":hide-no-data",
     "type": "Boolean",
     "desc": "Hide the default no data bottom layer",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "hide-pagination",
     "name": ":hide-pagination",
     "type": "Boolean",
     "desc": "Hide the pagination controls at the bottom",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "dark",
     "name": ":dark",
     "type": "Boolean",
     "desc": "Notify the component that the background is a dark color",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "flat",
     "name": ":flat",
     "type": "Boolean",
     "desc": "Applies a 'flat' design (no default shadow)",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "bordered",
     "name": ":bordered",
     "type": "Boolean",
     "desc": "Applies a default border to the component",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "square",
     "name": ":square",
     "type": "Boolean",
     "desc": "Removes border-radius so borders are squared",
-    "category": "style"
+    "category": "style",
+    "enabled": true
   },
   {
     "label": "separator",
     "name": ":separator",
     "type": "String",
     "desc": "Use a separator/border between rows, columns or all cells",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "wrap-cells",
     "name": ":wrap-cells",
     "type": "Boolean",
     "desc": "Wrap text within table cells",
-    "category": "content"
+    "category": "content",
+    "enabled": true
   },
   {
     "label": "binary-state-sort",
     "name": ":binary-state-sort",
     "type": "Boolean",
     "desc": "Skip the third state (unsorted) when user toggles column sort direction",
-    "category": "sorting"
+    "category": "sorting",
+    "enabled": true
   },
   {
     "label": "column-sort-order",
     "name": ":column-sort-order",
     "type": "String",
     "desc": "Set column sort order: 'ad' (ascending-descending) or 'da' (descending-ascending); It gets applied to all columns unless a column has its own sortOrder specified in the 'columns' definition prop",
-    "category": "sorting"
+    "category": "sorting",
+    "enabled": true
   },
   {
     "label": "no-data-label",
@@ -388,7 +426,8 @@
     "category": "content",
     "examples": [
       "No devices available"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "no-results-label",
@@ -398,7 +437,8 @@
     "category": "content",
     "examples": [
       "No matched records"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "loading-label",
@@ -408,7 +448,8 @@
     "category": "content",
     "examples": [
       "Loading devices..."
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "selected-rows-label",
@@ -418,7 +459,8 @@
     "category": "selection",
     "examples": [
       ":selected-rows-label=\"getSelectedString\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "rows-per-page-label",
@@ -428,7 +470,8 @@
     "category": "pagination",
     "examples": [
       "Records per page:"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "pagination-label",
@@ -438,7 +481,8 @@
     "category": "pagination",
     "examples": [
       ":pagination-label=\"getPaginationLabel\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "table-style",
@@ -453,7 +497,8 @@
     "examples": [
       "background-color: #ff0000",
       ":table-style=\"{ backgroundColor: '#ff0000' }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "table-class",
@@ -468,7 +513,8 @@
     "examples": [
       "my-special-class",
       ":table-class=\"{ 'my-special-class': [Boolean condition] }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "table-header-style",
@@ -483,7 +529,8 @@
     "examples": [
       "background-color: #ff0000",
       ":table-header-style=\"{ backgroundColor: '#ff0000' }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "table-header-class",
@@ -498,7 +545,8 @@
     "examples": [
       "my-special-class",
       ":table-header-class=\"{ 'my-special-class': [Boolean condition] }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "card-container-style",
@@ -513,7 +561,8 @@
     "examples": [
       "background-color: #ff0000",
       ":card-container-style=\"{ backgroundColor: '#ff0000' }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "card-container-class",
@@ -529,7 +578,8 @@
       "my-special-class",
       "justify-center",
       ":card-container-class=\"{ 'my-special-class': [Boolean condition] }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "card-style",
@@ -544,7 +594,8 @@
     "examples": [
       "background-color: #ff0000",
       ":card-style=\"{ backgroundColor: '#ff0000' }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "card-class",
@@ -559,7 +610,8 @@
     "examples": [
       "my-special-class",
       ":card-class=\"{ 'my-special-class': [Boolean condition] }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "title-class",
@@ -575,7 +627,8 @@
       "my-special-class",
       "text-h1",
       ":title-class=\"{ 'text-h1': [Boolean condition] }\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "filter",
@@ -588,7 +641,8 @@
     "category": "filter",
     "examples": [
       ":filter=\"myFilterInput\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "filter-method",
@@ -598,7 +652,8 @@
     "category": "filter",
     "examples": [
       "(see source code)"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "pagination",
@@ -609,7 +664,8 @@
     "examples": [
       ":pagination=\"myInitialPagination\"",
       "v-model:pagination=\"myPagination\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "rows-per-page-options",
@@ -619,7 +675,8 @@
     "category": "pagination",
     "examples": [
       ":rows-per-page-options=\"[10, 20]\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "selection",
@@ -629,7 +686,8 @@
     "category": "selection",
     "examples": [
       "multiple"
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "selected",
@@ -639,7 +697,8 @@
     "category": "selection",
     "examples": [
       "v-model:selected=\"selection\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "expanded",
@@ -649,7 +708,8 @@
     "category": "expansion",
     "examples": [
       "v-model:expanded=\"expanded\""
-    ]
+    ],
+    "enabled": true
   },
   {
     "label": "sort-method",
@@ -659,7 +719,8 @@
     "category": "sorting",
     "examples": [
       "(see source code)"
-    ]
+    ],
+    "enabled": true
   }
 ]
 }
