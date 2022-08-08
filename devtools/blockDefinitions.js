@@ -204,518 +204,6 @@
     }    
 
     
-    const customblock_quasar_editor = editor => {
-        editor.DomComponents.addType("editor", {
-            isComponent: el => {
-                if (el.tagName == 'Q-EDITOR') {
-                    return { type: 'editor' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
-        "label": "fullscreen",
-        "name": ":fullscreen",
-        "type": "Boolean",
-        "desc": "Fullscreen mode",
-        "category": "behavior",
-        "examples": [
-            "v-model:fullscreen=\"isFullscreen\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "no-route-fullscreen-exit",
-        "name": ":no-route-fullscreen-exit",
-        "type": "Boolean",
-        "desc": "Changing route app won't exit fullscreen",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "model-value",
-        "name": ":model-value",
-        "type": "String",
-        "desc": "Model of the component; Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
-        "category": "model",
-        "examples": [
-            "v-model=\"content\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "readonly",
-        "name": ":readonly",
-        "type": "Boolean",
-        "desc": "Put component in readonly mode",
-        "category": "state",
-        "enabled": true
-    },
-    {
-        "label": "square",
-        "name": ":square",
-        "type": "Boolean",
-        "desc": "Removes border-radius so borders are squared",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "flat",
-        "name": ":flat",
-        "type": "Boolean",
-        "desc": "Applies a 'flat' design (no borders)",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "dense",
-        "name": ":dense",
-        "type": "Boolean",
-        "desc": "Dense mode; toolbar buttons are shown on one-line only",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "dark",
-        "name": ":dark",
-        "type": "Boolean",
-        "desc": "Notify the component that the background is a dark color",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "disable",
-        "name": ":disable",
-        "type": "Boolean",
-        "desc": "Put component in disabled mode",
-        "category": "state",
-        "enabled": true
-    },
-    {
-        "label": "min-height",
-        "name": ":min-height",
-        "type": "String",
-        "desc": "CSS unit for the minimum height of the editable area",
-        "category": "style",
-        "examples": [
-            "15rem",
-            "50vh"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "max-height",
-        "name": ":max-height",
-        "type": "String",
-        "desc": "CSS unit for maximum height of the input area",
-        "category": "style",
-        "examples": [
-            "1000px",
-            "90vh"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "height",
-        "name": ":height",
-        "type": "String",
-        "desc": "CSS value to set the height of the editable area",
-        "category": "style",
-        "examples": [
-            "100px",
-            "50vh"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "definitions",
-        "name": ":definitions",
-        "type": "Object",
-        "desc": "Definition of commands and their buttons to be included in the 'toolbar' prop",
-        "category": "toolbar",
-        "examples": [
-            ":definitions=\"{ save: { tip: 'Save your work', icon: 'save', label: 'Save', handler: saveWork }, upload: { tip: 'Upload to cloud', icon: 'cloud_upload', label: 'Upload', handler: uploadIt } }\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "fonts",
-        "name": ":fonts",
-        "type": "Object",
-        "desc": "Object with definitions of fonts",
-        "category": "toolbar",
-        "examples": [
-            ":fonts=\"{ arial: 'Arial', arial_black: 'Arial Black', comic_sans: 'Comic Sans MS' }\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "toolbar",
-        "name": ":toolbar",
-        "type": "Array",
-        "desc": "An array of arrays of Objects/Strings that you use to define the construction of the elements and commands available in the toolbar",
-        "category": "toolbar",
-        "examples": [
-            [
-                "left",
-                "center",
-                "right",
-                "justify"
-            ]
-        ],
-        "enabled": true
-    },
-    {
-        "label": "toolbar-color",
-        "name": ":toolbar-color",
-        "type": "String",
-        "desc": "Font color (from the Quasar Palette) of buttons and text in the toolbar",
-        "category": "toolbar",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "toolbar-text-color",
-        "name": ":toolbar-text-color",
-        "type": "String",
-        "desc": "Text color (from the Quasar Palette) of toolbar commands",
-        "category": "toolbar",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "toolbar-toggle-color",
-        "name": ":toolbar-toggle-color",
-        "type": "String",
-        "desc": "Choose the active color (from the Quasar Palette) of toolbar commands button",
-        "category": "toolbar",
-        "examples": [
-            "secondary",
-            "blue-3"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "toolbar-bg",
-        "name": ":toolbar-bg",
-        "type": "String",
-        "desc": "Toolbar background color (from Quasar Palette)",
-        "category": "toolbar",
-        "examples": [
-            "secondary",
-            "blue-3"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "toolbar-outline",
-        "name": ":toolbar-outline",
-        "type": "Boolean",
-        "desc": "Toolbar buttons are rendered \"outlined\"",
-        "category": "toolbar|style",
-        "enabled": true
-    },
-    {
-        "label": "toolbar-push",
-        "name": ":toolbar-push",
-        "type": "Boolean",
-        "desc": "Toolbar buttons are rendered as a \"push-button\" type",
-        "category": "toolbar|style",
-        "enabled": true
-    },
-    {
-        "label": "toolbar-rounded",
-        "name": ":toolbar-rounded",
-        "type": "Boolean",
-        "desc": "Toolbar buttons are rendered \"rounded\"",
-        "category": "toolbar|style",
-        "enabled": true
-    },
-    {
-        "label": "paragraph-tag",
-        "name": ":paragraph-tag",
-        "type": "String",
-        "desc": "Paragraph tag to be used",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "content-style",
-        "name": ":content-style",
-        "type": "Object",
-        "desc": "Object with CSS properties and values for styling the container of QEditor",
-        "category": "style",
-        "examples": [
-            ":content-style=\"{ backgroundColor: '#C0C0C0' }\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "content-class",
-        "name": ":content-class",
-        "type": [
-            "String",
-            "Array",
-            "Object"
-        ],
-        "desc": "CSS classes for the input area",
-        "category": "style",
-        "examples": [
-            "my-special-class",
-            ":content-class=\"{ 'my-special-class': <condition> }\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "placeholder",
-        "name": ":placeholder",
-        "type": "String",
-        "desc": "Text to display as placeholder",
-        "category": "content",
-        "examples": [
-            "Type your story here ..."
-        ],
-        "enabled": true
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('editor', { label: 'Editor', content: '<q-editor />', media: '<img src="images/icons/components/ui_components/editor.png" class="blockIcon" />', category: 'Forms' });
-    }    
-
-    
-    const customblock_quasar_radio = editor => {
-        editor.DomComponents.addType("radio", {
-            isComponent: el => {
-                if (el.tagName == 'Q-RADIO') {
-                    return { type: 'radio' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
-        "label": "name",
-        "name": ":name",
-        "type": "String",
-        "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
-        "category": "behavior",
-        "examples": [
-            "car_id"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "size",
-        "name": ":size",
-        "type": "String",
-        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
-        "category": "style",
-        "examples": [
-            "16px",
-            "2rem",
-            "xs",
-            "md"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "model-value",
-        "name": ":model-value",
-        "type": [
-            "Number",
-            "String",
-            "null",
-            "undefined"
-        ],
-        "desc": "Model of the component; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
-        "category": "model",
-        "examples": [
-            "v-model=\"option\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "val",
-        "name": ":val",
-        "type": [
-            "Number",
-            "String",
-            "null",
-            "undefined"
-        ],
-        "desc": "The actual value of the option with which model value is changed",
-        "category": "model",
-        "examples": [
-            "opt1",
-            50
-        ],
-        "enabled": true
-    },
-    {
-        "label": "label",
-        "name": ":label",
-        "type": "String",
-        "desc": "Label to display along the radio control (or use the default slot instead of this prop)",
-        "category": "label",
-        "examples": [
-            "label=\"Option 1\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "left-label",
-        "name": ":left-label",
-        "type": "Boolean",
-        "desc": "Label (if any specified) should be displayed on the left side of the checkbox",
-        "category": "label",
-        "enabled": true
-    },
-    {
-        "label": "checked-icon",
-        "name": ":checked-icon",
-        "type": "String",
-        "desc": "The icon to be used when selected (instead of the default design)",
-        "category": "icons",
-        "examples": [
-            "visibility"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "unchecked-icon",
-        "name": ":unchecked-icon",
-        "type": "String",
-        "desc": "The icon to be used when un-selected (instead of the default design)",
-        "category": "icons",
-        "examples": [
-            "visibility_off"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "color",
-        "name": ":color",
-        "type": "String",
-        "desc": "Color name for component from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "keep-color",
-        "name": ":keep-color",
-        "type": "Boolean",
-        "desc": "Should the color (if specified any) be kept when checkbox is unticked?",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "dark",
-        "name": ":dark",
-        "type": "Boolean",
-        "desc": "Notify the component that the background is a dark color",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "dense",
-        "name": ":dense",
-        "type": "Boolean",
-        "desc": "Dense mode; occupies less space",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "disable",
-        "name": ":disable",
-        "type": "Boolean",
-        "desc": "Put component in disabled mode",
-        "category": "state",
-        "enabled": true
-    },
-    {
-        "label": "tabindex",
-        "name": ":tabindex",
-        "type": [
-            "Number",
-            "String"
-        ],
-        "desc": "Tabindex HTML attribute value",
-        "category": "general",
-        "examples": [
-            "0",
-            "100"
-        ],
-        "enabled": true
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('radio', { label: 'Radio', content: '<q-radio />', media: '<img src="images/icons/components/ui_components/radio.png" class="blockIcon" />', category: 'Forms' });
-    }    
-
-    
     const customblock_quasar_input = editor => {
         editor.DomComponents.addType("input", {
             isComponent: el => {
@@ -1250,6 +738,486 @@
             },
         });
         editor.BlockManager.add('input', { label: 'Text', content: '<q-input />', media: '<img src="images/icons/components/ui_components/input_text_field.png" class="blockIcon" />', category: 'Forms' });
+    }    
+
+    
+    const customblock_quasar_button = editor => {
+        editor.DomComponents.addType("button", {
+            isComponent: el => {
+                if (el.tagName == 'Q-BTN') {
+                    return { type: 'button' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    },
+    {
+        "label": "size",
+        "name": ":size",
+        "type": "String",
+        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+        "category": "style",
+        "examples": [
+            "16px",
+            "2rem",
+            "xs",
+            "md"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "type",
+        "name": ":type",
+        "type": "String",
+        "desc": "1) Define the button native type attribute (submit, reset, button) or 2) render component with <a> tag so you can access events even if disable or 3) Use 'href' prop and specify 'type' as a media tag",
+        "category": "general",
+        "examples": [
+            "a",
+            "submit",
+            "button",
+            "reset",
+            "image/png",
+            "href=\"https://quasar.dev\" target=\"_blank\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "to",
+        "name": ":to",
+        "type": [
+            "String",
+            "Object"
+        ],
+        "desc": "Equivalent to Vue Router <router-link> 'to' property; Superseded by 'href' prop if used",
+        "category": "navigation",
+        "examples": [
+            "/home/dashboard",
+            ":to=\"{ name: 'my-route-name' }\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "replace",
+        "name": ":replace",
+        "type": "Boolean",
+        "desc": "Equivalent to Vue Router <router-link> 'replace' property; Superseded by 'href' prop if used",
+        "category": "navigation",
+        "enabled": true
+    },
+    {
+        "label": "href",
+        "name": ":href",
+        "type": "String",
+        "desc": "Native <a> link href attribute; Has priority over the 'to' and 'replace' props",
+        "category": "navigation",
+        "examples": [
+            "https://quasar.dev",
+            "href=\"https://quasar.dev\" target=\"_blank\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "target",
+        "name": ":target",
+        "type": "String",
+        "desc": "Native <a> link target attribute; Use it only with 'to' or 'href' props",
+        "category": "navigation",
+        "examples": [
+            "_blank",
+            "_self",
+            "_parent",
+            "_top"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "label",
+        "name": ":label",
+        "type": [
+            "String",
+            "Number"
+        ],
+        "desc": "The text that will be shown on the button",
+        "category": "content",
+        "examples": [
+            "Button Label"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "icon",
+        "name": ":icon",
+        "type": "String",
+        "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+        "category": "content",
+        "examples": [
+            "map",
+            "ion-add",
+            "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+            "img:path/to/some_image.png"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "icon-right",
+        "name": ":icon-right",
+        "type": "String",
+        "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+        "category": "content",
+        "examples": [
+            "map",
+            "ion-add",
+            "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+            "img:path/to/some_image.png"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "outline",
+        "name": ":outline",
+        "type": "Boolean",
+        "desc": "Use 'outline' design",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "flat",
+        "name": ":flat",
+        "type": "Boolean",
+        "desc": "Use 'flat' design",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "unelevated",
+        "name": ":unelevated",
+        "type": "Boolean",
+        "desc": "Remove shadow",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "rounded",
+        "name": ":rounded",
+        "type": "Boolean",
+        "desc": "Applies a more prominent border-radius for a squared shape button",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "push",
+        "name": ":push",
+        "type": "Boolean",
+        "desc": "Use 'push' design",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "square",
+        "name": ":square",
+        "type": "Boolean",
+        "desc": "Removes border-radius so borders are squared",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "glossy",
+        "name": ":glossy",
+        "type": "Boolean",
+        "desc": "Applies a glossy effect",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "fab",
+        "name": ":fab",
+        "type": "Boolean",
+        "desc": "Makes button size and shape to fit a Floating Action Button",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "fab-mini",
+        "name": ":fab-mini",
+        "type": "Boolean",
+        "desc": "Makes button size and shape to fit a small Floating Action Button",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "padding",
+        "name": ":padding",
+        "type": "String",
+        "desc": "Apply custom padding (vertical [horizontal]); Size in CSS units, including unit name or standard size name (none|xs|sm|md|lg|xl); Also removes the min width and height when set",
+        "category": "style",
+        "examples": [
+            "16px",
+            "10px 5px",
+            "2rem",
+            "xs",
+            "md lg",
+            "2px 2px 5px 7px"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "color",
+        "name": ":color",
+        "type": "String",
+        "desc": "Color name for component from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "text-color",
+        "name": ":text-color",
+        "type": "String",
+        "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "no-caps",
+        "name": ":no-caps",
+        "type": "Boolean",
+        "desc": "Avoid turning label text into caps (which happens by default)",
+        "category": "content",
+        "enabled": true
+    },
+    {
+        "label": "no-wrap",
+        "name": ":no-wrap",
+        "type": "Boolean",
+        "desc": "Avoid label text wrapping",
+        "category": "content",
+        "enabled": true
+    },
+    {
+        "label": "dense",
+        "name": ":dense",
+        "type": "Boolean",
+        "desc": "Dense mode; occupies less space",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "ripple",
+        "name": ":ripple",
+        "type": [
+            "Boolean",
+            "Object"
+        ],
+        "desc": "Configure material ripple (disable it by setting it to 'false' or supply a config object)",
+        "category": "style",
+        "examples": [
+            false,
+            "{ early: true, center: true, color: 'teal', keyCodes: [] }"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "tabindex",
+        "name": ":tabindex",
+        "type": [
+            "Number",
+            "String"
+        ],
+        "desc": "Tabindex HTML attribute value",
+        "category": "general",
+        "examples": [
+            "0",
+            "100"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "align",
+        "name": ":align",
+        "type": "String",
+        "desc": "Label or content alignment",
+        "category": "content",
+        "enabled": true
+    },
+    {
+        "label": "stack",
+        "name": ":stack",
+        "type": "Boolean",
+        "desc": "Stack icon and label vertically instead of on same line (like it is by default)",
+        "category": "content",
+        "enabled": true
+    },
+    {
+        "label": "stretch",
+        "name": ":stretch",
+        "type": "Boolean",
+        "desc": "When used on flexbox parent, button will stretch to parent's height",
+        "category": "content",
+        "enabled": true
+    },
+    {
+        "label": "loading",
+        "name": ":loading",
+        "type": "Boolean",
+        "desc": "Put button into loading state (displays a QSpinner -- can be overridden by using a 'loading' slot)",
+        "category": "behavior|state",
+        "enabled": true
+    },
+    {
+        "label": "disable",
+        "name": ":disable",
+        "type": "Boolean",
+        "desc": "Put component in disabled mode",
+        "category": "state",
+        "enabled": true
+    },
+    {
+        "label": "round",
+        "name": ":round",
+        "type": "Boolean",
+        "desc": "Makes a circle shaped button",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "percentage",
+        "name": ":percentage",
+        "type": "Number",
+        "desc": "Percentage (0.0 < x < 100.0); To be used along 'loading' prop; Display a progress bar on the background",
+        "category": "behavior",
+        "examples": [
+            23
+        ],
+        "enabled": true
+    },
+    {
+        "label": "dark-percentage",
+        "name": ":dark-percentage",
+        "type": "Boolean",
+        "desc": "Progress bar on the background should have dark color; To be used along with 'percentage' and 'loading' props",
+        "category": "behavior",
+        "enabled": true
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('button', { label: 'Button', content: '<q-btn />', media: '<img src="images/icons/components/ui_components/button.png" class="blockIcon" />', category: 'Forms' });
+    }    
+
+    
+    const customblock_quasar_button_group = editor => {
+        editor.DomComponents.addType("button_group", {
+            isComponent: el => {
+                if (el.tagName == 'Q-BUTTON-GROUP') {
+                    return { type: 'button_group' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('button_group', { label: 'Button Group', content: '<q-button-group />', media: '<img src="images/icons/components/ui_components/button-group.png" class="blockIcon" />', category: 'Forms' });
+    }    
+
+    
+    const customblock_quasar_button_dropdown = editor => {
+        editor.DomComponents.addType("button_dropdown", {
+            isComponent: el => {
+                if (el.tagName == 'Q-BUTTON-DROPDOWN') {
+                    return { type: 'button_dropdown' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('button_dropdown', { label: 'Button Dropdown', content: '<q-button-dropdown />', media: '<img src="images/icons/components/ui_components/button-dropdown.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
@@ -2163,6 +2131,206 @@
     }    
 
     
+    const customblock_quasar_radio = editor => {
+        editor.DomComponents.addType("radio", {
+            isComponent: el => {
+                if (el.tagName == 'Q-RADIO') {
+                    return { type: 'radio' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    },
+    {
+        "label": "name",
+        "name": ":name",
+        "type": "String",
+        "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+        "category": "behavior",
+        "examples": [
+            "car_id"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "size",
+        "name": ":size",
+        "type": "String",
+        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+        "category": "style",
+        "examples": [
+            "16px",
+            "2rem",
+            "xs",
+            "md"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "model-value",
+        "name": ":model-value",
+        "type": [
+            "Number",
+            "String",
+            "null",
+            "undefined"
+        ],
+        "desc": "Model of the component; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
+        "category": "model",
+        "examples": [
+            "v-model=\"option\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "val",
+        "name": ":val",
+        "type": [
+            "Number",
+            "String",
+            "null",
+            "undefined"
+        ],
+        "desc": "The actual value of the option with which model value is changed",
+        "category": "model",
+        "examples": [
+            "opt1",
+            50
+        ],
+        "enabled": true
+    },
+    {
+        "label": "label",
+        "name": ":label",
+        "type": "String",
+        "desc": "Label to display along the radio control (or use the default slot instead of this prop)",
+        "category": "label",
+        "examples": [
+            "label=\"Option 1\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "left-label",
+        "name": ":left-label",
+        "type": "Boolean",
+        "desc": "Label (if any specified) should be displayed on the left side of the checkbox",
+        "category": "label",
+        "enabled": true
+    },
+    {
+        "label": "checked-icon",
+        "name": ":checked-icon",
+        "type": "String",
+        "desc": "The icon to be used when selected (instead of the default design)",
+        "category": "icons",
+        "examples": [
+            "visibility"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "unchecked-icon",
+        "name": ":unchecked-icon",
+        "type": "String",
+        "desc": "The icon to be used when un-selected (instead of the default design)",
+        "category": "icons",
+        "examples": [
+            "visibility_off"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "color",
+        "name": ":color",
+        "type": "String",
+        "desc": "Color name for component from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "keep-color",
+        "name": ":keep-color",
+        "type": "Boolean",
+        "desc": "Should the color (if specified any) be kept when checkbox is unticked?",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "dark",
+        "name": ":dark",
+        "type": "Boolean",
+        "desc": "Notify the component that the background is a dark color",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "dense",
+        "name": ":dense",
+        "type": "Boolean",
+        "desc": "Dense mode; occupies less space",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "disable",
+        "name": ":disable",
+        "type": "Boolean",
+        "desc": "Put component in disabled mode",
+        "category": "state",
+        "enabled": true
+    },
+    {
+        "label": "tabindex",
+        "name": ":tabindex",
+        "type": [
+            "Number",
+            "String"
+        ],
+        "desc": "Tabindex HTML attribute value",
+        "category": "general",
+        "examples": [
+            "0",
+            "100"
+        ],
+        "enabled": true
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('radio', { label: 'Radio', content: '<q-radio />', media: '<img src="images/icons/components/ui_components/radio.png" class="blockIcon" />', category: 'Forms' });
+    }    
+
+    
     const customblock_quasar_checkbox = editor => {
         editor.DomComponents.addType("checkbox", {
             isComponent: el => {
@@ -2414,6 +2582,286 @@
             },
         });
         editor.BlockManager.add('checkbox', { label: 'Checkbox', content: '<q-checkbox />', media: '<img src="images/icons/components/ui_components/checkbox.png" class="blockIcon" />', category: 'Forms' });
+    }    
+
+    
+    const customblock_quasar_toggle = editor => {
+        editor.DomComponents.addType("toggle", {
+            isComponent: el => {
+                if (el.tagName == 'Q-TOGGLE') {
+                    return { type: 'toggle' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    },
+    {
+        "label": "name",
+        "name": ":name",
+        "type": "String",
+        "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+        "category": "behavior",
+        "examples": [
+            "car_id"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "size",
+        "name": ":size",
+        "type": "String",
+        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+        "category": "style",
+        "examples": [
+            "16px",
+            "2rem",
+            "xs",
+            "md"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "model-value",
+        "name": ":model-value",
+        "type": [
+            "Any",
+            "Array"
+        ],
+        "desc": "Model of the component; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
+        "category": "model",
+        "examples": [
+            "false",
+            "['car', 'building']"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "val",
+        "name": ":val",
+        "type": "Any",
+        "desc": "Works when model ('value') is Array. It tells the component which value should add/remove when ticked/unticked",
+        "category": "model",
+        "examples": [
+            "car"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "true-value",
+        "name": ":true-value",
+        "type": "Any",
+        "desc": "What model value should be considered as checked/ticked/on?",
+        "category": "model",
+        "examples": [
+            "Agreed"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "false-value",
+        "name": ":false-value",
+        "type": "Any",
+        "desc": "What model value should be considered as unchecked/unticked/off?",
+        "category": "model",
+        "examples": [
+            "Disagree"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "indeterminate-value",
+        "name": ":indeterminate-value",
+        "type": "Any",
+        "desc": "What model value should be considered as 'indeterminate'?",
+        "category": "behavior",
+        "examples": [
+            0,
+            "not_answered"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "toggle-order",
+        "name": ":toggle-order",
+        "type": "String",
+        "desc": "Determines toggle order of the two states ('t' stands for state of true, 'f' for state of false); If 'toggle-indeterminate' is true, then the order is: indet -> first state -> second state -> indet (and repeat), otherwise: indet -> first state -> second state -> first state -> second state -> ...",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "toggle-indeterminate",
+        "name": ":toggle-indeterminate",
+        "type": "Boolean",
+        "desc": "When user clicks/taps on the component, should we toggle through the indeterminate state too?",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "label",
+        "name": ":label",
+        "type": "String",
+        "desc": "Label to display along the component (or use the default slot instead of this prop)",
+        "category": "label",
+        "examples": [
+            "I agree with the Terms and Conditions"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "left-label",
+        "name": ":left-label",
+        "type": "Boolean",
+        "desc": "Label (if any specified) should be displayed on the left side of the component",
+        "category": "label",
+        "enabled": true
+    },
+    {
+        "label": "checked-icon",
+        "name": ":checked-icon",
+        "type": "String",
+        "desc": "The icon to be used when the toggle is on",
+        "category": "icons",
+        "examples": [
+            "visibility"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "unchecked-icon",
+        "name": ":unchecked-icon",
+        "type": "String",
+        "desc": "The icon to be used when the toggle is off",
+        "category": "icons",
+        "examples": [
+            "visibility_off"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "indeterminate-icon",
+        "name": ":indeterminate-icon",
+        "type": "String",
+        "desc": "The icon to be used when the model is indeterminate",
+        "category": "icons",
+        "examples": [
+            "help"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "color",
+        "name": ":color",
+        "type": "String",
+        "desc": "Color name for component from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "keep-color",
+        "name": ":keep-color",
+        "type": "Boolean",
+        "desc": "Should the color (if specified any) be kept when the component is unticked/ off?",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "dark",
+        "name": ":dark",
+        "type": "Boolean",
+        "desc": "Notify the component that the background is a dark color",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "dense",
+        "name": ":dense",
+        "type": "Boolean",
+        "desc": "Dense mode; occupies less space",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "disable",
+        "name": ":disable",
+        "type": "Boolean",
+        "desc": "Put component in disabled mode",
+        "category": "state",
+        "enabled": true
+    },
+    {
+        "label": "tabindex",
+        "name": ":tabindex",
+        "type": [
+            "Number",
+            "String"
+        ],
+        "desc": "Tabindex HTML attribute value",
+        "category": "general",
+        "examples": [
+            "0",
+            "100"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "icon",
+        "name": ":icon",
+        "type": "String",
+        "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+        "category": "content",
+        "examples": [
+            "map",
+            "ion-add",
+            "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+            "img:path/to/some_image.png"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "icon-color",
+        "name": ":icon-color",
+        "type": "String",
+        "desc": "Override default icon color (for truthy state only); Color name for component from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('toggle', { label: 'Toggle', content: '<q-toggle />', media: '<img src="images/icons/components/ui_components/toggle.png" class="blockIcon" />', category: 'Widgets' });
     }    
 
     
@@ -3391,751 +3839,6 @@
     }    
 
     
-    const customblock_quasar_button = editor => {
-        editor.DomComponents.addType("button", {
-            isComponent: el => {
-                if (el.tagName == 'Q-BTN') {
-                    return { type: 'button' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
-        "label": "size",
-        "name": ":size",
-        "type": "String",
-        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
-        "category": "style",
-        "examples": [
-            "16px",
-            "2rem",
-            "xs",
-            "md"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "type",
-        "name": ":type",
-        "type": "String",
-        "desc": "1) Define the button native type attribute (submit, reset, button) or 2) render component with <a> tag so you can access events even if disable or 3) Use 'href' prop and specify 'type' as a media tag",
-        "category": "general",
-        "examples": [
-            "a",
-            "submit",
-            "button",
-            "reset",
-            "image/png",
-            "href=\"https://quasar.dev\" target=\"_blank\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "to",
-        "name": ":to",
-        "type": [
-            "String",
-            "Object"
-        ],
-        "desc": "Equivalent to Vue Router <router-link> 'to' property; Superseded by 'href' prop if used",
-        "category": "navigation",
-        "examples": [
-            "/home/dashboard",
-            ":to=\"{ name: 'my-route-name' }\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "replace",
-        "name": ":replace",
-        "type": "Boolean",
-        "desc": "Equivalent to Vue Router <router-link> 'replace' property; Superseded by 'href' prop if used",
-        "category": "navigation",
-        "enabled": true
-    },
-    {
-        "label": "href",
-        "name": ":href",
-        "type": "String",
-        "desc": "Native <a> link href attribute; Has priority over the 'to' and 'replace' props",
-        "category": "navigation",
-        "examples": [
-            "https://quasar.dev",
-            "href=\"https://quasar.dev\" target=\"_blank\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "target",
-        "name": ":target",
-        "type": "String",
-        "desc": "Native <a> link target attribute; Use it only with 'to' or 'href' props",
-        "category": "navigation",
-        "examples": [
-            "_blank",
-            "_self",
-            "_parent",
-            "_top"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "label",
-        "name": ":label",
-        "type": [
-            "String",
-            "Number"
-        ],
-        "desc": "The text that will be shown on the button",
-        "category": "content",
-        "examples": [
-            "Button Label"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "icon",
-        "name": ":icon",
-        "type": "String",
-        "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
-        "category": "content",
-        "examples": [
-            "map",
-            "ion-add",
-            "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
-            "img:path/to/some_image.png"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "icon-right",
-        "name": ":icon-right",
-        "type": "String",
-        "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
-        "category": "content",
-        "examples": [
-            "map",
-            "ion-add",
-            "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
-            "img:path/to/some_image.png"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "outline",
-        "name": ":outline",
-        "type": "Boolean",
-        "desc": "Use 'outline' design",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "flat",
-        "name": ":flat",
-        "type": "Boolean",
-        "desc": "Use 'flat' design",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "unelevated",
-        "name": ":unelevated",
-        "type": "Boolean",
-        "desc": "Remove shadow",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "rounded",
-        "name": ":rounded",
-        "type": "Boolean",
-        "desc": "Applies a more prominent border-radius for a squared shape button",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "push",
-        "name": ":push",
-        "type": "Boolean",
-        "desc": "Use 'push' design",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "square",
-        "name": ":square",
-        "type": "Boolean",
-        "desc": "Removes border-radius so borders are squared",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "glossy",
-        "name": ":glossy",
-        "type": "Boolean",
-        "desc": "Applies a glossy effect",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "fab",
-        "name": ":fab",
-        "type": "Boolean",
-        "desc": "Makes button size and shape to fit a Floating Action Button",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "fab-mini",
-        "name": ":fab-mini",
-        "type": "Boolean",
-        "desc": "Makes button size and shape to fit a small Floating Action Button",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "padding",
-        "name": ":padding",
-        "type": "String",
-        "desc": "Apply custom padding (vertical [horizontal]); Size in CSS units, including unit name or standard size name (none|xs|sm|md|lg|xl); Also removes the min width and height when set",
-        "category": "style",
-        "examples": [
-            "16px",
-            "10px 5px",
-            "2rem",
-            "xs",
-            "md lg",
-            "2px 2px 5px 7px"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "color",
-        "name": ":color",
-        "type": "String",
-        "desc": "Color name for component from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "text-color",
-        "name": ":text-color",
-        "type": "String",
-        "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "no-caps",
-        "name": ":no-caps",
-        "type": "Boolean",
-        "desc": "Avoid turning label text into caps (which happens by default)",
-        "category": "content",
-        "enabled": true
-    },
-    {
-        "label": "no-wrap",
-        "name": ":no-wrap",
-        "type": "Boolean",
-        "desc": "Avoid label text wrapping",
-        "category": "content",
-        "enabled": true
-    },
-    {
-        "label": "dense",
-        "name": ":dense",
-        "type": "Boolean",
-        "desc": "Dense mode; occupies less space",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "ripple",
-        "name": ":ripple",
-        "type": [
-            "Boolean",
-            "Object"
-        ],
-        "desc": "Configure material ripple (disable it by setting it to 'false' or supply a config object)",
-        "category": "style",
-        "examples": [
-            false,
-            "{ early: true, center: true, color: 'teal', keyCodes: [] }"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "tabindex",
-        "name": ":tabindex",
-        "type": [
-            "Number",
-            "String"
-        ],
-        "desc": "Tabindex HTML attribute value",
-        "category": "general",
-        "examples": [
-            "0",
-            "100"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "align",
-        "name": ":align",
-        "type": "String",
-        "desc": "Label or content alignment",
-        "category": "content",
-        "enabled": true
-    },
-    {
-        "label": "stack",
-        "name": ":stack",
-        "type": "Boolean",
-        "desc": "Stack icon and label vertically instead of on same line (like it is by default)",
-        "category": "content",
-        "enabled": true
-    },
-    {
-        "label": "stretch",
-        "name": ":stretch",
-        "type": "Boolean",
-        "desc": "When used on flexbox parent, button will stretch to parent's height",
-        "category": "content",
-        "enabled": true
-    },
-    {
-        "label": "loading",
-        "name": ":loading",
-        "type": "Boolean",
-        "desc": "Put button into loading state (displays a QSpinner -- can be overridden by using a 'loading' slot)",
-        "category": "behavior|state",
-        "enabled": true
-    },
-    {
-        "label": "disable",
-        "name": ":disable",
-        "type": "Boolean",
-        "desc": "Put component in disabled mode",
-        "category": "state",
-        "enabled": true
-    },
-    {
-        "label": "round",
-        "name": ":round",
-        "type": "Boolean",
-        "desc": "Makes a circle shaped button",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "percentage",
-        "name": ":percentage",
-        "type": "Number",
-        "desc": "Percentage (0.0 < x < 100.0); To be used along 'loading' prop; Display a progress bar on the background",
-        "category": "behavior",
-        "examples": [
-            23
-        ],
-        "enabled": true
-    },
-    {
-        "label": "dark-percentage",
-        "name": ":dark-percentage",
-        "type": "Boolean",
-        "desc": "Progress bar on the background should have dark color; To be used along with 'percentage' and 'loading' props",
-        "category": "behavior",
-        "enabled": true
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('button', { label: 'Button', content: '<q-btn />', media: '<img src="images/icons/components/ui_components/button.png" class="blockIcon" />', category: 'Forms' });
-    }    
-
-    
-    const customblock_quasar_button_group = editor => {
-        editor.DomComponents.addType("button_group", {
-            isComponent: el => {
-                if (el.tagName == 'Q-BUTTON-GROUP') {
-                    return { type: 'button_group' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('button_group', { label: 'Button Group', content: '<q-button-group />', media: '<img src="images/icons/components/ui_components/button-group.png" class="blockIcon" />', category: 'Forms' });
-    }    
-
-    
-    const customblock_quasar_button_dropdown = editor => {
-        editor.DomComponents.addType("button_dropdown", {
-            isComponent: el => {
-                if (el.tagName == 'Q-BUTTON-DROPDOWN') {
-                    return { type: 'button_dropdown' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('button_dropdown', { label: 'Button Dropdown', content: '<q-button-dropdown />', media: '<img src="images/icons/components/ui_components/button-dropdown.png" class="blockIcon" />', category: 'Forms' });
-    }    
-
-    
-    const customblock_quasar_knob = editor => {
-        editor.DomComponents.addType("knob", {
-            isComponent: el => {
-                if (el.tagName == 'Q-KNOB') {
-                    return { type: 'knob' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
-        "label": "name",
-        "name": ":name",
-        "type": "String",
-        "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
-        "category": "behavior",
-        "examples": [
-            "car_id"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "size",
-        "name": ":size",
-        "type": "String",
-        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
-        "category": "style",
-        "examples": [
-            "16px",
-            "2rem",
-            "xs",
-            "md"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "model-value",
-        "name": ":model-value",
-        "type": "Number",
-        "desc": "Any number to indicate the given value of the knob. Either use this property (along with a listener for 'update:modelValue' event) OR use the v-model directive",
-        "category": "model",
-        "examples": [
-            "v-model=\"myValue\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "min",
-        "name": ":min",
-        "type": "Number",
-        "desc": "The minimum value that the model (the knob value) should start at",
-        "category": "model",
-        "examples": [
-            "20",
-            "5"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "max",
-        "name": ":max",
-        "type": "Number",
-        "desc": "The maximum value that the model (the knob value) should go to",
-        "category": "model",
-        "examples": [
-            "100",
-            "50"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "inner-min",
-        "name": ":inner-min",
-        "type": "Number",
-        "desc": "Inner minimum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be higher or equal to 'min' prop; Defaults to 'min' prop",
-        "category": "model",
-        "examples": [
-            ":inner-min=\"0\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "inner-max",
-        "name": ":inner-max",
-        "type": "Number",
-        "desc": "Inner maximum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be lower or equal to 'max' prop; Defaults to 'max' prop",
-        "category": "model",
-        "examples": [
-            ":inner-max=\"100\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "step",
-        "name": ":step",
-        "type": "Number",
-        "desc": "A number representing steps in the value of the model, while adjusting the knob",
-        "category": "model",
-        "examples": [
-            "1",
-            "5"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "reverse",
-        "name": ":reverse",
-        "type": "Boolean",
-        "desc": "Reverses the direction of progress",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "instant-feedback",
-        "name": ":instant-feedback",
-        "type": "Boolean",
-        "desc": "No animation when model changes",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "color",
-        "name": ":color",
-        "type": "String",
-        "desc": "Color name for component from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "center-color",
-        "name": ":center-color",
-        "type": "String",
-        "desc": "Color name for the center part of the component from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "track-color",
-        "name": ":track-color",
-        "type": "String",
-        "desc": "Color name for the track of the component from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "font-size",
-        "name": ":font-size",
-        "type": "String",
-        "desc": "Size of text in CSS units, including unit name. Suggestion: use 'em' units to sync with component size",
-        "category": "style",
-        "examples": [
-            "1em",
-            "16px",
-            "2rem"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "thickness",
-        "name": ":thickness",
-        "type": "Number",
-        "desc": "Thickness of progress arc as a ratio (0.0 < x < 1.0) of component size",
-        "category": "style",
-        "examples": [
-            1,
-            0.3
-        ],
-        "enabled": true
-    },
-    {
-        "label": "angle",
-        "name": ":angle",
-        "type": "Number",
-        "desc": "Angle to rotate progress arc by",
-        "category": "content",
-        "examples": [
-            0,
-            40,
-            90
-        ],
-        "enabled": true
-    },
-    {
-        "label": "show-value",
-        "name": ":show-value",
-        "type": "Boolean",
-        "desc": "Enables the default slot and uses it (if available), otherwise it displays the 'value' prop as text; Make sure the text has enough space to be displayed inside the component",
-        "category": "content|behavior",
-        "enabled": true
-    },
-    {
-        "label": "tabindex",
-        "name": ":tabindex",
-        "type": [
-            "Number",
-            "String"
-        ],
-        "desc": "Tabindex HTML attribute value",
-        "category": "general",
-        "examples": [
-            "0",
-            "100"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "disable",
-        "name": ":disable",
-        "type": "Boolean",
-        "desc": "Put component in disabled mode",
-        "category": "state",
-        "enabled": true
-    },
-    {
-        "label": "readonly",
-        "name": ":readonly",
-        "type": "Boolean",
-        "desc": "Put component in readonly mode",
-        "category": "state",
-        "enabled": true
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('knob', { label: 'Knob', content: '<q-knob />', media: '<img src="images/icons/components/ui_components/knob.png" class="blockIcon" />', category: 'Forms' });
-    }    
-
-    
     const customblock_quasar_date = editor => {
         editor.DomComponents.addType("date", {
             isComponent: el => {
@@ -4757,6 +4460,583 @@
             },
         });
         editor.BlockManager.add('time', { label: 'Time Picker', content: '<q-time />', media: '<img src="images/icons/components/ui_components/time.png" class="blockIcon" />', category: 'Forms' });
+    }    
+
+    
+    const customblock_quasar_editor = editor => {
+        editor.DomComponents.addType("editor", {
+            isComponent: el => {
+                if (el.tagName == 'Q-EDITOR') {
+                    return { type: 'editor' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    },
+    {
+        "label": "fullscreen",
+        "name": ":fullscreen",
+        "type": "Boolean",
+        "desc": "Fullscreen mode",
+        "category": "behavior",
+        "examples": [
+            "v-model:fullscreen=\"isFullscreen\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "no-route-fullscreen-exit",
+        "name": ":no-route-fullscreen-exit",
+        "type": "Boolean",
+        "desc": "Changing route app won't exit fullscreen",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "model-value",
+        "name": ":model-value",
+        "type": "String",
+        "desc": "Model of the component; Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+        "category": "model",
+        "examples": [
+            "v-model=\"content\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "readonly",
+        "name": ":readonly",
+        "type": "Boolean",
+        "desc": "Put component in readonly mode",
+        "category": "state",
+        "enabled": true
+    },
+    {
+        "label": "square",
+        "name": ":square",
+        "type": "Boolean",
+        "desc": "Removes border-radius so borders are squared",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "flat",
+        "name": ":flat",
+        "type": "Boolean",
+        "desc": "Applies a 'flat' design (no borders)",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "dense",
+        "name": ":dense",
+        "type": "Boolean",
+        "desc": "Dense mode; toolbar buttons are shown on one-line only",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "dark",
+        "name": ":dark",
+        "type": "Boolean",
+        "desc": "Notify the component that the background is a dark color",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "disable",
+        "name": ":disable",
+        "type": "Boolean",
+        "desc": "Put component in disabled mode",
+        "category": "state",
+        "enabled": true
+    },
+    {
+        "label": "min-height",
+        "name": ":min-height",
+        "type": "String",
+        "desc": "CSS unit for the minimum height of the editable area",
+        "category": "style",
+        "examples": [
+            "15rem",
+            "50vh"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "max-height",
+        "name": ":max-height",
+        "type": "String",
+        "desc": "CSS unit for maximum height of the input area",
+        "category": "style",
+        "examples": [
+            "1000px",
+            "90vh"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "height",
+        "name": ":height",
+        "type": "String",
+        "desc": "CSS value to set the height of the editable area",
+        "category": "style",
+        "examples": [
+            "100px",
+            "50vh"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "definitions",
+        "name": ":definitions",
+        "type": "Object",
+        "desc": "Definition of commands and their buttons to be included in the 'toolbar' prop",
+        "category": "toolbar",
+        "examples": [
+            ":definitions=\"{ save: { tip: 'Save your work', icon: 'save', label: 'Save', handler: saveWork }, upload: { tip: 'Upload to cloud', icon: 'cloud_upload', label: 'Upload', handler: uploadIt } }\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "fonts",
+        "name": ":fonts",
+        "type": "Object",
+        "desc": "Object with definitions of fonts",
+        "category": "toolbar",
+        "examples": [
+            ":fonts=\"{ arial: 'Arial', arial_black: 'Arial Black', comic_sans: 'Comic Sans MS' }\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "toolbar",
+        "name": ":toolbar",
+        "type": "Array",
+        "desc": "An array of arrays of Objects/Strings that you use to define the construction of the elements and commands available in the toolbar",
+        "category": "toolbar",
+        "examples": [
+            [
+                "left",
+                "center",
+                "right",
+                "justify"
+            ]
+        ],
+        "enabled": true
+    },
+    {
+        "label": "toolbar-color",
+        "name": ":toolbar-color",
+        "type": "String",
+        "desc": "Font color (from the Quasar Palette) of buttons and text in the toolbar",
+        "category": "toolbar",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "toolbar-text-color",
+        "name": ":toolbar-text-color",
+        "type": "String",
+        "desc": "Text color (from the Quasar Palette) of toolbar commands",
+        "category": "toolbar",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "toolbar-toggle-color",
+        "name": ":toolbar-toggle-color",
+        "type": "String",
+        "desc": "Choose the active color (from the Quasar Palette) of toolbar commands button",
+        "category": "toolbar",
+        "examples": [
+            "secondary",
+            "blue-3"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "toolbar-bg",
+        "name": ":toolbar-bg",
+        "type": "String",
+        "desc": "Toolbar background color (from Quasar Palette)",
+        "category": "toolbar",
+        "examples": [
+            "secondary",
+            "blue-3"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "toolbar-outline",
+        "name": ":toolbar-outline",
+        "type": "Boolean",
+        "desc": "Toolbar buttons are rendered \"outlined\"",
+        "category": "toolbar|style",
+        "enabled": true
+    },
+    {
+        "label": "toolbar-push",
+        "name": ":toolbar-push",
+        "type": "Boolean",
+        "desc": "Toolbar buttons are rendered as a \"push-button\" type",
+        "category": "toolbar|style",
+        "enabled": true
+    },
+    {
+        "label": "toolbar-rounded",
+        "name": ":toolbar-rounded",
+        "type": "Boolean",
+        "desc": "Toolbar buttons are rendered \"rounded\"",
+        "category": "toolbar|style",
+        "enabled": true
+    },
+    {
+        "label": "paragraph-tag",
+        "name": ":paragraph-tag",
+        "type": "String",
+        "desc": "Paragraph tag to be used",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "content-style",
+        "name": ":content-style",
+        "type": "Object",
+        "desc": "Object with CSS properties and values for styling the container of QEditor",
+        "category": "style",
+        "examples": [
+            ":content-style=\"{ backgroundColor: '#C0C0C0' }\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "content-class",
+        "name": ":content-class",
+        "type": [
+            "String",
+            "Array",
+            "Object"
+        ],
+        "desc": "CSS classes for the input area",
+        "category": "style",
+        "examples": [
+            "my-special-class",
+            ":content-class=\"{ 'my-special-class': <condition> }\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "placeholder",
+        "name": ":placeholder",
+        "type": "String",
+        "desc": "Text to display as placeholder",
+        "category": "content",
+        "examples": [
+            "Type your story here ..."
+        ],
+        "enabled": true
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('editor', { label: 'Editor', content: '<q-editor />', media: '<img src="images/icons/components/ui_components/editor.png" class="blockIcon" />', category: 'Forms' });
+    }    
+
+    
+    const customblock_quasar_knob = editor => {
+        editor.DomComponents.addType("knob", {
+            isComponent: el => {
+                if (el.tagName == 'Q-KNOB') {
+                    return { type: 'knob' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    },
+    {
+        "label": "name",
+        "name": ":name",
+        "type": "String",
+        "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+        "category": "behavior",
+        "examples": [
+            "car_id"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "size",
+        "name": ":size",
+        "type": "String",
+        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+        "category": "style",
+        "examples": [
+            "16px",
+            "2rem",
+            "xs",
+            "md"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "model-value",
+        "name": ":model-value",
+        "type": "Number",
+        "desc": "Any number to indicate the given value of the knob. Either use this property (along with a listener for 'update:modelValue' event) OR use the v-model directive",
+        "category": "model",
+        "examples": [
+            "v-model=\"myValue\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "min",
+        "name": ":min",
+        "type": "Number",
+        "desc": "The minimum value that the model (the knob value) should start at",
+        "category": "model",
+        "examples": [
+            "20",
+            "5"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "max",
+        "name": ":max",
+        "type": "Number",
+        "desc": "The maximum value that the model (the knob value) should go to",
+        "category": "model",
+        "examples": [
+            "100",
+            "50"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "inner-min",
+        "name": ":inner-min",
+        "type": "Number",
+        "desc": "Inner minimum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be higher or equal to 'min' prop; Defaults to 'min' prop",
+        "category": "model",
+        "examples": [
+            ":inner-min=\"0\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "inner-max",
+        "name": ":inner-max",
+        "type": "Number",
+        "desc": "Inner maximum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be lower or equal to 'max' prop; Defaults to 'max' prop",
+        "category": "model",
+        "examples": [
+            ":inner-max=\"100\""
+        ],
+        "enabled": true
+    },
+    {
+        "label": "step",
+        "name": ":step",
+        "type": "Number",
+        "desc": "A number representing steps in the value of the model, while adjusting the knob",
+        "category": "model",
+        "examples": [
+            "1",
+            "5"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "reverse",
+        "name": ":reverse",
+        "type": "Boolean",
+        "desc": "Reverses the direction of progress",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "instant-feedback",
+        "name": ":instant-feedback",
+        "type": "Boolean",
+        "desc": "No animation when model changes",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "color",
+        "name": ":color",
+        "type": "String",
+        "desc": "Color name for component from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "center-color",
+        "name": ":center-color",
+        "type": "String",
+        "desc": "Color name for the center part of the component from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "track-color",
+        "name": ":track-color",
+        "type": "String",
+        "desc": "Color name for the track of the component from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "font-size",
+        "name": ":font-size",
+        "type": "String",
+        "desc": "Size of text in CSS units, including unit name. Suggestion: use 'em' units to sync with component size",
+        "category": "style",
+        "examples": [
+            "1em",
+            "16px",
+            "2rem"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "thickness",
+        "name": ":thickness",
+        "type": "Number",
+        "desc": "Thickness of progress arc as a ratio (0.0 < x < 1.0) of component size",
+        "category": "style",
+        "examples": [
+            1,
+            0.3
+        ],
+        "enabled": true
+    },
+    {
+        "label": "angle",
+        "name": ":angle",
+        "type": "Number",
+        "desc": "Angle to rotate progress arc by",
+        "category": "content",
+        "examples": [
+            0,
+            40,
+            90
+        ],
+        "enabled": true
+    },
+    {
+        "label": "show-value",
+        "name": ":show-value",
+        "type": "Boolean",
+        "desc": "Enables the default slot and uses it (if available), otherwise it displays the 'value' prop as text; Make sure the text has enough space to be displayed inside the component",
+        "category": "content|behavior",
+        "enabled": true
+    },
+    {
+        "label": "tabindex",
+        "name": ":tabindex",
+        "type": [
+            "Number",
+            "String"
+        ],
+        "desc": "Tabindex HTML attribute value",
+        "category": "general",
+        "examples": [
+            "0",
+            "100"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "disable",
+        "name": ":disable",
+        "type": "Boolean",
+        "desc": "Put component in disabled mode",
+        "category": "state",
+        "enabled": true
+    },
+    {
+        "label": "readonly",
+        "name": ":readonly",
+        "type": "Boolean",
+        "desc": "Put component in readonly mode",
+        "category": "state",
+        "enabled": true
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('knob', { label: 'Knob', content: '<q-knob />', media: '<img src="images/icons/components/ui_components/knob.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
@@ -6295,6 +6575,257 @@
     }    
 
     
+    const customblock_quasar_avatar = editor => {
+        editor.DomComponents.addType("avatar", {
+            isComponent: el => {
+                if (el.tagName == 'Q-AVATAR') {
+                    return { type: 'avatar' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    },
+    {
+        "label": "size",
+        "name": ":size",
+        "type": "String",
+        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+        "category": "style",
+        "examples": [
+            "16px",
+            "2rem",
+            "xs",
+            "md"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "font-size",
+        "name": ":font-size",
+        "type": "String",
+        "desc": "The size in CSS units, including unit name, of the content (icon, text)",
+        "category": "style",
+        "examples": [
+            "18px",
+            "2rem"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "color",
+        "name": ":color",
+        "type": "String",
+        "desc": "Color name for component from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "text-color",
+        "name": ":text-color",
+        "type": "String",
+        "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "icon",
+        "name": ":icon",
+        "type": "String",
+        "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+        "category": "content",
+        "examples": [
+            "map",
+            "ion-add",
+            "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+            "img:path/to/some_image.png"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "square",
+        "name": ":square",
+        "type": "Boolean",
+        "desc": "Removes border-radius so borders are squared",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "rounded",
+        "name": ":rounded",
+        "type": "Boolean",
+        "desc": "Applies a small standard border-radius for a squared shape of the component",
+        "category": "style",
+        "enabled": true
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('avatar', { label: 'Avatar', content: '<q-avatar />', media: '<img src="images/icons/components/ui_components/avatar.png" class="blockIcon" />', category: 'Other' });
+    }    
+
+    
+    const customblock_quasar_badge = editor => {
+        editor.DomComponents.addType("badge", {
+            isComponent: el => {
+                if (el.tagName == 'Q-BADGE') {
+                    return { type: 'badge' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    },
+    {
+        "label": "color",
+        "name": ":color",
+        "type": "String",
+        "desc": "Color name for component from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "text-color",
+        "name": ":text-color",
+        "type": "String",
+        "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+        "category": "style",
+        "examples": [
+            "primary",
+            "teal-10"
+        ],
+        "enabled": true
+    },
+    {
+        "label": "floating",
+        "name": ":floating",
+        "type": "Boolean",
+        "desc": "Tell QBadge if it should float to the top right side of the relative positioned parent element or not",
+        "category": "content",
+        "enabled": true
+    },
+    {
+        "label": "transparent",
+        "name": ":transparent",
+        "type": "Boolean",
+        "desc": "Applies a 0.8 opacity; Useful especially for floating QBadge",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "multi-line",
+        "name": ":multi-line",
+        "type": "Boolean",
+        "desc": "Content can wrap to multiple lines",
+        "category": "content",
+        "enabled": true
+    },
+    {
+        "label": "label",
+        "name": ":label",
+        "type": [
+            "String",
+            "Number"
+        ],
+        "desc": "Badge's content as string; overrides default slot if specified",
+        "category": "content",
+        "examples": [
+            "John Doe",
+            22
+        ],
+        "enabled": true
+    },
+    {
+        "label": "align",
+        "name": ":align",
+        "type": "String",
+        "desc": "Sets vertical-align CSS prop",
+        "category": "content",
+        "enabled": true
+    },
+    {
+        "label": "outline",
+        "name": ":outline",
+        "type": "Boolean",
+        "desc": "Use 'outline' design (colored text and borders only)",
+        "category": "style",
+        "enabled": true
+    },
+    {
+        "label": "rounded",
+        "name": ":rounded",
+        "type": "Boolean",
+        "desc": "Makes a rounded shaped badge",
+        "category": "style",
+        "enabled": true
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('badge', { label: 'Badge', content: '<q-badge />', media: '<img src="images/icons/components/ui_components/badge.png" class="blockIcon" />', category: 'Other' });
+    }    
+
+    
     const customblock_quasar_banner = editor => {
         editor.DomComponents.addType("banner", {
             isComponent: el => {
@@ -6628,286 +7159,6 @@
     }    
 
     
-    const customblock_quasar_toggle = editor => {
-        editor.DomComponents.addType("toggle", {
-            isComponent: el => {
-                if (el.tagName == 'Q-TOGGLE') {
-                    return { type: 'toggle' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
-        "label": "name",
-        "name": ":name",
-        "type": "String",
-        "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
-        "category": "behavior",
-        "examples": [
-            "car_id"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "size",
-        "name": ":size",
-        "type": "String",
-        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
-        "category": "style",
-        "examples": [
-            "16px",
-            "2rem",
-            "xs",
-            "md"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "model-value",
-        "name": ":model-value",
-        "type": [
-            "Any",
-            "Array"
-        ],
-        "desc": "Model of the component; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
-        "category": "model",
-        "examples": [
-            "false",
-            "['car', 'building']"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "val",
-        "name": ":val",
-        "type": "Any",
-        "desc": "Works when model ('value') is Array. It tells the component which value should add/remove when ticked/unticked",
-        "category": "model",
-        "examples": [
-            "car"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "true-value",
-        "name": ":true-value",
-        "type": "Any",
-        "desc": "What model value should be considered as checked/ticked/on?",
-        "category": "model",
-        "examples": [
-            "Agreed"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "false-value",
-        "name": ":false-value",
-        "type": "Any",
-        "desc": "What model value should be considered as unchecked/unticked/off?",
-        "category": "model",
-        "examples": [
-            "Disagree"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "indeterminate-value",
-        "name": ":indeterminate-value",
-        "type": "Any",
-        "desc": "What model value should be considered as 'indeterminate'?",
-        "category": "behavior",
-        "examples": [
-            0,
-            "not_answered"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "toggle-order",
-        "name": ":toggle-order",
-        "type": "String",
-        "desc": "Determines toggle order of the two states ('t' stands for state of true, 'f' for state of false); If 'toggle-indeterminate' is true, then the order is: indet -> first state -> second state -> indet (and repeat), otherwise: indet -> first state -> second state -> first state -> second state -> ...",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "toggle-indeterminate",
-        "name": ":toggle-indeterminate",
-        "type": "Boolean",
-        "desc": "When user clicks/taps on the component, should we toggle through the indeterminate state too?",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "label",
-        "name": ":label",
-        "type": "String",
-        "desc": "Label to display along the component (or use the default slot instead of this prop)",
-        "category": "label",
-        "examples": [
-            "I agree with the Terms and Conditions"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "left-label",
-        "name": ":left-label",
-        "type": "Boolean",
-        "desc": "Label (if any specified) should be displayed on the left side of the component",
-        "category": "label",
-        "enabled": true
-    },
-    {
-        "label": "checked-icon",
-        "name": ":checked-icon",
-        "type": "String",
-        "desc": "The icon to be used when the toggle is on",
-        "category": "icons",
-        "examples": [
-            "visibility"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "unchecked-icon",
-        "name": ":unchecked-icon",
-        "type": "String",
-        "desc": "The icon to be used when the toggle is off",
-        "category": "icons",
-        "examples": [
-            "visibility_off"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "indeterminate-icon",
-        "name": ":indeterminate-icon",
-        "type": "String",
-        "desc": "The icon to be used when the model is indeterminate",
-        "category": "icons",
-        "examples": [
-            "help"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "color",
-        "name": ":color",
-        "type": "String",
-        "desc": "Color name for component from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "keep-color",
-        "name": ":keep-color",
-        "type": "Boolean",
-        "desc": "Should the color (if specified any) be kept when the component is unticked/ off?",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "dark",
-        "name": ":dark",
-        "type": "Boolean",
-        "desc": "Notify the component that the background is a dark color",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "dense",
-        "name": ":dense",
-        "type": "Boolean",
-        "desc": "Dense mode; occupies less space",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "disable",
-        "name": ":disable",
-        "type": "Boolean",
-        "desc": "Put component in disabled mode",
-        "category": "state",
-        "enabled": true
-    },
-    {
-        "label": "tabindex",
-        "name": ":tabindex",
-        "type": [
-            "Number",
-            "String"
-        ],
-        "desc": "Tabindex HTML attribute value",
-        "category": "general",
-        "examples": [
-            "0",
-            "100"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "icon",
-        "name": ":icon",
-        "type": "String",
-        "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
-        "category": "content",
-        "examples": [
-            "map",
-            "ion-add",
-            "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
-            "img:path/to/some_image.png"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "icon-color",
-        "name": ":icon-color",
-        "type": "String",
-        "desc": "Override default icon color (for truthy state only); Color name for component from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('toggle', { label: 'Toggle', content: '<q-toggle />', media: '<img src="images/icons/components/ui_components/toggle.png" class="blockIcon" />', category: 'Widgets' });
-    }    
-
-    
     const customblock_quasar_icon = editor => {
         editor.DomComponents.addType("icon", {
             isComponent: el => {
@@ -7017,105 +7268,6 @@
             },
         });
         editor.BlockManager.add('icon', { label: 'Icon', content: '<q-icon />', media: '<img src="images/icons/components/ui_components/icon.png" class="blockIcon" />', category: 'Widgets' });
-    }    
-
-    
-    const customblock_quasar_popup_proxy = editor => {
-        editor.DomComponents.addType("popup_proxy", {
-            isComponent: el => {
-                if (el.tagName == 'Q-POPUP-PROXY') {
-                    return { type: 'popup_proxy' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
-        "label": "target",
-        "name": ":target",
-        "type": [
-            "Boolean",
-            "String",
-            "Element"
-        ],
-        "desc": "Configure a target element to trigger component toggle; 'true' means it enables the parent DOM element, 'false' means it disables attaching events to any DOM elements; By using a String (CSS selector) or a DOM element it attaches the events to the specified DOM element (if it exists)",
-        "category": "behavior",
-        "examples": [
-            ":target=\"false\"",
-            ":target=\"$refs.target\"",
-            "target=\".my-parent\"",
-            "target=\"#target-id\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "no-parent-event",
-        "name": ":no-parent-event",
-        "type": "Boolean",
-        "desc": "Skips attaching events to the target DOM element (that trigger the element to get shown)",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "context-menu",
-        "name": ":context-menu",
-        "type": "Boolean",
-        "desc": "Allows the component to behave like a context menu, which opens with a right mouse click (or long tap on mobile)",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "model-value",
-        "name": ":model-value",
-        "type": "Boolean",
-        "desc": "Defines the state of the component (shown/hidden); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
-        "category": "model",
-        "enabled": true
-    },
-    {
-        "label": "breakpoint",
-        "name": ":breakpoint",
-        "type": [
-            "Number",
-            "String"
-        ],
-        "desc": "Breakpoint (in pixels) of window width/height (whichever is smaller) from where a Menu will get to be used instead of a Dialog",
-        "category": "behavior",
-        "examples": [
-            992,
-            ":breakpoint=\"1024\""
-        ],
-        "enabled": true
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('popup_proxy', { label: 'Popup Proxy', content: '<q-popup-proxy />', media: '<img src="images/icons/components/ui_components/popup-proxy.png" class="blockIcon" />', category: 'Widgets' });
     }    
 
     
@@ -7425,228 +7577,6 @@
     }    
 
     
-    const customblock_quasar_timeline = editor => {
-        editor.DomComponents.addType("timeline", {
-            isComponent: el => {
-                if (el.tagName == 'Q-TIMELINE') {
-                    return { type: 'timeline' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
-        "label": "color",
-        "name": ":color",
-        "type": "String",
-        "desc": "Color name for component from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "side",
-        "name": ":side",
-        "type": "String",
-        "desc": "Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overridden by QTimelineEntry side prop",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "layout",
-        "name": ":layout",
-        "type": "String",
-        "desc": "Layout of the timeline. Dense keeps content and labels on one side. Comfortable keeps content on one side and labels on the opposite side. Loose puts content on both sides.",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "dark",
-        "name": ":dark",
-        "type": "Boolean",
-        "desc": "Notify the component that the background is a dark color",
-        "category": "style",
-        "enabled": true
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('timeline', { label: 'Timeline', content: '<q-timeline />', media: '<img src="images/icons/components/ui_components/timeline.png" class="blockIcon" />', category: 'Widgets' });
-    }    
-
-    
-    const customblock_quasar_timeline_entry = editor => {
-        editor.DomComponents.addType("timeline_entry", {
-            isComponent: el => {
-                if (el.tagName == 'Q-TIMELINE-ENTRY') {
-                    return { type: 'timeline_entry' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
-        "label": "heading",
-        "name": ":heading",
-        "type": "Boolean",
-        "desc": "Defines a heading timeline item",
-        "category": "content",
-        "enabled": true
-    },
-    {
-        "label": "tag",
-        "name": ":tag",
-        "type": "String",
-        "desc": "Tag to use, if of type 'heading' only",
-        "category": "content",
-        "examples": [
-            "div",
-            "span",
-            "h1"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "side",
-        "name": ":side",
-        "type": "String",
-        "desc": "Side to place the timeline entry; Works only if QTimeline layout is loose.",
-        "category": "behavior",
-        "enabled": true
-    },
-    {
-        "label": "icon",
-        "name": ":icon",
-        "type": "String",
-        "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
-        "category": "content",
-        "examples": [
-            "map",
-            "ion-add",
-            "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
-            "img:path/to/some_image.png"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "avatar",
-        "name": ":avatar",
-        "type": "String",
-        "desc": "URL to the avatar image; Icon takes precedence if used, so it replaces avatar",
-        "category": "content",
-        "examples": [
-            "(public folder) src=\"img/my-bg.png\"",
-            "(assets folder) src=\"~assets/my-img.png\"",
-            "(relative path format) :src=\"require('./my_img.jpg')\"",
-            "(URL) src=\"https://placeimg.com/500/300/nature\""
-        ],
-        "enabled": true
-    },
-    {
-        "label": "color",
-        "name": ":color",
-        "type": "String",
-        "desc": "Color name for component from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "title",
-        "name": ":title",
-        "type": "String",
-        "desc": "Title of timeline entry; Is overridden if using 'title' slot",
-        "category": "content",
-        "examples": [
-            "December party"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "subtitle",
-        "name": ":subtitle",
-        "type": "String",
-        "desc": "Subtitle of timeline entry; Is overridden if using 'subtitle' slot",
-        "category": "content",
-        "examples": [
-            "All invited"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "body",
-        "name": ":body",
-        "type": "String",
-        "desc": "Body content of timeline entry; Use this prop or the default slot",
-        "category": "content",
-        "examples": [
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        ],
-        "enabled": true
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('timeline_entry', { label: 'Timeline Entry', content: '<q-timeline-entry />', media: '<img src="images/icons/components/ui_components/timeline-entry.png" class="blockIcon" />', category: 'Widgets' });
-    }    
-
-    
     const customblock_quasar_tree = editor => {
         editor.DomComponents.addType("tree", {
             isComponent: el => {
@@ -7939,11 +7869,11 @@
     }    
 
     
-    const customblock_quasar_avatar = editor => {
-        editor.DomComponents.addType("avatar", {
+    const customblock_quasar_popup_proxy = editor => {
+        editor.DomComponents.addType("popup_proxy", {
             isComponent: el => {
-                if (el.tagName == 'Q-AVATAR') {
-                    return { type: 'avatar' }
+                if (el.tagName == 'Q-POPUP-PROXY') {
+                    return { type: 'popup_proxy' }
                 }
             },
             model: {
@@ -7956,30 +7886,103 @@
         "options": []
     },
     {
-        "label": "size",
-        "name": ":size",
-        "type": "String",
-        "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
-        "category": "style",
+        "label": "target",
+        "name": ":target",
+        "type": [
+            "Boolean",
+            "String",
+            "Element"
+        ],
+        "desc": "Configure a target element to trigger component toggle; 'true' means it enables the parent DOM element, 'false' means it disables attaching events to any DOM elements; By using a String (CSS selector) or a DOM element it attaches the events to the specified DOM element (if it exists)",
+        "category": "behavior",
         "examples": [
-            "16px",
-            "2rem",
-            "xs",
-            "md"
+            ":target=\"false\"",
+            ":target=\"$refs.target\"",
+            "target=\".my-parent\"",
+            "target=\"#target-id\""
         ],
         "enabled": true
     },
     {
-        "label": "font-size",
-        "name": ":font-size",
-        "type": "String",
-        "desc": "The size in CSS units, including unit name, of the content (icon, text)",
-        "category": "style",
+        "label": "no-parent-event",
+        "name": ":no-parent-event",
+        "type": "Boolean",
+        "desc": "Skips attaching events to the target DOM element (that trigger the element to get shown)",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "context-menu",
+        "name": ":context-menu",
+        "type": "Boolean",
+        "desc": "Allows the component to behave like a context menu, which opens with a right mouse click (or long tap on mobile)",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "model-value",
+        "name": ":model-value",
+        "type": "Boolean",
+        "desc": "Defines the state of the component (shown/hidden); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+        "category": "model",
+        "enabled": true
+    },
+    {
+        "label": "breakpoint",
+        "name": ":breakpoint",
+        "type": [
+            "Number",
+            "String"
+        ],
+        "desc": "Breakpoint (in pixels) of window width/height (whichever is smaller) from where a Menu will get to be used instead of a Dialog",
+        "category": "behavior",
         "examples": [
-            "18px",
-            "2rem"
+            992,
+            ":breakpoint=\"1024\""
         ],
         "enabled": true
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('popup_proxy', { label: 'Popup Proxy', content: '<q-popup-proxy />', media: '<img src="images/icons/components/ui_components/popup-proxy.png" class="blockIcon" />', category: 'Widgets' });
+    }    
+
+    
+    const customblock_quasar_timeline = editor => {
+        editor.DomComponents.addType("timeline", {
+            isComponent: el => {
+                if (el.tagName == 'Q-TIMELINE') {
+                    return { type: 'timeline' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
     },
     {
         "label": "color",
@@ -7994,15 +7997,98 @@
         "enabled": true
     },
     {
-        "label": "text-color",
-        "name": ":text-color",
+        "label": "side",
+        "name": ":side",
         "type": "String",
-        "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+        "desc": "Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overridden by QTimelineEntry side prop",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "layout",
+        "name": ":layout",
+        "type": "String",
+        "desc": "Layout of the timeline. Dense keeps content and labels on one side. Comfortable keeps content on one side and labels on the opposite side. Loose puts content on both sides.",
+        "category": "behavior",
+        "enabled": true
+    },
+    {
+        "label": "dark",
+        "name": ":dark",
+        "type": "Boolean",
+        "desc": "Notify the component that the background is a dark color",
         "category": "style",
+        "enabled": true
+    }
+],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('timeline', { label: 'Timeline', content: '<q-timeline />', media: '<img src="images/icons/components/ui_components/timeline.png" class="blockIcon" />', category: 'Widgets' });
+    }    
+
+    
+    const customblock_quasar_timeline_entry = editor => {
+        editor.DomComponents.addType("timeline_entry", {
+            isComponent: el => {
+                if (el.tagName == 'Q-TIMELINE-ENTRY') {
+                    return { type: 'timeline_entry' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+    {
+        "label": "Reactive Model",
+        "name": "v-model",
+        "type": "select",
+        "options": []
+    },
+    {
+        "label": "heading",
+        "name": ":heading",
+        "type": "Boolean",
+        "desc": "Defines a heading timeline item",
+        "category": "content",
+        "enabled": true
+    },
+    {
+        "label": "tag",
+        "name": ":tag",
+        "type": "String",
+        "desc": "Tag to use, if of type 'heading' only",
+        "category": "content",
         "examples": [
-            "primary",
-            "teal-10"
+            "div",
+            "span",
+            "h1"
         ],
+        "enabled": true
+    },
+    {
+        "label": "side",
+        "name": ":side",
+        "type": "String",
+        "desc": "Side to place the timeline entry; Works only if QTimeline layout is loose.",
+        "category": "behavior",
         "enabled": true
     },
     {
@@ -8020,62 +8106,18 @@
         "enabled": true
     },
     {
-        "label": "square",
-        "name": ":square",
-        "type": "Boolean",
-        "desc": "Removes border-radius so borders are squared",
-        "category": "style",
+        "label": "avatar",
+        "name": ":avatar",
+        "type": "String",
+        "desc": "URL to the avatar image; Icon takes precedence if used, so it replaces avatar",
+        "category": "content",
+        "examples": [
+            "(public folder) src=\"img/my-bg.png\"",
+            "(assets folder) src=\"~assets/my-img.png\"",
+            "(relative path format) :src=\"require('./my_img.jpg')\"",
+            "(URL) src=\"https://placeimg.com/500/300/nature\""
+        ],
         "enabled": true
-    },
-    {
-        "label": "rounded",
-        "name": ":rounded",
-        "type": "Boolean",
-        "desc": "Applies a small standard border-radius for a squared shape of the component",
-        "category": "style",
-        "enabled": true
-    }
-],
-                },
-                init() {
-                    this.on('change:attributes', this.handleAttrChange);
-                },
-                handleAttrChange() {
-                    this.render();
-                },
-                render: function () {
-                    this.view.onRender();
-                },
-                updateGenieModelProperties(properties) {
-                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
-                    vtextTrait.set('options', properties);
-                }
-            },
-            view: {
-                onRender() {
-                    
-                }
-            },
-        });
-        editor.BlockManager.add('avatar', { label: 'Avatar', content: '<q-avatar />', media: '<img src="images/icons/components/ui_components/avatar.png" class="blockIcon" />', category: 'Other' });
-    }    
-
-    
-    const customblock_quasar_badge = editor => {
-        editor.DomComponents.addType("badge", {
-            isComponent: el => {
-                if (el.tagName == 'Q-BADGE') {
-                    return { type: 'badge' }
-                }
-            },
-            model: {
-                defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
     },
     {
         "label": "color",
@@ -8090,78 +8132,36 @@
         "enabled": true
     },
     {
-        "label": "text-color",
-        "name": ":text-color",
+        "label": "title",
+        "name": ":title",
         "type": "String",
-        "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
-        "category": "style",
-        "examples": [
-            "primary",
-            "teal-10"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "floating",
-        "name": ":floating",
-        "type": "Boolean",
-        "desc": "Tell QBadge if it should float to the top right side of the relative positioned parent element or not",
-        "category": "content",
-        "enabled": true
-    },
-    {
-        "label": "transparent",
-        "name": ":transparent",
-        "type": "Boolean",
-        "desc": "Applies a 0.8 opacity; Useful especially for floating QBadge",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "multi-line",
-        "name": ":multi-line",
-        "type": "Boolean",
-        "desc": "Content can wrap to multiple lines",
-        "category": "content",
-        "enabled": true
-    },
-    {
-        "label": "label",
-        "name": ":label",
-        "type": [
-            "String",
-            "Number"
-        ],
-        "desc": "Badge's content as string; overrides default slot if specified",
+        "desc": "Title of timeline entry; Is overridden if using 'title' slot",
         "category": "content",
         "examples": [
-            "John Doe",
-            22
+            "December party"
         ],
         "enabled": true
     },
     {
-        "label": "align",
-        "name": ":align",
+        "label": "subtitle",
+        "name": ":subtitle",
         "type": "String",
-        "desc": "Sets vertical-align CSS prop",
+        "desc": "Subtitle of timeline entry; Is overridden if using 'subtitle' slot",
         "category": "content",
+        "examples": [
+            "All invited"
+        ],
         "enabled": true
     },
     {
-        "label": "outline",
-        "name": ":outline",
-        "type": "Boolean",
-        "desc": "Use 'outline' design (colored text and borders only)",
-        "category": "style",
-        "enabled": true
-    },
-    {
-        "label": "rounded",
-        "name": ":rounded",
-        "type": "Boolean",
-        "desc": "Makes a rounded shaped badge",
-        "category": "style",
+        "label": "body",
+        "name": ":body",
+        "type": "String",
+        "desc": "Body content of timeline entry; Use this prop or the default slot",
+        "category": "content",
+        "examples": [
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+        ],
         "enabled": true
     }
 ],
@@ -8186,7 +8186,7 @@
                 }
             },
         });
-        editor.BlockManager.add('badge', { label: 'Badge', content: '<q-badge />', media: '<img src="images/icons/components/ui_components/badge.png" class="blockIcon" />', category: 'Other' });
+        editor.BlockManager.add('timeline_entry', { label: 'Timeline Entry', content: '<q-timeline-entry />', media: '<img src="images/icons/components/ui_components/timeline-entry.png" class="blockIcon" />', category: 'Widgets' });
     }    
 
     
