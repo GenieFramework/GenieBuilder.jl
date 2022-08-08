@@ -2087,7 +2087,7 @@ editor.BlockManager.add('quasarItemLabel', { label: 'ListItem Label', content: '
                       Blocks
     -------------------------------------------- */
   
-   /*  editor.BlockManager.add( 
+    editor.BlockManager.add( 
       'titleAndContent', 
       { 
         label: 'Title + Content', 
@@ -2098,10 +2098,10 @@ editor.BlockManager.add('quasarItemLabel', { label: 'ListItem Label', content: '
             </div>
           </div>`, 
         media: `<img src="images/icons/components/html_elements/header.png" class="blockIcon"/>`, 
-        category: 'Blocks'   
+        category: 'Content'   
       }
     ); 
- */
+
 
     
 
