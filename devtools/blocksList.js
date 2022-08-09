@@ -26,7 +26,7 @@ const components = [
     { blockName: "Item Label", tag: "q-item-label", type: "item_label", urlEnd: "QItemLabel", blockCategory:"Lists", enabled: true, icon: "item" },
 
     // Tables
-    { blockName: "Table", tag: "q-table", type: "table", urlEnd: "QTable", blockCategory:"Tables", enabled: true, icon: "table" },
+    { blockName: "Table", tag: "q-table", type: "table2", urlEnd: "QTable", blockCategory:"Tables", enabled: true, icon: "table" },
 
     // Multimedia
     { blockName: "Image", tag: "q-img", type: "img", urlEnd: "QImg", blockCategory:"Multimedia", enabled: true, icon: "img" },

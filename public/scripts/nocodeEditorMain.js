@@ -54,7 +54,9 @@ function initNoCodeEditor(){
     "grapesjs-rulers", 
     "grapesjs-script-editor", 
     "grapesjs-shape-divider", 
+    */
     "grapesjs-table", 
+    /*
     "grapesjs-touch", 
     "jquery.slim", 
     "nocode", 
