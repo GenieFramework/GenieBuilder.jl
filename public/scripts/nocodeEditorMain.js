@@ -287,20 +287,23 @@ function initNoCodeEditor(){
             if(editPanel == null){
                 const editMenuDiv = document.createElement('div')
                 editMenuDiv.innerHTML = `
-                <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right">
-                    <div class="gn_title">Component Properties</div>
-                        <div class="gjs-trt-traits">
-                            <div v-for="trait in enabledTraits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 10px;">
-                                <div class="gjs-label-wrp">
-                                    <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.id)}}</div>
-                                </div>
-                                <div class="gjs-field gjs-field-text">
-                                    <input type="text" class="gn_input" v-model="trait.value" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)">
-                                </div>
-                            </div>
-                            <br>
+                <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right" style="padding: 0px; width: 100%;">
+                  <div class="gjs-trt-traits">
+                      <div v-for="category in categories" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
+                        <div @click="toggleCategory(category)" class="gjs-sm-sector-title" style="text-transform: capitalize;">{{category.name}}</div>
+                        <div class="gjs-sm-properties" v-if="category.expanded">
+                          <div v-for="trait in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 10px;">
+                              <div class="gjs-label-wrp">
+                                  <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.id)}}</div>
+                              </div>
+                              <div class="gjs-field gjs-field-text">
+                                  <input type="text" class="gn_input" v-model="trait.value" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)">
+                              </div>
+                          </div>
                         </div>
-
+                      </div>
+                      <br>
+                  </div>
                 </div>
             `
                
@@ -396,8 +399,16 @@ function initNoCodeEditor(){
   editor.on('component:selected', (model) => {
     // do stuff...
     console.log("component selected: ", model);
-    //window.traitsEditor.update( model.attributes.tagName );
     window.traitsEditor.assignComponent( model );
+    
+    if( model.updateGenieModelProperties )
+      model.updateGenieModelProperties(appConfiguration.modelFields);
+  });
+
+  editor.on('component:deselected', (model) => {
+    // do stuff...
+    console.log("component deselected: " );
+    window.traitsEditor.assignComponent(  );
     
     if( model.updateGenieModelProperties )
       model.updateGenieModelProperties(appConfiguration.modelFields);
