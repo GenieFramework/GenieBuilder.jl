@@ -81,12 +81,12 @@ function postcreate(path) :: Nothing
               using Pkg;
               Pkg.activate(".");
               Pkg.update();
-              Pkg.add(Pkg.PackageSpec(;name="Genie", version="5"));
-              Pkg.add(Pkg.PackageSpec(;name="GenieAutoReload", version="2"));
-              Pkg.add(Pkg.PackageSpec(;name="Stipple", version="0.25"));
-              Pkg.add(Pkg.PackageSpec(;name="StippleUI", version="0.20"));
-              Pkg.add(Pkg.PackageSpec(;name="StipplePlotly", version="0.13"));
-              Pkg.add(Pkg.PackageSpec(;name="GenieDevTools", version="1"));
+              Pkg.add(Pkg.PackageSpec(;name="Genie", version="5"), io = devnull);
+              Pkg.add(Pkg.PackageSpec(;name="GenieAutoReload", version="2"), io = devnull);
+              Pkg.add(Pkg.PackageSpec(;name="Stipple", version="0.25"), io = devnull);
+              Pkg.add(Pkg.PackageSpec(;name="StippleUI", version="0.20"), io = devnull);
+              Pkg.add(Pkg.PackageSpec(;name="StipplePlotly", version="0.13"), io = devnull);
+              Pkg.add(Pkg.PackageSpec(;name="GenieDevTools", version="1"), io = devnull);
   '`; dir = path)
   cmd |> run
 
@@ -254,12 +254,12 @@ function postcreate(path) :: Nothing
   nothing
 end
 
-function create(name, path, port)
+function create(name, path = "", port = available_port())
   name = Genie.Generator.validname(name)
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
 
-  app = Application(; name, path, port, replport = valid_replport())
+  app = Application(; name, path, port, replport = available_port())
   persist_status(app, :creating)
 
   try
@@ -413,7 +413,7 @@ function start(app)
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
         cmd = Cmd(`julia -e "using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();up(async = false)"`; dir = fullpath(app))
-        cmd = addenv(cmd, "PORT" => app.port, "WSEXPPORT" => app.port, "CHANNEL__" => app.channel, "GENIE_ENV" => "dev")
+        cmd = addenv(cmd, "PORT" => app.port, "WSEXPPORT" => app.port, "CHANNEL__" => app.channel, "GENIE_ENV" => "dev", "GENIE_BANNER" => "false")
         cmd |> run
       catch ex
         @error ex
@@ -689,9 +689,9 @@ function pages(app)
   end
 end
 
-function valid_replport()
+function available_port()
   replport = rand(50_000:60_000)
-  isempty(find(Application, replport = replport)) || valid_replport()
+  isempty(find(Application, replport = replport)) || available_port()
 
   replport
 end
@@ -701,7 +701,7 @@ function startrepl(app)
     res = try
       notify("started:startrepl", app.id)
 
-      HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/startrepl?port=$(app.replport != 0 ? app.replport : valid_replport())")
+      HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/startrepl?port=$(app.replport != 0 ? app.replport : available_port())")
     catch ex
       @error ex
       notify("failed:startrepl", app.id, FAILSTATUS, ERROR_STATUS)
@@ -768,6 +768,12 @@ function unsubscribe()
   end
 end
 
+function import_apps()
+  for existing_app in readdir(GenieBuilder.APPS_FOLDER[])
+    isempty(find(Application, name = existing_app)) && create(existing_app)
+  end
+end
+
 function ready() :: Nothing
   @info "GenieBuilder ready! RUN_STATUS = $(GenieBuilder.RUN_STATUS[])"
 
@@ -777,7 +783,13 @@ function ready() :: Nothing
     notify("terms:show", nothing)
   end
 
+  @async import_apps()
+
   nothing
+end
+
+function status()
+  (:status => OKSTATUS) |> json
 end
 
 end

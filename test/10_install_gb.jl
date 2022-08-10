@@ -1,3 +1,4 @@
+#==
 @safetestset "Genie Builder installation" begin
   using HTTP
   using JSON
@@ -160,3 +161,4 @@
   isdir(gbdir) && rm(gbdir; force = true, recursive = true)
   @test isdir(gbdir) == false
 end
+==#

@@ -19,6 +19,8 @@ function __init__()
   Genie.config.server_document_root = abspath(joinpath(@__DIR__, "..", "public"))
   LOG_FOLDER[] = joinpath(GBDIR[], "log")
   Genie.config.path_log = LOG_FOLDER[]
+
+  get!(ENV, "GENIE_BANNER", "false")
 end
 
 function main()
@@ -52,7 +54,7 @@ end
 
 function postinstall()
   cd(normpath(joinpath(@__DIR__, "..")))
-  isfile(joinpath(pwd(), Genie.config.path_config, Genie.Secrets.SECRETS_FILE_NAME)) || Genie.Generator.write_secrets_file()
+  Genie.Secrets.secret_file_exists() || Genie.Generator.write_secrets_file()
 
   isdir(LOG_FOLDER[]) || mkpath(LOG_FOLDER[])
 

@@ -7,6 +7,7 @@ Genie.config.websockets_server = true
 
 const api_route = "/api/v1"
 const app_route = "/apps/:appid"
+const gb_route  = "/geniebuilder"
 
 function routes()
   route("$api_route/apps") do
@@ -14,7 +15,7 @@ function routes()
   end
 
   route("$api_route/apps/create") do
-    ApplicationsController.create(params(:name), params(:path, ""), params(:port, rand(45_000:60_000)))
+    ApplicationsController.create(params(:name), params(:path, ""), params(:port, ApplicationsController.available_port()))
   end
 
   route("$api_route$app_route/status") do
@@ -85,37 +86,41 @@ function routes()
     serve_static_file("index.html")
   end
 
-  route("/geniebuilder/stop") do
+  route("$gb_route/stop") do
     ApplicationsController.cleanup()
     GenieBuilder.stop()
   end
 
-  route("/geniebuilder/startrepl") do
-    port = rand(40_000:50_000)
+  route("$gb_route/startrepl") do
+    port = ApplicationsController.available_port()
 
     @async serve_repl(port)
 
     port
   end
 
-  route("/geniebuilder/uuid") do
+  route("$gb_route/uuid") do
     ApplicationsController.uuid()
   end
 
-  route("/geniebuilder/logs") do
+  route("$gb_route/logs") do
     ApplicationsController.logs()
   end
 
-  channel("/geniebuilder/subscribe") do
+  channel("$gb_route/subscribe") do
     ApplicationsController.subscribe()
   end
 
-  channel("/geniebuilder/unsubscribe") do
+  channel("$gb_route/unsubscribe") do
     ApplicationsController.unsubscribe()
   end
 
-  channel("/geniebuilder/stop") do
+  channel("$gb_route/stop") do
     GenieBuilder.stop()
+  end
+
+  route("$gb_route/status.json") do
+    ApplicationsController.status()
   end
 end
 

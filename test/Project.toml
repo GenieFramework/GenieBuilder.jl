@@ -1,4 +1,5 @@
 [deps]
+GenieBuilder = "c9453c14-af8a-11ec-351d-c7c9a2035d70"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
