@@ -1,0 +1,73 @@
+{
+    "type": "popup_proxy", 
+    "label": "Popup Proxy", 
+    "tagName": "Q-POPUP-PROXY", 
+    "category": "Widgets", 
+    "content": "<q-popup-proxy />", 
+    "media": "images/icons/components/ui_components/popup-proxy.png", 
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "target",
+    "name": ":target",
+    "type": [
+      "Boolean",
+      "String",
+      "Element"
+    ],
+    "desc": "Configure a target element to trigger component toggle; 'true' means it enables the parent DOM element, 'false' means it disables attaching events to any DOM elements; By using a String (CSS selector) or a DOM element it attaches the events to the specified DOM element (if it exists)",
+    "category": "behavior",
+    "examples": [
+      ":target=\"false\"",
+      ":target=\"$refs.target\"",
+      "target=\".my-parent\"",
+      "target=\"#target-id\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "no-parent-event",
+    "name": ":no-parent-event",
+    "type": "Boolean",
+    "desc": "Skips attaching events to the target DOM element (that trigger the element to get shown)",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "context-menu",
+    "name": ":context-menu",
+    "type": "Boolean",
+    "desc": "Allows the component to behave like a context menu, which opens with a right mouse click (or long tap on mobile)",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "model-value",
+    "name": ":model-value",
+    "type": "Boolean",
+    "desc": "Defines the state of the component (shown/hidden); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+    "category": "model",
+    "enabled": true
+  },
+  {
+    "label": "breakpoint",
+    "name": ":breakpoint",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "Breakpoint (in pixels) of window width/height (whichever is smaller) from where a Menu will get to be used instead of a Dialog",
+    "category": "behavior",
+    "examples": [
+      992,
+      ":breakpoint=\"1024\""
+    ],
+    "enabled": true
+  }
+]
+}

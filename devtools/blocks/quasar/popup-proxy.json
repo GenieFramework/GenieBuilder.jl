@@ -1,9 +1,0 @@
-{
-    "type": "popup-proxy", 
-    "label": "popup-proxy", 
-    "tagName": "Q-POPUP-PROXY", 
-    "category": "Quasar", 
-    "content": "<q-popup-proxy />", 
-    "media": "images/icons/components/ui_components/popup-proxy.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"target","name":":target","type":"text"},{"label":"no-parent-event","name":":no-parent-event","type":"text"},{"label":"context-menu","name":":context-menu","type":"text"},{"label":"model-value","name":":model-value","type":"text"},{"label":"breakpoint","name":":breakpoint","type":"text"}]
-}

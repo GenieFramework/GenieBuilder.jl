@@ -1,0 +1,118 @@
+{
+    "type": "timeline_entry", 
+    "label": "Timeline Entry", 
+    "tagName": "Q-TIMELINE-ENTRY", 
+    "category": "Widgets", 
+    "content": "<q-timeline-entry />", 
+    "media": "images/icons/components/ui_components/timeline-entry.png", 
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "heading",
+    "name": ":heading",
+    "type": "Boolean",
+    "desc": "Defines a heading timeline item",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "tag",
+    "name": ":tag",
+    "type": "String",
+    "desc": "Tag to use, if of type 'heading' only",
+    "category": "content",
+    "examples": [
+      "div",
+      "span",
+      "h1"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "side",
+    "name": ":side",
+    "type": "String",
+    "desc": "Side to place the timeline entry; Works only if QTimeline layout is loose.",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "icon",
+    "name": ":icon",
+    "type": "String",
+    "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+    "category": "content",
+    "examples": [
+      "map",
+      "ion-add",
+      "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+      "img:path/to/some_image.png"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "avatar",
+    "name": ":avatar",
+    "type": "String",
+    "desc": "URL to the avatar image; Icon takes precedence if used, so it replaces avatar",
+    "category": "content",
+    "examples": [
+      "(public folder) src=\"img/my-bg.png\"",
+      "(assets folder) src=\"~assets/my-img.png\"",
+      "(relative path format) :src=\"require('./my_img.jpg')\"",
+      "(URL) src=\"https://placeimg.com/500/300/nature\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "title",
+    "name": ":title",
+    "type": "String",
+    "desc": "Title of timeline entry; Is overridden if using 'title' slot",
+    "category": "content",
+    "examples": [
+      "December party"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "subtitle",
+    "name": ":subtitle",
+    "type": "String",
+    "desc": "Subtitle of timeline entry; Is overridden if using 'subtitle' slot",
+    "category": "content",
+    "examples": [
+      "All invited"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "body",
+    "name": ":body",
+    "type": "String",
+    "desc": "Body content of timeline entry; Use this prop or the default slot",
+    "category": "content",
+    "examples": [
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+    ],
+    "enabled": true
+  }
+]
+}

@@ -1,0 +1,726 @@
+{
+    "type": "table2", 
+    "label": "Table", 
+    "tagName": "Q-TABLE", 
+    "category": "Tables", 
+    "content": "<q-table />", 
+    "media": "images/icons/components/ui_components/table.png", 
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "fullscreen",
+    "name": ":fullscreen",
+    "type": "Boolean",
+    "desc": "Fullscreen mode",
+    "category": "behavior",
+    "examples": [
+      "v-model:fullscreen=\"isFullscreen\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "no-route-fullscreen-exit",
+    "name": ":no-route-fullscreen-exit",
+    "type": "Boolean",
+    "desc": "Changing route app won't exit fullscreen",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "rows",
+    "name": ":rows",
+    "type": "Array",
+    "desc": "Rows of data to display",
+    "category": "general",
+    "examples": [
+      ":rows=\"myData\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "row-key",
+    "name": ":row-key",
+    "type": [
+      "String",
+      "Function"
+    ],
+    "desc": "Property of each row that defines the unique key of each row (the result must be a primitive, not Object, Array, etc); The value of property must be string or a function taking a row and returning the desired (nested) key in the row; If supplying a function then for best performance, reference it from your scope and do not define it inline",
+    "category": "general",
+    "examples": [
+      "row-key=\"name\"",
+      ":row-key=\"row => row.name\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "virtual-scroll",
+    "name": ":virtual-scroll",
+    "type": "Boolean",
+    "desc": "Display data using QVirtualScroll (for non-grid mode only)",
+    "category": "virtual-scroll",
+    "enabled": true
+  },
+  {
+    "label": "virtual-scroll-target",
+    "name": ":virtual-scroll-target",
+    "type": [
+      "Element",
+      "String"
+    ],
+    "desc": "CSS selector or DOM element to be used as a custom scroll container instead of the auto detected one",
+    "category": "behavior",
+    "examples": [
+      ":scroll-target=\"$refs.scrollTarget\"",
+      "scroll-target=\".scroll-target-class\"",
+      "scroll-target=\"#scroll-target-id\"",
+      "scroll-target=\"body\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "virtual-scroll-slice-size",
+    "name": ":virtual-scroll-slice-size",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "Minimum number of rows to render in the virtual list",
+    "category": "virtual-scroll",
+    "examples": [
+      "virtual-scroll-slice-size=\"60\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "virtual-scroll-slice-ratio-before",
+    "name": ":virtual-scroll-slice-ratio-before",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "Ratio of number of rows in visible zone to render before it",
+    "category": "virtual-scroll",
+    "examples": [
+      "virtual-scroll-slice-ratio-before=\"0.3\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "virtual-scroll-slice-ratio-after",
+    "name": ":virtual-scroll-slice-ratio-after",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "Ratio of number of rows in visible zone to render after it",
+    "category": "virtual-scroll",
+    "examples": [
+      "virtual-scroll-slice-ratio-after=\"2\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "virtual-scroll-item-size",
+    "name": ":virtual-scroll-item-size",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "Default size in pixels of a row; This value is used for rendering the initial table; Try to use a value close to the minimum size of a row",
+    "category": "virtual-scroll",
+    "examples": [
+      "virtual-scroll-item-size=\"48\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "virtual-scroll-sticky-size-start",
+    "name": ":virtual-scroll-sticky-size-start",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "Size in pixels of the sticky header (if using one); A correct value will improve scroll precision",
+    "category": "virtual-scroll",
+    "examples": [
+      "virtual-scroll-sticky-size-start=\"48\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "virtual-scroll-sticky-size-end",
+    "name": ":virtual-scroll-sticky-size-end",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "Size in pixels of the sticky footer part (if using one); A correct value will improve scroll precision",
+    "category": "virtual-scroll",
+    "examples": [
+      "virtual-scroll-sticky-size-end=\"48\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "table-colspan",
+    "name": ":table-colspan",
+    "type": [
+      "Number",
+      "String"
+    ],
+    "desc": "The number of columns in the table (you need this if you use table-layout: fixed)",
+    "category": "virtual-scroll|content",
+    "examples": [
+      "table-colspan=\"12\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "icon-first-page",
+    "name": ":icon-first-page",
+    "type": "String",
+    "desc": "Icon name following Quasar convention for stepping to first page; Make sure you have the icon library installed unless you are using 'img:' prefix",
+    "category": "content",
+    "examples": [
+      "map",
+      "ion-add",
+      "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+      "img:path/to/some_image.png"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "icon-prev-page",
+    "name": ":icon-prev-page",
+    "type": "String",
+    "desc": "Icon name following Quasar convention for stepping to previous page; Make sure you have the icon library installed unless you are using 'img:' prefix",
+    "category": "content",
+    "examples": [
+      "map",
+      "ion-add",
+      "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+      "img:path/to/some_image.png"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "icon-next-page",
+    "name": ":icon-next-page",
+    "type": "String",
+    "desc": "Icon name following Quasar convention for stepping to next page; Make sure you have the icon library installed unless you are using 'img:' prefix",
+    "category": "content",
+    "examples": [
+      "map",
+      "ion-add",
+      "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+      "img:path/to/some_image.png"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "icon-last-page",
+    "name": ":icon-last-page",
+    "type": "String",
+    "desc": "Icon name following Quasar convention for stepping to last page; Make sure you have the icon library installed unless you are using 'img:' prefix",
+    "category": "content",
+    "examples": [
+      "map",
+      "ion-add",
+      "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+      "img:path/to/some_image.png"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "grid",
+    "name": ":grid",
+    "type": "Boolean",
+    "desc": "Display data as a grid instead of the default table",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "grid-header",
+    "name": ":grid-header",
+    "type": "Boolean",
+    "desc": "Display header for grid-mode also",
+    "category": "behavior|content",
+    "enabled": true
+  },
+  {
+    "label": "dense",
+    "name": ":dense",
+    "type": "Boolean",
+    "desc": "Dense mode; Connect with $q.screen for responsive behavior",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "columns",
+    "name": ":columns",
+    "type": "Array",
+    "desc": "The column definitions (Array of Objects)",
+    "category": "column",
+    "examples": [
+      ":columns=\"tableColumns\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "visible-columns",
+    "name": ":visible-columns",
+    "type": "Array",
+    "desc": "Array of Strings defining column names ('name' property of each column from 'columns' prop definitions); Columns marked as 'required' are not affected by this property",
+    "category": "column",
+    "examples": [
+      ":visible-columns=\"myCols\"",
+      "[ 'desc', 'carbs', 'protein' ]"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "loading",
+    "name": ":loading",
+    "type": "Boolean",
+    "desc": "Put Table into 'loading' state; Notify the user something is happening behind the scenes",
+    "category": "behavior|content",
+    "enabled": true
+  },
+  {
+    "label": "title",
+    "name": ":title",
+    "type": "String",
+    "desc": "Table title",
+    "category": "content",
+    "examples": [
+      "Device list"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "hide-header",
+    "name": ":hide-header",
+    "type": "Boolean",
+    "desc": "Hide table header layer",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "hide-bottom",
+    "name": ":hide-bottom",
+    "type": "Boolean",
+    "desc": "Hide table bottom layer regardless of what it has to display",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "hide-selected-banner",
+    "name": ":hide-selected-banner",
+    "type": "Boolean",
+    "desc": "Hide the selected rows banner (if any)",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "hide-no-data",
+    "name": ":hide-no-data",
+    "type": "Boolean",
+    "desc": "Hide the default no data bottom layer",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "hide-pagination",
+    "name": ":hide-pagination",
+    "type": "Boolean",
+    "desc": "Hide the pagination controls at the bottom",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "dark",
+    "name": ":dark",
+    "type": "Boolean",
+    "desc": "Notify the component that the background is a dark color",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "flat",
+    "name": ":flat",
+    "type": "Boolean",
+    "desc": "Applies a 'flat' design (no default shadow)",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "bordered",
+    "name": ":bordered",
+    "type": "Boolean",
+    "desc": "Applies a default border to the component",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "square",
+    "name": ":square",
+    "type": "Boolean",
+    "desc": "Removes border-radius so borders are squared",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "separator",
+    "name": ":separator",
+    "type": "String",
+    "desc": "Use a separator/border between rows, columns or all cells",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "wrap-cells",
+    "name": ":wrap-cells",
+    "type": "Boolean",
+    "desc": "Wrap text within table cells",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "binary-state-sort",
+    "name": ":binary-state-sort",
+    "type": "Boolean",
+    "desc": "Skip the third state (unsorted) when user toggles column sort direction",
+    "category": "sorting",
+    "enabled": true
+  },
+  {
+    "label": "column-sort-order",
+    "name": ":column-sort-order",
+    "type": "String",
+    "desc": "Set column sort order: 'ad' (ascending-descending) or 'da' (descending-ascending); It gets applied to all columns unless a column has its own sortOrder specified in the 'columns' definition prop",
+    "category": "sorting",
+    "enabled": true
+  },
+  {
+    "label": "no-data-label",
+    "name": ":no-data-label",
+    "type": "String",
+    "desc": "Override default text to display when no data is available",
+    "category": "content",
+    "examples": [
+      "No devices available"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "no-results-label",
+    "name": ":no-results-label",
+    "type": "String",
+    "desc": "Override default text to display when user filters the table and no matched results are found",
+    "category": "content",
+    "examples": [
+      "No matched records"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "loading-label",
+    "name": ":loading-label",
+    "type": "String",
+    "desc": "Override default text to display when table is in loading state (see 'loading' prop)",
+    "category": "content",
+    "examples": [
+      "Loading devices..."
+    ],
+    "enabled": true
+  },
+  {
+    "label": "selected-rows-label",
+    "name": ":selected-rows-label",
+    "type": "Function",
+    "desc": "Text to display when user selected at least one row; For best performance, reference it from your scope and do not define it inline",
+    "category": "selection",
+    "examples": [
+      ":selected-rows-label=\"getSelectedString\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "rows-per-page-label",
+    "name": ":rows-per-page-label",
+    "type": "String",
+    "desc": "Text to override default rows per page label at bottom of table",
+    "category": "pagination",
+    "examples": [
+      "Records per page:"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "pagination-label",
+    "name": ":pagination-label",
+    "type": "Function",
+    "desc": "Text to override default pagination label at bottom of table (unless 'pagination' scoped slot is used); For best performance, reference it from your scope and do not define it inline",
+    "category": "pagination",
+    "examples": [
+      ":pagination-label=\"getPaginationLabel\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "table-style",
+    "name": ":table-style",
+    "type": [
+      "String",
+      "Array",
+      "Object"
+    ],
+    "desc": "CSS style to apply to native HTML <table> element's wrapper (which is a DIV)",
+    "category": "style",
+    "examples": [
+      "background-color: #ff0000",
+      ":table-style=\"{ backgroundColor: '#ff0000' }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "table-class",
+    "name": ":table-class",
+    "type": [
+      "String",
+      "Array",
+      "Object"
+    ],
+    "desc": "CSS classes to apply to native HTML <table> element's wrapper (which is a DIV)",
+    "category": "style",
+    "examples": [
+      "my-special-class",
+      ":table-class=\"{ 'my-special-class': [Boolean condition] }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "table-header-style",
+    "name": ":table-header-style",
+    "type": [
+      "String",
+      "Array",
+      "Object"
+    ],
+    "desc": "CSS style to apply to header of native HTML <table> (which is a TR)",
+    "category": "style",
+    "examples": [
+      "background-color: #ff0000",
+      ":table-header-style=\"{ backgroundColor: '#ff0000' }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "table-header-class",
+    "name": ":table-header-class",
+    "type": [
+      "String",
+      "Array",
+      "Object"
+    ],
+    "desc": "CSS classes to apply to header of native HTML <table> (which is a TR)",
+    "category": "style",
+    "examples": [
+      "my-special-class",
+      ":table-header-class=\"{ 'my-special-class': [Boolean condition] }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "card-container-style",
+    "name": ":card-container-style",
+    "type": [
+      "String",
+      "Array",
+      "Object"
+    ],
+    "desc": "CSS style to apply to the cards container (when in grid mode)",
+    "category": "style",
+    "examples": [
+      "background-color: #ff0000",
+      ":card-container-style=\"{ backgroundColor: '#ff0000' }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "card-container-class",
+    "name": ":card-container-class",
+    "type": [
+      "String",
+      "Array",
+      "Object"
+    ],
+    "desc": "CSS classes to apply to the cards container (when in grid mode)",
+    "category": "style",
+    "examples": [
+      "my-special-class",
+      "justify-center",
+      ":card-container-class=\"{ 'my-special-class': [Boolean condition] }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "card-style",
+    "name": ":card-style",
+    "type": [
+      "String",
+      "Array",
+      "Object"
+    ],
+    "desc": "CSS style to apply to the card (when in grid mode) or container card (when not in grid mode)",
+    "category": "style",
+    "examples": [
+      "background-color: #ff0000",
+      ":card-style=\"{ backgroundColor: '#ff0000' }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "card-class",
+    "name": ":card-class",
+    "type": [
+      "String",
+      "Array",
+      "Object"
+    ],
+    "desc": "CSS classes to apply to the card (when in grid mode) or container card (when not in grid mode)",
+    "category": "style",
+    "examples": [
+      "my-special-class",
+      ":card-class=\"{ 'my-special-class': [Boolean condition] }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "title-class",
+    "name": ":title-class",
+    "type": [
+      "String",
+      "Array",
+      "Object"
+    ],
+    "desc": "CSS classes to apply to the title (if using 'title' prop)",
+    "category": "style",
+    "examples": [
+      "my-special-class",
+      "text-h1",
+      ":title-class=\"{ 'text-h1': [Boolean condition] }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "filter",
+    "name": ":filter",
+    "type": [
+      "String",
+      "Object"
+    ],
+    "desc": "String/Object to filter table with; When using an Object it requires 'filter-method' to also be specified since it will be a custom filtering",
+    "category": "filter",
+    "examples": [
+      ":filter=\"myFilterInput\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "filter-method",
+    "name": ":filter-method",
+    "type": "Function",
+    "desc": "The actual filtering mechanism; For best performance, reference it from your scope and do not define it inline",
+    "category": "filter",
+    "examples": [
+      "(see source code)"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "pagination",
+    "name": ":pagination",
+    "type": "Object",
+    "desc": "Pagination object; You can also use the 'v-model:pagination' for synching; When not synching it simply initializes the pagination on first render",
+    "category": "pagination",
+    "examples": [
+      ":pagination=\"myInitialPagination\"",
+      "v-model:pagination=\"myPagination\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "rows-per-page-options",
+    "name": ":rows-per-page-options",
+    "type": "Array",
+    "desc": "Options for user to pick (Numbers); Number 0 means 'Show all rows in one page'",
+    "category": "pagination",
+    "examples": [
+      ":rows-per-page-options=\"[10, 20]\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "selection",
+    "name": ":selection",
+    "type": "String",
+    "desc": "Selection type",
+    "category": "selection",
+    "examples": [
+      "multiple"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "selected",
+    "name": ":selected",
+    "type": "Array",
+    "desc": "Keeps the user selection array",
+    "category": "selection",
+    "examples": [
+      "v-model:selected=\"selection\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "expanded",
+    "name": ":expanded",
+    "type": "Array",
+    "desc": "Keeps the array with expanded rows keys",
+    "category": "expansion",
+    "examples": [
+      "v-model:expanded=\"expanded\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "sort-method",
+    "name": ":sort-method",
+    "type": "Function",
+    "desc": "The actual sort mechanism. Function (rows, sortBy, descending) => sorted rows; For best performance, reference it from your scope and do not define it inline",
+    "category": "sorting",
+    "examples": [
+      "(see source code)"
+    ],
+    "enabled": true
+  }
+]
+}

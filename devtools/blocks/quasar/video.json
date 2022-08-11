@@ -1,9 +1,78 @@
 {
     "type": "video", 
-    "label": "video", 
+    "label": "Video", 
     "tagName": "Q-VIDEO", 
-    "category": "Quasar", 
+    "category": "Multimedia", 
     "content": "<q-video />", 
     "media": "images/icons/components/ui_components/video.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"ratio","name":":ratio","type":"text"},{"label":"src","name":":src","type":"text"},{"label":"title","name":":title","type":"text"},{"label":"fetchpriority","name":":fetchpriority","type":"text"},{"label":"loading","name":":loading","type":"text"},{"label":"referrerpolicy","name":":referrerpolicy","type":"text"}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "ratio",
+    "name": ":ratio",
+    "type": [
+      "String",
+      "Number"
+    ],
+    "desc": "Aspect ratio for the content; If value is a String, then avoid using a computational statement (like '16/9') and instead specify the String value of the result directly (eg. '1.7777')",
+    "category": "style",
+    "examples": [
+      ":ratio=\"4/3\"",
+      ":ratio=\"16/9\"",
+      "ratio=\"1\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "src",
+    "name": ":src",
+    "type": "String",
+    "desc": "The source url to display in an iframe",
+    "category": "model",
+    "examples": [
+      "https://www.youtube.com/embed/k3_tw44QsZQ"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "title",
+    "name": ":title",
+    "type": "String",
+    "desc": "(Accessibility) Set the native 'title' attribute value of the inner iframe being used",
+    "category": "accessibility",
+    "examples": [
+      "My Daily Marathon"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "fetchpriority",
+    "name": ":fetchpriority",
+    "type": "String",
+    "desc": "Provides a hint of the relative priority to use when fetching the iframe document",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "loading",
+    "name": ":loading",
+    "type": "String",
+    "desc": "Indicates how the browser should load the iframe",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "referrerpolicy",
+    "name": ":referrerpolicy",
+    "type": "String",
+    "desc": "Indicates which referrer to send when fetching the frame's resource",
+    "category": "behavior",
+    "enabled": true
+  }
+]
 }
