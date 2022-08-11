@@ -330,7 +330,7 @@ const myNewComponentTypes = editor => {
                       Blocks
     -------------------------------------------- */
   
-   /*  editor.BlockManager.add( 
+    editor.BlockManager.add( 
       'titleAndContent', 
       { 
         label: 'Title + Content', 
@@ -341,10 +341,10 @@ const myNewComponentTypes = editor => {
             </div>
           </div>`, 
         media: `<img src="images/icons/components/html_elements/header.png" class="blockIcon"/>`, 
-        category: 'Blocks'   
+        category: 'Content'   
       }
     ); 
- */
+
 
 
 
