@@ -55,7 +55,7 @@ function initTraitsEditor(){
 
             onInputChanged(trait){
                 let traitId = trait.id;
-                let traitValue = trait.value;
+                let traitValue = this.traitValuesObj[traitId];
                 console.log("Traits Editor onInputchanged", trait);
                 let tr = traitsEditor.component.getTrait(traitId)
                 tr.setValue(traitValue)
