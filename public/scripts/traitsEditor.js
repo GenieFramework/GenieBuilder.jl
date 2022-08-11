@@ -6,18 +6,21 @@ function initTraitsEditor(){
             allTraits: [ /* { id:"id1", value:"1" }, { id:"id2", value:"2" } */ ],
             enabledTraits: [], 
             categories: [], 
-            categoriesStatus: {}
+            categoriesStatus: {}, 
+            traitValuesObj: {},
         },
         methods: {
             assignComponent: function( component ) {
                 console.log( "Traits Editor assignComponent: ", component );
                 this.component = component;
                 if( !component ){
+                    this.traitValuesObj = {};
                     this.allTraits = [];
                     this.enabledTraits = [];
                     this.categories = [];
                     return;
                 }
+                this.traitValuesObj = component.attributes.attributes;
                 this.traits = component.attributes.traits.models;
                 this.enabledTraits = this.traits.filter( (trait)=>{ 
                     return trait.get('enabled') !== false;
@@ -40,6 +43,11 @@ function initTraitsEditor(){
                     categoriesDict[cat].traits.push( trait );
                 } );
                 this.categories = categories;
+
+
+    
+                /* if( component.updateGenieModelProperties )
+                component.updateGenieModelProperties(window.appConfiguration.modelFields); */
                 
 
                 console.log( "Traits Editor assignComponent TRAITS: ", this.traits );
@@ -63,6 +71,12 @@ function initTraitsEditor(){
                 this.categoriesStatus[category.name] = category.expanded;
             }
 
+        }, 
+        mounted(){
+            console.log( "TraitsEditor mounted: ", window.selectedElementModel);
+            if( window.selectedElementModel != null ){
+                this.assignComponent( window.selectedElementModel );
+            }
         }
     });
 }
