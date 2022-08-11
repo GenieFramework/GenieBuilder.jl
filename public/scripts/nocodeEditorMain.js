@@ -300,7 +300,7 @@ function initNoCodeEditor(){
                                   <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.id)}}</div>
                               </div>
                               <div class="gjs-field gjs-field-text">
-                                  <input :title="trait.attributes.desc" type="text" class="gn_input" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)">
+                                  <textarea :title="getTraitTooltipText(trait)" class="gn_input" style="min-height: 30px; height: 30px;" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)"></textarea>
                               </div>
                           </div>
                         </div>
