@@ -77,7 +77,7 @@ function postcreate(path) :: Nothing
   model_name = "AppModel"
   current_path = pwd()
 
-  cmd = Cmd(`julia -e '
+  cmd = Cmd(`julia --startup-file=no -e '
               using Pkg;
               Pkg.activate(".");
               Pkg.update();
@@ -301,7 +301,7 @@ function create(name, path = "", port = available_port())
 
     Base.Threads.@spawn begin
       try
-        cmd = Cmd(`julia --project -e "using Genie;Genie.Generator.newapp(\"$(name)\", autostart = false, interactive = false)"`; dir = path)
+        cmd = Cmd(`julia --project --startup-file=no -e "using Genie;Genie.Generator.newapp(\"$(name)\", autostart = false, interactive = false)"`; dir = path)
         cmd |> run
       catch ex
         @error ex
@@ -412,7 +412,7 @@ function start(app)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
-        cmd = Cmd(`julia -e "using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();up(async = false)"`; dir = fullpath(app))
+        cmd = Cmd(`julia --startup-file=no -e "using Pkg;Pkg.activate(\".\");using Genie;Genie.loadapp();up(async = false)"`; dir = fullpath(app))
         cmd = addenv(cmd, "PORT" => app.port, "WSEXPPORT" => app.port, "CHANNEL__" => app.channel, "GENIE_ENV" => "dev", "GENIE_BANNER" => "false")
         cmd |> run
       catch ex
