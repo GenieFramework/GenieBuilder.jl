@@ -75,7 +75,7 @@ const myNewComponentTypes = editor => {
   // Custom components
 
     /* --------------------------------------------
-                      ROW
+                      Footer
      -------------------------------------------- */
         
      editor.DomComponents.addType( "footer", {
