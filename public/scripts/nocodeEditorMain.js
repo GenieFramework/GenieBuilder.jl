@@ -64,7 +64,7 @@ function initNoCodeEditor(){
     "grapesjs-page-break",  */
 
     /* "grapesjs-plugin-forms",  */
-    "grapesjs-plugin-header", 
+    /* "grapesjs-plugin-header",  */
     "grapesjs-rte-extensions", 
     "grapesjs-rulers", 
     
