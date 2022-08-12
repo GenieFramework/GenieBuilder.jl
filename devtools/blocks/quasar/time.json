@@ -1,5 +1,5 @@
 {
-    "type": "time", 
+    "type": "timePicker", 
     "label": "Time Picker", 
     "tagName": "Q-TIME", 
     "category": "Forms", 

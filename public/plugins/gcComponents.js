@@ -73,6 +73,44 @@ const myNewComponentTypes = editor => {
   };
 
   // Custom components
+
+    /* --------------------------------------------
+                      Footer
+     -------------------------------------------- */
+        
+     editor.DomComponents.addType( "footer", {
+      isComponent: el => {
+        if( el.tagName == 'FOOTER' ){
+          return { type: 'footer' }
+        }
+      },
+      model: {
+        defaults: { 
+          traits: [           
+          ], 
+          droppable: true,
+          draggable: true,
+          editable: true,
+        },
+        init() {  
+          this.on('change:attributes', this.handleAttrChange);
+        },
+        handleAttrChange() {
+          this.render();
+        },
+        render: function(){
+          this.view.onRender();
+        },
+        updateGenieModelProperties(properties){
+        }
+      }, 
+      view: {
+        onRender(){
+          const { $el, model } = this;          
+        }
+      },
+    });
+    
   // -----------------------------------
 
     /* --------------------------------------------
@@ -83,10 +121,10 @@ const myNewComponentTypes = editor => {
                       ROW
      -------------------------------------------- */
         
-     editor.DomComponents.addType( "qrow", {
+     editor.DomComponents.addType( "row", {
       isComponent: el => {
         if( el.tagName == 'DIV' && el.classList.contains('row') ){
-          return { type: 'qrow' }
+          return { type: 'row' }
         }
       },
       model: {
@@ -128,10 +166,10 @@ const myNewComponentTypes = editor => {
                       COLUMN
      -------------------------------------------- */
         
-     editor.DomComponents.addType( "qcolumn", {
+     editor.DomComponents.addType( "column", {
       isComponent: el => {
         if( el.tagName == 'DIV' && el.classList.contains('col') ){
-          return { type: 'qcolumn' }
+          return { type: 'column' }
         }
       },
       model: {
@@ -173,7 +211,7 @@ const myNewComponentTypes = editor => {
     editor.BlockManager.add( '2 Column', { label: '2 Columns row', content: `<div class="row"><div class="col col-6 col-sm">Column 1 content</div><div class="col col-6 col-sm">Column 2 content</div></div>`, media: `<img src="images/icons/components/ui_components/2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
     editor.BlockManager.add( '3 Column', { label: '3 Columns row', content: `<div class="row"><div class="col col-4 col-sm">Column 1 content</div><div class="col col-4 col-sm">Column 2 content</div><div class="col col-4 col-sm">Column 3 content</div></div>`, media: `<img src="images/icons/components/ui_components/3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
-    editor.BlockManager.add( 'qcolumn', { label: 'Column', content: `<div class="col col-12 col-sm st-module">Column content</div>`, media: `<img src="images/icons/components/ui_components/container.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( 'column', { label: 'Column', content: `<div class="col col-12 col-sm st-module">Column content</div>`, media: `<img src="images/icons/components/ui_components/container.png" class="blockIcon"/>`, category: 'Layout'   }); 
     
     
     editor.BlockManager.add( 'Sidebar Left', { label: 'Sidebar Left', content: `<header class="st-header q-pa-sm">
@@ -819,7 +857,7 @@ const myNewComponentTypes = editor => {
                 }, */
                 { "label": "src",  "name": ":src",  "type": "text"   },
                 { "label": "autoplay",  "name": ":autoplay",  "type": "text"   },
-                { "label": "controls",  "name": ":controls",  "type": "text"   },
+                { "label": "controls",  "name": "controls",  "type": "text"   },
                 { "label": "crossorigin",  "name": ":crossorigin",  "type": "text"   },
                 { "label": "loop",  "name": ":loop",  "type": "text"   },
                 { "label": "muted",  "name": ":muted",  "type": "text"   },
@@ -850,7 +888,7 @@ const myNewComponentTypes = editor => {
       },
   });
 
-    editor.BlockManager.add( 'audio', { label: 'Audio', content: `<audio :controls="true" />`, media: `<img src="images/icons/components/html_elements/audio.png" class="blockIcon"/>`, category: 'Multimedia'   }); 
+    editor.BlockManager.add( 'audio', { label: 'Audio', content: `<audio controls="true" />`, media: `<img src="images/icons/components/html_elements/audio.png" class="blockIcon"/>`, category: 'Multimedia'   }); 
 
 
     
