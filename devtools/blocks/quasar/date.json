@@ -1,5 +1,5 @@
 {
-    "type": "date", 
+    "type": "datePicker", 
     "label": "Date Picker", 
     "tagName": "Q-DATE", 
     "category": "Forms", 

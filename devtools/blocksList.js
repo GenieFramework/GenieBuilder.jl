@@ -15,8 +15,8 @@ const components = [
     { blockName: "Toggle", tag: "q-toggle", type: "toggle", urlEnd: "QToggle", blockCategory:"Widgets", enabled: true, icon: "toggle" },
     { blockName: "Slider", tag: "q-slider", type: "slider", urlEnd: "QSlider", blockCategory:"Forms", enabled: true, icon: "slider" },
     { blockName: "Range", tag: "q-range", type: "range", urlEnd: "QRange", blockCategory:"Forms", enabled: true, icon: "range" },
-    { blockName: "Date Picker", tag: "q-date", type: "date", urlEnd: "QDate", blockCategory:"Forms", enabled: true, icon: "date_picker" },
-    { blockName: "Time Picker", tag: "q-time", type: "time", urlEnd: "QTime", blockCategory:"Forms", enabled: true, icon: "time" },
+    { blockName: "Date Picker", tag: "q-date", type: "datePicker", urlEnd: "QDate", blockCategory:"Forms", enabled: true, icon: "date_picker" },
+    { blockName: "Time Picker", tag: "q-time", type: "timePicker", urlEnd: "QTime", blockCategory:"Forms", enabled: true, icon: "time" },
     { blockName: "Editor", tag: "q-editor", type: "editor", urlEnd: "QEditor", blockCategory:"Forms", enabled: true, icon: "editor" },
     { blockName: "Knob", tag: "q-knob", type: "knob", urlEnd: "QKnob", blockCategory:"Forms", enabled: true, icon: "knob" },
     

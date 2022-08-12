@@ -4200,7 +4200,7 @@
                 }
             },
         });
-        editor.BlockManager.add('date', { label: 'Date Picker', content: '<q-date />', media: '<img src="images/icons/components/ui_components/date_picker.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('datePicker', { label: 'Date Picker', content: '<q-date />', media: '<img src="images/icons/components/ui_components/date_picker.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
@@ -4459,7 +4459,7 @@
                 }
             },
         });
-        editor.BlockManager.add('time', { label: 'Time Picker', content: '<q-time />', media: '<img src="images/icons/components/ui_components/time.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('timePicker', { label: 'Time Picker', content: '<q-time />', media: '<img src="images/icons/components/ui_components/time.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
