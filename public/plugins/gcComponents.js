@@ -207,36 +207,36 @@ const myNewComponentTypes = editor => {
       },
     });
 
-    editor.BlockManager.add( '1 Column', { label: '1 Column row', content: `<div class="row"><div class="col col-12 col-sm">Column content</div></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '2 Column', { label: '2 Columns row', content: `<div class="row"><div class="col col-6 col-sm">Column 1 content</div><div class="col col-6 col-sm">Column 2 content</div></div>`, media: `<img src="images/icons/components/ui_components/2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
-    editor.BlockManager.add( '3 Column', { label: '3 Columns row', content: `<div class="row"><div class="col col-4 col-sm">Column 1 content</div><div class="col col-4 col-sm">Column 2 content</div><div class="col col-4 col-sm">Column 3 content</div></div>`, media: `<img src="images/icons/components/ui_components/3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '1 Column', { label: '1 Column row', content: `<div class="row"><div class="col col-12 col-sm"><p>Column content</p></div></div>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '2 Column', { label: '2 Columns row', content: `<div class="row"><div class="col col-6 col-sm"><p>Column 1 content</p></div><div class="col col-6 col-sm"><p>Column 2 content</p></div></div>`, media: `<img src="images/icons/components/ui_components/2columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( '3 Column', { label: '3 Columns row', content: `<div class="row"><div class="col col-4 col-sm"><p>Column 1 content</p></div><div class="col col-4 col-sm"><p>Column 2 content</p></div><div class="col col-4 col-sm"><p>Column 3 content</p></div></div>`, media: `<img src="images/icons/components/ui_components/3columns.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
-    editor.BlockManager.add( 'column', { label: 'Column', content: `<div class="col col-12 col-sm st-module">Column content</div>`, media: `<img src="images/icons/components/ui_components/container.png" class="blockIcon"/>`, category: 'Layout'   }); 
+    editor.BlockManager.add( 'column', { label: 'Column', content: `<div class="col col-12 col-sm st-module"><p>Column content</p></div>`, media: `<img src="images/icons/components/ui_components/container.png" class="blockIcon"/>`, category: 'Layout'   }); 
     
     
     editor.BlockManager.add( 'Sidebar Left', { label: 'Sidebar Left', content: `<header class="st-header q-pa-sm">
           <h1 class="st-header__title text-h3">Header Text</h1>
       </header>
       <div class="row">
-          <div class="col col-3">Column 1 content</div>
-          <div class="col">Column 2 content</div>
+          <div class="col col-3"><p>Column 1 content</p></div>
+          <div class="col"><p>Column 2 content</p></div>
       </div>`, media: `<img src="images/icons/components/ui_components/sidebar_left.png" class="blockIcon"/>`, category: 'Layout'   }); 
     
     editor.BlockManager.add( 'Sidebar Right', { label: 'Sidebar Right', content: `<header class="st-header q-pa-sm">
           <h1 class="st-header__title text-h3">Header Text</h1>
       </header>
       <div class="row">
-        <div class="col">Column 1 content</div>
-        <div class="col col-3">Column 2 content</div>
+        <div class="col"><p>Column 1 content</p></div>
+        <div class="col col-3"><p>Column 2 content</p></div>
       </div>`, media: `<img src="images/icons/components/ui_components/sidebar_right.png" class="blockIcon"/>`, category: 'Layout'   }); 
     
     editor.BlockManager.add( 'Sidebars', { label: '2 Sidebars', content: `<header class="st-header q-pa-sm">
           <h1 class="st-header__title text-h3">Header Text</h1>
       </header>
       <div class="row">
-          <div class="col col-3">Column 1 content</div>
-          <div class="col">Column 2 content</div>
-          <div class="col col-3">Column 3 content</div>
+          <div class="col col-3"><p>Column 1 content</p></div>
+          <div class="col"><p>Column 2 content</p></div>
+          <div class="col col-3"><p>Column 3 content</p></div>
       </div>`, media: `<img src="images/icons/components/ui_components/sidebars.png" class="blockIcon"/>`, category: 'Layout'   }); 
 
     
