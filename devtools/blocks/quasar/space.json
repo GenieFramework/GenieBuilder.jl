@@ -1,9 +1,16 @@
 {
     "type": "space", 
-    "label": "space", 
+    "label": "Space", 
     "tagName": "Q-SPACE", 
-    "category": "Quasar", 
+    "category": "Content", 
     "content": "<q-space />", 
     "media": "images/icons/components/ui_components/space.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  }
+]
 }

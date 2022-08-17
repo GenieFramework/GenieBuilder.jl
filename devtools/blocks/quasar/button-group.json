@@ -1,9 +1,0 @@
-{
-    "type": "button-group", 
-    "label": "button-group", 
-    "tagName": "Q-BUTTON-GROUP", 
-    "category": "Quasar", 
-    "content": "<q-button-group />", 
-    "media": "images/icons/components/ui_components/button-group.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]}]
-}

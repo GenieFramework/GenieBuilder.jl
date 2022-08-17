@@ -1,0 +1,16 @@
+{
+    "type": "button_group", 
+    "label": "Button Group", 
+    "tagName": "Q-BUTTON-GROUP", 
+    "category": "Forms", 
+    "content": "<q-button-group />", 
+    "media": "images/icons/components/ui_components/button-group.png", 
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  }
+]
+}

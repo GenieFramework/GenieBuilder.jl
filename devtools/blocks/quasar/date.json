@@ -1,0 +1,339 @@
+{
+    "type": "datePicker", 
+    "label": "Date Picker", 
+    "tagName": "Q-DATE", 
+    "category": "Forms", 
+    "content": "<q-date />", 
+    "media": "images/icons/components/ui_components/date_picker.png", 
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "name",
+    "name": ":name",
+    "type": "String",
+    "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+    "category": "behavior",
+    "examples": [
+      "car_id"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "landscape",
+    "name": ":landscape",
+    "type": "Boolean",
+    "desc": "Display the component in landscape mode",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "mask",
+    "name": ":mask",
+    "type": "String",
+    "desc": "Mask (formatting string) used for parsing and formatting value",
+    "category": "model",
+    "examples": [
+      "YYYY-MM-DD",
+      "MMMM Do, YYYY",
+      "YYYY-MM-DD HH:mm:ss"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "locale",
+    "name": ":locale",
+    "type": "Object",
+    "desc": "Locale formatting options",
+    "category": "model",
+    "examples": [
+      ":locale=\"{ monthsShort: ['Ian', 'Feb', 'Mar', '...'] }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "calendar",
+    "name": ":calendar",
+    "type": "String",
+    "desc": "Specify calendar type",
+    "category": "model",
+    "enabled": true
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "text-color",
+    "name": ":text-color",
+    "type": "String",
+    "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "dark",
+    "name": ":dark",
+    "type": "Boolean",
+    "desc": "Notify the component that the background is a dark color",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "square",
+    "name": ":square",
+    "type": "Boolean",
+    "desc": "Removes border-radius so borders are squared",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "flat",
+    "name": ":flat",
+    "type": "Boolean",
+    "desc": "Applies a 'flat' design (no default shadow)",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "bordered",
+    "name": ":bordered",
+    "type": "Boolean",
+    "desc": "Applies a default border to the component",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "readonly",
+    "name": ":readonly",
+    "type": "Boolean",
+    "desc": "Put component in readonly mode",
+    "category": "state",
+    "enabled": true
+  },
+  {
+    "label": "disable",
+    "name": ":disable",
+    "type": "Boolean",
+    "desc": "Put component in disabled mode",
+    "category": "state",
+    "enabled": true
+  },
+  {
+    "label": "model-value",
+    "name": ":model-value",
+    "type": [
+      "String",
+      "Array",
+      "Object",
+      "null",
+      "undefined"
+    ],
+    "desc": "Date(s) of the component; Must be Array if using 'multiple' prop; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
+    "category": "model",
+    "examples": [
+      "v-model=\"myDate\"",
+      "v-model=\"[myDate1, myDate2]\"",
+      "v-model=\"[{ from: myDateFrom, to: myDateTo }]\"",
+      "v-model=\"[myDate1, { from: myDateFrom, to: myDateTo }, myDate2]\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "title",
+    "name": ":title",
+    "type": "String",
+    "desc": "When specified, it overrides the default header title; Makes sense when not in 'minimal' mode",
+    "category": "content",
+    "examples": [
+      "Birthday"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "subtitle",
+    "name": ":subtitle",
+    "type": "String",
+    "desc": "When specified, it overrides the default header subtitle; Makes sense when not in 'minimal' mode",
+    "category": "content",
+    "examples": [
+      "John Doe"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "default-year-month",
+    "name": ":default-year-month",
+    "type": "String",
+    "desc": "The default year and month to display (in YYYY/MM format) when model is unfilled (undefined or null); Please ensure it is within the navigation min/max year-month (if using them)",
+    "category": "model",
+    "examples": [
+      "1986/02"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "default-view",
+    "name": ":default-view",
+    "type": "String",
+    "desc": "The view which will be displayed by default",
+    "category": "model",
+    "enabled": true
+  },
+  {
+    "label": "years-in-month-view",
+    "name": ":years-in-month-view",
+    "type": "Boolean",
+    "desc": "Show the years selector in months view",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "events",
+    "name": ":events",
+    "type": [
+      "Array",
+      "Function"
+    ],
+    "desc": "A list of events to highlight on the calendar; If using a function, it receives the date as a String and must return a Boolean (matches or not); If using a function then for best performance, reference it from your scope and do not define it inline",
+    "category": "model",
+    "examples": [
+      ":events=\"['2018/11/05', '2018/11/06', '2018/11/09', '2018/11/23']\"",
+      ":events=\"date => date[9] % 3 === 0\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "event-color",
+    "name": ":event-color",
+    "type": [
+      "String",
+      "Function"
+    ],
+    "desc": "Color name (from the Quasar Color Palette); If using a function, it receives the date as a String and must return a String (color for the received date); If using a function then for best performance, reference it from your scope and do not define it inline",
+    "category": "style",
+    "examples": [
+      "teal-10",
+      ":event-color=\"(date) => date[9] % 2 === 0 ? 'teal' : 'orange'\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "options",
+    "name": ":options",
+    "type": [
+      "Array",
+      "Function"
+    ],
+    "desc": "Optionally configure the days that are selectable; If using a function, it receives the date as a String and must return a Boolean (is date acceptable or not); If using a function then for best performance, reference it from your scope and do not define it inline; Incompatible with 'range' prop",
+    "category": "model",
+    "examples": [
+      ":options=\"['2018/11/05', '2018/11/12', '2018/11/19', '2018/11/26' ]\"",
+      ":options=\"date => date[9] % 3 === 0\"",
+      ":options=\"date => date >= '2018/11/03' && date <= '2018/11/15'\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "navigation-min-year-month",
+    "name": ":navigation-min-year-month",
+    "type": "String",
+    "desc": "Lock user from navigating below a specific year+month (in YYYY/MM format); This prop is not used to correct the model; You might want to also use 'default-year-month' prop",
+    "category": "selection",
+    "examples": [
+      "2020/07"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "navigation-max-year-month",
+    "name": ":navigation-max-year-month",
+    "type": "String",
+    "desc": "Lock user from navigating above a specific year+month (in YYYY/MM format); This prop is not used to correct the model; You might want to also use 'default-year-month' prop",
+    "category": "selection",
+    "examples": [
+      "2020/10"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "no-unset",
+    "name": ":no-unset",
+    "type": "Boolean",
+    "desc": "Remove ability to unselect a date; It does not apply to selecting a range over already selected dates",
+    "category": "selection",
+    "enabled": true
+  },
+  {
+    "label": "first-day-of-week",
+    "name": ":first-day-of-week",
+    "type": [
+      "String",
+      "Number"
+    ],
+    "desc": "Sets the day of the week that is considered the first day (0 - Sunday, 1 - Monday, ...); This day will show in the left-most column of the calendar",
+    "category": "model",
+    "examples": [
+      "first-day-of-week=\"1\"",
+      ":first-day-of-week=\"selectedFirstDayOfTheWeek\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "today-btn",
+    "name": ":today-btn",
+    "type": "Boolean",
+    "desc": "Display a button that selects the current day",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "minimal",
+    "name": ":minimal",
+    "type": "Boolean",
+    "desc": "Don’t display the header",
+    "category": "content",
+    "enabled": true
+  },
+  {
+    "label": "multiple",
+    "name": ":multiple",
+    "type": "Boolean",
+    "desc": "Allow multiple selection; Model must be Array",
+    "category": "model|selection",
+    "enabled": true
+  },
+  {
+    "label": "range",
+    "name": ":range",
+    "type": "Boolean",
+    "desc": "Allow range selection; Partial compatibility with 'options' prop: selected ranges might also include 'unselectable' days",
+    "category": "model|selection",
+    "enabled": true
+  },
+  {
+    "label": "emit-immediately",
+    "name": ":emit-immediately",
+    "type": "Boolean",
+    "desc": "Emit model when user browses month and year too; ONLY for single selection (non-multiple, non-range)",
+    "category": "model",
+    "enabled": true
+  }
+]
+}

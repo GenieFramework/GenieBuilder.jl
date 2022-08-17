@@ -1,9 +1,233 @@
 {
-    "type": "time", 
-    "label": "time", 
+    "type": "timePicker", 
+    "label": "Time Picker", 
     "tagName": "Q-TIME", 
-    "category": "Quasar", 
+    "category": "Forms", 
     "content": "<q-time />", 
     "media": "images/icons/components/ui_components/time.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"name","name":":name","type":"text"},{"label":"landscape","name":":landscape","type":"text"},{"label":"mask","name":":mask","type":"text"},{"label":"locale","name":":locale","type":"text"},{"label":"calendar","name":":calendar","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"text-color","name":":text-color","type":"text"},{"label":"dark","name":":dark","type":"text"},{"label":"square","name":":square","type":"text"},{"label":"flat","name":":flat","type":"text"},{"label":"bordered","name":":bordered","type":"text"},{"label":"readonly","name":":readonly","type":"text"},{"label":"disable","name":":disable","type":"text"},{"label":"model-value","name":":model-value","type":"text"},{"label":"format24h","name":":format24h","type":"text"},{"label":"default-date","name":":default-date","type":"text"},{"label":"options","name":":options","type":"text"},{"label":"hour-options","name":":hour-options","type":"text"},{"label":"minute-options","name":":minute-options","type":"text"},{"label":"second-options","name":":second-options","type":"text"},{"label":"with-seconds","name":":with-seconds","type":"text"},{"label":"now-btn","name":":now-btn","type":"text"}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "name",
+    "name": ":name",
+    "type": "String",
+    "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+    "category": "behavior",
+    "examples": [
+      "car_id"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "landscape",
+    "name": ":landscape",
+    "type": "Boolean",
+    "desc": "Display the component in landscape mode",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "mask",
+    "name": ":mask",
+    "type": "String",
+    "desc": "Mask (formatting string) used for parsing and formatting value",
+    "category": "model",
+    "examples": [
+      "HH:mm:ss",
+      "YYYY-MM-DD HH:mm:ss",
+      "HH:mm MMMM Do, YYYY"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "locale",
+    "name": ":locale",
+    "type": "Object",
+    "desc": "Locale formatting options",
+    "category": "model",
+    "examples": [
+      ":locale=\"{ monthsShort: ['Ian', 'Feb', 'Mar', '...'] }\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "calendar",
+    "name": ":calendar",
+    "type": "String",
+    "desc": "Specify calendar type",
+    "category": "model",
+    "enabled": true
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "text-color",
+    "name": ":text-color",
+    "type": "String",
+    "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "dark",
+    "name": ":dark",
+    "type": "Boolean",
+    "desc": "Notify the component that the background is a dark color",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "square",
+    "name": ":square",
+    "type": "Boolean",
+    "desc": "Removes border-radius so borders are squared",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "flat",
+    "name": ":flat",
+    "type": "Boolean",
+    "desc": "Applies a 'flat' design (no default shadow)",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "bordered",
+    "name": ":bordered",
+    "type": "Boolean",
+    "desc": "Applies a default border to the component",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "readonly",
+    "name": ":readonly",
+    "type": "Boolean",
+    "desc": "Put component in readonly mode",
+    "category": "state",
+    "enabled": true
+  },
+  {
+    "label": "disable",
+    "name": ":disable",
+    "type": "Boolean",
+    "desc": "Put component in disabled mode",
+    "category": "state",
+    "enabled": true
+  },
+  {
+    "label": "model-value",
+    "name": ":model-value",
+    "type": [
+      "String",
+      "null",
+      "undefined"
+    ],
+    "desc": "Time of the component; Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+    "category": "model",
+    "examples": [
+      "v-model=\"currentTime\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "format24h",
+    "name": ":format24h",
+    "type": "Boolean",
+    "desc": "Forces 24 hour time display instead of AM/PM system",
+    "category": "behavior",
+    "enabled": true
+  },
+  {
+    "label": "default-date",
+    "name": ":default-date",
+    "type": "String",
+    "desc": "The default date to use (in YYYY/MM/DD format) when model is unfilled (undefined or null)",
+    "category": "model",
+    "examples": [
+      "1995/02/23"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "options",
+    "name": ":options",
+    "type": "Function",
+    "desc": "Optionally configure what time is the user allowed to set; Overridden by 'hour-options', 'minute-options' and 'second-options' if those are set; For best performance, reference it from your scope and do not define it inline",
+    "category": "behavior",
+    "examples": [
+      ":options=\"(hr, min, sec) => hr <= 6\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "hour-options",
+    "name": ":hour-options",
+    "type": "Array",
+    "desc": "Optionally configure what hours is the user allowed to set; Overrides 'options' prop if that is also set",
+    "category": "behavior",
+    "examples": [
+      ":hour-options=\"[ 3, 6, 9 ]\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "minute-options",
+    "name": ":minute-options",
+    "type": "Array",
+    "desc": "Optionally configure what minutes is the user allowed to set; Overrides 'options' prop if that is also set",
+    "category": "behavior",
+    "examples": [
+      ":minute-options=\"[0, 15, 30, 45]\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "second-options",
+    "name": ":second-options",
+    "type": "Array",
+    "desc": "Optionally configure what seconds is the user allowed to set; Overrides 'options' prop if that is also set",
+    "category": "behavior",
+    "examples": [
+      ":second-options=\"[0, 7, 10, 23]\""
+    ],
+    "enabled": true
+  },
+  {
+    "label": "with-seconds",
+    "name": ":with-seconds",
+    "type": "Boolean",
+    "desc": "Allow the time to be set with seconds",
+    "category": "model|behavior",
+    "enabled": true
+  },
+  {
+    "label": "now-btn",
+    "name": ":now-btn",
+    "type": "Boolean",
+    "desc": "Display a button that selects the current time",
+    "category": "content",
+    "enabled": true
+  }
+]
 }

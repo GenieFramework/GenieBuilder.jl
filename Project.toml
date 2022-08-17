@@ -1,7 +1,7 @@
 name = "GenieBuilder"
 uuid = "c9453c14-af8a-11ec-351d-c7c9a2035d70"
 authors = ["Adrian Salceanu"]
-version = "0.9.0"
+version = "0.10.0"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -18,7 +18,7 @@ SearchLightSQLite = "21a827c4-482a-11ea-3a19-4d2243a4a2c5"
 Stipple = "4acbeb90-81a0-11ea-1966-bdaff8155998"
 
 [compat]
-Genie = "5.1"
+Genie = "5.2"
 GenieAutoReload = "2"
 GenieDevTools = "1"
 HTTP = "0.9"

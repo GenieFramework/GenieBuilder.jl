@@ -1,9 +1,96 @@
 {
     "type": "avatar", 
-    "label": "avatar", 
+    "label": "Avatar", 
     "tagName": "Q-AVATAR", 
-    "category": "Quasar", 
+    "category": "Other", 
     "content": "<q-avatar />", 
     "media": "images/icons/components/ui_components/avatar.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"size","name":":size","type":"text"},{"label":"font-size","name":":font-size","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"text-color","name":":text-color","type":"text"},{"label":"icon","name":":icon","type":"text"},{"label":"square","name":":square","type":"text"},{"label":"rounded","name":":rounded","type":"text"}]
+    "traits": [
+  {
+    "label": "Reactive Model",
+    "name": "v-model",
+    "type": "select",
+    "options": []
+  },
+  {
+    "label": "size",
+    "name": ":size",
+    "type": "String",
+    "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+    "category": "style",
+    "examples": [
+      "16px",
+      "2rem",
+      "xs",
+      "md"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "font-size",
+    "name": ":font-size",
+    "type": "String",
+    "desc": "The size in CSS units, including unit name, of the content (icon, text)",
+    "category": "style",
+    "examples": [
+      "18px",
+      "2rem"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "color",
+    "name": ":color",
+    "type": "String",
+    "desc": "Color name for component from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "text-color",
+    "name": ":text-color",
+    "type": "String",
+    "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+    "category": "style",
+    "examples": [
+      "primary",
+      "teal-10"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "icon",
+    "name": ":icon",
+    "type": "String",
+    "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+    "category": "content",
+    "examples": [
+      "map",
+      "ion-add",
+      "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+      "img:path/to/some_image.png"
+    ],
+    "enabled": true
+  },
+  {
+    "label": "square",
+    "name": ":square",
+    "type": "Boolean",
+    "desc": "Removes border-radius so borders are squared",
+    "category": "style",
+    "enabled": true
+  },
+  {
+    "label": "rounded",
+    "name": ":rounded",
+    "type": "Boolean",
+    "desc": "Applies a small standard border-radius for a squared shape of the component",
+    "category": "style",
+    "enabled": true
+  }
+]
 }

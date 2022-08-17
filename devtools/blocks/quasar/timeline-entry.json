@@ -1,9 +1,0 @@
-{
-    "type": "timeline-entry", 
-    "label": "timeline-entry", 
-    "tagName": "Q-TIMELINE-ENTRY", 
-    "category": "Quasar", 
-    "content": "<q-timeline-entry />", 
-    "media": "images/icons/components/ui_components/timeline-entry.png", 
-    "traits": [{"label":"Reactive Model","name":"v-model","type":"select","options":[]},{"label":"heading","name":":heading","type":"text"},{"label":"tag","name":":tag","type":"text"},{"label":"side","name":":side","type":"text"},{"label":"icon","name":":icon","type":"text"},{"label":"avatar","name":":avatar","type":"text"},{"label":"color","name":":color","type":"text"},{"label":"title","name":":title","type":"text"},{"label":"subtitle","name":":subtitle","type":"text"},{"label":"body","name":":body","type":"text"}]
-}
