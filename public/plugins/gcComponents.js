@@ -354,6 +354,13 @@ const myNewComponentTypes = editor => {
     editor.BlockManager.add( 'footer', { label: 'Footer', content: `<footer class="st-footer q-pa-sm">Footer Text</footer>`, media: `<img src="images/icons/components/html_elements/footer.png" class="blockIcon"/>`, category: 'Content'   });
     
     editor.BlockManager.add( 'horizontalRule', { label: 'Horizontal Rule', content: `<hr />`, media: `<img src="images/icons/components/html_elements/hr.png" class="blockIcon"/>`, category: 'Content'   });
+    
+    editor.BlockManager.add( 'address', { label: 'Address', content: `<address><p>Address content</p></address>`, media: `<img src="images/icons/components/html_elements/adress.png" class="blockIcon"/>`, category: 'Other Content'   });
+    editor.BlockManager.add( 'article', { label: 'Article', content: `<article><p>Article content</p></article>`, media: `<img src="images/icons/components/html_elements/article.png" class="blockIcon"/>`, category: 'Other Content'   });
+    editor.BlockManager.add( 'aside', { label: 'Aside', content: `<aside><p>Aside content</p></aside>`, media: `<img src="images/icons/components/ui_components/sidebar_right.png" class="blockIcon"/>`, category: 'Other Content'   });
+    editor.BlockManager.add( 'main', { label: 'Main', content: `<main><p>Main content</p></main>`, media: `<img src="images/icons/components/ui_components/1column.png" class="blockIcon"/>`, category: 'Other Content'   });
+    editor.BlockManager.add( 'nav', { label: 'Nav', content: `<nav><p>Nav content</p></nav>`, media: `<img src="images/icons/components/html_elements/nav.png" class="blockIcon"/>`, category: 'Other Content'   });
+    editor.BlockManager.add( 'section', { label: 'Section', content: `<section><p>Section content</p></section>`, media: `<img src="images/icons/components/html_elements/section.png" class="blockIcon"/>`, category: 'Other Content'   });
 
 
 

@@ -103,3 +103,7 @@ q-table img, plotly img {
 h1, h2, h3, h4, h5, h6, p{
   min-height: 20px;
 }
+address, article, aside, main, nav, section{
+  min-height: 20px;
+  padding: 10px;
+}
