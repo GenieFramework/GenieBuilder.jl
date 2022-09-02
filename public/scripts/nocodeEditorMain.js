@@ -327,7 +327,7 @@ function initNoCodeEditor(){
                       <div v-for="category in categories" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
                         <div @click="toggleCategory(category)" class="gjs-sm-sector-title" style="text-transform: capitalize;">{{category.name}}</div>
                         <div class="gjs-sm-properties" v-if="category.expanded">
-                          <div v-for="trait in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 10px;">
+                          <div v-for="trait in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
                               <div class="gjs-label-wrp">
                                   <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.id)}}</div>
                               </div>
