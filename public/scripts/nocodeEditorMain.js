@@ -102,7 +102,7 @@ function initNoCodeEditor(){
       'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }, 
       'grapesjs-component-code-editor': {
         openState: { pn: '500px', cv: 'calc( 100% - 500px)' }, 
-        closedState: { pn: '200px', cv: 'calc( 100% - 200px)' }, 
+        closedState: { pn: '300px', cv: 'calc( 100% - 300px)' }, 
         //clearData: true, 
         codeViewOptions: { 
           codeName: 'htmlmixed', 

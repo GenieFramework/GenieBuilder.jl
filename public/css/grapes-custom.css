@@ -72,18 +72,18 @@ html, body {
 
 /*--PANEL(VIEWS)--*/
 .gjs-pn-views-container {
-    width: 200px;
+    width: 300px;
 }
   
 .gjs-pn-views {
-    width: 200px;
+    width: 300px;
 }
 
 
 /*--PANEL(OPTIONS)--*/
 .gjs-pn-options{
     padding:5px 0 4px 0!important;
-    right: 200px;
+    right: 300px;
     top: 0;  
 }
 /*eye*/
@@ -296,7 +296,7 @@ img.blockIcon{
 /*--CANVAS--*/
 .gjs-cv-canvas{
     background-color:#EFEEEB!important;
-    width: calc( 100% - 200px);
+    width: calc( 100% - 300px);
 }
 .gjs-cv-canvas__frames{
     border:14px solid #EFEEEB!important;
