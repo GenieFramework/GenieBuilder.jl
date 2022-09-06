@@ -1,8 +1,10 @@
 function initTraitsEditor(){
 
     window.traitsEditor = new Vue({
+        components: Quasar.components,
         el:"#traits_panel",
         data: {
+            dummyProp: "", 
             allTraits: [ /* { id:"id1", value:"1" }, { id:"id2", value:"2" } */ ],
             enabledTraits: [], 
             categories: [], 
@@ -10,6 +12,15 @@ function initTraitsEditor(){
             traitValuesObj: {},
         },
         methods: {
+            getAppModelFields: function(){
+                let results = window.appConfiguration.modelFields.map( (item)=>{
+                    return item.name;
+                    //return { label: item.name, value: item.name };
+                });
+                //results.push( null );
+                //results.push( { label: "", value: null } );
+                return results;
+            }, 
             assignComponent: function( component ) {
                 console.log( "Traits Editor assignComponent: ", component );
                 this.component = component;

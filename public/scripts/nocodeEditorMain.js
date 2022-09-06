@@ -331,8 +331,13 @@ function initNoCodeEditor(){
                               <div class="gjs-label-wrp">
                                   <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.id)}}</div>
                               </div>
-                              <div class="gjs-field gjs-field-text">
-                                  <textarea :title="getTraitTooltipText(trait)" class="gn_input" style="min-height: 30px; height: 30px;" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)"></textarea>
+                              <div class="gjs-field gjs-field-text" style="width: 70%; height: 40px;">
+                                <q-select
+                                  new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
+                                  v-model="traitValuesObj[trait.id]"
+                                  :options="getAppModelFields()"
+                                ></q-select>
+                                  <!-- <textarea :title="getTraitTooltipText(trait)" class="gn_input" style="min-height: 30px; height: 30px;" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)"></textarea> -->
                               </div>
                           </div>
                         </div>

@@ -508,3 +508,10 @@ button.gjs-btn-prim{
 .CodeMirror {
     font-size: 13px !important;
 }
+
+
+.gjs-trt-trait .gjs-label {
+    top: 8px;
+    position: relative;
+    line-height: 14px;
+}
