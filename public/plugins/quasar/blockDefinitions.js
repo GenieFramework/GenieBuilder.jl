@@ -2876,10 +2876,16 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
-        "type": "select",
-        "options": []
+        "type": "Number",
+        "juliaType": "Number",
+        "desc": "Model of the component (must be between min/max)",
+        "category": "model",
+        "examples": [
+            "v-model=\"positionModel\""
+        ],
+        "enabled": true
     },
     {
         "label": "name",
@@ -3107,6 +3113,7 @@
             "Boolean",
             "Number"
         ],
+        "juliaType": "Bool|Number",
         "desc": "Display markers on the track, one for each possible value for the model or using a custom step (when specifying a Number)",
         "category": "content",
         "examples": [
@@ -3124,6 +3131,7 @@
             "Object",
             "Function"
         ],
+        "juliaType": "Bool|Vector|Dict|Function",
         "desc": "Configure the marker labels (or show the default ones if 'true'); Array of definition Objects or Object with key-value where key is the model and the value is the marker label definition",
         "category": "content",
         "examples": [
@@ -3243,21 +3251,6 @@
         "examples": [
             "0",
             "100"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "model-value",
-        "name": ":model-value",
-        "type": [
-            "Number",
-            "null",
-            "undefined"
-        ],
-        "desc": "Model of the component (must be between min/max); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
-        "category": "model",
-        "examples": [
-            "v-model=\"positionModel\""
         ],
         "enabled": true
     },
@@ -3839,11 +3832,11 @@
     }    
 
     
-    const customblock_quasar_date = editor => {
-        editor.DomComponents.addType("date", {
+    const customblock_quasar_datePicker = editor => {
+        editor.DomComponents.addType("datePicker", {
             isComponent: el => {
                 if (el.tagName == 'Q-DATE') {
-                    return { type: 'date' }
+                    return { type: 'datePicker' }
                 }
             },
             model: {
@@ -4200,15 +4193,15 @@
                 }
             },
         });
-        editor.BlockManager.add('date', { label: 'Date Picker', content: '<q-date />', media: '<img src="images/icons/components/ui_components/date_picker.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('datePicker', { label: 'Date Picker', content: '<q-date />', media: '<img src="images/icons/components/ui_components/date_picker.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
-    const customblock_quasar_time = editor => {
-        editor.DomComponents.addType("time", {
+    const customblock_quasar_timePicker = editor => {
+        editor.DomComponents.addType("timePicker", {
             isComponent: el => {
                 if (el.tagName == 'Q-TIME') {
-                    return { type: 'time' }
+                    return { type: 'timePicker' }
                 }
             },
             model: {
@@ -4459,7 +4452,7 @@
                 }
             },
         });
-        editor.BlockManager.add('time', { label: 'Time Picker', content: '<q-time />', media: '<img src="images/icons/components/ui_components/time.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('timePicker', { label: 'Time Picker', content: '<q-time />', media: '<img src="images/icons/components/ui_components/time.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
@@ -5421,11 +5414,11 @@
     }    
 
     
-    const customblock_quasar_table = editor => {
-        editor.DomComponents.addType("dataTable", {
+    const customblock_quasar_table2 = editor => {
+        editor.DomComponents.addType("table2", {
             isComponent: el => {
                 if (el.tagName == 'Q-TABLE') {
-                    return { type: 'dataTable' }
+                    return { type: 'table2' }
                 }
             },
             model: {
@@ -6169,7 +6162,7 @@
                 }
             },
         });
-        editor.BlockManager.add('dataTable', { label: 'Data Table', content: '<q-table />', media: '<img src="images/icons/components/ui_components/table.png" class="blockIcon" />', category: 'Tables' });
+        editor.BlockManager.add('table2', { label: 'Table', content: '<q-table />', media: '<img src="images/icons/components/ui_components/table.png" class="blockIcon" />', category: 'Tables' });
     }    
 
     

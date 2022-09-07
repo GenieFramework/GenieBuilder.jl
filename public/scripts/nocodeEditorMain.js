@@ -38,7 +38,7 @@ window.unsavedChanges = false;
 window.selectedElementModel = null;
 
 const customPlugins = [ myNewComponentTypes, 
-  customblock_quasar_separator, customblock_quasar_space, customblock_quasar_toolbar, customblock_quasar_input, customblock_quasar_button, customblock_quasar_button_group, customblock_quasar_button_dropdown, customblock_quasar_select, customblock_quasar_radio, customblock_quasar_checkbox, customblock_quasar_toggle, customblock_quasar_slider, customblock_quasar_range, customblock_quasar_date, customblock_quasar_time, customblock_quasar_editor, customblock_quasar_knob, customblock_quasar_list, customblock_quasar_item, customblock_quasar_item_label, customblock_quasar_table, customblock_quasar_img, customblock_quasar_video, customblock_quasar_avatar, customblock_quasar_badge, customblock_quasar_banner, customblock_quasar_chip, customblock_quasar_icon, customblock_quasar_rating, customblock_quasar_spinner, customblock_quasar_tree, customblock_quasar_popup_proxy, customblock_quasar_timeline, customblock_quasar_timeline_entry, customblock_quasar_expansion_item
+  customblock_quasar_separator, customblock_quasar_space, customblock_quasar_toolbar, customblock_quasar_input, customblock_quasar_button, customblock_quasar_button_group, customblock_quasar_button_dropdown, customblock_quasar_select, customblock_quasar_radio, customblock_quasar_checkbox, customblock_quasar_toggle, customblock_quasar_slider, customblock_quasar_range, customblock_quasar_datePicker, customblock_quasar_timePicker, customblock_quasar_editor, customblock_quasar_knob, customblock_quasar_list, customblock_quasar_item, customblock_quasar_item_label, customblock_quasar_table2, customblock_quasar_img, customblock_quasar_video, customblock_quasar_avatar, customblock_quasar_badge, customblock_quasar_banner, customblock_quasar_chip, customblock_quasar_icon, customblock_quasar_rating, customblock_quasar_spinner, customblock_quasar_tree, customblock_quasar_popup_proxy, customblock_quasar_timeline, customblock_quasar_timeline_entry, customblock_quasar_expansion_item
 ];
 
 function initNoCodeEditor(){
@@ -329,7 +329,7 @@ function initNoCodeEditor(){
                         <div class="gjs-sm-properties" v-if="category.expanded">
                           <div v-for="trait in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
                               <div class="gjs-label-wrp">
-                                  <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.id)}}</div>
+                                  <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.attributes.label)}}</div>
                               </div>
                               <div class="gjs-field gjs-field-text" style="width: 70%; height: 40px;">
                                 <q-select

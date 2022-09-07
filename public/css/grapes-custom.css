@@ -515,3 +515,16 @@ button.gjs-btn-prim{
     position: relative;
     line-height: 14px;
 }
+
+.gjs-trt-trait .q-field__append{
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+.gjs-trt-trait .q-field__native{
+
+}
+
+.gjs-trt-trait .q-field--standard .q-field__control:before {
+    border-bottom: none;
+}
