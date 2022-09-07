@@ -334,7 +334,8 @@ function initNoCodeEditor(){
                               <div class="gjs-field gjs-field-text" style="width: 70%; height: 40px;">
                                 <q-select
                                   new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
-                                  v-model="traitValuesObj[trait.id]"
+                                  v-model="traitValuesObj[trait.id]" 
+                                  :title="getTraitTooltipText(trait)"
                                   :options="getAppModelFields()"
                                 ></q-select>
                                   <!-- <textarea :title="getTraitTooltipText(trait)" class="gn_input" style="min-height: 30px; height: 30px;" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)"></textarea> -->
