@@ -528,3 +528,39 @@ button.gjs-btn-prim{
 .gjs-trt-trait .q-field--standard .q-field__control:before {
     border-bottom: none;
 }
+
+.gjs-trt-trait input{
+    font-size: 12px;
+}
+.gjs-trt-trait input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 11px;
+    color: #999;
+    opacity: 1;
+    text-align: right;
+    font-style: italic;
+    padding-right: 2px;
+}
+.gjs-trt-trait input::-moz-placeholder { /* Firefox 19+ */
+    font-size: 11px;
+    color: #999;
+    opacity: 1;
+    text-align: right;
+    font-style: italic;
+    padding-right: 2px;
+}
+.gjs-trt-trait input:-ms-input-placeholder { /* IE 10+ */
+    font-size: 11px;
+    color: #999;
+    opacity: 1;
+    text-align: right;
+    font-style: italic;
+    padding-right: 2px;
+}
+.gjs-trt-trait input:-moz-placeholder { /* Firefox 18- */
+    font-size: 11px;
+    color: #999;
+    opacity: 1;
+    text-align: right;
+    font-style: italic;
+    padding-right: 2px;
+}

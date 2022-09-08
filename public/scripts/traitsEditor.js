@@ -10,12 +10,49 @@ function initTraitsEditor(){
             categories: [], 
             categoriesStatus: {}, 
             traitValuesObj: {},
+
+            typesMap: {
+                "{Bool}": "Bool", 
+                "{String}": "String", 
+                "{Char}": "String", 
+                "{Number}": "Number", 
+                    "{Int64}": "Number", 
+                    "{Int32}": "Number", 
+                    "{Int16}": "Number", 
+                    "{Int8}": "Number",
+                "{Vector}": "Vector",
+                    "{Vector{Bool}}": "Vector",
+                    "{Vector{String}}": "Vector",
+                    "{Vector{Char}}": "Vector",
+                    "{Vector{Number}}": "Vector",
+                    "{Vector{Int64}}": "Vector",
+                    "{Vector{Int32}}": "Vector",
+                    "{Vector{Int16}}": "Vector",
+                    "{Vector{Int8}}": "Vector"
+            }
         },
         methods: {
-            getAppModelFields: function(){
-                let results = window.appConfiguration.modelFields.map( (item)=>{
+            getAppModelFields: function(trait){
+                /* if( trait.id != ":marker-labels")
+                    return []; */
+
+                let traitTypes = trait.attributes.juliaType?trait.attributes.juliaType.split("|") : [];
+                let results = window.appConfiguration.modelFields.filter( (item)=>{
+                    let modelPropType = item.type;
+                    let cleanModelType = modelPropType.replace("Stipple.Reactive", "");
+                    let modelBaseType = this.typesMap[cleanModelType];
+                    //console.log( "-- ", trait.id, cleanModelType, "("+modelBaseType+")");
+                    for( let i=0; i<traitTypes.length; i++ ){
+                        let traitType = traitTypes[i];
+                        //console.log( "  -- ", traitType, modelBaseType, traitType === modelBaseType);
+                        if( traitType === modelBaseType ){
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+                results = results.map( (item)=>{
                     return item.name;
-                    //return { label: item.name, value: item.name };
                 });
                 //results.push( null );
                 //results.push( { label: "", value: null } );
