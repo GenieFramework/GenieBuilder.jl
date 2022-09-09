@@ -28,23 +28,39 @@ function initTraitsEditor(){
                     "{Vector{Int64}}": "Vector",
                     "{Vector{Int32}}": "Vector",
                     "{Vector{Int16}}": "Vector",
-                    "{Vector{Int8}}": "Vector"
+                    "{Vector{Int8}}": "Vector", 
+                "{Object}": "Object", 
+                "{Dict}": "Object", 
             }
         },
         methods: {
+            /* filterFn (val, update, abort) {
+                let catindex = this.$el.getAttribute("categoryindex");
+                let traitindex = this.$el.getAttribute("traitindex");
+                console.log( "filterFn this.catindex, traitindex", catindex, traitindex );
+                //console.log( "filterFn", val, update, abort, "ARGS: ", arguments );
+                // call abort() at any time if you can't retrieve data somehow
+          
+                setTimeout(() => {
+                  update(() => {
+                    if (val === '') {
+                      this.options = stringOptions
+                    }
+                    else {
+                      const needle = val.toLowerCase()
+                      this.options = stringOptions.filter(v => v.toLowerCase().indexOf(needle) > -1)
+                    }
+                  })
+                }, 1500)
+              }, */
             getAppModelFields: function(trait){
-                /* if( trait.id != ":marker-labels")
-                    return []; */
-
                 let traitTypes = trait.attributes.juliaType?trait.attributes.juliaType.split("|") : [];
                 let results = window.appConfiguration.modelFields.filter( (item)=>{
                     let modelPropType = item.type;
                     let cleanModelType = modelPropType.replace("Stipple.Reactive", "");
                     let modelBaseType = this.typesMap[cleanModelType];
-                    //console.log( "-- ", trait.id, cleanModelType, "("+modelBaseType+")");
                     for( let i=0; i<traitTypes.length; i++ ){
                         let traitType = traitTypes[i];
-                        //console.log( "  -- ", traitType, modelBaseType, traitType === modelBaseType);
                         if( traitType === modelBaseType ){
                             return true;
                         }
@@ -54,10 +70,9 @@ function initTraitsEditor(){
                 results = results.map( (item)=>{
                     return item.name;
                 });
-                //results.push( null );
-                //results.push( { label: "", value: null } );
                 return results;
             }, 
+
             assignComponent: function( component ) {
                 console.log( "Traits Editor assignComponent: ", component );
                 this.component = component;
@@ -91,13 +106,6 @@ function initTraitsEditor(){
                     categoriesDict[cat].traits.push( trait );
                 } );
                 this.categories = categories;
-
-
-    
-                /* if( component.updateGenieModelProperties )
-                component.updateGenieModelProperties(window.appConfiguration.modelFields); */
-                
-
                 console.log( "Traits Editor assignComponent TRAITS: ", this.traits );
             },
 
