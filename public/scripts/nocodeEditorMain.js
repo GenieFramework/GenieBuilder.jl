@@ -324,7 +324,8 @@ function initNoCodeEditor(){
                 editMenuDiv.innerHTML = `
                 <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right" style="padding: 0px; width: 100%;">
                   <div class="gjs-trt-traits">
-                      <div v-for="category, $categoryindex in categories" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
+                      <div v-if="categories.length==0" style="margin-top: 20px;">The selected element doesn't have any editable properties</div>
+                      <div v-if="categories.length>0" v-for="category, $categoryindex in categories" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
                         <div @click="toggleCategory(category)" class="gjs-sm-sector-title" style="text-transform: capitalize;">{{category.name}}</div>
                         <div class="gjs-sm-properties" v-if="category.expanded">
                           <div v-for="trait, $traitindex in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
@@ -443,6 +444,9 @@ function initNoCodeEditor(){
     console.log("component selected: ", model);
     window.selectedElementModel = model;
     window.traitsEditor?.assignComponent( model );
+    // show the properties editor panel
+    let blockBtn = editor.Panels.getButton('views', 'open-props-editor')
+    blockBtn.set('active', 1);
   });
 
   editor.on('component:deselected', (model) => {
