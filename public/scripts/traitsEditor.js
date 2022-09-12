@@ -73,7 +73,13 @@ function initTraitsEditor(){
             getTraitTooltipText(trait){
                 let result = '(' + trait.attributes.type + ')\n' + trait.attributes.desc;
                 if( trait.attributes.examples ){
-                    let cleanExamples = trait.attributes.examples.map( item => item.split("=")[1]);
+                    let cleanExamples = trait.attributes.examples.map( item =>{
+                        if( typeof item == "string" && item.indexOf("=") > 0 )
+                            return item.split("=")[1];
+                        else
+                            return item;
+                    });
+
                     result += '\n\nExamples: \n - ' + cleanExamples.join('\n - ');
                 }
                 return result;
