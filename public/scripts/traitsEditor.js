@@ -1,6 +1,6 @@
 function initTraitsEditor(){
 
-    let traitComponent = Vue.component('button-counter', {
+    let traitComponent = Vue.component('trait-field', {
         components: Quasar.components,
         props: [ 'trait',  'traitvaluesobj'],
         data: function () {
@@ -39,9 +39,13 @@ function initTraitsEditor(){
             :placeholder="trait.attributes.juliaType?.split('|').join(', ')||'Type not set'" 
             @input="onInputChanged(trait)" `+
             /* @keyup="keyUp($event, trait)"  */
-            `@filter="filterFn"
+            `@filter="filterFn" 
+            @focus="onFocus"
         ></q-select>`, 
         methods: {
+            onFocus(){
+                console.log( "onFocus" );
+            },
             filterFn (val, update, abort) {          
                 setTimeout(() => {
                   update(() => {
@@ -54,7 +58,7 @@ function initTraitsEditor(){
                       this.$refs.select.options = fieldsList.filter(v => v.toLowerCase().indexOf(needle) > -1)
                     }
                   })
-                }, 50)
+                }, 500)
               },
             getTraitTooltipText(trait){
                 let result = '(' + trait.attributes.type + ')\n' + trait.attributes.desc;
@@ -75,6 +79,11 @@ function initTraitsEditor(){
                 //let inputValue = this.$refs.select?.inputValue || "";
                 let traitTypes = trait.attributes.juliaType?trait.attributes.juliaType.split("|") : [];
                 let results = window.appConfiguration.modelFields.filter( (item)=>{
+                    // If julia type not send, include all bindings
+                    let juliaTypeNotSet = trait.attributes.juliaType == null || trait.attributes.juliaType.length == 0;
+                    if( juliaTypeNotSet )
+                        return true
+
                     let modelPropType = item.type;
                     let cleanModelType = modelPropType.replace("Stipple.Reactive", "");
                     let modelBaseType = this.typesMap[cleanModelType];

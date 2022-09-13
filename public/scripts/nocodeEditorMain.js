@@ -336,7 +336,7 @@ function initNoCodeEditor(){
                                   <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.attributes.label)}}</div>
                               </div>
                               <div class="gjs-field gjs-field-text" style="width: 60%; height: 40px;">
-                                <button-counter :trait="trait" :traitvaluesobj="traitValuesObj"></button-counter>`+
+                                <trait-field :trait="trait" :traitvaluesobj="traitValuesObj"></trait-field>`+
                                 /*<q-select
                                   new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
                                   v-model="traitValuesObj[trait.id]" 
