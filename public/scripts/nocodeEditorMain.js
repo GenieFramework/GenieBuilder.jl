@@ -31,6 +31,9 @@ document.addEventListener('keydown', e => {
   }
 });
 
+/* window.onerror = function (msg, url, line) {
+  console.log( "CATCHED ERROR: ", msg, url, line );
+} */
 
 
 window.autorun = false;
@@ -333,14 +336,17 @@ function initNoCodeEditor(){
                                   <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.attributes.label)}}</div>
                               </div>
                               <div class="gjs-field gjs-field-text" style="width: 60%; height: 40px;">
-                                <q-select
+                                <button-counter :trait="trait" :traitvaluesobj="traitValuesObj"></button-counter>`+
+                                /*<q-select
                                   new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
                                   v-model="traitValuesObj[trait.id]" 
                                   :title="getTraitTooltipText(trait)"
                                   :options="getAppModelFields(trait)"
-                                  :placeholder="trait.attributes.juliaType?.split('|').join(', ')||'Type not set'"
-                                ></q-select>
-                                  <!-- <textarea :title="getTraitTooltipText(trait)" class="gn_input" style="min-height: 30px; height: 30px;" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)"></textarea> -->
+                                  :placeholder="trait.attributes.juliaType?.split('|').join(', ')||'Type not set'" 
+                                  @input="onInputChanged(trait)" 
+                                  @keyup="keyUp($event, trait)"
+                                ></q-select>*/
+                                  `<!-- <textarea :title="getTraitTooltipText(trait)" class="gn_input" style="min-height: 30px; height: 30px;" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)"></textarea> -->
                               </div>
                           </div>
                         </div>

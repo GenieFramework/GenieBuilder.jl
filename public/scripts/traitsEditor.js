@@ -1,16 +1,11 @@
 function initTraitsEditor(){
 
-    window.traitsEditor = new Vue({
+    let traitComponent = Vue.component('button-counter', {
         components: Quasar.components,
-        el:"#traits_panel",
-        data: {
-            dummyProp: "", 
-            allTraits: [ /* { id:"id1", value:"1" }, { id:"id2", value:"2" } */ ],
-            enabledTraits: [], 
-            categories: [], 
-            categoriesStatus: {}, 
-            traitValuesObj: {},
-
+        props: [ 'trait',  'traitvaluesobj'],
+        data: function () {
+          return {
+            count: 0, 
             typesMap: {
                 "{Bool}": "Bool", 
                 "{String}": "String", 
@@ -32,28 +27,52 @@ function initTraitsEditor(){
                 "{Object}": "Object", 
                 "{Dict}": "Object", 
             }
+          }
         },
+        //template: '<button v-on:click="count++">Me ha pulsado {{ count }} veces.</button>', 
+        template: `<q-select
+            ref="select"
+            new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
+            v-model="traitvaluesobj[trait.id]"" 
+            :title="getTraitTooltipText(trait)"
+            :options="getAppModelFields(trait)"
+            :placeholder="trait.attributes.juliaType?.split('|').join(', ')||'Type not set'" 
+            @input="onInputChanged(trait)" `+
+            /* @keyup="keyUp($event, trait)"  */
+            `@filter="filterFn"
+        ></q-select>`, 
         methods: {
-            /* filterFn (val, update, abort) {
-                let catindex = this.$el.getAttribute("categoryindex");
-                let traitindex = this.$el.getAttribute("traitindex");
-                console.log( "filterFn this.catindex, traitindex", catindex, traitindex );
-                //console.log( "filterFn", val, update, abort, "ARGS: ", arguments );
-                // call abort() at any time if you can't retrieve data somehow
-          
+            filterFn (val, update, abort) {          
                 setTimeout(() => {
                   update(() => {
+                    let fieldsList = this.getAppModelFields(this.trait);
                     if (val === '') {
-                      this.options = stringOptions
+                        this.$refs.select.options = fieldsList;
                     }
                     else {
                       const needle = val.toLowerCase()
-                      this.options = stringOptions.filter(v => v.toLowerCase().indexOf(needle) > -1)
+                      this.$refs.select.options = fieldsList.filter(v => v.toLowerCase().indexOf(needle) > -1)
                     }
                   })
-                }, 1500)
-              }, */
+                }, 50)
+              },
+            getTraitTooltipText(trait){
+                let result = '(' + trait.attributes.type + ')\n' + trait.attributes.desc;
+                if( trait.attributes.examples ){
+                    let cleanExamples = trait.attributes.examples.map( item =>{
+                        if( typeof item == "string" && item.indexOf("=") > 0 )
+                            return item.split("=")[1];
+                        else
+                            return item;
+                    });
+
+                    result += '\n\nExamples: \n - ' + cleanExamples.join('\n - ');
+                }
+                return result;
+            }, 
             getAppModelFields: function(trait){
+                //console.log( 'getAppModelFields()', trait );
+                //let inputValue = this.$refs.select?.inputValue || "";
                 let traitTypes = trait.attributes.juliaType?trait.attributes.juliaType.split("|") : [];
                 let results = window.appConfiguration.modelFields.filter( (item)=>{
                     let modelPropType = item.type;
@@ -61,7 +80,9 @@ function initTraitsEditor(){
                     let modelBaseType = this.typesMap[cleanModelType];
                     for( let i=0; i<traitTypes.length; i++ ){
                         let traitType = traitTypes[i];
-                        if( traitType === modelBaseType ){
+                        let matchesType = modelBaseType == traitType;
+                        //let containsSearch = inputValue=='' || inputValue==null || item.name.toLowerCase().indexOf(inputValue.toLowerCase()) > -1;
+                        if( matchesType /* && containsSearch */ ){
                             return true;
                         }
                     }
@@ -72,6 +93,33 @@ function initTraitsEditor(){
                 });
                 return results;
             }, 
+            onInputChanged(trait){
+                let traitId = trait.id;
+                let traitValue = this.traitvaluesobj[traitId];
+                console.log("Traits Editor onInputchanged", traitId, traitValue, trait );
+                let tr = traitsEditor.component.getTrait(traitId)
+                tr.setValue(traitValue)
+            }, 
+            /* keyUp( event, trait ){
+                console.log( "input value: ", this.$refs.select.inputValue );
+            }, */
+        }
+      })
+
+    window.traitsEditor = new Vue({
+        components: { ...Quasar.components, traitComponent },
+        el:"#traits_panel",
+        data: {
+            dummyProp: "", 
+            allTraits: [ /* { id:"id1", value:"1" }, { id:"id2", value:"2" } */ ],
+            enabledTraits: [], 
+            categories: [], 
+            categoriesStatus: {}, 
+            traitValuesObj: {},
+        },
+        methods: {
+            
+            
 
             assignComponent: function( component ) {
                 console.log( "Traits Editor assignComponent: ", component );
@@ -109,13 +157,9 @@ function initTraitsEditor(){
                 console.log( "Traits Editor assignComponent TRAITS: ", this.traits );
             },
 
-            onInputChanged(trait){
-                let traitId = trait.id;
-                let traitValue = this.traitValuesObj[traitId];
-                console.log("Traits Editor onInputchanged", trait);
-                let tr = traitsEditor.component.getTrait(traitId)
-                tr.setValue(traitValue)
-            }, 
+            
+
+            
 
             formatLabel( label ){
                 let formatted = label.split('-').join(' ').split(':').join('');
@@ -126,20 +170,7 @@ function initTraitsEditor(){
                 category.expanded = !category.expanded;
                 this.categoriesStatus[category.name] = category.expanded;
             }, 
-            getTraitTooltipText(trait){
-                let result = '(' + trait.attributes.type + ')\n' + trait.attributes.desc;
-                if( trait.attributes.examples ){
-                    let cleanExamples = trait.attributes.examples.map( item =>{
-                        if( typeof item == "string" && item.indexOf("=") > 0 )
-                            return item.split("=")[1];
-                        else
-                            return item;
-                    });
-
-                    result += '\n\nExamples: \n - ' + cleanExamples.join('\n - ');
-                }
-                return result;
-            }
+            
 
         }, 
         mounted(){
