@@ -1,9 +1,9 @@
 {
     "type": "button_group", 
     "label": "Button Group", 
-    "tagName": "Q-BUTTON-GROUP", 
+    "tagName": "Q-BTN-GROUP", 
     "category": "Forms", 
-    "content": "<q-button-group />", 
+    "content": "<q-btn-group />", 
     "media": "images/icons/components/ui_components/button-group.png", 
     "traits": [
   {

@@ -1140,7 +1140,7 @@
     const customblock_quasar_button_group = editor => {
         editor.DomComponents.addType("button_group", {
             isComponent: el => {
-                if (el.tagName == 'Q-BUTTON-GROUP') {
+                if (el.tagName == 'Q-BTN-GROUP') {
                     return { type: 'button_group' }
                 }
             },
@@ -1175,14 +1175,14 @@
                 }
             },
         });
-        editor.BlockManager.add('button_group', { label: 'Button Group', content: '<q-button-group />', media: '<img src="images/icons/components/ui_components/button-group.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('button_group', { label: 'Button Group', content: '<q-btn-group />', media: '<img src="images/icons/components/ui_components/button-group.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
     const customblock_quasar_button_dropdown = editor => {
         editor.DomComponents.addType("button_dropdown", {
             isComponent: el => {
-                if (el.tagName == 'Q-BUTTON-DROPDOWN') {
+                if (el.tagName == 'Q-BTN-DROPDOWN') {
                     return { type: 'button_dropdown' }
                 }
             },
@@ -1217,7 +1217,7 @@
                 }
             },
         });
-        editor.BlockManager.add('button_dropdown', { label: 'Button Dropdown', content: '<q-button-dropdown />', media: '<img src="images/icons/components/ui_components/button-dropdown.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('button_dropdown', { label: 'Button Dropdown', content: '<q-btn-dropdown />', media: '<img src="images/icons/components/ui_components/button-dropdown.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     

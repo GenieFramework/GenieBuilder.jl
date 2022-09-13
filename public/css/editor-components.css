@@ -6,7 +6,7 @@ These are loaded inside the editor's canvas iframe
 */
 plotly, audio, 
 
-q-separator, q-space, q-toolbar, q-editor, q-radio, q-input, q-select, q-checkbox, q-slider, q-range, q-btn, q-button-group, q-button-dropdown, q-knob, q-date, q-time, q-list, q-item, q-item-label, q-table, q-img, q-video, q-banner, q-chip, q-toggle, q-icon, q-popup-proxy, q-rating, q-spinner, q-timeline, q-timeline-entry, q-tree, q-avatar, q-badge, q-expansion-item
+q-separator, q-space, q-toolbar, q-editor, q-radio, q-input, q-select, q-checkbox, q-slider, q-range, q-btn, q-btn-group, q-btn-dropdown, q-knob, q-date, q-time, q-list, q-item, q-item-label, q-table, q-img, q-video, q-banner, q-chip, q-toggle, q-icon, q-popup-proxy, q-rating, q-spinner, q-timeline, q-timeline-entry, q-tree, q-avatar, q-badge, q-expansion-item
 {
   background: #f0f0f0;
   position: relative;
@@ -34,8 +34,8 @@ q-checkbox{   background-image: url(../images/icons/components/ui_components/che
 q-slider{   background-image: url(../images/icons/components/ui_components/slider.png); }
 q-range{   background-image: url(../images/icons/components/ui_components/range.png); }
 q-btn{   background-image: url(../images/icons/components/ui_components/button.png); }
-q-button-group{   background-image: url(../images/icons/components/ui_components/button-group.png); }
-q-button-dropdown{   background-image: url(../images/icons/components/ui_components/button-dropdown.png); }
+q-btn-group{   background-image: url(../images/icons/components/ui_components/button-group.png); }
+q-btn-dropdown{   background-image: url(../images/icons/components/ui_components/button-dropdown.png); }
 q-knob{   background-image: url(../images/icons/components/ui_components/knob.png); }
 q-date{   background-image: url(../images/icons/components/ui_components/date_picker.png); }
 q-time{   background-image: url(../images/icons/components/ui_components/time.png); }
@@ -59,7 +59,7 @@ q-avatar{   background-image: url(../images/icons/components/ui_components/avata
 q-badge{   background-image: url(../images/icons/components/ui_components/badge.png); }
 q-expansion-item{   background-image: url(../images/icons/components/ui_components/expansion_item.png); }
 
-/* q-avatar img, q-badge img, q-banner img, q-button-dropdown img, q-button-group img, q-button img, q-chip img, q-editor img, q-icon img, q-item img, q-knob img, q-list img, q-popup-proxy img, q-radio img, q-rating img, q-separator img, q-space img, q-spinner img, q-time img, q-timeline-entry img, q-timeline img, q-toggle img, q-toolbar img, q-tree img, q-video img */
+/* q-avatar img, q-badge img, q-banner img, q-btn-dropdown img, q-btn-group img, q-btn img, q-chip img, q-editor img, q-icon img, q-item img, q-knob img, q-list img, q-popup-proxy img, q-radio img, q-rating img, q-separator img, q-space img, q-spinner img, q-time img, q-timeline-entry img, q-timeline img, q-toggle img, q-toolbar img, q-tree img, q-video img */
 q-slider img, q-range img, q-select img, q-checkbox img, q-input img, q-date img, q-expansion-item img
 {
   max-height: 30px;
