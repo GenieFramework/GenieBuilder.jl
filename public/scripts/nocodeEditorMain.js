@@ -341,13 +341,15 @@ function initNoCodeEditor(){
                         </div>
                       </div>
                       <div v-if="categories.length>0 && category.shouldShow" v-for="category, $categoryindex in categoriesFiltered" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
-                        <div @click="toggleCategory(category)" class="gjs-sm-sector-title" style="text-transform: capitalize;">{{category.name}}</div>
+                        <div @click="toggleCategory(category)" class="gjs-sm-sector-title" style="text-transform: capitalize;"><i :class="{ 'gjs-caret-icon':true, 'fa':true, 'fa-caret-down':category.expanded, 'fa-caret-right':!category.expanded}" style="margin-right: 10px;"></i> {{category.name}} 
+                        
+                        </div>
                         <div class="gjs-sm-properties" v-if="category.expanded">
                           <div v-if="trait.shouldShow" v-for="trait, $traitindex in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
                               <div class="gjs-label-wrp">
                                   <div class="gjs-label traitLabel" style="text-transform: capitalize">{{formatLabel(trait.attributes.label)}}
                                   
-                                  <q-tooltip content-class="bg-indigo traitTooltipContent" transition-show="scale" transition-hide="scale">
+                                  <q-tooltip :delay="250" content-class="bg-indigo traitTooltipContent" transition-show="scale" transition-hide="scale">
                                     <div style="max-width: 300px;">
                                       <div style="font-weight: bold; font-size: 1.6em; text-transform: capitalize;">{{trait.attributes.label}} <span style="font-size: 0.6em; margin-left: 5px;" v-if="trait.attributes.juliaType">({{trait.attributes.juliaType?.split('|').join(', ')}})</span></div>                                      
                                       <div>{{trait.attributes.desc}}</div>
