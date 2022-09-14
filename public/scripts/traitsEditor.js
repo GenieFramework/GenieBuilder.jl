@@ -34,7 +34,6 @@ function initTraitsEditor(){
             ref="select"
             new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
             v-model="traitvaluesobj[trait.id]"" 
-            :title="getTraitTooltipText(trait)"
             :options="getAppModelFields(trait)"
             :placeholder="trait.attributes.juliaType?.split('|').join(', ')||'Type not set'" 
             @input="onInputChanged(trait)" `+
@@ -60,20 +59,7 @@ function initTraitsEditor(){
                   })
                 }, 500)
               },
-            getTraitTooltipText(trait){
-                let result = '(' + trait.attributes.type + ')\n' + trait.attributes.desc;
-                if( trait.attributes.examples ){
-                    let cleanExamples = trait.attributes.examples.map( item =>{
-                        if( typeof item == "string" && item.indexOf("=") > 0 )
-                            return item.split("=")[1];
-                        else
-                            return item;
-                    });
-
-                    result += '\n\nExamples: \n - ' + cleanExamples.join('\n - ');
-                }
-                return result;
-            }, 
+            
             getAppModelFields: function(trait){
                 //console.log( 'getAppModelFields()', trait );
                 //let inputValue = this.$refs.select?.inputValue || "";
@@ -165,7 +151,21 @@ function initTraitsEditor(){
         methods: {
             
             
+            getTraitTooltipText(trait){
+                let result = '(' + trait.attributes.type + ')\n' + trait.attributes.desc;
+                if( trait.attributes.examples ){
+                    let cleanExamples = trait.attributes.examples.map( item =>{
+                        if( typeof item == "string" && item.indexOf("=") > 0 )
+                            return item.split("=")[1];
+                        else
+                            return item;
+                    });
 
+                    result += '\n\nExamples: \n - ' + cleanExamples.join('\n - ');
+                }
+                return result;
+            }, 
+            
             assignComponent: function( component ) {
                 console.log( "Traits Editor assignComponent: ", component );
                 this.component = component;

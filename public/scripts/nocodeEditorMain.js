@@ -345,7 +345,19 @@ function initNoCodeEditor(){
                         <div class="gjs-sm-properties" v-if="category.expanded">
                           <div v-if="trait.shouldShow" v-for="trait, $traitindex in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
                               <div class="gjs-label-wrp">
-                                  <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.attributes.label)}}</div>
+                                  <div class="gjs-label traitLabel" style="text-transform: capitalize">{{formatLabel(trait.attributes.label)}}
+                                  
+                                  <q-tooltip content-class="bg-indigo traitTooltipContent" transition-show="scale" transition-hide="scale">
+                                    <div style="max-width: 300px;">
+                                      <div style="font-weight: bold; font-size: 1.6em; text-transform: capitalize;">{{trait.attributes.label}} <span style="font-size: 0.6em; margin-left: 5px;" v-if="trait.attributes.juliaType">({{trait.attributes.juliaType?.split('|').join(', ')}})</span></div>                                      
+                                      <div>{{trait.attributes.desc}}</div>
+                                      <div v-if="trait.attributes.examples?.length>0" style="font-weight: bold; font-size: 1.1em; margin-top:10px; margin-bottom:-10px;">Examples</div>
+                                      <ul>
+                                        <li v-for="example in trait.attributes.examples">{{example}}</li>
+                                      </ul>
+                                    </div>
+                                  </q-tooltip>
+                              </div>
                               </div>
                               <div class="gjs-field gjs-field-text" style="width: 60%; height: 40px;">
                                 <trait-field :trait="trait" :traitvaluesobj="traitValuesObj"></trait-field>`+
