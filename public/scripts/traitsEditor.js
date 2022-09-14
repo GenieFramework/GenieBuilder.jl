@@ -119,12 +119,48 @@ function initTraitsEditor(){
         components: { ...Quasar.components, traitComponent },
         el:"#traits_panel",
         data: {
+            search: "", 
             dummyProp: "", 
             allTraits: [ /* { id:"id1", value:"1" }, { id:"id2", value:"2" } */ ],
             enabledTraits: [], 
             categories: [], 
             categoriesStatus: {}, 
             traitValuesObj: {},
+        },
+        computed: {
+            categoriesFiltered(){
+                if( !this.categories )
+                    return [];
+                
+                /* if( this.search=="" )
+                    return this.categories; */
+                
+                let searchLowercase = this.search.toLowerCase();
+
+                //let categoriesFiltered = [];
+                this.categories.forEach( (category)=>{
+                    let numMatchesInCategory = 0;
+                    category.traits.forEach( (trait)=>{
+                        let traitLabel = trait.attributes.label.toLowerCase();
+                        let matchesSearch = this.search=="" || traitLabel.indexOf( searchLowercase ) > -1;
+                        trait.shouldShow = matchesSearch;
+                        if( matchesSearch )
+                            numMatchesInCategory++;
+                    });
+                    category.shouldShow = numMatchesInCategory > 0;
+                    /* let filteredTraits = category.traits.filter( (trait)=>{
+                        let traitName = trait.name.toLowerCase();
+                        return traitName.toLowerCase().indexOf( searchLowercase ) > -1;
+                    });
+                    if( filteredTraits.length > 0 ){
+                        categoriesFiltered.push({
+                            name: category.name, 
+                            traits: filteredTraits
+                        });
+                    } */
+                });
+                return this.categories;
+            }
         },
         methods: {
             

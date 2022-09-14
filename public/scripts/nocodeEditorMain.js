@@ -325,13 +325,25 @@ function initNoCodeEditor(){
             if(editPanel == null){
                 const editMenuDiv = document.createElement('div')
                 editMenuDiv.innerHTML = `
-                <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right" style="padding: 0px; width: 100%;">
+                <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right" style="padding: 0px; width: 100%;border-bottom: none !important;">
                   <div class="gjs-trt-traits">
                       <div v-if="categories.length==0" style="margin-top: 20px;">The selected element doesn't have any editable properties</div>
-                      <div v-if="categories.length>0" v-for="category, $categoryindex in categories" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
+                      <div style="margin-top: 20px;" v-if="categories.length>0">
+                        <div style="width: 80%; width: 295px; padding: 0px 10px;">
+                          <q-input outlined bottom-slots v-model="search" :dense="true">                  
+                            <template v-slot:append>
+                              <div>
+                                <q-icon v-if="search !== ''" name="close" @click="search = ''" class="cursor-pointer"></q-icon>
+                                <q-icon v-if="search == ''" name="search"></q-icon>
+                              </div>
+                            </template>
+                          </q-input>                          
+                        </div>
+                      </div>
+                      <div v-if="categories.length>0 && category.shouldShow" v-for="category, $categoryindex in categoriesFiltered" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
                         <div @click="toggleCategory(category)" class="gjs-sm-sector-title" style="text-transform: capitalize;">{{category.name}}</div>
                         <div class="gjs-sm-properties" v-if="category.expanded">
-                          <div v-for="trait, $traitindex in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
+                          <div v-if="trait.shouldShow" v-for="trait, $traitindex in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
                               <div class="gjs-label-wrp">
                                   <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.attributes.label)}}</div>
                               </div>
