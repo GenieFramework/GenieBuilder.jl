@@ -27,6 +27,21 @@
 <body>
     <div id="gjs">
     </div>
+
+    <div style="display: none;">
+        <!-- Vue app  -->
+        <div class="blocks-wrp">
+          Custom Blocks
+          <div class="blocks">
+            <div v-for="block in blocks" class="block" :key="block.getId()" 
+              @dragstart="onDragStart(block)" @dragend="onDragStop()" draggable>
+              <div class="block-media" v-html="block.getMedia()"></div>
+              <div class="block-label">{{ block.getLabel() }}</div>
+              <div class="block-cat">CAT: {{ block.getCategoryLabel() }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
    
     <!-- Julia Model panel within no-code editor -->
     <div id="app_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right">

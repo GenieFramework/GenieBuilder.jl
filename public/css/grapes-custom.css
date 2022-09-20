@@ -579,3 +579,27 @@ button.gjs-btn-prim{
     color: #999;
     font-style: italic; */
 }
+
+/* Custom block manager */
+.block {
+    user-select: none;
+    min-width: 45px;
+    padding: 1em;
+    box-sizing: border-box;
+    min-height: 90px;
+    cursor: all-scroll;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 3px;
+    margin: 10px 2.5% 5px;
+    box-shadow: 0 1px 0 0 rgb(0 0 0 / 15%);
+    transition: all .2s ease 0s;
+    transition-property: color;
+  }
+  
+  .block:hover {
+    color: #d278c9;
+  }
