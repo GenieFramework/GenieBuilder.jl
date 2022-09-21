@@ -445,7 +445,6 @@ function initNoCodeEditor(){
    });
 
   /* editor.on('run:preview', () => {
-    // do stuff...
     console.log("entered preview");
 
     let currentTemplate = editor.getHtml();
@@ -455,14 +454,12 @@ function initNoCodeEditor(){
     window.startPreview();
   });
   editor.on('stop:preview', () => {
-    // do stuff...
     console.log("Exited preview");
     window.stopPreview();
    
       canvasDocument.querySelector(`#${vueAppName}`).remove();
   }); */
   editor.on('component:input', (model) => {
-    // do stuff...
     console.log("component::input ", model);
     let currentTemplate = editor.getHtml( { cleanId:true } );
     let hasChanged = window.lastSavedHTML != currentTemplate;
@@ -472,7 +469,6 @@ function initNoCodeEditor(){
   });
 
   editor.on('component:selected', (model) => {
-    // do stuff...
     console.log("component selected: ", model);
     window.selectedElementModel = model;
     window.traitsEditor?.assignComponent( model );
@@ -482,10 +478,18 @@ function initNoCodeEditor(){
   });
 
   editor.on('component:deselected', (model) => {
-    // do stuff...
     console.log("component deselected: " );
     window.selectedElementModel = null;
     window.traitsEditor?.assignComponent(  );
+  });
+  editor.on('block:drag:stop', (model) => {
+    let message = {
+      command: "logEvent", 
+      eventName: "blockAdded",
+      eventDetail: model.attributes.tagName
+    };
+    console.log("Block added: ", model, message );
+    logEvent( message );
   });
 
 
@@ -518,6 +522,11 @@ function markUnsavedChanges( yesNo ){
   window.unsavedChanges = true;
 }
 
+function logEvent( message ){
+  console.log( 'logEvent', message );
+  parent.postMessage( 
+    message, "*");
+}
 
 function savePage(){
   let currentTemplate = editor.getHtml( { cleanId:true } );
