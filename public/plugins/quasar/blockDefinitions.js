@@ -10,12 +10,6 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
@@ -121,14 +115,7 @@
             },
             model: {
                 defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    }
-],
+                    traits: [],
                 },
                 init() {
                     this.on('change:attributes', this.handleAttrChange);
@@ -164,12 +151,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "inset",
         "name": ":inset",
@@ -1140,7 +1121,7 @@
     const customblock_quasar_button_group = editor => {
         editor.DomComponents.addType("button_group", {
             isComponent: el => {
-                if (el.tagName == 'Q-BUTTON-GROUP') {
+                if (el.tagName == 'Q-BTN-GROUP') {
                     return { type: 'button_group' }
                 }
             },
@@ -1175,14 +1156,14 @@
                 }
             },
         });
-        editor.BlockManager.add('button_group', { label: 'Button Group', content: '<q-button-group />', media: '<img src="images/icons/components/ui_components/button-group.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('button_group', { label: 'Button Group', content: '<q-btn-group />', media: '<img src="images/icons/components/ui_components/button-group.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
     const customblock_quasar_button_dropdown = editor => {
         editor.DomComponents.addType("button_dropdown", {
             isComponent: el => {
-                if (el.tagName == 'Q-BUTTON-DROPDOWN') {
+                if (el.tagName == 'Q-BTN-DROPDOWN') {
                     return { type: 'button_dropdown' }
                 }
             },
@@ -1217,7 +1198,7 @@
                 }
             },
         });
-        editor.BlockManager.add('button_dropdown', { label: 'Button Dropdown', content: '<q-button-dropdown />', media: '<img src="images/icons/components/ui_components/button-dropdown.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('button_dropdown', { label: 'Button Dropdown', content: '<q-btn-dropdown />', media: '<img src="images/icons/components/ui_components/button-dropdown.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
@@ -2876,15 +2857,22 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
-        "type": "select",
-        "options": []
+        "type": "Number",
+        "juliaType": "Number",
+        "desc": "Model of the component (must be between min/max)",
+        "category": "model",
+        "examples": [
+            "v-model=\"positionModel\""
+        ],
+        "enabled": true
     },
     {
         "label": "name",
         "name": ":name",
         "type": "String",
+        "juliaType": "String",
         "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
         "category": "behavior",
         "examples": [
@@ -2896,6 +2884,7 @@
         "label": "min",
         "name": ":min",
         "type": "Number",
+        "juliaType": "Number",
         "desc": "Minimum value of the model; Set track's minimum value",
         "category": "model",
         "examples": [
@@ -2907,6 +2896,7 @@
         "label": "max",
         "name": ":max",
         "type": "Number",
+        "juliaType": "Number",
         "desc": "Maximum value of the model; Set track's maximum value",
         "category": "model",
         "examples": [
@@ -2918,6 +2908,7 @@
         "label": "inner-min",
         "name": ":inner-min",
         "type": "Number",
+        "juliaType": "Number",
         "desc": "Inner minimum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be higher or equal to 'min' prop; Defaults to 'min' prop",
         "category": "model",
         "examples": [
@@ -2929,6 +2920,7 @@
         "label": "inner-max",
         "name": ":inner-max",
         "type": "Number",
+        "juliaType": "Number",
         "desc": "Inner maximum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be lower or equal to 'max' prop; Defaults to 'max' prop",
         "category": "model",
         "examples": [
@@ -2940,6 +2932,7 @@
         "label": "step",
         "name": ":step",
         "type": "Number",
+        "juliaType": "Number",
         "desc": "Specify step amount between valid values (> 0.0); When step equals to 0 it defines infinite granularity",
         "category": "model",
         "examples": [
@@ -2951,6 +2944,7 @@
         "label": "snap",
         "name": ":snap",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Snap on valid values, rather than sliding freely; Suggestion: use with 'step' prop",
         "category": "behavior",
         "enabled": true
@@ -2959,6 +2953,7 @@
         "label": "reverse",
         "name": ":reverse",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Work in reverse (changes direction)",
         "category": "behavior",
         "enabled": true
@@ -2967,6 +2962,7 @@
         "label": "vertical",
         "name": ":vertical",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Display in vertical direction",
         "category": "behavior",
         "enabled": true
@@ -2975,6 +2971,7 @@
         "label": "color",
         "name": ":color",
         "type": "String",
+        "juliaType": "String",
         "desc": "Color name for component from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -2987,6 +2984,7 @@
         "label": "track-color",
         "name": ":track-color",
         "type": "String",
+        "juliaType": "String",
         "desc": "Color name for the track (can be 'transparent' too) from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -2999,6 +2997,7 @@
         "label": "track-img",
         "name": ":track-img",
         "type": "String",
+        "juliaType": "String",
         "desc": "Apply a pattern image on the track",
         "category": "style",
         "examples": [
@@ -3010,6 +3009,7 @@
         "label": "inner-track-color",
         "name": ":inner-track-color",
         "type": "String",
+        "juliaType": "String",
         "desc": "Color name for the inner track (can be 'transparent' too) from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3022,6 +3022,7 @@
         "label": "inner-track-img",
         "name": ":inner-track-img",
         "type": "String",
+        "juliaType": "String",
         "desc": "Apply a pattern image on the inner track",
         "category": "style",
         "examples": [
@@ -3033,6 +3034,7 @@
         "label": "selection-color",
         "name": ":selection-color",
         "type": "String",
+        "juliaType": "String",
         "desc": "Color name for the selection bar (can be 'transparent' too) from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3045,6 +3047,7 @@
         "label": "selection-img",
         "name": ":selection-img",
         "type": "String",
+        "juliaType": "String",
         "desc": "Apply a pattern image on the selection bar",
         "category": "style",
         "examples": [
@@ -3056,6 +3059,7 @@
         "label": "label",
         "name": ":label",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Popup a label when user clicks/taps on the slider thumb and moves it",
         "category": "content",
         "enabled": true
@@ -3064,6 +3068,7 @@
         "label": "label-color",
         "name": ":label-color",
         "type": "String",
+        "juliaType": "String",
         "desc": "Color name for component from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3076,6 +3081,7 @@
         "label": "label-text-color",
         "name": ":label-text-color",
         "type": "String",
+        "juliaType": "String",
         "desc": "Color name for component from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3088,6 +3094,7 @@
         "label": "switch-label-side",
         "name": ":switch-label-side",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Switch the position of the label (top <-> bottom or left <-> right)",
         "category": "style",
         "enabled": true
@@ -3096,6 +3103,7 @@
         "label": "label-always",
         "name": ":label-always",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Always display the label",
         "category": "behavior|content",
         "enabled": true
@@ -3107,6 +3115,7 @@
             "Boolean",
             "Number"
         ],
+        "juliaType": "Bool|Number",
         "desc": "Display markers on the track, one for each possible value for the model or using a custom step (when specifying a Number)",
         "category": "content",
         "examples": [
@@ -3124,6 +3133,7 @@
             "Object",
             "Function"
         ],
+        "juliaType": "Bool|Vector|Dict|Function",
         "desc": "Configure the marker labels (or show the default ones if 'true'); Array of definition Objects or Object with key-value where key is the model and the value is the marker label definition",
         "category": "content",
         "examples": [
@@ -3139,6 +3149,7 @@
         "label": "marker-labels-class",
         "name": ":marker-labels-class",
         "type": "String",
+        "juliaType": "String",
         "desc": "CSS class(es) to apply to the marker labels container",
         "category": "style",
         "examples": [
@@ -3150,6 +3161,7 @@
         "label": "switch-marker-labels-side",
         "name": ":switch-marker-labels-side",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Switch the position of the marker labels (top <-> bottom or left <-> right)",
         "category": "style",
         "enabled": true
@@ -3158,6 +3170,7 @@
         "label": "track-size",
         "name": ":track-size",
         "type": "String",
+        "juliaType": "String",
         "desc": "Track size (including CSS unit)",
         "category": "style",
         "examples": [
@@ -3169,6 +3182,7 @@
         "label": "thumb-size",
         "name": ":thumb-size",
         "type": "String",
+        "juliaType": "String",
         "desc": "Thumb size (including CSS unit)",
         "category": "style",
         "examples": [
@@ -3180,6 +3194,7 @@
         "label": "thumb-color",
         "name": ":thumb-color",
         "type": "String",
+        "juliaType": "String",
         "desc": "Color name for component from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3192,6 +3207,7 @@
         "label": "thumb-path",
         "name": ":thumb-path",
         "type": "String",
+        "juliaType": "String",
         "desc": "Set custom thumb svg path",
         "category": "style",
         "examples": [
@@ -3203,6 +3219,7 @@
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Notify the component that the background is a dark color",
         "category": "style",
         "enabled": true
@@ -3211,6 +3228,7 @@
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Dense mode; occupies less space",
         "category": "style",
         "enabled": true
@@ -3219,6 +3237,7 @@
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Put component in disabled mode",
         "category": "state",
         "enabled": true
@@ -3227,6 +3246,7 @@
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
+        "juliaType": "Bool",
         "desc": "Put component in readonly mode",
         "category": "state",
         "enabled": true
@@ -3238,26 +3258,12 @@
             "Number",
             "String"
         ],
+        "juliaType": "Number|String",
         "desc": "Tabindex HTML attribute value",
         "category": "general",
         "examples": [
             "0",
             "100"
-        ],
-        "enabled": true
-    },
-    {
-        "label": "model-value",
-        "name": ":model-value",
-        "type": [
-            "Number",
-            "null",
-            "undefined"
-        ],
-        "desc": "Model of the component (must be between min/max); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
-        "category": "model",
-        "examples": [
-            "v-model=\"positionModel\""
         ],
         "enabled": true
     },
@@ -3268,6 +3274,7 @@
             "String",
             "Number"
         ],
+        "juliaType": "String|Number",
         "desc": "Override default label value",
         "category": "content",
         "examples": [
@@ -3839,11 +3846,11 @@
     }    
 
     
-    const customblock_quasar_date = editor => {
-        editor.DomComponents.addType("date", {
+    const customblock_quasar_datePicker = editor => {
+        editor.DomComponents.addType("datePicker", {
             isComponent: el => {
                 if (el.tagName == 'Q-DATE') {
-                    return { type: 'date' }
+                    return { type: 'datePicker' }
                 }
             },
             model: {
@@ -4200,15 +4207,15 @@
                 }
             },
         });
-        editor.BlockManager.add('date', { label: 'Date Picker', content: '<q-date />', media: '<img src="images/icons/components/ui_components/date_picker.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('datePicker', { label: 'Date Picker', content: '<q-date />', media: '<img src="images/icons/components/ui_components/date_picker.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
-    const customblock_quasar_time = editor => {
-        editor.DomComponents.addType("time", {
+    const customblock_quasar_timePicker = editor => {
+        editor.DomComponents.addType("timePicker", {
             isComponent: el => {
                 if (el.tagName == 'Q-TIME') {
-                    return { type: 'time' }
+                    return { type: 'timePicker' }
                 }
             },
             model: {
@@ -4459,7 +4466,7 @@
                 }
             },
         });
-        editor.BlockManager.add('time', { label: 'Time Picker', content: '<q-time />', media: '<img src="images/icons/components/ui_components/time.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('timePicker', { label: 'Time Picker', content: '<q-time />', media: '<img src="images/icons/components/ui_components/time.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
@@ -5421,11 +5428,11 @@
     }    
 
     
-    const customblock_quasar_table = editor => {
-        editor.DomComponents.addType("dataTable", {
+    const customblock_quasar_table2 = editor => {
+        editor.DomComponents.addType("table2", {
             isComponent: el => {
                 if (el.tagName == 'Q-TABLE') {
-                    return { type: 'dataTable' }
+                    return { type: 'table2' }
                 }
             },
             model: {
@@ -6169,7 +6176,7 @@
                 }
             },
         });
-        editor.BlockManager.add('dataTable', { label: 'Data Table', content: '<q-table />', media: '<img src="images/icons/components/ui_components/table.png" class="blockIcon" />', category: 'Tables' });
+        editor.BlockManager.add('table2', { label: 'Table', content: '<q-table />', media: '<img src="images/icons/components/ui_components/table.png" class="blockIcon" />', category: 'Tables' });
     }    
 
     
@@ -6183,12 +6190,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "ratio",
         "name": ":ratio",
@@ -6482,12 +6483,6 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
         "label": "ratio",
         "name": ":ratio",
         "type": [
@@ -6585,12 +6580,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "size",
         "name": ":size",
@@ -6707,12 +6696,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "color",
         "name": ":color",
@@ -6836,12 +6819,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "inline-actions",
         "name": ":inline-actions",
@@ -7508,12 +7485,6 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
         "label": "size",
         "name": ":size",
         "type": "String",
@@ -7587,12 +7558,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "nodes",
         "name": ":nodes",
@@ -7979,12 +7944,6 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
         "label": "color",
         "name": ":color",
         "type": "String",
@@ -8056,12 +8015,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "heading",
         "name": ":heading",

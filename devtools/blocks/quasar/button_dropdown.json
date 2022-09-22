@@ -1,9 +1,9 @@
 {
     "type": "button_dropdown", 
     "label": "Button Dropdown", 
-    "tagName": "Q-BUTTON-DROPDOWN", 
+    "tagName": "Q-BTN-DROPDOWN", 
     "category": "Forms", 
-    "content": "<q-button-dropdown />", 
+    "content": "<q-btn-dropdown />", 
     "media": "images/icons/components/ui_components/button-dropdown.png", 
     "traits": [
   {

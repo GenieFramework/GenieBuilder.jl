@@ -208,7 +208,7 @@ img.blockIcon{
 #unsavedChangesAlert{
   position: fixed;
   top: 5px;
-  right: 205px;
+  right: 305px;
   color: #ff6600;
   display: none;
   z-index: 10000;
@@ -224,10 +224,18 @@ img.blockIcon{
 }
 
 .gjs-trt-trait{
-  display: block !important;
-  margin-top: 5px !important;
+  /* display: block !important;
+  margin-top: 5px !important; */
+  width: 100%;
+  padding: 0px 0px 0px 10px;
 }
 
 .gjs-label-wrp{
-  width: unset !important;
+  /* width: unset !important; */
+  width: 40%;
+  padding: 0px 10px 0px 0px;
+}
+
+.gjs-sm-sector-title {
+  padding-left: 15px;
 }

@@ -31,6 +31,9 @@ document.addEventListener('keydown', e => {
   }
 });
 
+/* window.onerror = function (msg, url, line) {
+  console.log( "CATCHED ERROR: ", msg, url, line );
+} */
 
 
 window.autorun = false;
@@ -38,7 +41,7 @@ window.unsavedChanges = false;
 window.selectedElementModel = null;
 
 const customPlugins = [ myNewComponentTypes, 
-  customblock_quasar_separator, customblock_quasar_space, customblock_quasar_toolbar, customblock_quasar_input, customblock_quasar_button, customblock_quasar_button_group, customblock_quasar_button_dropdown, customblock_quasar_select, customblock_quasar_radio, customblock_quasar_checkbox, customblock_quasar_toggle, customblock_quasar_slider, customblock_quasar_range, customblock_quasar_date, customblock_quasar_time, customblock_quasar_editor, customblock_quasar_knob, customblock_quasar_list, customblock_quasar_item, customblock_quasar_item_label, customblock_quasar_table, customblock_quasar_img, customblock_quasar_video, customblock_quasar_avatar, customblock_quasar_badge, customblock_quasar_banner, customblock_quasar_chip, customblock_quasar_icon, customblock_quasar_rating, customblock_quasar_spinner, customblock_quasar_tree, customblock_quasar_popup_proxy, customblock_quasar_timeline, customblock_quasar_timeline_entry, customblock_quasar_expansion_item
+  customblock_quasar_separator, customblock_quasar_space, customblock_quasar_toolbar, customblock_quasar_input, customblock_quasar_button, customblock_quasar_button_group, customblock_quasar_button_dropdown, customblock_quasar_select, customblock_quasar_radio, customblock_quasar_checkbox, customblock_quasar_toggle, customblock_quasar_slider, customblock_quasar_range, customblock_quasar_datePicker, customblock_quasar_timePicker, customblock_quasar_editor, customblock_quasar_knob, customblock_quasar_list, customblock_quasar_item, customblock_quasar_item_label, customblock_quasar_table2, customblock_quasar_img, customblock_quasar_video, customblock_quasar_avatar, customblock_quasar_badge, customblock_quasar_banner, customblock_quasar_chip, customblock_quasar_icon, customblock_quasar_rating, customblock_quasar_spinner, customblock_quasar_tree, customblock_quasar_popup_proxy, customblock_quasar_timeline, customblock_quasar_timeline_entry, customblock_quasar_expansion_item
 ];
 
 function initNoCodeEditor(){
@@ -102,7 +105,7 @@ function initNoCodeEditor(){
       'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }, 
       'grapesjs-component-code-editor': {
         openState: { pn: '500px', cv: 'calc( 100% - 500px)' }, 
-        closedState: { pn: '200px', cv: 'calc( 100% - 200px)' }, 
+        closedState: { pn: '300px', cv: 'calc( 100% - 300px)' }, 
         //clearData: true, 
         codeViewOptions: { 
           codeName: 'htmlmixed', 
@@ -322,17 +325,54 @@ function initNoCodeEditor(){
             if(editPanel == null){
                 const editMenuDiv = document.createElement('div')
                 editMenuDiv.innerHTML = `
-                <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right" style="padding: 0px; width: 100%;">
+                <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right" style="padding: 0px; width: 100%;border-bottom: none !important;">
                   <div class="gjs-trt-traits">
-                      <div v-for="category in categories" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
-                        <div @click="toggleCategory(category)" class="gjs-sm-sector-title" style="text-transform: capitalize;">{{category.name}}</div>
-                        <div class="gjs-sm-properties" v-if="category.expanded">
-                          <div v-for="trait in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 10px;">
-                              <div class="gjs-label-wrp">
-                                  <div class="gjs-label" style="text-transform: capitalize">{{formatLabel(trait.id)}}</div>
+                      <div v-if="categories.length==0" style="margin-top: 20px;">The selected element doesn't have any editable properties</div>
+                      <div style="margin-top: 20px;" v-if="categories.length>0">
+                        <div style="width: 80%; width: 295px; padding: 0px 10px;">
+                          <q-input outlined bottom-slots v-model="search" :dense="true">                  
+                            <template v-slot:append>
+                              <div>
+                                <q-icon v-if="search !== ''" name="close" @click="search = ''" class="cursor-pointer"></q-icon>
+                                <q-icon v-if="search == ''" name="search"></q-icon>
                               </div>
-                              <div class="gjs-field gjs-field-text">
-                                  <textarea :title="getTraitTooltipText(trait)" class="gn_input" style="min-height: 30px; height: 30px;" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)"></textarea>
+                            </template>
+                          </q-input>                          
+                        </div>
+                      </div>
+                      <div v-if="categories.length>0 && category.shouldShow" v-for="category, $categoryindex in categoriesFiltered" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
+                        <div @click="toggleCategory(category)" class="gjs-sm-sector-title" style="text-transform: capitalize;"><i :class="{ 'gjs-caret-icon':true, 'fa':true, 'fa-caret-down':category.expanded, 'fa-caret-right':!category.expanded}" style="margin-right: 10px;"></i> {{category.name}} 
+                        
+                        </div>
+                        <div class="gjs-sm-properties" v-if="category.expanded">
+                          <div v-if="trait.shouldShow" v-for="trait, $traitindex in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
+                              <div class="gjs-label-wrp">
+                                  <div class="gjs-label traitLabel" style="text-transform: capitalize">{{formatLabel(trait)}}
+                                  
+                                  <q-tooltip v-if="trait.attributes.desc" :delay="250" content-class="bg-indigo traitTooltipContent" transition-show="scale" transition-hide="scale">
+                                    <div style="max-width: 300px;">
+                                      <div style="font-weight: bold; font-size: 1.6em; text-transform: capitalize;">{{trait.attributes.label}} <span style="font-size: 0.6em; margin-left: 5px;" v-if="trait.attributes.juliaType">({{trait.attributes.juliaType?.split('|').join(', ')}})</span></div>                                      
+                                      <div>{{trait.attributes.desc}}</div>
+                                      <div v-if="trait.attributes.examples?.length>0" style="font-weight: bold; font-size: 1.1em; margin-top:10px; margin-bottom:-10px;">Examples</div>
+                                      <ul>
+                                        <li v-for="example in trait.attributes.examples">{{example}}</li>
+                                      </ul>
+                                    </div>
+                                  </q-tooltip>
+                              </div>
+                              </div>
+                              <div class="gjs-field gjs-field-text" style="width: 60%; height: 40px;">
+                                <trait-field :trait="trait" :traitvaluesobj="traitValuesObj"></trait-field>`+
+                                /*<q-select
+                                  new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
+                                  v-model="traitValuesObj[trait.id]" 
+                                  :title="getTraitTooltipText(trait)"
+                                  :options="getAppModelFields(trait)"
+                                  :placeholder="trait.attributes.juliaType?.split('|').join(', ')||'Type not set'" 
+                                  @input="onInputChanged(trait)" 
+                                  @keyup="keyUp($event, trait)"
+                                ></q-select>*/
+                                  `<!-- <textarea :title="getTraitTooltipText(trait)" class="gn_input" style="min-height: 30px; height: 30px;" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)"></textarea> -->
                               </div>
                           </div>
                         </div>
@@ -405,7 +445,6 @@ function initNoCodeEditor(){
    });
 
   /* editor.on('run:preview', () => {
-    // do stuff...
     console.log("entered preview");
 
     let currentTemplate = editor.getHtml();
@@ -415,14 +454,12 @@ function initNoCodeEditor(){
     window.startPreview();
   });
   editor.on('stop:preview', () => {
-    // do stuff...
     console.log("Exited preview");
     window.stopPreview();
    
       canvasDocument.querySelector(`#${vueAppName}`).remove();
   }); */
   editor.on('component:input', (model) => {
-    // do stuff...
     console.log("component::input ", model);
     let currentTemplate = editor.getHtml( { cleanId:true } );
     let hasChanged = window.lastSavedHTML != currentTemplate;
@@ -432,17 +469,31 @@ function initNoCodeEditor(){
   });
 
   editor.on('component:selected', (model) => {
-    // do stuff...
     console.log("component selected: ", model);
     window.selectedElementModel = model;
     window.traitsEditor?.assignComponent( model );
+
+    // show the properties editor panel if there are traits to show
+    // (some components do not have traits)
+    if( model.attributes?.traits?.models?.length > 0 ){
+      let blockBtn = editor.Panels.getButton('views', 'open-props-editor')
+      blockBtn.set('active', 1);
+    }
   });
 
   editor.on('component:deselected', (model) => {
-    // do stuff...
     console.log("component deselected: " );
     window.selectedElementModel = null;
     window.traitsEditor?.assignComponent(  );
+  });
+  editor.on('block:drag:stop', (model) => {
+    let message = {
+      command: "logEvent", 
+      eventName: "blockAdded",
+      eventDetail: model.attributes.tagName
+    };
+    console.log("Block added: ", model, message );
+    logEvent( message );
   });
 
 
@@ -475,6 +526,11 @@ function markUnsavedChanges( yesNo ){
   window.unsavedChanges = true;
 }
 
+function logEvent( message ){
+  console.log( 'logEvent', message );
+  parent.postMessage( 
+    message, "*");
+}
 
 function savePage(){
   let currentTemplate = editor.getHtml( { cleanId:true } );

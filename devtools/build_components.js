@@ -33,7 +33,7 @@ for (let i = 0; i < files.length; i++) {
     output += blockCode;
 }
 //console.log( blockCode );
-fs.writeFileSync( './blockDefinitions.js', output );
+fs.writeFileSync( '../public/plugins/quasar/blockDefinitions.js', output );
 
 console.log( "Plugin classes: \n", pluginNames.join(', ') );
 console.log( "\n" );
