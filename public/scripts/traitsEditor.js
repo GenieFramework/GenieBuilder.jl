@@ -129,9 +129,11 @@ function initTraitsEditor(){
                     category.traits.forEach( (trait)=>{
                         let label = (trait.attributes.label && trait.attributes.label.length > 0 )?trait.attributes.label:trait.attributes.name;
                         let traitLabel = label.toLowerCase();
-                        let matchesSearch = this.search=="" || traitLabel.indexOf( searchLowercase ) > -1;
-                        trait.shouldShow = matchesSearch;
-                        if( matchesSearch )
+                        let traitDescription = trait.attributes.desc ? trait.attributes.desc.toLowerCase() : "";
+                        let matchesSearchLabel = this.search=="" || traitLabel.indexOf( searchLowercase ) > -1;
+                        let matchesSearchLDesc = this.search=="" || traitDescription.indexOf( searchLowercase ) > -1;
+                        trait.shouldShow = matchesSearchLabel || matchesSearchLDesc;
+                        if( trait.shouldShow )
                             numMatchesInCategory++;
                     });
                     category.shouldShow = numMatchesInCategory > 0;
