@@ -35,7 +35,7 @@ function initTraitsEditor(){
             new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
             v-model="traitvaluesobj[trait.id]"" 
             :options="getAppModelFields(trait)"
-            :placeholder="trait.attributes.juliaType?.split('|').join(', ')||'Type not set'" 
+            :placeholder="trait.attributes.juliaType?.split('|').join(', ')||''" 
             @input="onInputChanged(trait)" `+
             /* @keyup="keyUp($event, trait)"  */
             `@filter="filterFn" 
