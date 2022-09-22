@@ -328,9 +328,9 @@ function initNoCodeEditor(){
                 <div id="traits_panel" class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right" style="padding: 0px; width: 100%;border-bottom: none !important;">
                   <div class="gjs-trt-traits">
                       <div v-if="categories.length==0" style="margin-top: 20px;">The selected element doesn't have any editable properties</div>
-                      <div style="margin-top: 20px;" v-if="categories.length>0">
-                        <div style="width: 80%; width: 295px; padding: 0px 10px;">
-                          <q-input outlined bottom-slots v-model="search" :dense="true">                  
+                      <div style="margin-top: 5px;" v-if="categories.length>0">
+                        <div style="width: 80%; width: 295px; padding: 0px 5px;">
+                          <q-input outlined bottom-slots v-model="search" :dense="true" placeholder="Filter Properties">                  
                             <template v-slot:append>
                               <div>
                                 <q-icon v-if="search !== ''" name="close" @click="search = ''" class="cursor-pointer"></q-icon>
@@ -361,7 +361,7 @@ function initNoCodeEditor(){
                                   </q-tooltip>
                               </div>
                               </div>
-                              <div class="gjs-field gjs-field-text" style="width: 60%; height: 40px;">
+                              <div class="gjs-field gjs-field-text" style="">
                                 <trait-field :trait="trait" :traitvaluesobj="traitValuesObj"></trait-field>`+
                                 /*<q-select
                                   new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable

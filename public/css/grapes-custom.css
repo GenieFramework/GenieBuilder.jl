@@ -509,9 +509,25 @@ button.gjs-btn-prim{
     font-size: 13px !important;
 }
 
+.gjs-field-text{
+    width: 60%; 
+    height: 30px;
+}
+
+.q-position-engine {
+    margin-top: -20px !important;
+}
+
+.q-field--with-bottom {
+    padding-bottom: 5px;
+}
+
+.q-field--dense .q-field__control, .q-field--dense .q-field__marginal {
+    height: 35px;
+}
 
 .gjs-trt-trait .gjs-label {
-    top: 8px;
+    top: 4px;
     position: relative;
     line-height: 14px;
 }
@@ -519,10 +535,20 @@ button.gjs-btn-prim{
 .gjs-trt-trait .q-field__append{
     font-size: 16px;
     padding-left: 5px;
+    height: min-content;
+    top: 10px;
+    position: relative;
 }
 
 .gjs-trt-trait .q-field__native{
+    /* background-color: #ff00ff !important; */
+    min-width: 20px;
+    min-height: 20px;
+}
 
+.q-field--auto-height .q-field__control-container {
+    padding-top: 0;
+    height: min-content;
 }
 
 .gjs-trt-trait .q-field--standard .q-field__control:before {
