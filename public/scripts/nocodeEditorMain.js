@@ -347,9 +347,9 @@ function initNoCodeEditor(){
                         <div class="gjs-sm-properties" v-if="category.expanded">
                           <div v-if="trait.shouldShow" v-for="trait, $traitindex in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
                               <div class="gjs-label-wrp">
-                                  <div class="gjs-label traitLabel" style="text-transform: capitalize">{{formatLabel(trait.attributes.label)}}
+                                  <div class="gjs-label traitLabel" style="text-transform: capitalize">{{formatLabel(trait)}}
                                   
-                                  <q-tooltip :delay="250" content-class="bg-indigo traitTooltipContent" transition-show="scale" transition-hide="scale">
+                                  <q-tooltip v-if="trait.attributes.desc" :delay="250" content-class="bg-indigo traitTooltipContent" transition-show="scale" transition-hide="scale">
                                     <div style="max-width: 300px;">
                                       <div style="font-weight: bold; font-size: 1.6em; text-transform: capitalize;">{{trait.attributes.label}} <span style="font-size: 0.6em; margin-left: 5px;" v-if="trait.attributes.juliaType">({{trait.attributes.juliaType?.split('|').join(', ')}})</span></div>                                      
                                       <div>{{trait.attributes.desc}}</div>
@@ -472,9 +472,13 @@ function initNoCodeEditor(){
     console.log("component selected: ", model);
     window.selectedElementModel = model;
     window.traitsEditor?.assignComponent( model );
-    // show the properties editor panel
-    let blockBtn = editor.Panels.getButton('views', 'open-props-editor')
-    blockBtn.set('active', 1);
+
+    // show the properties editor panel if there are traits to show
+    // (some components do not have traits)
+    if( model.attributes?.traits?.models?.length > 0 ){
+      let blockBtn = editor.Panels.getButton('views', 'open-props-editor')
+      blockBtn.set('active', 1);
+    }
   });
 
   editor.on('component:deselected', (model) => {

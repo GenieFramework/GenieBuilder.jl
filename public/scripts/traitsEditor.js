@@ -127,7 +127,8 @@ function initTraitsEditor(){
                 this.categories.forEach( (category)=>{
                     let numMatchesInCategory = 0;
                     category.traits.forEach( (trait)=>{
-                        let traitLabel = trait.attributes.label.toLowerCase();
+                        let label = (trait.attributes.label && trait.attributes.label.length > 0 )?trait.attributes.label:trait.attributes.name;
+                        let traitLabel = label.toLowerCase();
                         let matchesSearch = this.search=="" || traitLabel.indexOf( searchLowercase ) > -1;
                         trait.shouldShow = matchesSearch;
                         if( matchesSearch )
@@ -206,7 +207,8 @@ function initTraitsEditor(){
 
             
 
-            formatLabel( label ){
+            formatLabel( trait ){
+                let label = (trait.attributes.label && trait.attributes.label.length > 0 )?trait.attributes.label:trait.attributes.name;
                 let formatted = label.split('-').join(' ').split(':').join('');
                 return formatted;
             }, 
