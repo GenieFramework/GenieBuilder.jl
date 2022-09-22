@@ -6,11 +6,6 @@
     "content": "<q-space />", 
     "media": "images/icons/components/ui_components/space.png", 
     "traits": [
-  {
-    "label": "Reactive Model",
-    "name": "v-model",
-    "type": "select",
-    "options": []
-  }
+  
 ]
 }

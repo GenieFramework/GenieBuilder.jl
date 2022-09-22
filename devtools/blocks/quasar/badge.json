@@ -7,12 +7,6 @@
     "media": "images/icons/components/ui_components/badge.png", 
     "traits": [
   {
-    "label": "Reactive Model",
-    "name": "v-model",
-    "type": "select",
-    "options": []
-  },
-  {
     "label": "color",
     "name": ":color",
     "type": "String",

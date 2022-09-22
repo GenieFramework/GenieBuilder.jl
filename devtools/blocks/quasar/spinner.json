@@ -7,12 +7,6 @@
     "media": "images/icons/components/ui_components/spinner.png", 
     "traits": [
   {
-    "label": "Reactive Model",
-    "name": "v-model",
-    "type": "select",
-    "options": []
-  },
-  {
     "label": "size",
     "name": ":size",
     "type": "String",

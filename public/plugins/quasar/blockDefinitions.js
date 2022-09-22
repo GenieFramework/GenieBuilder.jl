@@ -10,12 +10,6 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
@@ -121,14 +115,7 @@
             },
             model: {
                 defaults: {
-                    traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    }
-],
+                    traits: [],
                 },
                 init() {
                     this.on('change:attributes', this.handleAttrChange);
@@ -164,12 +151,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "inset",
         "name": ":inset",
@@ -6210,12 +6191,6 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
         "label": "ratio",
         "name": ":ratio",
         "type": [
@@ -6508,12 +6483,6 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
         "label": "ratio",
         "name": ":ratio",
         "type": [
@@ -6611,12 +6580,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "size",
         "name": ":size",
@@ -6733,12 +6696,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "color",
         "name": ":color",
@@ -6862,12 +6819,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "inline-actions",
         "name": ":inline-actions",
@@ -7534,12 +7485,6 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
         "label": "size",
         "name": ":size",
         "type": "String",
@@ -7613,12 +7558,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "nodes",
         "name": ":nodes",
@@ -8005,12 +7944,6 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
-    {
         "label": "color",
         "name": ":color",
         "type": "String",
@@ -8082,12 +8015,6 @@
             model: {
                 defaults: {
                     traits: [
-    {
-        "label": "Reactive Model",
-        "name": "v-model",
-        "type": "select",
-        "options": []
-    },
     {
         "label": "heading",
         "name": ":heading",

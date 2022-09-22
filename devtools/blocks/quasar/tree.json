@@ -7,12 +7,6 @@
     "media": "images/icons/components/ui_components/tree.png", 
     "traits": [
   {
-    "label": "Reactive Model",
-    "name": "v-model",
-    "type": "select",
-    "options": []
-  },
-  {
     "label": "nodes",
     "name": ":nodes",
     "type": "Array",
