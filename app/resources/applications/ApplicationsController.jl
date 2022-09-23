@@ -769,7 +769,6 @@ function unsubscribe()
 end
 
 function import_apps()
-  @show "omfg"
   for existing_app in readdir(GenieBuilder.APPS_FOLDER[])
     ! isdir(joinpath(GenieBuilder.APPS_FOLDER[], existing_app)) && continue
     startswith(existing_app, ".") && continue
