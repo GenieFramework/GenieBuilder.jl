@@ -73,7 +73,7 @@ function info(app)
   (:application => app) |> json
 end
 
-function postcreate(path) :: Nothing
+function postcreate(path, fullstack::Bool = false) :: Nothing
   model_name = "AppModel"
   current_path = pwd()
 
@@ -83,175 +83,192 @@ function postcreate(path) :: Nothing
               Pkg.update();
               Pkg.add(Pkg.PackageSpec(;name="Genie", version="5"), io = devnull);
               Pkg.add(Pkg.PackageSpec(;name="GenieAutoReload", version="2"), io = devnull);
-              Pkg.add(Pkg.PackageSpec(;name="Stipple", version="0.25"), io = devnull);
+              # Pkg.add(Pkg.PackageSpec(;name="Stipple", version="0.25"), io = devnull);
+              # Pkg.add(url="https://github.com/GenieFramework/Stipple.jl", rev="implicit_reactive_models");
+              Pkg.develop("Stipple");
               Pkg.add(Pkg.PackageSpec(;name="StippleUI", version="0.20"), io = devnull);
               Pkg.add(Pkg.PackageSpec(;name="StipplePlotly", version="0.13"), io = devnull);
               Pkg.add(Pkg.PackageSpec(;name="GenieDevTools", version="1"), io = devnull);
+              # Pkg.add(url="https://github.com/GenieFramework/GenieFramework.jl", rev="main", io = devnull);
+              Pkg.develop("GenieFramework");
   '`; dir = path)
   cmd |> run
 
   cd(path)
 
-  # TODO: Logger errors out for some reason
-  open(joinpath(Genie.config.path_initializers, "logging.jl"), "w") do io
-    write(io,
-    """
-    import Genie
-    Genie.Logger.initialize_logging()
-    """
-    )
-  end
-
-  open(joinpath(Genie.config.path_initializers, "autoload.jl"), "w") do io
-    write(io,
-    """
-    # Optional flat/non-resource MVC folder structure
-    Genie.Loader.autoload(abspath("models"), abspath("controllers"))
-    """
-    )
-  end
-
-  isdir(Genie.config.path_plugins) || mkdir(Genie.config.path_plugins)
-  isdir("controllers") || mkdir("controllers")
-  isdir("layouts") || mkdir("layouts")
-  isdir("models") || mkdir("models")
-  isdir("views") || mkdir("views")
-
-  open(joinpath(Genie.config.path_plugins, "devtools.jl"), "w") do io
-    write(io,
-    """
-    using GenieDevTools
-    using Stipple
-    using GenieAutoReload
-
-    if ( Genie.Configuration.isdev() )
-      Genie.config.log_to_file = true
+  if fullstack
+    open(joinpath(Genie.config.path_initializers, "logging.jl"), "w") do io
+      write(io,
+      """
+      import Genie
       Genie.Logger.initialize_logging()
-
-      GenieDevTools.register_routes()
-      Stipple.deps!(GenieAutoReload, GenieAutoReload.deps)
-      autoreload(pwd())
+      """
+      )
     end
-    """
-    )
   end
 
-  open(joinpath("layouts", "app.jl.html"), "w") do io
-    write(io,
-    """
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <% Stipple.sesstoken() %>
-        <title>Hello Genie</title>
-        <% Genie.Assets.favicon_support() %>
-        <link rel="stylesheet" href="/css/grapes.css">
-        <link rel="stylesheet" href="/css/app.css">
-      </head>
-      <body>
-        <% page(model, partial = true, [@yield]) %>
-        <script src="/js/app.js"></script>
-      </body>
-    </html>
-    """
-    )
+  if fullstack
+    open(joinpath(Genie.config.path_initializers, "autoload.jl"), "w") do io
+      write(io,
+      """
+      # Optional flat/non-resource MVC folder structure
+      Genie.Loader.autoload(abspath("models"), abspath("controllers"))
+      """
+      )
+    end
   end
 
-  open(joinpath("views", "hello.jl.html"), "w") do io
+  if fullstack
+    isdir(Genie.config.path_plugins) || mkdir(Genie.config.path_plugins)
+    isdir("controllers") || mkdir("controllers")
+    isdir("layouts") || mkdir("layouts")
+    isdir("models") || mkdir("models")
+    isdir("views") || mkdir("views")
+  end
+
+  if fullstack
+    open(joinpath(Genie.config.path_plugins, "devtools.jl"), "w") do io
+      write(io,
+      """
+      using GenieDevTools
+      using Stipple
+      using GenieAutoReload
+
+      if ( Genie.Configuration.isdev() )
+        Genie.config.log_to_file = true
+        Genie.Logger.initialize_logging()
+
+        GenieDevTools.register_routes()
+        Stipple.deps!(GenieAutoReload, GenieAutoReload.deps)
+        autoreload(pwd())
+      end
+      """
+      )
+    end
+  end
+
+  if fullstack
+    open(joinpath("layouts", "app.jl.html"), "w") do io
+      write(io,
+      """
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <% Stipple.sesstoken() %>
+          <title>Hello Genie</title>
+          <% Genie.Assets.favicon_support() %>
+          <link rel="stylesheet" href="/css/grapes.css">
+          <link rel="stylesheet" href="/css/app.css">
+        </head>
+        <body>
+          <% page(model, partial = true, [@yield]) %>
+          <script src="/js/app.js"></script>
+        </body>
+      </html>
+      """
+      )
+    end
+  end
+
+  defaultviewfile = fullstack ? joinpath("views", "hello.jl.html") : "app.jl.html"
+  open(defaultviewfile, "w") do io
     write(io,
     """
     <h1>{{message}}</h1>
     <p>This is the default view for the application.</p>
-    <p>You can change this view by editing the file <code>views/hello.jl.html</code>.</p>
+    <p>You can change this view by editing the file <code>$defaultviewfile</code>.</p>
     """
     )
   end
 
-  open("routes.jl", "w") do io
+  open("app.jl", "w") do io
     write(io,
     """
-    using Genie
-    using Stipple
-    using StippleUI
-    using StipplePlotly
+    using GenieFramework
+    @genietools
 
-    using Stipple.Pages
-    using Stipple.ModelStorage.Sessions
-
-    using Base.Main.UserApp.$(model_name)s
-
-    if Genie.Configuration.isprod()
-      Genie.Assets.assets_config!([Genie, Stipple, StippleUI, StipplePlotly], host = "https://cdn.statically.io/gh/GenieFramework")
-    end
-
-    Page("/", view = "views/hello.jl.html",
-              layout = "layouts/app.jl.html",
-              model = () -> $(model_name) |> init_from_storage |> $(model_name)s.handlers,
-              context = @__MODULE__)
+    Page("/")
     """
     )
   end
 
-  open(joinpath("models", "$(model_name)s.jl"), "w") do io
-    write(io,
-    """
-    module $(model_name)s
+  if fullstack
+    open(joinpath("models", "$(model_name)s.jl"), "w") do io
+      write(io,
+      """
+      module $(model_name)s
 
-    using Stipple
+      using Stipple
 
-    export $(model_name)
+      export $(model_name)
 
-    @reactive mutable struct $(model_name) <: ReactiveModel
-      message::R{String} = "Hello World!"
-    end
-
-    function handlers(model::$(model_name)) :: $(model_name)
-      #=
-      on(model.message) do message
-        model.isprocessing = true
-        model.message[] = "Hello to you too!"
-        model.isprocessing = false
+      @reactive mutable struct $(model_name) <: ReactiveModel
+        message::R{String} = "Hello World!"
       end
-      =#
 
-      model
+      function handlers(model::$(model_name)) :: $(model_name)
+        #=
+        on(model.message) do message
+          model.isprocessing = true
+          model.message[] = "Hello to you too!"
+          model.isprocessing = false
+        end
+        =#
+
+        model
+      end
+
+      end
+      """
+      )
     end
+  end
 
+  if fullstack
+    open(joinpath("public", "css", "app.css"), "w") do io
+      write(io,
+      """
+      /* place your custom css here */
+      """
+      )
     end
-    """
-    )
   end
 
-  open(joinpath("public", "css", "app.css"), "w") do io
-    write(io,
-    """
-    /* place your custom css here */
-    """
-    )
+  if fullstack
+    open(joinpath("public", "css", "grapes.css"), "w") do io
+      write(io,
+      """
+      /* WARNING!!! */
+      /* This CSS file is generated by GenieBuilder. */
+      /* Do not edit this file directly or you'll lose all your changes. */
+      """
+      )
+    end
   end
 
-  open(joinpath("public", "css", "grapes.css"), "w") do io
-    write(io,
-    """
-    /* WARNING!!! */
-    /* This CSS file is generated by GenieBuilder. */
-    /* Do not edit this file directly or you'll lose all your changes. */
-    """
-    )
-  end
-
-  open(joinpath("public", "js", "app.js"), "w") do io
-    write(io,
-    """
-    /* place your custom js here */
-    """
-    )
+  if fullstack
+    open(joinpath("public", "js", "app.js"), "w") do io
+      write(io,
+      """
+      /* place your custom js here */
+      """
+      )
+    end
   end
 
   cd(current_path)
 
   nothing
+end
+
+function run_as_genie_app(filepath::String)
+  isfile(filepath) || error("File not found: $filepath")
+  app = findone(Application; filepath)
+  app !== nothing && return start(app)
+
+  name = Genie.Generator.validname(dir(filepath) * "-" * basename(filepath))
+  create(name, filepath)
 end
 
 function create(name, path = "", port = available_port())
@@ -270,8 +287,6 @@ function create(name, path = "", port = available_port())
     return (:error => ex)
   end
 
-  # make sure apps/ folder exists
-
   current_path = pwd()
   output = (:application => app)
 
@@ -282,21 +297,12 @@ function create(name, path = "", port = available_port())
 
     new_app_path = joinpath(path, name)
     if isdir(new_app_path) && ! isempty(readdir(new_app_path))
-      if isfile(joinpath(new_app_path, "routes.jl"))
-        @error("An application already exists at $new_app_path and looks like a Genie app -- importing app instead")
-        persist_status(app, OFFLINE_STATUS)
-        notify("ended:import_app", app.id)
-        notify("ended:create_app", app.id)
+      @warn("$new_app_path is not empty -- importing app instead")
+      persist_status(app, OFFLINE_STATUS)
+      notify("ended:import_app", app.id)
+      notify("ended:create_app", app.id)
 
-        return output |> json
-      else
-        ex = "$new_app_path app directory already exists and is not empty -- exiting"
-        @error(ex)
-        delete(app)
-        SearchLight.delete(app)
-        notify("failed:create_app", app.id, FAILSTATUS, ERROR_STATUS)
-        error(ex)
-      end
+      return output |> json
     end
 
     Base.Threads.@spawn begin

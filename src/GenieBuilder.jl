@@ -36,7 +36,7 @@ function go()
   if haskey(ENV, "RUN_STATUS")
     RUN_STATUS[] = ENV["RUN_STATUS"] |> Symbol
   else
-    @error "RUN_STATUS ENV was not set"
+    @debug "RUN_STATUS ENV was not set"
     ENV["RUN_STATUS"] = RUN_STATUS[] = :install
   end
 
