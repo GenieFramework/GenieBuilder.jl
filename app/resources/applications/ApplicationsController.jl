@@ -360,7 +360,7 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
       ONLINE_STATUS
     end
   catch ex
-    if isa(ex, HTTP.IOExtras.IOError)
+    if isa(ex, HTTP.Exceptions.ConnectError)
       OFFLINE_STATUS
     else
       donotify && notify("failed:status_request", app.id)
@@ -430,7 +430,8 @@ function start(app)
       persist_status(app, ONLINE_STATUS)
       watch(fullpath(app), app.id)
     end
-  catch
+  catch ex
+    @error ex
     notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
   end
 
