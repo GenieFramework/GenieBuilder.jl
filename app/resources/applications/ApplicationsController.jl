@@ -283,7 +283,7 @@ function create(name, path = "", port = available_port())
     new_app_path = joinpath(path, name)
     if isdir(new_app_path) && ! isempty(readdir(new_app_path))
       if isfile(joinpath(new_app_path, "routes.jl"))
-        @error("An application already exists at $new_app_path and looks like a Genie app -- importing app instead")
+        @warn("An application already exists at $new_app_path and looks like a Genie app -- importing app instead")
         persist_status(app, OFFLINE_STATUS)
         notify("ended:import_app", app.id)
         notify("ended:create_app", app.id)
@@ -769,8 +769,16 @@ function unsubscribe()
 end
 
 function import_apps()
+  @show "omfg"
   for existing_app in readdir(GenieBuilder.APPS_FOLDER[])
-    isempty(find(Application, name = existing_app)) && create(existing_app)
+    ! isdir(joinpath(GenieBuilder.APPS_FOLDER[], existing_app)) && continue
+    startswith(existing_app, ".") && continue
+
+    appname = Genie.Generator.validname(existing_app)
+    if isempty(find(Application, name = appname))
+      appname != existing_app && mv(joinpath(GenieBuilder.APPS_FOLDER[], existing_app), joinpath(GenieBuilder.APPS_FOLDER[], appname))
+      create(appname)
+    end
   end
 end
 
@@ -783,7 +791,7 @@ function ready() :: Nothing
     notify("terms:show", nothing)
   end
 
-  @async import_apps()
+  import_apps()
 
   nothing
 end
