@@ -5422,10 +5422,10 @@
 
     
     const customblock_quasar_table = editor => {
-        editor.DomComponents.addType("table2", {
+        editor.DomComponents.addType("dataTable", {
             isComponent: el => {
                 if (el.tagName == 'Q-TABLE') {
-                    return { type: 'table2' }
+                    return { type: 'dataTable' }
                 }
             },
             model: {
@@ -6169,7 +6169,7 @@
                 }
             },
         });
-        editor.BlockManager.add('table2', { label: 'Table', content: '<q-table />', media: '<img src="images/icons/components/ui_components/table.png" class="blockIcon" />', category: 'Tables' });
+        editor.BlockManager.add('dataTable', { label: 'Data Table', content: '<q-table />', media: '<img src="images/icons/components/ui_components/table.png" class="blockIcon" />', category: 'Tables' });
     }    
 
     
