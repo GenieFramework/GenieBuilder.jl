@@ -351,7 +351,7 @@ const myNewComponentTypes = editor => {
     });
     editor.BlockManager.add( 'header', { label: 'Header', content: `<header class="st-header q-pa-sm"><h1 class="st-header__title text-h3">Header Text</h1></header>`, media: `<img src="images/icons/components/html_elements/header.png" class="blockIcon"/>`, category: 'Content'   }); 
     
-    editor.BlockManager.add( 'footer', { label: 'Footer', content: `<footer class="st-footer q-pa-sm">Footer Text</footer>`, media: `<img src="images/icons/components/html_elements/footer.png" class="blockIcon"/>`, category: 'Content'   });
+    editor.BlockManager.add( 'footer', { label: 'Footer', content: `<footer class="st-footer q-pa-sm"><p>Footer Text</p></footer>`, media: `<img src="images/icons/components/html_elements/footer.png" class="blockIcon"/>`, category: 'Content'   });
     
     editor.BlockManager.add( 'horizontalRule', { label: 'Horizontal Rule', content: `<hr />`, media: `<img src="images/icons/components/html_elements/hr.png" class="blockIcon"/>`, category: 'Content'   });
     

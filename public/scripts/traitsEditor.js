@@ -93,7 +93,8 @@ function initTraitsEditor(){
                 let traitValue = this.traitvaluesobj[traitId];
                 console.log("Traits Editor onInputchanged", traitId, traitValue, trait );
                 let tr = traitsEditor.component.getTrait(traitId)
-                tr.setValue(traitValue)
+                tr.setValue(traitValue);
+                markUnsavedChanges(true);
             }, 
             /* keyUp( event, trait ){
                 console.log( "input value: ", this.$refs.select.inputValue );

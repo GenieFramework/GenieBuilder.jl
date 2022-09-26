@@ -1,6 +1,6 @@
 {
-    "type": "table2", 
-    "label": "Table", 
+    "type": "dataTable", 
+    "label": "Data Table", 
     "tagName": "Q-TABLE", 
     "category": "Tables", 
     "content": "<q-table />", 
