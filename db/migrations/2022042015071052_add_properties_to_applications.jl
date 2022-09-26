@@ -1,6 +1,6 @@
 module AddPropertiesToApplications
 
-import SearchLight.Migrations: add_columns, drop_columns
+import SearchLight.Migrations: add_columns, remove_columns
 
 function up()
   add_columns(:applications, [
@@ -10,7 +10,7 @@ function up()
 end
 
 function down()
-  drop_columns(:applications, [
+  remove_columns(:applications, [
     :name
     :port
     :path
