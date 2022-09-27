@@ -39,7 +39,8 @@ function initTraitsEditor(){
             @input="onInputChanged(trait)" `+
             /* @keyup="keyUp($event, trait)"  */
             `@filter="filterFn" 
-            @focus="onFocus" ` + 
+            @focus="onFocus" 
+            class="propSelect"` + 
             /* @keyup="onkeyup" 
             :class="{bindingMatch: inputValueMatchesModelProperty() }" */
         `></q-select>`, 

@@ -609,3 +609,7 @@ button.gjs-btn-prim{
 .bindingMatch input{
     color: #226ba7;
 }
+
+.q-item{
+    min-height: 28px !important;
+}
