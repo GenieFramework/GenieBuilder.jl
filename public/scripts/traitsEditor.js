@@ -33,14 +33,16 @@ function initTraitsEditor(){
         template: `<q-select
             ref="select"
             new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
-            v-model="traitvaluesobj[trait.id]"" 
+            v-model="traitvaluesobj[trait.id]" 
             :options="getAppModelFields(trait)"
             :placeholder="trait.attributes.juliaType?.split('|').join(', ')||''" 
             @input="onInputChanged(trait)" `+
             /* @keyup="keyUp($event, trait)"  */
             `@filter="filterFn" 
-            @focus="onFocus"
-        ></q-select>`, 
+            @focus="onFocus" ` + 
+            /* @keyup="onkeyup" 
+            :class="{bindingMatch: inputValueMatchesModelProperty() }" */
+        `></q-select>`, 
         methods: {
             onFocus(){
                 console.log( "onFocus" );
@@ -60,6 +62,21 @@ function initTraitsEditor(){
                 }, 500)
               },
             
+            /* inputValueMatchesModelProperty( ){
+                let inputValue = this.inputValue || this.traitvaluesobj[this.trait.id]; // this.traitvaluesobj[this.trait.id]; //
+                let matches = false;
+                for (let i = 0; i < window.appConfiguration.modelFields.length; i++) {
+                    const element = window.appConfiguration.modelFields[i];
+                    if( element.name == inputValue ){
+                        matches = true;
+                        break;
+                    }                    
+                }
+                 
+                //let matches = window.appConfiguration.modelFields.find( p => p.name == inputValue );
+                return matches;
+            },  */
+
             getAppModelFields: function(trait){
                 //console.log( 'getAppModelFields()', trait );
                 //let inputValue = this.$refs.select?.inputValue || "";
@@ -94,8 +111,19 @@ function initTraitsEditor(){
                 console.log("Traits Editor onInputchanged", traitId, traitValue, trait );
                 let tr = traitsEditor.component.getTrait(traitId)
                 tr.setValue(traitValue);
+                //this.inputValue = traitValue;
                 markUnsavedChanges(true);
             }, 
+            /* onkeyup(){
+                let inputValue;
+                if( this.$refs.select ){
+                    inputValue = this.$refs.select.inputValue
+                }else{
+                    inputValue = this.traitvaluesobj[this.trait.id];
+                }
+                this.inputValue = inputValue;
+                this.$forceUpdate();
+            } */
             /* keyUp( event, trait ){
                 console.log( "input value: ", this.$refs.select.inputValue );
             }, */

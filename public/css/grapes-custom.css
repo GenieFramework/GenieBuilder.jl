@@ -605,3 +605,7 @@ button.gjs-btn-prim{
     color: #999;
     font-style: italic; */
 }
+
+.bindingMatch input{
+    color: #226ba7;
+}
