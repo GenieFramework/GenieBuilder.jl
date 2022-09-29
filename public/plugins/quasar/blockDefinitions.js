@@ -2860,9 +2860,9 @@
         "label": "Data Binding",
         "name": "v-model",
         "type": "Number",
-        "juliaType_": "Number",
+        "juliaType": "Number",
         "desc": "Model of the component (must be between min/max)",
-        "category": "model",
+        "category": "main properties",
         "examples": [
             "v-model=\"positionModel\""
         ],
@@ -2872,7 +2872,7 @@
         "label": "name",
         "name": ":name",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
         "category": "behavior",
         "examples": [
@@ -2884,9 +2884,9 @@
         "label": "min",
         "name": ":min",
         "type": "Number",
-        "juliaType_": "Number",
+        "juliaType": "Number",
         "desc": "Minimum value of the model; Set track's minimum value",
-        "category": "model",
+        "category": "main properties",
         "examples": [
             ":min=\"0\""
         ],
@@ -2896,9 +2896,9 @@
         "label": "max",
         "name": ":max",
         "type": "Number",
-        "juliaType_": "Number",
+        "juliaType": "Number",
         "desc": "Maximum value of the model; Set track's maximum value",
-        "category": "model",
+        "category": "main properties",
         "examples": [
             ":max=\"100\""
         ],
@@ -2908,9 +2908,9 @@
         "label": "inner-min",
         "name": ":inner-min",
         "type": "Number",
-        "juliaType_": "Number",
+        "juliaType": "Number",
         "desc": "Inner minimum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be higher or equal to 'min' prop; Defaults to 'min' prop",
-        "category": "model",
+        "category": "main properties",
         "examples": [
             ":inner-min=\"0\""
         ],
@@ -2920,9 +2920,9 @@
         "label": "inner-max",
         "name": ":inner-max",
         "type": "Number",
-        "juliaType_": "Number",
+        "juliaType": "Number",
         "desc": "Inner maximum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be lower or equal to 'max' prop; Defaults to 'max' prop",
-        "category": "model",
+        "category": "main properties",
         "examples": [
             ":inner-max=\"100\""
         ],
@@ -2932,9 +2932,9 @@
         "label": "step",
         "name": ":step",
         "type": "Number",
-        "juliaType_": "Number",
+        "juliaType": "Number",
         "desc": "Specify step amount between valid values (> 0.0); When step equals to 0 it defines infinite granularity",
-        "category": "model",
+        "category": "main properties",
         "examples": [
             ":step=\"1\""
         ],
@@ -2944,7 +2944,7 @@
         "label": "snap",
         "name": ":snap",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Snap on valid values, rather than sliding freely; Suggestion: use with 'step' prop",
         "category": "behavior",
         "enabled": true
@@ -2953,7 +2953,7 @@
         "label": "reverse",
         "name": ":reverse",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Work in reverse (changes direction)",
         "category": "behavior",
         "enabled": true
@@ -2962,7 +2962,7 @@
         "label": "vertical",
         "name": ":vertical",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Display in vertical direction",
         "category": "behavior",
         "enabled": true
@@ -2971,7 +2971,7 @@
         "label": "color",
         "name": ":color",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Color name for component from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -2984,7 +2984,7 @@
         "label": "track-color",
         "name": ":track-color",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Color name for the track (can be 'transparent' too) from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -2997,7 +2997,7 @@
         "label": "track-img",
         "name": ":track-img",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Apply a pattern image on the track",
         "category": "style",
         "examples": [
@@ -3009,7 +3009,7 @@
         "label": "inner-track-color",
         "name": ":inner-track-color",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Color name for the inner track (can be 'transparent' too) from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3022,7 +3022,7 @@
         "label": "inner-track-img",
         "name": ":inner-track-img",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Apply a pattern image on the inner track",
         "category": "style",
         "examples": [
@@ -3034,7 +3034,7 @@
         "label": "selection-color",
         "name": ":selection-color",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Color name for the selection bar (can be 'transparent' too) from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3047,7 +3047,7 @@
         "label": "selection-img",
         "name": ":selection-img",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Apply a pattern image on the selection bar",
         "category": "style",
         "examples": [
@@ -3059,7 +3059,7 @@
         "label": "label",
         "name": ":label",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Popup a label when user clicks/taps on the slider thumb and moves it",
         "category": "content",
         "enabled": true
@@ -3068,7 +3068,7 @@
         "label": "label-color",
         "name": ":label-color",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Color name for component from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3081,7 +3081,7 @@
         "label": "label-text-color",
         "name": ":label-text-color",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Color name for component from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3094,7 +3094,7 @@
         "label": "switch-label-side",
         "name": ":switch-label-side",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Switch the position of the label (top <-> bottom or left <-> right)",
         "category": "style",
         "enabled": true
@@ -3103,7 +3103,7 @@
         "label": "label-always",
         "name": ":label-always",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Always display the label",
         "category": "behavior|content",
         "enabled": true
@@ -3115,7 +3115,7 @@
             "Boolean",
             "Number"
         ],
-        "juliaType_": "Bool|Number",
+        "juliaType": "Bool|Number",
         "desc": "Display markers on the track, one for each possible value for the model or using a custom step (when specifying a Number)",
         "category": "content",
         "examples": [
@@ -3133,7 +3133,7 @@
             "Object",
             "Function"
         ],
-        "juliaType_": "Bool|Vector|Dict|Function",
+        "juliaType": "Bool|Vector|Dict|Function",
         "desc": "Configure the marker labels (or show the default ones if 'true'); Array of definition Objects or Object with key-value where key is the model and the value is the marker label definition",
         "category": "content",
         "examples": [
@@ -3149,7 +3149,7 @@
         "label": "marker-labels-class",
         "name": ":marker-labels-class",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "CSS class(es) to apply to the marker labels container",
         "category": "style",
         "examples": [
@@ -3161,7 +3161,7 @@
         "label": "switch-marker-labels-side",
         "name": ":switch-marker-labels-side",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Switch the position of the marker labels (top <-> bottom or left <-> right)",
         "category": "style",
         "enabled": true
@@ -3170,7 +3170,7 @@
         "label": "track-size",
         "name": ":track-size",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Track size (including CSS unit)",
         "category": "style",
         "examples": [
@@ -3182,7 +3182,7 @@
         "label": "thumb-size",
         "name": ":thumb-size",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Thumb size (including CSS unit)",
         "category": "style",
         "examples": [
@@ -3194,7 +3194,7 @@
         "label": "thumb-color",
         "name": ":thumb-color",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Color name for component from the Quasar Color Palette",
         "category": "style",
         "examples": [
@@ -3207,7 +3207,7 @@
         "label": "thumb-path",
         "name": ":thumb-path",
         "type": "String",
-        "juliaType_": "String",
+        "juliaType": "String",
         "desc": "Set custom thumb svg path",
         "category": "style",
         "examples": [
@@ -3219,7 +3219,7 @@
         "label": "dark",
         "name": ":dark",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Notify the component that the background is a dark color",
         "category": "style",
         "enabled": true
@@ -3228,7 +3228,7 @@
         "label": "dense",
         "name": ":dense",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Dense mode; occupies less space",
         "category": "style",
         "enabled": true
@@ -3237,7 +3237,7 @@
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Put component in disabled mode",
         "category": "state",
         "enabled": true
@@ -3246,7 +3246,7 @@
         "label": "readonly",
         "name": ":readonly",
         "type": "Boolean",
-        "juliaType_": "Bool",
+        "juliaType": "Bool",
         "desc": "Put component in readonly mode",
         "category": "state",
         "enabled": true
@@ -3258,7 +3258,7 @@
             "Number",
             "String"
         ],
-        "juliaType_": "Number|String",
+        "juliaType": "Number|String",
         "desc": "Tabindex HTML attribute value",
         "category": "general",
         "examples": [
@@ -3274,7 +3274,7 @@
             "String",
             "Number"
         ],
-        "juliaType_": "String|Number",
+        "juliaType": "String|Number",
         "desc": "Override default label value",
         "category": "content",
         "examples": [

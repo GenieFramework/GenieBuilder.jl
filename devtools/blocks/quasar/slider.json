@@ -12,7 +12,7 @@
       "type": "Number",
       "juliaType": "Number",
       "desc": "Model of the component (must be between min/max)",
-      "category": "model",
+      "category": "main properties",
       "examples": [
         "v-model=\"positionModel\""
       ],
@@ -36,7 +36,7 @@
       "type": "Number",
       "juliaType": "Number",
       "desc": "Minimum value of the model; Set track's minimum value",
-      "category": "model",
+      "category": "main properties",
       "examples": [
         ":min=\"0\""
       ],
@@ -48,7 +48,7 @@
       "type": "Number",
       "juliaType": "Number",
       "desc": "Maximum value of the model; Set track's maximum value",
-      "category": "model",
+      "category": "main properties",
       "examples": [
         ":max=\"100\""
       ],
@@ -60,7 +60,7 @@
       "type": "Number",
       "juliaType": "Number",
       "desc": "Inner minimum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be higher or equal to 'min' prop; Defaults to 'min' prop",
-      "category": "model",
+      "category": "main properties",
       "examples": [
         ":inner-min=\"0\""
       ],
@@ -72,7 +72,7 @@
       "type": "Number",
       "juliaType": "Number",
       "desc": "Inner maximum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be lower or equal to 'max' prop; Defaults to 'max' prop",
-      "category": "model",
+      "category": "main properties",
       "examples": [
         ":inner-max=\"100\""
       ],
@@ -84,7 +84,7 @@
       "type": "Number",
       "juliaType": "Number",
       "desc": "Specify step amount between valid values (> 0.0); When step equals to 0 it defines infinite granularity",
-      "category": "model",
+      "category": "main properties",
       "examples": [
         ":step=\"1\""
       ],
