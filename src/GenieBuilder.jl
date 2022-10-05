@@ -2,6 +2,9 @@ module GenieBuilder
 
 using Genie, Logging
 
+include("Generators.jl")
+using .Generators
+
 const GBDIR = Ref{String}("")
 const APPS_FOLDER = Ref{String}("")
 const DB_FOLDER = Ref{String}("")

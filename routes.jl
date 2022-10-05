@@ -103,10 +103,6 @@ function routes()
     ApplicationsController.uuid()
   end
 
-  route("$gb_route/logs") do
-    ApplicationsController.logs()
-  end
-
   channel("$gb_route/subscribe") do
     ApplicationsController.subscribe()
   end
