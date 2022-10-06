@@ -80,7 +80,7 @@ function postcreate(path) :: Nothing
               using Pkg;
               Pkg.activate(".");
               Pkg.update();
-              Pkg.develop("GenieFramework");
+              Pkg.add("GenieFramework");
   '`; dir = path)
   cmd |> run
 
@@ -140,7 +140,6 @@ function create(name, path = "", port = available_port())
 
     Base.Threads.@spawn begin
       try
-        # cmd = Cmd(`julia --project --startup-file=no -e "using Genie;Genie.Generator.newapp(\"$(name)\", autostart = false, interactive = false)"`; dir = path)
         isdir(new_app_path) || mkdir(new_app_path)
         cmd = Cmd(`julia --startup-file=no -e '
                     using Pkg;
