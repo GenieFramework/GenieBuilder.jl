@@ -20,7 +20,7 @@ Stipple = "4acbeb90-81a0-11ea-1966-bdaff8155998"
 [compat]
 Genie = "5.3"
 GenieAutoReload = "2"
-GenieDevTools = "1"
+GenieDevTools = "2"
 HTTP = "1"
 Inflector = "1"
 JSON3 = "1.9"
