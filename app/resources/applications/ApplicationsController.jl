@@ -76,19 +76,19 @@ end
 function postcreate(path) :: Nothing
   current_path = pwd()
 
-  cmd = Cmd(`julia --startup-file=no -e '
-              using Pkg;
-              Pkg.activate(".");
-              Pkg.update();
-              Pkg.add("GenieFramework");
-  '`; dir = path)
-  cmd |> run
+  # cmd = Cmd(`julia --startup-file=no -e '
+  #             using Pkg;
+  #             Pkg.activate(".");
+  #             Pkg.update();
+  #             Pkg.add("GenieFramework");
+  # '`; dir = path)
+  # cmd |> run
 
   cd(path)
 
   GenieBuilder.Generators.app()
   GenieBuilder.Generators.view()
-  GenieBuilder.Generators.assets()
+  # GenieBuilder.Generators.assets()
 
   cd(current_path)
 
