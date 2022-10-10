@@ -161,7 +161,11 @@ function app()
     @genietools
 
     @handlers begin
-      # server side handlers go in here
+      @out message = "Hello World!"
+
+      @onchange isready begin
+        @show "App is loaded"
+      end
     end
 
     @page("/", "app.jl.html")

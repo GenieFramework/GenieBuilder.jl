@@ -75,20 +75,10 @@ end
 
 function postcreate(path) :: Nothing
   current_path = pwd()
-
-  cmd = Cmd(`julia --startup-file=no -e '
-              using Pkg;
-              Pkg.activate(".");
-              Pkg.update();
-              Pkg.add("GenieFramework");
-  '`; dir = path)
-  cmd |> run
-
   cd(path)
 
   GenieBuilder.Generators.app()
   GenieBuilder.Generators.view()
-  # GenieBuilder.Generators.assets()
 
   cd(current_path)
 
@@ -257,15 +247,19 @@ function start(app)
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
         cmd = Cmd(`julia --startup-file=no -e '
-                                                using Pkg;Pkg.activate(".");
+                                                using Pkg;
+                                                Pkg.activate(".");
                                                 using GenieFramework;
                                                 using GenieFramework.Genie;
                                                 Core.eval(Main, :(const UserApp = $(@__MODULE__)))
                                                 Genie.genie(context = @__MODULE__);
-                                                up(async = false)'
-                  `; dir = fullpath(app))
-        cmd = addenv(cmd, "PORT" => app.port, "WSEXPPORT" => app.port, "CHANNEL__" => app.channel,
-                          "GENIE_ENV" => "dev", "GENIE_BANNER" => "false")
+                                                up(async = false);
+                  '`; dir = fullpath(app), detach = false)
+        cmd = addenv(cmd, "PORT" => app.port,
+                          "WSEXPPORT" => app.port,
+                          # "CHANNEL__" => app.channel,
+                          "GENIE_ENV" => "dev",
+                          "GENIE_BANNER" => "false")
         cmd |> run
       catch ex
         @error ex
@@ -316,7 +310,7 @@ function stop(app)
     try
       Base.throwto(appsthreads[fullpath(app)], InterruptException())
     catch ex
-      @error ex
+      @debug ex
     end
 
     delete!(appsthreads, fullpath(app))
