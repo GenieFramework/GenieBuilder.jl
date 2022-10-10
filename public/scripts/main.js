@@ -44,15 +44,25 @@ window.onload = () => {
 
     .then( (result)=>{
         console.log( "[chained] 2 pages list retrieved: ", result );
+        
         currentPage = result.filter( (page)=>{
-            return page.view == filePath;
+            if( Array.isArray(page) )
+                return page[0].view == filePath;
+            else
+                return page.view == filePath;
         } );
+        // Get first (and, in theory, "only" result)
         currentPage = currentPage[0];
+        // If array, get first element (the API implementation has an error here, returning
+        // An array when it should be an object. This check is to ensure the right object is retrieved regardless)
+        if( Array.isArray(currentPage) )
+            currentPage = currentPage[0];
+
         let fields = currentPage.model.fields;
         let parsedFields = [];
         for (let i = 0; i < fields.length; i++) {
-            const fieldName = fields[i];
-            const fieldType = currentPage.model.types[i];
+            const fieldName = fields[i].name;
+            const fieldType = fields[i].type;
             // to-do: use a whitelist or dictionary instead of these hardcoded values
             const typeSupported = fieldType.indexOf("String") >= 0 || fieldType.indexOf("Bool") >= 0 || fieldType.indexOf("Int64") >= 0;
             let fieldObject = { name: fieldName, value:fieldName, type: fieldType, typeSupported: typeSupported };
