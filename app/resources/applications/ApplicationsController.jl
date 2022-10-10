@@ -88,7 +88,7 @@ function postcreate(path) :: Nothing
 
   GenieBuilder.Generators.app()
   GenieBuilder.Generators.view()
-  GenieBuilder.Generators.assets()
+  # GenieBuilder.Generators.assets()
 
   cd(current_path)
 
