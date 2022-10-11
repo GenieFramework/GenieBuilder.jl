@@ -16,7 +16,7 @@ function getComponentData(){
     axios.get( url )
     .then( (result)=>{
 
-        let propsArray = [{ label: "Reactive Model", name: "v-model", type: "select", options: [] }];
+        let propsArray = [{ label: "Data Binding", name: "v-model", type: "select", options: [] }];
         for (const propName in result.data.props) {
             const element = result.data.props[propName];
             let traitType = element.type;

@@ -8,7 +8,7 @@ const customblock_quasar_avatar = editor => {
         model: {
             defaults: {
                 traits: [
-                    { label: 'Reactive Model', name: 'v-model', type: 'select', options: [] },
+                    { label: 'Data Binding', name: 'v-model', type: 'select', options: [] },
                     { label: 'color', name: ':color', type: 'text' },
                     { label: 'text-color', name: ':text-color', type: 'text' },
                     { label: 'icon', name: ':icon', type: 'text' },

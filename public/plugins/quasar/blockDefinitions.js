@@ -196,7 +196,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -733,7 +733,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -1129,7 +1129,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -1171,7 +1171,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -1213,7 +1213,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -2123,7 +2123,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -2323,7 +2323,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -2577,7 +2577,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -3319,7 +3319,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -3857,7 +3857,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -4222,7 +4222,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -4481,7 +4481,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -4793,7 +4793,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -5058,7 +5058,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -5140,7 +5140,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -5357,7 +5357,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -5439,7 +5439,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -6888,7 +6888,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -7147,7 +7147,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -7259,7 +7259,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -7845,7 +7845,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
@@ -8154,7 +8154,7 @@
                 defaults: {
                     traits: [
     {
-        "label": "Reactive Model",
+        "label": "Data Binding",
         "name": "v-model",
         "type": "select",
         "options": []
