@@ -61,8 +61,14 @@ window.onload = () => {
         let fields = currentPage.model.fields;
         let parsedFields = [];
         for (let i = 0; i < fields.length; i++) {
-            const fieldName = fields[i].name;
-            const fieldType = fields[i].type;
+            let field = fields[i];
+            const fieldName = field.name;
+            const fieldType = field.type;
+            // Discard internal fields (ending with "__")
+            let isInternalVariable = field.name.endsWith("__");
+            if( isInternalVariable ){
+                continue;
+            }
             // to-do: use a whitelist or dictionary instead of these hardcoded values
             const typeSupported = fieldType.indexOf("String") >= 0 || fieldType.indexOf("Bool") >= 0 || fieldType.indexOf("Int64") >= 0;
             let fieldObject = { name: fieldName, value:fieldName, type: fieldType, typeSupported: typeSupported };
