@@ -58,6 +58,7 @@ function notify(message::String,
         :timestamp  => Dates.now()
       ) |> JSON3.write
     )
+    @debug "Notification from app id $appid : $message"
   catch ex
     @error ex
   end
@@ -222,7 +223,7 @@ function isdeleted(app)
 end
 
 function watch(path, appid)
-  Genie.config.watch_handlers[appid.value] = [()->ApplicationsController.notify("changed:files", appid)]
+  Genie.config.watch_handlers["$(appid.value)"] = [()->ApplicationsController.notify("changed:files", appid)]
   Genie.Watch.watchpath(path)
   @async Genie.Watch.watch()
 end
