@@ -220,7 +220,10 @@ function initTraitsEditor(){
                 let categories = [];
 
                 this.enabledTraits.forEach( (trait)=>{ 
-                    let cat = trait.attributes.category || "General";
+                    let cat = trait.attributes.category || "main properties";
+                    if( (trait.id=="id" || trait.id=="title" ) && cat == "main properties" )
+                        return;
+                        
                     if( this.categoriesStatus[cat] === undefined)
                         this.categoriesStatus[cat] = true;
 
