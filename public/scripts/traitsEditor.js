@@ -220,6 +220,10 @@ function initTraitsEditor(){
                 let categories = [];
 
                 this.enabledTraits.forEach( (trait)=>{ 
+                    // Prevent v-textfrom being shown in non-editable components
+                    if( !this.component.attributes.editable && trait.attributes.name == "v-text" )
+                        return;
+
                     let cat = trait.attributes.category || "main properties";
                     if( (trait.id=="id" || trait.id=="title" ) && cat == "main properties" )
                         return;
