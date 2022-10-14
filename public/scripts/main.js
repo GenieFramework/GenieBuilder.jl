@@ -1,3 +1,6 @@
+let appConfig;
+let currentPage;
+
 window.onload = () => {
     console.log( "---onLoad()" );
     const queryString = window.location.search;
@@ -12,9 +15,8 @@ window.onload = () => {
         return;
     }
 
-    let currentPage;
 
-    let appConfig = {
+    appConfig = {
         url: null,
         vueAppName: modelName, 
         contentScripts: [], 
@@ -43,42 +45,7 @@ window.onload = () => {
     })
 
     .then( (result)=>{
-        console.log( "[chained] 2 pages list retrieved: ", result );
-        
-        currentPage = result.filter( (page)=>{
-            if( Array.isArray(page) )
-                return page[0].view == filePath;
-            else
-                return page.view == filePath;
-        } );
-        // Get first (and, in theory, "only" result)
-        currentPage = currentPage[0];
-        // If array, get first element (the API implementation has an error here, returning
-        // An array when it should be an object. This check is to ensure the right object is retrieved regardless)
-        if( Array.isArray(currentPage) )
-            currentPage = currentPage[0];
-
-        let fields = currentPage.model.fields;
-        let parsedFields = [];
-        for (let i = 0; i < fields.length; i++) {
-            let field = fields[i];
-            const fieldName = field.name;
-            const fieldType = field.type;
-            // Discard internal fields (ending with "__")
-            let isInternalVariable = field.name.endsWith("__");
-            if( isInternalVariable ){
-                continue;
-            }
-            // to-do: use a whitelist or dictionary instead of these hardcoded values
-            const typeSupported = fieldType.indexOf("String") >= 0 || fieldType.indexOf("Bool") >= 0 || fieldType.indexOf("Int64") >= 0;
-            let fieldObject = { name: fieldName, value:fieldName, type: fieldType, typeSupported: typeSupported };
-            parsedFields.push( fieldObject );            
-        }
-        /* currentPage.model.fields.map( field=>{
-            return { name: field, value:field };
-        } ); */
-        appConfig.modelFields = parsedFields;
-        console.log( "[chained] 2 Current Page: ", currentPage, fields, parsedFields );
+        parseAppPages(result);
 
         let deps = currentPage.deps;
         // PArse dependencies
@@ -97,7 +64,7 @@ window.onload = () => {
       ];
       // Define a list of libraries/Assets not needed in the editor context
       // and avoid loading them to optimise newtwork/memory/cpu resources
-      const blackList = [ "plotly", "quasar", "vueresize", "vueplotly" ];
+      const blackList = [ "plotly", "quasar", "vueresize", "vueplotly"/* , "autoreload" */ ];
       deps.scripts.forEach( (item)=>{
          //appConfig.contentScripts.push( appConfig.url + item );
          const scriptPath = appConfig.url + item;
@@ -139,3 +106,44 @@ window.onload = () => {
         initNoCodeEditor();  
     })
   };
+
+
+  function parseAppPages(result){
+    console.log( "[chained] 2 pages list retrieved: ", result );
+        
+        currentPage = result.filter( (page)=>{
+            if( Array.isArray(page) )
+                return page[0].view == filePath;
+            else
+                return page.view == filePath;
+        } );
+        // Get first (and, in theory, "only" result)
+        currentPage = currentPage[0];
+        // If array, get first element (the API implementation has an error here, returning
+        // An array when it should be an object. This check is to ensure the right object is retrieved regardless)
+        if( Array.isArray(currentPage) )
+            currentPage = currentPage[0];
+
+        let fields = currentPage.model.fields;
+        let parsedFields = [];
+        for (let i = 0; i < fields.length; i++) {
+            let field = fields[i];
+            const fieldName = field.name;
+            const fieldType = field.type;
+            // Discard internal fields (ending with "__")
+            let isInternalVariable = field.name.endsWith("__");
+            if( isInternalVariable ){
+                continue;
+            }
+            // to-do: use a whitelist or dictionary instead of these hardcoded values
+            const typeSupported = fieldType.indexOf("String") >= 0 || fieldType.indexOf("Bool") >= 0 || fieldType.indexOf("Int64") >= 0;
+            let fieldObject = { name: fieldName, value:fieldName, type: fieldType, typeSupported: typeSupported };
+            parsedFields.push( fieldObject );            
+        }
+        /* currentPage.model.fields.map( field=>{
+            return { name: field, value:field };
+        } ); */
+        appConfig.modelFields = parsedFields;
+        console.log( "[chained] 2 Current Page: ", currentPage, fields, parsedFields );
+
+  }

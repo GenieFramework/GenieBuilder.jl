@@ -47,6 +47,10 @@ function initTraitsEditor(){
         methods: {
             onFocus(){
                 console.log( "onFocus" );
+                ApiConnector.getProjectPages()
+                .then((result)=>{
+                    parseAppPages(result);
+                })
             },
             filterFn (val, update, abort) {          
                 setTimeout(() => {
