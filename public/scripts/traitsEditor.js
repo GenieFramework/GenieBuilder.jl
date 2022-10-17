@@ -46,11 +46,12 @@ function initTraitsEditor(){
         `></q-select>`, 
         methods: {
             onFocus(){
-                console.log( "onFocus" );
+                // Refresh here not needed as the whole no-code editor is refreshed on each change
+                /* console.log( "onFocus" );
                 ApiConnector.getProjectPages()
                 .then((result)=>{
                     parseAppPages(result);
-                })
+                }) */
             },
             filterFn (val, update, abort) {          
                 setTimeout(() => {
