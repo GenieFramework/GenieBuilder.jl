@@ -470,6 +470,15 @@ function initNoCodeEditor(){
 
   editor.on('component:selected', (model) => {
     console.log("component selected: ", model);
+
+    // Add default traits
+    /* const component = editor.getSelected();
+    component.addTrait({
+      name: 'DUMMY_NAME', 
+      type: "checkbox",
+      changeProp: 1
+    }, { at: 0 }); */
+
     window.selectedElementModel = model;
     window.traitsEditor?.assignComponent( model );
 
@@ -510,6 +519,52 @@ function initNoCodeEditor(){
     let containerHtml = '<div id="editableDOM" class="container">';
     currentTemplate = containerHtml + currentTemplate + '</div>';
   }
+
+  // Inject common traits
+  /* editor.DomComponents.getTypes()[30].model.getDefaults().traits.push(
+    {
+          name: 'TEST1', 
+          type: "checkbox",
+          changeProp: 1
+        }, { at: 0 }
+        
+    ) */
+  let componentTypes = editor.DomComponents.getTypes();
+  console.log( 'componentTypes', componentTypes );
+  componentTypes.forEach( (componentType) => {
+    let componentModel = componentType.model;
+    console.log( '  - componentModel.id', componentModel.id );
+  });
+
+  componentTypes.forEach(component => {
+    let componentTraits = component.model.getDefaults().traits;
+    let hasVtext = componentTraits.find( trait => trait.name == 'v-text' );
+    if( !hasVtext ){
+      componentTraits.push({
+        //component.addTrait({
+          name: 'v-text', 
+          type: "text",
+          label: 'Text Binding', 
+          category: 'main properties',
+          changeProp: 1
+        });
+      }
+    let hasVif = componentTraits.find( trait => trait.name == 'v-if' );
+    if( !hasVif ){
+      componentTraits.push({
+      //component.addTrait({
+        name: 'v-if', 
+        type: "text",
+        label: 'Condition',
+        category: 'main properties',
+        changeProp: 1
+      });
+    }
+    /* }, { at: 0 }); */
+  });
+  //[67].model.getDefaults().traits
+
+
   editor.addComponents( currentTemplate );
   editor.setStyle( appConfiguration.grapesStyles );
   console.log( "grapesjs styles injected: ", appConfiguration.grapesStyles );

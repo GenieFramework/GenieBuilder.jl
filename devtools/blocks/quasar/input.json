@@ -7,7 +7,7 @@
     "media": "images/icons/components/ui_components/input_text_field.png", 
     "traits": [
   {
-    "label": "Reactive Model",
+    "label": "Data Binding",
     "name": "v-model",
     "type": "select",
     "options": []

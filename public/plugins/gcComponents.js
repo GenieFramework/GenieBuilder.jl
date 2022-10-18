@@ -130,7 +130,7 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ 
-            /* { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
+            /* { label: 'Data Binding', name: 'v-model', type:'select', options: [] }, 
             { label: 'Label', name: 'label', type:'text' },                     
             { label: 'Hint', name: 'hint', type:'text' },                     
             { label: 'Max Length', name: 'maxlength', type:'number' },       */               
@@ -175,7 +175,7 @@ const myNewComponentTypes = editor => {
       model: {
         defaults: { 
           traits: [ 
-            /* { label: 'Reactive Model', name: 'v-model', type:'select', options: [] }, 
+            /* { label: 'Data Binding', name: 'v-model', type:'select', options: [] }, 
             { label: 'Label', name: 'label', type:'text' },                     
             { label: 'Hint', name: 'hint', type:'text' },                     
             { label: 'Max Length', name: 'maxlength', type:'number' },       */               
@@ -857,7 +857,7 @@ const myNewComponentTypes = editor => {
           defaults: {
               traits: [
                 /* {
-                  "label": "Reactive Model",
+                  "label": "Data Binding",
                   "name": "v-model",
                   "type": "select",
                   "options": []

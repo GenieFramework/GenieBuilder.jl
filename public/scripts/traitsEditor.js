@@ -46,7 +46,12 @@ function initTraitsEditor(){
         `></q-select>`, 
         methods: {
             onFocus(){
-                console.log( "onFocus" );
+                // Refresh here not needed as the whole no-code editor is refreshed on each change
+                /* console.log( "onFocus" );
+                ApiConnector.getProjectPages()
+                .then((result)=>{
+                    parseAppPages(result);
+                }) */
             },
             filterFn (val, update, abort) {          
                 setTimeout(() => {
@@ -220,7 +225,14 @@ function initTraitsEditor(){
                 let categories = [];
 
                 this.enabledTraits.forEach( (trait)=>{ 
-                    let cat = trait.attributes.category || "General";
+                    // Prevent v-textfrom being shown in non-editable components
+                    if( !this.component.attributes.editable && trait.attributes.name == "v-text" )
+                        return;
+
+                    let cat = trait.attributes.category || "main properties";
+                    if( (trait.id=="id" || trait.id=="title" ) && cat == "main properties" )
+                        return;
+                        
                     if( this.categoriesStatus[cat] === undefined)
                         this.categoriesStatus[cat] = true;
 
