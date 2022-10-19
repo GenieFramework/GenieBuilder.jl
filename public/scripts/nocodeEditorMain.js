@@ -255,11 +255,8 @@ function initNoCodeEditor(){
     editor.Panels.addButton('options', {  // Fist argument is part of container element's class (i.e. "gjs-pn-options")
     //id: 'myNewButton',
     //label: 'Gn',
-    label: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <mask id="path-1-inside-1_53_197" fill="white">
-    <rect width="18" height="18" rx="1"/>
-    </mask>
-    <rect width="18" height="18" rx="1" stroke="#305972" stroke-width="4" stroke-linejoin="round" stroke-dasharray="3 1" mask="url(#path-1-inside-1_53_197)"/>
+    label: `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17 1H3C1.89543 1 1 1.89543 1 3V17C1 18.1046 1.89543 19 3 19H17C18.1046 19 19 18.1046 19 17V3C19 1.89543 18.1046 1 17 1Z" fill="#F9FBFB" stroke="#305972" stroke-width="2" stroke-dasharray="4 1"/>
     </svg>`,
     command: 'sw-visibility',
     attributes: { title: 'View Components' },
@@ -313,6 +310,7 @@ function initNoCodeEditor(){
     active: false,
   });
 
+
   const pn = editor.Panels;
   const panelViews = pn.addPanel({
     id: "views"
@@ -328,6 +326,8 @@ function initNoCodeEditor(){
       id: "open-code"
     }
   ]);
+
+
 
   // remove the default, offical, trait manager button
   editor.Panels.getPanel('views').get('buttons').remove('open-tm');
