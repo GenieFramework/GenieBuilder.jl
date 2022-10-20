@@ -453,6 +453,7 @@ function initNoCodeEditor(){
           name: 'v-text', 
           type: "text",
           label: 'Text Binding', 
+          desc: 'Binds the content of the component to @in or @out variable defined in the app', 
           category: 'main properties',
           changeProp: 1
         });
@@ -464,10 +465,15 @@ function initNoCodeEditor(){
         name: 'v-if', 
         type: "text",
         label: 'Condition',
+        desc: 'Display in UI if condition evaluates to true', 
         category: 'main properties',
         changeProp: 1
       });
     }
+    let vModelAttribute = componentTraits.find( trait => trait.name == 'v-model' );
+    if( vModelAttribute ){
+      vModelAttribute.desc = 'Binds the value of the component to @in or @out variable defined in the app';
+      } 
   });
 
 
