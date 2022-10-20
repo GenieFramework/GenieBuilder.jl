@@ -269,7 +269,10 @@ const myNewComponentTypes = editor => {
         defaults: { 
           traits: [ 
             //{ label: 'Binded Text', name: 'v-text', type:'select', options: [] }, 
-          ] 
+          ], 
+          editable: true,
+          droppable: true,
+          draggable: true,
         },
         init() { 
           const { model } = this; // model is the component
