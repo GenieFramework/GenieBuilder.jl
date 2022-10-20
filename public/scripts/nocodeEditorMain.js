@@ -31,9 +31,6 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* window.onerror = function (msg, url, line) {
-  console.log( "CATCHED ERROR: ", msg, url, line );
-} */
 
 
 window.autorun = false;
@@ -52,54 +49,14 @@ function initNoCodeEditor(){
            Editor's Basic properties
     ------------------------------------------------------- */
     plugins: [ ...customPlugins, 'gjs-preset-webpage', 
-    /* "bootstrap.bundle", 
-    "bootstrap.bundle.min", 
-    "bootstrap", 
-    "bootstrap.min", 
-    "change-styles-html", 
-    "grapes.min", 
-    */
-    /* "grapesjs-blocks-avance",  */
-    /* "grapesjs-blocks-basic",  */
-    /* "grapesjs-echarts",  */
     "grapesjs-ga", 
-    /* "grapesjs-navbar", 
-    "grapesjs-page-break",  */
-
-    /* "grapesjs-plugin-forms",  */
-    /* "grapesjs-plugin-header",  */
     "grapesjs-rte-extensions", 
     "grapesjs-rulers", 
-    
-    /*"grapesjs-blocks-bootstrap4", 
-    "grapesjs-blocks-flexbox", 
-    "grapesjs-code-editor", */
     "grapesjs-component-code-editor", 
-    /*"grapesjs-custom-code", 
-    "grapesjs-echarts", 
-    "grapesjs-ga", 
-    "grapesjs-navbar", 
-    "grapesjs-page-break",  */
     "grapesjs-parser-postcss", 
-    /* "grapesjs-plugin-actions", 
-    "grapesjs-plugin-carousel", 
-    "grapesjs-plugin-export", 
-    "grapesjs-plugin-forms", 
-    "grapesjs-plugin-header", 
-    "grapesjs-rte-extensions", 
-    "grapesjs-rulers", 
-    "grapesjs-script-editor", 
-    "grapesjs-shape-divider", 
-    */
     "grapesjs-table", 
-    /*
-    "grapesjs-touch", 
-    "jquery.slim", 
-    "nocode", 
-    "popper" */
     "grapesjs-style-filter", 
     "grapesjs-style-bg", 
-    /* "grapesjs-tooltip" */
     ],
     pluginsOpts: {
       'gjs-preset-webpage': { showStylesOnChange:0, blocksBasicOpts: false, blocks:[], countdownOpts: false, formsOpts: false, exportOpts: false, aviaryOpts: false, filestackOpts: false, navbarOpts: false,   }, 
@@ -254,15 +211,6 @@ function initNoCodeEditor(){
   editor.Panels.addButton('options', {  // Fist argument is part of container element's class (i.e. "gjs-pn-options")
     //id: 'myNewButton',
     //label: 'Gn',
-    className: 'fa fa-database',
-    command: 'show-genie-model',
-    attributes: { title: 'Show Geniel model' },
-    active: false,
-  });
-
-  editor.Panels.addButton('options', {  // Fist argument is part of container element's class (i.e. "gjs-pn-options")
-    //id: 'myNewButton',
-    //label: 'Gn',
     className: 'fa fa-repeat',
     command: 'refresh-nocode-editor',
     attributes: { title: 'Refresh no-code editor' },
@@ -279,9 +227,7 @@ function initNoCodeEditor(){
     id: 'ruler-visibility'
   });
 
-  editor.Panels.addButton('options', {  // Fist argument is part of container element's class (i.e. "gjs-pn-options")
-    //id: 'myNewButton',
-    //label: 'Gn',
+  editor.Panels.addButton('options', {  
     className: 'fa fa-floppy-disk',
     command: 'save-content',
     attributes: { title: 'Save Design', id:'saveButton' },
@@ -304,7 +250,7 @@ function initNoCodeEditor(){
     }
   ]);
 
-  // remove the default, offical, trait manager button
+  // remove the default, official, trait manager button
   editor.Panels.getPanel('views').get('buttons').remove('open-tm');
 
   let editPanel = null;
@@ -362,17 +308,7 @@ function initNoCodeEditor(){
                               </div>
                               </div>
                               <div class="gjs-field gjs-field-text" style="">
-                                <trait-field :trait="trait" :traitvaluesobj="traitValuesObj"></trait-field>`+
-                                /*<q-select
-                                  new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
-                                  v-model="traitValuesObj[trait.id]" 
-                                  :title="getTraitTooltipText(trait)"
-                                  :options="getAppModelFields(trait)"
-                                  :placeholder="trait.attributes.juliaType?.split('|').join(', ')||'Type not set'" 
-                                  @input="onInputChanged(trait)" 
-                                  @keyup="keyUp($event, trait)"
-                                ></q-select>*/
-                                  `<!-- <textarea :title="getTraitTooltipText(trait)" class="gn_input" style="min-height: 30px; height: 30px;" v-model="traitValuesObj[trait.id]" @keyup="onInputChanged(trait)" @change="onInputChanged(trait)"></textarea> -->
+                                <trait-field :trait="trait" :traitvaluesobj="traitValuesObj"></trait-field>
                               </div>
                           </div>
                         </div>
@@ -444,21 +380,7 @@ function initNoCodeEditor(){
     markUnsavedChanges(true);
    });
 
-  /* editor.on('run:preview', () => {
-    console.log("entered preview");
 
-    let currentTemplate = editor.getHtml();
-    currentTemplate = currentTemplate.replaceAll( `id="editableDOM"`, `id="${vueAppName}"` );   
-    //editor.addComponents(currentTemplate);
-    canvasWindow.createPreviewElements( currentTemplate );
-    window.startPreview();
-  });
-  editor.on('stop:preview', () => {
-    console.log("Exited preview");
-    window.stopPreview();
-   
-      canvasDocument.querySelector(`#${vueAppName}`).remove();
-  }); */
   editor.on('component:input', (model) => {
     console.log("component::input ", model);
     let currentTemplate = editor.getHtml( { cleanId:true } );
@@ -470,14 +392,6 @@ function initNoCodeEditor(){
 
   editor.on('component:selected', (model) => {
     console.log("component selected: ", model);
-
-    // Add default traits
-    /* const component = editor.getSelected();
-    component.addTrait({
-      name: 'DUMMY_NAME', 
-      type: "checkbox",
-      changeProp: 1
-    }, { at: 0 }); */
 
     window.selectedElementModel = model;
     window.traitsEditor?.assignComponent( model );
@@ -520,15 +434,6 @@ function initNoCodeEditor(){
     currentTemplate = containerHtml + currentTemplate + '</div>';
   }
 
-  // Inject common traits
-  /* editor.DomComponents.getTypes()[30].model.getDefaults().traits.push(
-    {
-          name: 'TEST1', 
-          type: "checkbox",
-          changeProp: 1
-        }, { at: 0 }
-        
-    ) */
   let componentTypes = editor.DomComponents.getTypes();
   console.log( 'componentTypes', componentTypes );
   componentTypes.forEach( (componentType) => {
@@ -560,9 +465,7 @@ function initNoCodeEditor(){
         changeProp: 1
       });
     }
-    /* }, { at: 0 }); */
   });
-  //[67].model.getDefaults().traits
 
 
   editor.addComponents( currentTemplate );
@@ -571,8 +474,6 @@ function initNoCodeEditor(){
 
   window.lastSavedHTML = editor.getHtml( { cleanId:true } );
 
-
-  runVue();
 }
 
 function markUnsavedChanges( yesNo ){
@@ -583,15 +484,13 @@ function markUnsavedChanges( yesNo ){
 
 function logEvent( message ){
   console.log( 'logEvent', message );
-  parent.postMessage( 
-    message, "*");
+  parent.postMessage( message, "*");
 }
 
 function savePage(){
   let currentTemplate = editor.getHtml( { cleanId:true } );
   let currentStyles = editor.getCss({ avoidProtected: true });
   console.log( "Grapes CSS styles: ", currentStyles );
-
   window.lastSavedHTML = currentTemplate;
   
   // remove body tag
@@ -603,11 +502,9 @@ function savePage(){
   if( containerDivPresent >= 0 ){
     currentTemplate = currentTemplate.replace( containerHtml, ``);    
     currentTemplate = currentTemplate.replace(new RegExp( '</div>' + '$'), '');
-
   }
 
   console.log( "savePage() called 3" );
-  //console.log( "savePage() called: \n", currentTemplate );
   parent.postMessage( 
     {
       command: "saveContent", 
@@ -624,17 +521,4 @@ function savePage(){
     window.unsavedChanges = false;
 }
 
-function runVue(){
-  let checker = setInterval( ()=>{
-    let vueApp = window[ appConfiguration.vueAppName ];
-    let rootElement = document.getElementById('app_panel');
-      console.log("runVue #app_panel", rootElement, vueApp )
-      if( rootElement && window.initStipple /* && vueApp */ ){ 
-          initStipple("#app_panel");
-          initWatchers();
-          app_ready();
-          //initLocalVueModelWatcher();
-          clearInterval(checker);
-      }
-  }, 2000);
-}
+
