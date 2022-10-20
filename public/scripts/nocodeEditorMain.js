@@ -253,6 +253,9 @@ function initNoCodeEditor(){
   // remove the default, official, trait manager button
   editor.Panels.getPanel('views').get('buttons').remove('open-tm');
 
+  // Enable the components visibility button by default
+  editor.Panels.getButton('options', 'sw-visibility').set('active', true);
+
   let editPanel = null;
   const panelViewsContainer = pn.addPanel({
     id: "viewsContainer"
