@@ -29,8 +29,9 @@ html, body {
 }
 /*--color icons & some text*/
 .gjs-two-color{ 
-    color:#132c3b!important;
+    color:#273b48!important;
 }
+
 /*--color active icons*/
 .gjs-four-color{
     opacity:1!important;
@@ -93,7 +94,7 @@ html, body {
     box-shadow: 0px 3px 6px rgba(2, 26, 34, 0.06);
     border-bottom:1px solid rgba(255, 255, 255, 0)!important;
     border-left:1px solid #DDE1E3!important;
-    padding-bottom:3px!important;
+    padding-bottom:1px!important;
 }
 
 
@@ -712,7 +713,7 @@ span.cm-number{
 }
 
 .warningIcon.gjs-pn-btn{
-    color:rgb(255, 0, 81)!important;
+    color:#ff6600!important;
 }
 
 /* .gjs-dashed *[data-gjs-highlightable]{
