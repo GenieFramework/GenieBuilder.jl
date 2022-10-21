@@ -48,6 +48,29 @@ function initNoCodeEditor(){
   console.log( "initNoCodeEditor()" );
   // Initialize the editor instance
   const editor = window.editor = grapesjs.init({
+  
+    // Canvas styles
+    canvasCss: `
+      .gjs-selected {
+        outline:2px solid #305972!important;
+        outline-offset: -2px!important;
+      },
+      .gjs-dashed *[data-gjs-highlightable] {
+        outline: 1px dashed #798588!important;
+        outline-offset: -2px!important;
+      },
+    iframe[style="position: fixed; width: 100%; height: 100%]{
+      border:2px solid orange!important;"
+    },
+    iframe{
+      border:2px solid orange!important;
+      border-style: solid!important;
+      border-color: orange!important;
+      border-image: initial;
+      border-width: 6px!important;
+    }
+    `,
+
     /* -------------------------------------------------------
            Editor's Basic properties
     ------------------------------------------------------- */
