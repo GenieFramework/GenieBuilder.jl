@@ -236,7 +236,7 @@ html, body {
     /*border:1px solid #E7E6E3!important;*/
 }
 .gjs-clm-tags #gjs-clm-checkbox, .gjs-clm-tags #gjs-clm-close{
-    color:#30597291!important;
+    color:#305972ea!important;
 }
 .gjs-clm-sel-rule{
     opacity:1!important;
@@ -416,7 +416,7 @@ iframe.gjs-frame{
     height:30px!important;
 }
 .q-field__control {
-    color:#3059726e!important;
+    color:#305972c3!important;
 }
 .gjs-editor-cont ::-webkit-scrollbar-thumb{
     background:#F0f4f4!important;
@@ -438,7 +438,6 @@ iframe.gjs-frame{
     transition: border-color 0.36s cubic-bezier(0.4,0,0.2,0.5)
 }
 .gjs-field input{
-
     border: 1px solid #28404f2b!important;
     border-radius:3px!important;
 }
@@ -479,9 +478,7 @@ button.gjs-btn-prim:hover{
     color: #305972!important;
     fill: #305972!important
 }
-.gjs-sm-layers{
-    border:1px solid #28404f14!important;
-}
+
 
 input[type="range"]{
     color: #305972!important;
@@ -492,7 +489,7 @@ input[type="range"]{
     font-family:'Inter', sans-serif!important;
 }
 .gjs-cm-editor#gjs-cm-htmlmixed #gjs-cm-title,.gjs-cm-editor#gjs-cm-css #gjs-cm-title{
-    color:#797e82!important;
+    color:#565c61!important;
     text-shadow:none!important;
 }
 #gjs-cm-title{
@@ -542,7 +539,7 @@ input[type="range"]{
     color:rgb(255, 0, 89)!important;
 }
 .cm-attribute{
-    color:rgb(215, 157, 10)!important;
+    color:rgb(0, 60, 255)!important;
 }
 .cm-builtin{
     color:#305972!important;
@@ -650,6 +647,7 @@ span.cm-number{
     height: min-content;
     top: 10px;
     position: relative;
+    background:#f0f4f4!important;
 }
 
 .gjs-trt-trait .q-field__native{
@@ -724,12 +722,31 @@ span.cm-number{
 
 .q-item{
     min-height: 28px !important;
+    font-size:14px!important;
+}
+
+.q-manual-focusable--focused{
+    background-color:rgb(255, 255, 255)!important;
+}
+body.desktop .q-focusable:focus>.q-focus-helper, body.desktop .q-hoverable:hover>.q-focus-helper, body.desktop .q-manual-focusable--focused>.q-focus-helper{
+    background:#ddf0ff!important;
+}
+.q-item--active, .q-item.q-router-link--active{
+    background:#e7eaee!important;
+}
+
+.gjs-field{
+    background:#f0f4f4!important;
 }
 
 .gjs-field-colorp{
     border-left:1px solid #28404f2b!important;
 }
 
+.q-item--active, .q-item.q-router-link--active{
+    background:#30597220!important;
+    color: #305972!important;
+}
 .warningIcon.gjs-pn-btn{
     color:#ff6600!important;
 }
@@ -742,11 +759,44 @@ span.cm-number{
 #active-frame{
     border:2px solid yellow!important;
 }
+.gjs-sm-layers{
+    border:1px solid #28404f14!important;
+    background-color:white!important;
+}
+.gjs-field-integer{
+    background-color:white!important;
+}
+#gjs-sm-input-holder>select{
+    background-color:white!important;
+    background:white!important;
+}
+.gjs-sm-input-holder>input[type="text"]{
+    background-color:white!important;
+    background:white!important;
+}
+.gjs-input-holder{
+    background-color:white!important;
+    background:white!important;
+}
+/* .gjs-sm-sector .gjs-sm-field input, .gjs-clm-tags .gjs-sm-field input, .gjs-sm-sector .gjs-clm-select input, .gjs-clm-tags .gjs-clm-select input, .gjs-sm-sector .gjs-clm-field input, .gjs-clm-tags .gjs-clm-field input, .gjs-sm-sector .gjs-sm-field select, .gjs-clm-tags .gjs-sm-field select, .gjs-sm-sector .gjs-clm-select select, .gjs-clm-tags .gjs-clm-select select, .gjs-sm-sector .gjs-clm-field select, .gjs-clm-tags .gjs-clm-field select{
+    background-color:white!important;
+    background:white!important;
+} */
+
+.gjs-radio-item-label{
+    background-color:white!important;
+}
+.gjs-field textarea{
+    background-color:white!important;
+}
+.gjs-input-unit{
+    background-color:rgba(255, 255, 255, 0)!important;
+}
 
 
-
-span.fa-square-o{ order: 1; 
-    padding-top:6px!important;
+span[title="View components"]{ order: 1; 
+    padding-top:5px!important;
+    padding-bottom:3px!important;
 }
 span.fa-ruler{ 
     order: 2;
@@ -757,5 +807,7 @@ span.fa-undo{ order: 3;
     padding-left:30px!important;}
 span.fa-redo{ order: 4; }
 span.fa-arrows-rotate{ order: 5; }
-span.fa-floppy-disk{ order: 6; }
+span.fa-floppy-disk{ 
+    order: 6; 
+    padding-right:20px!important;}
 
