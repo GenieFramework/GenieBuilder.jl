@@ -11,7 +11,8 @@ q-separator, q-space, q-toolbar, q-editor, q-radio, q-input, q-select, q-checkbo
   background: #f0f0f0;
   position: relative;
   min-height: 40px;
-  display: block;
+  min-width: 100px;
+  display: inline-block;
   text-align: center;
   margin: 1px;
   border: dashed 1.9px #00000050;
