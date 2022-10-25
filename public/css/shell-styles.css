@@ -239,3 +239,7 @@ img.blockIcon{
 .gjs-sm-sector-title {
   padding-left: 15px;
 }
+
+.gjs-selected{
+  outline:2px solid #305972!important;
+}

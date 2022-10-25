@@ -10,7 +10,7 @@ setTimeout(function(){
 
     /*StyleText = StyleText.replaceAll("!important","");*/
 
-    StyleText = StyleText.replaceAll("#3b97e3","#306AFF");
+    StyleText = StyleText.replaceAll("#3b97e3","#305972",);
 
     /*StyleText = StyleText.replaceAll("outline-offset: -2px","outline-offset: 0");*/
     StyleText = StyleText.replaceAll("outline-offset: -3px","outline-offset: -2px");
