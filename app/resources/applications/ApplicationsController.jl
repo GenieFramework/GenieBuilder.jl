@@ -17,6 +17,8 @@ using Dates
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
 
+const PORTS_RANGE = 50_000:50_100
+
 const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
 
@@ -26,6 +28,12 @@ const ONLINE_STATUS = "online"
 const ERROR_STATUS = "error"
 const STARTING_STATUS = "starting"
 const STOPPING_STATUS = "stopping"
+
+struct UnavailablePortException <: Exception
+  msg::Symbol
+end
+
+Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " port is not available")
 
 fullpath(app::Application) = abspath(app.path * app.name)
 get(appid) = SearchLight.findone(Application, id = parse(Int, appid))
@@ -497,10 +505,18 @@ function pages(app)
 end
 
 function available_port()
-  replport = rand(50_000:60_000)
-  isempty(find(Application, replport = replport)) || available_port()
+  isempty(SearchLight.find(Application)) && return first(PORTS_RANGE)
+  usedports = [app.replport for app in SearchLight.find(Application)]
 
-  replport
+  available_port = 0
+  for p in PORTS_RANGE
+    if p ∉ usedports
+      available_port = p
+      break
+    end
+  end
+  available_port == 0 && throw(UnavailablePortException)
+  return available_port
 end
 
 function startrepl(app)
