@@ -17,7 +17,7 @@ using Dates
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
 
-const PORTS_RANGE = 50_000:50_100
+const PORTS_RANGE = 9101:9110
 
 const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
