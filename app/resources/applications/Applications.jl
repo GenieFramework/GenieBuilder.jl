@@ -13,7 +13,7 @@ export Application
 @kwdef mutable struct Application <: AbstractModel
   id::DbId        = DbId()
   name::String    = ""
-  port::Int       = rand(10_000:65_535)
+  port::Int       = 0
   path::String    = "/apps/"
   status::String  = "offline"
   channel::String = Stipple.channelfactory()

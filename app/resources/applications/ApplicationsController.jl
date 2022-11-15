@@ -18,6 +18,7 @@ const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
 
 const PORTS_RANGE = 9101:9110
+const PORTS_RANGE = 9001:9010
 
 const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
@@ -33,7 +34,7 @@ struct UnavailablePortException <: Exception
   msg::String
 end
 
-Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " \nPlease free ports in range to create GenieBuilder App")
+Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " \nplease free Ports to create GenieBuilder App")
 
 fullpath(app::Application) = abspath(app.path * app.name)
 get(appid) = SearchLight.findone(Application, id = parse(Int, appid))
@@ -103,12 +104,12 @@ function run_as_genie_app(filepath::String)
   create(name, filepath)
 end
 
-function create(name, path = "", port = available_port())
+function create(name, path = "", port = 0)
   name = Genie.Generator.validname(name)
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
-
-  app = Application(; name, path, port, replport = available_port())
+  port, replport = available_port()
+  app = Application(; name, path, port=port, replport=replport)
   persist_status(app, :creating)
 
   try
@@ -505,18 +506,23 @@ function pages(app)
 end
 
 function available_port()
-  isempty(SearchLight.find(Application)) && return first(PORTS_RANGE)
-  usedports = [app.replport for app in SearchLight.find(Application)]
+  isempty(SearchLight.find(Application)) && return (first(PORTS_RANGE), first(PORTS_RANGE)+1)
+  @info "records -> $(SearchLight.find(Application))"
+  usedports = [app.port for app in SearchLight.find(Application)]
+  last(usedports)+1 >= last(PORTS_RANGE) && throw("$PORTS_RANGE ports are all in use, delete some apps")
 
   available_port = 0
-  for p in PORTS_RANGE
+  p = first(PORTS_RANGE)
+  while p < last(PORTS_RANGE)
     if p ∉ usedports
       available_port = p
       break
     end
+    p += 2
   end
+
   available_port == 0 && throw(UnavailablePortException("$PORTS_RANGE ports are all in use"))
-  return available_port
+  return (available_port, available_port + 1)
 end
 
 function startrepl(app)
