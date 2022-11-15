@@ -18,7 +18,6 @@ const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
 
 const PORTS_RANGE = 9101:9110
-const PORTS_RANGE = 9001:9010
 
 const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
@@ -507,7 +506,6 @@ end
 
 function available_port()
   isempty(SearchLight.find(Application)) && return (first(PORTS_RANGE), first(PORTS_RANGE)+1)
-  @info "records -> $(SearchLight.find(Application))"
   usedports = [app.port for app in SearchLight.find(Application)]
   last(usedports)+1 >= last(PORTS_RANGE) && throw("$PORTS_RANGE ports are all in use, delete some apps")
 
