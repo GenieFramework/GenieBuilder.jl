@@ -30,10 +30,10 @@ const STARTING_STATUS = "starting"
 const STOPPING_STATUS = "stopping"
 
 struct UnavailablePortException <: Exception
-  msg::Symbol
+  msg::String
 end
 
-Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " port is not available")
+Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " \nPlease free ports in range to create GenieBuilder App")
 
 fullpath(app::Application) = abspath(app.path * app.name)
 get(appid) = SearchLight.findone(Application, id = parse(Int, appid))
@@ -515,7 +515,7 @@ function available_port()
       break
     end
   end
-  available_port == 0 && throw(UnavailablePortException)
+  available_port == 0 && throw(UnavailablePortException("$PORTS_RANGE ports are all in use"))
   return available_port
 end
 
