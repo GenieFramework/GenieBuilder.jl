@@ -461,7 +461,9 @@ function initNoCodeEditor(){
     let message = {
       command: "logEvent", 
       eventName: "blockAdded",
-      eventDetail: model.attributes.tagName
+      app_id: window.projectId, 
+      block_id: model.attributes.tagName,
+      block_name: model.attributes.type
     };
     console.log("Block added: ", model, message );
     logEvent( message );
