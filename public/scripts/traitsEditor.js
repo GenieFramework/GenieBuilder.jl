@@ -39,19 +39,25 @@ function initTraitsEditor(){
             @input="onInputChanged(trait)" `+
             /* @keyup="keyUp($event, trait)"  */
             `@filter="filterFn" 
-            @focus="onFocus" 
+            @focus="onFocus(trait)" 
             class="propSelect"` + 
             /* @keyup="onkeyup" 
             :class="{bindingMatch: inputValueMatchesModelProperty() }" */
         `></q-select>`, 
         methods: {
-            onFocus(){
-                // Refresh here not needed as the whole no-code editor is refreshed on each change
-                /* console.log( "onFocus" );
-                ApiConnector.getProjectPages()
-                .then((result)=>{
-                    parseAppPages(result);
-                }) */
+            onFocus(trait){
+                console.log( 'onInputFocus()', trait );
+                let message = {
+                    command: "logEvent", 
+                    eventName: "componentPropertyFocused",
+                    eventDetail: {
+                        app_id: window.projectId, 
+                        block_id: selectedElementModel.attributes.tagName,
+                        block_name: selectedElementModel.attributes.type, 
+                        property_name: trait.id
+                    }
+                  };
+                  logEvent( message );
             },
             filterFn (val, update, abort) {          
                 setTimeout(() => {
@@ -119,6 +125,18 @@ function initTraitsEditor(){
                 tr.setValue(traitValue);
                 //this.inputValue = traitValue;
                 markUnsavedChanges(true);
+
+                let message = {
+                    command: "logEvent", 
+                    eventName: "componentPropertyChanged",
+                    eventDetail: {
+                        app_id: window.projectId, 
+                        block_id: selectedElementModel.attributes.tagName,
+                        block_name: selectedElementModel.attributes.type, 
+                        property_name: trait.id
+                    }
+                  };
+                  logEvent( message );
             }, 
             /* onkeyup(){
                 let inputValue;
