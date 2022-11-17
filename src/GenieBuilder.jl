@@ -46,7 +46,7 @@ function go()
   cd(normpath(@__DIR__, ".."))
   Genie.go()
   try
-    @eval Genie.up(; async = false)
+    Genie.up(; ws_port = Genie.config.websockets_port, async = false)
   catch ex
     @error ex
     stop()
