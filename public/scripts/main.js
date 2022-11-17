@@ -1,10 +1,12 @@
 let appConfig;
 let currentPage;
 
+
 window.onload = () => {
     console.log( "---onLoad()" );
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
+
     const projectId = window.projectId = urlParams.get('appid');
     const appName = window.appName = urlParams.get('appname');
     const appPath = window.appPath = urlParams.get('apppath');
@@ -37,7 +39,7 @@ window.onload = () => {
         for (let i = 0; i < result.length; i++) {
             const appInfo = result[i];
             if( appInfo.id.value == ApiConnector.projectId ){
-                appConfig.url = `http://${ApiConnector.hostName}:${appInfo.port}`;
+                appConfig.url = `${GlobalConfig.GBJL_PROTOCOL}://${GlobalConfig.GBJL_HOST}:${appInfo.port}`;
                 break;
             }
         }

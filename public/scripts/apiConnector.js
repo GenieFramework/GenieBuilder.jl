@@ -2,10 +2,8 @@ class ApiConnector{
     constructor(){
       console.log( "new APiConnector created!");
     }
-    static hostName = "127.0.0.1";
-    static port = "10101";
     static get baseUrl(){
-      return `http://${ApiConnector.hostName}:${ApiConnector.port}/api/v1/apps/`
+      return `${GlobalConfig.GBJL_PROTOCOL}://${GlobalConfig.GBJL_HOST}:${GlobalConfig.GBJL_PORT}${GlobalConfig.GBJL_PATH}api/v1/apps/`
     }
     static projectId = null;
     static appsList = [];
