@@ -470,6 +470,21 @@ function initNoCodeEditor(){
     console.log("Block added: ", model, message );
     logEvent( message );
   });
+  editor.on('component:remove', (removed) => {
+    if (removed === editor.getSelected()) {
+      let message = {
+        command: "logEvent", 
+        eventName: "blockRemoved",
+        eventDetail: {
+          app_id: window.projectId, 
+          block_id: removed.attributes.tagName,
+          block_name: removed.attributes.type
+        }
+      };
+      console.log("Block removed: ", removed, message );
+      logEvent( message );
+    }
+   })
 
 
 
