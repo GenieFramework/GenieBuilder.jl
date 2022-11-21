@@ -10,14 +10,16 @@ import Stipple
 
 export Application
 
+const UNASSIGNED_PORT = 0
+
 @kwdef mutable struct Application <: AbstractModel
   id::DbId        = DbId()
   name::String    = ""
-  port::Int       = 0
+  port::Int       = UNASSIGNED_PORT
   path::String    = "/apps/"
   status::String  = "offline"
   channel::String = Stipple.channelfactory()
-  replport::Int   = 0
+  replport::Int   = UNASSIGNED_PORT
 end
 
 function SearchLight.Validation.validator(::Type{Application})
