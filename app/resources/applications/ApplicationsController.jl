@@ -20,7 +20,7 @@ DotEnv.config()
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
 
-const PORTS_RANGE = parse(Int, ENV["START_PORT_RANGE"]):parse(Int, ENV["END_PORT_RANGE"])
+const PORTS_RANGE = parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
 
 const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
