@@ -13,6 +13,7 @@ using JSON3
 using GenieDevTools
 using Genie.WebChannels
 using Dates
+using DotEnv
 
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
@@ -26,6 +27,16 @@ const ONLINE_STATUS = "online"
 const ERROR_STATUS = "error"
 const STARTING_STATUS = "starting"
 const STOPPING_STATUS = "stopping"
+const UNDEFINED_PORT = 0
+
+DotEnv.config()
+const PORTS_RANGE = parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
+
+struct UnavailablePortException <: Exception
+  msg::String
+end
+
+Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " \nplease free Ports to create GenieBuilder App")
 
 fullpath(app::Application) = abspath(app.path * app.name)
 get(appid) = SearchLight.findone(Application, id = parse(Int, appid))
@@ -95,12 +106,12 @@ function run_as_genie_app(filepath::String)
   create(name, filepath)
 end
 
-function create(name, path = "", port = available_port())
+function create(name, path = "", port = UNDEFINED_PORT)
   name = Genie.Generator.validname(name)
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
-
-  app = Application(; name, path, port, replport = available_port())
+  port, replport = available_port()
+  app = Application(; name, path, port=port, replport=replport)
   persist_status(app, :creating)
 
   try
@@ -497,10 +508,22 @@ function pages(app)
 end
 
 function available_port()
-  replport = rand(50_000:60_000)
-  isempty(find(Application, replport = replport)) || available_port()
+  apps = SearchLight.find(Application)
+  isempty(apps) && return (first(PORTS_RANGE), first(PORTS_RANGE)+1)
+  usedports = [app.port for app in apps] |> sort!
 
-  replport
+  available_port = 0
+  p = first(PORTS_RANGE)
+  while p < last(PORTS_RANGE)
+    if p ∉ usedports && p+1 ∉ usedports
+      available_port = p
+      break
+    end
+    p += 2
+  end
+
+  available_port == UNDEFINED_PORT && throw(UnavailablePortException("$(PORTS_RANGE) ports are all in use"))
+  return (available_port, available_port + 1)
 end
 
 function startrepl(app)

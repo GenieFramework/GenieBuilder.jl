@@ -5,6 +5,7 @@ version = "0.12.0"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+DotEnv = "4dc1fcf4-5e3b-5448-94ab-0c38ec0385c1"
 Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
 GenieAutoReload = "c6228e60-a24f-11e9-1776-c313472ebacc"
 GenieDevTools = "4e5d9629-6565-4102-a9ff-45c707eb060e"
