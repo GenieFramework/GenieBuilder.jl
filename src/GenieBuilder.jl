@@ -47,7 +47,7 @@ function go()
   cd(normpath(@__DIR__, ".."))
   Genie.go()
   try
-    Genie.up(; ws_port = WS_PORT, async = false)
+    Genie.up(; async = false)
   catch ex
     @error ex
     stop()

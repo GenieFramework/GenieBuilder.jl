@@ -1,6 +1,6 @@
 using Genie, Logging
 
-const config = Genie.Configuration.config!(
+Genie.config = Genie.Configuration.config!(
   server_port                     = 10101,
   websockets_port                 = 10102,
   server_host                     = "127.0.0.1",
@@ -13,7 +13,7 @@ const config = Genie.Configuration.config!(
   cors_allowed_origins            = ["*"]
 )
 
-config.cors_headers["Access-Control-Allow-Origin"] = "*"
-config.cors_headers["Access-Control-Allow-Headers"] = "Content-Type"
+Genie.config.cors_headers["Access-Control-Allow-Origin"] = "*"
+Genie.config.cors_headers["Access-Control-Allow-Headers"] = "Content-Type"
 
 ENV["JULIA_REVISE"] = "auto"
