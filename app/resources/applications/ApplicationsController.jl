@@ -20,7 +20,7 @@ DotEnv.config()
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
 
-const PORTS_RANGE = 9101:9110
+const PORTS_RANGE = parse(Int, ENV["START_PORT_RANGE"]):parse(Int, ENV["END_PORT_RANGE"])
 
 const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
@@ -508,10 +508,9 @@ function pages(app)
 end
 
 function available_port()
-  apps = SearchLight.find(applicable)
+  apps = SearchLight.find(Application)
   isempty(apps) && return (first(PORTS_RANGE), first(PORTS_RANGE)+1)
   usedports = [app.port for app in apps]
-  #max(usedports)+1 >= max(PORTS_RANGE) && throw("$PORTS_RANGE ports are all in use, delete some apps")
 
   available_port = 0
   p = first(PORTS_RANGE)
