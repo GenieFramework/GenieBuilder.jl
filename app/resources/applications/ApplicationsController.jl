@@ -27,6 +27,7 @@ const ONLINE_STATUS = "online"
 const ERROR_STATUS = "error"
 const STARTING_STATUS = "starting"
 const STOPPING_STATUS = "stopping"
+const UNDEFINED_PORT = 0
 
 DotEnv.config()
 const PORTS_RANGE = parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
@@ -521,7 +522,7 @@ function available_port()
     p += 2
   end
 
-  available_port == 0 && throw(UnavailablePortException("$(PORTS_RANGE) ports are all in use"))
+  available_port == UNDEFINED_PORT && throw(UnavailablePortException("$(PORTS_RANGE) ports are all in use"))
   return (available_port, available_port + 1)
 end
 
