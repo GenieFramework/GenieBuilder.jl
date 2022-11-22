@@ -20,8 +20,8 @@ end
 appsdir = joinpath(gbdir[], "apps")
 
 function installgb()
-  isdir(gbdir[]) || mkdir(gbdir[])
-  isdir(appsdir) || mkdir(appsdir)
+  isdir(gbdir[]) || mkpath(gbdir[])
+  isdir(appsdir) || mkpath(appsdir)
 
   cp(joinpath(@__DIR__, "Manifest.toml"), joinpath(gbdir[], "Manifest.toml"))
   cd(gbdir[])
