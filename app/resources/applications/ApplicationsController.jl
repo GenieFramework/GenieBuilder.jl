@@ -268,8 +268,8 @@ function start(app)
                                                 up(async = false);
                   '`; dir = fullpath(app), detach = false)
         cmd = addenv(cmd, "PORT" => app.port,
+                          "WSPORT" => app.port,
                           "WSEXPPORT" => app.port,
-                          # "CHANNEL__" => app.channel,
                           "GENIE_ENV" => "dev",
                           "GENIE_BANNER" => "false")
         cmd |> run
