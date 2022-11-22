@@ -15,12 +15,8 @@ using Genie.WebChannels
 using Dates
 using DotEnv
 
-DotEnv.config()
-
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
-
-const PORTS_RANGE = parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
 
 const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
@@ -31,6 +27,9 @@ const ONLINE_STATUS = "online"
 const ERROR_STATUS = "error"
 const STARTING_STATUS = "starting"
 const STOPPING_STATUS = "stopping"
+
+DotEnv.config()
+const PORTS_RANGE = parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
 
 struct UnavailablePortException <: Exception
   msg::String
