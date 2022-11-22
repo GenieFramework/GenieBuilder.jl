@@ -106,7 +106,7 @@ function run_as_genie_app(filepath::String)
   create(name, filepath)
 end
 
-function create(name, path = "", port = 0)
+function create(name, path = "", port = UNDEFINED_PORT)
   name = Genie.Generator.validname(name)
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
@@ -510,12 +510,12 @@ end
 function available_port()
   apps = SearchLight.find(Application)
   isempty(apps) && return (first(PORTS_RANGE), first(PORTS_RANGE)+1)
-  usedports = [app.port for app in apps]
+  usedports = [app.port for app in apps] |> sort!
 
   available_port = 0
   p = first(PORTS_RANGE)
   while p < last(PORTS_RANGE)
-    if p ∉ usedports
+    if p ∉ usedports && p+1 ∉ usedports
       available_port = p
       break
     end
