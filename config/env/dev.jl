@@ -2,6 +2,7 @@ using Genie, Logging
 
 const config = Genie.Configuration.config!(
   server_port                     = 10101,
+  websockets_port                 = 10102,
   server_host                     = "127.0.0.1",
   log_level                       = Logging.Info,
   log_to_file                     = false,

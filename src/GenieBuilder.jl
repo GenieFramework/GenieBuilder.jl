@@ -12,6 +12,7 @@ const DB_NAME = Ref{String}("")
 const DB_CONFIG_FILE = Ref{String}("")
 const LOG_FOLDER = Ref{String}("")
 const RUN_STATUS = Ref{Symbol}() # :install or :update
+const WS_PORT = 10102
 
 function __init__()
   GBDIR[] = pwd()
@@ -46,7 +47,7 @@ function go()
   cd(normpath(@__DIR__, ".."))
   Genie.go()
   try
-    @eval Genie.up(; async = false)
+    Genie.up(; ws_port = WS_PORT, async = false)
   catch ex
     @error ex
     stop()
