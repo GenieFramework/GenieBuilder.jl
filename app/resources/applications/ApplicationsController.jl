@@ -419,15 +419,25 @@ function uuid()
     touch(uuidstore_filepath)
     uuid = Genie.Secrets.secret_token()[end-11:end]
 
-    open(uuidstore_filepath, "w") do io
-      write(io, uuid)
+    try
+      open(uuidstore_filepath, "w") do io
+        write(io, uuid)
+      end
+    catch ex
+      @error "filed to write secret to $uuidstore_filepath", ex
     end
 
     (:uuid => uuid) |> json
   else
-    open(uuidstore_filepath, "r") do io
-      (:uuid => readline(io)) |> json
+    try
+      open(uuidstore_filepath, "r") do io
+        return (:uuid => readline(io)) |> json
+      end
+    catch ex
+      @error "failed to Read from $uuidstore_filepath scratchspace", ex
     end
+
+    (:uuid => Genie.Secrets.secret_token()[end-11:end]) |> json
   end
 end
 
