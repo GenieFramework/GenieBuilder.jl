@@ -14,6 +14,7 @@ using GenieDevTools
 using Genie.WebChannels
 using Dates
 using DotEnv
+using Scratch
 
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
@@ -28,6 +29,9 @@ const ERROR_STATUS = "error"
 const STARTING_STATUS = "starting"
 const STOPPING_STATUS = "stopping"
 const UNDEFINED_PORT = 0
+
+const UUIDSTORE_FILENAME = "uuidstore.txt"
+const GB_SCRATCH_SPACE_NAME = "gbuuid"
 
 DotEnv.config()
 const PORTS_RANGE = parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
@@ -409,7 +413,32 @@ function purge(app)
 end
 
 function uuid()
-  (:uuid => Genie.Secrets.secret_token()[end-11:end]) |> json
+  uuidstore_filepath = joinpath(@get_scratch!(GB_SCRATCH_SPACE_NAME), UUIDSTORE_FILENAME)
+
+  if !isfile(uuidstore_filepath)
+    touch(uuidstore_filepath)
+    uuid = Genie.Secrets.secret_token()[end-11:end]
+
+    try
+      open(uuidstore_filepath, "w") do io
+        write(io, uuid)
+      end
+    catch ex
+      @error "filed to write secret to $uuidstore_filepath", ex
+    end
+
+    (:uuid => uuid) |> json
+  else
+    try
+      open(uuidstore_filepath, "r") do io
+        return (:uuid => readline(io)) |> json
+      end
+    catch ex
+      @error "failed to Read from $uuidstore_filepath scratchspace", ex
+    end
+
+    (:uuid => Genie.Secrets.secret_token()[end-11:end]) |> json
+  end
 end
 
 function json2json(res)
