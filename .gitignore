@@ -42,4 +42,4 @@ Thumbs.db
 node_modules/
 
 # Database
-# db/*.sqlite
+db/*.sqlite3
