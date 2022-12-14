@@ -218,7 +218,7 @@ function initNoCodeEditor(){
   // Load the Vue app for Custom blocks manager
   const app = new Vue({
     el: '.blocks-wrp',
-    data: { blocks: [] },
+    data: { blocks: [], props:null },
     mounted() {
       editor.on('block:custom', this.handleBlocks);
     },
@@ -231,13 +231,31 @@ function initNoCodeEditor(){
         this.blocks = props.blocks;
         this.dragStart = props.dragStart;
         this.dragStop = props.dragStop;
+        this.drag = props.drag;
+        this.props = props;
         // Move inside the default container if exists
         const cnt = props.container;
         cnt && cnt.appendChild(this.$el);
       },
+      /* startDrag(e) {
+        const { config, em, model } = this;
+        const disable = model.get('disable');
+        //Right or middel click
+        if (e.button !== 0 || !config.getSorter || this.el.draggable || disable) return;
+        em.refreshCanvas();
+        const sorter = config.getSorter();
+        sorter.setDragHelper(this.el, e);
+        sorter.setDropContent(this.model.get('content'));
+        sorter.startSort(this.el);
+        on(document, 'mouseup', this.endDrag);
+      }, */
       onDragStart(block) {
         console.log( 'onDragStart' );
-        this.dragStart(block);
+        let result = this.dragStart(block);
+      },
+      onDrag(block) {
+        console.log( 'onDrag' );
+        this.drag(block);
       },
       onDragStop() {
         console.log( 'onDragStop' );
