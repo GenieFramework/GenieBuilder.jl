@@ -10,6 +10,10 @@ If you want to install the GenieBuilder VSCode plugin, please visit the VSCode m
 * Start a Julia REPL in the app's folder: `$ julia --project`
 * Instantiate the dependencies: `pkg> instantiate`
 
+## Dockerizing GenieBuilder App
+
+Check the instructions [here](https://github.com/GenieFramework/DockerizedGBApp). We have Dockerized a sample GenieBuilder App along with recipe to create package compiler system image and using that `.so` image.
+
 ## Load the app
 
 In the app's folder: `$ bin/repl`.
