@@ -15,6 +15,7 @@ using Genie.WebChannels
 using Dates
 using DotEnv
 using Scratch
+using ZipFile
 
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
@@ -410,6 +411,30 @@ function purge(app)
   end
 
   (:status => status) |> json
+end
+
+function download(app)
+  try
+    app_path = fullpath(app)
+    app_name = basename(app_path)
+    w = ZipFile.Writer("/tmp/$app_name.zip")
+
+    for file in readdir(app_path)
+      filepath = abspath(joinpath(app_path, file))
+      f = open(filepath, "r")
+      content = read(f, String)
+      close(f)
+      zf = ZipFile.addfile(w, filepath)
+      write(zf, content)
+    end
+
+  catch ex
+    println(ex)
+  finally
+    close(w)
+  end
+
+  return (joinpath("/tmp/$app_name.zip"))
 end
 
 function uuid()
