@@ -414,27 +414,44 @@ function purge(app)
 end
 
 function download(app)
+  app_path = fullpath(app)
+  @info app_path
+  app_name = basename(app_path)
   try
-    app_path = fullpath(app)
-    app_name = basename(app_path)
-    w = ZipFile.Writer("/tmp/$app_name.zip")
+    w = if Sys.iswindows()
+      @info "Windows ...."
+      ZipFile.Writer(joinpath("C:\\WINDOWS\\Temp","$app_name.zip"))
+    else
+      ZipFile.Writer("/tmp/$app_name.zip")
+    end
 
     for file in readdir(app_path)
       filepath = abspath(joinpath(app_path, file))
+      @show filepath
       f = open(filepath, "r")
       content = read(f, String)
       close(f)
       zf = ZipFile.addfile(w, filepath)
       write(zf, content)
     end
-
+    close(w)
   catch ex
     println(ex)
-  finally
-    close(w)
   end
 
-  return (joinpath("/tmp/$app_name.zip"))
+  Genie.Router.download("$app_name.zip", root = "C:\\WINDOWS\\Temp")
+
+  if Sys.iswindows()
+    Genie.Router.download("$app_name.zip", root = "C:\\WINDOWS\\Temp")
+  else
+    Genie.Router.download("$app_name.zip", root = "/tmp")
+  end
+
+  # zip_path = if Sys.iswindows()
+  #   joinpath("C:\\WINDOWS\\Temp","$app_name.zip")
+  # else
+  #   (joinpath("/tmp/$app_name.zip"))
+  # end
 end
 
 function uuid()
