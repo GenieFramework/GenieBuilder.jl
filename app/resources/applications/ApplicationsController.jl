@@ -415,23 +415,17 @@ end
 
 function download(app)
   app_path = fullpath(app)
-  @info app_path
-  app_name = basename(app_path)
-  try
-    w = if Sys.iswindows()
-      @info "Windows ...."
-      ZipFile.Writer(joinpath("C:\\WINDOWS\\Temp","$app_name.zip"))
-    else
-      ZipFile.Writer("/tmp/$app_name.zip")
-    end
+  appname = basename(app_path)
+  zip_temp_path = Sys.iswindows() ? "C:\\WINDOWS\\Temp" : "/tmp"
 
+  try
+    w = ZipFile.Writer(joinpath(zip_temp_path, "$appname.zip"))
     for file in readdir(app_path)
       filepath = abspath(joinpath(app_path, file))
-      @show filepath
       f = open(filepath, "r")
       content = read(f, String)
       close(f)
-      zf = ZipFile.addfile(w, filepath)
+      zf = ZipFile.addfile(w, basename(filepath))
       write(zf, content)
     end
     close(w)
@@ -439,19 +433,7 @@ function download(app)
     println(ex)
   end
 
-  Genie.Router.download("$app_name.zip", root = "C:\\WINDOWS\\Temp")
-
-  if Sys.iswindows()
-    Genie.Router.download("$app_name.zip", root = "C:\\WINDOWS\\Temp")
-  else
-    Genie.Router.download("$app_name.zip", root = "/tmp")
-  end
-
-  # zip_path = if Sys.iswindows()
-  #   joinpath("C:\\WINDOWS\\Temp","$app_name.zip")
-  # else
-  #   (joinpath("/tmp/$app_name.zip"))
-  # end
+  Genie.Router.download("$appname.zip", root = zip_temp_path)
 end
 
 function uuid()
