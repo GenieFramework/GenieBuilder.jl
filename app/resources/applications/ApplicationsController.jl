@@ -420,13 +420,16 @@ function download(app)
 
   try
     w = ZipFile.Writer(joinpath(zip_temp_path, "$appname.zip"))
-    for file in readdir(app_path)
-      filepath = abspath(joinpath(app_path, file))
-      f = open(filepath, "r")
-      content = read(f, String)
-      close(f)
-      zf = ZipFile.addfile(w, basename(filepath))
-      write(zf, content)
+    
+    for (root, dirs, files) in walkdir(app_path)
+      for file in files
+        filepath = joinpath(root, file)
+        f = open(filepath, "r")
+        content = read(f, String)
+        close(f)
+        zf = ZipFile.addfile(w, basename(filepath))
+        write(zf, content)
+      end
     end
     close(w)
   catch ex
