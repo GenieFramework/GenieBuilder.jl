@@ -416,7 +416,7 @@ end
 function download(app)
   app_path = fullpath(app)
   appname = basename(app_path)
-  zip_temp_path = Sys.iswindows() ? "C:\\WINDOWS\\Temp" : "/tmp"
+  zip_temp_path = Sys.iswindows() ? "C:/WINDOWS/Temp" : "/tmp"
 
   try
     w = ZipFile.Writer(joinpath(zip_temp_path, "$appname.zip"))
@@ -427,7 +427,8 @@ function download(app)
         f = open(filepath, "r")
         content = read(f, String)
         close(f)
-        zf = ZipFile.addfile(w, basename(filepath))
+        zipfilepath = appname *  split(filepath, appname)[2]
+        zf = ZipFile.addfile(w, zipfilepath)
         write(zf, content)
       end
     end
