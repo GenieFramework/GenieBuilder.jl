@@ -417,24 +417,26 @@ function download(app)
   app_path = fullpath(app)
   appname = basename(app_path)
   zip_temp_path = Sys.iswindows() ? "C:/WINDOWS/Temp" : "/tmp"
+  w = ZipFile.Writer(joinpath(zip_temp_path, "$appname.zip"))
+  compress = true
 
   try
-    w = ZipFile.Writer(joinpath(zip_temp_path, "$appname.zip"))
-    
     for (root, dirs, files) in walkdir(app_path)
-      for file in files
+      Threads.@threads for file in files
         filepath = joinpath(root, file)
         f = open(filepath, "r")
         content = read(f, String)
         close(f)
         zipfilepath = appname *  split(filepath, appname)[2]
-        zf = ZipFile.addfile(w, zipfilepath)
+        zf = ZipFile.addfile(w, zipfilepath; method=(compress ? ZipFile.Deflate : ZipFile.Store))
         write(zf, content)
       end
     end
     close(w)
   catch ex
-    println(ex)
+    @error "failed to write zip file: ", ex
+  finally
+    close(w)
   end
 
   Genie.Router.download("$appname.zip", root = zip_temp_path)
