@@ -422,7 +422,7 @@ function download(app)
 
   try
     for (root, dirs, files) in walkdir(app_path)
-      Threads.@threads for file in files
+      for file in files
         filepath = joinpath(root, file)
         f = open(filepath, "r")
         content = read(f, String)
