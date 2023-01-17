@@ -124,6 +124,10 @@ function gbup(delay = 0)::Nothing
   nothing
 end
 
+function user_activity(user_activity_status)
+  return Dict("user_status" => user_activity_status)
+end
+
 end # GenieCloud
 
 end
