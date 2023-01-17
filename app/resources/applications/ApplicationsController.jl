@@ -5,7 +5,6 @@ import GenieBuilder
 using GenieBuilder.Applications
 using SearchLight
 using Genie
-using Genie.Router
 using Genie.Renderers.Json
 using Genie.Requests
 using HTTP
@@ -13,8 +12,8 @@ using JSON3
 using GenieDevTools
 using Genie.WebChannels
 using Dates
-using DotEnv
 using Scratch
+using GenieBuilder.Integrations
 
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
@@ -22,19 +21,25 @@ const apphost = "http://127.0.0.1"
 const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
 
-const DELETED_STATUS = "deleted"
-const OFFLINE_STATUS = "offline"
-const ONLINE_STATUS = "online"
-const ERROR_STATUS = "error"
+const CREATING_STATUS = "creating"
 const STARTING_STATUS = "starting"
+const ONLINE_STATUS   = "online"
 const STOPPING_STATUS = "stopping"
+const OFFLINE_STATUS  = "offline"
+const DELETING_STATUS = "deleting"
+const DELETED_STATUS  = "deleted"
+const ERROR_STATUS    = "error"
+
 const UNDEFINED_PORT = 0
 
 const UUIDSTORE_FILENAME = "uuidstore.txt"
 const GB_SCRATCH_SPACE_NAME = "gbuuid"
-
-DotEnv.config()
-const PORTS_RANGE = parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
+const PORTS_RANGE = try
+  parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
+catch ex
+  @error ex
+  9101:10100
+end
 
 struct UnavailablePortException <: Exception
   msg::String
@@ -115,8 +120,8 @@ function create(name, path = "", port = UNDEFINED_PORT)
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
   port, replport = available_port()
-  app = Application(; name, path, port=port, replport=replport)
-  persist_status(app, :creating)
+  app = Application(; name, path, port, replport)
+  app.status = CREATING_STATUS
 
   try
     app = save!(app)
@@ -191,6 +196,12 @@ function persist_status(app::Union{Application,Nothing}, status) :: Bool
   catch ex
     @error ex
     false
+  end
+
+  try
+    Integrations.GenieCloud.updateapp(app)
+  catch ex
+    @error ex
   end
 
   true
@@ -644,12 +655,9 @@ function ready() :: Nothing
   @info "GenieBuilder ready! RUN_STATUS = $(GenieBuilder.RUN_STATUS[])"
 
   notify("ended:gbstart", nothing)
-  GenieBuilder.RUN_STATUS[] == :install && @async begin
-    sleep(20)
-    notify("terms:show", nothing)
-  end
 
-  import_apps()
+  (@async import_apps()) |> errormonitor
+  (@async Integrations.GenieCloud.init()) |> errormonitor
 
   nothing
 end

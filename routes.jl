@@ -92,7 +92,7 @@ function routes()
   end
 
   route("$gb_route/startrepl") do
-    port = ApplicationsController.available_port()
+    port = ApplicationsController.available_port() |> first
 
     @async serve_repl(port)
 
