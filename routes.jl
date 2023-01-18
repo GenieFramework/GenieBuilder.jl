@@ -84,6 +84,10 @@ function routes()
     ApplicationsController.purge(params(:appid) |> ApplicationsController.get)
   end
 
+  route("$api_route$app_route/download") do
+    ApplicationsController.download(params(:appid) |> ApplicationsController.get)
+  end
+
   route("$api_route$user_status_route") do
     UsersController.inactive()
   end
