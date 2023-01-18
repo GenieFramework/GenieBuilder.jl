@@ -120,6 +120,7 @@ function gbup(delay = 0)::Nothing
                         headers = GC_API_HEADERS,
                         body = Dict("status" => GenieBuilder.ApplicationsController.ONLINE_STATUS) |> JSON3.write
                       )
+  @info response.body |> String
 
   nothing
 end
