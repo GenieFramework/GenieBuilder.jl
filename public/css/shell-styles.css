@@ -347,7 +347,7 @@ img.blockIcon {
 #unsavedChangesAlert {
   position: fixed;
   top: 5px;
-  right: 305px;
+  right: 255px;
   color: #ff6600;
   display: none;
   z-index: 10000;

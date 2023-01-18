@@ -88,7 +88,7 @@ body {
 /*--PANEL(OPTIONS)--*/
 .gjs-pn-options {
   padding: 5px 7.5px 4px 0 !important;
-  right: 196px;
+  right: 250px;
   top: 0;
 }
 
@@ -144,12 +144,12 @@ body {
 
 /*--PANEL(VIEWS)--*/
 .gjs-pn-views-container {
-  width: 196px;
+  width: 250px;
   /* border-top: 2px solid rgba(0, 0, 0, 0) !important; */
 }
 
 .gjs-pn-views {
-  width: 197px;
+  width: 250px;
   box-shadow: 0px 3px 6px rgba(2, 26, 34, 0.04) !important;
   /* border-bottom: 1px solid rgba(255, 255, 255, 0) !important; */
   border-left: 1px solid #d0d6d9 !important;
@@ -362,7 +362,7 @@ img.blockIcon {
 /*--CANVAS--*/
 .gjs-cv-canvas {
   background-color: #d6dee2 !important;
-  width: calc(100% - 196px);
+  width: calc(100% - 250px);
 }
 .gjs-cv-canvas__frames {
   border: 10px solid #d6dee2 !important;
@@ -475,7 +475,7 @@ iframe.gjs-frame {
 }
 
 .gjs-trt-trait .q-field__native {
-  background: #f0f4f4 !important;
+  background: #F9FBFA !important;
 }
 
 .code-panel section .codepanel-label {
@@ -679,7 +679,7 @@ span.cm-number {
   height: min-content;
   top: 10px;
   position: relative;
-  background: #f0f4f4 !important;
+  background: #F9FBFA !important;
 }
 
 .gjs-trt-trait .q-field__native {
@@ -775,7 +775,7 @@ body.desktop .q-manual-focusable--focused > .q-focus-helper {
 }
 
 .gjs-field {
-  background: #f0f4f4 !important;
+  background: #F9FBFA !important;
 }
 
 .gjs-field-colorp {

@@ -127,7 +127,7 @@ function initNoCodeEditor() {
       },
       "grapesjs-component-code-editor": {
         openState: { pn: "500px", cv: "calc( 100% - 500px)" },
-        closedState: { pn: "196px", cv: "calc( 100% - 196px)" },
+        closedState: { pn: "250px", cv: "calc( 100% - 250px)" },
         //clearData: true,
         codeViewOptions: {
           codeName: "htmlmixed",
@@ -382,7 +382,7 @@ function initNoCodeEditor() {
                   <div class="gjs-trt-traits">
                       <div v-if="categories.length==0" style="margin-top: 20px;">The selected element doesn't have any editable properties</div>
                       <div style="margin-top: 5px;" v-if="categories.length>0">
-                        <div style="width: 80%; width: 295px; padding: 0px 5px;">
+                        <div style="width: 80%; width: 239px; padding: 0px 5px;">
                           <q-input outlined bottom-slots v-model="search" :dense="true" placeholder="Filter Properties">                  
                             <template v-slot:append>
                               <div>
