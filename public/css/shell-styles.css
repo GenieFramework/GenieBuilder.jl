@@ -24,7 +24,8 @@ body {
   border-bottom: solid 1px #ccc;
   padding: 0 34px 0 14px;
   box-sizing: border-box;
-  display: flex;
+  /* display: flex; */
+  display: none;
   align-items: center;
   justify-content: space-between;
 }
@@ -309,7 +310,8 @@ img.blockIcon {
   left: -150px;
   background: #51bcf7;
   width: 102px;
-  display: flex;
+  /* display: flex; */
+  display: none;
   align-items: center;
   justify-content: center;
   border-radius: 30px;
