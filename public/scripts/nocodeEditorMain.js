@@ -31,6 +31,15 @@ document.addEventListener('keydown', e => {
   }
 });
 
+const throttledActivityMonitor = _.throttle( function(){
+  parent.postMessage( { command: "updateActivityMonitor"}, "*");
+}, 5000 );
+
+// Use global mouse-move event to send "alive" signal to activity monitor
+document.addEventListener('mousemove', e => {
+  throttledActivityMonitor();
+});
+
 
 
 window.autorun = false;

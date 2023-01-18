@@ -1,6 +1,7 @@
 using Genie.Router
 using GenieBuilder
 using GenieBuilder.ApplicationsController
+using GenieBuilder.UsersController
 using RemoteREPL
 
 Genie.config.websockets_server = true
@@ -8,6 +9,7 @@ Genie.config.websockets_server = true
 const api_route = "/api/v1"
 const app_route = "/apps/:appid"
 const gb_route  = "/geniebuilder"
+const user_status_route = "/user/inactive"
 
 function routes()
   route("$api_route/apps") do
@@ -80,6 +82,14 @@ function routes()
 
   route("$api_route$app_route/purge") do
     ApplicationsController.purge(params(:appid) |> ApplicationsController.get)
+  end
+
+  route("$api_route$app_route/download") do
+    ApplicationsController.download(params(:appid) |> ApplicationsController.get)
+  end
+
+  route("$api_route$user_status_route") do
+    UsersController.inactive()
   end
 
   route("/") do
