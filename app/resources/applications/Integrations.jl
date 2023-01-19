@@ -11,7 +11,7 @@ import GenieBuilder
 # this wraps the whole module body!
 if haskey(ENV, "GC_API_ENDPOINT") && haskey(ENV, "GC_API_TOKEN")
 
-const AUTO_SYNC_INTERVAL = 5 # seconds
+const AUTO_SYNC_INTERVAL = 30 # seconds
 const SYNC_DELAY = 2 # seconds
 
 const GC_API_ENDPOINT_APPS = ENV["GC_API_ENDPOINT"] * "/apps"
@@ -49,7 +49,7 @@ end
 
 function importapps()::Nothing
   for app in getapps()
-    @info app
+    @debug app
 
     # retrieve matching app from GenieBuilder database
     existing_app = findone(GenieBuilder.Applications.Application, name = app.name)
@@ -109,7 +109,7 @@ function updateapp(app, delay = 0)::Nothing
                                       ) |> JSON3.write,
                           status_exception = false
                         )
-    @info response.body |> String
+    @debug response.body |> String
   catch e
     @error e
   end
@@ -137,7 +137,7 @@ function update_container_status(delay = 0; status)::Nothing
                           body = Dict("status" => status) |> JSON3.write,
                           status_exception = false
                         )
-    @info response.body |> String
+    @debug response.body |> String
   catch e
     @error e
   end
