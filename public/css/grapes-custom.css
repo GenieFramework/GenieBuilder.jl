@@ -13,7 +13,7 @@ Stylesheet for Grapes UI customisation
 html,
 body {
   height: 100%;
-  margin-top: 32px !important;
+  /* margin-top: 32px !important; */
   overflow: hidden;
   line-height: 1 !important;
 }
