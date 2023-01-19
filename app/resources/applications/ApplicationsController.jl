@@ -36,11 +36,16 @@ const UNDEFINED_PORT = 0
 
 const UUIDSTORE_FILENAME = "uuidstore.txt"
 const GB_SCRATCH_SPACE_NAME = "gbuuid"
+const DEFAULT_PORT_RANGE = 9101:9200
 const PORTS_RANGE = try
-  parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
+  if haskey(ENV, "APPS_PORT_START_RANGE") && haskey(ENV, "APPS_PORT_END_RANGE")
+    parse(Int, ENV["APPS_PORT_START_RANGE"]):parse(Int, ENV["APPS_PORT_END_RANGE"])
+  else
+    DEFAULT_PORT_RANGE
+  end
 catch ex
   @error ex
-  9101:10100
+  DEFAULT_PORT_RANGE
 end
 
 struct UnavailablePortException <: Exception
@@ -201,7 +206,7 @@ function persist_status(app::Union{Application,Nothing}, status) :: Bool
   end
 
   try
-    Integrations.GenieCloud.updateapp(app)
+    @async Integrations.GenieCloud.updateapp(app)
   catch ex
     @error ex
   end

@@ -8,8 +8,12 @@ using SearchLight
 
 import GenieBuilder
 
+# this wraps the whole module body!
+if haskey(ENV, "GC_API_ENDPOINT") && haskey(ENV, "GC_API_TOKEN")
+
 const AUTO_SYNC_INTERVAL = 5 # seconds
 const SYNC_DELAY = 2 # seconds
+
 const GC_API_ENDPOINT_APPS = ENV["GC_API_ENDPOINT"] * "/apps"
 const GC_API_ENDPOINT_CONTAINERS = ENV["GC_API_ENDPOINT"] * "/containers"
 const GC_API_HEADERS = [
@@ -26,11 +30,6 @@ function datasync()::Nothing
 end
 
 function init()::Nothing
-  isavailable() || begin
-    @warn "GenieCloud integration is not available."
-    return
-  end
-
   container_started()
   datasync()
 
@@ -40,15 +39,6 @@ function init()::Nothing
   end
 
   nothing
-end
-
-function isavailable()::Bool
-  if ! (haskey(ENV, "GC_API_ENDPOINT") && haskey(ENV, "GC_API_TOKEN"))
-    @error "GC_API_ENDPOINT and/or GC_API_TOKEN are not configured."
-    return false
-  end
-
-  true
 end
 
 function getapps()::Vector{JSON3.Object}
@@ -154,6 +144,19 @@ function update_container_status(delay = 0; status)::Nothing
 
   nothing
 end
+
+else
+  function init()::Nothing
+    @debug "GenieCloud integration is not enabled.
+    Please set the GC_API_ENDPOINT and GC_API_TOKEN environment variables."
+
+    nothing
+  end
+
+  function updateapp(app, delay = 0)::Nothing
+    nothing
+  end
+end # end if
 
 end # GenieCloud
 
