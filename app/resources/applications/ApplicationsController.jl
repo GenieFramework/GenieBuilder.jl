@@ -23,6 +23,7 @@ const FAILSTATUS = "KO"
 const OKSTATUS = "OK"
 
 const CREATING_STATUS = "creating"
+const STARTED_STATUS  = "started"
 const STARTING_STATUS = "starting"
 const ONLINE_STATUS   = "online"
 const STOPPING_STATUS = "stopping"

@@ -5,7 +5,8 @@ module UsersController
   using GenieBuilder.Integrations
 
   function inactive()
-    userstatus = "inactive"
-    GenieBuilder.Integrations.GenieCloud.user_activity(userstatus)
+    GenieBuilder.Integrations.GenieCloud.container_idle()
+
+    nothing
   end
 end

@@ -18,18 +18,25 @@ const GC_API_HEADERS = [
   "Accept" => "application/json",
 ]
 
+function datasync()::Nothing
+  container_online()
+  importapps()
+
+  nothing
+end
+
 function init()::Nothing
   isavailable() || begin
     @warn "GenieCloud integration is not available."
     return
   end
 
-  gbup()
-  importapps()
+  container_started()
+  datasync()
 
-  AUTO_SYNC_INTERVAL > 0 && begin
+  while AUTO_SYNC_INTERVAL > 0
     sleep(AUTO_SYNC_INTERVAL)
-    init()
+    datasync()
   end
 
   nothing
@@ -103,30 +110,49 @@ end
 
 function updateapp(app, delay = 0)::Nothing
   sleep(delay)
-  response = HTTP.patch(GC_API_ENDPOINT_APPS * "/$(app.name)";
-                        headers = GC_API_HEADERS,
-                        body = Dict(
-                                      "name" => app.name,
-                                      "devStatus" => app.status,
-                                    ) |> JSON3.write
-                      )
+  try
+    response = HTTP.patch(GC_API_ENDPOINT_APPS * "/$(app.name)";
+                          headers = GC_API_HEADERS,
+                          body = Dict(
+                                        "name" => app.name,
+                                        "devStatus" => app.status,
+                                      ) |> JSON3.write,
+                          status_exception = false
+                        )
+    @info response.body |> String
+  catch e
+    @error e
+  end
 
   nothing
 end
 
-function gbup(delay = 0)::Nothing
+function container_started(delay = 0)::Nothing
+  update_container_status(delay; status = GenieBuilder.ApplicationsController.STARTED_STATUS)
+end
+
+function container_online(delay = 0)::Nothing
+  update_container_status(delay; status = GenieBuilder.ApplicationsController.ONLINE_STATUS)
+end
+
+function container_idle()
+  update_container_status(0; status = GenieBuilder.ApplicationsController.STOPPING_STATUS)
+end
+
+function update_container_status(delay = 0; status)::Nothing
   sleep(delay)
-  response = HTTP.patch(GC_API_ENDPOINT_CONTAINERS;
-                        headers = GC_API_HEADERS,
-                        body = Dict("status" => GenieBuilder.ApplicationsController.ONLINE_STATUS) |> JSON3.write
-                      )
-  @info response.body |> String
+  try
+    response = HTTP.patch(GC_API_ENDPOINT_CONTAINERS;
+                          headers = GC_API_HEADERS,
+                          body = Dict("status" => status) |> JSON3.write,
+                          status_exception = false
+                        )
+    @info response.body |> String
+  catch e
+    @error e
+  end
 
   nothing
-end
-
-function user_activity(user_activity_status)
-  return Dict("user_status" => user_activity_status)
 end
 
 end # GenieCloud
