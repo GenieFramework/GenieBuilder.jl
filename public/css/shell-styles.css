@@ -299,9 +299,7 @@ img.blockIcon {
 .fa-code::before {
   content: url("./../images/icons/components/toolbarIcons/coding.svg");
 }
-.fa-database::before {
-  content: url("./../images/icons/components/toolbarIcons/dataBase.svg");
-}
+
 .btn_deploy::before {
   content: url("./../images/icons/components/toolbarIcons/upload.svg");
 }
