@@ -42,9 +42,13 @@ function init()::Nothing
 end
 
 function getapps()::Vector{JSON3.Object}
-  response = HTTP.get(GC_API_ENDPOINT_APPS; headers = GC_API_HEADERS)
+  try
+    response = HTTP.get(GC_API_ENDPOINT_APPS; headers = GC_API_HEADERS, status_exception = false)
 
-  String(response.body) |> JSON3.read
+    String(response.body) |> JSON3.read
+  catch
+    JSON3.read("[]")
+  end
 end
 
 function importapps()::Nothing
@@ -110,8 +114,8 @@ function updateapp(app, delay = 0)::Nothing
                           status_exception = false
                         )
     @debug response.body |> String
-  catch e
-    @error e
+  catch
+    # @error e
   end
 
   nothing
@@ -139,7 +143,7 @@ function update_container_status(delay = 0; status)::Nothing
                         )
     @debug response.body |> String
   catch e
-    @error e
+    # @error e
   end
 
   nothing

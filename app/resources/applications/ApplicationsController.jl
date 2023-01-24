@@ -294,6 +294,10 @@ function start(app)
                           "WSEXPPORT" => app.port,
                           "GENIE_ENV" => "dev",
                           "GENIE_BANNER" => "false")
+
+        # in the cloud the :<port> becomes /<path>
+        haskey(ENV, "GB_SOURCE") && ENV["GB_SOURCE"] == "cloud" && (cmd = addenv(cmd, "BASEPATH" => "/$(app.port)"))
+
         cmd |> run
       catch ex
         @error ex
