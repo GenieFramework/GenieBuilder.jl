@@ -320,12 +320,7 @@ function initNoCodeEditor() {
     active: false,
   });
 
-  editor.Panels.addButton("options", {
-    className: "fa-solid fa-database",
-    // command: 'save-content',
-    // attributes: { title: 'Save Design', id:'saveButton' },
-    active: false,
-  });
+  
   editor.Panels.addButton("options", {
     className: "btn_deploy",
     active: false,

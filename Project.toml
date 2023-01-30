@@ -20,7 +20,7 @@ Stipple = "4acbeb90-81a0-11ea-1966-bdaff8155998"
 ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 
 [compat]
-Genie = "5.14"
+Genie = "5.15"
 GenieAutoReload = "2"
 GenieDevTools = "2"
 HTTP = "1"
