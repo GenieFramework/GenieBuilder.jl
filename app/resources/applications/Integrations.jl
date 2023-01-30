@@ -47,7 +47,8 @@ function getapps()::Vector{JSON3.Object}
 
     String(response.body) |> JSON3.read
   catch
-    JSON3.read("[]")
+    # @error e
+    Vector{JSON3.Object}()
   end
 end
 
