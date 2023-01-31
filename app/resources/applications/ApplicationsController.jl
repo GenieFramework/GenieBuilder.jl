@@ -123,7 +123,7 @@ function run_as_genie_app(filepath::String)
 end
 
 function create(name, path = "", port = UNDEFINED_PORT)
-  name = Genie.Generator.validname(name)
+  name = Genie.Generator.validname(name) |> lowercase
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
   port, replport = available_port()
