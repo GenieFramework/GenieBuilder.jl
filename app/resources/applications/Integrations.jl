@@ -111,6 +111,7 @@ function updateapp(app, delay = 0)::Nothing
                           body = Dict(
                                         "name" => app.name,
                                         "devStatus" => app.status,
+                                        "devPort" => app.port,
                                       ) |> JSON3.write,
                           status_exception = false
                         )
