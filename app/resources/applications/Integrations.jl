@@ -41,7 +41,7 @@ function init()::Nothing
   nothing
 end
 
-function getapps()::Vector{JSON3.Object}
+function getapps()
   try
     response = HTTP.get(GC_API_ENDPOINT_APPS; headers = GC_API_HEADERS, status_exception = false)
 
