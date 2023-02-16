@@ -4,8 +4,8 @@ module UsersController
 
   using GenieBuilder.Integrations
 
-  function inactive()
-    GenieBuilder.Integrations.GenieCloud.container_idle()
+  function inactive()::Nothing
+    @async GenieBuilder.Integrations.GenieCloud.container_idle()
 
     nothing
   end

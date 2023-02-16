@@ -22,6 +22,10 @@ else
   function updateapp(app, delay = 0)::Nothing
     nothing
   end
+
+  function container_idle()::Nothing
+    nothing
+  end
 end # end if
 
 end # GenieCloud
