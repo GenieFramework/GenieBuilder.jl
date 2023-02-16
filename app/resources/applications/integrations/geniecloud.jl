@@ -1,13 +1,12 @@
 const AUTO_SYNC_INTERVAL = 30 # seconds
 const SYNC_DELAY = 2 # seconds
 
-const GC_API_ENDPOINT_APPS = ENV["GC_API_ENDPOINT"] * "/apps"
-const GC_API_ENDPOINT_CONTAINERS = ENV["GC_API_ENDPOINT"] * "/containers"
-const GC_API_HEADERS = [
-  "Authorization" => "bearer $(ENV["GC_API_TOKEN"])",
+const GC_API_ENDPOINT_APPS = haskey(ENV, "GC_API_ENDPOINT") ? ENV["GC_API_ENDPOINT"] * "/apps" : ""
+const GC_API_ENDPOINT_CONTAINERS = haskey(ENV, "GC_API_ENDPOINT") ? ENV["GC_API_ENDPOINT"] * "/containers" : ""
+const GC_API_HEADERS = haskey(ENV, "GC_API_TOKEN") ? 
+  ["Authorization" => "bearer $(ENV["GC_API_TOKEN"])",
   "Content-Type" => "application/json",
-  "Accept" => "application/json",
-]
+  "Accept" => "application/json",] : []
 
 function datasync()::Nothing
   container_online()
