@@ -202,7 +202,7 @@ function persist_status(app::Union{Application,Nothing}, status) :: Bool
     save!(app)
   catch ex
     @error ex
-    false
+    return false
   end
 
   try
