@@ -1,18 +1,6 @@
 const AUTO_SYNC_INTERVAL = 30 # seconds
 const SYNC_DELAY = 2 # seconds
 
-function __init__()
-  @eval begin
-    const GC_API_ENDPOINT_APPS = ENV["GC_API_ENDPOINT"] * "/apps"
-    const GC_API_ENDPOINT_CONTAINERS = ENV["GC_API_ENDPOINT"] * "/containers"
-    const GC_API_HEADERS = [
-      "Authorization" => "bearer $(ENV["GC_API_TOKEN"])",
-      "Content-Type" => "application/json",
-      "Accept" => "application/json",
-    ]
-  end
-end
-
 function datasync()::Nothing
   container_online()
   importapps()
@@ -45,7 +33,7 @@ end
 
 function importapps()::Nothing
   for app in getapps()
-    @debug app
+    # @debug app
 
     # retrieve matching app from GenieBuilder database
     existing_app = try
