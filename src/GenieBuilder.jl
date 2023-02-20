@@ -36,7 +36,7 @@ function main()
   Core.eval(Main, :(using Genie))
 end
 
-function go()
+function go(; port = get!(ENV, "GB_PORT", -1))
   if haskey(ENV, "RUN_STATUS")
     RUN_STATUS[] = ENV["RUN_STATUS"] |> Symbol
   else
@@ -46,8 +46,9 @@ function go()
 
   cd(normpath(@__DIR__, ".."))
   Genie.go()
+  port = port == -1 ? Genie.config.server_port : port
   try
-    Genie.up(; async = false)
+    Genie.up(port; async = false)
   catch ex
     @error ex
     stop()

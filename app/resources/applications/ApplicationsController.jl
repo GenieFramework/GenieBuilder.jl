@@ -202,7 +202,7 @@ function persist_status(app::Union{Application,Nothing}, status) :: Bool
     save!(app)
   catch ex
     @error ex
-    false
+    return false
   end
 
   try
@@ -678,7 +678,12 @@ function unsubscribe()
   end
 end
 
-function import_apps()
+function import_apps() :: Nothing
+  isdir(GenieBuilder.APPS_FOLDER[]) || begin
+    @error "APPS_FOLDER not found: $(GenieBuilder.APPS_FOLDER[])"
+    return
+  end
+
   for existing_app in readdir(GenieBuilder.APPS_FOLDER[])
     ! isdir(joinpath(GenieBuilder.APPS_FOLDER[], existing_app)) && continue
     startswith(existing_app, ".") && continue
@@ -689,6 +694,8 @@ function import_apps()
       create(appname)
     end
   end
+
+  nothing
 end
 
 function ready() :: Nothing
