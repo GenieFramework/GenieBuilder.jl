@@ -105,7 +105,23 @@ window.onload = () => {
     })
     .then( (fileContents)=>{
         appConfig.grapesStyles = fileContents;
-        initNoCodeEditor();  
+
+        // Check if there are unsaved changes from previous session
+        // if so, ask user to restore them. Else, proceed to init editor with saved files contents
+        let unsavedChanges = retrieveUnsavedChanges();
+        if( unsavedChanges ){
+            console.log( "Unsaved changes detected. Asking user to restore them...")
+            parent.postMessage( 
+                {
+                  command: "askRestoreUnsavedChanges", 
+                  app_id: window.projectId,
+                  appName: window.appName,
+                  path: window.filePath
+                }, "*");
+        }else{
+            console.log( "No unsaved changes detected. Proceeding to init editor...")
+            initNoCodeEditor();  
+        }
     })
   };
 

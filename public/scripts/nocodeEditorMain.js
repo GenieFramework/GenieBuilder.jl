@@ -43,6 +43,12 @@ window.autorun = false;
 window.unsavedChanges = false;
 window.selectedElementModel = null;
 
+// This variable is set to false after the first time content changes are detected
+// Grapes will trigger a change event on load ("change:changesCount"), 
+// that we need to discard since there's no actual change, just loading ther initial content
+window.initSequence = true; 
+
+
 const customPlugins = [
   myNewComponentTypes,
   customblock_quasar_separator,
@@ -483,8 +489,13 @@ function initNoCodeEditor() {
 
   // Custom events
   editor.on("change:changesCount", (e) => {
+    if( window.initSequence ) {
+      window.initSequence = false;
+      return;
+    }
     console.log("no-code editor content has changed: ", e);
     markUnsavedChanges(true);
+    storeUnsavedChanges();
   });
 
   editor.on("component:input", (model) => {
@@ -619,40 +630,75 @@ function logEvent(message) {
   parent.postMessage(message, "*");
 }
 
-function savePage() {
+function getPageContentsForSaving(){
   let currentTemplate = editor.getHtml({ cleanId: true });
   let currentStyles = editor.getCss({ avoidProtected: true });
-  console.log("Grapes CSS styles: ", currentStyles);
   window.lastSavedHTML = currentTemplate;
-
+  
   // remove body tag
   currentTemplate = currentTemplate
     .replaceAll(`<body>`, ``)
     .replaceAll(`</body>`, ``);
-
+  
   let containerHtml = '<div id="editableDOM" class="container">';
-
+  
   let containerDivPresent = currentTemplate.indexOf(containerHtml);
   if (containerDivPresent >= 0) {
     currentTemplate = currentTemplate.replace(containerHtml, ``);
     currentTemplate = currentTemplate.replace(new RegExp("</div>" + "$"), "");
   }
+  const result = {
+    app_id: window.projectId,
+    appName: window.appName,
+    appPath: window.appPath,
+    path: window.filePath,
+    content: currentTemplate,
+    styles: currentStyles,
+  }
+  return result;
 
-  console.log("savePage() called 3");
+}
+function savePage() {
+  resetUnsavedChanges();
+  let pageData = getPageContentsForSaving();
+  pageData.command = "saveContent";
   parent.postMessage(
-    {
-      command: "saveContent",
-      app_id: window.projectId,
-      appName: window.appName,
-      appPath: window.appPath,
-      path: window.filePath,
-      content: currentTemplate,
-      styles: currentStyles,
-    },
+    pageData,
     "*"
   );
   // Update the "unsaved changes" alert status and visibility
   document.querySelector("#saveButton").classList.remove("warningIcon");
   document.querySelector("#unsavedChangesAlert").style.display = "none";
   window.unsavedChanges = false;
+}
+
+function retrieveUnsavedChanges() {
+  let unsavedStore = localStorage.getItem("unsavedChanges");
+  if( unsavedStore == null ) unsavedStore = "{}";
+  unsavedStore = JSON.parse(unsavedStore);
+  let appKey = window.projectId + "/" + window.appName + "/" + window.filePath;
+  let pageData = unsavedStore[appKey];
+  return pageData;
+}
+
+function storeUnsavedChanges() {
+  // Retrieve current page contents
+  let pageData = getPageContentsForSaving();
+  // Get the unsavedChanges sotre object, or create it if it doesn't exist
+  let unsavedStore = localStorage.getItem("unsavedChanges");
+  if( unsavedStore == null ) unsavedStore = "{}";
+  unsavedStore = JSON.parse(unsavedStore);
+
+  let appKey = pageData.app_id + "/" + pageData.appName + "/" + pageData.path;
+  unsavedStore[appKey] = pageData;
+  localStorage.setItem("unsavedChanges", JSON.stringify(unsavedStore));
+  
+}
+function resetUnsavedChanges() {
+  let unsavedStore = localStorage.getItem("unsavedChanges");
+  if( unsavedStore == null ) unsavedStore = "{}";
+  unsavedStore = JSON.parse(unsavedStore);
+  let appKey = window.projectId + "/" + window.appName + "/" + window.filePath;
+  delete unsavedStore[appKey];
+  localStorage.setItem("unsavedChanges", JSON.stringify(unsavedStore));
 }
