@@ -21,9 +21,11 @@ eventer(messageEvent, function (e) {
             if( e.data.answer == "Yes" ){
                 window.appConfiguration.template = unsavedChanges.content;
                 window.appConfiguration.grapesStyles = unsavedChanges.styles;
+                window.unsavedChanges = true;
+            }else{                
+                resetUnsavedChanges();
             }
         }
-        resetUnsavedChanges();
         initNoCodeEditor();
         
     }
