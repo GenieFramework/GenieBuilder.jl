@@ -258,9 +258,7 @@ function initNoCodeEditor() {
     updateRecursive(rootComponent);
 
     setTimeout(() => {
-      document.querySelector("#saveButton").classList.remove("warningIcon");
-      document.querySelector("#unsavedChangesAlert").style.display = "none";
-      window.unsavedChanges = false;
+      window.markUnsavedChanges( window.unsavedChanges );      
     }, 100);
   });
 
@@ -502,7 +500,10 @@ function initNoCodeEditor() {
     console.log("component::input ", model);
     let currentTemplate = editor.getHtml({ cleanId: true });
     let hasChanged = window.lastSavedHTML != currentTemplate;
-    markUnsavedChanges(true);
+    if( hasChanged){
+      markUnsavedChanges(true);
+      storeUnsavedChanges();
+    }
     //window.lastSavedHTML = currentTemplate;
     console.log("component updated. Has changed? ", hasChanged, model);
   });
@@ -620,9 +621,14 @@ function initNoCodeEditor() {
 }
 
 function markUnsavedChanges(yesNo) {
-  document.querySelector("#saveButton").classList.add("warningIcon");
-  document.querySelector("#unsavedChangesAlert").style.display = "block";
-  window.unsavedChanges = true;
+  if( yesNo ){
+    document.querySelector("#saveButton").classList.add("warningIcon");
+    document.querySelector("#unsavedChangesAlert").style.display = "block";
+  }else{
+    document.querySelector("#saveButton").classList.remove("warningIcon");
+    document.querySelector("#unsavedChangesAlert").style.display = "none";
+  }
+  window.unsavedChanges = yesNo;
 }
 
 function logEvent(message) {
@@ -667,9 +673,7 @@ function savePage() {
     "*"
   );
   // Update the "unsaved changes" alert status and visibility
-  document.querySelector("#saveButton").classList.remove("warningIcon");
-  document.querySelector("#unsavedChangesAlert").style.display = "none";
-  window.unsavedChanges = false;
+  markUnsavedChanges(false);
 }
 
 function retrieveUnsavedChanges() {
@@ -701,4 +705,5 @@ function resetUnsavedChanges() {
   let appKey = window.projectId + "/" + window.appName + "/" + window.filePath;
   delete unsavedStore[appKey];
   localStorage.setItem("unsavedChanges", JSON.stringify(unsavedStore));
+  window.unsavedChanges = false;
 }
