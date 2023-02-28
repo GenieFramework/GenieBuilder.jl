@@ -161,6 +161,7 @@ function create(name, path = "", port = UNDEFINED_PORT)
         isdir(new_app_path) || mkdir(new_app_path)
         cmd = Cmd(`julia --startup-file=no -e '
                     using Pkg;
+                    Pkg._auto_gc_enabled[] = false;
                     Pkg.activate(".");
                     Pkg.add("GenieFramework");
         '`; dir = new_app_path)
@@ -282,6 +283,7 @@ function start(app)
       try
         cmd = Cmd(`julia --startup-file=no -e '
                                                 using Pkg;
+                                                Pkg._auto_gc_enabled[] = false;
                                                 Pkg.activate(".");
                                                 using GenieFramework;
                                                 using GenieFramework.Genie;
