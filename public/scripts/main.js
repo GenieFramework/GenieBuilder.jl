@@ -39,7 +39,13 @@ window.onload = () => {
         for (let i = 0; i < result.length; i++) {
             const appInfo = result[i];
             if( appInfo.id.value == ApiConnector.projectId ){
-                appConfig.url = `${GlobalConfig.GBJL_PROTOCOL}://${GlobalConfig.GBJL_HOST}:${appInfo.port}`;
+                let pageUrl;
+                if( GlobalConfig.GB_SOURCE == GlobalConfig.GB_SOURCE_LOCAL){
+                    pageUrl = `${GlobalConfig.GBJL_PROTOCOL}://${GlobalConfig.GBJL_HOST}:${appInfo.port}`; 
+                }else{
+                    pageUrl = `${GlobalConfig.GBJL_PROTOCOL}://${GlobalConfig.GBJL_HOST}/${appInfo.port}`; 
+                }
+                appConfig.url = pageUrl;
                 break;
             }
         }
