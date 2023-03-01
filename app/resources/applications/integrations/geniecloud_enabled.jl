@@ -53,32 +53,37 @@ function importapps()::Nothing
       continue
     end
 
-    # if the app is in creating state and , create it in GenieBuilder
-    if app.dev_status == GenieBuilder.ApplicationsController.CREATING_STATUS
-      if existing_app === nothing
+    # if the app is creating, starting or offline and does not exist locally, create it locally
+    if existing_app === nothing
+      if app.dev_status == GenieBuilder.ApplicationsController.CREATING_STATUS ||
+          app.dev_status == GenieBuilder.ApplicationsController.STARTING_STATUS ||
+            app.dev_status == GenieBuilder.ApplicationsController.OFFLINE_STATUS
         GenieBuilder.ApplicationsController.create(app.name)
         @async updateapp(existing_app, SYNC_DELAY)
         continue
       end
+    end
 
     # if the app is in starting state but not starting nor online, start it from GenieBuilder
-    elseif app.dev_status == GenieBuilder.ApplicationsController.STARTING_STATUS &&
+    if app.dev_status == GenieBuilder.ApplicationsController.STARTING_STATUS &&
             existing_app.status != GenieBuilder.ApplicationsController.STARTING_STATUS &&
               existing_app.status != GenieBuilder.ApplicationsController.ONLINE_STATUS
       GenieBuilder.ApplicationsController.start(existing_app)
       @async updateapp(existing_app, SYNC_DELAY)
       continue
+    end
 
     # if the app is in stopping state but not stopping nor offline, stop it from GenieBuilder
-    elseif app.dev_status == GenieBuilder.ApplicationsController.STOPPING_STATUS &&
+    if app.dev_status == GenieBuilder.ApplicationsController.STOPPING_STATUS &&
             existing_app.status != GenieBuilder.ApplicationsController.OFFLINE_STATUS &&
               existing_app.status != GenieBuilder.ApplicationsController.STOPPING_STATUS
       GenieBuilder.ApplicationsController.stop(existing_app)
       @async updateapp(existing_app, SYNC_DELAY)
       continue
+    end
 
     # if the app is in deleting state, delete it from GenieBuilder -- but do not purge the app
-    elseif app.dev_status == GenieBuilder.ApplicationsController.DELETING_STATUS
+    if app.dev_status == GenieBuilder.ApplicationsController.DELETING_STATUS
       GenieBuilder.ApplicationsController.delete(existing_app)
       @async updateapp(existing_app, SYNC_DELAY)
       continue
