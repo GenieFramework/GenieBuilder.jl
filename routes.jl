@@ -3,9 +3,6 @@ using GenieBuilder
 using GenieBuilder.ApplicationsController
 using GenieBuilder.UsersController
 using RemoteREPL
-using Pkg
-
-Pkg._auto_gc_enabled[] = false;
 
 Genie.config.websockets_server = true
 
