@@ -2,6 +2,7 @@ using Genie.Router
 using GenieBuilder
 using GenieBuilder.ApplicationsController
 using GenieBuilder.UsersController
+using GenieBuilder.Integrations
 using RemoteREPL
 
 Genie.config.websockets_server = true
@@ -128,6 +129,40 @@ function routes()
   route("$gb_route/status.json") do
     ApplicationsController.status()
   end
+
+  # GC integration routes
+  route("$api_route$app_route/deploy") do
+    try
+      @async Integrations.GenieCloud.deployapp(params(:appid) |> ApplicationsController.get)
+    catch ex
+      @error ex
+    end
+  end
+
+  route("$api_route$app_route/unpublish") do
+    try
+      @async Integrations.GenieCloud.unpublishapp(params(:appid) |> ApplicationsController.get)
+    catch ex
+      @error ex
+    end
+  end
+
+  route("$api_route$app_route/suspend") do
+    try
+      @async Integrations.GenieCloud.suspendapp(params(:appid) |> ApplicationsController.get)
+    catch ex
+      @error ex
+    end
+  end
+
+  route("$api_route$app_route/resume") do
+    try
+      @async Integrations.GenieCloud.resumeapp(params(:appid) |> ApplicationsController.get)
+    catch ex
+      @error ex
+    end
+  end
+  # end GC integration routes
 end
 
 function ready()

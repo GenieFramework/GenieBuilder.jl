@@ -12,3 +12,19 @@ end
 function container_idle()::Nothing
   nothing
 end
+
+function deployapp(_)::Nothing
+  nothing
+end
+
+function unpublishapp(_)::Nothing
+  nothing
+end
+
+function suspendapp(_)::Nothing
+  nothing
+end
+
+function resumeapp(_)::Nothing
+  nothing
+end
