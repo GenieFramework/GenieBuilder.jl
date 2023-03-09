@@ -20,6 +20,20 @@ function init()::Nothing
   nothing
 end
 
+function track(payload)::Nothing
+  try
+    response = HTTP.post(GC_TRACKING_ENDPOINT * "/track";
+                         headers = GC_API_HEADERS,
+                         body = payload |> JSON3.write,
+                         status_exception=false
+                        )
+    @debug response.body |> String
+  catch
+    @error e
+  end
+  nothing
+end
+
 function getapps()
   try
     response = HTTP.get(GC_API_ENDPOINT_APPS; headers = GC_API_HEADERS, status_exception = false)
@@ -58,6 +72,7 @@ function importapps()::Nothing
       if app.dev_status == GenieBuilder.ApplicationsController.CREATING_STATUS ||
           app.dev_status == GenieBuilder.ApplicationsController.STARTING_STATUS ||
             app.dev_status == GenieBuilder.ApplicationsController.OFFLINE_STATUS
+        track(Dict("app_name" => app.name, "event_origin" => "GenieBuilder", "source" => "GenieCloud"))
         GenieBuilder.ApplicationsController.create(app.name)
         @async updateapp(existing_app, SYNC_DELAY)
         continue

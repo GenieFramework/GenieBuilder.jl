@@ -11,6 +11,7 @@ function __init__()
     @eval begin
       const GC_API_ENDPOINT_APPS = ENV["GC_API_ENDPOINT"] * "/apps"
       const GC_API_ENDPOINT_CONTAINERS = ENV["GC_API_ENDPOINT"] * "/containers"
+      const GC_TRACKING_ENDPOINT = ENV["GC_API_ENDPOINT"] * "/tracking"
       const GC_API_HEADERS = [
         "Authorization" => "bearer $(ENV["GC_API_TOKEN"])",
         "Content-Type" => "application/json",
