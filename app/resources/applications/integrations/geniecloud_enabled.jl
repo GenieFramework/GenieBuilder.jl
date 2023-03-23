@@ -61,8 +61,10 @@ function importapps()::Nothing
             app.dev_status == GenieBuilder.ApplicationsController.OFFLINE_STATUS
         GenieBuilder.ApplicationsController.create(app.name)
         @async updateapp(existing_app, SYNC_DELAY)
-        continue
       end
+
+      # rest of the actions are only for existing apps
+      continue
     end
 
     # if the app is in starting state but not starting nor online, start it from GenieBuilder
