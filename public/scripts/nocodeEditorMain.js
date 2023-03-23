@@ -210,6 +210,7 @@ function initNoCodeEditor() {
       scripts: appConfiguration.contentScripts,
       styles: appConfiguration.contentStyles,
     },
+    noticeOnUnload: false, 
     fromElement: true,
     height: "100%", // Size of the editor
     panels: { defaults: [] }, // Remove default panel
