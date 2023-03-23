@@ -141,7 +141,10 @@ function view()
   open("app.jl.html", "w") do io
     write(io,
     """
-    <h1>{{message}}</h1>
+    <h4> Hello Genie! </h4>
+    <p> Generated {{N}} random numbers. </p>
+    <p v-text="msg"></p>
+    <q-slider v-model="N" :label="true"></q-slider>
     <p>This is the default view for the application.</p>
     <p>You can change this view by editing the file <code>app.jl.html</code>.</p>
     """
@@ -156,20 +159,36 @@ function app()
     write(io,
     """
     module App
-
+    # set up Genie development environmet
     using GenieFramework
     @genietools
 
-    @handlers begin
-      @out message = "Hello World!"
-
-      @onchange isready begin
-        @show "App is loaded"
-      end
+    # add your data analysis code
+    function mean(x)
+        sum(x) / length(x)
     end
 
-    @page("/", "app.jl.html")
+    # add reactive code to make the UI interactive
+    @app begin
+        # reactive variables are tagged with @in and @out
+        @in N = 0
+        @out msg = "The average is 0."
+        # @private defines a non-reactive variable
+        @private result = 0.0
 
+        # watch a variable and execute a block of code when
+        # its value changes
+        @onchange N begin
+            # the values of result and msg in the UI will
+            # be automatically updated
+            result = mean(rand(N))
+            msg = "The average is \$result."
+        end
+    end
+
+    # register a new route and the page that will begin
+    # loaded on access
+    @page("/", "app.jl.html")
     end
     """
     )
