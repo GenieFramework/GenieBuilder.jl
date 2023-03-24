@@ -163,7 +163,7 @@ end
 function update_container_status(delay = 0; status)::Nothing
   sleep(delay)
   try
-    response = HTTP.patch(GC_API_ENDPOINT_CONTAINERS;
+    response = HTTP.patch(GC_API_ENDPOINT_CONTAINERS * "/?heartbeat=true";
                           headers = GC_API_HEADERS,
                           body = Dict("status" => status) |> JSON3.write,
                           status_exception = false
