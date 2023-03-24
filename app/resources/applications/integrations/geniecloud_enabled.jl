@@ -156,6 +156,10 @@ function container_idle()
   update_container_status(0; status = GenieBuilder.ApplicationsController.STOPPING_STATUS)
 end
 
+function container_active()
+  update_container_status(0; status = GenieBuilder.ApplicationsController.ONLINE_STATUS)
+end
+
 function update_container_status(delay = 0; status)::Nothing
   sleep(delay)
   try

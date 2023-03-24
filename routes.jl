@@ -10,7 +10,7 @@ Genie.config.websockets_server = true
 const api_route = "/api/v1"
 const app_route = "/apps/:appid"
 const gb_route  = "/geniebuilder"
-const user_status_route = "/user/inactive"
+const user_route = "/user"
 
 function routes()
   route("$api_route/apps") do
@@ -89,8 +89,12 @@ function routes()
     ApplicationsController.download(params(:appid) |> ApplicationsController.get)
   end
 
-  route("$api_route$user_status_route") do
+  route("$api_route$user_route/inactive") do
     UsersController.inactive()
+  end
+
+  route("$api_route$user_route/active") do
+    UsersController.active()
   end
 
   route("/") do

@@ -13,6 +13,10 @@ function container_idle()::Nothing
   nothing
 end
 
+function container_active()::Nothing
+  nothing
+end
+
 function deployapp(_)::Nothing
   nothing
 end

@@ -9,4 +9,10 @@ module UsersController
 
     nothing
   end
+
+  function active()::Nothing
+    @async GenieBuilder.Integrations.GenieCloud.container_active()
+
+    nothing
+  end
 end
