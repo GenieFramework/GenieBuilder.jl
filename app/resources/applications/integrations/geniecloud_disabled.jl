@@ -32,3 +32,7 @@ end
 function resumeapp(_)::Nothing
   nothing
 end
+
+function user_info()::Nothing
+  nothing
+end

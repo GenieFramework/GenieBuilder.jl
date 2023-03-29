@@ -97,6 +97,10 @@ function routes()
     UsersController.active()
   end
 
+  route("$api_route$user_route/info") do
+    UsersController.info()
+  end
+
   route("/") do
     serve_static_file("index.html")
   end

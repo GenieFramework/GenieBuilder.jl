@@ -175,3 +175,16 @@ function update_container_status(delay = 0; status)::Nothing
 
   nothing
 end
+
+function user_info()
+  try
+    response = HTTP.get(GC_API_ENDPOINT_USER * "/me";
+                        headers = GC_API_HEADERS,
+                        status_exception = false)
+
+    String(response.body) |> JSON3.read
+  catch
+    @error e
+    Dict()
+  end
+end
