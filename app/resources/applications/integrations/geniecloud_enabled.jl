@@ -163,7 +163,7 @@ end
 function update_container_status(delay = 0; status)::Nothing
   sleep(delay)
   try
-    response = HTTP.patch(GC_API_ENDPOINT_CONTAINERS;
+    response = HTTP.patch(GC_API_ENDPOINT_CONTAINERS * "/?heartbeat=true";
                           headers = GC_API_HEADERS,
                           body = Dict("status" => status) |> JSON3.write,
                           status_exception = false
@@ -174,4 +174,17 @@ function update_container_status(delay = 0; status)::Nothing
   end
 
   nothing
+end
+
+function user_info()
+  try
+    response = HTTP.get(GC_API_ENDPOINT * "/me";
+                        headers = GC_API_HEADERS,
+                        status_exception = false)
+
+    String(response.body) |> JSON3.read
+  catch e
+    @error e
+    Dict()
+  end
 end
