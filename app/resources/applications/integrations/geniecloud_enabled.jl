@@ -183,7 +183,7 @@ function user_info()
                         status_exception = false)
 
     String(response.body) |> JSON3.read
-  catch
+  catch e
     @error e
     Dict()
   end
