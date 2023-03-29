@@ -3,6 +3,7 @@ module UsersController
   import GenieBuilder
 
   using GenieBuilder.Integrations
+  using Genie.Renderers.Json
 
   function inactive()::Nothing
     @async GenieBuilder.Integrations.GenieCloud.container_idle()
@@ -17,8 +18,6 @@ module UsersController
   end
 
   function info()::Nothing
-    @async GenieBuilder.Integrations.GenieCloud.user_info()
-
-    nothing
+    GenieBuilder.Integrations.GenieCloud.user_info() |> json
   end
 end
