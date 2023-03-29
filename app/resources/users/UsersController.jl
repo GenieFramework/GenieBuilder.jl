@@ -16,7 +16,7 @@ module UsersController
     nothing
   end
 
-  function active()::Nothing
+  function info()::Nothing
     @async GenieBuilder.Integrations.GenieCloud.user_info()
 
     nothing
