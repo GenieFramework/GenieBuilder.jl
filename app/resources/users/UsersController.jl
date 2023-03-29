@@ -17,7 +17,7 @@ module UsersController
     nothing
   end
 
-  function info()::Nothing
+  function info()
     GenieBuilder.Integrations.GenieCloud.user_info() |> json
   end
 end
