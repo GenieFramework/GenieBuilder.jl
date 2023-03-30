@@ -178,7 +178,7 @@ end
 
 function user_info()
   try
-    response = HTTP.get(GC_API_ENDPOINT * "/me";
+    response = HTTP.get(GC_API_ENDPOINT_USERS * "/me";
                         headers = GC_API_HEADERS,
                         status_exception = false)
 

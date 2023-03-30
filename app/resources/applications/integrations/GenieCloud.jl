@@ -9,7 +9,7 @@ import GenieBuilder
 function __init__()
   @static if haskey(ENV, "GC_API_ENDPOINT") && haskey(ENV, "GC_API_TOKEN")
     @eval begin
-      const GC_API_ENDPOINT = ENV["GC_API_ENDPOINT"]
+      const GC_API_ENDPOINT_USERS = ENV["GC_API_ENDPOINT"] * "/api/v1"
       const GC_API_ENDPOINT_APPS = ENV["GC_API_ENDPOINT"] * "/apps"
       const GC_API_ENDPOINT_CONTAINERS = ENV["GC_API_ENDPOINT"] * "/containers"
       const GC_API_HEADERS = [
