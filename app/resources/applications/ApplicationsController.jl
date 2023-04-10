@@ -450,7 +450,7 @@ function download(app)
         f = open(filepath, "r")
         content = read(f, String)
         close(f)
-        zipfilepath = appname *  split(filepath, appname)[2]
+        zipfilepath = joinpath(appname, split(filepath, "$appname/")[2])
         zf = ZipFile.addfile(w, zipfilepath; method=(compress ? ZipFile.Deflate : ZipFile.Store))
         write(zf, content)
       end
