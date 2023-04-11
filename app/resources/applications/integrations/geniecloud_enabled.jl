@@ -145,25 +145,25 @@ function prod_app_action(app, action)::Nothing
 end
 
 function container_started(delay = 0)::Nothing
-  update_container_status(delay; status = GenieBuilder.ApplicationsController.STARTED_STATUS)
+  update_container_status(delay; status = GenieBuilder.ApplicationsController.STARTED_STATUS, source = "started")
 end
 
 function container_online(delay = 0)::Nothing
-  update_container_status(delay; status = GenieBuilder.ApplicationsController.ONLINE_STATUS)
+  update_container_status(delay; status = GenieBuilder.ApplicationsController.ONLINE_STATUS, source = "online")
 end
 
 function container_idle()
-  update_container_status(0; status = GenieBuilder.ApplicationsController.STOPPING_STATUS)
+  update_container_status(0; status = GenieBuilder.ApplicationsController.STOPPING_STATUS, source = "idle")
 end
 
 function container_active()
-  update_container_status(0; status = GenieBuilder.ApplicationsController.ONLINE_STATUS)
+  update_container_status(0; status = GenieBuilder.ApplicationsController.ONLINE_STATUS, source = "active")
 end
 
-function update_container_status(delay = 0; status)::Nothing
+function update_container_status(delay = 0; status, source = "")::Nothing
   sleep(delay)
   try
-    response = HTTP.patch(GC_API_ENDPOINT_CONTAINERS * "/?heartbeat=true";
+    response = HTTP.patch(GC_API_ENDPOINT_CONTAINERS * "/?heartbeat=true&source=$source";
                           headers = GC_API_HEADERS,
                           body = Dict("status" => status) |> JSON3.write,
                           status_exception = false
