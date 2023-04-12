@@ -1,7 +1,7 @@
 name = "GenieBuilder"
 uuid = "c9453c14-af8a-11ec-351d-c7c9a2035d70"
 authors = ["Adrian Salceanu"]
-version = "0.14.21"
+version = "0.14.22"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -22,7 +22,7 @@ ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 [compat]
 Genie = "5.15"
 GenieAutoReload = "2"
-GenieDevTools = "2"
+GenieDevTools = "2.1.2"
 HTTP = "1"
 Inflector = "1"
 JSON3 = "1.9"
