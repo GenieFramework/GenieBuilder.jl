@@ -7,6 +7,8 @@ window.onload = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
+    const aiKey = window.aiKey = urlParams.get('aikey');
+
     const projectId = window.projectId = urlParams.get('appid');
     const appName = window.appName = urlParams.get('appname');
     const appPath = window.appPath = urlParams.get('apppath');

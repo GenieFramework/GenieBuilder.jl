@@ -165,6 +165,9 @@ function initTraitsEditor(){
             categories: [], 
             categoriesStatus: {}, 
             traitValuesObj: {},
+            userPrompt: "test prompt", 
+            aiExpanded: true, 
+            aiError: null
         },
         computed: {
             categoriesFiltered(){
@@ -205,7 +208,41 @@ function initTraitsEditor(){
             }
         },
         methods: {
-            
+
+            aiSendClicked(){
+                let selectedElement = editor.getSelected();
+                let selectedHtml = selectedElement.toHTML()
+                let userPrompt = this.userPrompt;
+                let fullPrompt = `I have this piece of html code: \n\n${selectedHtml}\n\n${userPrompt}`
+                console.log( "aiSendClicked()!")
+                //let aiApiUrl = "http://localhost:3000/api/send-message"
+                let aiApiUrl = "https://plez6u-ip-3-253-25-80.tunnelmole.com/api/v1/codegen"
+                axios.post( aiApiUrl, 
+                    { 
+                        message:fullPrompt, 
+                        content_type: "html", 
+                        info: "quasar", 
+                        prompt: userPrompt, 
+                        code: selectedHtml
+                    }, 
+                    {
+                        headers: {
+                            Authorization: "Bearer " + window.aiKey
+                        }
+                    },
+                )
+                .then( (response)=>{
+                    let responseObject = JSON.parse( response.request.response )
+                    console.log( "AI response: ", responseObject )
+                    //let dymmyResponseCode = `<table><tr><td>One</td><td>Two</td></tr><tr><td>Three</td><td>Four</td></tr></table>`
+                    if( responseObject.error ){
+                        console.log( 'responseObject.error', responseObject.error );
+                        this.aiError = responseObject.error
+                    }else{
+                        editor.getSelected().replaceWith(responseObject.response)
+                    }
+                } )
+            },            
             
             getTraitTooltipText(trait){
                 let result = '(' + trait.attributes.type + ')\n' + trait.attributes.desc;

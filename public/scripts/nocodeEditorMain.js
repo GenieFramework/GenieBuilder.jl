@@ -392,7 +392,22 @@ function initNoCodeEditor() {
                   <div class="gjs-trt-traits">
                       <div v-if="categories.length==0" style="margin-top: 20px;">The selected element doesn't have any editable properties</div>
                       <div style="margin-top: 5px;" v-if="categories.length>0">
-                        <div style="width: 80%; width: 239px; padding: 0px 5px;">
+
+                        <div v-if="categories.length>0" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
+                          <div @click="aiExpanded=!aiExpanded" class="gjs-sm-sector-title" style="text-transform: capitalize;"><i :class="{ 'gjs-caret-icon':true, 'fa':true, 'fa-caret-down':aiExpanded, 'fa-caret-right':!aiExpanded}" style="margin-right: 10px;"></i> Genie AI Builder
+                          </div>
+                          <div class="gjs-sm-properties" v-if="aiExpanded">                          
+                            <div>
+                              <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="userPrompt" style="text-align: left; padding: 10px; width: 95%; resize: vertical;">Write your prtompt here</textarea>
+                              <button @click="aiSendClicked">Send</button>
+                            </div>
+                            <div class="ai-message ai-message-info" v-if="!aiError">Bear in mind: AI results may be inadequate</div>
+                            <div class="ai-message ai-message-error" v-if="aiError">{{aiError}}</div>
+                          </div>
+                        </div>
+
+
+                        <div style="width: 80%; width: 239px; padding: 20px 5px 0px;">
                           <q-input outlined bottom-slots v-model="search" :dense="true" placeholder="Filter Properties">                  
                             <template v-slot:append>
                               <div>
