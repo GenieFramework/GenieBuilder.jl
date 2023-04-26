@@ -165,9 +165,11 @@ function initTraitsEditor(){
             categories: [], 
             categoriesStatus: {}, 
             traitValuesObj: {},
-            userPrompt: "test prompt", 
+            userPrompt: "", 
             aiExpanded: true, 
-            aiError: null
+            aiError: null, 
+            aiRequestStatus: "idle", 
+            aiKey: window.aiKey,
         },
         computed: {
             categoriesFiltered(){
@@ -209,19 +211,41 @@ function initTraitsEditor(){
         },
         methods: {
 
+            openAiKeyPage(){
+                console.log( 'openAiKeyPage' );
+                let msgObject = {};
+                msgObject.command = "openAiKeyPage";
+                parent.postMessage(
+                    msgObject,
+                    "*"
+                );
+            },
+
+            discardAiChanges(){
+                this.aiRequestStatus = "idle";
+                this.aiApiResponse = null
+            },
+            
+            acceptAiChanges(){
+                editor.getSelected().replaceWith(this.aiApiResponse)
+                this.aiApiResponse = null
+                this.aiRequestStatus = "idle";
+            },
+
             aiSendClicked(){
                 let selectedElement = editor.getSelected();
                 let selectedHtml = selectedElement.toHTML()
                 let userPrompt = this.userPrompt;
-                let fullPrompt = `I have this piece of html code: \n\n${selectedHtml}\n\n${userPrompt}`
+                //let fullPrompt = `I have this piece of html code: \n\n${selectedHtml}\n\n${userPrompt}`
                 console.log( "aiSendClicked()!")
                 //let aiApiUrl = "http://localhost:3000/api/send-message"
-                let aiApiUrl = "https://plez6u-ip-3-253-25-80.tunnelmole.com/api/v1/codegen"
+                //let aiApiUrl = "https://uyh10c-ip-3-253-25-80.tunnelmole.com/api/v1/codegen";
+                let aiApiUrl = "https://ai.geniecloud.app/api/v1/codegen";
+                this.aiRequestStatus = "sent";
                 axios.post( aiApiUrl, 
                     { 
-                        message:fullPrompt, 
                         content_type: "html", 
-                        info: "quasar", 
+                        //info: "quasar", 
                         prompt: userPrompt, 
                         code: selectedHtml
                     }, 
@@ -238,9 +262,17 @@ function initTraitsEditor(){
                     if( responseObject.error ){
                         console.log( 'responseObject.error', responseObject.error );
                         this.aiError = responseObject.error
+                        this.aiRequestStatus = "idle";
                     }else{
-                        editor.getSelected().replaceWith(responseObject.response)
+                        this.aiRequestStatus = "received";
+                        this.aiApiResponse = responseObject.response;
+                        //editor.getSelected().replaceWith(responseObject.response)
                     }
+                } )
+                .catch( (err)=>{
+                    console.log( "Error sending message to AI: ", err );
+                    this.aiError = err.message
+                    this.aiRequestStatus = "idle";
                 } )
             },            
             
