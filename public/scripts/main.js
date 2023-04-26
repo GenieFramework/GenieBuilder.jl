@@ -72,7 +72,7 @@ window.onload = () => {
       ];
       // Define a list of libraries/Assets not needed in the editor context
       // and avoid loading them to optimise newtwork/memory/cpu resources
-      const blackList = [ "plotly", "quasar", "vueresize", "vueplotly"/* , "autoreload" */ ];
+      /* const blackList = [ "plotly", "quasar", "vueresize", "vueplotly" ];
       deps.scripts.forEach( (item)=>{
          //appConfig.contentScripts.push( appConfig.url + item );
          const scriptPath = appConfig.url + item;
@@ -89,7 +89,7 @@ window.onload = () => {
               myScript.setAttribute("src", scriptPath);
               document.body.appendChild(myScript);              
             }
-        } );
+        } ); */
         
         return ApiConnector.readFileContents( filePath );
     })
