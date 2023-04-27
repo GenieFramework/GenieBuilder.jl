@@ -396,24 +396,35 @@ function initNoCodeEditor() {
                         <div v-if="categories.length>0" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
                           <div @click="aiExpanded=!aiExpanded" class="gjs-sm-sector-title" style="text-transform: capitalize;"><i :class="{ 'gjs-caret-icon':true, 'fa':true, 'fa-caret-down':aiExpanded, 'fa-caret-right':!aiExpanded}" style="margin-right: 10px;"></i> Genie AI Builder
                           </div>
-                          <div v-if="aiKey && (aiRequestStatus=='idle' || aiRequestStatus=='sent') && aiExpanded" class="gjs-sm-properties" >                          
-                            <div>
-                              <textarea :disabled="aiRequestStatus=='sent'" id="aiInput" name="aiInput" rows="4" cols="50" v-model="userPrompt" style="text-align: left; padding: 10px; width: 95%; resize: vertical;" placeholder="Type here how you want to edit your component"></textarea>
-                              <button v-if="aiRequestStatus=='idle'" @click="aiSendClicked">Send</button>
-                              <button disabled v-if="aiRequestStatus=='sent'">Wait...</button>
+                          <div v-if="aiExpanded" class="gjs-sm-properties" >    
+                            <!-- --------- API Key is set --------- --> 
+                            <div v-if="aiKey" style="width: 100%;">
+                              <!-- --------- No pending request for selected --------- -->
+                              <div v-if="!selectedElementAiRequest">
+                                <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="userPrompt" style="text-align: left; padding: 10px; width: 95%; resize: vertical;" placeholder="Type here how you want to edit your component"></textarea>
+                                <button @click="aiSendClicked">Send</button>
+                                <!-- <div class="ai-message ai-message-info">Bear in mind: AI results may be inadequate</div> -->
+                              </div>
+
+                              <!-- --------- Selected element has resolved request --------- -->
+                              <div v-if="selectedElementAiRequest">
+                                <div v-if="selectedElementAiRequest.aiRequestStatus=='sent'" class="ai-message">Processing request, please wait...</div>
+                                <div v-if="selectedElementAiRequest.aiError" class="ai-message ai-message-error" style="text-align: center;">{{selectedElementAiRequest.aiError}}<br/> <br/>
+                                <button @click="acceptAIErrorMessage">OK</button>
+                                </div>
+                                <div v-if="selectedElementAiRequest.aiRequestStatus=='received'" class="gjs-sm-properties">
+                                  <br/>Here's the response to your request:<br/>
+                                  <div style="overflow:scroll; max-height: 200px; color: #999999; margin: 10px 0px;">{{selectedElementAiRequest.aiApiResponse}}</div><br/>
+                                  <button @click="discardAiChanges" style="margin-right: 10px;">Discard</button>
+                                  <button @click="acceptAiChanges">Accept</button>                          
+                                </div>                            
+                              </div>
                             </div>
-                            <div class="ai-message ai-message-info" v-if="!aiError">Bear in mind: AI results may be inadequate</div>
-                            <div class="ai-message ai-message-error" v-if="aiError">{{aiError}}</div>
-                          </div>
-                          <div v-if="aiKey && aiRequestStatus=='received'" class="gjs-sm-properties" v-if="aiExpanded">
-                          <br/>Here's the response to your request:<br/>
-                          <div style="overflow:scroll; max-height: 200px; color: #999999; margin: 10px 0px;">{{aiApiResponse}}</div><br/>
-                          <button @click="discardAiChanges">Discard</button>
-                          <button @click="acceptAiChanges">Accept</button>
-                          
-                          </div>
-                          <div v-if="!aiKey && aiExpanded" class="gjs-sm-properties" style="display: block;">    
-                          In order to enable the AI Builder, you need to provide an API key. You can get one <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Once you have it, paste it in the "API Key" field in the "Settings" tab and reopen this tab.                      
+                            
+                            <!-- --------- API Key is NOT set --------- --> 
+                            <div v-if="!aiKey" style="display: block;">
+                              In order to enable the AI Builder, you need to provide an API key. You can get one <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Once you have it, paste it in the "API Key" field in the "Settings" tab and reopen this tab.    
+                            </div>
                           </div>
                         </div>
 

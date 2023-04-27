@@ -167,11 +167,18 @@ function initTraitsEditor(){
             traitValuesObj: {},
             userPrompt: "", 
             aiExpanded: true, 
-            aiError: null, 
-            aiRequestStatus: "idle", 
+            /* aiError: null, 
+            aiRequestStatus: "idle",  */
             aiKey: window.aiKey,
+            aiRequests: {}, 
+            selectedElementAiRequest: null
         },
         computed: {
+            getSelectedElement(){
+                let selection =  editor.getSelected()
+                return selection;
+            },
+
             categoriesFiltered(){
                 if( !this.categories )
                     return [];
@@ -222,26 +229,46 @@ function initTraitsEditor(){
             },
 
             discardAiChanges(){
-                this.aiRequestStatus = "idle";
-                this.aiApiResponse = null
+                this.aiRequests[this.getSelectedElement.ccid] = null
+                this.selectedElementAiRequest = null;
             },
             
             acceptAiChanges(){
-                editor.getSelected().replaceWith(this.aiApiResponse)
-                this.aiApiResponse = null
-                this.aiRequestStatus = "idle";
+                let requestObject = this.aiRequests[this.getSelectedElement.ccid]
+                if( requestObject ){
+                    let newElement = editor.getSelected().replaceWith(requestObject.aiApiResponse)
+                    this.aiRequests[this.getSelectedElement.ccid] = null
+                    this.selectedElementAiRequest = null;
+                    editor.select( newElement )
+                }
+            },
+            acceptAIErrorMessage(){
+                this.aiRequests[this.getSelectedElement.ccid] = null
+                this.selectedElementAiRequest = null;
             },
 
             aiSendClicked(){
-                let selectedElement = editor.getSelected();
+                let selectedElement = this.getSelectedElement
+
                 let selectedHtml = selectedElement.toHTML()
                 let userPrompt = this.userPrompt;
+
+                this.aiRequests[selectedElement.ccid] = {
+                    selectedHtml: selectedHtml, 
+                    userPrompt: userPrompt, 
+                    aiRequestStatus: "sent"
+                };
+
+                let requestObject = this.aiRequests[selectedElement.ccid];
+                this.selectedElementAiRequest = requestObject;
+                this.userPrompt = "";
+
                 //let fullPrompt = `I have this piece of html code: \n\n${selectedHtml}\n\n${userPrompt}`
-                console.log( "aiSendClicked()!")
+                console.log( "aiSendClicked()! ", selectedElement.ccid, selectedElement.cid, selectedElement )
                 //let aiApiUrl = "http://localhost:3000/api/send-message"
                 //let aiApiUrl = "https://uyh10c-ip-3-253-25-80.tunnelmole.com/api/v1/codegen";
                 let aiApiUrl = "https://ai.geniecloud.app/api/v1/codegen";
-                this.aiRequestStatus = "sent";
+                //this.aiRequestStatus = "sent";
                 axios.post( aiApiUrl, 
                     { 
                         content_type: "html", 
@@ -251,7 +278,7 @@ function initTraitsEditor(){
                     }, 
                     {
                         headers: {
-                            Authorization: "Bearer " + window.aiKey
+                            Authorization: "Bearer " + window.aiKey, 
                         }
                     },
                 )
@@ -261,19 +288,21 @@ function initTraitsEditor(){
                     //let dymmyResponseCode = `<table><tr><td>One</td><td>Two</td></tr><tr><td>Three</td><td>Four</td></tr></table>`
                     if( responseObject.error ){
                         console.log( 'responseObject.error', responseObject.error );
-                        this.aiError = responseObject.error
-                        this.aiRequestStatus = "idle";
+                        requestObject.aiError = responseObject.error;
+                        requestObject.aiRequestStatus = "error";
                     }else{
-                        this.aiRequestStatus = "received";
-                        this.aiApiResponse = responseObject.response;
-                        //editor.getSelected().replaceWith(responseObject.response)
+                        requestObject.aiRequestStatus = "received";
+                        requestObject.aiApiResponse = responseObject.response;
                     }
+                    this.$forceUpdate();
                 } )
                 .catch( (err)=>{
                     console.log( "Error sending message to AI: ", err );
-                    this.aiError = err.message
-                    this.aiRequestStatus = "idle";
+                    requestObject.aiError = err.message;
+                    requestObject.aiRequestStatus = "idle";
+                    this.$forceUpdate();
                 } )
+                this.$forceUpdate();
             },            
             
             getTraitTooltipText(trait){
@@ -292,6 +321,11 @@ function initTraitsEditor(){
             }, 
             
             assignComponent: function( component ) {
+                this.selectedElementAiRequest = null;
+                if( component ){
+                    this.selectedElementAiRequest = this.aiRequests[component.ccid];
+                }
+
                 console.log( "Traits Editor assignComponent: ", component );
                 this.component = component;
                 if( !component ){
