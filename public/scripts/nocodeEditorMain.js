@@ -423,7 +423,11 @@ function initNoCodeEditor() {
                             
                             <!-- --------- API Key is NOT set --------- --> 
                             <div v-if="!aiKey" style="display: block;">
-                              In order to enable the AI Builder, you need to provide an API key. You can get one <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Once you have it, paste it in the "API Key" field in the "Settings" tab and reopen this tab.    
+                              In order to enable the AI Builder, you need to provide an API key. You can get one <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Once you have it, paste it in the input field below:    
+                              <br/> <br/>
+                              <textarea rows="2" cols="50" v-model="enteredAiKey" style="text-align: left; padding: 10px; width: 95%; resize: none;" placeholder="Paste AI API Key here"></textarea>
+                                <button @click="setAiKey">Save</button>
+
                             </div>
                           </div>
                         </div>

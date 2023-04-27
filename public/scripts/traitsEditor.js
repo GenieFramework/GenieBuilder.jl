@@ -170,6 +170,7 @@ function initTraitsEditor(){
             /* aiError: null, 
             aiRequestStatus: "idle",  */
             aiKey: window.aiKey,
+            enteredAiKey: "",
             aiRequests: {}, 
             selectedElementAiRequest: null
         },
@@ -217,6 +218,17 @@ function initTraitsEditor(){
             }
         },
         methods: {
+
+            setAiKey(){
+                console.log( 'setAiKey' );
+                let msgObject = { aiKey: this.enteredAiKey };
+                this.aiKey = window.aiKey = this.enteredAiKey;
+                msgObject.command = "setAiKey";
+                parent.postMessage(
+                    msgObject,
+                    "*"
+                );
+            },
 
             openAiKeyPage(){
                 console.log( 'openAiKeyPage' );
@@ -278,7 +290,7 @@ function initTraitsEditor(){
                     }, 
                     {
                         headers: {
-                            Authorization: "Bearer " + window.aiKey, 
+                            Authorization: "Bearer " + this.aiKey, 
                         }
                     },
                 )
