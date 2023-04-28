@@ -415,6 +415,14 @@ function initNoCodeEditor() {
                                 <div v-if="selectedElementAiRequest.aiRequestStatus=='received'" class="gjs-sm-properties">
                                   <br/>Here's the response to your request:<br/>
                                   <div style="overflow:scroll; max-height: 200px; color: #999999; margin: 10px 0px;">{{selectedElementAiRequest.aiApiResponse}}</div><br/>
+                                  <div id="ai_preview_iframe_container" v-show="aiPreviewShown">
+                                    <div class="ai_preview_header">
+                                      <div>Changes Preview</div>
+                                      <div style="cursor: pointer;" @click="aiPreviewShown=false">X</div>
+                                    </div>
+                                    <iframe id="ai_preview_iframe"></iframe>
+                                  </div>
+                                  <button @click="showAIPreview">Preview</button>
                                   <button @click="discardAiChanges" style="margin-right: 10px;">Discard</button>
                                   <button @click="acceptAiChanges">Accept</button>                          
                                 </div>                            
@@ -678,34 +686,40 @@ function logEvent(message) {
   parent.postMessage(message, "*");
 }
 
-function getPageContentsForSaving(){
-  let currentTemplate = editor.getHtml({ cleanId: true });
-  let currentStyles = editor.getCss({ avoidProtected: true });
-  window.lastSavedHTML = currentTemplate;
-  
+function getCleanHtmlForSaving(htmlString){  
   // remove body tag
-  currentTemplate = currentTemplate
+  htmlString = htmlString
     .replaceAll(`<body>`, ``)
     .replaceAll(`</body>`, ``);
   
   let containerHtml = '<div id="editableDOM" class="container">';
   
-  let containerDivPresent = currentTemplate.indexOf(containerHtml);
+  let containerDivPresent = htmlString.indexOf(containerHtml);
   if (containerDivPresent >= 0) {
-    currentTemplate = currentTemplate.replace(containerHtml, ``);
-    currentTemplate = currentTemplate.replace(new RegExp("</div>" + "$"), "");
+    htmlString = htmlString.replace(containerHtml, ``);
+    htmlString = htmlString.replace(new RegExp("</div>" + "$"), "");
   }
+  return htmlString  
+}
+
+function getPageContentsForSaving(){
+  let currentTemplate = editor.getHtml({ cleanId: true });
+  let currentStyles = editor.getCss({ avoidProtected: true });
+  window.lastSavedHTML = currentTemplate;
+
+  let cleanTemplate = getCleanHtmlForSaving(currentTemplate);
+
   const result = {
     app_id: window.projectId,
     appName: window.appName,
     appPath: window.appPath,
     path: window.filePath,
-    content: currentTemplate,
+    content: cleanTemplate,
     styles: currentStyles,
   }
   return result;
-
 }
+
 function savePage() {
   resetUnsavedChanges();
   let pageData = getPageContentsForSaving();

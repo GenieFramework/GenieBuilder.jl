@@ -72,6 +72,7 @@ window.onload = () => {
           "./libs/jquery.min.js",
           "scripts/contentMain.js", 
       ];
+      appConfig.rawDepScripts = deps.scripts;
       // Define a list of libraries/Assets not needed in the editor context
       // and avoid loading them to optimise newtwork/memory/cpu resources
       /* const blackList = [ "plotly", "quasar", "vueresize", "vueplotly" ];

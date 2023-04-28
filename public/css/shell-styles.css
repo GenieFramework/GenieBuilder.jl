@@ -394,3 +394,29 @@ img.blockIcon {
 .ai-message-error{
   background-color: #ff000020;
 }
+
+#ai_preview_iframe_container{
+  position: fixed;
+  inset: 40px 0px 0px;
+  background-color: #ffffff;
+  padding: 10px 10px 10px;
+  z-index: 5;
+}
+
+#ai_preview_iframe{
+  position: relative;
+  background-color: #cccccc;
+  width: 100%;
+  height: calc(100% - 30px);
+  border: 1px solid rgb(153, 153, 153);
+  border-radius: 5px;
+}
+
+.ai_preview_header{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 15px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
