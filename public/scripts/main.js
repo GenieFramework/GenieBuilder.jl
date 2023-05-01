@@ -7,6 +7,8 @@ window.onload = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
+    const aiKey = window.aiKey = urlParams.get('aikey');
+
     const projectId = window.projectId = urlParams.get('appid');
     const appName = window.appName = urlParams.get('appname');
     const appPath = window.appPath = urlParams.get('apppath');
@@ -72,7 +74,7 @@ window.onload = () => {
       ];
       // Define a list of libraries/Assets not needed in the editor context
       // and avoid loading them to optimise newtwork/memory/cpu resources
-      const blackList = [ "plotly", "quasar", "vueresize", "vueplotly"/* , "autoreload" */ ];
+      /* const blackList = [ "plotly", "quasar", "vueresize", "vueplotly" ];
       deps.scripts.forEach( (item)=>{
          //appConfig.contentScripts.push( appConfig.url + item );
          const scriptPath = appConfig.url + item;
@@ -89,7 +91,7 @@ window.onload = () => {
               myScript.setAttribute("src", scriptPath);
               document.body.appendChild(myScript);              
             }
-        } );
+        } ); */
         
         return ApiConnector.readFileContents( filePath );
     })

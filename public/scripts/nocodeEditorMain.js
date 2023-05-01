@@ -392,7 +392,48 @@ function initNoCodeEditor() {
                   <div class="gjs-trt-traits">
                       <div v-if="categories.length==0" style="margin-top: 20px;">The selected element doesn't have any editable properties</div>
                       <div style="margin-top: 5px;" v-if="categories.length>0">
-                        <div style="width: 80%; width: 239px; padding: 0px 5px;">
+
+                        <div v-if="categories.length>0" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
+                          <div @click="aiExpanded=!aiExpanded" class="gjs-sm-sector-title" style="text-transform: capitalize;"><i :class="{ 'gjs-caret-icon':true, 'fa':true, 'fa-caret-down':aiExpanded, 'fa-caret-right':!aiExpanded}" style="margin-right: 10px;"></i> Genie AI Builder
+                          </div>
+                          <div v-if="aiExpanded" class="gjs-sm-properties" >    
+                            <!-- --------- API Key is set --------- --> 
+                            <div v-if="aiKey" style="width: 100%;">
+                              <!-- --------- No pending request for selected --------- -->
+                              <div v-if="!selectedElementAiRequest">
+                                <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="userPrompt" style="text-align: left; padding: 10px; width: 95%; resize: vertical;" placeholder="Type here how you want to edit your component"></textarea>
+                                <button @click="aiSendClicked">Send</button>
+                                <!-- <div class="ai-message ai-message-info">Bear in mind: AI results may be inadequate</div> -->
+                              </div>
+
+                              <!-- --------- Selected element has resolved request --------- -->
+                              <div v-if="selectedElementAiRequest">
+                                <div v-if="selectedElementAiRequest.aiRequestStatus=='sent'" class="ai-message">Processing request, please wait...</div>
+                                <div v-if="selectedElementAiRequest.aiError" class="ai-message ai-message-error" style="text-align: center;">{{selectedElementAiRequest.aiError}}<br/> <br/>
+                                <button @click="acceptAIErrorMessage">OK</button>
+                                </div>
+                                <div v-if="selectedElementAiRequest.aiRequestStatus=='received'" class="gjs-sm-properties">
+                                  <br/>Here's the response to your request:<br/>
+                                  <div style="overflow:scroll; max-height: 200px; color: #999999; margin: 10px 0px;">{{selectedElementAiRequest.aiApiResponse}}</div><br/>
+                                  <button @click="discardAiChanges" style="margin-right: 10px;">Discard</button>
+                                  <button @click="acceptAiChanges">Accept</button>                          
+                                </div>                            
+                              </div>
+                            </div>
+                            
+                            <!-- --------- API Key is NOT set --------- --> 
+                            <div v-if="!aiKey" style="display: block;">
+                              In order to enable the AI Builder, you need to provide an API key. You can get one <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Once you have it, paste it in the input field below:    
+                              <br/> <br/>
+                              <textarea rows="2" cols="50" v-model="enteredAiKey" style="text-align: left; padding: 10px; width: 95%; resize: none;" placeholder="Paste AI API Key here"></textarea>
+                                <button @click="setAiKey">Save</button>
+
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div style="width: 80%; width: 239px; padding: 20px 5px 0px;">
                           <q-input outlined bottom-slots v-model="search" :dense="true" placeholder="Filter Properties">                  
                             <template v-slot:append>
                               <div>

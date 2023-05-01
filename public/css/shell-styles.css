@@ -379,3 +379,18 @@ img.blockIcon {
 .gjs-selected {
   outline: 2px solid #305972 !important;
 }
+
+
+.ai-message{
+  padding: 10px;
+  margin: 10px 0px;
+  width: 100%;
+}
+
+.ai-message-info{
+  background-color: #0800ff20;
+}
+
+.ai-message-error{
+  background-color: #ff000020;
+}
