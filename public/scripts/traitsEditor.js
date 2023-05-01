@@ -378,6 +378,7 @@ function initTraitsEditor(){
             discardAiChanges(){
                 this.aiRequests[this.getSelectedElement.ccid] = null
                 this.selectedElementAiRequest = null;
+                this.aiPreviewShown = false;
             },
             
             acceptAiChanges(){
@@ -387,6 +388,7 @@ function initTraitsEditor(){
                     this.aiRequests[this.getSelectedElement.ccid] = null
                     this.selectedElementAiRequest = null;
                     editor.select( newElement )
+                    this.aiPreviewShown = false;
                 }
             },
             acceptAIErrorMessage(){

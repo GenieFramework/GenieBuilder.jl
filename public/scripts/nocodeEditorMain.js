@@ -401,7 +401,7 @@ function initNoCodeEditor() {
                             <div v-if="aiKey" style="width: 100%;">
                               <!-- --------- No pending request for selected --------- -->
                               <div v-if="!selectedElementAiRequest">
-                                <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="userPrompt" style="text-align: left; padding: 10px; width: 95%; resize: vertical;" placeholder="Type here how you want to edit your component"></textarea>
+                                <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="userPrompt" placeholder="Type here how you want to edit your component"></textarea>
                                 <button @click="aiSendClicked">Send</button>
                                 <!-- <div class="ai-message ai-message-info">Bear in mind: AI results may be inadequate</div> -->
                               </div>
@@ -412,19 +412,24 @@ function initNoCodeEditor() {
                                 <div v-if="selectedElementAiRequest.aiError" class="ai-message ai-message-error" style="text-align: center;">{{selectedElementAiRequest.aiError}}<br/> <br/>
                                 <button @click="acceptAIErrorMessage">OK</button>
                                 </div>
-                                <div v-if="selectedElementAiRequest.aiRequestStatus=='received'" class="gjs-sm-properties">
-                                  <br/>Here's the response to your request:<br/>
-                                  <div style="overflow:scroll; max-height: 200px; color: #999999; margin: 10px 0px;">{{selectedElementAiRequest.aiApiResponse}}</div><br/>
+                                <div v-if="selectedElementAiRequest.aiRequestStatus=='received'" class="gjs-sm-properties" style="display: block; text-align: center;">
+                                  Your prompt
+                                  <div class="ai-prompt-display">"{{selectedElementAiRequest.userPrompt}}"</div>
+                                  was processed successfully
                                   <div id="ai_preview_iframe_container" v-show="aiPreviewShown">
                                     <div class="ai_preview_header">
                                       <div>Changes Preview</div>
                                       <div style="cursor: pointer;" @click="aiPreviewShown=false">X</div>
                                     </div>
                                     <iframe id="ai_preview_iframe"></iframe>
+                                    <div style="position: absolute; bottom: 10px; right: 10px;">
+                                      <button @click="acceptAiChanges">Accept</button>   
+                                    </div>
                                   </div>
-                                  <button @click="showAIPreview">Preview</button>
-                                  <button @click="discardAiChanges" style="margin-right: 10px;">Discard</button>
-                                  <button @click="acceptAiChanges">Accept</button>                          
+                                  <div style="margin-top:20px;">
+                                    <button @click="showAIPreview" style="margin-bottom: 5px;">Preview Result</button>      
+                                    <div @click="discardAiChanges" style="color: #000000a0; text-decoration: underline; cursor: pointer;">or discard</div>
+                                  </div>
                                 </div>                            
                               </div>
                             </div>

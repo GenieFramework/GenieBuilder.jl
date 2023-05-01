@@ -397,7 +397,7 @@ img.blockIcon {
 
 #ai_preview_iframe_container{
   position: fixed;
-  inset: 40px 0px 0px;
+  inset: 0px 250px 0px 0px;
   background-color: #ffffff;
   padding: 10px 10px 10px;
   z-index: 5;
@@ -407,7 +407,7 @@ img.blockIcon {
   position: relative;
   background-color: #cccccc;
   width: 100%;
-  height: calc(100% - 30px);
+  height: calc(100% - 60px);
   border: 1px solid rgb(153, 153, 153);
   border-radius: 5px;
 }
@@ -419,4 +419,22 @@ img.blockIcon {
   font-size: 15px;
   padding-bottom: 10px;
   font-weight: bold;
+}
+
+#aiInput{
+  text-align: left;
+  padding: 10px;
+  width: 95%;
+  resize: vertical;
+}
+
+.ai-prompt-display{
+  overflow: auto;
+    max-height: 200px;
+    color: rgb(153, 153, 153);
+    margin: 10px 0px;
+    font-style: italic;
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
 }
