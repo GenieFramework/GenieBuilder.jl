@@ -55,7 +55,9 @@ end
 Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " \nplease free Ports to create GenieBuilder App")
 
 fullpath(app::Application) = abspath(app.path * app.name)
-get(appid) = SearchLight.findone(Application, id = parse(Int, appid))
+get(appid) = ApplicationsController.get(parse(Int, appid))
+get(appid::SearchLight.DbId) = ApplicationsController.get(appid.value)
+get(appid::Int) = SearchLight.findone(Application, id = appid)
 
 function notify(message::String,
                 appid::Union{SearchLight.DbId,Nothing} = nothing,
@@ -257,11 +259,23 @@ function isdeleted(app)
 end
 
 function watch(path, appid)
-  app = get(appid)
+  app = try
+    ApplicationsController.get(appid.value)
+  catch ex
+    @error ex
+  end
+
   Genie.config.watch_handlers["$(appid.value)"] = [
-    ()->HTTP.request("GET", "$(apphost):$(app.port)")
-    ()->ApplicationsController.notify("changed:files", appid)
+    () -> begin
+            try
+              HTTP.request("GET", "$(apphost):$(app.port)")
+            catch ex
+              @error ex
+            end
+          end
+    () -> ApplicationsController.notify("changed:files", appid)
   ]
+
   Genie.Watch.watchpath(path)
   @async Genie.Watch.watch()
 end
