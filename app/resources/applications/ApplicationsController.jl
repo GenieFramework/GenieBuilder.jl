@@ -257,7 +257,11 @@ function isdeleted(app)
 end
 
 function watch(path, appid)
-  Genie.config.watch_handlers["$(appid.value)"] = [()->ApplicationsController.notify("changed:files", appid)]
+  app = get(appid)
+  Genie.config.watch_handlers["$(appid.value)"] = [
+    ()->HTTP.request("GET", "$(apphost):$(app.port)")
+    ()->ApplicationsController.notify("changed:files", appid)
+  ]
   Genie.Watch.watchpath(path)
   @async Genie.Watch.watch()
 end
