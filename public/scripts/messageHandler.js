@@ -28,6 +28,8 @@ eventer(messageEvent, function (e) {
         }
         initNoCodeEditor();
         
+    }else if(command == "updateBindingsList" ){
+        fetchAndUpdateModelBindings();
     }
     
 });

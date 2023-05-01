@@ -173,3 +173,11 @@ window.onload = () => {
         console.log( "[chained] 2 Current Page: ", currentPage, fields, parsedFields );
 
   }
+
+  function fetchAndUpdateModelBindings(){
+    console.log( 'fetchAndUpdateModelBindings' );
+    ApiConnector.getProjectPages()
+    .then( (result)=>{
+        parseAppPages(result)
+    } )
+  }
