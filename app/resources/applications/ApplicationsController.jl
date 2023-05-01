@@ -55,7 +55,9 @@ end
 Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " \nplease free Ports to create GenieBuilder App")
 
 fullpath(app::Application) = abspath(app.path * app.name)
-get(appid) = SearchLight.findone(Application, id = parse(Int, appid))
+get(appid) = ApplicationsController.get(parse(Int, appid))
+get(appid::SearchLight.DbId) = ApplicationsController.get(appid.value)
+get(appid::Int) = SearchLight.findone(Application, id = appid)
 
 function notify(message::String,
                 appid::Union{SearchLight.DbId,Nothing} = nothing,
@@ -93,6 +95,10 @@ function notify(message::String,
   true
 end
 
+function valid_appname(name::String)
+  filter(! isempty, [x.match for x in collect(eachmatch(r"[0-9a-zA-Z]*", name))]) |> join
+end
+
 function apps()
   (:applications => all(Application)) |> json
 end
@@ -118,12 +124,12 @@ function run_as_genie_app(filepath::String)
   app = findone(Application; filepath)
   app !== nothing && return start(app)
 
-  name = Genie.Generator.validname(dir(filepath) * "-" * basename(filepath))
+  name = valid_appname(dir(filepath) * "-" * basename(filepath))
   create(name, filepath)
 end
 
 function create(name, path = "", port = UNDEFINED_PORT)
-  name = Genie.Generator.validname(name) |> lowercase
+  name = valid_appname(name) |> lowercase
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
   port, replport = available_port()
@@ -257,7 +263,23 @@ function isdeleted(app)
 end
 
 function watch(path, appid)
-  Genie.config.watch_handlers["$(appid.value)"] = [()->ApplicationsController.notify("changed:files", appid)]
+  app = try
+    ApplicationsController.get(appid.value)
+  catch ex
+    @error ex
+  end
+
+  Genie.config.watch_handlers["$(appid.value)"] = [
+    () -> begin
+            try
+              HTTP.request("GET", "$(apphost):$(app.port)")
+            catch ex
+              @error ex
+            end
+          end
+    () -> ApplicationsController.notify("changed:files", appid)
+  ]
+
   Genie.Watch.watchpath(path)
   @async Genie.Watch.watch()
 end
@@ -690,7 +712,7 @@ function import_apps() :: Nothing
     ! isdir(joinpath(GenieBuilder.APPS_FOLDER[], existing_app)) && continue
     startswith(existing_app, ".") && continue
 
-    appname = Genie.Generator.validname(existing_app)
+    appname = valid_appname(existing_app)
     if isempty(find(Application, name = appname))
       appname != existing_app && mv(joinpath(GenieBuilder.APPS_FOLDER[], existing_app), joinpath(GenieBuilder.APPS_FOLDER[], appname))
       create(appname)
