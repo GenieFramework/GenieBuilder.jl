@@ -426,6 +426,7 @@ img.blockIcon {
   padding: 10px;
   width: 95%;
   resize: vertical;
+  margin-top: 5px;
 }
 
 .ai-prompt-display{

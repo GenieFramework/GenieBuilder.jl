@@ -414,9 +414,16 @@ function initNoCodeEditor() {
                                 </div>
                                 <div v-if="selectedElementAiRequest.aiRequestStatus=='received'" class="gjs-sm-properties" style="display: block; text-align: center;">
                                   Your prompt
-                                  <div class="ai-prompt-display">"{{selectedElementAiRequest.userPrompt}}"</div>
-                                  was processed successfully
-                                  <div id="ai_preview_iframe_container" v-show="aiPreviewShown">
+                                  <!-- <div class="ai-prompt-display">"{{selectedElementAiRequest.userPrompt}}"</div> -->
+                                  <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="selectedElementAiRequest.userPrompt" placeholder="Type here how you want to edit your component"></textarea>
+                                  was processed successfully                                  
+                                  <div style="margin-top:20px;">
+                                    <button v-if="!aiPreviewShown" @click="showAIPreview" style="margin-bottom: 5px;">Preview Result</button>      
+                                    <button @click="aiSendClicked">Send Again</button>
+                                    <div @click="discardAiChanges" style="color: #000000a0; text-decoration: underline; cursor: pointer; margin-top: 5px;">or discard</div>
+                                  </div>
+                                </div> 
+                                <div id="ai_preview_iframe_container" v-show="aiPreviewShown">
                                     <div class="ai_preview_header">
                                       <div>Changes Preview</div>
                                       <div style="cursor: pointer;" @click="aiPreviewShown=false">X</div>
@@ -425,12 +432,7 @@ function initNoCodeEditor() {
                                     <div style="position: absolute; bottom: 10px; right: 10px;">
                                       <button @click="acceptAiChanges">Accept</button>   
                                     </div>
-                                  </div>
-                                  <div style="margin-top:20px;">
-                                    <button @click="showAIPreview" style="margin-bottom: 5px;">Preview Result</button>      
-                                    <div @click="discardAiChanges" style="color: #000000a0; text-decoration: underline; cursor: pointer;">or discard</div>
-                                  </div>
-                                </div>                            
+                                  </div>                           
                               </div>
                             </div>
                             
