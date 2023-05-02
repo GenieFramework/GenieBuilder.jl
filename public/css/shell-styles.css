@@ -342,22 +342,11 @@ img.blockIcon {
   position: relative;
 }
 
-#unsavedChangesAlert {
-  position: fixed;
-  top: 5px;
-  right: 255px;
-  color: #ff6600;
-  display: none;
-  z-index: 10000;
-  font-size: 14px;
-}
 
 .warningIcon.gjs-pn-btn {
-  color: #ff6600;
+  filter: sepia(1) saturate(50);
 }
-.warningIcon.gjs-pn-btn:hover {
-  color: #ff6600 !important;
-}
+
 
 .gjs-trt-trait {
   /* display: block !important;

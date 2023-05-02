@@ -426,7 +426,7 @@ function initNoCodeEditor() {
                                 <div id="ai_preview_iframe_container" v-show="aiPreviewShown">
                                     <div class="ai_preview_header">
                                       <div>Changes Preview</div>
-                                      <div style="cursor: pointer;" @click="aiPreviewShown=false">X</div>
+                                      <div style="cursor: pointer;" @click="aiPreviewShown=false">✕</div>
                                     </div>
                                     <iframe id="ai_preview_iframe"></iframe>
                                     <div style="position: absolute; bottom: 10px; right: 10px;">
@@ -680,10 +680,8 @@ function initNoCodeEditor() {
 function markUnsavedChanges(yesNo) {
   if( yesNo ){
     document.querySelector("#saveButton").classList.add("warningIcon");
-    document.querySelector("#unsavedChangesAlert").style.display = "block";
   }else{
     document.querySelector("#saveButton").classList.remove("warningIcon");
-    document.querySelector("#unsavedChangesAlert").style.display = "none";
   }
   window.unsavedChanges = yesNo;
 }
