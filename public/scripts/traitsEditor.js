@@ -171,13 +171,23 @@ function initTraitsEditor(){
         methods: {
 
             showAIPreview(){
+                console.log( 'showAIPreview()' );
+                // Take note of the selected element id, as we'll use it to do the necessary replacements
+                let selectedElementId = this.getSelectedElement.ccid;
+                // Assign the selected element an id based on its ccid if it hasn't got one already
+                const selectedElementAttributes = this.getSelectedElement.get('attributes');
+                if (!selectedElementAttributes.id) {
+                    // The id attribute is not present, so you can set it.
+                    selectedElementAttributes.id = selectedElementId;
+                    this.getSelectedElement.set('attributes', selectedElementAttributes);
+                } else {
+                    //console.log('The id attribute is already present.');
+                }
                 // Get the current state of the page being edited and build a virtual DOM
                 let currentTemplate = editor.getHtml();
                 const parser = new DOMParser();
                 const virtualDOM = parser.parseFromString( currentTemplate, 'text/html');
 
-                // Take note of the selected element id, as we'll use it to do the necessary replacements
-                let selectedElementId = this.getSelectedElement.ccid;
 
                 // Find the selected element within the virtual DOM
                 const selectedElementVirtual = virtualDOM.querySelector('#'+selectedElementId);
