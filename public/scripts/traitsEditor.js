@@ -334,12 +334,13 @@ function initTraitsEditor(){
                 if( !this.aiRequests[selectedElement.ccid] ){
                     this.aiRequests[selectedElement.ccid] = {
                         selectedHtml: selectedHtml, 
-                        userPrompt: userPrompt
+                        userPrompt: userPrompt, 
                     };
                 }
-                this.aiRequests[selectedElement.ccid].aiRequestStatus = "sent";
-
                 let requestObject = this.aiRequests[selectedElement.ccid];
+                requestObject.aiRequestStatus = "sent";
+                requestObject.previousPrompt = userPrompt;
+
                 this.selectedElementAiRequest = requestObject;
                 this.userPrompt = "";
 

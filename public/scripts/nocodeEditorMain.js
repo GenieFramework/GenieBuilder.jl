@@ -419,8 +419,11 @@ function initNoCodeEditor() {
                                   was processed successfully                                  
                                   <div style="margin-top:20px;">
                                     <button v-if="!aiPreviewShown" @click="showAIPreview" style="margin-bottom: 5px;">Preview Result</button>      
-                                    <button @click="aiSendClicked">Resend</button>
-                                    <div @click="discardAiChanges" style="color: #000000a0; text-decoration: underline; cursor: pointer; margin-top: 5px;">or discard</div>
+                                    <button @click="acceptAiChanges" v-if="selectedElementAiRequest.userPrompt==selectedElementAiRequest.previousPrompt">Accept</button>  
+                                    <button @click="aiSendClicked" v-if="selectedElementAiRequest.userPrompt!=selectedElementAiRequest.previousPrompt">Resend</button>
+                                    <div style="display: flex; justify-content: center;">
+                                      <div @click="discardAiChanges" style="color: #000000a0; text-decoration: underline; cursor: pointer; margin-top: 5px;">or discard</div>                                    
+                                    </div>
                                   </div>
                                 </div> 
                                 <div id="ai_preview_iframe_container" v-show="aiPreviewShown">
