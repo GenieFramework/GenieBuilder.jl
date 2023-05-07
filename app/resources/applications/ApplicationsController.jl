@@ -290,6 +290,8 @@ function unwatch(path, appid)
 end
 
 function start(app)
+  @info "inside start"
+  @info app
   if isdeleted(app)
     notify("failed:start", app.id, FAILSTATUS, DELETED_STATUS)
     return (:status => DELETED_STATUS) |> json
@@ -302,7 +304,9 @@ function start(app)
     notify("started:start", app.id)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
+      @info "inside thread"
       try
+        @info "This Ran"
         cmd = Cmd(`julia --startup-file=no -e '
                                                 using Pkg;
                                                 Pkg._auto_gc_enabled[] = false;
@@ -313,6 +317,7 @@ function start(app)
                                                 Genie.genie(context = @__MODULE__);
                                                 up(async = false);
                   '`; dir = fullpath(app), detach = false)
+        @info "Failed to run after cmd"
         cmd = addenv(cmd, "PORT" => app.port,
                           "WSPORT" => app.port,
                           "WSEXPPORT" => app.port,
@@ -384,6 +389,7 @@ function stop(app)
 end
 
 function up(app)
+  @info "up the app"
   appstatus = status_request(app)
   appstatus != OFFLINE_STATUS && notify("failed:up:$appstatus", app.id, FAILSTATUS, ERROR_STATUS) && return (:status => appstatus) |> json
 
@@ -412,12 +418,68 @@ macro isonline(app)
   end
 end
 
+function move_to_folder(app::GenieBuilder.Applications.Application, from_folder::String, to_folder::String)::Nothing
+  @info "move to folder is run!"
+
+  # Check if the source and target directories exist
+  # if !isdir(from_folder)
+  #   @error "Source directory does not exist."
+  # end
+  # if !isdir(to_folder)
+  #   mkdir(to_folder)
+  # end
+
+  app_path = joinpath(from_folder, app.name)
+  @show app_path
+
+  # Check if the app directory exists
+  if !isdir(app_path)
+    @error "File '$app' is not a directory."
+  end
+
+  if(isdir(joinpath(to_folder, app.name)))
+    @info "$(app.name) folder exists in $(to_folder)"
+    timestamp = now() |> (dt -> trunc(dt, Minute)) |> (dt -> Dates.format(dt, "yyyy-mm-ddTHH:MM")) |> (s -> replace(s, r"[-:]" => ""))
+    app_new_name = app.name * timestamp
+    @show app_new_name
+    mv(app_path, joinpath(to_folder, app_new_name))
+
+    try
+      @info "updating app name and path"
+      new_app_path = joinpath(to_folder, app_new_name)
+      @info new_app_path
+      SearchLight.updatewith!(app, Dict("name" => app_new_name, "path" => new_app_path))
+      save!(app)
+    catch err
+      @error err
+    end
+    
+    println("File '$(app_new_name)' moved from '$from_folder' to '$to_folder'")
+  else
+    @info "$(app.name) folder does not exist in $(to_folder)"
+    mv(app_path, joinpath(to_folder, app.name))
+    try
+      @info "updating app path"
+      new_app_path = joinpath(to_folder, app.name)
+      @info new_app_path
+      SearchLight.updatewith!(app, Dict("path" => new_app_path))
+      save!(app)
+      println("File '$(app.name)' moved from '$from_folder' to '$to_folder'")
+    catch err
+      @error err
+    end
+  end
+end
+
+
 function delete(app)
   notify("started:delete", app.id)
   stop(app)
 
   persist_status(app, DELETED_STATUS)
   notify("ended:delete", app.id)
+  
+  move_to_folder(app, GenieBuilder.APPS_FOLDER[], GenieBuilder.TRASH_FOLDER[])
 
   (:status => OKSTATUS) |> json
 end
@@ -428,6 +490,7 @@ function restore(app)
   status = if app.status == DELETED_STATUS
     persist_status(app, OFFLINE_STATUS) ? notify("ended:restore", app.id) : notify("failed:restore", app.id)
     OKSTATUS
+    move_to_folder(app, GenieBuilder.TRASH_FOLDER[], GenieBuilder.APPS_FOLDER[])
   else
     notify("failed:restore", app.id)
     FAILSTATUS

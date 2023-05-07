@@ -7,6 +7,7 @@ using .Generators
 
 const GBDIR = Ref{String}("")
 const APPS_FOLDER = Ref{String}("")
+const TRASH_FOLDER = Ref{String}("")
 const DB_FOLDER = Ref{String}("")
 const DB_NAME = Ref{String}("")
 const DB_CONFIG_FILE = Ref{String}("")
@@ -17,6 +18,7 @@ const WS_PORT = 10102
 function __init__()
   GBDIR[] = pwd()
   APPS_FOLDER[] = joinpath(GBDIR[], "apps")
+  TRASH_FOLDER[] = joinpath(APPS_FOLDER[], ".trash")
   DB_FOLDER[] = joinpath(GBDIR[], "db")
   DB_NAME[] = "client.sqlite3"
   DB_CONFIG_FILE[] = "connection.yml"
@@ -67,6 +69,7 @@ function postinstall()
   ispath(dbpath) ? chmod(dbpath, 0o775; recursive = true) : @warn("db path $dbpath does not exist")
 
   isdir(DB_FOLDER[]) || mkdir(DB_FOLDER[])
+  isdir(TRASH_FOLDER[]) || mkdir(TRASH_FOLDER[])
   isfile(joinpath(DB_FOLDER[], DB_NAME[])) || cp(joinpath(dbpath, DB_NAME[]), joinpath(DB_FOLDER[], DB_NAME[]))
 
   if ! isfile(joinpath(DB_FOLDER[], DB_CONFIG_FILE[]))
