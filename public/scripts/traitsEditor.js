@@ -29,7 +29,6 @@ function initTraitsEditor(){
             }
           }
         },
-        //template: '<button v-on:click="count++">Me ha pulsado {{ count }} veces.</button>', 
         template: `<q-select
             ref="select"
             new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
@@ -46,7 +45,6 @@ function initTraitsEditor(){
         `></q-select>`, 
         methods: {
             onFocus(trait){
-                console.log( 'onInputFocus()', trait );
                 let message = {
                     command: "logEvent", 
                     eventName: "componentPropertyFocused",
@@ -73,25 +71,8 @@ function initTraitsEditor(){
                   })
                 }, 500)
               },
-            
-            /* inputValueMatchesModelProperty( ){
-                let inputValue = this.inputValue || this.traitvaluesobj[this.trait.id]; // this.traitvaluesobj[this.trait.id]; //
-                let matches = false;
-                for (let i = 0; i < window.appConfiguration.modelFields.length; i++) {
-                    const element = window.appConfiguration.modelFields[i];
-                    if( element.name == inputValue ){
-                        matches = true;
-                        break;
-                    }                    
-                }
-                 
-                //let matches = window.appConfiguration.modelFields.find( p => p.name == inputValue );
-                return matches;
-            },  */
 
             getAppModelFields: function(trait){
-                //console.log( 'getAppModelFields()', trait );
-                //let inputValue = this.$refs.select?.inputValue || "";
                 let traitTypes = trait.attributes.juliaType?trait.attributes.juliaType.split("|") : [];
                 let results = window.appConfiguration.modelFields.filter( (item)=>{
                     // If julia type not send, include all bindings
@@ -105,8 +86,7 @@ function initTraitsEditor(){
                     for( let i=0; i<traitTypes.length; i++ ){
                         let traitType = traitTypes[i];
                         let matchesType = modelBaseType == traitType;
-                        //let containsSearch = inputValue=='' || inputValue==null || item.name.toLowerCase().indexOf(inputValue.toLowerCase()) > -1;
-                        if( matchesType /* && containsSearch */ ){
+                        if( matchesType ){
                             return true;
                         }
                     }
@@ -123,7 +103,6 @@ function initTraitsEditor(){
                 console.log("Traits Editor onInputchanged", traitId, traitValue, trait );
                 let tr = traitsEditor.component.getTrait(traitId)
                 tr.setValue(traitValue);
-                //this.inputValue = traitValue;
                 markUnsavedChanges(true);
 
                 let message = {
@@ -138,19 +117,6 @@ function initTraitsEditor(){
                   };
                   logEvent( message );
             }, 
-            /* onkeyup(){
-                let inputValue;
-                if( this.$refs.select ){
-                    inputValue = this.$refs.select.inputValue
-                }else{
-                    inputValue = this.traitvaluesobj[this.trait.id];
-                }
-                this.inputValue = inputValue;
-                this.$forceUpdate();
-            } */
-            /* keyUp( event, trait ){
-                console.log( "input value: ", this.$refs.select.inputValue );
-            }, */
         }
       })
 
@@ -160,19 +126,18 @@ function initTraitsEditor(){
         data: {
             search: "", 
             dummyProp: "", 
-            allTraits: [ /* { id:"id1", value:"1" }, { id:"id2", value:"2" } */ ],
+            allTraits: [  ],
             enabledTraits: [], 
             categories: [], 
             categoriesStatus: {}, 
             traitValuesObj: {},
             userPrompt: "", 
             aiExpanded: true, 
-            /* aiError: null, 
-            aiRequestStatus: "idle",  */
             aiKey: window.aiKey,
             enteredAiKey: "",
             aiRequests: {}, 
-            selectedElementAiRequest: null
+            selectedElementAiRequest: null, 
+            aiPreviewShown: false
         },
         computed: {
             getSelectedElement(){
@@ -184,12 +149,8 @@ function initTraitsEditor(){
                 if( !this.categories )
                     return [];
                 
-                /* if( this.search=="" )
-                    return this.categories; */
-                
                 let searchLowercase = this.search.toLowerCase();
 
-                //let categoriesFiltered = [];
                 this.categories.forEach( (category)=>{
                     let numMatchesInCategory = 0;
                     category.traits.forEach( (trait)=>{
@@ -203,24 +164,148 @@ function initTraitsEditor(){
                             numMatchesInCategory++;
                     });
                     category.shouldShow = numMatchesInCategory > 0;
-                    /* let filteredTraits = category.traits.filter( (trait)=>{
-                        let traitName = trait.name.toLowerCase();
-                        return traitName.toLowerCase().indexOf( searchLowercase ) > -1;
-                    });
-                    if( filteredTraits.length > 0 ){
-                        categoriesFiltered.push({
-                            name: category.name, 
-                            traits: filteredTraits
-                        });
-                    } */
                 });
                 return this.categories;
             }
         },
         methods: {
 
+            showAIPreview(){
+                console.log( 'showAIPreview()' );
+                // Take note of the selected element id, as we'll use it to do the necessary replacements
+                let selectedElementId = this.getSelectedElement.ccid;
+                // Assign the selected element an id based on its ccid if it hasn't got one already
+                const selectedElementAttributes = this.getSelectedElement.get('attributes');
+                if (!selectedElementAttributes.id) {
+                    // The id attribute is not present, so you can set it.
+                    selectedElementAttributes.id = selectedElementId;
+                    this.getSelectedElement.set('attributes', selectedElementAttributes);
+                } else {
+                    //console.log('The id attribute is already present.');
+                }
+                // Get the current state of the page being edited and build a virtual DOM
+                let currentTemplate = editor.getHtml();
+                const parser = new DOMParser();
+                const virtualDOM = parser.parseFromString( currentTemplate, 'text/html');
+
+
+                // Find the selected element within the virtual DOM
+                const selectedElementVirtual = virtualDOM.querySelector('#'+selectedElementId);
+
+                // Build the new element from the AI response
+                let newEditedElementHtml = this.aiRequests[selectedElementId].aiApiResponse;
+                console.log( '[AIDEBUG] showAIPreview() 1. newEditedElementHtml', newEditedElementHtml );
+                const newElementParser = new DOMParser();
+                const newEditedElementDocument = newElementParser.parseFromString(newEditedElementHtml, 'text/html');
+                const newEditedElement = newEditedElementDocument.body.firstChild;
+
+                // Replace the selected element with the new element
+                selectedElementVirtual.replaceWith(newEditedElement);
+
+                // Get the final edited HTML
+                const serializer = new XMLSerializer();
+                const finalEditedHtml = serializer.serializeToString(virtualDOM.body.firstChild);
+                const finalCleanHtml = getCleanHtmlForSaving( finalEditedHtml );
+
+                // Remove the iframe if it exists (e.g. from a previous interaction)
+                let iframe = document.getElementById("ai_preview_iframe");
+                if( iframe ){                    // remove the iframe
+                    iframe.parentNode.removeChild(iframe);
+                }
+
+                // Create the iframe element and add it to the real DOM
+                iframe = document.createElement('iframe');
+                iframe.id="ai_preview_iframe";
+                let iframeContainer = document.querySelector("#ai_preview_iframe_container");
+                iframeContainer.appendChild(iframe);
+
+                // Set the visibility flag so that the preview is displayed (vue will use it)
+                this.aiPreviewShown = true;
+
+                // Build the final, full HTML for the iframe content
+                let iframeContent = `
+                <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+ 
+  <title>Genie App</title>
+  <base href="${appConfig.url}">
+  <link rel="stylesheet" href="/css/autogenerated.css" />
+  <style>
+    ._genie_logo {
+      background: url('/stipple.jl/master/assets/img/genie-logo.img') no-repeat;
+      background-size: 40px;
+      padding-top: 22px;
+      padding-right: 10px;
+      color: transparent;
+      font-size: 9pt;
+    }
+
+    ._genie .row .col-12 {
+      width: 50%;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div id="${appConfig.vueAppName}" class="container" v-cloak>
+        <!-- <div id="Main_App_varMain_App_ReactiveModel" class="container" v-cloak v-if='isready'> -->
+          ${finalCleanHtml}
+        </div>
+        <!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" />    
+        <link href="/stipple.jl/master/assets/css/stipplecore.css" rel="stylesheet" />
+        <link href="/stippleui.jl/master/assets/css/quasar.min.css" rel="stylesheet" />    -->
+        `;
+        console.log( "No-code DEPS: ")
+        console.log( "Style DEPS: ")
+        // Add all style dependencies for this app
+        for( let i = 0; i < appConfig.contentStyles.length; i++ ){
+            let depUrl = appConfig.contentStyles[i];
+            console.log( "  - ", depUrl)
+            iframeContent += `<link href="${depUrl}" rel="stylesheet" />`;
+        }
+        // Add all script dependencies for this app
+        console.log( "Script DEPS: ")
+        for( let i = 0; i < appConfig.rawDepScripts.length; i++ ){
+            let depUrl = appConfig.rawDepScripts[i];
+            if( depUrl.indexOf( "/geniepackagemanager" ) == -1 ){
+                console.log( "  - ", depUrl)
+                iframeContent += `<script src="${appConfig.rawDepScripts[i]}"></script>`;
+            }
+        }
+        iframeContent += `</div>
+    </div>
+  </div>
+  <footer class="_genie container">
+    <div class="row">
+      <div class="col-12">
+        <p class="text-muted credit" style="text-align:center;color:#8d99ae;">Built with
+
+          <a class="_genie_logo" href="https://genieframework.com" target="_blank" ref="nofollow">Genie</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
+                
+                `;
+
+                // Finally write the content to the iframe
+                const iframeDoc = iframe.contentWindow.document;
+                iframeDoc.open();
+                iframeDoc.write(iframeContent);
+                iframeDoc.close();
+            }, 
+
             setAiKey(){
-                console.log( 'setAiKey' );
                 let msgObject = { aiKey: this.enteredAiKey };
                 this.aiKey = window.aiKey = this.enteredAiKey;
                 msgObject.command = "setAiKey";
@@ -231,7 +316,6 @@ function initTraitsEditor(){
             },
 
             openAiKeyPage(){
-                console.log( 'openAiKeyPage' );
                 let msgObject = {};
                 msgObject.command = "openAiKeyPage";
                 parent.postMessage(
@@ -243,6 +327,7 @@ function initTraitsEditor(){
             discardAiChanges(){
                 this.aiRequests[this.getSelectedElement.ccid] = null
                 this.selectedElementAiRequest = null;
+                this.aiPreviewShown = false;
             },
             
             acceptAiChanges(){
@@ -252,6 +337,7 @@ function initTraitsEditor(){
                     this.aiRequests[this.getSelectedElement.ccid] = null
                     this.selectedElementAiRequest = null;
                     editor.select( newElement )
+                    this.aiPreviewShown = false;
                 }
             },
             acceptAIErrorMessage(){
@@ -265,28 +351,25 @@ function initTraitsEditor(){
                 let selectedHtml = selectedElement.toHTML()
                 let userPrompt = this.userPrompt;
 
-                this.aiRequests[selectedElement.ccid] = {
-                    selectedHtml: selectedHtml, 
-                    userPrompt: userPrompt, 
-                    aiRequestStatus: "sent"
-                };
-
+                if( !this.aiRequests[selectedElement.ccid] ){
+                    this.aiRequests[selectedElement.ccid] = {
+                        selectedHtml: selectedHtml, 
+                        userPrompt: userPrompt, 
+                    };
+                }
                 let requestObject = this.aiRequests[selectedElement.ccid];
+                requestObject.aiRequestStatus = "sent";
+                requestObject.previousPrompt = userPrompt;
+
                 this.selectedElementAiRequest = requestObject;
                 this.userPrompt = "";
 
-                //let fullPrompt = `I have this piece of html code: \n\n${selectedHtml}\n\n${userPrompt}`
-                console.log( "aiSendClicked()! ", selectedElement.ccid, selectedElement.cid, selectedElement )
-                //let aiApiUrl = "http://localhost:3000/api/send-message"
-                //let aiApiUrl = "https://uyh10c-ip-3-253-25-80.tunnelmole.com/api/v1/codegen";
-                let aiApiUrl = "https://ai.geniecloud.app/api/v1/codegen";
-                //this.aiRequestStatus = "sent";
+                let aiApiUrl = GlobalConfig.AI_API_URL;
                 axios.post( aiApiUrl, 
                     { 
                         content_type: "html", 
-                        //info: "quasar", 
-                        prompt: userPrompt, 
-                        code: selectedHtml
+                        prompt: requestObject.userPrompt, 
+                        code: requestObject.selectedHtml
                     }, 
                     {
                         headers: {
@@ -297,14 +380,23 @@ function initTraitsEditor(){
                 .then( (response)=>{
                     let responseObject = JSON.parse( response.request.response )
                     console.log( "AI response: ", responseObject )
-                    //let dymmyResponseCode = `<table><tr><td>One</td><td>Two</td></tr><tr><td>Three</td><td>Four</td></tr></table>`
                     if( responseObject.error ){
                         console.log( 'responseObject.error', responseObject.error );
                         requestObject.aiError = responseObject.error;
                         requestObject.aiRequestStatus = "error";
+                        let logMessage = {   
+                                command: "logEvent", eventName: "AI_ERROR",
+                                eventDetail: { errorMessage: responseObject.error },
+                            };
+                          logEvent( logMessage );
                     }else{
                         requestObject.aiRequestStatus = "received";
                         requestObject.aiApiResponse = responseObject.response;
+                        if( this.aiPreviewShown ){
+                            setTimeout( ()=>{
+                                this.showAIPreview();
+                            }, 300 );
+                        }
                     }
                     this.$forceUpdate();
                 } )
@@ -312,6 +404,11 @@ function initTraitsEditor(){
                     console.log( "Error sending message to AI: ", err );
                     requestObject.aiError = err.message;
                     requestObject.aiRequestStatus = "idle";
+                    let logMessage = {   
+                        command: "logEvent", eventName: "AI_ERROR",
+                        eventDetail: { errorMessage: err.message },
+                    };
+                    logEvent( logMessage );
                     this.$forceUpdate();
                 } )
                 this.$forceUpdate();

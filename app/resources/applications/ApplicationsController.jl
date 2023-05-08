@@ -95,6 +95,10 @@ function notify(message::String,
   true
 end
 
+function valid_appname(name::String)
+  filter(! isempty, [x.match for x in collect(eachmatch(r"[0-9a-zA-Z]*", name))]) |> join
+end
+
 function apps()
   (:applications => all(Application)) |> json
 end
@@ -120,12 +124,12 @@ function run_as_genie_app(filepath::String)
   app = findone(Application; filepath)
   app !== nothing && return start(app)
 
-  name = Genie.Generator.validname(dir(filepath) * "-" * basename(filepath))
+  name = valid_appname(dir(filepath) * "-" * basename(filepath))
   create(name, filepath)
 end
 
 function create(name, path = "", port = UNDEFINED_PORT)
-  name = Genie.Generator.validname(name) |> lowercase
+  name = valid_appname(name) |> lowercase
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
   port, replport = available_port()
@@ -708,7 +712,7 @@ function import_apps() :: Nothing
     ! isdir(joinpath(GenieBuilder.APPS_FOLDER[], existing_app)) && continue
     startswith(existing_app, ".") && continue
 
-    appname = Genie.Generator.validname(existing_app)
+    appname = valid_appname(existing_app)
     if isempty(find(Application, name = appname))
       appname != existing_app && mv(joinpath(GenieBuilder.APPS_FOLDER[], existing_app), joinpath(GenieBuilder.APPS_FOLDER[], appname))
       create(appname)

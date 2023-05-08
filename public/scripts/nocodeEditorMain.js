@@ -394,14 +394,14 @@ function initNoCodeEditor() {
                       <div style="margin-top: 5px;" v-if="categories.length>0">
 
                         <div v-if="categories.length>0" class="gjs-sm-sector gjs-sm-sector__general no-select gjs-sm-open">
-                          <div @click="aiExpanded=!aiExpanded" class="gjs-sm-sector-title" style="text-transform: capitalize;"><i :class="{ 'gjs-caret-icon':true, 'fa':true, 'fa-caret-down':aiExpanded, 'fa-caret-right':!aiExpanded}" style="margin-right: 10px;"></i> Genie AI Builder
+                          <div @click="aiExpanded=!aiExpanded" class="gjs-sm-sector-title" style="text-transform: capitalize;"><i :class="{ 'gjs-caret-icon':true, 'fa':true, 'fa-caret-down':aiExpanded, 'fa-caret-right':!aiExpanded}" style="margin-right: 10px;"></i> GENIE UI ASSISTANT
                           </div>
                           <div v-if="aiExpanded" class="gjs-sm-properties" >    
                             <!-- --------- API Key is set --------- --> 
                             <div v-if="aiKey" style="width: 100%;">
                               <!-- --------- No pending request for selected --------- -->
                               <div v-if="!selectedElementAiRequest">
-                                <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="userPrompt" style="text-align: left; padding: 10px; width: 95%; resize: vertical;" placeholder="Type here how you want to edit your component"></textarea>
+                                <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="userPrompt" placeholder="Describe how you'd like to edit your UI component"></textarea>
                                 <button @click="aiSendClicked">Send</button>
                                 <!-- <div class="ai-message ai-message-info">Bear in mind: AI results may be inadequate</div> -->
                               </div>
@@ -412,23 +412,42 @@ function initNoCodeEditor() {
                                 <div v-if="selectedElementAiRequest.aiError" class="ai-message ai-message-error" style="text-align: center;">{{selectedElementAiRequest.aiError}}<br/> <br/>
                                 <button @click="acceptAIErrorMessage">OK</button>
                                 </div>
-                                <div v-if="selectedElementAiRequest.aiRequestStatus=='received'" class="gjs-sm-properties">
-                                  <br/>Here's the response to your request:<br/>
-                                  <div style="overflow:scroll; max-height: 200px; color: #999999; margin: 10px 0px;">{{selectedElementAiRequest.aiApiResponse}}</div><br/>
-                                  <button @click="discardAiChanges" style="margin-right: 10px;">Discard</button>
-                                  <button @click="acceptAiChanges">Accept</button>                          
-                                </div>                            
+                                <div v-if="selectedElementAiRequest.aiRequestStatus=='received'" class="gjs-sm-properties" style="display: block; text-align: center;">
+                                  Your prompt
+                                  <!-- <div class="ai-prompt-display">"{{selectedElementAiRequest.userPrompt}}"</div> -->
+                                  <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="selectedElementAiRequest.userPrompt" placeholder="Describe how you'd like to edit your UI component"></textarea>
+                                  was processed successfully                                  
+                                  <div style="margin-top:20px;">
+                                    <button v-if="!aiPreviewShown" @click="showAIPreview" style="margin-bottom: 5px;">Preview Result</button>      
+                                    <button @click="acceptAiChanges" v-if="selectedElementAiRequest.userPrompt==selectedElementAiRequest.previousPrompt">Accept</button>  
+                                    <button @click="aiSendClicked" v-if="selectedElementAiRequest.userPrompt!=selectedElementAiRequest.previousPrompt">Resend</button>
+                                    <div style="display: flex; justify-content: center;">
+                                      <div @click="discardAiChanges" style="color: #000000a0; text-decoration: underline; cursor: pointer; margin-top: 5px;">or discard</div>                                    
+                                    </div>
+                                  </div>
+                                </div> 
+                                <div id="ai_preview_iframe_container" v-show="aiPreviewShown">
+                                    <div class="ai_preview_header">
+                                      <div>Preview Result</div>
+                                      <div style="cursor: pointer;" @click="aiPreviewShown=false">✕</div>
+                                    </div>
+                                    <iframe id="ai_preview_iframe"></iframe>
+                                    <div style="position: absolute; bottom: 10px; right: 10px;">
+                                      <button @click="acceptAiChanges">Accept</button>   
+                                    </div>
+                                  </div>                           
                               </div>
                             </div>
                             
                             <!-- --------- API Key is NOT set --------- --> 
                             <div v-if="!aiKey" style="display: block;">
-                              In order to enable the AI Builder, you need to provide an API key. You can get one <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Once you have it, paste it in the input field below:    
+                              To enable the UI Assistant, you need an API key. You can get one by creating a free Genie Cloud account <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Paste your key in the input fied below to get started. 
                               <br/> <br/>
-                              <textarea rows="2" cols="50" v-model="enteredAiKey" style="text-align: left; padding: 10px; width: 95%; resize: none;" placeholder="Paste AI API Key here"></textarea>
+                              <textarea rows="2" cols="50" v-model="enteredAiKey" style="text-align: left; padding: 10px; width: 95%; resize: none;" placeholder="Paste your API Key here"></textarea>
                                 <button @click="setAiKey">Save</button>
 
                             </div>
+                            <div class="powered_gpt">Powered by GPT-4</div>
                           </div>
                         </div>
 
@@ -665,10 +684,8 @@ function initNoCodeEditor() {
 function markUnsavedChanges(yesNo) {
   if( yesNo ){
     document.querySelector("#saveButton").classList.add("warningIcon");
-    document.querySelector("#unsavedChangesAlert").style.display = "block";
   }else{
     document.querySelector("#saveButton").classList.remove("warningIcon");
-    document.querySelector("#unsavedChangesAlert").style.display = "none";
   }
   window.unsavedChanges = yesNo;
 }
@@ -678,34 +695,40 @@ function logEvent(message) {
   parent.postMessage(message, "*");
 }
 
-function getPageContentsForSaving(){
-  let currentTemplate = editor.getHtml({ cleanId: true });
-  let currentStyles = editor.getCss({ avoidProtected: true });
-  window.lastSavedHTML = currentTemplate;
-  
+function getCleanHtmlForSaving(htmlString){  
   // remove body tag
-  currentTemplate = currentTemplate
+  htmlString = htmlString
     .replaceAll(`<body>`, ``)
     .replaceAll(`</body>`, ``);
   
   let containerHtml = '<div id="editableDOM" class="container">';
   
-  let containerDivPresent = currentTemplate.indexOf(containerHtml);
+  let containerDivPresent = htmlString.indexOf(containerHtml);
   if (containerDivPresent >= 0) {
-    currentTemplate = currentTemplate.replace(containerHtml, ``);
-    currentTemplate = currentTemplate.replace(new RegExp("</div>" + "$"), "");
+    htmlString = htmlString.replace(containerHtml, ``);
+    htmlString = htmlString.replace(new RegExp("</div>" + "$"), "");
   }
+  return htmlString  
+}
+
+function getPageContentsForSaving(){
+  let currentTemplate = editor.getHtml({ cleanId: true });
+  let currentStyles = editor.getCss({ avoidProtected: true });
+  window.lastSavedHTML = currentTemplate;
+
+  let cleanTemplate = getCleanHtmlForSaving(currentTemplate);
+
   const result = {
     app_id: window.projectId,
     appName: window.appName,
     appPath: window.appPath,
     path: window.filePath,
-    content: currentTemplate,
+    content: cleanTemplate,
     styles: currentStyles,
   }
   return result;
-
 }
+
 function savePage() {
   resetUnsavedChanges();
   let pageData = getPageContentsForSaving();

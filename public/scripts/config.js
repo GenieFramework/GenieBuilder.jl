@@ -9,5 +9,5 @@ GlobalConfig.GBJL_HOST =  window.location.hostname;
 GlobalConfig.GBJL_PATH =  window.location.pathname;
 GlobalConfig.GBJL_PORT =  window.location.port;
 GlobalConfig.GB_SOURCE =  (window.location.hostname == "localhost" || window.location.hostname == "127.0.0.1") ? GlobalConfig.GB_SOURCE_LOCAL : GlobalConfig.GB_SOURCE_CLOUD;
-
+GlobalConfig.AI_API_URL = "https://ai.geniecloud.app/api/v1/codegen";
 console.log( "GlobalConfig: ", GlobalConfig)

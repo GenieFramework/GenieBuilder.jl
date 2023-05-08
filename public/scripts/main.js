@@ -64,7 +64,7 @@ window.onload = () => {
             "css/editor-components.css"
         ];
         deps.styles.forEach( (item)=>{
-         appConfig.contentStyles.push( appConfig.url + item );
+         appConfig.contentStyles.push( /* appConfig.url +  */item );
         } );
 
       appConfig.contentScripts = [      
@@ -72,6 +72,7 @@ window.onload = () => {
           "./libs/jquery.min.js",
           "scripts/contentMain.js", 
       ];
+      appConfig.rawDepScripts = deps.scripts;
       // Define a list of libraries/Assets not needed in the editor context
       // and avoid loading them to optimise newtwork/memory/cpu resources
       /* const blackList = [ "plotly", "quasar", "vueresize", "vueplotly" ];
@@ -172,4 +173,12 @@ window.onload = () => {
         appConfig.modelFields = parsedFields;
         console.log( "[chained] 2 Current Page: ", currentPage, fields, parsedFields );
 
+  }
+
+  function fetchAndUpdateModelBindings(){
+    console.log( 'fetchAndUpdateModelBindings' );
+    ApiConnector.getProjectPages()
+    .then( (result)=>{
+        parseAppPages(result)
+    } )
   }

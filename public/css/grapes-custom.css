@@ -787,9 +787,7 @@ body.desktop .q-manual-focusable--focused > .q-focus-helper {
   background: #30597220 !important;
   color: #305972 !important;
 }
-.warningIcon.gjs-pn-btn {
-  color: #ff6600 !important;
-}
+
 
 /* .gjs-dashed *[data-gjs-highlightable]{
     outline: 1px dashed rgba(235, 8, 8, 0.7)!important;
