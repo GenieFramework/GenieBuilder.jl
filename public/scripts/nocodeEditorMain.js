@@ -441,7 +441,7 @@ function initNoCodeEditor() {
                             
                             <!-- --------- API Key is NOT set --------- --> 
                             <div v-if="!aiKey" style="display: block;">
-                              To enable the UI Assistant, you need an Open AI API key. You can get one by creating a free Genie Cloud account <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Paste your key in the input fied below to get started. 
+                              To enable the UI Assistant, you need an API key. You can get one by creating a free Genie Cloud account <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Paste your key in the input fied below to get started. 
                               <br/> <br/>
                               <textarea rows="2" cols="50" v-model="enteredAiKey" style="text-align: left; padding: 10px; width: 95%; resize: none;" placeholder="Paste your API Key here"></textarea>
                                 <button @click="setAiKey">Save</button>
