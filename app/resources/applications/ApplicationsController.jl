@@ -429,10 +429,10 @@ function move_to_folder(app, from_folder, to_folder)
     timestamp = now() |> (dt -> trunc(dt, Minute)) |> (dt -> Dates.format(dt, "yyyy-mm-ddTHH:MM")) |> (s -> replace(s, r"[-:]" => ""))
     app_new_name = app.name * timestamp
     mv(app_path, joinpath(to_folder, app_new_name))
-    modify_app_fields(app, Dict("name" => app_new_name, "path" => to_folder * "/"))
+    modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
   else
     mv(app_path, joinpath(to_folder, app.name))
-    modify_app_fields(app, Dict("path" => to_folder * "/"))
+    modify_app_fields(app, Dict("path" => joinpath(to_folder, "")))
   end
 end
 
