@@ -418,59 +418,32 @@ macro isonline(app)
   end
 end
 
-function move_to_folder(app::GenieBuilder.Applications.Application, from_folder::String, to_folder::String)::Nothing
-  @info "move to folder is run!"
-
-  # Check if the source and target directories exist
-  # if !isdir(from_folder)
-  #   @error "Source directory does not exist."
-  # end
-  # if !isdir(to_folder)
-  #   mkdir(to_folder)
-  # end
-
+function move_to_folder(app, from_folder, to_folder)
   app_path = joinpath(from_folder, app.name)
-  @show app_path
 
-  # Check if the app directory exists
   if !isdir(app_path)
     @error "File '$app' is not a directory."
   end
 
   if(isdir(joinpath(to_folder, app.name)))
-    @info "$(app.name) folder exists in $(to_folder)"
     timestamp = now() |> (dt -> trunc(dt, Minute)) |> (dt -> Dates.format(dt, "yyyy-mm-ddTHH:MM")) |> (s -> replace(s, r"[-:]" => ""))
     app_new_name = app.name * timestamp
-    @show app_new_name
     mv(app_path, joinpath(to_folder, app_new_name))
-
-    try
-      @info "updating app name and path"
-      new_app_path = joinpath(to_folder, app_new_name)
-      @info new_app_path
-      SearchLight.updatewith!(app, Dict("name" => app_new_name, "path" => new_app_path))
-      save!(app)
-    catch err
-      @error err
-    end
-    
-    println("File '$(app_new_name)' moved from '$from_folder' to '$to_folder'")
+    modify_app_fields(app, Dict("name" => app_new_name, "path" => to_folder * "/"))
   else
-    @info "$(app.name) folder does not exist in $(to_folder)"
     mv(app_path, joinpath(to_folder, app.name))
-    try
-      @info "updating app path"
-      new_app_path = joinpath(to_folder, app.name)
-      @info new_app_path
-      SearchLight.updatewith!(app, Dict("path" => new_app_path))
-      save!(app)
-      println("File '$(app.name)' moved from '$from_folder' to '$to_folder'")
-    catch err
-      @error err
-    end
+    modify_app_fields(app, Dict("path" => to_folder * "/"))
   end
 end
 
+function modify_app_fields(app, fields)
+  try
+    SearchLight.updatewith!(app, fields)
+    save!(app)
+  catch err
+    @error err
+  end
+end
 
 function delete(app)
   notify("started:delete", app.id)
