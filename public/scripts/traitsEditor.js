@@ -258,14 +258,24 @@ function initTraitsEditor(){
         <!-- <div id="Main_App_varMain_App_ReactiveModel" class="container" v-cloak v-if='isready'> -->
           ${finalCleanHtml}
         </div>
-        <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" />    
+        <!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" />    
         <link href="/stipple.jl/master/assets/css/stipplecore.css" rel="stylesheet" />
-        <link href="/stippleui.jl/master/assets/css/quasar.min.css" rel="stylesheet" />    
+        <link href="/stippleui.jl/master/assets/css/quasar.min.css" rel="stylesheet" />    -->
         `;
+        console.log( "No-code DEPS: ")
+        console.log( "Style DEPS: ")
+        // Add all style dependencies for this app
+        for( let i = 0; i < appConfig.contentStyles.length; i++ ){
+            let depUrl = appConfig.contentStyles[i];
+            console.log( "  - ", depUrl)
+            iframeContent += `<link href="${depUrl}" rel="stylesheet" />`;
+        }
         // Add all script dependencies for this app
+        console.log( "Script DEPS: ")
         for( let i = 0; i < appConfig.rawDepScripts.length; i++ ){
             let depUrl = appConfig.rawDepScripts[i];
             if( depUrl.indexOf( "/geniepackagemanager" ) == -1 ){
+                console.log( "  - ", depUrl)
                 iframeContent += `<script src="${appConfig.rawDepScripts[i]}"></script>`;
             }
         }
