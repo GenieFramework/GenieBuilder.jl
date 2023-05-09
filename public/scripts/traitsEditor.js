@@ -239,7 +239,7 @@ function initTraitsEditor(){
   </style>
   <style>
     ._genie_logo {
-      background: url('/stipple.jl/master/assets/img/genie-logo.img') no-repeat;
+      background: url('https://genieframework.com/logos/genie/logo-simple-with-padding.svg') no-repeat;
       background-size: 40px;
       padding-top: 22px;
       padding-right: 10px;
