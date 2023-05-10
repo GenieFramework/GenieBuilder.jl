@@ -711,8 +711,20 @@ function getCleanHtmlForSaving(htmlString){
   return htmlString  
 }
 
+  
+            
+function removePendingAIChanges( htmlString ){
+  // remove pending AI changes
+  htmlString = htmlString.replaceAll(`pendingChangesOK`, ``);
+  htmlString = htmlString.replaceAll(`pendingChangesError`, ``);
+  return htmlString;
+}
+
+
 function getPageContentsForSaving(){
   let currentTemplate = editor.getHtml({ cleanId: true });
+  // Remove pending AI changes
+  currentTemplate = removePendingAIChanges(currentTemplate)
   let currentStyles = editor.getCss({ avoidProtected: true });
   window.lastSavedHTML = currentTemplate;
 
