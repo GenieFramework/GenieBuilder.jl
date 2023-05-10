@@ -402,7 +402,7 @@ function initNoCodeEditor() {
                               <!-- --------- No pending request for selected --------- -->
                               <div v-if="!selectedElementAiRequest">
                                 <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="userPrompt" placeholder="Describe how you'd like to edit your UI component"></textarea>
-                                <button @click="aiSendClicked">Send</button>
+                                <button class="button_main" @click="aiSendClicked">Send</button>
                                 <!-- <div class="ai-message ai-message-info">Bear in mind: AI results may be inadequate</div> -->
                               </div>
 
@@ -410,7 +410,7 @@ function initNoCodeEditor() {
                               <div v-if="selectedElementAiRequest">
                                 <div v-if="selectedElementAiRequest.aiRequestStatus=='sent'" class="ai-message">Processing request, please wait...</div>
                                 <div v-if="selectedElementAiRequest.aiError" class="ai-message ai-message-error" style="text-align: center;">{{selectedElementAiRequest.aiError}}<br/> <br/>
-                                <button @click="acceptAIErrorMessage">OK</button>
+                                <button class="button_main" @click="acceptAIErrorMessage">OK</button>
                                 </div>
                                 <div v-if="selectedElementAiRequest.aiRequestStatus=='received'" class="gjs-sm-properties" style="display: block; text-align: center;">
                                   Your prompt
@@ -418,9 +418,9 @@ function initNoCodeEditor() {
                                   <textarea id="aiInput" name="aiInput" rows="4" cols="50" v-model="selectedElementAiRequest.userPrompt" placeholder="Describe how you'd like to edit your UI component"></textarea>
                                   was processed successfully                                  
                                   <div style="margin-top:20px;">
-                                    <button v-if="!aiPreviewShown" @click="showAIPreview" style="margin-bottom: 5px;">Preview Result</button>      
-                                    <button @click="acceptAiChanges" v-if="selectedElementAiRequest.userPrompt==selectedElementAiRequest.previousPrompt">Accept</button>  
-                                    <button @click="aiSendClicked" v-if="selectedElementAiRequest.userPrompt!=selectedElementAiRequest.previousPrompt">Resend</button>
+                                    <button class="button_main" v-if="!aiPreviewShown" @click="showAIPreview" style="margin-bottom: 5px;">Preview Result</button>      
+                                    <button class="button_main" @click="acceptAiChanges" v-if="selectedElementAiRequest.userPrompt==selectedElementAiRequest.previousPrompt">Accept</button>  
+                                    <button class="button_main" @click="aiSendClicked" v-if="selectedElementAiRequest.userPrompt!=selectedElementAiRequest.previousPrompt">Resend</button>
                                     <div style="display: flex; justify-content: center;">
                                       <div @click="discardAiChanges" style="color: #000000a0; text-decoration: underline; cursor: pointer; margin-top: 5px;">or discard</div>                                    
                                     </div>
@@ -433,7 +433,7 @@ function initNoCodeEditor() {
                                     </div>
                                     <iframe id="ai_preview_iframe"></iframe>
                                     <div style="position: absolute; bottom: 10px; right: 10px;">
-                                      <button @click="acceptAiChanges">Accept</button>   
+                                      <button class="button_main" @click="acceptAiChanges">Accept</button>   
                                     </div>
                                   </div>                           
                               </div>
@@ -444,7 +444,7 @@ function initNoCodeEditor() {
                               To enable the UI Assistant, you need an API key. You can get one by creating a free Genie Cloud account <a @click="openAiKeyPage" style="color:#00AADD; cursor: pointer; text-decoration: underline;">here</a>. Paste your key in the input fied below to get started. 
                               <br/> <br/>
                               <textarea rows="2" cols="50" v-model="enteredAiKey" style="text-align: left; padding: 10px; width: 95%; resize: none;" placeholder="Paste your API Key here"></textarea>
-                                <button @click="setAiKey">Save</button>
+                                <button class="button_main" @click="setAiKey">Save</button>
 
                             </div>
                             <div class="powered_gpt">Powered by GPT-4</div>
