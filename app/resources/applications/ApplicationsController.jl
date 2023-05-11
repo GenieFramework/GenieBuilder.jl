@@ -422,18 +422,19 @@ function move_to_folder(app, from_folder, to_folder)
   app_path = joinpath(from_folder, app.name)
 
   if !isdir(app_path)
-    @error "File '$app' is not a directory."
+    # error and return
+    @error "File '$app' is not a directory." && return
   end
 
-  if(isdir(joinpath(to_folder, app.name)))
+  app_new_name = app.name
+
+  if !contains(app_path, ".trash")
     timestamp = now() |> (dt -> trunc(dt, Minute)) |> (dt -> Dates.format(dt, "yyyy-mm-ddTHH:MM")) |> (s -> replace(s, r"[-:]" => ""))
-    app_new_name = app.name * timestamp
-    mv(app_path, joinpath(to_folder, app_new_name))
-    modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
-  else
-    mv(app_path, joinpath(to_folder, app.name))
-    modify_app_fields(app, Dict("path" => joinpath(to_folder, "")))
+    app_new_name = app.name * timestamp  
   end
+  
+  mv(app_path, joinpath(to_folder, app_new_name))
+  modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
 end
 
 function modify_app_fields(app, fields)
