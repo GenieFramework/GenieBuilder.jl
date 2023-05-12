@@ -33,6 +33,7 @@ const DELETED_STATUS  = "deleted"
 const ERROR_STATUS    = "error"
 
 const UNDEFINED_PORT = 0
+MODIFIED_APP_NAME_PATTERN = r"^.+\d{8}T\d{4}$"
 
 const UUIDSTORE_FILENAME = "uuidstore.txt"
 const GB_SCRATCH_SPACE_NAME = "gbuuid"
@@ -428,7 +429,7 @@ function move_to_folder(app, from_folder, to_folder)
 
   app_new_name = app.name
 
-  if !contains(app_path, ".trash")
+  if !contains(app_path, ".trash") && match(MODIFIED_APP_NAME_PATTERN, app.name) === nothing
     timestamp = now() |> (dt -> trunc(dt, Minute)) |> (dt -> Dates.format(dt, "yyyy-mm-ddTHH:MM")) |> (s -> replace(s, r"[-:]" => ""))
     app_new_name = app.name * timestamp  
   end
