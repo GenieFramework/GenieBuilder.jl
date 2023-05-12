@@ -396,9 +396,9 @@ img.blockIcon {
   position: relative;
   background-color: #cccccc;
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 70px);
   border: 1px solid rgb(153, 153, 153);
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .ai_preview_header{
@@ -413,9 +413,11 @@ img.blockIcon {
 #aiInput{
   text-align: left;
   padding: 10px;
-  width: 95%;
+  width: 100%;
   resize: vertical;
   margin-top: 5px;
+  border-radius: 6px;
+  border: solid 1px #305972;
 }
 
 .ai-prompt-display{
@@ -437,4 +439,14 @@ img.blockIcon {
     padding: 0px 0px 5px;
     color: #9a9a9a;
     font-size: 0.9em;
+}
+
+.button_main{
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  background-color: #305972;
+  color: #ffffff;
+  font-weight: 900;
+  cursor: pointer;
 }

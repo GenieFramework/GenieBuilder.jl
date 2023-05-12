@@ -64,7 +64,7 @@ window.onload = () => {
             "css/editor-components.css"
         ];
         deps.styles.forEach( (item)=>{
-         appConfig.contentStyles.push( appConfig.url + item );
+         appConfig.contentStyles.push( /* appConfig.url +  */item );
         } );
 
       appConfig.contentScripts = [      

@@ -111,3 +111,26 @@ address, article, aside, main, nav, section{
   min-height: 20px;
   padding: 10px;
 }
+
+.pendingChangesOK{
+  border: solid 3px; 
+  border-color: #0094fe;
+  animation: pendingChangesOK-animation 1s steps(30, start) infinite;
+  -webkit-animation: pendingChangesOK-animation 1s steps(30, start) infinite;
+}
+.pendingChangesError{
+  border: solid 3px #ff0000;
+  animation: pendingChangesError-animation 1s steps(30, start) infinite;
+  -webkit-animation: pendingChangesError-animation 1s steps(30, start) infinite;
+}
+
+@keyframes pendingChangesOK-animation {
+  0%    { border-color: #0094fe;    }
+  50%   { border-color: #0094fe00;  }
+  100%  { border-color: #0094fe;    }
+}
+@-webkit-keyframes pendingChangesError-animation {
+  0%    { border-color: #ff0000;    }
+  50%   { border-color: #ff000000;  }
+  100%  { border-color: #ff0000;    }
+}
