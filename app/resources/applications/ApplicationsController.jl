@@ -291,8 +291,6 @@ function unwatch(path, appid)
 end
 
 function start(app)
-  @info "inside start"
-  @info app
   if isdeleted(app)
     notify("failed:start", app.id, FAILSTATUS, DELETED_STATUS)
     return (:status => DELETED_STATUS) |> json
@@ -305,9 +303,7 @@ function start(app)
     notify("started:start", app.id)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
-      @info "inside thread"
       try
-        @info "This Ran"
         cmd = Cmd(`julia --startup-file=no -e '
                                                 using Pkg;
                                                 Pkg._auto_gc_enabled[] = false;
@@ -318,7 +314,6 @@ function start(app)
                                                 Genie.genie(context = @__MODULE__);
                                                 up(async = false);
                   '`; dir = fullpath(app), detach = false)
-        @info "Failed to run after cmd"
         cmd = addenv(cmd, "PORT" => app.port,
                           "WSPORT" => app.port,
                           "WSEXPPORT" => app.port,
@@ -390,7 +385,6 @@ function stop(app)
 end
 
 function up(app)
-  @info "up the app"
   appstatus = status_request(app)
   appstatus != OFFLINE_STATUS && notify("failed:up:$appstatus", app.id, FAILSTATUS, ERROR_STATUS) && return (:status => appstatus) |> json
 
