@@ -424,7 +424,7 @@ function move_to_folder(app, from_folder, to_folder)
   app_new_name = app.name
 
   if !contains(app_path, ".trash") && match(MODIFIED_APP_NAME_PATTERN, app.name) === nothing
-    timestamp = now() |> (dt -> Dates.format(dt, "yyyymmddTHHMM"))
+    timestamp = Dates.format(now(), "yyyymmddTHHMM")
     app_new_name = app.name * timestamp  
   end
   
