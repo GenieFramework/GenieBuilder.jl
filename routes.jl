@@ -178,6 +178,7 @@ function ready()
 end
 
 function main()
+  # ApplicationsController.rerun_failed_deletes()
   ApplicationsController.reset_app_status()
   routes()
   ready()

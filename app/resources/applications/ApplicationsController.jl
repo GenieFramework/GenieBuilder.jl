@@ -431,8 +431,14 @@ function move_to_folder(app, from_folder, to_folder)
     app.name * Dates.format(now(), "yyyymmddTHHMM")
   end
   
-  mv(app_path, joinpath(to_folder, app_new_name))
-  modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
+  try
+    mv(app_path, joinpath(to_folder, app_new_name))
+    modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
+  catch err
+    # touch(joinpath(app_path, ".trashme"))
+    @error err
+  end
+  
 end
 
 function modify_app_fields(app, fields)
@@ -699,6 +705,18 @@ function cleanup()
     stop(app)
   end
 end
+
+# function rerun_failed_deletes()
+#   from_path = joinpath(DEPOT_PATH[1], "geniebuilder", "apps")
+#   to_path = joinpath(from_path, ".trash")
+
+#   for dir in readdir(from_path)
+#     if isfile(joinpath(from_path, dir, ".trashme"))
+#       mv(joinpath(from_path, dir), joinpath(to_path, dir))
+#       rm(joinpath(to_path, dir, ".trashme"))
+#     end
+#   end
+# end
 
 function reset_app_status()
   for app in find(Application)
