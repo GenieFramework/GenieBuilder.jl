@@ -89,6 +89,18 @@ function postinstall()
       """)
     end
   end
+
+  for app in readdir(APPS_FOLDER[])
+    trashme_file = joinpath(APPS_FOLDER[], app, ".trashme")
+    if isfile(trashme_file)
+      modified_app_name = open(trashme_file) do io
+        strip(read(io, String))
+      end
+
+      mv(joinpath(APPS_FOLDER[], app), joinpath(TRASH_FOLDER[], modified_app_name))
+      rm(joinpath(TRASH_FOLDER[], modified_app_name, ".trashme"))
+    end
+  end
 end
 
 function stop()
