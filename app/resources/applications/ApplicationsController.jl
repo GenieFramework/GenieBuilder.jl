@@ -129,7 +129,34 @@ function run_as_genie_app(filepath::String)
   create(name, filepath)
 end
 
-function create(name, path = "", port = UNDEFINED_PORT)
+
+function setup_new_app(new_app_path::String, app::Application)
+  try
+    isdir(new_app_path) || mkdir(new_app_path)
+    cmd = Cmd(`julia --startup-file=no -e '
+                using Pkg;
+                Pkg._auto_gc_enabled[] = false;
+                Pkg.activate(".");
+                Pkg.add("GenieFramework");
+    '`; dir = new_app_path)
+    cmd |> run
+  catch ex
+    @error ex
+    isdir(new_app_path) && rm(new_app_path)
+    delete(app)
+    rethrow(ex)
+  end
+
+  try
+    postcreate(new_app_path)
+  catch ex
+    @error ex
+    rethrow(ex)
+  end
+end
+
+
+function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
   name = valid_appname(name) |> lowercase
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
@@ -164,28 +191,7 @@ function create(name, path = "", port = UNDEFINED_PORT)
     end
 
     Base.Threads.@spawn begin
-      try
-        isdir(new_app_path) || mkdir(new_app_path)
-        cmd = Cmd(`julia --startup-file=no -e '
-                    using Pkg;
-                    Pkg._auto_gc_enabled[] = false;
-                    Pkg.activate(".");
-                    Pkg.add("GenieFramework");
-        '`; dir = new_app_path)
-        cmd |> run
-      catch ex
-        @error ex
-        isdir(new_app_path) && rm(new_app_path)
-        delete(app)
-        rethrow(ex)
-      end
-
-      try
-        postcreate(new_app_path)
-      catch ex
-        @error ex
-        rethrow(ex)
-      end
+      setup_new_app(new_app_path, app)
 
       persist_status(app, OFFLINE_STATUS)
       notify("ended:create_app", app.id)
@@ -425,9 +431,9 @@ function move_to_folder(app, from_folder, to_folder)
 
   if !contains(app_path, ".trash") && match(MODIFIED_APP_NAME_PATTERN, app.name) === nothing
     timestamp = now() |> (dt -> trunc(dt, Minute)) |> (dt -> Dates.format(dt, "yyyy-mm-ddTHH:MM")) |> (s -> replace(s, r"[-:]" => ""))
-    app_new_name = app.name * timestamp  
+    app_new_name = app.name * timestamp
   end
-  
+
   mv(app_path, joinpath(to_folder, app_new_name))
   modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
 end
@@ -447,7 +453,7 @@ function delete(app)
 
   persist_status(app, DELETED_STATUS)
   notify("ended:delete", app.id)
-  
+
   move_to_folder(app, GenieBuilder.APPS_FOLDER[], GenieBuilder.TRASH_FOLDER[])
 
   (:status => OKSTATUS) |> json

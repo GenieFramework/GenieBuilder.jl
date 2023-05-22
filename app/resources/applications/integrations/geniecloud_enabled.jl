@@ -32,6 +32,24 @@ function getapps()
   end
 end
 
+function downloadApp(appid)
+  app_source = try
+    response = HTTP.get(GC_API_ENDPOINT_APPS * "/$appid/source"; headers = GC_API_HEADERS, status_exception = false)
+
+    (String(response.body) |> JSON3.read)["source"]
+  catch
+    @error e
+    nothing
+  end
+
+  app_source === nothing && return
+
+  destination = tempname()
+  download(app_source, destination)
+
+  return destination
+end
+
 function importapps()::Nothing
   for app in getapps()
     # @debug app
@@ -59,7 +77,18 @@ function importapps()::Nothing
       if app.dev_status == GenieBuilder.ApplicationsController.CREATING_STATUS ||
           app.dev_status == GenieBuilder.ApplicationsController.STARTING_STATUS ||
             app.dev_status == GenieBuilder.ApplicationsController.OFFLINE_STATUS
-        GenieBuilder.ApplicationsController.create(app.name)
+
+        # do we need to import the app?
+        app_source = try
+          if ! isempty(app.source)
+            downloadApp(app.id) # the path to the downloaded app as tmp file
+          end
+        catch ex
+          @error ex
+          nothing
+        end
+
+        GenieBuilder.ApplicationsController.create(app.name; source = app_source)
         @async updateapp(existing_app, SYNC_DELAY)
       end
 
