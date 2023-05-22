@@ -184,8 +184,18 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
 
     if source !== nothing && isfile(source) # import uploaded app
       try
-        unzip(source, new_app_path)
+        tmp_path = mktempdir()
+        unzip(source, tmp_path)
 
+        # if the archive contains a single folder, move it to the new app path
+        archive_contents = readdir(tmp_path)
+        if archive_contents |> length == 1 && isdir(joinpath(tmp_path, archive_contents[1]))
+          mv(joinpath(tmp_path, readdir(tmp_path)[1]), new_app_path)
+        else
+          mv(tmp_path, new_app_path)
+        end
+
+        # if the archive contains a Project.toml file, use it to create the app
         cmd = Cmd(`julia --startup-file=no -e '
                     using Pkg;
                     Pkg._auto_gc_enabled[] = false;
@@ -194,6 +204,7 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
         '`; dir = new_app_path)
         cmd |> run
 
+        # we're done
         persist_status(app, OFFLINE_STATUS)
         notify("ended:create_app", app.id)
       catch ex
