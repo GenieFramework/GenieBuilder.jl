@@ -186,26 +186,20 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
       try
         unzip(source, new_app_path)
 
-        try
-          cmd = Cmd(`julia --startup-file=no -e '
-                      using Pkg;
-                      Pkg._auto_gc_enabled[] = false;
-                      Pkg.activate(".");
-                      Pkg.instantiate();
-          '`; dir = new_app_path)
-          cmd |> run
+        cmd = Cmd(`julia --startup-file=no -e '
+                    using Pkg;
+                    Pkg._auto_gc_enabled[] = false;
+                    Pkg.activate(".");
+                    Pkg.instantiate();
+        '`; dir = new_app_path)
+        cmd |> run
 
-          persist_status(app, OFFLINE_STATUS)
-          notify("ended:create_app", app.id)
-        catch ex
-          @error ex
-          isdir(new_app_path) && rm(new_app_path)
-          delete(app)
-          rethrow(ex)
-        end
+        persist_status(app, OFFLINE_STATUS)
+        notify("ended:create_app", app.id)
       catch ex
         @error ex
-        @error "Failed to unzip $source to $new_app_path"
+        isdir(new_app_path) && rm(new_app_path)
+        delete(app)
         rethrow(ex)
       end
 
