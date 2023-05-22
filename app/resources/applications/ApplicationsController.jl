@@ -579,10 +579,16 @@ function unzip(file, exdir = "")
   isdir(out_path) ? "" : mkdir(out_path)
   zarchive = ZipFile.Reader(file)
   for f in zarchive.files
+    parts = split(f.name, "/")
+    if length(parts) > 1
+      mkpath(joinpath(out_path, parts[1:end-1]...))
+    end
+
     try
-      full_file_path = joinpath(out_path, f.name)
+      full_file_path = joinpath(out_path, f.name) |> normpath |> abspath
+      @show full_file_path
       if (endswith(f.name,"/") || endswith(f.name,"\\"))
-        mkdir(full_file_path)
+        mkpath(full_file_path)
       else
         write(full_file_path, read(f))
       end
