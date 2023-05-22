@@ -89,7 +89,12 @@ function importapps()::Nothing
         end
 
         GenieBuilder.ApplicationsController.create(app.name; source = app_source)
-        @async updateapp(existing_app, SYNC_DELAY)
+        @async updateapp(existing_app, SYNC_DELAY, Dict(
+          "name" => app.name,
+          "devStatus" => app.status,
+          "devPort" => app.port,
+          "source" => "",
+        ))
       end
 
       # rest of the actions are only for existing apps
@@ -125,16 +130,17 @@ function importapps()::Nothing
   nothing
 end
 
-function updateapp(app, delay = 0)::Nothing
+function updateapp(app, delay = 0; data = Dict(
+                                                "name" => app.name,
+                                                "devStatus" => app.status,
+                                                "devPort" => app.port,
+                                              )
+                  )::Nothing
   sleep(delay)
   try
     response = HTTP.patch(GC_API_ENDPOINT_APPS * "/$(app.name)";
                           headers = GC_API_HEADERS,
-                          body = Dict(
-                                        "name" => app.name,
-                                        "devStatus" => app.status,
-                                        "devPort" => app.port,
-                                      ) |> JSON3.write,
+                          body = data |> JSON3.write,
                           status_exception = false
                         )
     @debug response.body |> String

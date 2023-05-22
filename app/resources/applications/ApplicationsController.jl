@@ -181,6 +181,16 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
     cd(path)
 
     new_app_path = joinpath(path, name)
+
+    if source !== nothing && isfile(source)
+      try
+        unzip(source, new_app_path)
+      catch ex
+        @error ex
+        rm(new_app_path; recursive = true)
+      end
+    end
+
     if isdir(new_app_path) && ! isempty(readdir(new_app_path))
       @warn("$new_app_path is not empty -- importing app instead")
       persist_status(app, OFFLINE_STATUS)
@@ -536,6 +546,25 @@ function download(app)
   end
 
   Genie.Router.download("$appname.zip", root = zip_temp_path)
+end
+
+function unzip(file, exdir = "")
+  file = isabspath(file) ?  file : joinpath(pwd(), file)
+  out_path = (isempty(exdir) ? dirname(file) : (isabspath(exdir) ? exdir : joinpath(pwd(), exdir)))
+  isdir(out_path) ? "" : mkdir(out_path)
+  zarchive = ZipFile.Reader(file)
+  for f in zarchive.files
+      full_file_path = joinpath(out_path, f.name)
+      if (endswith(f.name,"/") || endswith(f.name,"\\"))
+          mkdir(full_file_path)
+      else
+          write(full_file_path, read(f))
+      end
+  end
+
+  close(zarchive)
+
+  nothing
 end
 
 function uuid()
