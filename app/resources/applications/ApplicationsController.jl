@@ -182,29 +182,46 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
 
     new_app_path = joinpath(path, name)
 
-    if source !== nothing && isfile(source)
+    if source !== nothing && isfile(source) # import uploaded app
       try
         unzip(source, new_app_path)
+
+        try
+          cmd = Cmd(`julia --startup-file=no -e '
+                      using Pkg;
+                      Pkg._auto_gc_enabled[] = false;
+                      Pkg.activate(".");
+                      Pkg.instantiate();
+          '`; dir = new_app_path)
+          cmd |> run
+        catch ex
+          @error ex
+          isdir(new_app_path) && rm(new_app_path)
+          delete(app)
+          rethrow(ex)
+        end
       catch ex
         @error ex
-        error("Failed to unzip $source to $new_app_path")
+        @error "Failed to unzip $source to $new_app_path"
+        rethrow(ex)
       end
-    end
 
-    if isdir(new_app_path) && ! isempty(readdir(new_app_path))
-      @warn("$new_app_path is not empty -- importing app instead")
-      persist_status(app, OFFLINE_STATUS)
-      notify("ended:import_app", app.id)
-      notify("ended:create_app", app.id)
+    else
+      if isdir(new_app_path) && ! isempty(readdir(new_app_path)) # import existing app
+        @warn("$new_app_path is not empty -- importing app instead")
+        persist_status(app, OFFLINE_STATUS)
+        notify("ended:import_app", app.id)
+        notify("ended:create_app", app.id)
 
-      return output |> json
-    end
+        return output |> json
+      end
 
-    Base.Threads.@spawn begin
-      setup_new_app(new_app_path, app)
+      Base.Threads.@spawn begin # create new app
+        setup_new_app(new_app_path, app)
 
-      persist_status(app, OFFLINE_STATUS)
-      notify("ended:create_app", app.id)
+        persist_status(app, OFFLINE_STATUS)
+        notify("ended:create_app", app.id)
+      end
     end
   catch ex
     @error ex
