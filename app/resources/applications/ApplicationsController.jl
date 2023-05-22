@@ -494,7 +494,7 @@ function delete(app)
   persist_status(app, DELETED_STATUS)
   notify("ended:delete", app.id)
 
-  move_to_folder(app, GenieBuilder.APPS_FOLDER[], GenieBuilder.TRASH_FOLDER[])
+  # move_to_folder(app, GenieBuilder.APPS_FOLDER[], GenieBuilder.TRASH_FOLDER[])
 
   (:status => OKSTATUS) |> json
 end
@@ -505,7 +505,7 @@ function restore(app)
   status = if app.status == DELETED_STATUS
     persist_status(app, OFFLINE_STATUS) ? notify("ended:restore", app.id) : notify("failed:restore", app.id)
     OKSTATUS
-    move_to_folder(app, GenieBuilder.TRASH_FOLDER[], GenieBuilder.APPS_FOLDER[])
+    # move_to_folder(app, GenieBuilder.TRASH_FOLDER[], GenieBuilder.APPS_FOLDER[])
   else
     notify("failed:restore", app.id)
     FAILSTATUS
