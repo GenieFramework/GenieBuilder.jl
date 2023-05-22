@@ -194,6 +194,9 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
                       Pkg.instantiate();
           '`; dir = new_app_path)
           cmd |> run
+
+          persist_status(app, OFFLINE_STATUS)
+          notify("ended:create_app", app.id)
         catch ex
           @error ex
           isdir(new_app_path) && rm(new_app_path)
