@@ -522,7 +522,7 @@ end
 function download(app)
   app_path = fullpath(app)
   appname = basename(app_path)
-  zip_temp_path = Sys.iswindows() ? "C:/WINDOWS/Temp" : "/tmp"
+  zip_temp_path = Base.tempdir()
   w = ZipFile.Writer(joinpath(zip_temp_path, "$appname.zip"))
   compress = true
 
