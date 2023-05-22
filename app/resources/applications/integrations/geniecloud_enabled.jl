@@ -47,7 +47,7 @@ function downloadApp(appid)
 
   destination = tempname()
   try
-    download(ENV["GC_API_ENDPOINT"] * "/" * app_source, destination)
+    download(ENV["GC_API_ENDPOINT"] * app_source, destination)
   catch ex
     @error ex
     return nothing
