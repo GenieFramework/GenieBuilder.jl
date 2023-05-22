@@ -586,7 +586,6 @@ function unzip(file, exdir = "")
 
     try
       full_file_path = joinpath(out_path, f.name) |> normpath |> abspath
-      @show full_file_path
       if (endswith(f.name,"/") || endswith(f.name,"\\"))
         mkpath(full_file_path)
       else
