@@ -433,7 +433,7 @@ function move_to_folder(app, from_folder, to_folder)
   
   try
     modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
-    mv(app_path, joinpath(to_folder, app_new_name))
+    mv(app_path, joinpath(to_folder, app_new_name), force = true)
   catch err
     open(joinpath(app_path, ".trashme"), "w") do io
       write(io, app_new_name)
