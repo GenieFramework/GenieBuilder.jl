@@ -92,7 +92,6 @@ function postinstall()
 
   for app in readdir(APPS_FOLDER[])
     app_path = joinpath(APPS_FOLDER[], app)
-    @info "🚀🚀🚀🚀🚀 $app_path)"
 
     if isfile(joinpath(app_path, ".trashme"))
       rm(app_path, recursive=true)
