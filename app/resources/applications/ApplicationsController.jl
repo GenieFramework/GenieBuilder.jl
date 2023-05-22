@@ -187,7 +187,7 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
         unzip(source, new_app_path)
       catch ex
         @error ex
-        rm(new_app_path; recursive = true)
+        error("Failed to unzip $source to $new_app_path")
       end
     end
 
@@ -554,12 +554,16 @@ function unzip(file, exdir = "")
   isdir(out_path) ? "" : mkdir(out_path)
   zarchive = ZipFile.Reader(file)
   for f in zarchive.files
+    try
       full_file_path = joinpath(out_path, f.name)
       if (endswith(f.name,"/") || endswith(f.name,"\\"))
-          mkdir(full_file_path)
+        mkdir(full_file_path)
       else
-          write(full_file_path, read(f))
+        write(full_file_path, read(f))
       end
+    catch ex
+      @error "failed to unzip file: ", ex
+    end
   end
 
   close(zarchive)
