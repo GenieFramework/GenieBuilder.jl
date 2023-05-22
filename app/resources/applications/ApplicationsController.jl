@@ -33,7 +33,7 @@ const DELETED_STATUS  = "deleted"
 const ERROR_STATUS    = "error"
 
 const UNDEFINED_PORT = 0
-MODIFIED_APP_NAME_PATTERN = r"^.+\d{8}T\d{4}$"
+MODIFIED_APP_NAME_PATTERN = r"^([0-9a-zA-Z]+)\d{8}T\d{4}$"
 
 const UUIDSTORE_FILENAME = "uuidstore.txt"
 const GB_SCRATCH_SPACE_NAME = "gbuuid"
@@ -419,19 +419,32 @@ macro isonline(app)
   end
 end
 
+function split_app_name(appname)
+  matches = match(MODIFIED_APP_NAME_PATTERN, appname)
+  if matches === nothing
+      error("Invalid app name!")
+  else
+      return matches.captures[1]
+  end
+end
+
 function move_to_folder(app, from_folder, to_folder)
   app_path = joinpath(from_folder, app.name)
 
-  if !isdir(app_path)
-    # error and return
-    @error "File '$app' is not a directory." && return
+  app_new_name = if match(MODIFIED_APP_NAME_PATTERN, app.name) !== nothing
+    isdir(joinpath(to_folder, split_app_name(app.name))) ? app.name : split_app_name(app.name)
+  else
+    app.name * Dates.format(now(), "yyyymmddTHHMM")
   end
 
-  app_new_name = app.name
-
-  if !contains(app_path, ".trash") && match(MODIFIED_APP_NAME_PATTERN, app.name) === nothing
-    timestamp = now() |> (dt -> trunc(dt, Minute)) |> (dt -> Dates.format(dt, "yyyy-mm-ddTHH:MM")) |> (s -> replace(s, r"[-:]" => ""))
-    app_new_name = app.name * timestamp
+  try
+    modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
+    mv(app_path, joinpath(to_folder, app_new_name))
+  catch err
+    open(joinpath(app_path, ".trashme"), "w") do io
+      write(io, app_new_name)
+    end
+    @error err
   end
 
   mv(app_path, joinpath(to_folder, app_new_name))
