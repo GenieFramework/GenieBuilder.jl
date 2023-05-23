@@ -580,7 +580,7 @@ function unzip(file, exdir = "")
   isdir(out_path) ? "" : mkdir(out_path)
   zarchive = ZipFile.Reader(file)
   for f in zarchive.files
-    parts = split(f.name, "/")
+    parts = splitpath(f.name)
     if length(parts) > 1
       mkpath(joinpath(out_path, parts[1:end-1]...))
     end
