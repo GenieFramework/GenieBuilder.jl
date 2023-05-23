@@ -558,7 +558,8 @@ function download(app)
         f = open(filepath, "r")
         content = read(f, String)
         close(f)
-        zipfilepath = joinpath(appname, split(filepath, "$appname/")[2])
+        filename = Sys.iswindows() ? split(filepath, "$appname\\")[2] : split(filepath, "$appname/")[2]
+        zipfilepath = joinpath(appname, filename)
         zf = ZipFile.addfile(w, zipfilepath; method=(compress ? ZipFile.Deflate : ZipFile.Store))
         write(zf, content)
       end
