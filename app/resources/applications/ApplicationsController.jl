@@ -155,6 +155,20 @@ function setup_new_app(new_app_path::String, app::Application)
   end
 end
 
+searchdir(path, key) = filter(x -> occursin(key,x), readdir(path))
+
+function findappfolder(startpath)
+  for (root, dirs, files) in walkdir(startpath)
+    for dir in dirs
+        if ! isempty(searchdir(joinpath(root, dir), "Project.toml"))
+            return normpath(joinpath(root, dir)) |> abspath
+        end
+    end
+  end
+
+  # if we can't find it return the root path and let the user sort it out
+  return startpath
+end
 
 function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
   name = valid_appname(name) |> lowercase
@@ -186,14 +200,7 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
       try
         tmp_path = mktempdir()
         unzip(source, tmp_path)
-
-        # if the archive contains a single folder, move it to the new app path
-        archive_contents = readdir(tmp_path)
-        if archive_contents |> length == 1 && isdir(joinpath(tmp_path, archive_contents[1]))
-          mv(joinpath(tmp_path, readdir(tmp_path)[1]), new_app_path)
-        else
-          mv(tmp_path, new_app_path)
-        end
+        mv(findappfolder(tmp_path), new_app_path)
 
         # if the archive contains a Project.toml file, use it to create the app
         cmd = Cmd(`julia --startup-file=no -e '
