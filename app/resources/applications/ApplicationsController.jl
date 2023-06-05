@@ -185,6 +185,7 @@ function import_app(source, app, tmp_path, new_app_path)
                 Pkg._auto_gc_enabled[] = false;
                 Pkg.activate(".");
                 Pkg.instantiate();
+                Pkg.add("GenieFramework");
     '`; dir = new_app_path)
     cmd |> run
 
