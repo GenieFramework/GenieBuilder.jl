@@ -1,13 +1,14 @@
 name = "GenieBuilder"
 uuid = "c9453c14-af8a-11ec-351d-c7c9a2035d70"
 authors = ["Adrian Salceanu"]
-version = "0.15.1"
+version = "0.15.2"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
 GenieAutoReload = "c6228e60-a24f-11e9-1776-c313472ebacc"
 GenieDevTools = "4e5d9629-6565-4102-a9ff-45c707eb060e"
+Git = "d7ba0133-e1db-5d97-8f8c-041e4b3a1eb2"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 Inflector = "6d011eab-0732-4556-8808-e463c76bf3b6"
 JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"

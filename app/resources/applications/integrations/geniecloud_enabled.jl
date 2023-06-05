@@ -1,3 +1,4 @@
+using Git
 
 const AUTO_SYNC_INTERVAL = 30 # seconds
 const SYNC_DELAY = 2 # seconds
@@ -56,6 +57,30 @@ function downloadApp(appid)
   return destination
 end
 
+function cloneApp(appid)
+  git_source = try
+    response = HTTP.get(GC_API_ENDPOINT_APPS * "/$appid/git_source"; headers = GC_API_HEADERS, status_exception = false)
+
+    (String(response.body) |> JSON3.read)["git_source"]
+  catch
+    @error e
+    nothing
+  end
+
+  git_source === nothing && return
+
+  destination = tempname()
+  git_url, git_branch = split(git_source, "#")
+  try
+    run(`$(git()) clone --branch $git_branch $git_source $destination`)
+  catch ex
+    @error ex
+    return nothing
+  end
+
+  return destination
+end
+
 function importapps()::Nothing
   for app in getapps()
     # @debug app
@@ -94,12 +119,24 @@ function importapps()::Nothing
           nothing
         end
 
-        GenieBuilder.ApplicationsController.create(app.name; source = app_source)
+        # do we need to clone app from git?
+        git_source = try
+          if ! isempty(app.git_url)
+            cloneApp(app.id) # the path to the downloaded app as tmp file
+          end
+        catch ex
+          @error ex
+          nothing
+        end
+
+        GenieBuilder.ApplicationsController.create(app.name; source = app_source, git_source = git_source)
         @async updateapp(existing_app, SYNC_DELAY, Dict(
           "name" => app.name,
           "devStatus" => app.status,
           "devPort" => app.port,
           "source" => "",
+          "gitUrl" => "",
+          "gitBranch" => "",
         ))
       end
 

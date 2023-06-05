@@ -170,7 +170,32 @@ function findappfolder(startpath)
   return startpath
 end
 
-function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
+function import_app(source, app, tmp_path, new_app_path)
+  try
+    unzip(source, tmp_path)
+    mv(findappfolder(tmp_path), new_app_path)
+
+    # if the archive contains a Project.toml file, use it to create the app
+    cmd = Cmd(`julia --startup-file=no -e '
+                using Pkg;
+                Pkg._auto_gc_enabled[] = false;
+                Pkg.activate(".");
+                Pkg.instantiate();
+    '`; dir = new_app_path)
+    cmd |> run
+
+    # we're done
+    persist_status(app, OFFLINE_STATUS)
+    notify("ended:create_app", app.id)
+  catch ex
+    @error ex
+    isdir(new_app_path) && rm(new_app_path)
+    delete(app)
+    rethrow(ex)
+  end
+end
+
+function create(name, path = "", port = UNDEFINED_PORT; source = nothing, git_source = nothing)
   name = valid_appname(name) |> lowercase
   isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
   endswith(path, "/") || (path = "$path/")
@@ -195,35 +220,15 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing)
     cd(path)
 
     new_app_path = joinpath(path, name)
+    tmp_path = mktempdir()
 
     if source !== nothing && isfile(source) # import uploaded app
-      try
-        tmp_path = mktempdir()
-        unzip(source, tmp_path)
-        mv(findappfolder(tmp_path), new_app_path)
-
-        # if the archive contains a Project.toml file, use it to create the app
-        cmd = Cmd(`julia --startup-file=no -e '
-                    using Pkg;
-                    Pkg._auto_gc_enabled[] = false;
-                    Pkg.activate(".");
-                    Pkg.instantiate();
-        '`; dir = new_app_path)
-        cmd |> run
-
-        # we're done
-        persist_status(app, OFFLINE_STATUS)
-        notify("ended:create_app", app.id)
-      catch ex
-        @error ex
-        isdir(new_app_path) && rm(new_app_path)
-        delete(app)
-        rethrow(ex)
-      end
-
+      import_app(source, app, tmp_path, new_app_path)
+    elseif git_source !== nothing && isfile(git_source) # import from git
+      import_app(git_source, app, tmp_path, new_app_path)
     else
-      if isdir(new_app_path) && ! isempty(readdir(new_app_path)) # import existing app
-        @warn("$new_app_path is not empty -- importing app instead")
+      if isdir(new_app_path) && ! isempty(readdir(new_app_path)) # adding existing app
+        @warn("$new_app_path is not empty -- adding app instead")
         persist_status(app, OFFLINE_STATUS)
         notify("ended:import_app", app.id)
         notify("ended:create_app", app.id)
