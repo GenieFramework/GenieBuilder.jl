@@ -172,8 +172,12 @@ end
 
 function import_app(source, app, tmp_path, new_app_path)
   try
-    unzip(source, tmp_path)
-    mv(findappfolder(tmp_path), new_app_path)
+    if isfile(source) # import archive file
+      unzip(source, tmp_path)
+      mv(findappfolder(tmp_path), new_app_path)
+    elseif isdir(source) # import from git
+      mv(source, new_app_path)
+    end
 
     # if the archive contains a Project.toml file, use it to create the app
     cmd = Cmd(`julia --startup-file=no -e '
@@ -224,7 +228,7 @@ function create(name, path = "", port = UNDEFINED_PORT; source = nothing, git_so
 
     if source !== nothing && isfile(source) # import uploaded app
       import_app(source, app, tmp_path, new_app_path)
-    elseif git_source !== nothing && isfile(git_source) # import from git
+    elseif git_source !== nothing && isdir(git_source) # import from git
       import_app(git_source, app, tmp_path, new_app_path)
     else
       if isdir(new_app_path) && ! isempty(readdir(new_app_path)) # adding existing app
