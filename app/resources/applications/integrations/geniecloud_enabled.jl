@@ -72,7 +72,7 @@ function cloneApp(appid)
   destination = tempname()
   git_url, git_branch = split(git_source, "#")
   try
-    run(`$(git()) clone --branch $git_branch $git_source $destination`)
+    run(`$(git()) clone --branch $git_branch $git_url $destination`)
   catch ex
     @error ex
     return nothing
