@@ -367,6 +367,7 @@ function start(app)
                                                 Pkg._auto_gc_enabled[] = false;
                                                 Pkg.activate(".");
                                                 using GenieFramework;
+                                                @genietools();
                                                 using GenieFramework.Genie;
                                                 Core.eval(Main, :(const UserApp = $(@__MODULE__)))
                                                 Genie.genie(context = @__MODULE__);
