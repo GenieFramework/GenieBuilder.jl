@@ -369,7 +369,7 @@ function start(app)
                                                 using GenieFramework;
                                                 @genietools();
                                                 using GenieFramework.Genie;
-                                                Core.eval(Main, :(const UserApp = $(@__MODULE__)))
+                                                Core.eval(Main, :(const UserApp = $(@__MODULE__)));
                                                 Genie.genie(context = @__MODULE__);
                                                 up(async = false);
                   '`; dir = fullpath(app), detach = false)
