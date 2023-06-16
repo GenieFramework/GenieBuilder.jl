@@ -6177,8 +6177,55 @@
             },
         });
         editor.BlockManager.add('dataTable', { label: 'Data Table', content: '<q-table />', media: '<img src="images/icons/components/ui_components/table.png" class="blockIcon" />', category: 'Tables' });
-    }    
+    }
 
+    const customblock_quasar_tab = editor => {
+        editor.DomComponents.addType("tab", {
+            isComponent: el => {
+                if (el.tagName == 'Q-TAB') {
+                    return { type: 'tab' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+                        {
+                            "label": "icon",
+                            "name": ":icon",
+                            "type": "String",
+                            "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                            "category": "content",
+                            "examples": [
+                                "map",
+                                "ion-add",
+                                "img:path/to/my-icon.png",
+                                "img:http://my-site.com/path/to/my-icon.png",
+                            ],
+                            "enabled": true
+                        },
+                    ], },
+                    init() {
+                        this.on('change:attributes', this.handleAttrChange);
+                    },
+                    handleAttrChange() {
+                        this.render();
+                    },
+                    render: function () {
+                        this.view.onRender();
+                    },
+                    updateGenieModelProperties(properties) {
+                        var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                        vtextTrait.set('options', properties);
+                    }
+                },
+                view: {
+                    onRender() {
+                        
+                    }
+                },
+            });
+            editor.BlockManager.add('tab', { label: 'Tab', content: '<q-tab />', media: '<img src="images/icons/components/ui_components/tabs.png" class="blockIcon" />', category: 'Other' });
+        }
     
     const customblock_quasar_img = editor => {
         editor.DomComponents.addType("img", {

@@ -72,6 +72,7 @@ const customPlugins = [
   customblock_quasar_item,
   customblock_quasar_item_label,
   customblock_quasar_dataTable,
+  customblock_quasar_tab,
   customblock_quasar_img,
   customblock_quasar_video,
   customblock_quasar_avatar,
