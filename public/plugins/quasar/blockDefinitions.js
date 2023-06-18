@@ -6203,6 +6203,104 @@
                             ],
                             "enabled": true
                         },
+                        {
+                            "label": "label",
+                            "name": ":label",
+                            "type": "String",
+                            "desc": "A number or string to label the tab",
+                            "category": "content",
+                            "examples": [
+                                "Home"
+                            ],
+                            "enabled": true
+                        },
+                        {
+                            "label": "alert",
+                            "name": ":alert",
+                            "type": "String",
+                            "desc": "Adds an alert symbol to the tab, notifying the user there are some updates; If its value is not a Boolean, then you can specify a color",
+                            "category": "content",
+                            "examples": [
+                                "alert=\"purple\"",
+                            ],
+                            "enabled": true
+                        },
+                        {
+                            "label": "alert-icon",
+                            "name": ":alert-icon",
+                            "type": "String",
+                            "desc": "Adds a floating icon to the tab, notifying the user there are some updates; It's displayed only if 'alert' is set; Can use the color specified by 'alert' prop",
+                            "category": "content",
+                            "examples": [
+                                "alert-icon=\"alarm-on\"",
+                            ],
+                            "enabled": true
+                        },
+                        {
+                            "label": "no-caps",
+                            "name": ":no-caps",
+                            "type": "Boolean",
+                            "desc": "Turns off capitalizing all letters within the tab (which is the default)",
+                            "category": "content",
+                            "enabled": true
+                        },
+                        {
+                            "label": "name",
+                            "name": ":name",
+                            "type": "String",
+                            "desc": "Panel name",
+                            "category": "general",
+                            "examples": [
+                                "home",
+                                ":name=\"1\"",
+                            ],
+                            "enabled": true
+                        },
+                        {
+                            "label": "tabindex",
+                            "name": ":tabindex",
+                            "type": "Number",
+                            "desc": "Tabindex HTML attribute value",
+                            "category": "general",
+                            "examples": [
+                                ":tabindex=\"1\"",
+                            ],
+                            "enabled": true
+                        },
+                        {
+                            "label": "disable",
+                            "name": ":disable",
+                            "type": "Boolean",
+                            "desc": "Put component in disabled mode",
+                            "category": "state",
+                            "enabled": true
+                        },
+                        {
+                            "label": "ripple",
+                            "name": ":ripple",
+                            "type": [
+                                "Boolean",
+                                "Object"
+                            ],
+                            "desc": "Configure material ripple (disable it by setting it to 'false' or supply a config object)",
+                            "category": "style",
+                            "examples": [
+                                false,
+                                "{ early: true, center: true, color: 'teal', keyCodes: [] }"
+                            ],
+                            "enabled": true
+                        },
+                        {
+                            "label": "content-class",
+                            "name": ":content-class",
+                            "type": "String",
+                            "desc": "Class definitions to be attributed to the content wrapper",
+                            "category": "style",
+                            "examples": [
+                                "my-special-class"
+                            ],
+                            "enabled": true
+                        }
                     ], },
                     init() {
                         this.on('change:attributes', this.handleAttrChange);
@@ -6226,6 +6324,465 @@
             });
             editor.BlockManager.add('tab', { label: 'Tab', content: '<q-tab />', media: '<img src="images/icons/components/ui_components/tabs.png" class="blockIcon" />', category: 'Other' });
         }
+
+        const customblock_quasar_tabgroup = editor => {
+            editor.DomComponents.addType("tabgroup", {
+                isComponent: el => {
+                    if (el.tagName == 'Q-TABS') {
+                        return { type: 'tabgroup' }
+                    }
+                },
+                model: {
+                    defaults: {
+                        traits: [
+                            {
+                                "label": "Data Binding",
+                                "name": "v-model",
+                                "type": "select",
+                                "options": []
+                            },
+                            {
+                                "label": "breakpoint",
+                                "name": ":breakpoint",
+                                "type": [
+                                    "Number",
+                                    "String"
+                                ],
+                                "desc": "Breakpoint (in pixels) of tabs container width at which the tabs automatically turn to a justify alignment",
+                                "category": "behavior",
+                                "examples": [
+                                    ":breakpoint=\"500\""
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "vertical",
+                                "name": ":vertical",
+                                "type": "Boolean",
+                                "desc": "Use vertical design (tabs one on top of each other rather than one next to the other horizontally)",
+                                "category": "content",
+                                "enabled": true
+                            },
+                            {
+                                "label": "align",
+                                "name": ":align",
+                                "type": "String",
+                                "desc": "Horizontal alignment the tabs within the tabs container",
+                                "category": "content",
+                                "examples": [
+                                    "left",
+                                    "right",
+                                    "justify"
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "outside-arrows",
+                                "name": ":outside-arrows",
+                                "type": "Boolean",
+                                "desc": "Reserve space for arrows to place them on each side of the tabs (the arrows fade when inactive)",
+                                "category": "content",
+                                "enabled": true
+                            },
+                            {
+                                "label": "mobile-arrows",
+                                "name": ":mobile-arrows",
+                                "type": "Boolean",
+                                "desc": "Force display of arrows (if needed) on mobile",
+                                "category": "content",
+                                "enabled": true
+                            },
+                            {
+                                "label": "breakpoint",
+                                "name": ":breakpoint",
+                                "type": [
+                                    "Number",
+                                    "String"
+                                ],
+                                "desc": "Breakpoint (in pixels) of tabs container width at which the tabs automatically turn to a justify alignment",
+                                "category": "content",
+                                "examples": [
+                                    ":breakpoint=\"500\""
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "left-icon",
+                                "name": ":left-icon",
+                                "type": "String",
+                                "desc": "The name of an icon to replace the default arrow used to scroll through the tabs to the left, when the tabs extend past the width of the tabs container",
+                                "category": "content",
+                                "examples": [
+                                    "my-icon"
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "right-icon",
+                                "name": ":right-icon",
+                                "type": "String",
+                                "desc": "The name of an icon to replace the default arrow used to scroll through the tabs to the right, when the tabs extend past the width of the tabs container",
+                                "category": "content",
+                                "examples": [
+                                    "my-icon"
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "switch-indicator",
+                                "name": ":switch-indicator",
+                                "type": "Boolean",
+                                "desc": "Switches the indicator position (on left of tab for vertical mode or above the tab for default horizontal mode)",
+                                "category": "content",
+                                "enabled": true
+                            },
+                            {
+                                "label": "stretch",
+                                "name": ":stretch",
+                                "type": "Boolean",
+                                "desc": "When used on flexbox parent, tabs will stretch to parent's height",
+                                "category": "content",
+                                "enabled": true
+                            },
+                            {
+                                "label": "shrink",
+                                "name": ":shrink",
+                                "type": "Boolean",
+                                "desc": "By default, QTabs is set to grow to the available space; However, you can reverse that with this prop; Useful (and required) when placing the component in a QToolbar",
+                                "category": "content",
+                                "enabled": true
+                            },
+                            {
+                                "label": "narrow-indicator",
+                                "name": ":narrow-indicator",
+                                "type": "Boolean",
+                                "desc": "Allows the indicator to be the same width as the tab's content (text or icon), instead of the whole width of the tab",
+                                "category": "content",
+                                "enabled": true
+                            },
+                            {
+                                "label": "inline-label",
+                                "name": ":inline-label",
+                                "type": "Boolean",
+                                "desc": "Allows the text to be inline with the icon, should one be used",
+                                "category": "content",
+                                "enabled": true
+                            },
+                            {
+                                "label": "no-caps",
+                                "name": ":no-caps",
+                                "type": "Boolean",
+                                "desc": "Turns off capitalizing all letters within the tab (which is the default)",
+                                "category": "content",
+                                "enabled": true
+                            },
+                            {
+                                "label": "active-class",
+                                "name": ":active-class",
+                                "type": "String",
+                                "desc": "CSS class name for the active tab",
+                                "category": "style",
+                                "examples": [
+                                    "my-active-class"
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "active-color",
+                                "name": ":active-color",
+                                "type": "String",
+                                "desc": "The color to be attributed to the text of the active tab",
+                                "category": "style",
+                                "examples": [
+                                    "primary",
+                                    "teal-10"
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "indicator-color",
+                                "name": ":indicator-color",
+                                "type": "String",
+                                "desc": "The color to be attributed to the indicator (the underline) of the active tab",
+                                "category": "style",
+                                "examples": [
+                                    "primary",
+                                    "teal-10"
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "active-bg-color",
+                                "name": ":active-bg-color",
+                                "type": "String",
+                                "desc": "The color to be attributed to the background of the active tab",
+                                "category": "style",
+                                "examples": [
+                                    "primary",
+                                    "teal-10"
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "content-class",
+                                "name": ":content-class",
+                                "type": "String",
+                                "desc": "Class definitions to be attributed to the content wrapper",
+                                "category": "style",
+                                "examples": [
+                                    "my-content-class"
+                                ],
+                                "enabled": true
+                            },
+                            {
+                                "label": "dense",
+                                "name": ":dense",
+                                "type": "Boolean",
+                                "desc": "Dense mode; occupies less space",
+                                "category": "style",
+                                "enabled": true
+                            },
+
+                ] },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('tabgroup', { label: 'Tabs', content: '<q-tabs />', media: '<img src="images/icons/components/ui_components/tabs.png" class="blockIcon" />', category: 'Other' });
+    }
+
+    const customblock_quasar_tabpanel = editor => {
+        editor.DomComponents.addType("tabpanel", {
+            isComponent: el => {
+                if (el.tagName == 'Q-TAB-PANEL') {
+                    return { type: 'tabpanel' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+                        {
+                            "label": "name",
+                            "name": ":name",
+                            "type": "Any",
+                            "desc": "Panel name",
+                            "category": "general",
+                            "examples": [
+                                "accounts",
+                                ":name=\"1\""
+                            ],
+                            "enabled": true
+                        },
+                        {
+                            "label": "disable",
+                            "name": ":disable",
+                            "type": "Boolean",
+                            "desc": "Put component in disabled mode",
+                            "category": "state",
+                            "enabled": true
+                        },
+                        {
+                            "label": "dark",
+                            "name": ":dark",
+                            "type": "Boolean",
+                            "desc": "Notify the component that the background is a dark color",
+                            "category": "style",
+                            "enabled": true
+                        }
+                    ] },
+                    init() {
+                        this.on('change:attributes', this.handleAttrChange);
+                    },
+                    handleAttrChange() {
+                        this.render();
+                    },
+                    render: function () {
+                        this.view.onRender();
+                    },
+                    updateGenieModelProperties(properties) {
+                        var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                        vtextTrait.set('options', properties);
+                    }
+                },
+                view: {
+                    onRender() {
+                        
+                    }
+                },
+            });
+            editor.BlockManager.add('tabpanel', { label: 'Tab Panel', content: '<q-tab-panel />', media: '<img src="images/icons/components/ui_components/tabpanels.png" class="blockIcon" />', category: 'Other' });
+        }
+
+        const customblock_quasar_tabpanelgroup = editor => {
+            editor.DomComponents.addType("tabpanelgroup", {
+                isComponent: el => {
+                    if (el.tagName == 'Q-TAB-PANELS') {
+                        return { type: 'tabpanelgroup' }
+                    }
+                },
+                model: {
+                    defaults: {
+                        traits: [
+                            {
+                                "label": "Data Binding",
+                                "name": "v-model",
+                                "type": "select",
+                                "options": []
+                            },
+                            {
+                                "label": "keep-alive",
+                                "name": ":keep-alive",
+                                "type": "Boolean",
+                                "desc": "Equivalent to using Vue's native <keep-alive> component on the content",
+                                "category": "behavior",
+                                "enabled": true
+                            },
+                            {
+                                "label": "keep-alive-include",
+                                "name": ":keep-alive-include",
+                                "type": [
+                                    "String",
+                                    "Array",
+                                    "RegExp"
+                                ],
+                                "desc": "Equivalent to using Vue's native include prop for <keep-alive>; Values must be valid Vue component names",
+                                "examples": [
+                                    "a,b",
+                                    "['a','b']",
+                                    "/a|b/"
+                                ],
+                                "category": "behavior",
+                                "enabled": true
+                            },
+                            {
+                                "label": "keep-alive-exclude",
+                                "name": ":keep-alive-exclude",
+                                "type": [
+                                    "String",
+                                    "Array",
+                                    "RegExp"
+                                ],
+                                "desc": "Equivalent to using Vue's native exclude prop for <keep-alive>; Values must be valid Vue component names",
+                                "examples": [
+                                    "a,b",
+                                    "['a','b']",
+                                    "/a|b/"
+                                ],
+                                "category": "behavior",
+                                "enabled": true
+                            },
+                            {
+                                "label": "keep-alive-max",
+                                "name": ":keep-alive-max",
+                                "type": "Number",
+                                "desc": "Equivalent to using Vue's native max prop for <keep-alive>",
+                                "examples": [
+                                    "5"
+                                ],
+                                "category": "behavior",
+                                "enabled": true
+                            },
+                            {
+                                "label": "animated",
+                                "name": ":animated",
+                                "type": "Boolean",
+                                "desc": "Enable transitions between panel (also see 'transition-prev' and 'transition-next' props)",
+                                "category": "style",
+                                "enabled": true
+                            },
+                            {
+                                "label": "infinite",
+                                "name": ":infinite",
+                                "type": "Boolean",
+                                "desc": "Makes component appear as infinite (when reaching last panel, next one will become the first one)",
+                                "category": "behavior",
+                                "enabled": true
+                            },
+                            {
+                                "label": "swipeable",
+                                "name": ":swipeable",
+                                "type": "Boolean",
+                                "desc": "Enable swipe events (may interfere with content's touch/mouse events)",
+                                "category": "behavior",
+                                "enabled": true
+                            },
+                            {
+                                "label": "transition-prev",
+                                "name": ":transition-prev",
+                                "type": "String",
+                                "desc": "One of Quasar's embedded transitions (has effect only if 'animated' prop is set)",
+                                "examples": [
+                                    "fade",
+                                    "slide-left",
+                                    "slide-right",
+                                    "slide-up",
+                                    "slide-down",
+                                ],
+                                "category": "behavior",
+                                "enabled": true
+                            },
+                            {
+                                "label": "transition-next",
+                                "name": ":transition-next",
+                                "type": "String",
+                                "desc": "One of Quasar's embedded transitions (has effect only if 'animated' prop is set)",
+                                "examples": [
+                                    "fade",
+                                    "slide-left",
+                                    "slide-right",
+                                    "slide-up",
+                                ],
+                                "category": "behavior",
+                                "enabled": true
+                            },
+                            {
+                                "label": "vertical",
+                                "name": ":vertical",
+                                "type": "Boolean",
+                                "desc": "Display tabs vertically",
+                                "category": "style",
+                                "enabled": true
+                            }
+                        ] },
+                        init() {
+                            this.on('change:attributes', this.handleAttrChange);
+                        },
+                        handleAttrChange() {
+                            this.render();
+                        },
+                        render: function () {
+                            this.view.onRender();
+                        },
+                        updateGenieModelProperties(properties) {
+                            var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                            vtextTrait.set('options', properties);
+                        }
+                    },
+                    view: {
+                        onRender() {
+                            
+                        }
+                    },
+                });
+                editor.BlockManager.add('tabpanelgroup', { label: 'Tab Panels', content: '<q-tab-panels />', media: '<img src="images/icons/components/ui_components/tabpanels.png" class="blockIcon" />', category: 'Other' });
+            }
+
     
     const customblock_quasar_img = editor => {
         editor.DomComponents.addType("img", {

@@ -5,7 +5,7 @@ These are loaded inside the editor's canvas iframe
 ------------------------------------------ 
 */
 plotly, audio, 
-q-separator, q-space, q-toolbar, q-editor, q-radio, q-input, q-select, q-checkbox, q-slider, q-range, q-btn, q-btn-group, q-btn-dropdown, q-knob, q-date, q-time, q-list, q-item, q-item-label, q-table, q-tab, q-img, q-video, q-banner, q-chip, q-toggle, q-icon, q-popup-proxy, q-rating, q-spinner, q-timeline, q-timeline-entry, q-tree, q-avatar, q-badge, q-expansion-item
+q-separator, q-space, q-toolbar, q-editor, q-radio, q-input, q-select, q-checkbox, q-slider, q-range, q-btn, q-btn-group, q-btn-dropdown, q-knob, q-date, q-time, q-list, q-item, q-item-label, q-table, q-tab, q-tabs, q-tab-panel, q-tab-panels, q-img, q-video, q-banner, q-chip, q-toggle, q-icon, q-popup-proxy, q-rating, q-spinner, q-timeline, q-timeline-entry, q-tree, q-avatar, q-badge, q-expansion-item
 {
   background: #f0f0f0;
   position: relative;
@@ -47,7 +47,10 @@ q-list{   background-image: url(../images/icons/components/ui_components/list.pn
 q-item{   background-image: url(../images/icons/components/ui_components/item.png); }
 q-item-label{   background-image: url(../images/icons/components/ui_components/item.png); }
 q-table{   background-image: url(../images/icons/components/ui_components/table.png); }
-q-tab{ background-color: url(../images/icons/components/ui_components/tabs.png);}
+q-tab{ background-image: url(../images/icons/components/ui_components/tabs.png);}
+q-tabs{ background-image: url(../images/icons/components/ui_components/tabs.png);}
+q-tab-panel{ background-image: url(../images/icons/components/ui_components/tabpanels.png);}
+q-tab-panels{ background-image: url(../images/icons/components/ui_components/tabpanels.png);}
 q-img{   background-image: url(../images/icons/components/ui_components/img.png); }
 q-video{   background-image: url(../images/icons/components/ui_components/video.png); }
 q-banner{   background-image: url(../images/icons/components/ui_components/banner.png); }
