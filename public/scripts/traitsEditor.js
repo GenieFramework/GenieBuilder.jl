@@ -36,7 +36,8 @@ function initTraitsEditor(){
             v-model="traitValue" 
             :options="getAppModelFields(trait)"
             :placeholder="trait.attributes.juliaType?.split('|').join(', ')||''" 
-            @input-value="onInputValueChanged" `+
+            @blur="onBlur(trait)" 
+            @input="onInputChanged(trait)" `+
             /* @keyup="keyUp($event, trait)"  */
             `@filter="filterFn" 
             @focus="onFocus(trait)" 
@@ -98,14 +99,22 @@ function initTraitsEditor(){
                 });
                 return results;
             }, 
-            onInputValueChanged(value){
-                //console.log( 'onInputValueChanged', value );
-                let traitId = this.trait.id;
-                this.traitValue = value;
-                this.traitvaluesobj[traitId] = value;
+
+            onBlur(trait){
+                this.traitValue = this.$refs.select.defaultInputValue;
+                if( this.traitValue === "" )
+                    this.traitValue = null;
+                //if( this.traitValue !== null && this.traitValue !== "" && this.traitValue !== undefined ){
+                    this.onInputChanged(trait);
+                //}
+            },
+            
+            onInputChanged(trait){
+                let traitId = trait.id;
+                let traitValue = this.traitValue;
+                this.traitvaluesobj[traitId] = this.traitValue;
                 let tr = traitsEditor.component.getTrait(traitId)
-                tr.setValue(value);
-                //this.$refs.select?.updateInputValue(this.traitValue);
+                tr.setValue(traitValue);
                 markUnsavedChanges(true);
 
                 let message = {
@@ -115,7 +124,7 @@ function initTraitsEditor(){
                         app_id: window.projectId, 
                         block_id: selectedElementModel.attributes.tagName,
                         block_name: selectedElementModel.attributes.type, 
-                        property_name: this.trait.id
+                        property_name: trait.id
                     }
                   };
                   logEvent( message );
