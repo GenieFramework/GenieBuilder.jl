@@ -6,6 +6,7 @@ function initTraitsEditor(){
         data: function () {
           return {
             count: 0, 
+            traitValue: this.traitvaluesobj[this.trait.id],
             typesMap: {
                 "{Bool}": "Bool", 
                 "{String}": "String", 
@@ -32,10 +33,10 @@ function initTraitsEditor(){
         template: `<q-select
             ref="select"
             new-value-mode="add-unique" use-input hide-selected fill-input hide-dropdown-icon clearable
-            v-model="traitvaluesobj[trait.id]" 
+            v-model="traitValue" 
             :options="getAppModelFields(trait)"
             :placeholder="trait.attributes.juliaType?.split('|').join(', ')||''" 
-            @input="onInputChanged(trait)" `+
+            @input-value="onInputValueChanged" `+
             /* @keyup="keyUp($event, trait)"  */
             `@filter="filterFn" 
             @focus="onFocus(trait)" 
@@ -97,12 +98,14 @@ function initTraitsEditor(){
                 });
                 return results;
             }, 
-            onInputChanged(trait){
-                let traitId = trait.id;
-                let traitValue = this.traitvaluesobj[traitId];
-                console.log("Traits Editor onInputchanged", traitId, traitValue, trait );
+            onInputValueChanged(value){
+                //console.log( 'onInputValueChanged', value );
+                let traitId = this.trait.id;
+                this.traitValue = value;
+                this.traitvaluesobj[traitId] = value;
                 let tr = traitsEditor.component.getTrait(traitId)
-                tr.setValue(traitValue);
+                tr.setValue(value);
+                //this.$refs.select?.updateInputValue(this.traitValue);
                 markUnsavedChanges(true);
 
                 let message = {
@@ -112,7 +115,7 @@ function initTraitsEditor(){
                         app_id: window.projectId, 
                         block_id: selectedElementModel.attributes.tagName,
                         block_name: selectedElementModel.attributes.type, 
-                        property_name: trait.id
+                        property_name: this.trait.id
                     }
                   };
                   logEvent( message );
