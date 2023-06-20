@@ -76,6 +76,8 @@ const customPlugins = [
   customblock_quasar_tabgroup,
   customblock_quasar_tabpanel,
   customblock_quasar_tabpanelgroup,
+  customblock_quasar_card,
+  customblock_quasar_cardsection,
   customblock_quasar_img,
   customblock_quasar_video,
   customblock_quasar_avatar,

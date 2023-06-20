@@ -7478,8 +7478,153 @@
             },
         });
         editor.BlockManager.add('banner', { label: 'Banner', content: '<q-banner />', media: '<img src="images/icons/components/ui_components/banner.png" class="blockIcon" />', category: 'Widgets' });
+    }
+
+    const customblock_quasar_card = editor => {
+        editor.DomComponents.addType("card", {
+            isComponent: el => {
+                if (el.tagName == 'Q-CARD') {
+                    return { type: 'card' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+                        {
+                            "label": "Data Binding",
+                            "name": "v-model",
+                            "type": "select",
+                            "options": []
+                        },
+                        {
+                            "label": "tag",
+                            "name": ":tag",
+                            "type": "String",
+                            "desc": "HTML tag to render",
+                            "category": "content",
+                            "examples": [
+                                "div",
+                                "section",
+                                "article",
+                            ],
+                            "enabled": true
+                        },
+                        {
+                            "label": "dark",
+                            "name": ":dark",
+                            "type": "Boolean",
+                            "desc": "Notify the component that the background is a dark color",
+                            "category": "style",
+                            "enabled": true
+                        },
+                        {
+                            "label": "square",
+                            "name": ":square",
+                            "type": "Boolean",
+                            "desc": "Removes border-radius so borders are squared",
+                            "category": "style",
+                            "enabled": true
+                        },
+                        {
+                            "label": "flat",
+                            "name": ":flat",
+                            "type": "Boolean",
+                            "desc": "Applies a 'flat' design (no default shadow)",
+                            "category": "style",
+                            "enabled": true
+                        },
+                        {
+                            "label": "bordered",
+                            "name": ":bordered",
+                            "type": "Boolean",
+                            "desc": "Applies a default border to the component",
+                            "category": "style",
+                            "enabled": true
+                        },
+                    ],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('card', { label: 'Card', content: '<q-card />', media: '<img src="images/icons/components/ui_components/card.png" class="blockIcon" />', category: 'Widgets' });
     }    
 
+    const customblock_quasar_cardsection = editor => {
+        editor.DomComponents.addType("cardsection", {
+            isComponent: el => {
+                if (el.tagName == 'Q-CARD-SECTION') {
+                    return { type: 'cardsection' }
+                }
+            },
+            model: {
+                defaults: {
+                    traits: [
+                        {
+                            "label": "Data Binding",
+                            "name": "v-model",
+                            "type": "select",
+                            "options": []
+                        },
+                        {
+                            "label": "tag",
+                            "name": ":tag",
+                            "type": "String",
+                            "desc": "HTML tag to render",
+                            "examples": [
+                                "div",
+                                "section",
+                            ],
+                            "enabled": true
+                        },
+                        {
+                            "label": "horizontal",
+                            "name": ":horizontal",
+                            "type": "Boolean",
+                            "desc": "Display a horizontal section (will have no padding and can contain other QCardSection)",
+                            "category": "content",
+                            "enabled": true
+                        }
+                    ],
+                },
+                init() {
+                    this.on('change:attributes', this.handleAttrChange);
+                },
+                handleAttrChange() {
+                    this.render();
+                },
+                render: function () {
+                    this.view.onRender();
+                },
+                updateGenieModelProperties(properties) {
+                    var vtextTrait = this.get('traits').where({ name: 'v-model' })[0];
+                    vtextTrait.set('options', properties);
+                }
+            },
+            view: {
+                onRender() {
+                    
+                }
+            },
+        });
+        editor.BlockManager.add('cardsection', { label: 'Card Section', content: '<q-card-section />', media: '<img src="images/icons/components/ui_components/card.png" class="blockIcon" />', category: 'Widgets' });
+    }    
     
     const customblock_quasar_chip = editor => {
         editor.DomComponents.addType("chip", {
