@@ -5440,7 +5440,7 @@
                     traits: [
     {
         "label": "Data Binding",
-        "name": "v-model",
+        "name": ":data",
         "type": "select",
         "options": []
     },
