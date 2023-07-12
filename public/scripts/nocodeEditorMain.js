@@ -474,7 +474,7 @@ function initNoCodeEditor() {
                         
                         </div>
                         <div class="gjs-sm-properties" v-if="category.expanded">
-                          <div v-if="trait.shouldShow" v-for="trait, $traitindex in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
+                          <div v-if="trait.shouldShow" :key="component.ccid+':'+trait.attributes.name" v-for="trait, $traitindex in category.traits" class="gjs-trt-trait gjs-trt-trait--text" style="margin-bottom: 0px;">
                               <div class="gjs-label-wrp">
                                   <div class="gjs-label traitLabel" style="text-transform: capitalize">{{formatLabel(trait)}}
                                   
