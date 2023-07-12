@@ -4207,7 +4207,7 @@
                 }
             },
         });
-        editor.BlockManager.add('datePicker', { label: 'Date Picker', content: '<q-date />', media: '<img src="images/icons/components/ui_components/date_picker.png" class="blockIcon" />', category: 'Forms' });
+        editor.BlockManager.add('datePicker', { label: 'Date Picker', content: '<q-date :mask="\'YYYY-MM-DD\'"></q-date>', media: '<img src="images/icons/components/ui_components/date_picker.png" class="blockIcon" />', category: 'Forms' });
     }    
 
     
