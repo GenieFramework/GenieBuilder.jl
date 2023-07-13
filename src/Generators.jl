@@ -159,7 +159,7 @@ function app()
     write(io,
     """
     module App
-    # set up Genie development environmet
+    # set up Genie development environment
     using GenieFramework
     @genietools
 
@@ -186,7 +186,7 @@ function app()
         end
     end
 
-    # register a new route and the page that will begin
+    # register a new route and the page that will be
     # loaded on access
     @page("/", "app.jl.html")
     end
