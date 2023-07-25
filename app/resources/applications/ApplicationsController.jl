@@ -15,6 +15,7 @@ using Dates
 using Scratch
 using ZipFile
 using GenieBuilder.Integrations
+import StippleUI
 
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
