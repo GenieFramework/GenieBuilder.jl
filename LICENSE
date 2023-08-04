@@ -1,2 +1,37 @@
-Private use only. No-commercial, no-distribution, no-modification allowed.
-Rest of the license to come. 
+GENIE BUILDER LICENSE TERMS
+
+GENIE BUILDER SOFTWARE
+
+These license terms are an agreement between you and HPC Stipple SL (a company also known as “Genie”), or based on where you live, one of its affiliates. They apply to the software named above. Your use of the software operates as your consent to these terms.
+
+IF YOU COMPLY WITH THESE LICENSE TERMS, YOU HAVE THE RIGHTS BELOW.
+
+1. INSTALLATION AND USE RIGHTS.
+General. You may use any number of copies of the software including deployment within your internal corporate network.
+Third Party Components. The software may include third party components with separate open source licenses and legal notices as may be described in the license files of applicable repositories included in the Genie Framework project: https://github.com/GenieFramework.
+
+2. DATA.
+Data Collection. The software may collect information about you and your use of the software, and send that to HPC Stipple. HPC Stipple may use this information to provide services and improve our products and services. You may opt-out of many of these scenarios. You can learn more about our data collection and use in the help-documentation. Your use of the software operates as consent to these practices.
+Processing of Personal Data. We do not process any kind of personal data.
+
+3. UPDATES. The software may periodically check for updates and download and install them for you. You may obtain updates only from HPC Stipple or authorized sources. You agree to receive these automatic updates without any additional notice.
+
+4. FEEDBACK. If you give feedback about the software to HPC Stipple, you give to HPC Stipple without charge, the right to use, share and commercialize your feedback in any way and for any purpose. You will not give feedback that is subject to a license that requires HPC Stipple to license its software or documentation to third parties because we include your feedback in them. These rights survive this agreement.
+
+5. SCOPE OF LICENSE. This license applies to the Genie Builder product. Source code for Genie Builder is proprietary and under copyright. The software is licensed, not sold. This agreement only gives you some rights to use the software. HPC Stipple reserves all other rights. Unless applicable law gives you more rights despite this limitation, you may use the software only as expressly permitted in this agreement. In doing so, you must comply with any technical limitations in the software that only allow you to use it in certain ways.
+
+You may not:
+
+* use the software for commercial work;
+* reverse engineer, decompile or disassemble the software, or otherwise attempt to derive the source code for the software except and solely to the extent required by third party licensing terms governing use of certain open source components that may be included in the software;
+* remove, minimize, block or modify any notices of HPC Stipple or its suppliers in the software;
+* use the software in any way that is against the law;
+* share, publish, rent or lease the software, or provide the software as a stand-alone offering for others to use;
+* develop derivative works, including commercial software.
+
+SUPPORT SERVICES. Because this software is “as is,” we may not provide support services for it.
+ENTIRE AGREEMENT. This agreement, and the terms for supplements, updates, Internet-based services and support services that you use, are the entire agreement for the software and support services.
+EXPORT RESTRICTIONS. You must comply with all domestic and international export laws and regulations that apply to the software, which include restrictions on destinations, end-users, and end use.
+APPLICABLE LAW. The laws of the country where you acquired the software apply.
+DISCLAIMER OF WARRANTY. The software is licensed “as-is.” You bear the risk of using it. HPC Stipple gives no express warranties, guarantees or conditions. To the extent permitted under your local laws, HPC Stipple excludes the implied warranties of merchantability, fitness for a particular purpose and non-infringement.
+LIMITATION ON AND EXCLUSION OF DAMAGES. You cannot recover any other damages, including consequential, lost profits, special, indirect or incidental damages. This limitation applies to (a) anything related to the software, services, content (including code) on third party Internet sites, or third party applications; and (b) claims for breach of contract, breach of warranty, guarantee or condition, strict liability, negligence, or other tort to the extent permitted by applicable law.
