@@ -1058,6 +1058,17 @@
         "enabled": true
     },
     {
+        "label": "v-on:click",
+        "name": "v-on:click",
+        "type": "String",
+        "desc": "When the button is clicked then this code will run",
+        "category": "behavior|state",
+		"examples": [
+			"button = !button"
+		],
+        "enabled": true
+    },
+    {
         "label": "disable",
         "name": ":disable",
         "type": "Boolean",
