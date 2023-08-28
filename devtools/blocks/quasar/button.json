@@ -332,6 +332,17 @@
     "enabled": true
   },
   {
+  "label": "On Click",
+  "name": "v-on:click",
+	"type": "String",
+	"desc": "Run this code when the component is clicked",
+	"category": "events",
+	"examples": [
+		"button = !button"
+	],
+	"enabled": true
+  },
+  {
     "label": "disable",
     "name": ":disable",
     "type": "Boolean",
