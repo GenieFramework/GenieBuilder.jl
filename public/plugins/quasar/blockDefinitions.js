@@ -1058,11 +1058,11 @@
         "enabled": true
     },
     {
-        "label": "v-on:click",
+        "label": "On Click",
         "name": "v-on:click",
         "type": "String",
-        "desc": "When the button is clicked then this code will run",
-        "category": "behavior|state",
+        "desc": "Run this code when the component is clicked",
+        "category": "events",
 		"examples": [
 			"button = !button"
 		],
