@@ -40,6 +40,7 @@ function autoload()
 end
 
 function layout()
+  mvcfolders()
   isfile(joinpath("layouts", "app.jl.html")) && return
 
   open(joinpath("layouts", "app.jl.html"), "w") do io
@@ -60,40 +61,6 @@ function layout()
         <script src="/js/app.js"></script>
       </body>
     </html>
-    """
-    )
-  end
-end
-
-function model()
-  isfile(joinpath("models", "$(model_name)s.jl")) && return
-
-  open(joinpath("models", "$(model_name)s.jl"), "w") do io
-    write(io,
-    """
-    module $(model_name)s
-
-    using Stipple
-
-    export $(model_name)
-
-    @reactive mutable struct $(model_name) <: ReactiveModel
-      message::R{String} = "Hello World!"
-    end
-
-    function handlers(model::$(model_name)) :: $(model_name)
-      #=
-      on(model.message) do message
-        model.isprocessing = true
-        model.message[] = "Hello to you too!"
-        model.isprocessing = false
-      end
-      =#
-
-      model
-    end
-
-    end
     """
     )
   end

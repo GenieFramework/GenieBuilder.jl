@@ -13,8 +13,6 @@ using GenieDevTools
 using Genie.WebChannels
 using Dates
 using Scratch
-using ZipFile
-using GenieBuilder.Integrations
 import StippleUI
 
 const appsthreads = Dict()
@@ -61,6 +59,11 @@ get(appid) = ApplicationsController.get(parse(Int, appid))
 get(appid::SearchLight.DbId) = ApplicationsController.get(appid.value)
 get(appid::Int) = SearchLight.findone(Application, id = appid)
 
+"""
+  notify(...)
+
+Notifies the GenieBuilder UI of an event via websockets push
+"""
 function notify(message::String,
                 appid::Union{SearchLight.DbId,Nothing} = nothing,
                 status::String = OKSTATUS,
@@ -97,169 +100,86 @@ function notify(message::String,
   true
 end
 
+"""
+  valid_appname(name::String)
+
+Generates a valid app name from a string by removing all non-alphanumeric characters
+"""
 function valid_appname(name::String)
   filter(! isempty, [x.match for x in collect(eachmatch(r"[0-9a-zA-Z]*", name))]) |> join
 end
 
+"""
+  apps()
+
+Returns a list of all registered apps
+"""
 function apps()
   (:applications => all(Application)) |> json
 end
 
+"""
+  info(app)
+
+Returns the info of an app
+"""
 function info(app)
   (:application => app) |> json
 end
 
-function postcreate(path) :: Nothing
-  current_path = pwd()
-  cd(path)
+"""
+  register(; name = "", path = "")
 
-  GenieBuilder.Generators.app()
-  GenieBuilder.Generators.view()
+Registers a file system path as an app with GenieBuilder
+"""
+function register(name = "", path = "")
+  notify("started:register_app")
 
-  cd(current_path)
-
-  nothing
-end
-
-function run_as_genie_app(filepath::String)
-  isfile(filepath) || error("File not found: $filepath")
-  app = findone(Application; filepath)
-  app !== nothing && return start(app)
-
-  name = valid_appname(dir(filepath) * "-" * basename(filepath))
-  create(name, filepath)
-end
-
-
-function setup_new_app(new_app_path::String, app::Application)
-  try
-    isdir(new_app_path) || mkdir(new_app_path)
-    cmd = Cmd(`julia --startup-file=no -e '
-                using Pkg;
-                Pkg._auto_gc_enabled[] = false;
-                Pkg.activate(".");
-                Pkg.add("GenieFramework");
-    '`; dir = new_app_path)
-    cmd |> run
-  catch ex
-    @error ex
-    isdir(new_app_path) && rm(new_app_path)
-    delete(app)
-    rethrow(ex)
-  end
-
-  try
-    postcreate(new_app_path)
-  catch ex
-    @error ex
-    rethrow(ex)
-  end
-end
-
-searchdir(path, key) = filter(x -> occursin(key,x), readdir(path))
-
-function findappfolder(startpath)
-  for (root, dirs, files) in walkdir(startpath)
-    for dir in dirs
-        if ! isempty(searchdir(joinpath(root, dir), "Project.toml"))
-            return normpath(joinpath(root, dir)) |> abspath
-        end
-    end
-  end
-
-  # if we can't find it return the root path and let the user sort it out
-  return startpath
-end
-
-function import_app(source, app, tmp_path, new_app_path)
-  try
-    if isfile(source) # import archive file
-      unzip(source, tmp_path)
-      mv(findappfolder(tmp_path), new_app_path)
-    elseif isdir(source) # import from git
-      mv(source, new_app_path)
-    end
-
-    # if the archive contains a Project.toml file, use it to create the app
-    cmd = Cmd(`julia --startup-file=no -e '
-                using Pkg;
-                Pkg._auto_gc_enabled[] = false;
-                Pkg.activate(".");
-                Pkg.instantiate();
-                Pkg.add("GenieFramework");
-    '`; dir = new_app_path)
-    cmd |> run
-
-    # we're done
-    persist_status(app, OFFLINE_STATUS)
-    notify("ended:create_app", app.id)
-  catch ex
-    @error ex
-    isdir(new_app_path) && rm(new_app_path)
-    delete(app)
-    rethrow(ex)
-  end
-end
-
-function create(name, path = "", port = UNDEFINED_PORT; source = nothing, git_source = nothing)
-  name = valid_appname(name) |> lowercase
-  isempty(path) && (path = GenieBuilder.APPS_FOLDER[])
+  isempty(path) && (path = pwd())
   endswith(path, "/") || (path = "$path/")
+  isempty(name) && (name = splitpath(path)[end] |> valid_appname |> lowercase)
   port, replport = available_port()
   app = Application(; name, path, port, replport)
   app.status = CREATING_STATUS
 
   try
     app = save!(app)
+    persist_status(app, OFFLINE_STATUS)
+    notify("ended:register_app", app.id)
+
+    return output |> json
   catch ex
     @error(ex)
-    notify("failed:create_app", nothing, FAILSTATUS, ERROR_STATUS)
+    notify("failed:register_app", nothing, FAILSTATUS, ERROR_STATUS)
+
     return (:error => ex)
   end
-
-  current_path = pwd()
-  output = (:application => app)
-
-  try
-    notify("started:create_app")
-    isdir(path) || mkdir(path)
-    cd(path)
-
-    new_app_path = joinpath(path, name)
-    tmp_path = mktempdir()
-
-    if source !== nothing && isfile(source) # import uploaded app
-      import_app(source, app, tmp_path, new_app_path)
-    elseif git_source !== nothing && isdir(git_source) # import from git
-      import_app(git_source, app, tmp_path, new_app_path)
-    else
-      if isdir(new_app_path) && ! isempty(readdir(new_app_path)) # adding existing app
-        @warn("$new_app_path is not empty -- adding app instead")
-        persist_status(app, OFFLINE_STATUS)
-        notify("ended:import_app", app.id)
-        notify("ended:create_app", app.id)
-
-        return output |> json
-      end
-
-      Base.Threads.@spawn begin # create new app
-        setup_new_app(new_app_path, app)
-
-        persist_status(app, OFFLINE_STATUS)
-        notify("ended:create_app", app.id)
-      end
-    end
-  catch ex
-    @error ex
-    notify("failed:create_app", app.id, FAILSTATUS, ERROR_STATUS)
-    output = (:error => ex)
-  finally
-    cd(current_path)
-  end
-
-  output |> json
 end
 
+"""
+  create(app)
+
+Creates the Genie app skeleton
+"""
+function create(app::Application)
+  notify("started:create", app.id)
+
+  try
+    Applications.boilerplate(app.path)
+    notify("ended:create", app.id)
+  catch ex
+    @error ex
+    notify("failed:create", app.id, FAILSTATUS, ERROR_STATUS)
+  end
+
+  (:status => OKSTATUS) |> json
+end
+
+"""
+  persist_status(app, status)
+
+Persists the status of an app in the database
+"""
 function persist_status(app::Union{Application,Nothing}, status) :: Bool
   app === nothing && return false
 
@@ -272,15 +192,14 @@ function persist_status(app::Union{Application,Nothing}, status) :: Bool
     return false
   end
 
-  try
-    @async Integrations.GenieCloud.updateapp(app)
-  catch ex
-    @error ex
-  end
-
   true
 end
 
+"""
+  status_request(...)
+
+Makes a HTTP request to an app to check its status.
+"""
 function status_request(app, donotify::Bool = true; statuscheck::Bool = false, persist::Bool = true) :: String
   params(:statuscheck, statuscheck) || return app.status
 
@@ -308,8 +227,12 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
 
   status |> string
 end
-const status_request! = status_request # alias to express invocation for side effects
 
+"""
+  status(app)
+
+REST endpoint to check the status of an app
+"""
 function status(app)
   notify("started:status", app.id)
   status = status_request(app; statuscheck = true)
@@ -318,10 +241,11 @@ function status(app)
   (:status => status) |> json
 end
 
-function isdeleted(app)
-  app.status == DELETED_STATUS
-end
+"""
+  watch(path, appid)
 
+Watches a path for changes and notifies the GenieBuilder UI
+"""
 function watch(path, appid)
   app = try
     ApplicationsController.get(appid.value)
@@ -344,22 +268,25 @@ function watch(path, appid)
   @async Genie.Watch.watch()
 end
 
+"""
+  unwatch(path, appid)
+
+Unwatches a path for changes
+"""
 function unwatch(path, appid)
   delete!(Genie.config.watch_handlers, appid.value)
   Genie.Watch.unwatch(path)
 end
 
+"""
+  start(app)
+
+Starts an app
+"""
 function start(app)
-  if isdeleted(app)
-    notify("failed:start", app.id, FAILSTATUS, DELETED_STATUS)
-    return (:status => DELETED_STATUS) |> json
-  end
-
-  status_request!(app)
-
   try
-    persist_status(app, STARTING_STATUS)
     notify("started:start", app.id)
+    persist_status(app, STARTING_STATUS)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
@@ -407,6 +334,11 @@ function start(app)
   (:status => OKSTATUS) |> json
 end
 
+"""
+  stop(app)
+
+Stops an app
+"""
 function stop(app)
   status = OKSTATUS
 
@@ -416,7 +348,7 @@ function stop(app)
 
     @async HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit")
 
-    sleep(1)
+    sleep()
 
     if status_request(app, false; statuscheck = true) == OFFLINE_STATUS
       notify("ended:stop", app.id)
@@ -444,26 +376,6 @@ function stop(app)
   (:status => status) |> json
 end
 
-function up(app)
-  appstatus = status_request(app)
-  appstatus != OFFLINE_STATUS && notify("failed:up:$appstatus", app.id, FAILSTATUS, ERROR_STATUS) && return (:status => appstatus) |> json
-
-  res = try
-    persist_status(app, STARTING_STATUS)
-    notify("started:up", app.id)
-
-    HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/up")
-  catch ex
-    @error ex
-    notify("failed:up", app.id, FAILSTATUS, ERROR_STATUS)
-  end
-
-  persist_status(app, ONLINE_STATUS)
-  notify("ended:up", app.id)
-
-  String(res.body) |> JSON3.read |> json
-end
-
 macro isonline(app)
   quote
     appstatus = status_request($(esc(app)))
@@ -473,154 +385,27 @@ macro isonline(app)
   end
 end
 
-function split_app_name(appname)
-  matches = match(MODIFIED_APP_NAME_PATTERN, appname)
-  if matches === nothing
-      error("Invalid app name!")
-  else
-      return matches.captures[1]
-  end
-end
+"""
+  unregister(app)
 
-function move_to_folder(app, from_folder, to_folder)
-  app_path = joinpath(from_folder, app.name)
+Unregisters an app with GenieBuilder
+"""
+function unregister(app)
+  app_id = app.id
 
-  app_new_name = if match(MODIFIED_APP_NAME_PATTERN, app.name) !== nothing
-    isdir(joinpath(to_folder, split_app_name(app.name))) ? app.name : split_app_name(app.name)
-  else
-    app.name * Dates.format(now(), "yyyymmddTHHMM")
-  end
-
-  try
-    modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
-    mv(app_path, joinpath(to_folder, app_new_name))
-  catch err
-    open(joinpath(app_path, ".trashme"), "w") do io
-      write(io, app_new_name)
-    end
-    @error err
-  end
-
-  mv(app_path, joinpath(to_folder, app_new_name))
-  modify_app_fields(app, Dict("name" => app_new_name, "path" => joinpath(to_folder, "")))
-end
-
-function modify_app_fields(app, fields)
-  try
-    SearchLight.updatewith!(app, fields)
-    save!(app)
-  catch err
-    @error err
-  end
-end
-
-function delete(app)
-  notify("started:delete", app.id)
+  notify("started:unregister", app_id)
   stop(app)
-
-  persist_status(app, DELETED_STATUS)
-  notify("ended:delete", app.id)
-
-  # move_to_folder(app, GenieBuilder.APPS_FOLDER[], GenieBuilder.TRASH_FOLDER[])
+  SearchLight.delete(app)
+  notify("ended:unregister", app_id)
 
   (:status => OKSTATUS) |> json
 end
 
-function restore(app)
-  notify("started:restore", app.id)
+"""
+  uuid()
 
-  status = if app.status == DELETED_STATUS
-    persist_status(app, OFFLINE_STATUS) ? notify("ended:restore", app.id) : notify("failed:restore", app.id)
-    OKSTATUS
-    # move_to_folder(app, GenieBuilder.TRASH_FOLDER[], GenieBuilder.APPS_FOLDER[])
-  else
-    notify("failed:restore", app.id)
-    FAILSTATUS
-  end
-
-  (:status => status) |> json
-end
-
-function purge(app)
-  notify("started:purge", app.id)
-
-  status = if app.status == DELETED_STATUS
-    SearchLight.delete(app)
-
-    try
-      rm(fullpath(app); recursive = true)
-      notify("ended:purge", app.id)
-      OKSTATUS
-    catch ex
-      notify("failed:purge", app.id)
-      FAILSTATUS
-    end
-  else
-    notify("failed:purge", app.id)
-    FAILSTATUS
-  end
-
-  (:status => status) |> json
-end
-
-function download(app)
-  app_path = fullpath(app)
-  appname = basename(app_path)
-  zip_temp_path = Base.tempdir()
-  w = ZipFile.Writer(joinpath(zip_temp_path, "$appname.zip"))
-  compress = true
-
-  try
-    for (root, dirs, files) in walkdir(app_path)
-      for file in files
-        filepath = joinpath(root, file)
-        f = open(filepath, "r")
-        content = read(f, String)
-        close(f)
-        filename = Sys.iswindows() ? split(filepath, "$appname\\")[2] : split(filepath, "$appname/")[2]
-        zipfilepath = joinpath(appname, filename)
-        zf = ZipFile.addfile(w, zipfilepath; method=(compress ? ZipFile.Deflate : ZipFile.Store))
-        write(zf, content)
-      end
-    end
-    close(w)
-  catch ex
-    @error "failed to write zip file: ", ex
-  finally
-    close(w)
-  end
-
-  Genie.Router.download("$appname.zip", root = zip_temp_path)
-end
-
-function unzip(file, exdir = "")
-  file = isabspath(file) ?  file : joinpath(pwd(), file)
-  out_path = (isempty(exdir) ? dirname(file) : (isabspath(exdir) ? exdir : joinpath(pwd(), exdir)))
-  isdir(out_path) ? "" : mkdir(out_path)
-  zarchive = ZipFile.Reader(file)
-  for f in zarchive.files
-    parts = splitpath(f.name)
-    if length(parts) > 1
-      mkpath(joinpath(out_path, parts[1:end-1]...))
-    end
-
-    try
-      full_file_path = joinpath(out_path, f.name) |> normpath |> abspath
-      if (endswith(f.name,"/") || endswith(f.name,"\\"))
-        mkpath(full_file_path)
-      else
-        write(full_file_path, read(f))
-      end
-    catch ex
-      @error "failed to unzip file: ", ex
-    end
-  end
-
-  close(zarchive)
-
-  nothing
-end
-
+Computes an app's UUID (unique identifier) based on its secret token
+"""
 function uuid()
   uuidstore_filepath = joinpath(@get_scratch!(GB_SCRATCH_SPACE_NAME), UUIDSTORE_FILENAME)
 
@@ -654,25 +439,11 @@ function json2json(res)
   String(res.body) |> JSON3.read |> json
 end
 
-function down(app)
-  if @isonline(app)
-    res = try
-      persist_status(app, STOPPING_STATUS)
-      notify("started:down", app.id)
+"""
+  dir(app)
 
-      HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/down")
-    catch ex
-      @error ex
-      notify("failed:down", app.id, FAILSTATUS, ERROR_STATUS)
-    end
-
-    persist_status(app, OFFLINE_STATUS)
-    notify("ended:down", app.id)
-
-    res |> json2json
-  end
-end
-
+Returns the contents of a directory from an app
+"""
 function dir(app)
   if @isonline(app)
     res = try
@@ -690,6 +461,11 @@ function dir(app)
   end
 end
 
+"""
+  edit(app)
+
+Returns the contents of a file from an app
+"""
 function edit(app)
   if @isonline(app)
     res = try
@@ -707,6 +483,11 @@ function edit(app)
   end
 end
 
+"""
+  save(app)
+
+Saves the contents of a file from an app
+"""
 function save(app)
   if @isonline(app)
     res = try
@@ -726,6 +507,11 @@ function save(app)
   end
 end
 
+"""
+  pages(app)
+
+Returns the pages of an app
+"""
 function pages(app)
   if @isonline(app)
     res = try
@@ -745,6 +531,11 @@ function pages(app)
   end
 end
 
+"""
+  available_port()
+
+Returns two available HTTP ports, one for the app, the other for the remote REPL
+"""
 function available_port()
   apps = SearchLight.find(Application)
   isempty(apps) && return (first(PORTS_RANGE), first(PORTS_RANGE)+1)
@@ -764,6 +555,11 @@ function available_port()
   return (available_port, available_port + 1)
 end
 
+"""
+  startrepl(app)
+
+Starts a remote REPL for an app
+"""
 function startrepl(app)
   if @isonline(app)
     res = try
@@ -793,25 +589,22 @@ function startrepl(app)
   end
 end
 
+"""
+  cleanup()
+
+Stops all running apps
+"""
 function cleanup()
   for app in find(Application, status = ONLINE_STATUS)
     stop(app)
   end
 end
 
-function reset_app_status()
-  for app in find(Application)
-    app.status == DELETED_STATUS && continue
+"""
+  subscribe()
 
-    app.status = OFFLINE_STATUS
-    try
-      save!(app)
-    catch ex
-      @error ex
-    end
-  end
-end
-
+Subscribes websockets client to GenieBuilder UI push notifications
+"""
 function subscribe()
   try
     Genie.WebChannels.subscribe(params(:WS_CLIENT), "geniebuilder")
@@ -824,6 +617,11 @@ function subscribe()
   end
 end
 
+"""
+  unsubscribe()
+
+Unsubscribes websockets client from GenieBuilder UI push notifications
+"""
 function unsubscribe()
   try
     Genie.WebChannels.unsubscribe(params(:WS_CLIENT), "geniebuilder")
@@ -836,37 +634,23 @@ function unsubscribe()
   end
 end
 
-function import_apps() :: Nothing
-  isdir(GenieBuilder.APPS_FOLDER[]) || begin
-    @error "APPS_FOLDER not found: $(GenieBuilder.APPS_FOLDER[])"
-    return
-  end
+"""
+  ready()
 
-  for existing_app in readdir(GenieBuilder.APPS_FOLDER[])
-    ! isdir(joinpath(GenieBuilder.APPS_FOLDER[], existing_app)) && continue
-    startswith(existing_app, ".") && continue
-
-    appname = valid_appname(existing_app)
-    if isempty(find(Application, name = appname))
-      appname != existing_app && mv(joinpath(GenieBuilder.APPS_FOLDER[], existing_app), joinpath(GenieBuilder.APPS_FOLDER[], appname))
-      create(appname)
-    end
-  end
-
-  nothing
-end
-
+Notifies the GenieBuilder UI that it is ready to receive requests
+"""
 function ready() :: Nothing
   @info "GenieBuilder ready! RUN_STATUS = $(GenieBuilder.RUN_STATUS[])"
-
   notify("ended:gbstart", nothing)
-
-  (@async import_apps()) |> errormonitor
-  (@async Integrations.GenieCloud.init()) |> errormonitor
 
   nothing
 end
 
+"""
+  status()
+
+Confirms that GenieBuilder is running
+"""
 function status()
   (:status => OKSTATUS) |> json
 end
