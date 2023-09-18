@@ -54,7 +54,7 @@ end
 
 Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " \nplease free Ports to create GenieBuilder App")
 
-fullpath(app::Application) = abspath(app.path * app.name)
+fullpath(app::Application) = abspath(app.path)
 get(appid) = ApplicationsController.get(parse(Int, appid))
 get(appid::SearchLight.DbId) = ApplicationsController.get(appid.value)
 get(appid::Int) = SearchLight.findone(Application, id = appid)
@@ -105,7 +105,7 @@ end
 
 Generates a valid app name from a string by removing all non-alphanumeric characters
 """
-function valid_appname(name::String)
+function valid_appname(name::AbstractString)
   filter(! isempty, [x.match for x in collect(eachmatch(r"[0-9a-zA-Z]*", name))]) |> join
 end
 
@@ -123,21 +123,26 @@ end
 
 Returns the info of an app
 """
-function info(app)
+function info(app::Application)
   (:application => app) |> json
 end
+
+
+function name_from_path(path::AbstractString)
+  splitpath(path)[end] |> valid_appname |> lowercase
+end
+
 
 """
   register(; name = "", path = "")
 
 Registers a file system path as an app with GenieBuilder
 """
-function register(name = "", path = "")
+function register(name::AbstractString = "", path::AbstractString = pwd())
   notify("started:register_app")
 
-  isempty(path) && (path = pwd())
   endswith(path, "/") || (path = "$path/")
-  isempty(name) && (name = splitpath(path)[end] |> valid_appname |> lowercase)
+  isempty(name) && (name = name_from_path(path))
   port, replport = available_port()
   app = Application(; name, path, port, replport)
   app.status = CREATING_STATUS
@@ -147,7 +152,7 @@ function register(name = "", path = "")
     persist_status(app, OFFLINE_STATUS)
     notify("ended:register_app", app.id)
 
-    return output |> json
+    return app |> json
   catch ex
     @error(ex)
     notify("failed:register_app", nothing, FAILSTATUS, ERROR_STATUS)
@@ -155,6 +160,23 @@ function register(name = "", path = "")
     return (:error => ex)
   end
 end
+
+"""
+  unregister(app)
+
+Unregisters an app with GenieBuilder
+"""
+function unregister(app::Application)
+  app_id = app.id
+
+  notify("started:unregister", app_id)
+  stop(app)
+  SearchLight.delete(app)
+  notify("ended:unregister", app_id)
+
+  (:status => OKSTATUS) |> json
+end
+unregister(name::AbstractString = "", path::AbstractString = pwd()) = unregister(findone(Application; name = isempty(name) ? name_from_path(path) : name))
 
 """
   create(app)
@@ -165,7 +187,7 @@ function create(app::Application)
   notify("started:create", app.id)
 
   try
-    Applications.boilerplate(app.path)
+    boilerplate(app.path)
     notify("ended:create", app.id)
   catch ex
     @error ex
@@ -174,13 +196,51 @@ function create(app::Application)
 
   (:status => OKSTATUS) |> json
 end
+create(name::AbstractString = "", path::AbstractString = pwd()) = create(findone(Application; name = isempty(name) ? name_from_path(path) : name))
+
+"""
+  boilerplate(app_path::String)
+"""
+function boilerplate(app_path::String)
+  # set up the Julia environment
+  try
+    cmd = Cmd(`julia --startup-file=no -e '
+                using Pkg;
+                Pkg._auto_gc_enabled[] = false;
+                Pkg.activate(".");
+                Pkg.add("GenieFramework");
+                exit(0);
+    '`; dir = app_path)
+    cmd |> run
+  catch ex
+    @error ex
+    rethrow(ex)
+  end
+
+  # generate the app's files
+  try
+    current_path = pwd()
+    cd(app_path)
+
+    GenieBuilder.Generators.app()
+    GenieBuilder.Generators.view()
+
+    cd(current_path)
+  catch ex
+    @error ex
+    rethrow(ex)
+  end
+
+  nothing
+end
+boilerplate(app::Application) = boilerplate(app.path)
 
 """
   persist_status(app, status)
 
 Persists the status of an app in the database
 """
-function persist_status(app::Union{Application,Nothing}, status) :: Bool
+function persist_status(app::Union{Application,Nothing}, status::AbstractString) :: Bool
   app === nothing && return false
 
   app.status = string(status)
@@ -233,7 +293,7 @@ end
 
 REST endpoint to check the status of an app
 """
-function status(app)
+function status(app::Application)
   notify("started:status", app.id)
   status = status_request(app; statuscheck = true)
 
@@ -246,7 +306,7 @@ end
 
 Watches a path for changes and notifies the GenieBuilder UI
 """
-function watch(path, appid)
+function watch(path::AbstractString, appid::Int)
   app = try
     ApplicationsController.get(appid.value)
   catch ex
@@ -273,17 +333,18 @@ end
 
 Unwatches a path for changes
 """
-function unwatch(path, appid)
+function unwatch(path::AbstractString, appid::DbId)
   delete!(Genie.config.watch_handlers, appid.value)
   Genie.Watch.unwatch(path)
 end
+
 
 """
   start(app)
 
 Starts an app
 """
-function start(app)
+function start(app::Application)
   try
     notify("started:start", app.id)
     persist_status(app, STARTING_STATUS)
@@ -308,7 +369,7 @@ function start(app)
                           "GENIE_BANNER" => "false")
 
         # in the cloud the :<port> becomes /<path>
-        haskey(ENV, "GB_SOURCE") && ENV["GB_SOURCE"] == "cloud" && (cmd = addenv(cmd, "BASEPATH" => "/$(app.port)"))
+        # haskey(ENV, "GB_SOURCE") && ENV["GB_SOURCE"] == "cloud" && (cmd = addenv(cmd, "BASEPATH" => "/$(app.port)"))
 
         cmd |> run
       catch ex
@@ -333,13 +394,14 @@ function start(app)
 
   (:status => OKSTATUS) |> json
 end
+start(name::AbstractString = "", path::AbstractString = pwd()) = start(findone(Application; name = isempty(name) ? name_from_path(path) : name))
 
 """
   stop(app)
 
 Stops an app
 """
-function stop(app)
+function stop(app::Application)
   status = OKSTATUS
 
   try
@@ -348,7 +410,7 @@ function stop(app)
 
     @async HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit")
 
-    sleep()
+    sleep(2)
 
     if status_request(app, false; statuscheck = true) == OFFLINE_STATUS
       notify("ended:stop", app.id)
@@ -375,7 +437,13 @@ function stop(app)
 
   (:status => status) |> json
 end
+stop(name::AbstractString = "", path::AbstractString = pwd()) = stop(findone(Application; name = isempty(name) ? name_from_path(path) : name))
 
+"""
+  @isonline(app)
+
+Checks if an app is online
+"""
 macro isonline(app)
   quote
     appstatus = status_request($(esc(app)))
@@ -383,22 +451,6 @@ macro isonline(app)
 
     true
   end
-end
-
-"""
-  unregister(app)
-
-Unregisters an app with GenieBuilder
-"""
-function unregister(app)
-  app_id = app.id
-
-  notify("started:unregister", app_id)
-  stop(app)
-  SearchLight.delete(app)
-  notify("ended:unregister", app_id)
-
-  (:status => OKSTATUS) |> json
 end
 
 """
@@ -435,7 +487,7 @@ function uuid()
   end
 end
 
-function json2json(res)
+function json2json(res::HTTP.Response)
   String(res.body) |> JSON3.read |> json
 end
 
@@ -444,7 +496,7 @@ end
 
 Returns the contents of a directory from an app
 """
-function dir(app)
+function dir(app::Application)
   if @isonline(app)
     res = try
       notify("started:dir", app.id)
@@ -466,7 +518,7 @@ end
 
 Returns the contents of a file from an app
 """
-function edit(app)
+function edit(app::Application)
   if @isonline(app)
     res = try
       notify("started:edit", app.id)
@@ -488,7 +540,7 @@ end
 
 Saves the contents of a file from an app
 """
-function save(app)
+function save(app::Application)
   if @isonline(app)
     res = try
       notify("started:save", app.id)
@@ -512,7 +564,7 @@ end
 
 Returns the pages of an app
 """
-function pages(app)
+function pages(app::Application)
   if @isonline(app)
     res = try
       notify("started:pages", app.id)
@@ -560,7 +612,7 @@ end
 
 Starts a remote REPL for an app
 """
-function startrepl(app)
+function startrepl(app::Application)
   if @isonline(app)
     res = try
       notify("started:startrepl", app.id)

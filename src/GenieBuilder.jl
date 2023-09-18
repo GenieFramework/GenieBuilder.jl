@@ -21,6 +21,7 @@ function __init__()
   Genie.config.path_log = LOG_FOLDER[]
 
   get!(ENV, "GENIE_BANNER", "false")
+  @async go()
 end
 
 function main()
@@ -40,8 +41,12 @@ function go(; port = get!(ENV, "GB_PORT", -1))
     ENV["RUN_STATUS"] = RUN_STATUS[] = :install
   end
 
+  current_path = normpath(pwd())
   cd(normpath(@__DIR__, ".."))
+
   Genie.go()
+  cd(current_path)
+
   port = port == -1 ? Genie.config.server_port : port
   try
     Genie.up(port; async = false)
@@ -75,7 +80,7 @@ function install(installdir::String)
   end
 end
 
-function stop()
+function exit()
   Genie.Server.down!()
   Base.exit()
 end

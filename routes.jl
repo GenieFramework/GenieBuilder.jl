@@ -1,6 +1,7 @@
 using Genie.Router
 using GenieBuilder
 using GenieBuilder.ApplicationsController
+using GenieBuilder.ApplicationsController.Applications
 using RemoteREPL
 
 Genie.config.websockets_server = true
@@ -9,6 +10,51 @@ const api_route = "/api/v1"
 const app_route = "/apps/:appid"
 const gb_route  = "/geniebuilder"
 
+# GenieBuilder API
+
+# return a list of all the apps
+apps() = all(Application)
+
+# registers a new path as a GenieBuilder app
+register(name = "", path = pwd()) = ApplicationsController.register(name, path)
+
+# unregisters an app from GenieBuilder
+unregister(app) = ApplicationsController.unregister(app)
+unregister(name = "", path = pwd()) = ApplicationsController.unregister(name, path)
+
+# creates the Genie app skeleton
+create(app) = ApplicationsController.create(app)
+create(name = "", path = pwd()) = ApplicationsController.create(name, path)
+
+# returns the app's status
+status(app) = ApplicationsController.status(app)
+
+# starts the app
+start(app) = ApplicationsController.start(app)
+start(name = "", path = pwd()) = ApplicationsController.start(name, path)
+
+# stops the app
+stop(app) = ApplicationsController.stop(app)
+stop(name = "", path = pwd()) = ApplicationsController.stop(name, path)
+
+function startrepl()
+  port = ApplicationsController.available_port() |> first
+  @async serve_repl(port)
+
+  port
+end
+
+function stop!()
+  ApplicationsController.cleanup()
+  GenieBuilder.exit()
+end
+
+function editor(app::Application)
+  Genie.Server.openbrowser("http://$(Genie.config.server_host):$(Genie.config.server_port)?appid=$(app.id.value)&filepath=$(app.path)")
+end
+function editor(name = "", path = pwd())
+  editor(findone(Application, name = ApplicationsController.name_from_path(path)))
+end
 
 # REST API
 function routes()
@@ -19,32 +65,32 @@ function routes()
 
   # registers a new path as a GenieBuilder app
   route("$api_route/apps/register") do
-    ApplicationsController.register(params(:name, ""), params(:path, ""))
+    register(params(:name, ""), params(:path, pwd()))
   end
 
   # creates the Genie app skeleton
   route("$api_route$app_route/create") do
-    ApplicationsController.create(params(:appid) |> ApplicationsController.get)
+    create(params(:appid) |> ApplicationsController.get)
   end
 
   # returns the app's status
   route("$api_route$app_route/status") do
-    ApplicationsController.status(params(:appid) |> ApplicationsController.get)
+    status(params(:appid) |> ApplicationsController.get)
   end
 
   # starts the app
   route("$api_route$app_route/start") do
-    ApplicationsController.start(params(:appid) |> ApplicationsController.get)
+    start(params(:appid) |> ApplicationsController.get)
   end
 
   # stops the app
   route("$api_route$app_route/stop") do
-    ApplicationsController.stop(params(:appid) |> ApplicationsController.get)
+    stop(params(:appid) |> ApplicationsController.get)
   end
 
   # unregisters an app from GenieBuilder
   route("$api_route$app_route/unregister") do # previously delete
-    ApplicationsController.unregister(params(:appid) |> ApplicationsController.get)
+    unregister(params(:appid) |> ApplicationsController.get)
   end
 
   # returns the contents of a directory from an app
@@ -92,17 +138,12 @@ function routes()
 
   # stops the GenieBuilder server
   route("$gb_route/stop") do
-    ApplicationsController.cleanup()
-    GenieBuilder.stop()
+    stop!()
   end
 
   # starts GenieBuilder remote repl
   route("$gb_route/startrepl") do
-    port = ApplicationsController.available_port() |> first
-
-    @async serve_repl(port)
-
-    port
+    startrepl()
   end
 
   # app uuid
@@ -118,11 +159,6 @@ function routes()
   # unsubscribes from websockets notifications
   channel("$gb_route/unsubscribe") do
     ApplicationsController.unsubscribe()
-  end
-
-  # stops the GenieBuilder server
-  channel("$gb_route/stop") do
-    GenieBuilder.stop()
   end
 
   # returns the status of the GenieBuilder server

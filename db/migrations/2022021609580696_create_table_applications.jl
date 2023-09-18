@@ -10,12 +10,15 @@ function up()
         :name => :string
         :port => :int
         :path => :string
+        :status    => :string
+        :replport  => :int
+        :channel   => :string
       ])
     ]
   end
 
   # add_index(:applications, :column_name)
-  # add_indices(:applications, :column_name_1, :column_name_2)
+  add_indices(:applications, :name, :port, :path, :status)
 end
 
 function down()

@@ -21,6 +21,7 @@ const UNASSIGNED_PORT = 0
   channel::String = Stipple.channelfactory()
   replport::Int   = UNASSIGNED_PORT
 end
+Application(id::Int) = findone(Application; id = id)
 
 function SearchLight.Validation.validator(::Type{Application})
   ModelValidator([
@@ -30,42 +31,5 @@ function SearchLight.Validation.validator(::Type{Application})
     ValidationRule(:path, ApplicationsValidator.not_empty)
   ])
 end
-
-"""
-  boilerplate(app_path::String)
-"""
-function boilerplate(app_path::String)
-  # set up the Julia environment
-  try
-    cmd = Cmd(`julia --startup-file=no -e '
-                using Pkg;
-                Pkg._auto_gc_enabled[] = false;
-                Pkg.activate(".");
-                Pkg.add("GenieFramework");
-                exit(0);
-    '`; dir = app_path)
-    cmd |> run
-  catch ex
-    @error ex
-    rethrow(ex)
-  end
-
-  # generate the app's files
-  try
-    current_path = pwd()
-    cd(app_path)
-
-    GenieBuilder.Generators.app()
-    GenieBuilder.Generators.view()
-
-    cd(current_path)
-  catch ex
-    @error ex
-    rethrow(ex)
-  end
-
-  nothing
-end
-boilerplate(app::Application) = boilerplate(app.path)
 
 end
