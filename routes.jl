@@ -3,6 +3,7 @@ using GenieBuilder
 using GenieBuilder.ApplicationsController
 using GenieBuilder.ApplicationsController.Applications
 using RemoteREPL
+using JSON3
 
 Genie.config.websockets_server = true
 
@@ -27,10 +28,17 @@ create(app) = ApplicationsController.create(app)
 create(name = "", path = pwd()) = ApplicationsController.create(name, path)
 
 # returns the app's status
-status(app) = ApplicationsController.status(app)
+status(app) = ApplicationsController.status(app).body |> JSON3.read
+status(name = "", path = pwd()) = ApplicationsController.status(name, path).body |> JSON3.read
 
 # starts the app
-start(app) = ApplicationsController.start(app)
+function start(app)
+  ApplicationsController.start(app)
+  @async begin
+    sleep(3)
+    Genie.Server.openbrowser("http://$(Genie.config.server_host):$(app.port)?appid=$(app.id.value)&filepath=$(app.path)")
+  end
+end
 start(name = "", path = pwd()) = ApplicationsController.start(name, path)
 
 # stops the app
@@ -53,7 +61,14 @@ function editor(app::Application)
   Genie.Server.openbrowser("http://$(Genie.config.server_host):$(Genie.config.server_port)?appid=$(app.id.value)&filepath=$(app.path)")
 end
 function editor(name = "", path = pwd())
-  editor(findone(Application, name = ApplicationsController.name_from_path(path)))
+  app = findone(Application, name = ApplicationsController.name_from_path(path))
+
+  if app === nothing
+    register()
+    return editor(name, path)
+  end
+
+  editor(app)
 end
 
 # REST API

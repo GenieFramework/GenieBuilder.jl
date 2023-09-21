@@ -196,6 +196,10 @@ function create(app::Application)
 
   (:status => OKSTATUS) |> json
 end
+function create(app::Nothing)
+  register()
+  create()
+end
 create(name::AbstractString = "", path::AbstractString = pwd()) = create(findone(Application; name = isempty(name) ? name_from_path(path) : name))
 
 """
@@ -300,6 +304,7 @@ function status(app::Application)
   notify("ended:status:$status", app.id)
   (:status => status) |> json
 end
+status(name::AbstractString = "", path::AbstractString = pwd()) = status(findone(Application; name = isempty(name) ? name_from_path(path) : name))
 
 """
   watch(path, appid)
@@ -360,7 +365,7 @@ function start(app::Application)
                                                 using GenieFramework.Genie;
                                                 Core.eval(Main, :(const UserApp = $(@__MODULE__)));
                                                 Genie.genie(context = @__MODULE__);
-                                                up(async = false);
+                                                up(; async = false, open_browser = true);
                   '`; dir = fullpath(app), detach = false)
         cmd = addenv(cmd, "PORT" => app.port,
                           "WSPORT" => app.port,
