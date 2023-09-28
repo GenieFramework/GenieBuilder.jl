@@ -70,7 +70,11 @@ julia> GenieBuilder.apps()
 
 -> Returns an array of `GenieBuilder.App` objects.
 
-API endpoint: `/api/v1/apps`
+API endpoint:
+
+```html
+/api/v1/apps
+```
 
 ```json
 {
@@ -99,7 +103,12 @@ julia> GenieBuilder.register([name], [path])
 -> `name` is the name of the app, and `path` is the path to the app's directory. If `name` is not provided, the name of the app will be the name of the directory. If `path` is not provided, the current directory will be used.
 -> returns information about the registered app
 
-API endpoint: `/api/v1/register`
+API endpoint:
+
+```html
+/api/v1/register
+```
+
 -> GET payload: `name` and `path` (see above for expected data for both vars).
 
 #### Example
@@ -130,7 +139,11 @@ In order to edit an app with the no-code editor, the app must be registered with
 julia> GenieBuilder.start(app::Application)
 ```
 
-API endpoint: `/api/v1/apps/<app_id>/start`
+API endpoint:
+
+```html
+/api/v1/apps/<app_id>/start
+```
 
 -> `app_id` is the ID of the app to start. The app must be registered with GenieBuilder.
 -> `app` is an instance of `GenieBuilder.Application` (see `apps()` for more information).
@@ -153,14 +166,22 @@ julia> GenieBuilder.editor([name], [path])
 julia> GenieBuilder.stop(app::Application)
 ```
 
-API endpoint: `/api/v1/apps/<app_id>/stop`
+API endpoint:
+
+```html
+/api/v1/apps/<app_id>/stop
+```
 
 -> `app_id` is the ID of the app to stop. The app must be registered with GenieBuilder.
 -> `app` is an instance of `GenieBuilder.Application` (see `apps()` for more information).
 
 ### Get information about an app
 
-API endpoint: `/api/v1/apps/<app_id>/pages`
+API endpoint:
+
+```html
+/api/v1/apps/<app_id>/pages
+```
 
 ### Unregister an app
 
@@ -174,11 +195,19 @@ or
 julia> GenieBuilder.unregister([name], [path])
 ```
 
-API endpoint: `/api/v1/apps/<app_id>/unregister`
+API endpoint:
+
+```html
+/api/v1/apps/<app_id>/unregister
+```
 
 or
 
-API endpoint: `/api/v1/apps/unregister?path=/Users/adrian/Projects/GenieBuilderNextGen&name=testapp`
+API endpoint:
+
+```html
+/api/v1/apps/unregister?path=/Users/adrian/Projects/GenieBuilderNextGen&name=testapp
+```
 
 ### Open app in browser
 
