@@ -1,43 +1,56 @@
-# GenieCloud backend
+# GenieBuilder.jl
 
-This is the backend (web service) powering the GenieBuilder VSCode plugin. Unless you want to contribute to the backend, this repo is not what you want. 
 
-If you want to install the GenieBuilder VSCode plugin, please visit the VSCode marketplace or use this link to install it: https://marketplace.visualstudio.com/items?itemName=GenieBuilder.geniebuilder
+## Installation
 
-## Install
+```julia
+pkg> add https://github.com/GenieFramework/GenieBuilder.jl
+```
 
-* Clone the repository
-* Start a Julia REPL in the app's folder: `$ julia --project`
-* Instantiate the dependencies: `pkg> instantiate`
+or
 
-## Dockerizing GenieBuilder App
+```julia
+pkg> dev https://github.com/GenieFramework/GenieBuilder.jl
+```
 
-Check the instructions [here](https://github.com/GenieFramework/DockerizedGBApp). We have Dockerized a sample GenieBuilder App along with recipe to create package compiler system image and using that `.so` image.
+## Usage
 
-## Load the app
+```julia
+julia> using GenieBuilder
+```
 
-In the app's folder: `$ bin/repl`.
-You might need to edit the `repl` file to point to the correct `julia` binary.
-You might also need to make the `repl` file executable: `$ chmod +x repl`.
+This will bring `GenieBuilder` into scope and start the GenieBuilder service. The service is responsible for managing the list of registered Genie apps, as well as the no-code editor.
 
-Alternatively you can load the project: `$ julia --project`.
-Then load the Genie app: `julia> using Genie; Genie.loadapp()`.
+By default, the service will start on port `10101` over HTTP, and on port `10102` for websockets.
 
-## Start the server
+## Creating a boilerplate Genie app
 
-Once the app is loaded, run `julia> up()`.
+```julia
+julia> GenieBuilder.create([name], [path])
+```
 
-## API
+API endpoint: `/api/v1/apps/create?path=/Users/adrian/Projects/GenieBuilderNextGen&name=testapp`
 
-The following API endpoints are exposed by the GenieCloud backend:
+-> `name` is the name of the app, and `path` is the path to the app's directory. If `name` is not provided, the name of the app will be the name of the directory. If `path` is not provided, the current directory will be used.
+-> returns information about the registered app
 
-### List apps
+This will create a new Julia project in the current directory. You will see the new project files: `Project.toml`, `Manifest.toml` -- as well as the application itself: `app.jl` (for the backend) and `app.jl.html` (for the frontend/UI).
 
-#### `/api/v1/apps` `GET`
+Upon successfully creating the app, the new application is automatically registered with `GenieBuilder` so you can edit it with the no-code editor.
 
-Returns a list of all available apps.
+## Working with the GenieBuilder API
 
-#### Response
+The following functions are available to interact with `GenieBuilder`:
+
+### Get the list of apps registered with GenieBuilder
+
+```julia
+julia> GenieBuilder.apps()
+```
+
+-> Returns an array of `GenieBuilder.App` objects.
+
+API endpoint: `/api/v1/apps`
 
 ```json
 {
@@ -46,291 +59,115 @@ Returns a list of all available apps.
       "id": {
         "value": 1
       },
-      "name": "IrisClustering",
-      "port": 24838,
-      "path": "/apps/"
+      "name": "geniebuildernextgen",
+      "port": 9101,
+      "path": "/Volumes/Storage/Dropbox/Projects/GenieBuilderNextGen/",
+      "status": "offline",
+      "channel": "HSTYSOOKBWUMHXUZIABDTXFEHDEHHWIU",
+      "replport": 9102
     }
   ]
 }
 ```
 
-### App status
-
-#### `/api/v1/apps/<app_id>/status` `GET`
-
-Returns the status of the app.
-
-#### Response
-
-```json
-{
-  "status": "online"
-}
-```
-
-Possible `status` values are: `online`, `offline`, `error`.
-
-### Start the app
-
-#### `/api/v1/apps/<app_id>/start` `GET`
-
-Starts the app if app is `offline` otherwise it returns the app's status.
-
-### Stop the app
-
-#### `/api/v1/apps/<app_id>/stop` `GET`
-
-Stops the app if `online` otherwise it returns the app's status.
-
-### Retrieve app's folder contents
-
-#### `/api/v1/apps/<app_id>/dir?path=<path>` `GET`
-
-Returns the list of files and folders within `path`
-
-##### Example `/api/v1/apps/1/dir?path=.`
-
-```json
-{
-  "dir": [
-    {
-      "file": ".gitattributes"
-    },
-    {
-      "file": ".gitignore"
-    },
-    {
-      "file": "Manifest.toml"
-    },
-    {
-      "file": "Project.toml"
-    },
-    {
-      "dir": "bin"
-    },
-    {
-      "file": "bootstrap.jl"
-    },
-    {
-      "dir": "build"
-    },
-    {
-      "dir": "config"
-    },
-    {
-      "dir": "log"
-    },
-    {
-      "dir": "models"
-    },
-    {
-      "dir": "plugins"
-    },
-    {
-      "dir": "public"
-    },
-    {
-      "file": "routes.jl"
-    },
-    {
-      "dir": "sessions"
-    },
-    {
-      "dir": "src"
-    },
-    {
-      "dir": "test"
-    },
-    {
-      "dir": "views"
-    }
-  ]
-}
-```
-
-##### Example `/api/v1/apps/1/dir?path=./views`
-
-```json
-{
-  "dir": [
-    {
-      "file": "iris.jl"
-    },
-    {
-      "dir": "layouts"
-    }
-  ]
-}
-```
-
-### Read file contents
-
-#### `/api/v1/apps/<app_id>/edit?path=<path>` `GET`
-
-Returns the contents of the file at `path`, if it exists -- an error otherwise.
-
-##### Example `/api/v1/apps/1/edit?path=./views/iris.jl`
-
-```json
-{
-  "content": "page(\n    model, partial = true,\n    [\n      heading(\"Iris flowers clustering\")\n\n      row([\n        cell(class=\"st-module\", [\n          h6(\"Number of clusters\")\n          slider( 1:1:20,\n                  @data(:no_of_clusters);\n                  label=true)\n        ])\n        cell(class=\"st-module\", [\n          h6(\"Number of iterations\")\n          slider( 10:10:200,\n                  @data(:no_of_iterations);\n                  label=true)\n        ])\n\n        cell(class=\"st-module\", [\n          h6(\"X feature\")\n          Stipple.select(:xfeature; options=:features)\n        ])\n\n        cell(class=\"st-module\", [\n          h6(\"Y feature\")\n          Stipple.select(:yfeature; options=:features)\n        ])\n      ])\n\n      row([\n        cell(class=\"st-module\", [\n          h5(\"Species clusters\")\n          plot(:iris_plot_data, layout = :layout, config = \"{ displayLogo:false }\")\n        ])\n\n        cell(class=\"st-module\", [\n          h5(\"k-means clusters\")\n          plot(:cluster_plot_data, layout = :layout, config = \"{ displayLogo:false }\")\n        ])\n      ])\n\n      row([\n        cell(class=\"st-module\", [\n          h5(\"Iris data\")\n          table(:iris_data; pagination=:credit_data_pagination, dense=true, flat=true, style=\"height: 350px;\")\n        ])\n      ])\n    ]\n  )"
-}
-```
-
-##### Example `/api/v1/apps/1/edit?path=./views/irisssss.jl`
-
-```json
-{
-  "error": "./views/irisssss.jl is not a file"
-}
-```
-
-### Write file contents
-
-#### `/api/v1/apps/<app_id>/save?path=<path>` `POST`
-
-Writes the `POST` payload sent in the `POST` variable `payload` to the file denoted by `path`.
-
-### Read the app's log
-
-#### `/api/v1/apps/<app_id>/log` `GET`
-
-Returns the application's log. Can be large.
-
-#### Response
-
-```json
-{
-  "content": "┌ Error: 2022-02-21 09:33:59 MethodError: no method matching (::GenieDevTools.var\"#32#37\")()\n│ Stacktrace:\n│   [1] #invokelatest#2\n│"
-```
-
-### Retrieve application build/compilation errors
-
-#### `/api/v1/apps/<app_id>/errors` `GET`
-
-Returns any compilation errors that can cause the app building to fail. If no errors, the response will be an empty object `{}`,
-
-#### Response
-
-```json
-{
-  "(PkgData(IrisClustering [37dd9d81-1a0e-4ce3-9765-cea2640fa567], basedir \"/Users/adrian/Dropbox/Projects/GenieCloud/apps/IrisClustering\":\n  \"src/IrisClustering.jl\": FileInfo(IrisClustering=>ExprsSigs(<0 expressions>, <0 signatures>), with cachefile /Users/adrian/.julia/compiled/v1.7/IrisClustering/kz2BH_tYonf.ji)\n  \"config/secrets.jl\": FileInfo(IrisClustering=>ExprsSigs(<1 expressions>, <0 signatures>), )\n  \"config/initializers/autoload.jl\": FileInfo(IrisClustering=>ExprsSigs(<1 expressions>, <0 signatures>), )\n  \"config/initializers/converters.jl\": FileInfo(IrisClustering=>ExprsSigs(<5 expressions>, <3 signatures>), )\n  \"config/initializers/inflector.jl\": FileInfo(IrisClustering=>ExprsSigs(<2 expressions>, <0 signatures>), )\n  \"config/initializers/logging.jl\": FileInfo(IrisClustering=>ExprsSigs(<5 expressions>, <1 signatures>), )\n  \"config/initializers/ssl.jl\": FileInfo(IrisClustering=>ExprsSigs(<3 expressions>, <1 signatures>), )\n  \"plugins/autoreload.jl\": FileInfo(IrisClustering=>ExprsSigs(<3 expressions>, <1 signatures>), )\n  \"plugins/devtools.jl\": FileInfo(IrisClustering=>ExprsSigs(<2 expressions>, <0 signatures>), )\n  \"plugins/sessionstorage.jl\": FileInfo(IrisClustering=>ExprsSigs(<3 expressions>, <0 signatures>), )\n  \"routes.jl\": FileInfo(IrisClustering=>ExprsSigs(<6 expressions>, <1 signatures>), )\n, \"routes.jl\")": [
-    {
-      "file": "/Users/adrian/Dropbox/Projects/GenieCloud/apps/IrisClustering/routes.jl",
-      "line": 16,
-      "error": "extra token \"do\" after end of expression"
-    },
-    [
-      {}
-    ]
-  ]
-}
-```
-
-### List pages
-
-#### `/api/v1/apps/<app_id>/pages` `GET`
-
-Returns the list of pages registered in the app. Pages are bundles of views, layouts, models and route.
-
-#### Response
-
-```json
-{
-  "pages": [
-    {
-      "view": "views/iris.jl",
-      "route": {
-        "method": "GET",
-        "path": "/"
-      },
-      "layout": "views/layouts/app.jl.html",
-      "model": {
-        "name": "Iris.IrisModel",
-        "fields": [
-          "iris_data",
-          "credit_data_pagination",
-          "features",
-          "xfeature",
-          "yfeature",
-          "iris_plot_data",
-          "cluster_plot_data",
-          "layout",
-          "no_of_clusters",
-          "no_of_iterations",
-          "channel__",
-          "isready",
-          "isreadydelay",
-          "isprocessing"
-        ],
-        "types": [
-          "Stipple.Reactive{StippleUI.Tables.DataTable}",
-          "StippleUI.Tables.DataTablePagination",
-          "Stipple.Reactive{Vector{String}}",
-          "Stipple.Reactive{String}",
-          "Stipple.Reactive{String}",
-          "Stipple.Reactive{Vector{StipplePlotly.Charts.PlotData}}",
-          "Stipple.Reactive{Vector{StipplePlotly.Charts.PlotData}}",
-          "Stipple.Reactive{StipplePlotly.Charts.PlotLayout}",
-          "Stipple.Reactive{Int64}",
-          "Stipple.Reactive{Int64}",
-          "String",
-          "Stipple.Reactive{Bool}",
-          "Stipple.Reactive{Int64}",
-          "Stipple.Reactive{Bool}"
-        ]
-      }
-    }
-  ]
-}
-```
-
-### List assets
-
-#### `/api/v1/apps/<app_id>/assets` `GET`
-
-Lists the CSS and JS assets used by the application.
-
-#### Response
-
-```json
-{
-  "deps": {
-    "styles": [
-      "<link href=\"/stippleui.jl/master/assets/css/quasar.min.css\" rel=\"stylesheet\" />"
-    ],
-    "scripts": [
-      "<script src=\"/stippleui.jl/master/assets/js/quasar.umd.min.js\"></script>",
-      "<script src=\"/stippleplotly.jl/master/assets/js/plotly2.min.js\"></script>",
-      "<script src=\"/stippleplotly.jl/master/assets/js/resizesensor.min.js\"></script>",
-      "<script src=\"/stippleplotly.jl/master/assets/js/lodash.min.js\"></script>",
-      "<script src=\"/stippleplotly.jl/master/assets/js/vueresize.min.js\"></script>",
-      "<script src=\"/stippleplotly.jl/master/assets/js/vueplotly.min.js\"></script>",
-      "<script src=\"/stipple.jl/master/assets/js/irisirismodel.js\" defer></script>"
-    ]
-  }
-}
-```
-
-### Start REPL
-
-#### `/api/v1/apps/<app_id>/startrepl` `GET`
-
-Starts a remote repl session in the guest app. You can use another Julia REPL with the `RemoteREPL.jl` package to
-connect to the guest reply using the port number returned by this endpoint.
-
-The REPL is always started on a remote port for security considerations -- and the port is returned in the response.
-
-#### Response
-
-```json
-{"status":"OK","port":44659}
-```
-
-#### Example for connecting
+### Register an app with GenieBuilder
 
 ```julia
-using RemoteREPL
+julia> GenieBuilder.register([name], [path])
+```
 
-connect_repl(44659)
+-> `name` is the name of the app, and `path` is the path to the app's directory. If `name` is not provided, the name of the app will be the name of the directory. If `path` is not provided, the current directory will be used.
+-> returns information about the registered app
+
+API endpoint: `/api/v1/register`
+-> GET payload: `name` and `path` (see above for expected data for both vars).
+
+#### Example
+
+`http://127.0.0.1:10101/api/v1/apps/register?path=/Users/adrian/Projects/GenieBuilderNextGen&name=testapp`
+
+```json
+{
+  "id": {
+    "value": 1
+  },
+  "name": "testapp",
+  "port": 9101,
+  "path": "/Users/adrian/Projects/GenieBuilderNextGen/",
+  "status": "offline",
+  "channel": "SERRLQOMSCNRBLARTUZOZZYBSDAACOAF",
+  "replport": 9102
+}
+```
+
+### Edit an app with the no-code editor
+
+In order to edit an app with the no-code editor, the app must be registered with GenieBuilder and started (running). For more information on how to register an app, see the `register` function above.
+
+### Start an app
+
+```julia
+julia> GenieBuilder.start(app::Application)
+```
+
+API endpoint: `/api/v1/apps/<app_id>/start`
+
+-> `app_id` is the ID of the app to start. The app must be registered with GenieBuilder.
+-> `app` is an instance of `GenieBuilder.Application` (see `apps()` for more information).
+
+### Open no-code editor
+
+```julia
+julia> GenieBuilder.editor(app::Application)
+```
+
+or
+
+```julia
+julia> GenieBuilder.editor([name], [path])
+```
+
+### Stop an app
+
+```julia
+julia> GenieBuilder.stop(app::Application)
+```
+
+API endpoint: `/api/v1/apps/<app_id>/stop`
+
+-> `app_id` is the ID of the app to stop. The app must be registered with GenieBuilder.
+-> `app` is an instance of `GenieBuilder.Application` (see `apps()` for more information).
+
+### Get information about an app
+
+API endpoint: `/api/v1/apps/<app_id>/pages`
+
+### Unregister an app
+
+```julia
+julia> GenieBuilder.unregister(app::Application)
+```
+
+or
+
+```julia
+julia> GenieBuilder.unregister([name], [path])
+```
+
+API endpoint: `/api/v1/apps/<app_id>/unregister`
+
+or
+
+API endpoint: `/api/v1/apps/unregister?path=/Users/adrian/Projects/GenieBuilderNextGen&name=testapp`
+
+### Open app in browser
+
+```julia
+julia> GenieBuilder.openbrowser(app::Application)
+```
+
+### Stop GenieBuilder
+
+```julia
+julia> GenieBuilder.stop!()
 ```

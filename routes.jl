@@ -13,33 +13,42 @@ const gb_route  = "/geniebuilder"
 
 # GenieBuilder API
 
+app!(name::String = "", path::String = pwd()) = findone(Application, name = isempty(name) ?
+                                                                            ApplicationsController.name_from_path(path) :
+                                                                            name)
+
 # return a list of all the apps
 apps() = all(Application)
 
 # registers a new path as a GenieBuilder app
-register(name = "", path = pwd()) = ApplicationsController.register(name, path)
+register(name::String = "", path::String = pwd()) = ApplicationsController.register(name, path)
 
 # unregisters an app from GenieBuilder
-unregister(app) = ApplicationsController.unregister(app)
-unregister(name = "", path = pwd()) = ApplicationsController.unregister(name, path)
+unregister(app::Application) = ApplicationsController.unregister(app)
+unregister(name::String = "", path::String = pwd()) = unregister(app!(name, path))
 
 # creates the Genie app skeleton
-create(app) = ApplicationsController.create(app)
-create(name = "", path = pwd()) = ApplicationsController.create(name, path)
+create(app::Application) = ApplicationsController.create(app)
+create(name::String = "", path::String = pwd()) = create(app!(name, path))
 
 # returns the app's status
-status(app) = ApplicationsController.status(app)
+status(app::Union{Application,Nothing}) = ApplicationsController.status(app)
 
 # starts the app
-function start(app)
+function start(app::Application)
+  @async begin
+    sleep(10)
+    openbrowser(app)
+  end
   ApplicationsController.start(app)
+end
+
+function openbrowser(app::Application)
   Genie.Server.openbrowser("http://$(Genie.config.server_host):$(app.port)?appid=$(app.id.value)&filepath=$(app.path)")
 end
-start(name = "", path = pwd()) = ApplicationsController.start(name, path)
 
 # stops the app
-stop(app) = ApplicationsController.stop(app)
-stop(name = "", path = pwd()) = ApplicationsController.stop(name, path)
+stop(app::Application) = ApplicationsController.stop(app)
 
 function startrepl()
   port = ApplicationsController.available_port() |> first
@@ -56,8 +65,8 @@ end
 function editor(app::Application)
   Genie.Server.openbrowser("http://$(Genie.config.server_host):$(Genie.config.server_port)?appid=$(app.id.value)&filepath=$(app.path)")
 end
-function editor(name = "", path = pwd())
-  app = findone(Application, name = ApplicationsController.name_from_path(path))
+function editor(name::String = "", path::String = pwd())
+  app = app!(name, path)
 
   if app === nothing
     register()
@@ -80,8 +89,8 @@ function routes()
   end
 
   # creates the Genie app skeleton
-  route("$api_route$app_route/create") do
-    create(params(:appid) |> ApplicationsController.get)
+  route("$api_route/apps/create") do
+    create(params(:name, ""), params(:path, pwd()))
   end
 
   # returns the app's status
@@ -102,6 +111,11 @@ function routes()
   # unregisters an app from GenieBuilder
   route("$api_route$app_route/unregister") do # previously delete
     unregister(params(:appid) |> ApplicationsController.get)
+  end
+
+  # registers a new path as a GenieBuilder app
+  route("$api_route/apps/unregister") do
+    unregister(params(:name, ""), params(:path, pwd()))
   end
 
   # returns the contents of a directory from an app
