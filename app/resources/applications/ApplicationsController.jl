@@ -177,6 +177,7 @@ function unregister(app::Application)
   (:status => OKSTATUS) |> json
 end
 unregister(name::AbstractString = "", path::AbstractString = pwd()) = unregister(findone(Application; name = isempty(name) ? name_from_path(path) : name))
+unregister(::Nothing) = error("Cannot find a GenieBuilder app")
 
 """
   create(app)
@@ -304,7 +305,6 @@ function status(app::Application)
   notify("ended:status:$status", app.id)
   (:status => status) |> json
 end
-status(name::AbstractString = "", path::AbstractString = pwd()) = status(findone(Application; name = isempty(name) ? name_from_path(path) : name))
 
 """
   watch(path, appid)

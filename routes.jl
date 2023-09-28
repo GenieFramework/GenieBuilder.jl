@@ -28,16 +28,12 @@ create(app) = ApplicationsController.create(app)
 create(name = "", path = pwd()) = ApplicationsController.create(name, path)
 
 # returns the app's status
-status(app) = ApplicationsController.status(app).body |> JSON3.read
-status(name = "", path = pwd()) = ApplicationsController.status(name, path).body |> JSON3.read
+status(app) = ApplicationsController.status(app)
 
 # starts the app
 function start(app)
   ApplicationsController.start(app)
-  @async begin
-    sleep(3)
-    Genie.Server.openbrowser("http://$(Genie.config.server_host):$(app.port)?appid=$(app.id.value)&filepath=$(app.path)")
-  end
+  Genie.Server.openbrowser("http://$(Genie.config.server_host):$(app.port)?appid=$(app.id.value)&filepath=$(app.path)")
 end
 start(name = "", path = pwd()) = ApplicationsController.start(name, path)
 
