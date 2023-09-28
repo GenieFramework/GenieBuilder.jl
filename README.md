@@ -49,7 +49,10 @@ By default, the service will start on port `10101` over HTTP, and on port `10102
 julia> GenieBuilder.create([name], [path])
 ```
 
-API endpoint: `/api/v1/apps/create?path=/Users/adrian/Projects/GenieBuilderNextGen&name=testapp`
+API endpoint:
+```html
+/api/v1/apps/create?path=/Users/adrian/Projects/GenieBuilderNextGen&name=testapp
+```
 
 -> `name` is the name of the app, and `path` is the path to the app's directory. If `name` is not provided, the name of the app will be the name of the directory. If `path` is not provided, the current directory will be used.
 -> returns information about the registered app
@@ -113,7 +116,9 @@ API endpoint:
 
 #### Example
 
-`http://127.0.0.1:10101/api/v1/apps/register?path=/Users/adrian/Projects/GenieBuilderNextGen&name=testapp`
+```html
+http://127.0.0.1:10101/api/v1/apps/register?path=/Users/adrian/Projects/GenieBuilderNextGen&name=testapp
+```
 
 ```json
 {
