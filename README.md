@@ -3,14 +3,34 @@
 
 ## Installation
 
+### Optional: create a project for GenieBuilder
+
+```bash
+> mkdir "mygeniebuilder"
+> cd "mygeniebuilder"
+> julia
+```
+
 ```julia
-pkg> add https://github.com/GenieFramework/GenieBuilder.jl
+pkg> activate .
+```
+
+or install globally:
+
+```bash
+> julia
+```
+
+### Install GenieBuilder
+
+```julia
+pkg> add https://github.com/GenieFramework/GenieBuilder.jl#v0.16
 ```
 
 or
 
 ```julia
-pkg> dev https://github.com/GenieFramework/GenieBuilder.jl
+pkg> dev https://github.com/GenieFramework/GenieBuilder.jl#v0.16
 ```
 
 ## Usage
