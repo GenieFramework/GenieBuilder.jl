@@ -19,6 +19,7 @@ function __init__()
   Genie.config.server_document_root = abspath(joinpath(@__DIR__, "..", "public"))
   LOG_FOLDER[] = joinpath(GBDIR[], "log")
   Genie.config.path_log = LOG_FOLDER[]
+  install()
 
   get!(ENV, "GENIE_BANNER", "false")
   @async go()
@@ -58,10 +59,8 @@ function go(; port = get!(ENV, "GB_PORT", -1))
   end
 end
 
-function install(installdir::String)
-  cd(normpath(installdir))
-  Genie.Secrets.secret_file_exists() || Genie.Generator.write_secrets_file()
-
+function install() :: Nothing
+  isdir(GBDIR[]) || mkpath(GBDIR[])
   isdir(LOG_FOLDER[]) || mkpath(LOG_FOLDER[])
   isdir(DB_FOLDER[]) || mkpath(DB_FOLDER[])
 
@@ -78,6 +77,8 @@ function install(installdir::String)
       """)
     end
   end
+
+  nothing
 end
 
 function exit()
