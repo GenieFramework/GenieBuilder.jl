@@ -398,7 +398,32 @@ function start(app::Application)
     notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
   end
 
+  @async tailapplog(app)
+
   (:status => OKSTATUS) |> json
+end
+
+"""
+  tailapplog(app)
+
+Tails an app's log and notifies the GenieBuilder UI
+"""
+function tailapplog(app::Application)
+  logpath = joinpath(fullpath(app), "log", "dev-$(Dates.today()).log")
+  (isfile(logpath) && isreadable(logpath)) || return
+
+  open(logpath) do io
+    seekend(io)
+
+    while true
+      line = read(io, String)
+      if ! isempty(line)
+        notify("log:message", app.id, line)
+        @debug line
+      end
+      sleep(0.5)
+    end
+  end
 end
 
 """
