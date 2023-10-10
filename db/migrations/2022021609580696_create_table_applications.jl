@@ -10,9 +10,10 @@ function up()
         :name => :string
         :port => :int
         :path => :string
-        :status    => :string
-        :replport  => :int
-        :channel   => :string
+        :status     => :string
+        :replport   => :int
+        :channel    => :string
+        :pkgmngport => :int
       ])
     ]
   end

@@ -61,6 +61,7 @@ function stop!()
   ApplicationsController.cleanup()
   GenieBuilder.exit()
 end
+exit() = stop!()
 
 function editor(app::Application)
   Genie.Server.openbrowser("http://$(Genie.config.server_host):$(Genie.config.server_port)?appid=$(app.id.value)&filepath=$(app.path)")
@@ -77,7 +78,7 @@ function editor(name::String = "", path::String = pwd())
 end
 
 # REST API
-function routes()
+function register_routes()
   # return a list of all the apps
   route("$api_route/apps") do
     ApplicationsController.apps()
@@ -156,6 +157,16 @@ function routes()
     ApplicationsController.info(params(:appid) |> ApplicationsController.get)
   end
 
+  # starts the app's package manager
+  route("$api_route$app_route/startpkgmng") do
+    ApplicationsController.startpkgmng(params(:appid) |> ApplicationsController.get)
+  end
+
+  # stops the app's package manager
+  route("$api_route$app_route/stoppkgmng") do
+    ApplicationsController.stoppkgmng(params(:appid) |> ApplicationsController.get)
+  end
+
   # serves the no-code editor index page
   route("/") do
     serve_static_file("index.html")
@@ -199,6 +210,8 @@ function routes()
       @error ex
     end
   end
+
+  nothing
 end
 
 function ready()
@@ -206,7 +219,19 @@ function ready()
 end
 
 function main()
-  routes()
+  @async ApplicationsController.tailapplog(GenieBuilder.LOG_FOLDER[]) do line
+    type = ApplicationsController.logtype(line)
+    ApplicationsController.notify(; message = "log:message $line",
+                                    type = type,
+                                    status = type == :error ? ApplicationsContoller.ERROR_STATUS : ApplicationsController.OKSTATUS)
+
+    # println()
+    # println("GenieBuilder: ")
+    # println(line)
+    # println()
+  end
+
+  register_routes()
   ready()
 end
 

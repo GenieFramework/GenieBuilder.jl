@@ -14,6 +14,7 @@ using Genie.WebChannels
 using Dates
 using Scratch
 import StippleUI
+import GeniePackageManager
 
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
@@ -67,8 +68,18 @@ Notifies the GenieBuilder UI of an event via websockets push
 function notify(message::String,
                 appid::Union{SearchLight.DbId,Nothing} = nothing,
                 status::String = OKSTATUS,
-                type::String = "info",
+                type::Union{String,Symbol} = "info",
                 eventid::String = params(:eventid, "0")) :: Bool
+  type = string(type)
+
+  println(Dict(
+    :message    => message,
+    :appid      => isnothing(appid) ? 0 : appid.value,
+    :status     => status,
+    :type       => type,
+    :eventid    => eventid
+  ))
+
   try
     Genie.WebChannels.unsubscribe_disconnected_clients()
   catch ex
@@ -99,6 +110,14 @@ function notify(message::String,
 
   true
 end
+function notify(; message::String,
+                  appid::Union{SearchLight.DbId,Nothing} = nothing,
+                  status::String = OKSTATUS,
+                  type::Union{String,Symbol} = "info",
+                  eventid::String = params(:eventid, "0")) :: Bool
+  notify(message, appid, status, type, eventid)
+end
+
 
 """
   valid_appname(name::String)
@@ -143,8 +162,8 @@ function register(name::AbstractString = "", path::AbstractString = pwd())
 
   endswith(path, "/") || (path = "$path/")
   isempty(name) && (name = name_from_path(path))
-  port, replport = available_port()
-  app = Application(; name, path, port, replport)
+  port, replport, pkgmngport = available_port()
+  app = Application(; name, path, port, replport, pkgmngport)
   app.status = CREATING_STATUS
 
   try
@@ -280,7 +299,7 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
     if isa(ex, HTTP.Exceptions.ConnectError)
       OFFLINE_STATUS
     else
-      donotify && notify("failed:status_request", app.id)
+      donotify && notify("failed:status_request", app.id, FAILSTATUS, ERROR_STATUS)
       ERROR_STATUS
     end
   end
@@ -403,26 +422,65 @@ function start(app::Application)
   (:status => OKSTATUS) |> json
 end
 
+function tailapplog(handler::Function, logdirpath::String; frequency::Float64 = 0.5)
+  logpath = joinpath(logdirpath, "dev-$(Dates.today()).log")
+  if ! isfile(logpath)
+    @warn "No log file found at $logpath"
+    return
+  end
+
+  open(logpath) do io
+    if ! isreadable(io)
+      @warn "Log file at $logpath is not readable"
+      return
+    end
+
+    seekend(io)
+
+    while true
+      line = read(io, String)
+      if ! isempty(line)
+        handler(line)
+      end
+      sleep(frequency)
+    end
+
+    @info "Finished watching log file at $logpath"
+    close(io)
+  end
+end
+
+function logtype(line::String) :: Symbol
+  if startswith(line, "┌ ") # start of log line
+    if startswith(line, "┌ Debug: ")
+      return :debug
+    elseif startswith(line, "┌ Warn: ")
+      return :warn
+    elseif startswith(line, "┌ Error: ")
+      return :error
+    end
+  end
+
+  return :info
+end
+
 """
   tailapplog(app)
 
 Tails an app's log and notifies the GenieBuilder UI
 """
 function tailapplog(app::Application)
-  logpath = joinpath(fullpath(app), "log", "dev-$(Dates.today()).log")
-  (isfile(logpath) && isreadable(logpath)) || return
-
-  open(logpath) do io
-    seekend(io)
-
-    while true
-      line = read(io, String)
-      if ! isempty(line)
-        notify("log:message", app.id, line)
-        @debug line
-      end
-      sleep(0.5)
-    end
+  tailapplog(joinpath(fullpath(app), "log")) do line
+    type = logtype(line)
+    notify(;  message = "log:message $line",
+              appid = app.id,
+              type = type,
+              status = type == :error ? ERROR_STATUS : OKSTATUS,
+          )
+    # println()
+    # println("$(app.name): ")
+    # println(line)
+    # println()
   end
 end
 
@@ -620,21 +678,21 @@ Returns two available HTTP ports, one for the app, the other for the remote REPL
 """
 function available_port()
   apps = SearchLight.find(Application)
-  isempty(apps) && return (first(PORTS_RANGE), first(PORTS_RANGE)+1)
+  isempty(apps) && return (first(PORTS_RANGE), first(PORTS_RANGE)+1, first(PORTS_RANGE)+2)
   usedports = [app.port for app in apps] |> sort!
 
   available_port = 0
   p = first(PORTS_RANGE)
   while p < last(PORTS_RANGE)
-    if p ∉ usedports && p+1 ∉ usedports
+    if p ∉ usedports && p+1 ∉ usedports && p+2 ∉ usedports
       available_port = p
       break
     end
-    p += 2
+    p += 3
   end
 
   available_port == UNDEFINED_PORT && throw(UnavailablePortException("$(PORTS_RANGE) ports are all in use"))
-  return (available_port, available_port + 1)
+  return (available_port, available_port + 1, available_port + 2)
 end
 
 """
@@ -669,6 +727,63 @@ function startrepl(app::Application)
 
     status |> json
   end
+end
+
+"""
+  startpkgmng(app)
+
+Starts the package manager web app for an app
+"""
+function startpkgmng(app::Application)
+  try
+    notify("started:pkgmng", app.id)
+    cmd = Cmd(`julia --startup-file=no -e '
+                using Pkg;
+                Pkg._auto_gc_enabled[] = false;
+                Pkg.activate(".");
+                using GenieFramework;
+                using GenieFramework.GeniePackageManager;
+                using Genie;
+                GeniePackageManager.register_routes();
+                up(; port = parse(Int, ENV["PORT"]), async = false, open_browser = true);
+    '`; dir = app.path)
+    cmd = addenv(cmd, "PORT" => app.pkgmngport,
+                      "HOST" => apphost,
+                      "GENIE_ENV" => "dev",
+                      "GENIE_BANNER" => "false")
+    @async cmd |> run
+  catch ex
+    @error ex
+    notify("failed:pkgmng", app.id, FAILSTATUS, ERROR_STATUS)
+    rethrow(ex)
+  end
+
+  notify("ended:startrepl", app.id)
+
+  Dict(
+    :status => OKSTATUS,
+    :path => "$(apphost):$(app.pkgmngport)$(GeniePackageManager.defaultroute)"
+  ) |> json
+end
+
+"""
+  stoppkgmng(app)
+
+Stops the package manager web app for an app
+"""
+function stoppkgmng(app::Application)
+  res = try
+    notify("started:stoppkgmng", app.id)
+
+    HTTP.request("GET", "$(apphost):$(app.pkgmngport)$(GeniePackageManager.defaultroute)/exit")
+  catch ex
+    @error ex
+    notify("failed:stoppkgmng", app.id, FAILSTATUS, ERROR_STATUS)
+  end
+
+  notify("ended:stoppkgmng", app.id)
+
+  (:status => OKSTATUS) |> json
 end
 
 """

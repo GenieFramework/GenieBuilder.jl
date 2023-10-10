@@ -20,6 +20,7 @@ const UNASSIGNED_PORT = 0
   status::String  = "offline"
   channel::String = Stipple.channelfactory()
   replport::Int   = UNASSIGNED_PORT
+  pkgmngport::Int = UNASSIGNED_PORT
 end
 Application(id::Int) = findone(Application; id = id)
 

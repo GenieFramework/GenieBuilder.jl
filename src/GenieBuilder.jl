@@ -22,7 +22,6 @@ function __init__()
   install()
 
   get!(ENV, "GENIE_BANNER", "false")
-  @async go()
 end
 
 function main()
@@ -35,6 +34,13 @@ function main()
 end
 
 function go(; port = get!(ENV, "GB_PORT", -1))
+  @info "Starting GenieBuilder"
+  @async _go(port)
+end
+
+function _go(port)
+  isa(port, Int) || (port = parse(Int, port))
+
   if haskey(ENV, "RUN_STATUS")
     RUN_STATUS[] = ENV["RUN_STATUS"] |> Symbol
   else
@@ -44,6 +50,9 @@ function go(; port = get!(ENV, "GB_PORT", -1))
 
   current_path = normpath(pwd())
   cd(normpath(@__DIR__, ".."))
+
+  Genie.config.log_to_file = true
+  Genie.config.path_log = LOG_FOLDER[]
 
   Genie.go()
   cd(current_path)
