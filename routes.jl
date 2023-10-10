@@ -61,7 +61,6 @@ function stop!()
   ApplicationsController.cleanup()
   GenieBuilder.exit()
 end
-exit() = stop!()
 
 function editor(app::Application)
   Genie.Server.openbrowser("http://$(Genie.config.server_host):$(Genie.config.server_port)?appid=$(app.id.value)&filepath=$(app.path)")
