@@ -72,13 +72,13 @@ function notify(message::String,
                 eventid::String = params(:eventid, "0")) :: Bool
   type = string(type)
 
-  println(Dict(
-    :message    => message,
-    :appid      => isnothing(appid) ? 0 : appid.value,
-    :status     => status,
-    :type       => type,
-    :eventid    => eventid
-  ))
+  # println(Dict(
+  #   :message    => message,
+  #   :appid      => isnothing(appid) ? 0 : appid.value,
+  #   :status     => status,
+  #   :type       => type,
+  #   :eventid    => eventid
+  # ))
 
   try
     Genie.WebChannels.unsubscribe_disconnected_clients()

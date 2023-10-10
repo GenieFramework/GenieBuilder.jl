@@ -35,7 +35,7 @@ end
 
 function go(; port = get!(ENV, "GB_PORT", -1))
   @info "Starting GenieBuilder"
-  @async _go(port)
+  _go(port)
 end
 
 function _go(port)
