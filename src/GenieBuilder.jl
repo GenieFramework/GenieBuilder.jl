@@ -68,24 +68,33 @@ function _go(port)
   end
 end
 
-function install() :: Nothing
+function install(installpath::String = pwd()) :: Nothing
+  current_dir = normpath(pwd())
+  cd(installpath)
+
   isdir(GBDIR[]) || mkpath(GBDIR[])
   isdir(LOG_FOLDER[]) || mkpath(LOG_FOLDER[])
   isdir(DB_FOLDER[]) || mkpath(DB_FOLDER[])
 
   if ! isfile(joinpath(DB_FOLDER[], DB_CONFIG_FILE[]))
-    open(joinpath(DB_FOLDER[], DB_CONFIG_FILE[]), "w") do io
-      write(io, """
-        env: ENV["GENIE_ENV"]
+    try
+      open(joinpath(DB_FOLDER[], DB_CONFIG_FILE[]), "w") do io
+        write(io, """
+          env: ENV["GENIE_ENV"]
 
-        dev:
-          adapter:  SQLite
+          dev:
+            adapter:  SQLite
 
-        prod:
-          adapter:  SQLite
-      """)
+          prod:
+            adapter:  SQLite
+        """)
+      end
+    catch ex
+      @error ex
     end
   end
+
+  cd(current_dir)
 
   nothing
 end
