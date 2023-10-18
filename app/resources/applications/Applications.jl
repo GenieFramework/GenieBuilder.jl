@@ -21,6 +21,7 @@ const UNASSIGNED_PORT = 0
   channel::String = Stipple.channelfactory()
   replport::Int   = UNASSIGNED_PORT
   pkgmngport::Int = UNASSIGNED_PORT
+  error::String   = ""
 end
 Application(id::Int) = findone(Application; id = id)
 
@@ -29,7 +30,9 @@ function SearchLight.Validation.validator(::Type{Application})
     ValidationRule(:name, ApplicationsValidator.not_empty)
     ValidationRule(:name, ApplicationsValidator.is_unique)
     ValidationRule(:port, ApplicationsValidator.is_int)
+    ValidationRule(:port, ApplicationsValidator.is_unique)
     ValidationRule(:path, ApplicationsValidator.not_empty)
+    ValidationRule(:path, ApplicationsValidator.is_unique)
   ])
 end
 

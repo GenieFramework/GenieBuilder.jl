@@ -15,6 +15,7 @@ using Dates
 using Scratch
 import StippleUI
 import GeniePackageManager
+import GenieDevTools
 
 const appsthreads = Dict()
 const apphost = "http://127.0.0.1"
@@ -31,6 +32,7 @@ const OFFLINE_STATUS  = "offline"
 const DELETING_STATUS = "deleting"
 const DELETED_STATUS  = "deleted"
 const ERROR_STATUS    = "error"
+const RESTARTING_STATUS = "restarting"
 
 const UNDEFINED_PORT = 0
 MODIFIED_APP_NAME_PATTERN = r"^([0-9a-zA-Z]+)\d{8}T\d{4}$"
@@ -58,7 +60,14 @@ Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " \npleas
 fullpath(app::Application) = abspath(app.path)
 get(appid) = ApplicationsController.get(parse(Int, appid))
 get(appid::SearchLight.DbId) = ApplicationsController.get(appid.value)
-get(appid::Int) = SearchLight.findone(Application, id = appid)
+get(appid::Int) = begin
+  appid = SearchLight.findone(Application, id = appid)
+  isnothing(appid) && throw(Genie.Exceptions.ExceptionalResponse(404,
+                                                                ["Content-Type" => "application/json"],
+                                                                Dict(:status => FAILSTATUS,
+                                                                      :error => "App not found") |> JSON3.write))
+  appid
+end
 
 """
   notify(...)
@@ -87,7 +96,8 @@ function notify(message::String,
   end
 
   try
-    appid !== nothing && type == ERROR_STATUS && persist_status(SearchLight.findone(Application, id = appid.value), ERROR_STATUS)
+    appid !== nothing && type == ERROR_STATUS &&
+      persist_status(SearchLight.findone(Application, id = appid.value), ERROR_STATUS)
   catch ex
     @error ex
   end
@@ -176,7 +186,7 @@ function register(name::AbstractString = "", path::AbstractString = pwd())
     @error(ex)
     notify("failed:register_app", nothing, FAILSTATUS, ERROR_STATUS)
 
-    return (:error => ex)
+    return (:status => FAILSTATUS, :error => ex) |> json
   end
 end
 
@@ -370,6 +380,9 @@ end
 Starts an app
 """
 function start(app::Application)
+  app.status in [STARTING_STATUS, ONLINE_STATUS] && return (:status => OKSTATUS) |> json
+  app.status == ERROR_STATUS && return (:status => ERROR_STATUS, :error => "App is in error state") |> json
+
   try
     notify("started:start", app.id)
     persist_status(app, STARTING_STATUS)
@@ -400,6 +413,13 @@ function start(app::Application)
       catch ex
         @error ex
         notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
+
+        if isempty(app.error)
+          app.error = ex
+          persist_status(app, ERROR_STATUS)
+        end
+
+        return (:status => FAILSTATUS) |> json
       end
     end
 
@@ -415,53 +435,17 @@ function start(app::Application)
   catch ex
     @error ex
     notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
+
+    return (:status => FAILSTATUS) |> json
   end
 
   @async tailapplog(app)
+  # tailapplog(app)
+
+  app.status = ""
+  save!(app)
 
   (:status => OKSTATUS) |> json
-end
-
-function tailapplog(handler::Function, logdirpath::String; frequency::Float64 = 0.5)
-  logpath = joinpath(logdirpath, "dev-$(Dates.today()).log")
-  if ! isfile(logpath)
-    @warn "No log file found at $logpath"
-    return
-  end
-
-  open(logpath) do io
-    if ! isreadable(io)
-      @warn "Log file at $logpath is not readable"
-      return
-    end
-
-    seekend(io)
-
-    while true
-      line = read(io, String)
-      if ! isempty(line)
-        handler(line)
-      end
-      sleep(frequency)
-    end
-
-    @info "Finished watching log file at $logpath"
-    close(io)
-  end
-end
-
-function logtype(line::String) :: Symbol
-  if startswith(line, "┌ ") # start of log line
-    if startswith(line, "┌ Debug: ")
-      return :debug
-    elseif startswith(line, "┌ Warn: ")
-      return :warn
-    elseif startswith(line, "┌ Error: ")
-      return :error
-    end
-  end
-
-  return :info
 end
 
 """
@@ -470,18 +454,33 @@ end
 Tails an app's log and notifies the GenieBuilder UI
 """
 function tailapplog(app::Application)
-  tailapplog(joinpath(fullpath(app), "log")) do line
+  GenieDevTools.tailapplog(joinpath(fullpath(app), "log")) do line
     type = logtype(line)
     notify(;  message = "log:message $line",
               appid = app.id,
               type = type,
               status = type == :error ? ERROR_STATUS : OKSTATUS,
           )
-    # println()
-    # println("$(app.name): ")
-    # println(line)
-    # println()
+    if type == :error
+      app.error = line
+      persist_status(app, ERROR_STATUS)
+    end
+
+    parselog(; line, type, appid = app.id)
   end
+end
+
+function parselog(; line::AbstractString, type::Symbol, appid) :: Nothing
+  output = GenieDevTools.parselog(line)
+  if ! isnothing(output)
+    notify(;  message = output,
+              appid = appid,
+              type = type,
+              status = ERROR_STATUS
+          )
+  end
+
+  return
 end
 
 """

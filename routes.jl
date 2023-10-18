@@ -4,6 +4,7 @@ using GenieBuilder.ApplicationsController
 using GenieBuilder.ApplicationsController.Applications
 using RemoteREPL
 using JSON3
+import GenieDevTools
 
 Genie.config.websockets_server = true
 
@@ -37,7 +38,7 @@ status(app::Union{Application,Nothing}) = ApplicationsController.status(app)
 # starts the app
 function start(app::Application)
   @async begin
-    sleep(10)
+    sleep(15)
     openbrowser(app)
   end
   ApplicationsController.start(app)
@@ -60,6 +61,12 @@ end
 function stop!()
   ApplicationsController.cleanup()
   GenieBuilder.exit()
+end
+
+# starts the app
+function restart(app::Application)
+  ApplicationsController.stop(app)
+  ApplicationsController.start(app)
 end
 
 function editor(app::Application)
@@ -106,6 +113,10 @@ function register_routes()
   # stops the app
   route("$api_route$app_route/stop") do
     stop(params(:appid) |> ApplicationsController.get)
+  end
+
+  route("$api_route$app_route/restart") do
+    restart(params(:appid) |> ApplicationsController.get)
   end
 
   # unregisters an app from GenieBuilder
@@ -213,23 +224,35 @@ function register_routes()
   nothing
 end
 
+function autocheck_apps_status()
+  for app in GenieBuilder.apps()
+    ApplicationsController.status_request(app, false; statuscheck = true)
+    sleep(1)
+  end
+  sleep(30)
+end
+
 function ready()
   ApplicationsController.ready()
 end
 
 function main()
-  @async ApplicationsController.tailapplog(GenieBuilder.LOG_FOLDER[]) do line
-    type = ApplicationsController.logtype(line)
+  @async GenieDevTools.tailapplog(GenieBuilder.LOG_FOLDER[]; env = lowercase(ENV["GENIE_ENV"])) do line
+    type = GenieDevTools.logtype(line)
     ApplicationsController.notify(; message = "log:message $line",
                                     type = type,
                                     status = type == :error ? ApplicationsContoller.ERROR_STATUS : ApplicationsController.OKSTATUS)
-
     # println()
     # println("GenieBuilder: ")
     # println(line)
     # println()
   end
 
+  @async begin
+    while true
+      autocheck_apps_status()
+    end
+  end
   register_routes()
   ready()
 end

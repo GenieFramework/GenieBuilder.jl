@@ -14,6 +14,7 @@ function up()
         :replport   => :int
         :channel    => :string
         :pkgmngport => :int
+        :error      => :string
       ])
     ]
   end
