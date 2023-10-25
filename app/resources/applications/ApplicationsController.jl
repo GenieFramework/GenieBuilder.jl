@@ -431,7 +431,7 @@ function start(app::Application)
       notify("ended:start", app.id)
       persist_status(app, ONLINE_STATUS)
       watch(fullpath(app), app.id)
-    end
+    end |> errormonitor
   catch ex
     @error ex
     notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
@@ -439,7 +439,7 @@ function start(app::Application)
     return (:status => FAILSTATUS) |> json
   end
 
-  @async tailapplog(app)
+  @async tailapplog(app) |> errormonitor
   # tailapplog(app)
 
   app.status = ""
@@ -455,7 +455,7 @@ Tails an app's log and notifies the GenieBuilder UI
 """
 function tailapplog(app::Application)
   GenieDevTools.tailapplog(joinpath(fullpath(app), "log")) do line
-    type = logtype(line)
+    type = GenieDevTools.logtype(line)
     notify(;  message = "log:message $line",
               appid = app.id,
               type = type,
@@ -495,7 +495,7 @@ function stop(app::Application)
     persist_status(app, STOPPING_STATUS)
     notify("started:stop", app.id)
 
-    @async HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit")
+    @async HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit") |> errormonitor
 
     sleep(2)
 
@@ -750,7 +750,7 @@ function startpkgmng(app::Application)
                       "HOST" => apphost,
                       "GENIE_ENV" => "dev",
                       "GENIE_BANNER" => "false")
-    @async cmd |> run
+    @async cmd |> run |> errormonitor
   catch ex
     @error ex
     notify("failed:pkgmng", app.id, FAILSTATUS, ERROR_STATUS)

@@ -53,7 +53,7 @@ stop(app::Application) = ApplicationsController.stop(app)
 
 function startrepl()
   port = ApplicationsController.available_port() |> first
-  @async serve_repl(port)
+  @async serve_repl(port) |> errormonitor
 
   port
 end
@@ -212,15 +212,6 @@ function register_routes()
     ApplicationsController.status()
   end
 
-  # GC integration routes
-  route("$api_route$app_route/deploy") do
-    try
-      @async Integrations.GenieCloud.deployapp(params(:appid) |> ApplicationsController.get)
-    catch ex
-      @error ex
-    end
-  end
-
   nothing
 end
 
@@ -246,13 +237,14 @@ function main()
     # println("GenieBuilder: ")
     # println(line)
     # println()
-  end
+  end |> errormonitor
 
   @async begin
     while true
       autocheck_apps_status()
     end
-  end
+  end |> errormonitor
+
   register_routes()
   ready()
 end
