@@ -404,7 +404,8 @@ function start(app::Application)
                           "WSPORT" => app.port,
                           "WSEXPPORT" => app.port,
                           "GENIE_ENV" => "dev",
-                          "GENIE_BANNER" => "false")
+                          "GENIE_BANNER" => "false",
+                          "GENIE_PUSH_ERRORS" => "false",)
 
         # in the cloud the :<port> becomes /<path>
         # haskey(ENV, "GB_SOURCE") && ENV["GB_SOURCE"] == "cloud" && (cmd = addenv(cmd, "BASEPATH" => "/$(app.port)"))
@@ -440,7 +441,6 @@ function start(app::Application)
   end
 
   @async tailapplog(app) |> errormonitor
-  # tailapplog(app)
 
   app.status = ""
   save!(app)
