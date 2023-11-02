@@ -456,7 +456,9 @@ Tails an app's log and notifies the GenieBuilder UI
 function tailapplog(app::Application)
   GenieDevTools.tailapplog(joinpath(fullpath(app), "log")) do line
     type = GenieDevTools.logtype(line)
-    notify(;  message = "log:message $line",
+    line = "log:message $line"
+    line = Genie.WebChannels.tagbase64encode(line)
+    notify(;  message = line,
               appid = app.id,
               type = type,
               status = type == :error ? ERROR_STATUS : OKSTATUS,
