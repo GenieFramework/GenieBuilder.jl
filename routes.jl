@@ -230,7 +230,9 @@ end
 function main()
   @async GenieDevTools.tailapplog(GenieBuilder.LOG_FOLDER[]; env = lowercase(ENV["GENIE_ENV"])) do line
     type = GenieDevTools.logtype(line)
-    ApplicationsController.notify(; message = "log:message $line",
+    line = "log:message $line"
+    line = Genie.WebChannels.tagbase64encode(line)
+    ApplicationsController.notify(; message = line,
                                     type = type,
                                     status = type == :error ? ApplicationsContoller.ERROR_STATUS : ApplicationsController.OKSTATUS)
     # println()
