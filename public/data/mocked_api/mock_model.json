@@ -1,0 +1,26 @@
+{
+    "plotlyData": [
+        {
+            "name": "Trace 1", 
+            "type": "scatter", 
+            "x": [ 1, 2, 3, 4, 5 ], 
+            "y": [ 1, 2, 3, 4, 5 ]
+        }, 
+        {
+            "name": "Trace 2", 
+            "type": "scatter", 
+            "x": [ 1, 2, 3, 4, 5 ], 
+            "y": [ 5, 4, 3, 2, 1 ]
+        }
+    ], 
+    "dataTable1": {
+        "columns": ["name", "age", "height", "city"], 
+        "data": {
+            "name": ["John", "Mary", "Sue", "Harry"], 
+            "age": [23, 45, 32, 19], 
+            "height": [1.73, 1.65, 1.82, 1.77], 
+            "children": [2, 3, 0, 1],
+            "city": ["London", "Paris", "Rome", "Berlin"]
+        }
+    }
+}

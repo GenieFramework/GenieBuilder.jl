@@ -1,179 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-
-    <!-- 3rd party libs' styles -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/quasar@1.19.5/dist/quasar.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./css/libs/grapes.min.css" />
-    <link rel="stylesheet" href="./css/libs/grapesjs-preset-webpage.min.css" />
-    <link rel="stylesheet" href="./css/libs/grapesjs-rte-extensions.min.css" />
-    <link
-      rel="stylesheet"
-      href="./css/libs/grapesjs-component-code-editor.min.css"
-    />
-    <link rel="stylesheet" href="./css/libs/grapesjs-rulers.min.css" />
-    <link rel="stylesheet" href="./css/libs/grapick.min.css" />
-
-    <!-- App-specific styles, 3rd-party lib override styles -->
-    <link rel="stylesheet" href="./css/shell-styles.css" />
-    <link rel="stylesheet" href="./css/grapes-custom.css" />
-    <link rel="stylesheet" href="./css/traits-editor.css" />
-  </head>
-
-  <body>
-    <div id="gjs"></div>
-
-    <!-- Julia Model panel within no-code editor -->
-    <div
-      id="app_panel"
-      class="gjs-pn-panel gjs-one-bg gjs-two-color panel__right"
-    >
-      <!-- <div id="genie_model" class="gjs-one-bg">
-        <div class="gn_title">Data Binding</div>
-        <div class="gn_model_container">
-          <div
-            v-for="(value, propertyName) in $data"
-            style="margin-bottom: 10px"
-            v-if="value.toString().indexOf('object Object')==-1"
-          >
-            <div class="gn_field_label">{{propertyName}}</div>
-            <input type="text" class="gn_input" v-model="$data[propertyName]" />
-          </div>
-          <br />
-        </div>
-      </div> -->
-    </div>
-
-    <!-- Shell app top-bar -->
-    <div id="topBar">
-      <div class="wr_menu_logo">
-        <div class="menu_dots">
-          <img src="./images/icons/menu_dots.svg" alt="" alt="" />
-        </div>
-        <div>
-          <img class="logo" src="./images/icons/genieCloud_logo.svg" alt="" />
-        </div>
-      </div>
-      <div class="wr_settings_btn">
-        <button>
-          <img class="logo" src="./images/icons/icon_setting.svg" alt="" />Build
-        </button>
-      </div>
-      <div class="wr_upload">
-        <div class="wr_input">
-          <img class="logo" src="./images/icons/payment.svg" alt="" />
-          <input type="text" value="brazilian_endangered_invertebrates" />
-        </div>
-        <button>
-          <img class="logo" src="./images/icons/upload.svg" alt="" />Deploy
-        </button>
-      </div>
-      <div class="user_img">
-        <img src="./images/user_img.png" alt="" />
-      </div>
-    </div>
-
-    <div id="unsavedChangesAlert">*</div>
-    <!-- 3rd party libs -->
-    <!-- <script src="./libs/vs/loader.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/underscore-min.js"></script>
-    <script src="https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/vue.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quasar@1.19.5/dist/quasar.umd.min.js"></script>
-    <script src="https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/stipplecore.js"></script>
-    <script src="./libs/jquery.min.js"></script>
-    <!-- <script src="//unpkg.com/grapesjs"></script> -->
-    <script src="./libs/grapes.min.js"></script>
-    <script src="./plugins/grapesjs-preset-webpage.min.js"></script>
-
-    <!-- <script src="./plugins/bootstrap.bundle.js"></script>
-    <script src="./plugins/bootstrap.bundle.min.js"></script>
-    <script src="./plugins/bootstrap.js"></script>
-    <script src="./plugins/bootstrap.min.js"></script>
-    <script src="./plugins/change-styles-html.js"></script>
-    <script src="./plugins/grapes.min.js"></script>
-    -->
-    <!-- <script src="./plugins/grapesjs-blocks-avance.min.js"></script> -->
-    <!-- <script src="./plugins/grapesjs-blocks-basic.min.js"></script> -->
-    <!--
-    <script src="./plugins/grapesjs-blocks-bootstrap4.min.js"></script>
-    <script src="./plugins/grapesjs-blocks-flexbox.min.js"></script>
-    <script src="./plugins/grapesjs-code-editor.min.js"></script> -->
-    <script src="./plugins/grapesjs-component-code-editor.min.js"></script>
-    <!--<script src="./plugins/grapesjs-custom-code.min.js"></script> -->
-    <!-- <script src="./plugins/grapesjs-echarts.min.js"></script> -->
-    <script src="./plugins/grapesjs-ga.min.js"></script>
-    <!-- <script src="./plugins/grapesjs-navbar.min.js"></script> -->
-    <!-- <script src="./plugins/grapesjs-page-break.min.js"></script> -->
-
-    <script src="./plugins/grapesjs-parser-postcss.min.js"></script>
-    <!--
-    <script src="./plugins/grapesjs-plugin-actions.min.js"></script>
-    <script src="./plugins/grapesjs-plugin-carousel.min.js"></script>
-    <script src="./plugins/grapesjs-plugin-export.min.js"></script> -->
-
-    <!-- <script src="./plugins/grapesjs-plugin-forms.min.js"></script> -->
-    <!-- <script src="./plugins/grapesjs-plugin-header.min.js"></script> -->
-    <script src="./plugins/grapesjs-rte-extensions.min.js"></script>
-    <script src="./plugins/grapesjs-rulers.min.js"></script>
-    <script src="./plugins/grapesjs-style-filter.min.js"></script>
-    <script src="./plugins/grapesjs-style-bg.min.js"></script>
-    <!-- <script src="./plugins/grapesjs-tooltip.min.js"></script> -->
-
-    <!--
-    <script src="./plugins/grapesjs-script-editor.min.js"></script>
-    <script src="./plugins/grapesjs-shape-divider.min.js"></script> 
-    -->
-    <script src="./plugins/grapesjs-table.min.js"></script>
-
-    <!--<script src="./plugins/grapesjs-touch.min.js"></script>
-    <script src="./plugins/jquery.slim.min.js"></script>
-    <script src="./plugins/nocode.js"></script>
-    <script src="./plugins/popper.min.js"></script> -->
-    <!-- <script src="./libs/vs/loader.js"></script> -->
-
-    <!-- Genie / Stipple common scripts -->
-    <!-- <script src="https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/vue_filters.js" defer></script>
-    <script src="https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/watchers.js"></script>
-    <script src="https://cdn.statically.io/gh/genieframework/stipple.jl/master/assets/js/keepalive.js" defer></script> -->
-
-    <!-- Project-specific scripts (These should be synamic once integrated with Genie Cloud API) -->
-    <!-- <script src="scripts/genie/channelsPkgs.js"></script>    
-    <script src="./scripts/genie/modelPkgs.js"></script> -->
-
-    <!-- GenieCloud-specific script -->
-    <!-- <script src="./scripts/genie/appConfigs.js"></script> -->
-    <script src="./plugins/gcComponents.js"></script>
-    <script src="./plugins/quasar/blockDefinitions.js"></script>
-    <script src="./scripts/config.js"></script>
-    <script src="./scripts/apiConnector.js"></script>
-    <script src="./scripts/fileExplorer.js"></script>
-    <script src="./scripts/nocodeEditorMain.js"></script>
-    <script src="./scripts/codeEditorMain.js"></script>
-    <script src="./scripts/traitsEditor.js"></script>
-    <script src="./scripts/messageHandler.js"></script>
-    <script src="./scripts/main.js"></script>
-
-    <script></script>
-  </body>
-</html>
+<!DOCTYPE html><html lang="" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon.ico"><script src="https://cdn.tailwindcss.com"></script><script src="./libs/beautify-html.min.js"></script><title>GenieBuilder</title><link href="/css/app.20f5f18e.css" rel="preload" as="style"><link href="/css/chunk-vendors.5506bd47.css" rel="preload" as="style"><link href="/js/app.68ea7c99.js" rel="preload" as="script"><link href="/js/chunk-vendors.d600211d.js" rel="preload" as="script"><link href="/css/chunk-vendors.5506bd47.css" rel="stylesheet"><link href="/css/app.20f5f18e.css" rel="stylesheet"></head><body style="padding: 0 0px;" role="document"><div id="Main_App_varMain_App_ReactiveModel"></div><noscript><strong>We're sorry but GenieBuilder doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><style>.gjs-two-color {
+          background-color: unset;
+          color: unset;
+          font-weight: 600;
+      }
+      .gjs-category-title, .gjs-layer-title, .gjs-block-category .gjs-title, .gjs-sm-sector-title {
+        font-weight: 500;
+          letter-spacing: 1px;
+          padding: 2px 10px 2px 0px;
+          cursor: pointer;
+          background-color: #ffffff06;
+          border-bottom: 1px solid rgba(0,0,0,.1);
+      }
+      .gjs-sm-field.gjs-sm-composite, .gjs-sm-composite.gjs-clm-select, .gjs-sm-composite.gjs-clm-field {
+          /* background-color: rgba(0,0,0,.1); */
+          /* border: 1px solid rgba(0,0,0,.25); */
+      }
+      .gjs-four-color {
+          color: #3890d8;
+      }</style><script src="/js/chunk-vendors.d600211d.js"></script><script src="/js/app.68ea7c99.js"></script></body></html>

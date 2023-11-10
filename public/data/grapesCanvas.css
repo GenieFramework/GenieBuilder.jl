@@ -1,0 +1,44 @@
+q-knob > *, q-select > *, q-input > *, q-range > *, q-slider > *, q-btn > *, q-editor > *, q-radio > *, q-checkbox > *, q-toggle > *, q-table > *, q-date > *, q-video > *, q-avatar > *, q-badge > *{
+    /* background-color: #ff0000; */
+    pointer-events: none;
+}
+
+button{
+    min-width: 100px;
+    min-height: 20px;
+}
+
+partial, q-select, q-input, q-range, q-slider, q-table, q-editor, q-date, q-video {
+    display: block;
+}
+q-checkbox, q-radio, q-toggle, q-btn, q-avatar, q-badge {
+    display: inline-block;
+}
+
+q-knob, q-btn, q-toggle, q-checkbox, q-radio{
+    width: max-content;
+}
+
+partial{
+    padding: 20px;
+}
+
+plotly{
+    display: block;
+    padding: 2px;   /* This is needed so that the blue highlight border shows up in GrapesJS */
+}
+
+q-toolbar{
+    padding: 2px 0px;
+    display: block;
+}
+
+q-separator, q-space{
+    padding: 10px 0px;
+    display: block;
+}
+/* 
+.gjs-dashed *[data-gjs-highlightable] {
+    outline: 1px dashed rgba(170,170,170,0.7);
+    outline-offset: -2px;
+} */
