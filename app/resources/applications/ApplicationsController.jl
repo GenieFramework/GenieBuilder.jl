@@ -170,6 +170,7 @@ Registers a file system path as an app with GenieBuilder
 function register(name::AbstractString = "", path::AbstractString = pwd())
   notify("started:register_app")
 
+  path = abspath(normpath(path))
   endswith(path, "/") || (path = "$path/")
   isempty(name) && (name = name_from_path(path))
   port, replport, pkgmngport = available_port()
@@ -211,7 +212,7 @@ end
 
 Creates the Genie app skeleton
 """
-function create(app::Application)
+function create(app::Application; name::AbstractString = "", path::AbstractString = pwd())
   notify("started:create", app.id)
 
   try
@@ -224,9 +225,9 @@ function create(app::Application)
 
   (:status => OKSTATUS) |> json
 end
-function create(app::Nothing)
-  register()
-  create()
+function create(app::Nothing; name::AbstractString = "", path::AbstractString = pwd())
+  register(name, path)
+  create(GenieBuilder.app!(name, path))
 end
 create(name::AbstractString = "", path::AbstractString = pwd()) = create(findone(Application; name = isempty(name) ? name_from_path(path) : name))
 
@@ -235,6 +236,9 @@ create(name::AbstractString = "", path::AbstractString = pwd()) = create(findone
 """
 function boilerplate(app_path::String)
   # set up the Julia environment
+  app_path = abspath(normpath(app_path))
+  isdir(app_path) || mkpath(app_path)
+
   try
     cmd = Cmd(`julia --startup-file=no -e '
                 using Pkg;

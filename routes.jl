@@ -29,8 +29,10 @@ unregister(app::Application) = ApplicationsController.unregister(app)
 unregister(name::String = "", path::String = pwd()) = unregister(app!(name, path))
 
 # creates the Genie app skeleton
-create(app::Union{Application,Nothing}) = ApplicationsController.create(app)
-create(name::String = "", path::String = pwd()) = create(app!(name, path))
+create(app::Union{Application,Nothing}; name::AbstractString = "", path::AbstractString = pwd()) = ApplicationsController.create(app; name, path)
+function create(name::String = "", path::String = pwd())
+  create(app!(name, path); name, path)
+end
 
 # returns the app's status
 status(app::Union{Application,Nothing}) = ApplicationsController.status(app)
