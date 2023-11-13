@@ -236,7 +236,7 @@ function main()
     line = Genie.WebChannels.tagbase64encode(line)
     ApplicationsController.notify(; message = line,
                                     type = type,
-                                    status = type == :error ? ApplicationsContoller.ERROR_STATUS : ApplicationsController.OKSTATUS)
+                                    status = type == :error ? ApplicationsController.ERROR_STATUS : ApplicationsController.OKSTATUS)
     # println()
     # println("GenieBuilder: ")
     # println(line)
