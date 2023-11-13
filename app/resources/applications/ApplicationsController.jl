@@ -168,17 +168,20 @@ end
 Registers a file system path as an app with GenieBuilder
 """
 function register(name::AbstractString = "", path::AbstractString = pwd())
-  notify("started:register_app")
-
-  path = abspath(normpath(path))
-  endswith(path, "/") || (path = "$path/")
-  isempty(name) && (name = name_from_path(path))
-  port, replport, pkgmngport = available_port()
-  app = Application(; name, path, port, replport, pkgmngport)
-  app.status = CREATING_STATUS
-
   try
+    notify("started:register_app")
+
+    path = abspath(normpath(path))
+    isdir(path) || throw(ArgumentError("Path $path is not a directory"))
+
+    endswith(path, "/") || (path = "$path/")
+    isempty(name) && (name = name_from_path(path))
+    port, replport, pkgmngport = available_port()
+
+    app = Application(; name, path, port, replport, pkgmngport)
+    app.status = CREATING_STATUS
     app = save!(app)
+
     persist_status(app, OFFLINE_STATUS)
     notify("ended:register_app", app.id)
 
@@ -415,6 +418,10 @@ function start(app::Application)
         # haskey(ENV, "GB_SOURCE") && ENV["GB_SOURCE"] == "cloud" && (cmd = addenv(cmd, "BASEPATH" => "/$(app.port)"))
 
         cmd |> run
+
+        app.error = ""
+        save!(app)
+        GenieBuilder.openbrowser(app)
       catch ex
         @error ex
         notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
@@ -436,6 +443,7 @@ function start(app::Application)
       notify("ended:start", app.id)
       persist_status(app, ONLINE_STATUS)
       watch(fullpath(app), app.id)
+      @async tailapplog(app) |> errormonitor
     end |> errormonitor
   catch ex
     @error ex
@@ -444,9 +452,7 @@ function start(app::Application)
     return (:status => FAILSTATUS) |> json
   end
 
-  @async tailapplog(app) |> errormonitor
-
-  app.status = ""
+  # app.status = ""
   save!(app)
 
   (:status => OKSTATUS) |> json
@@ -458,6 +464,12 @@ end
 Tails an app's log and notifies the GenieBuilder UI
 """
 function tailapplog(app::Application)
+  if ! isfile joinpath(fullpath(app), "log")
+    # wait for the log file to be created
+    sleep(10)
+    return tailapplog(app)
+  end
+
   GenieDevTools.tailapplog(joinpath(fullpath(app), "log")) do line
     type = GenieDevTools.logtype(line)
     line = "log:message $line"
@@ -507,6 +519,7 @@ function stop(app::Application)
 
     if status_request(app, false; statuscheck = true) == OFFLINE_STATUS
       notify("ended:stop", app.id)
+      app.error = ""
       persist_status(app, OFFLINE_STATUS)
     end
   catch ex

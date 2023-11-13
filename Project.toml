@@ -1,7 +1,7 @@
 name = "GenieBuilder"
 uuid = "c9453c14-af8a-11ec-351d-c7c9a2035d70"
 authors = ["Adrian Salceanu"]
-version = "0.16.4"
+version = "0.16.5"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -23,7 +23,7 @@ StippleUI = "a3c5d34a-b254-4859-a8fa-b86abb7e84a3"
 [compat]
 Genie = "5.21"
 GenieAutoReload = "2"
-GenieDevTools = "2.8"
+GenieDevTools = "2.8.1"
 GeniePackageManager = "1"
 HTTP = "1"
 Inflector = "1"

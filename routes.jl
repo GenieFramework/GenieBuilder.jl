@@ -47,7 +47,7 @@ function start(app::Application)
 end
 
 function openbrowser(app::Application)
-  Genie.Server.openbrowser("http://$(Genie.config.server_host):$(app.port)?appid=$(app.id.value)&filepath=$(app.path)")
+  Genie.Server.openbrowser("http://$(Genie.config.server_host):$(app.port)?appid=$(app.id.value)&filepath=$(app.path)&CHANNEL__=$(app.channel)")
 end
 
 # stops the app
