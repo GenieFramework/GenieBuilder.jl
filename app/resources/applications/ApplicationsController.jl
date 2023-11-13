@@ -229,6 +229,7 @@ function create(app::Application; name::AbstractString = "", path::AbstractStrin
   (:status => OKSTATUS) |> json
 end
 function create(app::Nothing; name::AbstractString = "", path::AbstractString = pwd())
+  isdir(path) || mkpath(path)
   register(name, path)
   create(GenieBuilder.app!(name, path))
 end
