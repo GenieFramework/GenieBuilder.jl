@@ -1,0 +1,60 @@
+<div class="container" style="background-color: #f1f3f7;">
+    <div class="row">
+        <div class="col-12">
+            <div class="container">
+                <header class="st-header q-pa-sm">
+                    <h1>Boston housing data EDA</h1>
+                </header>
+                <div class="row">
+                    <div class="st-col col-4 col-sm st-module">
+
+                    </div>
+                    <div class="st-col col-4 col-sm st-module">
+                        <q-button :outline="false" :round="false" label="BUTTON1"></q-button>
+                    </div>
+                    <div class="st-col col-4 col-sm st-module">
+                        tres
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="st-col col-12 col-sm st-module">
+                        <p>MEDV filter</p>
+                        <q-range v-model="medv_range" min="0" max="100" step="1" label-always="true"></q-range>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="st-col col-4 col-sm st-module">
+                        <h4> Box plot</h4>
+                        <plotly charttype="box-plot"
+                            data='[{"x":"$_{dataFrame1.age}","y":"$_{dataFrame1.height}","type":"scatter","name":"Trace 0 A"},{"x":"$_{dataFrame1.age}","y":"$_{dataFrame1.children}","type":"scatter","name":"Trace 1 A"}]' 
+                            layout='{"title":"My graph 2", "paper_bgcolor":"#ffffff"}' 
+                            config='{"autosizable":true, "displayModeBar": true}'>
+                        </plotly>
+                        <!-- <plotly charttype="box-plot"
+                            data='[{"x":"$_{dataFrame2.hour}","y":"$_{dataFrame2.temperature}","type":"scatter","name":"Temp"},{"x":"$_{dataFrame2.hour}","y":"$_{dataFrame2.humidity}","type":"scatter","name":"Humidty"}]' 
+                            layout='{"title":"My graph 3"}'>
+                        </plotly>
+                        <plotly charttype="box-plot"
+                            :data='plotlyData' 
+                            layout='{"title":"My graph"}'>
+                        </plotly>
+                        <plotly charttype="box-plot"
+                            data='[{"x":"$_{columnA}","y":"$_{columnB}","type":"scatter","name":"Trace 0"},{"x":"$_{columnA}","y":"$_{columnC}","type":"scatter","name":"Trace 1"},{"x":"$_{columnA}","y":"$_{columnD}","type":"bar","name":"Trace 2"}]' 
+                            layout='{"title":"My graph 1"}'>
+                        </plotly> -->
+                            
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="st-col col-12 col-sm st-module">
+                        <h4> Boston housing data</h4>
+                        <q-table :data="housing_data.data" :columns="housing_data.columns"
+                            :pagination.sync="housing_data_pagination">
+                        </q-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
