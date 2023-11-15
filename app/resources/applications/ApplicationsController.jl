@@ -234,15 +234,19 @@ function create(app::Application; name::AbstractString = "", path::AbstractStrin
 
   (:status => OKSTATUS) |> json
 end
-function create(app::Nothing; name::AbstractString = "", path::AbstractString = pwd(), autostart::Bool = true, autoregister::Bool = true)
-  isdir(path) || mkpath(path)
+function create(app::Nothing; name::AbstractString = "", path::AbstractString = pwd())
+  try
+    isdir(path) || mkpath(path)
+    register(name, path; autostart = false)
 
-  create_output = create(GenieBuilder.app!(name, path))
+    app = GenieBuilder.app!(name, path)
+    create(app)
+    start(app)
 
-  register_output = ""
-  autoregister && (register_output = register(name, path; autostart))
-
-  isempty(register_output) ? create_output : register_output
+    return (:status => OKSTATUS) |> json
+  catch ex
+    return (:status => FAILSTATUS, :error => ex) |> json
+  end
 end
 create(name::AbstractString = "", path::AbstractString = pwd()) = create(findone(Application; name = isempty(name) ? name_from_path(path) : name))
 
@@ -417,7 +421,10 @@ function start(app::Application)
                                                 using GenieFramework.Genie;
                                                 Core.eval(Main, :(const UserApp = $(@__MODULE__)));
                                                 Genie.genie(context = @__MODULE__);
-                                                up(; async = false, open_browser = true);
+                                                up(; async = true, open_browser = true);
+                                                while true
+                                                  sleep(1)
+                                                end
                   '`; dir = fullpath(app), detach = false)
         cmd = addenv(cmd, "PORT" => app.port,
                           "WSPORT" => app.port,
@@ -433,9 +440,6 @@ function start(app::Application)
 
         app.error = ""
         save!(app)
-
-        sleep(3)
-        GenieBuilder.openbrowser(app)
       catch ex
         @error ex
         notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)

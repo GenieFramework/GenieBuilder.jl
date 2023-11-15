@@ -39,10 +39,10 @@ status(app::Union{Application,Nothing}) = ApplicationsController.status(app)
 
 # starts the app
 function start(app::Application)
-  @async begin
-    sleep(15)
-    openbrowser(app)
-  end
+  # @async begin
+  #   sleep(15)
+  #   openbrowser(app)
+  # end
   ApplicationsController.start(app)
 end
 
