@@ -169,7 +169,7 @@ end
 
 Registers a file system path as an app with GenieBuilder
 """
-function register(name::AbstractString = "", path::AbstractString = pwd())
+function register(name::AbstractString = "", path::AbstractString = pwd(); autostart::Bool = true)
   try
     notify("started:register_app")
 
@@ -186,6 +186,8 @@ function register(name::AbstractString = "", path::AbstractString = pwd())
 
     persist_status(app, OFFLINE_STATUS)
     notify("ended:register_app", app.id)
+
+    autostart && start(app)
 
     return app |> json
   catch ex
@@ -226,14 +228,21 @@ function create(app::Application; name::AbstractString = "", path::AbstractStrin
   catch ex
     @error ex
     notify("failed:create", app.id, FAILSTATUS, ERROR_STATUS)
+
+    return (:status => FAILSTATUS, :error => ex) |> json
   end
 
   (:status => OKSTATUS) |> json
 end
-function create(app::Nothing; name::AbstractString = "", path::AbstractString = pwd())
+function create(app::Nothing; name::AbstractString = "", path::AbstractString = pwd(), autostart::Bool = true, autoregister::Bool = true)
   isdir(path) || mkpath(path)
-  register(name, path)
-  create(GenieBuilder.app!(name, path))
+
+  create_output = create(GenieBuilder.app!(name, path))
+
+  register_output = ""
+  autoregister && (register_output = register(name, path; autostart))
+
+  isempty(register_output) ? create_output : register_output
 end
 create(name::AbstractString = "", path::AbstractString = pwd()) = create(findone(Application; name = isempty(name) ? name_from_path(path) : name))
 
@@ -425,7 +434,7 @@ function start(app::Application)
         app.error = ""
         save!(app)
 
-        sleep(2)
+        sleep(3)
         GenieBuilder.openbrowser(app)
       catch ex
         @error ex
