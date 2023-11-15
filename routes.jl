@@ -179,6 +179,11 @@ function register_routes()
     ApplicationsController.stoppkgmng(params(:appid) |> ApplicationsController.get)
   end
 
+  # zip the app and download it
+  route("$api_route$app_route/download") do
+    ApplicationsController.download(params(:appid) |> ApplicationsController.get)
+  end
+
   # serves the no-code editor index page
   route("/") do
     serve_static_file("index.html")
