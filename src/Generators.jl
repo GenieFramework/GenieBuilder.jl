@@ -131,7 +131,7 @@ function app()
     @genietools
 
     # add your data analysis code
-    function mean(x)
+    function mean_value(x)
         sum(x) / length(x)
     end
 
@@ -148,7 +148,7 @@ function app()
         @onchange N begin
             # the values of result and msg in the UI will
             # be automatically updated
-            result = mean(rand(N))
+            result = mean_value(rand(N))
             msg = "The average is \$result."
         end
     end
