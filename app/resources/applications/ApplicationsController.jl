@@ -421,10 +421,7 @@ function start(app::Application)
                                                 using GenieFramework.Genie;
                                                 Core.eval(Main, :(const UserApp = $(@__MODULE__)));
                                                 Genie.genie(context = @__MODULE__);
-                                                up(; async = true, open_browser = true, query = Dict("CHANNEL__" => ENV["CHANNEL__"]));
-                                                while true
-                                                  sleep(1)
-                                                end
+                                                up(; async = false, open_browser = false, query = Dict("CHANNEL__" => ENV["CHANNEL__"]));
                   '`; dir = fullpath(app), detach = false)
         cmd = addenv(cmd, "PORT" => app.port,
                           "HOST" => "0.0.0.0",
