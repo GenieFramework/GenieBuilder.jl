@@ -1,0 +1,4815 @@
+[
+    {
+        "label": "Separator",
+        "draggable": true,
+        "editable": false,
+        "description": "The QSeparator component is used to separate sections of text, other components, etc... It creates a colored line across the width of the parent. It can be horizontal or vertical.\n\n\n",
+        "tagName": "Q-SEPARATOR",
+        "content": "<q-separator></q-separator>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "spaced",
+                "name": "spaced",
+                "examples": [
+                    "12px",
+                    "sm",
+                    "md"
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "String"
+                ],
+                "desc": "If set to true, the corresponding direction margins will be set to 8px; It can also be set to a size in CSS units, including unit name, or one of the xs|sm|md|lg|xl predefined sizes",
+                "category": "content"
+            },
+            {
+                "label": "inset",
+                "name": "inset",
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "String"
+                ],
+                "desc": "If set to Boolean true, the left and right margins will be set to 16px. If set to 'item' then it will match a QItem's design. If set to 'item-thumbnail' then it will match the design of a QItem with a thumbnail on the left side",
+                "category": "content"
+            },
+            {
+                "label": "vertical",
+                "name": "vertical",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "If set to true, the separator will be vertical.",
+                "category": "content"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name",
+                "category": "style"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            }
+        ],
+        "category": "Content",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/separator.png",
+        "type": "q-separator"
+    },
+    {
+        "label": "Space",
+        "draggable": true,
+        "editable": false,
+        "description": "The purpose of QSpace (has no props) is to simply fill all available space inside of a flexbox DOM element.\n\nAs a sidenote, all Stipple components use flexbox. So what this means, for example (there are numerous examples, just mentioning one), is that you can use QSpace in a QToolbar.\n",
+        "tagName": "Q-SPACE",
+        "content": "<q-space></q-space>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            }
+        ],
+        "category": "Content",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/space.png",
+        "type": "q-space"
+    },
+    {
+        "label": "Toolbar",
+        "draggable": true,
+        "editable": false,
+        "description": "QToolbar is a component usually part of Layout Header and Footer, but it can be used anywhere on the page.\n\n\n\n",
+        "tagName": "Q-TOOLBAR",
+        "content": "<q-toolbar></q-toolbar>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "inset",
+                "name": "inset",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Apply an inset to content (useful for subsequent toolbars)",
+                "category": "content"
+            }
+        ],
+        "category": "Content",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/toolbar.png",
+        "type": "q-toolbar"
+    },
+    {
+        "label": "Text",
+        "draggable": true,
+        "editable": false,
+        "description": "",
+        "tagName": "Q-INPUT",
+        "content": "<q-input gb_c__label=\"Input\" gb_b__v-model=\"\" gb_c__dense=\"true\"></q-input>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "car_id",
+                    "car_id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the name of the control; Useful if dealing with forms; If not specified, it takes the value of 'for' prop, if it exists",
+                "category": "behavior"
+            },
+            {
+                "label": "mask",
+                "name": "mask",
+                "examples": [
+                    "###-##",
+                    "date",
+                    "datetime",
+                    "time",
+                    "fulltime",
+                    "phone",
+                    "card"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Custom mask or one of the predefined mask names",
+                "category": "behavior"
+            },
+            {
+                "label": "fill-mask",
+                "name": "fill-mask",
+                "examples": [
+                    "true",
+                    "'0'",
+                    "'_'"
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "String"
+                ],
+                "desc": "Fills string with specified characters (or underscore if value is not string) to fill mask's length",
+                "category": "behavior"
+            },
+            {
+                "label": "reverse-fill-mask",
+                "name": "reverse-fill-mask",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Fills string from the right side of the mask",
+                "category": "behavior"
+            },
+            {
+                "label": "unmasked-value",
+                "name": "unmasked-value",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Model will be unmasked (won't contain tokens/separation characters)",
+                "category": "behavior"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "v-model=\"myText\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number",
+                    "null",
+                    "undefined"
+                ],
+                "desc": "Model of the component; Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "error",
+                "name": "error",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Does field have validation errors?",
+                "category": "behavior"
+            },
+            {
+                "label": "error-message",
+                "name": "error-message",
+                "examples": [
+                    "Username must have at least 5 characters"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Validation error message (gets displayed only if 'error' is set to 'true')",
+                "category": "content"
+            },
+            {
+                "label": "no-error-icon",
+                "name": "no-error-icon",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Hide error icon when there is an error",
+                "category": "content"
+            },
+            {
+                "label": "rules",
+                "name": "rules",
+                "examples": [
+                    ":rules=\"[ val => val.length <= 3 || 'Please use maximum 3 characters' ]\"",
+                    ":rules=\"[ 'fulltime' ]\"",
+                    ":rules=\"[ (val, rules) => rules.email(val) || 'Please enter a valid email address' ]\""
+                ],
+                "enabled": true,
+                "type": "Array",
+                "desc": "Array of Functions/Strings; If String, then it must be a name of one of the embedded validation rules",
+                "category": "behavior"
+            },
+            {
+                "label": "reactive-rules",
+                "name": "reactive-rules",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it",
+                "category": "behavior"
+            },
+            {
+                "label": "lazy-rules",
+                "name": "lazy-rules",
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "String"
+                ],
+                "desc": "If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself",
+                "category": "behavior"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "examples": [
+                    "Username"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "A text label that will “float” up above the input field, once the field gets focus",
+                "category": "content"
+            },
+            {
+                "label": "stack-label",
+                "name": "stack-label",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Label will be always shown above the field regardless of field content (if any)",
+                "category": "content"
+            },
+            {
+                "label": "hint",
+                "name": "hint",
+                "examples": [
+                    "Fill in between 3 and 12 characters"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Helper (hint) text which gets placed below your wrapped form component",
+                "category": "content"
+            },
+            {
+                "label": "hide-hint",
+                "name": "hide-hint",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Hide the helper (hint) text when field doesn't have focus",
+                "category": "content"
+            },
+            {
+                "label": "prefix",
+                "name": "prefix",
+                "examples": [
+                    "$"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Prefix",
+                "category": "content"
+            },
+            {
+                "label": "suffix",
+                "name": "suffix",
+                "examples": [
+                    "@gmail.com"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Suffix",
+                "category": "content"
+            },
+            {
+                "label": "label-color",
+                "name": "label-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for the label from the Quasar Color Palette; Overrides the 'color' prop; The difference from 'color' prop is that the label will always have this color, even when field is not focused",
+                "category": "style"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "bg-color",
+                "name": "bg-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "loading",
+                "name": "loading",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Signals the user a process is in progress by displaying a spinner; Spinner can be customized by using the 'loading' slot.",
+                "category": "behavior|content"
+            },
+            {
+                "label": "clearable",
+                "name": "clearable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Appends clearable icon when a value (not undefined or null) is set; When clicked, model becomes null",
+                "category": "behavior|content"
+            },
+            {
+                "label": "clear-icon",
+                "name": "clear-icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "close"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Custom icon to use for the clear button when using along with 'clearable' prop",
+                "category": "content"
+            },
+            {
+                "label": "filled",
+                "name": "filled",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Use 'filled' design for the field",
+                "category": "style"
+            },
+            {
+                "label": "outlined",
+                "name": "outlined",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Use 'outlined' design for the field",
+                "category": "style"
+            },
+            {
+                "label": "borderless",
+                "name": "borderless",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Use 'borderless' design for the field",
+                "category": "style"
+            },
+            {
+                "label": "standout",
+                "name": "standout",
+                "examples": [
+                    "standout",
+                    "standout=\"bg-primary text-white\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "String"
+                ],
+                "desc": "Use 'standout' design for the field; Specifies classes to be applied when focused (overriding default ones)",
+                "category": "style"
+            },
+            {
+                "label": "label-slot",
+                "name": "label-slot",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Enables label slot; You need to set it to force use of the 'label' slot if the 'label' prop is not set",
+                "category": "content"
+            },
+            {
+                "label": "bottom-slots",
+                "name": "bottom-slots",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Enables bottom slots ('error', 'hint', 'counter')",
+                "category": "content"
+            },
+            {
+                "label": "hide-bottom-space",
+                "name": "hide-bottom-space",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Do not reserve space for hint/error/counter anymore when these are not used; As a result, it also disables the animation for those; It also allows the hint/error area to stretch vertically based on its content",
+                "category": "style"
+            },
+            {
+                "label": "counter",
+                "name": "counter",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Show an automatic counter on bottom right",
+                "category": "content"
+            },
+            {
+                "label": "rounded",
+                "name": "rounded",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a small standard border-radius for a squared shape of the component",
+                "category": "style"
+            },
+            {
+                "label": "square",
+                "name": "square",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Remove border-radius so borders are squared; Overrides 'rounded' prop",
+                "category": "style"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "item-aligned",
+                "name": "item-aligned",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Match inner content alignment to that of QItem",
+                "category": "style"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "readonly",
+                "name": "readonly",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in readonly mode",
+                "category": "state"
+            },
+            {
+                "label": "autofocus",
+                "name": "autofocus",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Focus field on initial component render",
+                "category": "behavior"
+            },
+            {
+                "label": "for",
+                "name": "for",
+                "examples": [
+                    "myFieldsId"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the 'id' of the control and also the 'for' attribute of the label that wraps it; If no 'name' prop is specified, then it is used for this attribute as well",
+                "category": "behavior"
+            },
+            {
+                "label": "shadow-text",
+                "name": "shadow-text",
+                "examples": [
+                    "rest of the fill value"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Text to be displayed as shadow at the end of the text in the control; Does NOT applies to type=file",
+                "category": "content"
+            },
+            {
+                "label": "type",
+                "name": "type",
+                "enabled": true,
+                "type": "String",
+                "desc": "Input type",
+                "category": "general"
+            },
+            {
+                "label": "debounce",
+                "name": "debounce",
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "Debounce amount (in milliseconds) when updating model",
+                "category": "model"
+            },
+            {
+                "label": "maxlength",
+                "name": "maxlength",
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "Specify a max length of model",
+                "category": "model"
+            },
+            {
+                "label": "autogrow",
+                "name": "autogrow",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Make field autogrow along with its content (uses a textarea)",
+                "category": "content"
+            },
+            {
+                "label": "input-class",
+                "name": "input-class",
+                "examples": [
+                    "my-special-class",
+                    ":input-class=\"{ 'my-special-class': <condition> }\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array",
+                    "Object"
+                ],
+                "desc": "Class definitions to be attributed to the underlying input tag",
+                "category": "style"
+            },
+            {
+                "label": "input-style",
+                "name": "input-style",
+                "examples": [
+                    "background-color: #ff0000",
+                    ":input-style=\"{ backgroundColor: '#ff0000' }\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array",
+                    "Object"
+                ],
+                "desc": "Style definitions to be attributed to the underlying input tag",
+                "category": "style"
+            }
+        ],
+        "category": "Forms",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/input_text_field.png",
+        "type": "q-input"
+    },
+    {
+        "label": "Button",
+        "draggable": true,
+        "editable": false,
+        "description": "Stipple has a component called QBtn which is a button with a few extra useful features. For instance, it comes in two shapes: rectangle (default) and round. It also has the material ripple effect baked in (which can be disabled).\n\nThe button component also comes with a spinner or loading effect. You would use this for times when app execution may cause a delay and you want to give the user some feedback about that delay. When used, the button will display a spinning animation as soon as the user clicks the button.\n\nWhen not disabled or spinning, QBtn emits a `@click` event, as soon as it is clicked or tapped.\n\n\n",
+        "tagName": "Q-BTN",
+        "content": "<q-btn gb_c__color=\"primary\" gb_c__label=\"button\" gb_c__v-on:click=\"\" icon></q-btn>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem",
+                    "xs",
+                    "md"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+                "category": "style"
+            },
+            {
+                "label": "type",
+                "name": "type",
+                "examples": [
+                    "a",
+                    "submit",
+                    "button",
+                    "reset",
+                    "image/png",
+                    "href=\"https://quasar.dev\" target=\"_blank\""
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "1) Define the button native type attribute (submit, reset, button) or 2) render component with <a> tag so you can access events even if disable or 3) Use 'href' prop and specify 'type' as a media tag",
+                "category": "general"
+            },
+            {
+                "label": "to",
+                "name": "to",
+                "examples": [
+                    "/home/dashboard",
+                    ":to=\"{ name: 'my-route-name' }\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Object"
+                ],
+                "desc": "Equivalent to Vue Router <router-link> 'to' property; Superseded by 'href' prop if used",
+                "category": "navigation"
+            },
+            {
+                "label": "replace",
+                "name": "replace",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Equivalent to Vue Router <router-link> 'replace' property; Superseded by 'href' prop if used",
+                "category": "navigation"
+            },
+            {
+                "label": "href",
+                "name": "href",
+                "examples": [
+                    "https://quasar.dev",
+                    "href=\"https://quasar.dev\" target=\"_blank\""
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Native <a> link href attribute; Has priority over the 'to' and 'replace' props",
+                "category": "navigation"
+            },
+            {
+                "label": "target",
+                "name": "target",
+                "examples": [
+                    "_blank",
+                    "_self",
+                    "_parent",
+                    "_top"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Native <a> link target attribute; Use it only with 'to' or 'href' props",
+                "category": "navigation"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "examples": [
+                    "Button Label"
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "The text that will be shown on the button",
+                "category": "content"
+            },
+            {
+                "label": "icon",
+                "name": "icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "suggested": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
+            },
+            {
+                "label": "icon-right",
+                "name": "icon-right",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
+            },
+            {
+                "label": "outline",
+                "name": "outline",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Use 'outline' design",
+                "category": "style"
+            },
+            {
+                "label": "flat",
+                "name": "flat",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Use 'flat' design",
+                "category": "style"
+            },
+            {
+                "label": "unelevated",
+                "name": "unelevated",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Remove shadow",
+                "category": "style"
+            },
+            {
+                "label": "rounded",
+                "name": "rounded",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a more prominent border-radius for a squared shape button",
+                "category": "style"
+            },
+            {
+                "label": "push",
+                "name": "push",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Use 'push' design",
+                "category": "style"
+            },
+            {
+                "label": "square",
+                "name": "square",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Removes border-radius so borders are squared",
+                "category": "style"
+            },
+            {
+                "label": "glossy",
+                "name": "glossy",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a glossy effect",
+                "category": "style"
+            },
+            {
+                "label": "fab",
+                "name": "fab",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Makes button size and shape to fit a Floating Action Button",
+                "category": "style"
+            },
+            {
+                "label": "fab-mini",
+                "name": "fab-mini",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Makes button size and shape to fit a small Floating Action Button",
+                "category": "style"
+            },
+            {
+                "label": "padding",
+                "name": "padding",
+                "examples": [
+                    "16px",
+                    "10px 5px",
+                    "2rem",
+                    "xs",
+                    "md lg",
+                    "2px 2px 5px 7px"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Apply custom padding (vertical [horizontal]); Size in CSS units, including unit name or standard size name (none|xs|sm|md|lg|xl); Also removes the min width and height when set",
+                "category": "style"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "suggested": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "text-color",
+                "name": "text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "no-caps",
+                "name": "no-caps",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Avoid turning label text into caps (which happens by default)",
+                "category": "content"
+            },
+            {
+                "label": "no-wrap",
+                "name": "no-wrap",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Avoid label text wrapping",
+                "category": "content"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "ripple",
+                "name": "ripple",
+                "examples": [
+                    false,
+                    "{ early: true, center: true, color: 'teal', keyCodes: [] }"
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "Object"
+                ],
+                "desc": "Configure material ripple (disable it by setting it to 'false' or supply a config object)",
+                "category": "style"
+            },
+            {
+                "label": "tabindex",
+                "name": "tabindex",
+                "examples": [
+                    "0",
+                    "100"
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Tabindex HTML attribute value",
+                "category": "general"
+            },
+            {
+                "label": "align",
+                "name": "align",
+                "enabled": true,
+                "type": "String",
+                "desc": "Label or content alignment",
+                "category": "content"
+            },
+            {
+                "label": "stack",
+                "name": "stack",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Stack icon and label vertically instead of on same line (like it is by default)",
+                "category": "content"
+            },
+            {
+                "label": "stretch",
+                "name": "stretch",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "When used on flexbox parent, button will stretch to parent's height",
+                "category": "content"
+            },
+            {
+                "label": "loading",
+                "name": "loading",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put button into loading state (displays a QSpinner -- can be overridden by using a 'loading' slot)",
+                "category": "behavior|state"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "round",
+                "name": "round",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Makes a circle shaped button",
+                "category": "style"
+            },
+            {
+                "label": "percentage",
+                "name": "percentage",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Percentage (0.0 < x < 100.0); To be used along 'loading' prop; Display a progress bar on the background",
+                "category": "behavior"
+            },
+            {
+                "label": "dark-percentage",
+                "name": "dark-percentage",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Progress bar on the background should have dark color; To be used along with 'percentage' and 'loading' props",
+                "category": "behavior"
+            }
+        ],
+        "category": "Forms",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/button.png",
+        "type": "q-btn"
+    },
+    {
+        "label": "Radio",
+        "draggable": true,
+        "editable": false,
+        "description": "The QRadio component is another basic element for user input. You can use this to supply a way for the user to pick an option from multiple choices.\n\n\n\n",
+        "tagName": "Q-RADIO",
+        "content": "<q-radio gb_c__color=\"primary\" gb_c__val=\"1\" gb_c__label=\"1\" gb_b__v-model=\"\"></q-radio>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "car_id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+                "category": "behavior"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem",
+                    "xs",
+                    "md"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+                "category": "style"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "v-model=\"option\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number",
+                    "null",
+                    "undefined"
+                ],
+                "desc": "Model of the component; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "val",
+                "name": "val",
+                "examples": [
+                    "opt1",
+                    50
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number",
+                    "null",
+                    "undefined"
+                ],
+                "desc": "The actual value of the option with which model value is changed",
+                "category": "model"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "examples": [
+                    "label=\"Option 1\""
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Label to display along the radio control (or use the default slot instead of this prop)",
+                "category": "label"
+            },
+            {
+                "label": "left-label",
+                "name": "left-label",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Label (if any specified) should be displayed on the left side of the checkbox",
+                "category": "label"
+            },
+            {
+                "label": "checked-icon",
+                "name": "checked-icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "visibility"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "The icon to be used when selected (instead of the default design)",
+                "category": "icons"
+            },
+            {
+                "label": "unchecked-icon",
+                "name": "unchecked-icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "visibility_off"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "The icon to be used when un-selected (instead of the default design)",
+                "category": "icons"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "suggested": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "keep-color",
+                "name": "keep-color",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Should the color (if specified any) be kept when checkbox is unticked?",
+                "category": "behavior"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "tabindex",
+                "name": "tabindex",
+                "examples": [
+                    "0",
+                    "100"
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Tabindex HTML attribute value",
+                "category": "general"
+            }
+        ],
+        "category": "Forms",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/radio.png",
+        "type": "q-radio"
+    },
+    {
+        "label": "Checkbox",
+        "draggable": true,
+        "editable": false,
+        "description": "The QCheckbox component is another basic element for user input. You can use this to supply a way for the user to toggle an option.\n\n\n\n\n",
+        "tagName": "Q-CHECKBOX",
+        "content": "<q-checkbox gb_c__label=\"Checked\" gb_b__v-model=\"\"></q-checkbox>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "car_id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+                "category": "behavior"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem",
+                    "xs",
+                    "md"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+                "category": "style"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "false",
+                    "['car', 'building']"
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean", 
+                    "Any",
+                    "Array"
+                ],
+                "desc": "Model of the component; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "val",
+                "name": "val",
+                "examples": [
+                    "car"
+                ],
+                "enabled": true,
+                "type": "Any",
+                "desc": "Works when model ('value') is Array. It tells the component which value should add/remove when ticked/unticked",
+                "category": "model"
+            },
+            {
+                "label": "true-value",
+                "name": "true-value",
+                "examples": [
+                    "Agreed"
+                ],
+                "enabled": true,
+                "type": "Any",
+                "desc": "What model value should be considered as checked/ticked/on?",
+                "category": "model"
+            },
+            {
+                "label": "false-value",
+                "name": "false-value",
+                "examples": [
+                    "Disagree"
+                ],
+                "enabled": true,
+                "type": "Any",
+                "desc": "What model value should be considered as unchecked/unticked/off?",
+                "category": "model"
+            },
+            {
+                "label": "indeterminate-value",
+                "name": "indeterminate-value",
+                "examples": [
+                    0,
+                    "not_answered"
+                ],
+                "enabled": true,
+                "type": "Any",
+                "desc": "What model value should be considered as 'indeterminate'?",
+                "category": "behavior"
+            },
+            {
+                "label": "toggle-order",
+                "name": "toggle-order",
+                "enabled": true,
+                "type": "String",
+                "desc": "Determines toggle order of the two states ('t' stands for state of true, 'f' for state of false); If 'toggle-indeterminate' is true, then the order is: indet -> first state -> second state -> indet (and repeat), otherwise: indet -> first state -> second state -> first state -> second state -> ...",
+                "category": "behavior"
+            },
+            {
+                "label": "toggle-indeterminate",
+                "name": "toggle-indeterminate",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "When user clicks/taps on the component, should we toggle through the indeterminate state too?",
+                "category": "behavior"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "examples": [
+                    "I agree with the Terms and Conditions"
+                ],
+                "enabled": true,
+                "suggested": true,
+                "type": "String",
+                "desc": "Label to display along the component (or use the default slot instead of this prop)",
+                "category": "label"
+            },
+            {
+                "label": "left-label",
+                "name": "left-label",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Label (if any specified) should be displayed on the left side of the component",
+                "category": "label"
+            },
+            {
+                "label": "checked-icon",
+                "name": "checked-icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "visibility"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "The icon to be used when the model is truthy (instead of the default design)",
+                "category": "icons"
+            },
+            {
+                "label": "unchecked-icon",
+                "name": "unchecked-icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "visibility_off"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "The icon to be used when the toggle is falsy (instead of the default design)",
+                "category": "icons"
+            },
+            {
+                "label": "indeterminate-icon",
+                "name": "indeterminate-icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "help"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "The icon to be used when the model is indeterminate (instead of the default design)",
+                "category": "icons"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "keep-color",
+                "name": "keep-color",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Should the color (if specified any) be kept when the component is unticked/ off?",
+                "category": "behavior"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "suggested": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "tabindex",
+                "name": "tabindex",
+                "examples": [
+                    "0",
+                    "100"
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Tabindex HTML attribute value",
+                "category": "general"
+            }
+        ],
+        "category": "Forms",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/checkbox.png",
+        "type": "q-checkbox"
+    },
+    {
+        "label": "Toggle",
+        "draggable": true,
+        "editable": false,
+        "description": "The QToggle component is another basic element for user input. You can use this for turning settings, features or true/false inputs on and off.\n\n\n\n",
+        "tagName": "Q-TOGGLE",
+        "content": "<q-toggle gb_c__color=\"blue\" gb_c__label=\"Toggle!\" gb_b__v-model=\"\"></q-toggle>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "car_id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+                "category": "behavior"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem",
+                    "xs",
+                    "md"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+                "category": "style"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "false",
+                    "['car', 'building']"
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean", 
+                    "Any",
+                    "Array"
+                ],
+                "desc": "Model of the component; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "val",
+                "name": "val",
+                "examples": [
+                    "car"
+                ],
+                "enabled": true,
+                "type": "Any",
+                "desc": "Works when model ('value') is Array. It tells the component which value should add/remove when ticked/unticked",
+                "category": "model"
+            },
+            {
+                "label": "true-value",
+                "name": "true-value",
+                "examples": [
+                    "Agreed"
+                ],
+                "enabled": true,
+                "type": "Any",
+                "desc": "What model value should be considered as checked/ticked/on?",
+                "category": "model"
+            },
+            {
+                "label": "false-value",
+                "name": "false-value",
+                "examples": [
+                    "Disagree"
+                ],
+                "enabled": true,
+                "type": "Any",
+                "desc": "What model value should be considered as unchecked/unticked/off?",
+                "category": "model"
+            },
+            {
+                "label": "indeterminate-value",
+                "name": "indeterminate-value",
+                "examples": [
+                    0,
+                    "not_answered"
+                ],
+                "enabled": true,
+                "type": "Any",
+                "desc": "What model value should be considered as 'indeterminate'?",
+                "category": "behavior"
+            },
+            {
+                "label": "toggle-order",
+                "name": "toggle-order",
+                "enabled": true,
+                "type": "String",
+                "desc": "Determines toggle order of the two states ('t' stands for state of true, 'f' for state of false); If 'toggle-indeterminate' is true, then the order is: indet -> first state -> second state -> indet (and repeat), otherwise: indet -> first state -> second state -> first state -> second state -> ...",
+                "category": "behavior"
+            },
+            {
+                "label": "toggle-indeterminate",
+                "name": "toggle-indeterminate",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "When user clicks/taps on the component, should we toggle through the indeterminate state too?",
+                "category": "behavior"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "examples": [
+                    "I agree with the Terms and Conditions"
+                ],
+                "enabled": true,
+                "suggested": "Toggle",
+                "type": "String",
+                "desc": "Label to display along the component (or use the default slot instead of this prop)",
+                "category": "label"
+            },
+            {
+                "label": "left-label",
+                "name": "left-label",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Label (if any specified) should be displayed on the left side of the component",
+                "category": "label"
+            },
+            {
+                "label": "checked-icon",
+                "name": "checked-icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "visibility"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "The icon to be used when the toggle is on",
+                "category": "icons"
+            },
+            {
+                "label": "unchecked-icon",
+                "name": "unchecked-icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "visibility_off"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "The icon to be used when the toggle is off",
+                "category": "icons"
+            },
+            {
+                "label": "indeterminate-icon",
+                "name": "indeterminate-icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "help"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "The icon to be used when the model is indeterminate",
+                "category": "icons"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "keep-color",
+                "name": "keep-color",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Should the color (if specified any) be kept when the component is unticked/ off?",
+                "category": "behavior"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "tabindex",
+                "name": "tabindex",
+                "examples": [
+                    "0",
+                    "100"
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Tabindex HTML attribute value",
+                "category": "general"
+            },
+            {
+                "label": "icon",
+                "name": "icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
+            },
+            {
+                "label": "icon-color",
+                "name": "icon-color",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Override default icon color (for truthy state only); Color name for component from the Quasar Color Palette",
+                "category": "style"
+            }
+        ],
+        "category": "Widgets",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/toggle.png",
+        "type": "q-toggle"
+    },
+    {
+        "label": "Slider",
+        "draggable": true,
+        "editable": false,
+        "description": "The QSlider is a great way for the user to specify a number value between a minimum and maximum value, with optional steps between valid values. The slider also has a focus indicator (highlighted slider button), which allows for keyboard adjustments of the slider.\n\nAlso check its “sibling”, the [QRange](/vue-components/range) component.\n\n\n",
+        "tagName": "Q-SLIDER",
+        "content": "<q-slider gb_c__color=\"primary\" gb_c__min=\"1\" gb_b__v-model=\"\" gb_c__label=\"true\" gb_c__max=\"10\" gb_c__step=\"1\"></q-slider>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "car_id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+                "category": "behavior"
+            },
+            {
+                "label": "min",
+                "name": "min",
+                "examples": [
+                    ":min=\"0\""
+                ],
+                "enabled": true,
+                "type": "Number",
+                "desc": "Minimum value of the model; Set track's minimum value",
+                "category": "model"
+            },
+            {
+                "label": "max",
+                "name": "max",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Maximum value of the model; Set track's maximum value",
+                "category": "model"
+            },
+            {
+                "label": "inner-min",
+                "name": "inner-min",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Inner minimum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be higher or equal to 'min' prop; Defaults to 'min' prop",
+                "category": "model"
+            },
+            {
+                "label": "inner-max",
+                "name": "inner-max",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Inner maximum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be lower or equal to 'max' prop; Defaults to 'max' prop",
+                "category": "model"
+            },
+            {
+                "label": "step",
+                "name": "step",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Specify step amount between valid values (> 0.0); When step equals to 0 it defines infinite granularity",
+                "category": "model"
+            },
+            {
+                "label": "snap",
+                "name": "snap",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Snap on valid values, rather than sliding freely; Suggestion: use with 'step' prop",
+                "category": "behavior"
+            },
+            {
+                "label": "reverse",
+                "name": "reverse",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Work in reverse (changes direction)",
+                "category": "behavior"
+            },
+            {
+                "label": "vertical",
+                "name": "vertical",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Display in vertical direction",
+                "category": "behavior"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "track-color",
+                "name": "track-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for the track (can be 'transparent' too) from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "track-img",
+                "name": "track-img",
+                "examples": [
+                    "~assets/my-pattern.png"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Apply a pattern image on the track",
+                "category": "style"
+            },
+            {
+                "label": "inner-track-color",
+                "name": "inner-track-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for the inner track (can be 'transparent' too) from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "inner-track-img",
+                "name": "inner-track-img",
+                "examples": [
+                    "~assets/my-pattern.png"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Apply a pattern image on the inner track",
+                "category": "style"
+            },
+            {
+                "label": "selection-color",
+                "name": "selection-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for the selection bar (can be 'transparent' too) from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "selection-img",
+                "name": "selection-img",
+                "examples": [
+                    "~assets/my-pattern.png"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Apply a pattern image on the selection bar",
+                "category": "style"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Popup a label when user clicks/taps on the slider thumb and moves it",
+                "category": "content"
+            },
+            {
+                "label": "label-color",
+                "name": "label-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "label-text-color",
+                "name": "label-text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "switch-label-side",
+                "name": "switch-label-side",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Switch the position of the label (top <-> bottom or left <-> right)",
+                "category": "style"
+            },
+            {
+                "label": "label-always",
+                "name": "label-always",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Always display the label",
+                "category": "behavior|content"
+            },
+            {
+                "label": "markers",
+                "name": "markers",
+                "examples": [
+                    "markers",
+                    ":markers=\"5\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "Number"
+                ],
+                "desc": "Display markers on the track, one for each possible value for the model or using a custom step (when specifying a Number)",
+                "category": "content"
+            },
+            {
+                "label": "marker-labels",
+                "name": "marker-labels",
+                "examples": [
+                    true,
+                    "[ { value: 0, label: '0%' }, { value: 5, classes: 'my-class', style: { width: '24px' } } ]",
+                    "{ 0: '0%', 5: { label: '5%', classes: 'my-class', style: { width: '24px' } } }",
+                    "val => (10 * val) + '%'",
+                    "val => ({ label: (10 * val) + '%', classes: 'my-class', style: { width: '24px' } })"
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "Array",
+                    "Object",
+                    "Function"
+                ],
+                "desc": "Configure the marker labels (or show the default ones if 'true'); Array of definition Objects or Object with key-value where key is the model and the value is the marker label definition",
+                "category": "content"
+            },
+            {
+                "label": "marker-labels-class",
+                "name": "marker-labels-class",
+                "examples": [
+                    "text-orange"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "CSS class(es) to apply to the marker labels container",
+                "category": "style"
+            },
+            {
+                "label": "switch-marker-labels-side",
+                "name": "switch-marker-labels-side",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Switch the position of the marker labels (top <-> bottom or left <-> right)",
+                "category": "style"
+            },
+            {
+                "label": "track-size",
+                "name": "track-size",
+                "examples": [
+                    "35px"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Track size (including CSS unit)",
+                "category": "style"
+            },
+            {
+                "label": "thumb-size",
+                "name": "thumb-size",
+                "examples": [
+                    "20px"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Thumb size (including CSS unit)",
+                "category": "style"
+            },
+            {
+                "label": "thumb-color",
+                "name": "thumb-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "thumb-path",
+                "name": "thumb-path",
+                "examples": [
+                    "M5 5 h10 v10 h-10 v-10"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Set custom thumb svg path",
+                "category": "style"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "readonly",
+                "name": "readonly",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in readonly mode",
+                "category": "state"
+            },
+            {
+                "label": "tabindex",
+                "name": "tabindex",
+                "examples": [
+                    "0",
+                    "100"
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Tabindex HTML attribute value",
+                "category": "general"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "v-model=\"positionModel\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "null",
+                    "undefined"
+                ],
+                "desc": "Model of the component (must be between min/max); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "label-value",
+                "name": "label-value",
+                "examples": [
+                    ":label-value=\"model + 'px'\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "Override default label value",
+                "category": "content"
+            }
+        ],
+        "category": "Forms",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/slider.png",
+        "type": "q-slider"
+    },
+    {
+        "label": "Range",
+        "draggable": true,
+        "editable": false,
+        "description": "The QRange component is a great way to offer the user the selection of a sub-range of values between a minimum and maximum value, with optional steps to select those values. An example use case for the Range component would be to offer a price range selection.\n\nAlso check out its “sibling”, the [QSlider](/vue-components/slider) component.\n\n\n",
+        "tagName": "Q-RANGE",
+        "content": "<q-range gb_c__color=\"primary\" gb_c__min=\"1\" gb_c__marker-labels=\"true\" gb_b__v-model=\"\" gb_c__label=\"true\" gb_c__max=\"10\" gb_c__markers=\"true\" gb_c__step=\"1\"></q-range>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "car_id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+                "category": "behavior"
+            },
+            {
+                "label": "min",
+                "name": "min",
+                "examples": [
+                    ":min=\"0\""
+                ],
+                "enabled": true,
+                "type": "Number",
+                "desc": "Minimum value of the model; Set track's minimum value",
+                "category": "model"
+            },
+            {
+                "label": "max",
+                "name": "max",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Maximum value of the model; Set track's maximum value",
+                "category": "model"
+            },
+            {
+                "label": "inner-min",
+                "name": "inner-min",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Inner minimum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be higher or equal to 'min' prop; Defaults to 'min' prop",
+                "category": "model"
+            },
+            {
+                "label": "inner-max",
+                "name": "inner-max",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Inner maximum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be lower or equal to 'max' prop; Defaults to 'max' prop",
+                "category": "model"
+            },
+            {
+                "label": "step",
+                "name": "step",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Specify step amount between valid values (> 0.0); When step equals to 0 it defines infinite granularity",
+                "category": "model"
+            },
+            {
+                "label": "snap",
+                "name": "snap",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Snap on valid values, rather than sliding freely; Suggestion: use with 'step' prop",
+                "category": "behavior"
+            },
+            {
+                "label": "reverse",
+                "name": "reverse",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Work in reverse (changes direction)",
+                "category": "behavior"
+            },
+            {
+                "label": "vertical",
+                "name": "vertical",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Display in vertical direction",
+                "category": "behavior"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "track-color",
+                "name": "track-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for the track (can be 'transparent' too) from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "track-img",
+                "name": "track-img",
+                "examples": [
+                    "~assets/my-pattern.png"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Apply a pattern image on the track",
+                "category": "style"
+            },
+            {
+                "label": "inner-track-color",
+                "name": "inner-track-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for the inner track (can be 'transparent' too) from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "inner-track-img",
+                "name": "inner-track-img",
+                "examples": [
+                    "~assets/my-pattern.png"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Apply a pattern image on the inner track",
+                "category": "style"
+            },
+            {
+                "label": "selection-color",
+                "name": "selection-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for the selection bar (can be 'transparent' too) from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "selection-img",
+                "name": "selection-img",
+                "examples": [
+                    "~assets/my-pattern.png"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Apply a pattern image on the selection bar",
+                "category": "style"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Popup a label when user clicks/taps on the slider thumb and moves it",
+                "category": "content"
+            },
+            {
+                "label": "label-color",
+                "name": "label-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "label-text-color",
+                "name": "label-text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "switch-label-side",
+                "name": "switch-label-side",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Switch the position of the label (top <-> bottom or left <-> right)",
+                "category": "style"
+            },
+            {
+                "label": "label-always",
+                "name": "label-always",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Always display the label",
+                "category": "behavior|content"
+            },
+            {
+                "label": "markers",
+                "name": "markers",
+                "examples": [
+                    "markers",
+                    ":markers=\"5\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "Number"
+                ],
+                "desc": "Display markers on the track, one for each possible value for the model or using a custom step (when specifying a Number)",
+                "category": "content"
+            },
+            {
+                "label": "marker-labels",
+                "name": "marker-labels",
+                "examples": [
+                    true,
+                    "[ { value: 0, label: '0%' }, { value: 5, classes: 'my-class', style: { width: '24px' } } ]",
+                    "{ 0: '0%', 5: { label: '5%', classes: 'my-class', style: { width: '24px' } } }",
+                    "val => (10 * val) + '%'",
+                    "val => ({ label: (10 * val) + '%', classes: 'my-class', style: { width: '24px' } })"
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "Array",
+                    "Object",
+                    "Function"
+                ],
+                "desc": "Configure the marker labels (or show the default ones if 'true'); Array of definition Objects or Object with key-value where key is the model and the value is the marker label definition",
+                "category": "content"
+            },
+            {
+                "label": "marker-labels-class",
+                "name": "marker-labels-class",
+                "examples": [
+                    "text-orange"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "CSS class(es) to apply to the marker labels container",
+                "category": "style"
+            },
+            {
+                "label": "switch-marker-labels-side",
+                "name": "switch-marker-labels-side",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Switch the position of the marker labels (top <-> bottom or left <-> right)",
+                "category": "style"
+            },
+            {
+                "label": "track-size",
+                "name": "track-size",
+                "examples": [
+                    "35px"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Track size (including CSS unit)",
+                "category": "style"
+            },
+            {
+                "label": "thumb-size",
+                "name": "thumb-size",
+                "examples": [
+                    "20px"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Thumb size (including CSS unit)",
+                "category": "style"
+            },
+            {
+                "label": "thumb-color",
+                "name": "thumb-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "thumb-path",
+                "name": "thumb-path",
+                "examples": [
+                    "M5 5 h10 v10 h-10 v-10"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Set custom thumb svg path",
+                "category": "style"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "readonly",
+                "name": "readonly",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in readonly mode",
+                "category": "state"
+            },
+            {
+                "label": "tabindex",
+                "name": "tabindex",
+                "examples": [
+                    "0",
+                    "100"
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Tabindex HTML attribute value",
+                "category": "general"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "v-model=\"positionModel\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Object",
+                    "null",
+                    "undefined"
+                ],
+                "desc": "Model of the component of type { min, max } (both values must be between global min/max); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "drag-range",
+                "name": "drag-range",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "User can drag range instead of just the two thumbs",
+                "category": "content"
+            },
+            {
+                "label": "drag-only-range",
+                "name": "drag-only-range",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "User can drag only the range instead and NOT the two thumbs",
+                "category": "content"
+            },
+            {
+                "label": "left-label-color",
+                "name": "left-label-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for left label background from the Quasar Color Palette",
+                "category": "labels"
+            },
+            {
+                "label": "left-label-text-color",
+                "name": "left-label-text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for left label text from the Quasar Color Palette",
+                "category": "labels"
+            },
+            {
+                "label": "right-label-color",
+                "name": "right-label-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for right label background from the Quasar Color Palette",
+                "category": "labels"
+            },
+            {
+                "label": "right-label-text-color",
+                "name": "right-label-text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for right label text from the Quasar Color Palette",
+                "category": "labels"
+            },
+            {
+                "label": "left-label-value",
+                "name": "left-label-value",
+                "examples": [
+                    ":left-label-value=\"model.min + 'px'\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "Override default label for min value",
+                "category": "labels"
+            },
+            {
+                "label": "right-label-value",
+                "name": "right-label-value",
+                "examples": [
+                    ":right-label-value=\"model.max + 'px'\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "Override default label for max value",
+                "category": "labels"
+            },
+            {
+                "label": "left-thumb-color",
+                "name": "left-thumb-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name (from the Quasar Color Palette) for left thumb",
+                "category": "labels"
+            },
+            {
+                "label": "right-thumb-color",
+                "name": "right-thumb-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name (from the Quasar Color Palette) for right thumb",
+                "category": "labels"
+            }
+        ],
+        "category": "Forms",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/range.png",
+        "type": "q-range"
+    },
+    {
+        "label": "Date Picker",
+        "draggable": true,
+        "editable": false,
+        "description": "The QDate component provides a method to input date. Currently it supports Gregorian (default) and Persian calendars.\n\n\n\n",
+        "tagName": "Q-DATE",
+        "content": "<q-date gb_b__v-model=\"\" gb_c__mask=\"YYYY-MM-DD\"></q-date>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "car_id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+                "category": "behavior"
+            },
+            {
+                "label": "landscape",
+                "name": "landscape",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Display the component in landscape mode",
+                "category": "behavior"
+            },
+            {
+                "label": "mask",
+                "name": "mask",
+                "examples": [
+                    "YYYY-MM-DD",
+                    "MMMM Do, YYYY",
+                    "YYYY-MM-DD HH:mm:ss"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Mask (formatting string) used for parsing and formatting value",
+                "category": "model"
+            },
+            {
+                "label": "locale",
+                "name": "locale",
+                "examples": [
+                    ":locale=\"{ monthsShort: ['Ian', 'Feb', 'Mar', '...'] }\""
+                ],
+                "enabled": true,
+                "type": "Object",
+                "desc": "Locale formatting options",
+                "category": "model"
+            },
+            {
+                "label": "calendar",
+                "name": "calendar",
+                "enabled": true,
+                "type": "String",
+                "desc": "Specify calendar type",
+                "category": "model"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "text-color",
+                "name": "text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "square",
+                "name": "square",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Removes border-radius so borders are squared",
+                "category": "style"
+            },
+            {
+                "label": "flat",
+                "name": "flat",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a 'flat' design (no default shadow)",
+                "category": "style"
+            },
+            {
+                "label": "bordered",
+                "name": "bordered",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a default border to the component",
+                "category": "style"
+            },
+            {
+                "label": "readonly",
+                "name": "readonly",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in readonly mode",
+                "category": "state"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "v-model=\"myDate\"",
+                    "v-model=\"[myDate1, myDate2]\"",
+                    "v-model=\"[{ from: myDateFrom, to: myDateTo }]\"",
+                    "v-model=\"[myDate1, { from: myDateFrom, to: myDateTo }, myDate2]\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array",
+                    "Object",
+                    "null",
+                    "undefined"
+                ],
+                "desc": "Date(s) of the component; Must be Array if using 'multiple' prop; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "title",
+                "name": "title",
+                "examples": [
+                    "Birthday"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "When specified, it overrides the default header title; Makes sense when not in 'minimal' mode",
+                "category": "content"
+            },
+            {
+                "label": "subtitle",
+                "name": "subtitle",
+                "examples": [
+                    "John Doe"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "When specified, it overrides the default header subtitle; Makes sense when not in 'minimal' mode",
+                "category": "content"
+            },
+            {
+                "label": "default-year-month",
+                "name": "default-year-month",
+                "examples": [
+                    "1986/02"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "The default year and month to display (in YYYY/MM format) when model is unfilled (undefined or null); Please ensure it is within the navigation min/max year-month (if using them)",
+                "category": "model"
+            },
+            {
+                "label": "default-view",
+                "name": "default-view",
+                "enabled": true,
+                "type": "String",
+                "desc": "The view which will be displayed by default",
+                "category": "model"
+            },
+            {
+                "label": "years-in-month-view",
+                "name": "years-in-month-view",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Show the years selector in months view",
+                "category": "behavior"
+            },
+            {
+                "label": "events",
+                "name": "events",
+                "examples": [
+                    ":events=\"['2018/11/05', '2018/11/06', '2018/11/09', '2018/11/23']\"",
+                    ":events=\"date => date[9] % 3 === 0\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Array",
+                    "Function"
+                ],
+                "desc": "A list of events to highlight on the calendar; If using a function, it receives the date as a String and must return a Boolean (matches or not); If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "model"
+            },
+            {
+                "label": "event-color",
+                "name": "event-color",
+                "examples": [
+                    "teal-10",
+                    ":event-color=\"(date) => date[9] % 2 === 0 ? 'teal' : 'orange'\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Function"
+                ],
+                "desc": "Color name (from the Quasar Color Palette); If using a function, it receives the date as a String and must return a String (color for the received date); If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "style"
+            },
+            {
+                "label": "options",
+                "name": "options",
+                "examples": [
+                    ":options=\"['2018/11/05', '2018/11/12', '2018/11/19', '2018/11/26' ]\"",
+                    ":options=\"date => date[9] % 3 === 0\"",
+                    ":options=\"date => date >= '2018/11/03' && date <= '2018/11/15'\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Array",
+                    "Function"
+                ],
+                "desc": "Optionally configure the days that are selectable; If using a function, it receives the date as a String and must return a Boolean (is date acceptable or not); If using a function then for best performance, reference it from your scope and do not define it inline; Incompatible with 'range' prop",
+                "category": "model"
+            },
+            {
+                "label": "navigation-min-year-month",
+                "name": "navigation-min-year-month",
+                "examples": [
+                    "2020/07"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Lock user from navigating below a specific year+month (in YYYY/MM format); This prop is not used to correct the model; You might want to also use 'default-year-month' prop",
+                "category": "selection"
+            },
+            {
+                "label": "navigation-max-year-month",
+                "name": "navigation-max-year-month",
+                "examples": [
+                    "2020/10"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Lock user from navigating above a specific year+month (in YYYY/MM format); This prop is not used to correct the model; You might want to also use 'default-year-month' prop",
+                "category": "selection"
+            },
+            {
+                "label": "no-unset",
+                "name": "no-unset",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Remove ability to unselect a date; It does not apply to selecting a range over already selected dates",
+                "category": "selection"
+            },
+            {
+                "label": "first-day-of-week",
+                "name": "first-day-of-week",
+                "examples": [
+                    "first-day-of-week=\"1\"",
+                    ":first-day-of-week=\"selectedFirstDayOfTheWeek\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "Sets the day of the week that is considered the first day (0 - Sunday, 1 - Monday, ...); This day will show in the left-most column of the calendar",
+                "category": "model"
+            },
+            {
+                "label": "today-btn",
+                "name": "today-btn",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Display a button that selects the current day",
+                "category": "content"
+            },
+            {
+                "label": "minimal",
+                "name": "minimal",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Don’t display the header",
+                "category": "content"
+            },
+            {
+                "label": "multiple",
+                "name": "multiple",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Allow multiple selection; Model must be Array",
+                "category": "model|selection"
+            },
+            {
+                "label": "range",
+                "name": "range",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Allow range selection; Partial compatibility with 'options' prop: selected ranges might also include 'unselectable' days",
+                "category": "model|selection"
+            },
+            {
+                "label": "emit-immediately",
+                "name": "emit-immediately",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Emit model when user browses month and year too; ONLY for single selection (non-multiple, non-range)",
+                "category": "model"
+            }
+        ],
+        "category": "Forms",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/date_picker.png",
+        "type": "q-date"
+    },
+    {
+        "label": "List",
+        "draggable": true,
+        "editable": false,
+        "description": "The QList and QItem are a group of components which can work together to present multiple line items vertically as a single continuous element. They are best suited for displaying similar data types as rows of information, such as a contact list, a playlist or menu. Each row is called an Item. QItem can also be used outside of a QList too.\n\nLists can encapsulate Items or Item-like components, for example [QExpansionItem](/vue-components/expansion-item) or [QSlideItem](/vue-components/slide-item). Also [QSeparator](/vue-components/separator) can be used to split up sections, where needed.\n\nList Items have the following pre-built child components:\n\n* **QItemSection** - An item section can have several uses for particular content. They are controlled via the `avatar`, `thumbnail` and `side` props. With no props, it will render the main section of your QItem (which spans to the fullest of available space).\n* **QItemLabel** - An item label is useful for predefined text content type within a QItemSection, or for header-like content of the QList itself.\n\n\n\n\n\n",
+        "tagName": "Q-LIST",
+        "content": "<q-list></q-list>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "bordered",
+                "name": "bordered",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a default border to the component",
+                "category": "style"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "separator",
+                "name": "separator",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a separator between contained items",
+                "category": "content"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "padding",
+                "name": "padding",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a material design-like padding on top and bottom",
+                "category": "content"
+            },
+            {
+                "label": "tag",
+                "name": "tag",
+                "examples": [
+                    "div",
+                    "span",
+                    "div",
+                    "ul",
+                    "ol"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "HTML tag to use",
+                "category": "content"
+            }
+        ],
+        "category": "Lists",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/list.png",
+        "type": "q-list"
+    },
+    {
+        "label": "Item",
+        "draggable": true,
+        "editable": false,
+        "description": "",
+        "tagName": "Q-ITEM",
+        "content": "<q-item></q-item>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "to",
+                "name": "to",
+                "examples": [
+                    "/home/dashboard",
+                    ":to=\"{ name: 'my-route-name' }\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Object"
+                ],
+                "desc": "Equivalent to Vue Router <router-link> 'to' property; Superseded by 'href' prop if used",
+                "category": "navigation"
+            },
+            {
+                "label": "exact",
+                "name": "exact",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Equivalent to Vue Router <router-link> 'exact' property; Superseded by 'href' prop if used",
+                "category": "navigation"
+            },
+            {
+                "label": "replace",
+                "name": "replace",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Equivalent to Vue Router <router-link> 'replace' property; Superseded by 'href' prop if used",
+                "category": "navigation"
+            },
+            {
+                "label": "active-class",
+                "name": "active-class",
+                "examples": [
+                    "my-active-class"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Equivalent to Vue Router <router-link> 'active-class' property; Superseded by 'href' prop if used",
+                "category": "navigation"
+            },
+            {
+                "label": "exact-active-class",
+                "name": "exact-active-class",
+                "examples": [
+                    "my-exact-active-class"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Equivalent to Vue Router <router-link> 'active-class' property; Superseded by 'href' prop if used",
+                "category": "navigation"
+            },
+            {
+                "label": "href",
+                "name": "href",
+                "examples": [
+                    "https://quasar.dev"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Native <a> link href attribute; Has priority over the 'to'/'exact'/'replace'/'active-class'/'exact-active-class' props",
+                "category": "navigation"
+            },
+            {
+                "label": "target",
+                "name": "target",
+                "examples": [
+                    "_blank",
+                    "_self",
+                    "_parent",
+                    "_top"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Native <a> link target attribute; Use it only along with 'href' prop; Has priority over the 'to'/'exact'/'replace'/'active-class'/'exact-active-class' props",
+                "category": "navigation"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "active",
+                "name": "active",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put item into 'active' state",
+                "category": "state"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "clickable",
+                "name": "clickable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Is QItem clickable? If it's the case, then it will add hover effects and emit 'click' events",
+                "category": "state"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "inset-level",
+                "name": "inset-level",
+                "examples": [
+                    ":inset-level=\"1\""
+                ],
+                "enabled": true,
+                "type": "Number",
+                "desc": "Apply an inset; Useful when avatar/left side is missing but you want to align content with other items that do have a left side, or when you're building a menu",
+                "category": "content"
+            },
+            {
+                "label": "tabindex",
+                "name": "tabindex",
+                "examples": [
+                    "0",
+                    "100"
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Tabindex HTML attribute value",
+                "category": "general"
+            },
+            {
+                "label": "tag",
+                "name": "tag",
+                "examples": [
+                    "div",
+                    "span",
+                    "a",
+                    "label",
+                    "div"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "HTML tag to render; Suggestion: use 'label' when encapsulating a QCheckbox/QRadio/QToggle so that when user clicks/taps on the whole item it will trigger a model change for the mentioned components",
+                "category": "content"
+            },
+            {
+                "label": "manual-focus",
+                "name": "manual-focus",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put item into a manual focus state; Enables 'focused' prop which will determine if item is focused or not, rather than relying on native hover/focus states",
+                "category": "state"
+            },
+            {
+                "label": "focused",
+                "name": "focused",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Determines focus state, ONLY if 'manual-focus' is enabled / set to true",
+                "category": "state"
+            }
+        ],
+        "category": "Lists",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/item.png",
+        "type": "q-item"
+    },
+    {
+        "label": "Item Label",
+        "draggable": true,
+        "editable": false,
+        "description": "",
+        "tagName": "Q-ITEM-LABEL",
+        "content": "<q-item-label></q-item-label>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "overline",
+                "name": "overline",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Renders an overline label",
+                "category": "content"
+            },
+            {
+                "label": "caption",
+                "name": "caption",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Renders a caption label",
+                "category": "content"
+            },
+            {
+                "label": "header",
+                "name": "header",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Renders a header label",
+                "category": "content"
+            },
+            {
+                "label": "lines",
+                "name": "lines",
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Apply ellipsis when there's not enough space to render on the specified number of lines;",
+                "category": "content|behavior"
+            }
+        ],
+        "category": "Lists",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/item.png",
+        "type": "q-item-label"
+    },
+    {
+        "label": "Video",
+        "draggable": true,
+        "editable": false,
+        "description": "Using the QVideo component makes embedding a video like Youtube easy. It also resizes to fit the container by default.\n\n\n\n",
+        "tagName": "Q-VIDEO",
+        "content": "<q-video></q-video>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "ratio",
+                "name": "ratio",
+                "examples": [
+                    ":ratio=\"4/3\"",
+                    ":ratio=\"16/9\"",
+                    "ratio=\"1\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "Aspect ratio for the content; If value is a String, then avoid using a computational statement (like '16/9') and instead specify the String value of the result directly (eg. '1.7777')",
+                "category": "style"
+            },
+            {
+                "label": "src",
+                "name": "src",
+                "examples": [
+                    "https://www.youtube.com/embed/k3_tw44QsZQ"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "The source url to display in an iframe",
+                "category": "model"
+            },
+            {
+                "label": "title",
+                "name": "title",
+                "examples": [
+                    "My Daily Marathon"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "(Accessibility) Set the native 'title' attribute value of the inner iframe being used",
+                "category": "accessibility"
+            },
+            {
+                "label": "fetchpriority",
+                "name": "fetchpriority",
+                "enabled": true,
+                "type": "String",
+                "desc": "Provides a hint of the relative priority to use when fetching the iframe document",
+                "category": "behavior"
+            },
+            {
+                "label": "loading",
+                "name": "loading",
+                "enabled": true,
+                "type": "String",
+                "desc": "Indicates how the browser should load the iframe",
+                "category": "behavior"
+            },
+            {
+                "label": "referrerpolicy",
+                "name": "referrerpolicy",
+                "enabled": true,
+                "type": "String",
+                "desc": "Indicates which referrer to send when fetching the frame's resource",
+                "category": "behavior"
+            }
+        ],
+        "category": "Multimedia",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/video.png",
+        "type": "q-video"
+    },
+    {
+        "label": "Avatar",
+        "draggable": true,
+        "editable": false,
+        "description": "The QAvatar component creates a scalable, color-able element that can have text, icon or image within its shape. By default it is circular, but it can also be square or have a border-radius applied to give rounded corners to the square shape.\n\nIt is often used with other components in their slots.\n\n\n",
+        "tagName": "Q-AVATAR",
+        "content": "<q-avatar gb_c__icon=\"arrow_downward\" gb_c__color=\"primary\"></q-avatar>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem",
+                    "xs",
+                    "md"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+                "category": "style"
+            },
+            {
+                "label": "font-size",
+                "name": "font-size",
+                "examples": [
+                    "18px",
+                    "2rem"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "The size in CSS units, including unit name, of the content (icon, text)",
+                "category": "style"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "text-color",
+                "name": "text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "icon",
+                "name": "icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
+            },
+            {
+                "label": "square",
+                "name": "square",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Removes border-radius so borders are squared",
+                "category": "style"
+            },
+            {
+                "label": "rounded",
+                "name": "rounded",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a small standard border-radius for a squared shape of the component",
+                "category": "style"
+            }
+        ],
+        "category": "Other",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/avatar.png",
+        "type": "q-avatar"
+    },
+    {
+        "label": "Badge",
+        "draggable": true,
+        "editable": false,
+        "description": "The QBadge component allows you to create a small badge for adding information like contextual data that needs to stand out and get noticed. It is also often useful in combination with other elements like a user avatar to show a number of new messages.\n\n\n",
+        "tagName": "Q-BADGE",
+        "content": "<q-badge gb_c__label=\"10.11.12\" gb_c__color=\"primary\"></q-badge>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "text-color",
+                "name": "text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "floating",
+                "name": "floating",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Tell QBadge if it should float to the top right side of the relative positioned parent element or not",
+                "category": "content"
+            },
+            {
+                "label": "transparent",
+                "name": "transparent",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a 0.8 opacity; Useful especially for floating QBadge",
+                "category": "style"
+            },
+            {
+                "label": "multi-line",
+                "name": "multi-line",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Content can wrap to multiple lines",
+                "category": "content"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "examples": [
+                    "John Doe",
+                    22
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "Badge's content as string; overrides default slot if specified",
+                "category": "content"
+            },
+            {
+                "label": "align",
+                "name": "align",
+                "enabled": true,
+                "type": "String",
+                "desc": "Sets vertical-align CSS prop",
+                "category": "content"
+            },
+            {
+                "label": "outline",
+                "name": "outline",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Use 'outline' design (colored text and borders only)",
+                "category": "style"
+            },
+            {
+                "label": "rounded",
+                "name": "rounded",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Makes a rounded shaped badge",
+                "category": "style"
+            }
+        ],
+        "category": "Other",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/badge.png",
+        "type": "q-badge"
+    },
+    {
+        "label": "Banner",
+        "draggable": true,
+        "editable": false,
+        "description": "The QBanner component creates a banner element to display a prominent message and related optional actions.\n\nAccording to the Material Design spec, the banner should be \"displayed at the top of the screen, below a top app bar\" - but of course you can put one anywhere that makes sense, even in a QDialog.\n\n\n",
+        "tagName": "Q-BANNER",
+        "content": "<q-banner></q-banner>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "inline-actions",
+                "name": "inline-actions",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Display actions on same row as content",
+                "category": "content"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "rounded",
+                "name": "rounded",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a small standard border-radius for a squared shape of the component",
+                "category": "style"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            }
+        ],
+        "category": "Widgets",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/banner.png",
+        "type": "q-banner"
+    },
+    {
+        "label": "Chip",
+        "draggable": true,
+        "editable": false,
+        "description": "The QChip component is basically a simple UI block entity, representing for example more advanced underlying data, such as a contact, in a compact way.\n\nChips can contain entities such as an avatar, text or an icon, optionally having a pointer too. They can also be closed or removed if configured so.\n\n\n\n\n",
+        "tagName": "Q-CHIP",
+        "content": "<q-chip></q-chip>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                    "25px",
+                    "2rem"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "QChip size name or a CSS unit including unit name",
+                "category": "style"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "icon",
+                "name": "icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
+            },
+            {
+                "label": "icon-right",
+                "name": "icon-right",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
+            },
+            {
+                "label": "icon-remove",
+                "name": "icon-remove",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
+            },
+            {
+                "label": "icon-selected",
+                "name": "icon-selected",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "examples": [
+                    "John Doe",
+                    "Book"
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number"
+                ],
+                "desc": "Chip's content as string; overrides default slot if specified",
+                "category": "content"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "text-color",
+                "name": "text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Model of the component determining if QChip should be rendered or not",
+                "category": "model"
+            },
+            {
+                "label": "selected",
+                "name": "selected",
+                "examples": [
+                    "v-model:selected=\"myState\""
+                ],
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Model for QChip if it's selected or not",
+                "category": "model"
+            },
+            {
+                "label": "square",
+                "name": "square",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Sets a low value for border-radius instead of the default one, making it close to a square",
+                "category": "style"
+            },
+            {
+                "label": "outline",
+                "name": "outline",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Display using the 'outline' design",
+                "category": "style"
+            },
+            {
+                "label": "clickable",
+                "name": "clickable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Is QChip clickable? If it's the case, then it will add hover effects and emit 'click' events",
+                "category": "state"
+            },
+            {
+                "label": "removable",
+                "name": "removable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "If set, then it displays a 'remove' icon that when clicked the QChip emits 'remove' event",
+                "category": "state"
+            },
+            {
+                "label": "ripple",
+                "name": "ripple",
+                "examples": [
+                    false,
+                    "{ early: true, center: true, color: 'teal', keyCodes: [] }"
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "Object"
+                ],
+                "desc": "Configure material ripple (disable it by setting it to 'false' or supply a config object)",
+                "category": "style"
+            },
+            {
+                "label": "remove-aria-label",
+                "name": "remove-aria-label",
+                "examples": [
+                    "Remove item"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "aria-label to be used on the remove icon",
+                "category": "accessibility"
+            },
+            {
+                "label": "tabindex",
+                "name": "tabindex",
+                "examples": [
+                    "0",
+                    "100"
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Tabindex HTML attribute value",
+                "category": "general"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            }
+        ],
+        "category": "Widgets",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/chip.png",
+        "type": "q-chip"
+    },
+    {
+        "label": "Icon",
+        "draggable": true,
+        "editable": false,
+        "description": "The QIcon component allows you to easily insert icons within other components or any other area of your pages.\nStipple supports out of the box: [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) , [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) , [Font Awesome](https://fontawesome.com/icons), [Ionicons](http://ionicons.com/), [MDI](https://materialdesignicons.com/), [Eva Icons](https://akveo.github.io/eva-icons), [Themify Icons](https://themify.me/themify-icons), [Line Awesome](https://icons8.com/line-awesome) and [Bootstrap Icons](https://icons.getbootstrap.com/).\n\nFurthermore you can [add support by yourself](/vue-components/icon#custom-mapping) for any icon lib.\n\nThere are multiple types of icons in Stipple: webfont-based, svg-based and image-based. You are not bound to using only one type in your website/app.\n\n\n\n",
+        "tagName": "Q-ICON",
+        "content": "<q-icon gb_c__name=\"warning\" class=\"text-red\"></q-icon>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem",
+                    "xs",
+                    "md"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+                "category": "style"
+            },
+            {
+                "label": "tag",
+                "name": "tag",
+                "examples": [
+                    "div",
+                    "span",
+                    "div",
+                    "i"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "HTML tag to render, unless no icon is supplied or it's an svg icon",
+                "category": "content"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "model"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "left",
+                "name": "left",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Useful if icon is on the left side of something: applies a standard margin on the right side of Icon",
+                "category": "content"
+            },
+            {
+                "label": "right",
+                "name": "right",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Useful if icon is on the right side of something: applies a standard margin on the left side of Icon",
+                "category": "content"
+            }
+        ],
+        "category": "Widgets",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/icon.png",
+        "type": "q-icon"
+    },
+    {
+        "label": "Rating",
+        "draggable": true,
+        "editable": false,
+        "description": "Stipple Rating is a Component which allows users to rate items, usually known as “Star Rating”.\n\n\n",
+        "tagName": "Q-RATING",
+        "content": "<q-rating gb_b__v-model=\"\"></q-rating>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "car_id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+                "category": "behavior"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem",
+                    "xs",
+                    "md"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+                "category": "style"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "v-model=\"rating\"",
+                    ":model-value=\"rating\"",
+                    ":model-value=\"2\""
+                ],
+                "enabled": true,
+                "type": "Number",
+                "desc": "Model of the component; Either use this property (along with a listener for 'update:model-value' event) OR use v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "max",
+                "name": "max",
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Number of icons to display",
+                "category": "general"
+            },
+            {
+                "label": "icon",
+                "name": "icon",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array"
+                ],
+                "desc": "Icon name following Quasar convention; make sure you have the icon library installed unless you are using 'img:' prefix; If an array is provided each rating value will use the corresponding icon in the array (0 based)",
+                "category": "content"
+            },
+            {
+                "label": "icon-selected",
+                "name": "icon-selected",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array"
+                ],
+                "desc": "Icon name following Quasar convention to be used when selected (optional); make sure you have the icon library installed unless you are using 'img:' prefix; If an array is provided each rating value will use the corresponding icon in the array (0 based)",
+                "category": "content"
+            },
+            {
+                "label": "icon-half",
+                "name": "icon-half",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array"
+                ],
+                "desc": "Icon name following Quasar convention to be used when selected (optional); make sure you have the icon library installed unless you are using 'img:' prefix; If an array is provided each rating value will use the corresponding icon in the array (0 based)",
+                "category": "content"
+            },
+            {
+                "label": "icon-aria-label",
+                "name": "icon-aria-label",
+                "examples": [
+                    "Rating",
+                    "[\"Bad\", \"Normal\", \"Good\"]"
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array"
+                ],
+                "desc": "Label to be set on aria-label for Icon; If an array is provided each rating value will use the corresponding aria-label in the array (0 based); If string value is provided the rating value will be appended; If not provided the name of the icon will be used",
+                "category": "accessibility"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10",
+                    "primary",
+                    "teal-10",
+                    "[\"accent\", \"grey-7\"] "
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array"
+                ],
+                "desc": "Color name for component from the Quasar Color Palette; v1.5.0+: If an array is provided each rating value will use the corresponding color in the array (0 based)",
+                "category": "style"
+            },
+            {
+                "label": "color-selected",
+                "name": "color-selected",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array"
+                ],
+                "desc": "Color name from the Quasar Palette for selected icons",
+                "category": "style"
+            },
+            {
+                "label": "color-half",
+                "name": "color-half",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Array"
+                ],
+                "desc": "Color name from the Quasar Palette for half selected icons",
+                "category": "style"
+            },
+            {
+                "label": "no-dimming",
+                "name": "no-dimming",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Does not lower opacity for unselected icons",
+                "category": "style"
+            },
+            {
+                "label": "no-reset",
+                "name": "no-reset",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "When used, disables default behavior of clicking/tapping on icon which represents current model value to reset model to 0",
+                "category": "model"
+            },
+            {
+                "label": "readonly",
+                "name": "readonly",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in readonly mode",
+                "category": "state"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            }
+        ],
+        "category": "Widgets",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/rating.png",
+        "type": "q-rating"
+    },
+    {
+        "label": "Spinner",
+        "draggable": true,
+        "editable": false,
+        "description": "A Spinner is used to show the user a timely process is currently taking place. It is an important UX feature, which gives the user the feeling the system is continuing to work for longer term activities, like grabbing data from the server or some heavy calculations.\n\n\n\n\n",
+        "tagName": "Q-SPINNER",
+        "content": "<q-spinner></q-spinner>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem",
+                    "xs",
+                    "md"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+                "category": "style"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "thickness",
+                "name": "thickness",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Override value to use for stroke-width",
+                "category": "style"
+            }
+        ],
+        "category": "Widgets",
+        "enabled": true,
+        "media": "images/icons/components/ui_components/spinner.png",
+        "type": "q-spinner"
+    },
+    {
+        "label": "Tree",
+        "draggable": true,
+        "editable": false,
+        "description": "Stipple Tree represents a highly configurable component that displays hierarchical data, such as a table of contents in a tree structure.\n\n\n",
+        "tagName": "Q-TREE",
+        "content": "<q-tree></q-tree>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "nodes",
+                "name": "nodes",
+                "examples": [
+                    "[ {...}, {...} ]"
+                ],
+                "enabled": true,
+                "type": "Array",
+                "desc": "The array of nodes that designates the tree structure",
+                "category": "content"
+            },
+            {
+                "label": "node-key",
+                "name": "node-key",
+                "examples": [
+                    "key",
+                    "id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "The property name of each node object that holds a unique node id",
+                "category": "content"
+            },
+            {
+                "label": "label-key",
+                "name": "label-key",
+                "examples": [
+                    "name",
+                    "description"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "The property name of each node object that holds the label of the node",
+                "category": "content"
+            },
+            {
+                "label": "children-key",
+                "name": "children-key",
+                "examples": [
+                    "roles",
+                    "relatives"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "The property name of each node object that holds the list of children of the node",
+                "category": "content"
+            },
+            {
+                "label": "no-connectors",
+                "name": "no-connectors",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Do not display the connector lines between nodes",
+                "category": "style"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "control-color",
+                "name": "control-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for controls (like checkboxes) from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "text-color",
+                "name": "text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "selected-color",
+                "name": "selected-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for selected nodes (from the Quasar Color Palette)",
+                "category": "style"
+            },
+            {
+                "label": "dense",
+                "name": "dense",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Dense mode; occupies less space",
+                "category": "style"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "icon",
+                "name": "icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
+            },
+            {
+                "label": "tick-strategy",
+                "name": "tick-strategy",
+                "enabled": true,
+                "type": "String",
+                "desc": "The type of strategy to use for the selection of the nodes",
+                "category": "behavior"
+            },
+            {
+                "label": "ticked",
+                "name": "ticked",
+                "examples": [
+                    "v-model:ticked=\"tickedKeys\""
+                ],
+                "enabled": true,
+                "type": "Array",
+                "desc": "Keys of nodes that are ticked",
+                "category": "state"
+            },
+            {
+                "label": "expanded",
+                "name": "expanded",
+                "examples": [
+                    "v-model:expanded=\"expandedKeys\""
+                ],
+                "enabled": true,
+                "type": "Array",
+                "desc": "Keys of nodes that are expanded",
+                "category": "state"
+            },
+            {
+                "label": "selected",
+                "name": "selected",
+                "examples": [
+                    "v-model:selected=\"selectedKey\""
+                ],
+                "enabled": true,
+                "type": "Any",
+                "desc": "Key of node currently selected",
+                "category": "state"
+            },
+            {
+                "label": "no-selection-unset",
+                "name": "no-selection-unset",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Do not allow un-selection when clicking currently selected node",
+                "category": "behavior"
+            },
+            {
+                "label": "default-expand-all",
+                "name": "default-expand-all",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Allow the tree to have all its branches expanded, when first rendered",
+                "category": "behavior"
+            },
+            {
+                "label": "accordion",
+                "name": "accordion",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Allows the tree to be set in accordion mode",
+                "category": "behavior"
+            },
+            {
+                "label": "no-transition",
+                "name": "no-transition",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Turn off transition effects when expanding/collapsing nodes; Also enhances perf by a lot as a side-effect; Recommended for big trees",
+                "category": "behavior"
+            },
+            {
+                "label": "filter",
+                "name": "filter",
+                "examples": [
+                    ":filter=\"searchText\""
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "The text value to be used for filtering nodes",
+                "category": "filter"
+            },
+            {
+                "label": "filter-method",
+                "name": "filter-method",
+                "enabled": true,
+                "type": "Function",
+                "desc": "The function to use to filter the tree nodes; For best performance, reference it from your scope and do not define it inline",
+                "category": "filter"
+            },
+            {
+                "label": "duration",
+                "name": "duration",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Toggle animation duration (in milliseconds)",
+                "category": "style"
+            },
+            {
+                "label": "no-nodes-label",
+                "name": "no-nodes-label",
+                "examples": [
+                    "No nodes to show!"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Override default such label for when no nodes are available",
+                "category": "content"
+            },
+            {
+                "label": "no-results-label",
+                "name": "no-results-label",
+                "examples": [
+                    "No results"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Override default such label for when no nodes are available due to filtering",
+                "category": "content"
+            }
+        ],
+        "category": "Widgets",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/tree.png",
+        "type": "q-tree"
+    },
+    {
+        "label": "Popup Proxy",
+        "draggable": true,
+        "editable": false,
+        "description": "",
+        "tagName": "Q-POPUP-PROXY",
+        "content": "<q-popup-proxy></q-popup-proxy>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "target",
+                "name": "target",
+                "examples": [
+                    ":target=\"false\"",
+                    ":target=\"$refs.target\"",
+                    "target=\".my-parent\"",
+                    "target=\"#target-id\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "String",
+                    "Element"
+                ],
+                "desc": "Configure a target element to trigger component toggle; 'true' means it enables the parent DOM element, 'false' means it disables attaching events to any DOM elements; By using a String (CSS selector) or a DOM element it attaches the events to the specified DOM element (if it exists)",
+                "category": "behavior"
+            },
+            {
+                "label": "no-parent-event",
+                "name": "no-parent-event",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Skips attaching events to the target DOM element (that trigger the element to get shown)",
+                "category": "behavior"
+            },
+            {
+                "label": "context-menu",
+                "name": "context-menu",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Allows the component to behave like a context menu, which opens with a right mouse click (or long tap on mobile)",
+                "category": "behavior"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Defines the state of the component (shown/hidden); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "breakpoint",
+                "name": "breakpoint",
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Breakpoint (in pixels) of window width/height (whichever is smaller) from where a Menu will get to be used instead of a Dialog",
+                "category": "behavior"
+            }
+        ],
+        "category": "Utilities",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/popup-proxy.png",
+        "type": "q-popup-proxy"
+    },
+    {
+        "label": "Timeline",
+        "draggable": true,
+        "editable": false,
+        "description": "The QTimeline component displays a list of events in chronological order. It is typically a graphic design showing a long bar labelled with dates alongside itself and usually events. Timelines can use any time scale, depending on the subject and data.\n\nQTimeline has 3 layouts:\n\n* `dense` (default) is showing headings, titles, subtitles and content on the **timeline-specified side** of the time line (default on right)\n* `comfortable` is showing headings, titles and content on the **timeline-specified side** of the time line (default on right) and the subtitles on the other side\n* `loose` is showing headings on center, titles and content on the **entry-specified side** of the time line (default on right) and the subtitles on the other side\n\n\n\n",
+        "tagName": "Q-TIMELINE",
+        "content": "<q-timeline></q-timeline>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "side",
+                "name": "side",
+                "enabled": true,
+                "type": "String",
+                "desc": "Side to place the timeline entries in dense and comfortable layout; For loose layout it gets overridden by QTimelineEntry side prop",
+                "category": "behavior"
+            },
+            {
+                "label": "layout",
+                "name": "layout",
+                "enabled": true,
+                "type": "String",
+                "desc": "Layout of the timeline. Dense keeps content and labels on one side. Comfortable keeps content on one side and labels on the opposite side. Loose puts content on both sides.",
+                "category": "behavior"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            }
+        ],
+        "category": "Timeline",
+        "enabled": false,
+        "media": "images/icons/components/ui_components/timeline.png",
+        "type": "q-timeline"
+    }
+]
