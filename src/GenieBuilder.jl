@@ -62,9 +62,8 @@ function _go(port)
     Genie.up(port; async = false)
   catch ex
     @error ex
-    stop()
   finally
-    stop()
+    exit()
   end
 end
 
