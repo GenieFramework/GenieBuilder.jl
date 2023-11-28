@@ -424,7 +424,7 @@ function start(app::Application)
 
                                                 up(;  async = true,
                                                       open_browser = true,
-                                                      query = Dict("CHANNEL__" => $(ENV["GENIE_CHANNEL"]))
+                                                      query = Dict("CHANNEL__" => ENV["GENIE_CHANNEL"])
                                                 ); # end up
 
                                                 while true
