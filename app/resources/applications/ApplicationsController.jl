@@ -421,11 +421,11 @@ function start(app::Application)
                                                 using GenieFramework.Genie;
                                                 Core.eval(Main, :(const UserApp = $(@__MODULE__)));
                                                 Genie.genie(context = @__MODULE__);
+
                                                 up(;  async = true,
                                                       open_browser = true,
                                                       query = Dict("CHANNEL__" => $(ENV["GENIE_CHANNEL"]))
-                                                ) # end up
-                                                ); # end cmd
+                                                ); # end up
 
                                                 while true
                                                   sleep(1)
