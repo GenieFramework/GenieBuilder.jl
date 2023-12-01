@@ -397,6 +397,11 @@ function unwatch(path::AbstractString, appid::DbId)
 end
 
 
+function real_base_path(pattern::AbstractString, port)
+  replace(pattern, "<port>" => string(port))
+end
+
+
 """
   start(app)
 
@@ -417,27 +422,36 @@ function start(app::Application)
                                                 Pkg._auto_gc_enabled[] = false;
                                                 Pkg.activate(".");
                                                 using GenieFramework;
+                                                using GenieFramework.Revise;
                                                 @genietools();
                                                 using GenieFramework.Genie;
                                                 Core.eval(Main, :(const UserApp = $(@__MODULE__)));
                                                 Genie.genie(context = @__MODULE__);
 
                                                 up(;  async = true,
-                                                      open_browser = true,
+                                                      open_browser = (ENV["GENIE_OPEN_BROWSER"] == "true"),
                                                       query = Dict("CHANNEL__" => ENV["GENIE_CHANNEL"])
                                                 ); # end up
 
                                                 while true
-                                                  sleep(1)
+                                                  revise()
+                                                  Genie.HTTPUtils.HTTP.get("http://$(ENV["GENIE_HOST"]):$(ENV["PORT"])/?CHANNEL__=$(ENV["GENIE_CHANNEL"])");
+                                                  revise()
+                                                  sleep(10)
                                                 end
                   '`; dir = fullpath(app), detach = false)
         cmd = addenv(cmd, "PORT" => app.port,
                           "WSPORT" => app.port,
                           "WSEXPPORT" => app.port,
+                          "CHANNEL__" => app.channel,
                           "GENIE_CHANNEL" => app.channel,
                           "GENIE_ENV" => "dev",
+                          "GENIE_HOST" => Base.get(ENV, "GENIE_HOST", "0.0.0.0"),
                           "GENIE_BANNER" => "false",
-                          "GENIE_PUSH_ERRORS" => "false",)
+                          "GENIE_PUSH_ERRORS" => "false",
+                          "GENIE_OPEN_BROWSER" => Base.get(ENV, "GENIE_OPEN_BROWSER", "true"),
+                          "BASEPATH" => real_base_path(Base.get(ENV, "GB_APP_BASEPATH", ""), app.port),
+                        )
 
         # in the cloud the :<port> becomes /<path>
         # haskey(ENV, "GB_SOURCE") && ENV["GB_SOURCE"] == "cloud" && (cmd = addenv(cmd, "BASEPATH" => "/$(app.port)"))
