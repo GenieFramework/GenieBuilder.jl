@@ -421,9 +421,12 @@ function start(app::Application)
                                                 using Pkg;
                                                 Pkg._auto_gc_enabled[] = false;
                                                 Pkg.activate(".");
+
                                                 using GenieFramework;
                                                 using GenieFramework.Revise;
+
                                                 @genietools();
+
                                                 using GenieFramework.Genie;
                                                 Core.eval(Main, :(const UserApp = $(@__MODULE__)));
                                                 Genie.genie(context = @__MODULE__);
@@ -437,7 +440,7 @@ function start(app::Application)
                                                   revise()
                                                   Genie.HTTPUtils.HTTP.get("http://$(ENV["GENIE_HOST"]):$(ENV["PORT"])/?CHANNEL__=$(ENV["GENIE_CHANNEL"])");
                                                   revise()
-                                                  sleep(10)
+                                                  sleep(1)
                                                 end
                   '`; dir = fullpath(app), detach = false)
         cmd = addenv(cmd, "PORT" => app.port,
@@ -450,7 +453,7 @@ function start(app::Application)
                           "GENIE_BANNER" => "false",
                           "GENIE_PUSH_ERRORS" => "false",
                           "GENIE_OPEN_BROWSER" => Base.get(ENV, "GENIE_OPEN_BROWSER", "true"),
-                          "BASEPATH" => real_base_path(Base.get(ENV, "GB_APP_BASEPATH", ""), app.port),
+                          # "BASEPATH" => real_base_path(Base.get(ENV, "GB_APP_BASEPATH", ""), app.port),
                         )
 
         # in the cloud the :<port> becomes /<path>
