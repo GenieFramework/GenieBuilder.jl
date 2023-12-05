@@ -444,8 +444,6 @@ function start(app::Application)
     notify("started:start", app.id)
     persist_status(app, STARTING_STATUS)
 
-    @show "Starting the app"
-
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
         cmd = Cmd(`julia --startup-file=no -e '
