@@ -5,6 +5,7 @@ using GenieBuilder.ApplicationsController.Applications
 using RemoteREPL
 using JSON3
 import GenieDevTools
+using Logging
 
 Genie.config.websockets_server = true
 
@@ -224,8 +225,10 @@ end
 
 function autocheck_apps_status()
   for app in GenieBuilder.apps()
-    ApplicationsController.status_request(app, false; statuscheck = true)
-    sleep(1)
+    with_logger(NullLogger()) do
+      ApplicationsController.status_request(app, false; statuscheck = true)
+      sleep(1)
+    end
   end
   sleep(30)
 end
@@ -242,10 +245,6 @@ function main()
     ApplicationsController.notify(; message = line,
                                     type = type,
                                     status = type == :error ? ApplicationsController.ERROR_STATUS : ApplicationsController.OKSTATUS)
-    # println()
-    # println("GenieBuilder: ")
-    # println(line)
-    # println()
   end |> errormonitor
 
   @async begin

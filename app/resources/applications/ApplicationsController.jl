@@ -77,11 +77,12 @@ end
 Notifies the GenieBuilder UI of an event via websockets push
 """
 function notify(message::String,
-                appid::Union{SearchLight.DbId,Nothing} = nothing,
+                appid::Union{SearchLight.DbId,Nothing,Int} = nothing,
                 status::String = OKSTATUS,
                 type::Union{String,Symbol} = "info",
                 eventid::String = params(:eventid, "0")) :: Bool
   type = string(type)
+  isa(appid, SearchLight.DbId) && (appid = appid.value)
 
   # println(Dict(
   #   :message    => message,
@@ -99,7 +100,7 @@ function notify(message::String,
 
   try
     appid !== nothing && type == ERROR_STATUS &&
-      persist_status(SearchLight.findone(Application, id = appid.value), ERROR_STATUS)
+      persist_status(SearchLight.findone(Application, id = appid), ERROR_STATUS)
   catch ex
     @error ex
   end
@@ -108,7 +109,7 @@ function notify(message::String,
     Genie.WebChannels.broadcast(
       Dict(
         :message    => message,
-        :appid      => isnothing(appid) ? 0 : appid.value,
+        :appid      => isnothing(appid) ? 0 : appid,
         :status     => status,
         :type       => type,
         :eventid    => eventid,
@@ -366,24 +367,52 @@ Watches a path for changes and notifies the GenieBuilder UI
 """
 function watch(path::AbstractString, appid::Int)
   app = try
-    ApplicationsController.get(appid.value)
+    ApplicationsController.get(appid)
   catch ex
     @error ex
+    return
   end
 
-  Genie.config.watch_handlers["$(appid.value)"] = [
+  Genie.Watch.handlers!("$(appid)", [
     () -> begin
             try
               HTTP.request("GET", "$(apphost):$(app.port)")
             catch ex
               @error ex
             end
+          end,
+    () -> begin
+            ApplicationsController.notify("changed:files", appid)
+          end,
+    () -> begin
+            current_time = time()
+            max_time = 0
+            newest_file = ""
+            ext = ""
+            for (root, dirs, files) in walkdir(path)
+              # List all files
+              for file in files
+                ext = splitext(file)[2]
+                startswith(ext, ".") && (ext = ext[2:end])
+                ext in Genie.config.watch_extensions || continue
+
+                # Get file creation time
+                file_time = Base.Filesystem.mtime(joinpath(root, file))
+                if file_time > max_time && file_time <= current_time
+                  max_time = file_time
+                  newest_file = abspath(joinpath(root, file))
+                end
+              end
+            end
+            isempty(newest_file) && return
+            ApplicationsController.notify("filechanged:$newest_file", appid)
           end
-    () -> ApplicationsController.notify("changed:files", appid)
-  ]
+  ])
 
   Genie.Watch.watchpath(path)
-  @async Genie.Watch.watch()
+  Genie.Watch.watch()
+
+  nothing
 end
 
 """
@@ -392,7 +421,7 @@ end
 Unwatches a path for changes
 """
 function unwatch(path::AbstractString, appid::DbId)
-  delete!(Genie.config.watch_handlers, appid.value)
+  Genie.Watch.delete_handlers(appid.value)
   Genie.Watch.unwatch(path)
 end
 
@@ -414,6 +443,8 @@ function start(app::Application)
   try
     notify("started:start", app.id)
     persist_status(app, STARTING_STATUS)
+
+    @show "Starting the app"
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
       try
@@ -476,24 +507,32 @@ function start(app::Application)
       end
     end
 
+    # @async begin
+    notify("ended:start", app.id)
+    persist_status(app, ONLINE_STATUS)
+    @async watch(fullpath(app), app.id.value) |> errormonitor
+    @async tailapplog(app) |> errormonitor
     @async begin
-      while status_request(app, false; statuscheck = true, persist = false) in [STARTING_STATUS, OFFLINE_STATUS]
-        sleep(1)
+      Base.with_logger(NullLogger()) do
+        while status_request(app, false; statuscheck = true, persist = false) in [STARTING_STATUS, OFFLINE_STATUS]
+          sleep(1)
+        end
       end
-
-      notify("ended:start", app.id)
-      persist_status(app, ONLINE_STATUS)
-      watch(fullpath(app), app.id)
-      @async tailapplog(app) |> errormonitor
     end |> errormonitor
+    # end
   catch ex
-    @error ex
+    if Genie.Configuration.isdev()
+      rethrow(ex)
+    else
+      @error ex
+    end
+
     notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
 
     return (:status => FAILSTATUS) |> json
   end
 
-  # app.status = ""
+  app.status = ""
   save!(app)
 
   (:status => OKSTATUS) |> json
@@ -505,13 +544,15 @@ end
 Tails an app's log and notifies the GenieBuilder UI
 """
 function tailapplog(app::Application)
-  if ! isfile joinpath(fullpath(app), "log")
+  app_logs_dir = joinpath(fullpath(app), "log")
+  if ! isdir(app_logs_dir)
     # wait for the log file to be created
+    @warn "Waiting for the log folder to be created"
     sleep(10)
     return tailapplog(app)
   end
 
-  GenieDevTools.tailapplog(joinpath(fullpath(app), "log")) do line
+  GenieDevTools.tailapplog(app_logs_dir) do line
     type = GenieDevTools.logtype(line)
     line = "log:message $line"
     line = Genie.WebChannels.tagbase64encode(line)

@@ -1,4 +1,4 @@
-let sock = new WebSocket("ws://127.0.0.1:10102");
+let sock = new WebSocket("ws://127.0.0.1:10101");
 console.log(sock);
 
 sock.addEventListener('open', function(event) {
