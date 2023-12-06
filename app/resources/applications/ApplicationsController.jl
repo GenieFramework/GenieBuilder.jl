@@ -482,7 +482,7 @@ function start(app::Application)
                           "GENIE_BANNER" => "false",
                           "GENIE_PUSH_ERRORS" => "false",
                           "GENIE_OPEN_BROWSER" => Base.get(ENV, "GENIE_OPEN_BROWSER", "true"),
-                          # "BASEPATH" => real_base_path(Base.get(ENV, "GB_APP_BASEPATH", ""), app.port),
+                          "BASEPATH" => real_base_path(Base.get(ENV, "GB_APP_BASEPATH", ""), app.port),
                         )
 
         # in the cloud the :<port> becomes /<path>
