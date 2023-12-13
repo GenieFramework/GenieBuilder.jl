@@ -427,7 +427,7 @@ end
 
 
 function real_base_path(pattern::AbstractString, port)
-  replace(pattern, "<port>" => string(port))
+  replace(pattern, "__PORT__" => string(port))
 end
 
 
@@ -472,9 +472,9 @@ function start(app::Application)
                                                   sleep(1)
                                                 end
                   '`; dir = fullpath(app), detach = false)
-        cmd = addenv(cmd, "PORT" => app.port,
-                          "WSPORT" => app.port,
-                          "WSEXPPORT" => app.port,
+        cmd = addenv(cmd, "PORT" => Base.get(ENV, "GB_APP_PORT", app.port),
+                          "WSPORT" => Base.get(ENV, "GB_APP_WSPORT", app.port),
+                          "WSEXPPORT" => Base.get(ENV, "GB_APP_WSEXPPORT", app.port),
                           "CHANNEL__" => app.channel,
                           "GENIE_CHANNEL" => app.channel,
                           "GENIE_ENV" => "dev",
