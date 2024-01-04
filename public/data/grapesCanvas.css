@@ -8,9 +8,15 @@ button{
     min-height: 20px;
 }
 
-partial, q-select, q-input, q-range, q-slider, q-table, q-editor, q-date, q-video {
+partial, q-select, q-input, q-range, q-slider, q-table, q-editor, q-date, q-video, q-list, {
     display: block;
 }
+
+q-timeline, q-timeline-entry, q-item{
+    display: block;
+    border: 1px black;
+}
+
 q-checkbox, q-radio, q-toggle, q-btn, q-avatar, q-badge {
     display: inline-block;
 }
@@ -38,6 +44,25 @@ q-separator, q-space{
     display: block;
 }
 
+q-card {
+    background-color: white;
+    display:block;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
+    padding: 16px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+q-scroll-area{
+    border: 1px dashed black;
+    display: block;
+  background: linear-gradient(to right, white, lightgray);
+}
+
+q-img {
+    display: block;
+    background:lightgray;
+}
+
 /* ---- layout container for gbTemplatecontainer ---- */
 .layoutMockRoot{
     background-color: #f1f3f7;
@@ -60,3 +85,8 @@ q-separator, q-space{
     outline: 1px dashed rgba(170,170,170,0.7);
     outline-offset: -2px;
 } */
+
+JULIA_CODE {
+    padding: 10px;
+    display: inline-block;
+}
