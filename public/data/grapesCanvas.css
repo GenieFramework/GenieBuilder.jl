@@ -8,8 +8,9 @@ button{
     min-height: 20px;
 }
 
-partial, q-select, q-input, q-range, q-slider, q-table, q-editor, q-date, q-video, q-list, {
+partial, q-select, q-input, q-range, q-slider, q-table, q-editor, q-date, q-video, q-list {
     display: block;
+    min-height: 20px;
 }
 
 q-timeline, q-timeline-entry, q-item{
@@ -87,6 +88,13 @@ q-img {
 } */
 
 JULIA_CODE {
+    padding: 10px;
+    display: inline-block;
+}
+
+.componentError{
+    background-color: #d06b6b;
+    color: #ffffff;
     padding: 10px;
     display: inline-block;
 }
