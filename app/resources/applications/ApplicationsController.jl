@@ -14,6 +14,7 @@ using Genie.WebChannels
 using Dates
 using Scratch
 using ZipFile
+using TOML
 
 import StippleUI
 import GeniePackageManager
@@ -161,7 +162,25 @@ end
 
 
 function name_from_path(path::AbstractString)
+  name = name_from_toml(path)
+  name !== nothing && return name
   splitpath(path)[end] |> valid_appname |> lowercase
+end
+
+
+function name_from_toml(path::AbstractString)
+  try
+    toml = joinpath(path, "Project.toml")
+    isfile(toml) || return nothing
+
+    toml = TOML.parsefile(toml)
+    haskey(toml, "name") || return nothing
+
+    toml["name"] |> valid_appname |> lowercase
+  catch ex
+    @error ex
+    nothing
+  end
 end
 
 
