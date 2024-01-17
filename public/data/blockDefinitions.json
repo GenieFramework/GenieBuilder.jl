@@ -86,6 +86,7 @@
             }
         ],
         "category": "Content",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/separator.png",
         "type": "q-separator"
@@ -107,6 +108,7 @@
             }
         ],
         "category": "Content",
+        "hideFromLibrary": false,
         "enabled": false,
         "media": "images/icons/components/ui_components/space.png",
         "type": "q-space"
@@ -136,6 +138,7 @@
             }
         ],
         "category": "Content",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/toolbar.png",
         "type": "q-toolbar"
@@ -658,6 +661,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/input_text_field.png",
         "type": "q-input"
@@ -773,6 +777,7 @@
             }
         ],
         "category": "Other",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/badge.png",
         "type": "s-bignumber"
@@ -1158,6 +1163,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/button.png",
         "type": "q-btn"
@@ -2031,6 +2037,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/select.png",
         "type": "q-select"
@@ -2218,6 +2225,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/radio.png",
         "type": "q-radio"
@@ -2291,6 +2299,7 @@
             }
         ],
         "category": "Content",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/card.png",
         "type": "q-card"
@@ -2539,6 +2548,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/checkbox.png",
         "type": "q-checkbox"
@@ -2927,6 +2937,7 @@
             }
         ],
         "category": "Other",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/expansion_item.png",
         "type": "q-expansion-item"
@@ -3208,6 +3219,7 @@
             }
         ],
         "category": "Widgets",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/toggle.png",
         "type": "q-toggle"
@@ -3636,6 +3648,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/slider.png",
         "type": "q-slider"
@@ -4184,6 +4197,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/range.png",
         "type": "q-range"
@@ -4534,6 +4548,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/date_picker.png",
         "type": "q-date"
@@ -4544,7 +4559,7 @@
         "editable": false,
         "description": "The QDate component provides a method to input date. Currently it supports Gregorian (default) and Persian calendars.\n\n\n\n",
         "tagName": "S-DATEFIELD",
-        "content": "<q-input gb_b__v-model=\"\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a date\"><q-icon class=\"cursor-pointer\" gb_c__name=\"event\" style=\"height: 100%;\"><q-popup-proxy gb_c__cover=\"true\" gb_c__transition-hide=\"scale\" gb_c__transition-show=\"scale\"><q-date gb_b__v-model=\"\" gb_c__mask=\"YYYY-MM-DD\" gb_c__no-unset=\"true\" gb_c__today-btn=\"true\"></q-date></q-popup-proxy></q-icon></q-input>",
+        "content": "<q-input gb_b__v-model=\"\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a date\"><q-icon class=\"cursor-pointer\" gb_c__name=\"event\" style=\"height: 100%;\"><q-popup-proxy><q-date gb_b__v-model=\"\" gb_c__mask=\"YYYY-MM-DD\" gb_c__no-unset=\"true\" gb_c__today-btn=\"true\"></q-date></q-popup-proxy></q-icon></q-input>",
         "droppable": false,
         "properties": [
             {
@@ -5052,6 +5067,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/date_picker.png",
         "type": "s-datefield"
@@ -5296,6 +5312,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/time.png",
         "type": "q-time"
@@ -5306,7 +5323,7 @@
         "editable": false,
         "description": "The QTime component provides a method to input time.\n\n\n\n",
         "tagName": "S-TIMEFIELD",
-        "content": "<q-input gb_b__v-model=\"\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a time\"><q-icon class=\"cursor-pointer\" gb_c__name=\"alarm\" style=\"height: 100%;\"><q-popup-proxy gb_c__cover=\"true\" gb_c__transition-hide=\"scale\" gb_c__transition-show=\"scale\"><q-time gb_b__v-model=\"\" gb_c__mask=\"HH:mm:ss\"></q-time></q-popup-proxy></q-icon></q-input>",
+        "content": "<q-input gb_b__v-model=\"\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a time\"><q-icon class=\"cursor-pointer\" gb_c__name=\"alarm\" style=\"height: 100%;\"><q-popup-proxy><q-time gb_b__v-model=\"\" gb_c__mask=\"HH:mm:ss\"></q-time></q-popup-proxy></q-icon></q-input>",
         "droppable": false,
         "properties": [
             {
@@ -5814,6 +5831,7 @@
             }
         ],
         "category": "Forms",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/time.png",
         "type": "s-timefield"
@@ -5890,6 +5908,7 @@
             }
         ],
         "category": "Lists",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/list.png",
         "type": "q-list"
@@ -6086,6 +6105,7 @@
             }
         ],
         "category": "Lists",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/item.png",
         "type": "q-item"
@@ -6142,6 +6162,7 @@
             }
         ],
         "category": "Lists",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/item.png",
         "type": "q-item-label"
@@ -6203,6 +6224,7 @@
             }
         ],
         "category": "Lists",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/item.png",
         "type": "q-item-section"
@@ -6921,6 +6943,7 @@
             }
         ],
         "category": "Tables",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/table.png",
         "type": "q-table"
@@ -7205,6 +7228,7 @@
             }
         ],
         "category": "Multimedia",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/img.png",
         "type": "q-img"
@@ -7288,6 +7312,7 @@
             }
         ],
         "category": "Multimedia",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/video.png",
         "type": "q-video"
@@ -7400,6 +7425,7 @@
             }
         ],
         "category": "Other",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/avatar.png",
         "type": "q-avatar"
@@ -7516,6 +7542,7 @@
             }
         ],
         "category": "Other",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/badge.png",
         "type": "q-badge"
@@ -7569,6 +7596,7 @@
             }
         ],
         "category": "Widgets",
+        "hideFromLibrary": false,
         "enabled": false,
         "media": "images/icons/components/ui_components/banner.png",
         "type": "q-banner"
@@ -7832,6 +7860,7 @@
             }
         ],
         "category": "Widgets",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/chip.png",
         "type": "q-chip"
@@ -7927,6 +7956,7 @@
             }
         ],
         "category": "Widgets",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/icon.png",
         "type": "q-icon"
@@ -8150,6 +8180,7 @@
             }
         ],
         "category": "Widgets",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/rating.png",
         "type": "q-rating"
@@ -8208,6 +8239,7 @@
             }
         ],
         "category": "Widgets",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/spinner.png",
         "type": "q-spinner"
@@ -8498,6 +8530,7 @@
             }
         ],
         "category": "Widgets",
+        "hideFromLibrary": false,
         "enabled": false,
         "media": "images/icons/components/ui_components/tree.png",
         "type": "q-tree"
@@ -8572,7 +8605,8 @@
             }
         ],
         "category": "Utilities",
-        "enabled": false,
+        "hideFromLibrary": true,
+        "enabled": true,
         "media": "images/icons/components/ui_components/popup-proxy.png",
         "type": "q-popup-proxy"
     },
@@ -8632,6 +8666,7 @@
             }
         ],
         "category": "Timeline",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/timeline.png",
         "type": "q-timeline"
@@ -8760,6 +8795,7 @@
             }
         ],
         "category": "Timeline",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/timeline-entry.png",
         "type": "q-timeline-entry"
@@ -8937,6 +8973,7 @@
             }
         ],
         "category": "Content",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/square.png",
         "type": "q-scroll-area"
@@ -9279,6 +9316,7 @@
             }
         ],
         "category": "Utilities",
+        "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/uploader.png",
         "type": "q-uploader"
