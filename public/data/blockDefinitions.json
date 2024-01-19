@@ -1,119 +1,5 @@
 [
     {
-        "label": "Separator",
-        "draggable": true,
-        "editable": false,
-        "description": "The QSeparator component is used to separate sections of text, other components, etc... It creates a colored line across the width of the parent. It can be horizontal or vertical.\n\n\n",
-        "tagName": "Q-SEPARATOR",
-        "content": "<q-separator></q-separator>",
-        "droppable": false,
-        "properties": [
-            {
-                "label": "Data Binding",
-                "name": "v-model",
-                "options": [],
-                "type": "select"
-            },
-            {
-                "label": "dark",
-                "name": "dark",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Notify the component that the background is a dark color",
-                "category": "style"
-            },
-            {
-                "label": "spaced",
-                "name": "spaced",
-                "examples": [
-                    "12px",
-                    "sm",
-                    "md"
-                ],
-                "enabled": true,
-                "type": [
-                    "Boolean",
-                    "String"
-                ],
-                "desc": "If set to true, the corresponding direction margins will be set to 8px; It can also be set to a size in CSS units, including unit name, or one of the xs|sm|md|lg|xl predefined sizes",
-                "category": "content"
-            },
-            {
-                "label": "inset",
-                "name": "inset",
-                "enabled": true,
-                "type": [
-                    "Boolean",
-                    "String"
-                ],
-                "desc": "If set to Boolean true, the left and right margins will be set to 16px. If set to 'item' then it will match a QItem's design. If set to 'item-thumbnail' then it will match the design of a QItem with a thumbnail on the left side",
-                "category": "content"
-            },
-            {
-                "label": "vertical",
-                "name": "vertical",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "If set to true, the separator will be vertical.",
-                "category": "content"
-            },
-            {
-                "label": "size",
-                "name": "size",
-                "examples": [
-                    "16px",
-                    "2rem"
-                ],
-                "enabled": true,
-                "type": "String",
-                "desc": "Size in CSS units, including unit name",
-                "category": "style"
-            },
-            {
-                "label": "color",
-                "name": "color",
-                "options": "${supportedColors}",
-                "examples": [
-                    "primary",
-                    "teal",
-                    "teal-10"
-                ],
-                "uitype": "enum_colors",
-                "enabled": true,
-                "type": "String",
-                "desc": "Color name for component from the Quasar Color Palette",
-                "category": "style"
-            }
-        ],
-        "category": "Content",
-        "hideFromLibrary": false,
-        "enabled": true,
-        "media": "images/icons/components/ui_components/separator.png",
-        "type": "q-separator"
-    },
-    {
-        "label": "Space",
-        "draggable": true,
-        "editable": false,
-        "description": "The purpose of QSpace (has no props) is to simply fill all available space inside of a flexbox DOM element.\n\nAs a sidenote, all Stipple components use flexbox. So what this means, for example (there are numerous examples, just mentioning one), is that you can use QSpace in a QToolbar.\n",
-        "tagName": "Q-SPACE",
-        "content": "<q-space></q-space>",
-        "droppable": false,
-        "properties": [
-            {
-                "label": "Data Binding",
-                "name": "v-model",
-                "options": [],
-                "type": "select"
-            }
-        ],
-        "category": "Content",
-        "hideFromLibrary": false,
-        "enabled": false,
-        "media": "images/icons/components/ui_components/space.png",
-        "type": "q-space"
-    },
-    {
         "label": "Toolbar",
         "draggable": true,
         "editable": false,
@@ -671,15 +557,42 @@
         "draggable": true,
         "editable": false,
         "description": "The QBadge component allows you to create a small badge for adding information like contextual data that needs to stand out and get noticed. It is also often useful in combination with other elements like a user avatar to show a number of new messages.\n\n\n",
-        "tagName": "S-BIGNUMBER",
-        "content": "<st-big-number gb_c__title=\"Label\"></st-big-number>",
+        "tagName": "ST-BIG-NUMBER",
+        "content": "<st-big-number gb_c__number=\"0\" gb_c__title=\"Label\"></st-big-number>",
         "droppable": false,
         "properties": [
             {
-                "label": "Data Binding",
-                "name": "v-model",
-                "options": [],
-                "type": "select"
+                "label": "number",
+                "name": "number",
+                "enabled": true,
+                "type": "Number",
+                "desc": "",
+                "category": "content"
+            },
+            {
+                "label": "title",
+                "name": "title",
+                "enabled": true,
+                "type": "String",
+                "desc": "",
+                "category": "content"
+            },
+            {
+                "label": "icon",
+                "name": "icon",
+                "options": "${supportedIcons}",
+                "examples": [
+                    "map",
+                    "ion-add",
+                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
+                    "img:path/to/some_image.png"
+                ],
+                "uitype": "enum_icons",
+                "enabled": true,
+                "suggested": true,
+                "type": "String",
+                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
+                "category": "content"
             },
             {
                 "label": "color",
@@ -696,91 +609,13 @@
                 "type": "String",
                 "desc": "Color name for component from the Quasar Color Palette",
                 "category": "style"
-            },
-            {
-                "label": "text-color",
-                "name": "text-color",
-                "options": "${supportedColors}",
-                "examples": [
-                    "primary",
-                    "teal",
-                    "teal-10"
-                ],
-                "uitype": "enum_colors",
-                "enabled": true,
-                "type": "String",
-                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
-                "category": "style"
-            },
-            {
-                "label": "floating",
-                "name": "floating",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Tell QBadge if it should float to the top right side of the relative positioned parent element or not",
-                "category": "content"
-            },
-            {
-                "label": "transparent",
-                "name": "transparent",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Applies a 0.8 opacity; Useful especially for floating QBadge",
-                "category": "style"
-            },
-            {
-                "label": "multi-line",
-                "name": "multi-line",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Content can wrap to multiple lines",
-                "category": "content"
-            },
-            {
-                "label": "label",
-                "name": "label",
-                "examples": [
-                    "John Doe",
-                    22
-                ],
-                "enabled": true,
-                "type": [
-                    "String",
-                    "Number"
-                ],
-                "desc": "Badge's content as string; overrides default slot if specified",
-                "category": "content"
-            },
-            {
-                "label": "align",
-                "name": "align",
-                "enabled": true,
-                "type": "String",
-                "desc": "Sets vertical-align CSS prop",
-                "category": "content"
-            },
-            {
-                "label": "outline",
-                "name": "outline",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Use 'outline' design (colored text and borders only)",
-                "category": "style"
-            },
-            {
-                "label": "rounded",
-                "name": "rounded",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Makes a rounded shaped badge",
-                "category": "style"
             }
         ],
         "category": "Other",
         "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/badge.png",
-        "type": "s-bignumber"
+        "type": "st-big-number"
     },
     {
         "label": "Button",
@@ -5837,6 +5672,234 @@
         "type": "s-timefield"
     },
     {
+        "label": "Knob",
+        "draggable": true,
+        "editable": false,
+        "description": "The QKnob component is used to take a number input from the user through mouse/touch panning. It is based on [QCircularProgress](/vue-components/circular-progress) and inherits all its properties and behavior.\n\n\n",
+        "tagName": "Q-KNOB",
+        "content": "<q-knob gb_b__v-model=\"\" gb_c__color=\"primary\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-knob>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "car_id"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Used to specify the name of the control; Useful if dealing with forms submitted directly to a URL",
+                "category": "behavior"
+            },
+            {
+                "label": "size",
+                "name": "size",
+                "examples": [
+                    "16px",
+                    "2rem",
+                    "xs",
+                    "md"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
+                "category": "style"
+            },
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "v-model=\"myValue\""
+                ],
+                "enabled": true,
+                "type": "Number",
+                "desc": "Any number to indicate the given value of the knob. Either use this property (along with a listener for 'update:modelValue' event) OR use the v-model directive",
+                "category": "model"
+            },
+            {
+                "label": "min",
+                "name": "min",
+                "enabled": true,
+                "type": "Number",
+                "desc": "The minimum value that the model (the knob value) should start at",
+                "category": "model"
+            },
+            {
+                "label": "max",
+                "name": "max",
+                "enabled": true,
+                "type": "Number",
+                "desc": "The maximum value that the model (the knob value) should go to",
+                "category": "model"
+            },
+            {
+                "label": "inner-min",
+                "name": "inner-min",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Inner minimum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be higher or equal to 'min' prop; Defaults to 'min' prop",
+                "category": "model"
+            },
+            {
+                "label": "inner-max",
+                "name": "inner-max",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Inner maximum value of the model; Use in case you need the model value to be inside of the track's min-max values; Needs to be lower or equal to 'max' prop; Defaults to 'max' prop",
+                "category": "model"
+            },
+            {
+                "label": "step",
+                "name": "step",
+                "enabled": true,
+                "type": "Number",
+                "desc": "A number representing steps in the value of the model, while adjusting the knob",
+                "category": "model"
+            },
+            {
+                "label": "reverse",
+                "name": "reverse",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Reverses the direction of progress",
+                "category": "behavior"
+            },
+            {
+                "label": "instant-feedback",
+                "name": "instant-feedback",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "No animation when model changes",
+                "category": "behavior"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "suggested": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "center-color",
+                "name": "center-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for the center part of the component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "track-color",
+                "name": "track-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for the track of the component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "font-size",
+                "name": "font-size",
+                "examples": [
+                    "1em",
+                    "16px",
+                    "2rem"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Size of text in CSS units, including unit name. Suggestion: use 'em' units to sync with component size",
+                "category": "style"
+            },
+            {
+                "label": "thickness",
+                "name": "thickness",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Thickness of progress arc as a ratio (0.0 < x < 1.0) of component size",
+                "category": "style"
+            },
+            {
+                "label": "angle",
+                "name": "angle",
+                "enabled": true,
+                "type": "Number",
+                "desc": "Angle to rotate progress arc by",
+                "category": "content"
+            },
+            {
+                "label": "show-value",
+                "name": "show-value",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Enables the default slot and uses it (if available), otherwise it displays the 'value' prop as text; Make sure the text has enough space to be displayed inside the component",
+                "category": "content|behavior"
+            },
+            {
+                "label": "tabindex",
+                "name": "tabindex",
+                "examples": [
+                    "0",
+                    "100"
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Tabindex HTML attribute value",
+                "category": "general"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "readonly",
+                "name": "readonly",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in readonly mode",
+                "category": "state"
+            }
+        ],
+        "category": "Forms",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "media": "images/icons/components/ui_components/knob.png",
+        "type": "q-knob"
+    },
+    {
         "label": "List",
         "draggable": true,
         "editable": false,
@@ -6235,15 +6298,9 @@
         "editable": false,
         "description": "QTable is a component that allows you to display data in a tabular manner. It's generally called a datatable. It packs the following main features:\n\n* Filtering\n* Sorting\n* Single / Multiple rows selection with custom selection actions\n* Pagination (including server-side if required)\n* Grid mode (you can use for example QCards to display data in a non-tabular manner)\n* Total customization of rows and cells through scoped slots\n* Ability to add additional row(s) at top or bottom of data rows\n* Column picker (through QTableColumns component described in one of the sections)\n* Custom top and/or bottom Table controls\n* Responsive design\n\n\n\n\n\n\n",
         "tagName": "Q-TABLE",
-        "content": "<q-table gb_b__v-model=\"\" gb_c__dense=\"true\"></q-table>",
+        "content": "<q-table gb_c__data=\"[]\" gb_c__dense=\"true\"></q-table>",
         "droppable": false,
         "properties": [
-            {
-                "label": "Data Binding",
-                "name": "v-model",
-                "options": [],
-                "type": "select"
-            },
             {
                 "label": "fullscreen",
                 "name": "fullscreen",
@@ -6264,14 +6321,14 @@
                 "category": "behavior"
             },
             {
-                "label": "rows",
-                "name": "rows",
+                "label": "data",
+                "name": "data",
                 "examples": [
-                    ":rows=\"myData\""
+                    ":data=\"myData\""
                 ],
                 "enabled": true,
                 "type": "Array",
-                "desc": "Rows of data to display",
+                "desc": "Data to display",
                 "category": "general"
             },
             {
@@ -8245,372 +8302,6 @@
         "type": "q-spinner"
     },
     {
-        "label": "Tree",
-        "draggable": true,
-        "editable": false,
-        "description": "Stipple Tree represents a highly configurable component that displays hierarchical data, such as a table of contents in a tree structure.\n\n\n",
-        "tagName": "Q-TREE",
-        "content": "<q-tree></q-tree>",
-        "droppable": false,
-        "properties": [
-            {
-                "label": "Data Binding",
-                "name": "v-model",
-                "options": [],
-                "type": "select"
-            },
-            {
-                "label": "nodes",
-                "name": "nodes",
-                "examples": [
-                    "[ {...}, {...} ]"
-                ],
-                "enabled": true,
-                "type": "Array",
-                "desc": "The array of nodes that designates the tree structure",
-                "category": "content"
-            },
-            {
-                "label": "node-key",
-                "name": "node-key",
-                "examples": [
-                    "key",
-                    "id"
-                ],
-                "enabled": true,
-                "type": "String",
-                "desc": "The property name of each node object that holds a unique node id",
-                "category": "content"
-            },
-            {
-                "label": "label-key",
-                "name": "label-key",
-                "examples": [
-                    "name",
-                    "description"
-                ],
-                "enabled": true,
-                "type": "String",
-                "desc": "The property name of each node object that holds the label of the node",
-                "category": "content"
-            },
-            {
-                "label": "children-key",
-                "name": "children-key",
-                "examples": [
-                    "roles",
-                    "relatives"
-                ],
-                "enabled": true,
-                "type": "String",
-                "desc": "The property name of each node object that holds the list of children of the node",
-                "category": "content"
-            },
-            {
-                "label": "no-connectors",
-                "name": "no-connectors",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Do not display the connector lines between nodes",
-                "category": "style"
-            },
-            {
-                "label": "color",
-                "name": "color",
-                "options": "${supportedColors}",
-                "examples": [
-                    "primary",
-                    "teal",
-                    "teal-10"
-                ],
-                "uitype": "enum_colors",
-                "enabled": true,
-                "type": "String",
-                "desc": "Color name for component from the Quasar Color Palette",
-                "category": "style"
-            },
-            {
-                "label": "control-color",
-                "name": "control-color",
-                "options": "${supportedColors}",
-                "examples": [
-                    "primary",
-                    "teal",
-                    "teal-10"
-                ],
-                "uitype": "enum_colors",
-                "enabled": true,
-                "type": "String",
-                "desc": "Color name for controls (like checkboxes) from the Quasar Color Palette",
-                "category": "style"
-            },
-            {
-                "label": "text-color",
-                "name": "text-color",
-                "options": "${supportedColors}",
-                "examples": [
-                    "primary",
-                    "teal",
-                    "teal-10"
-                ],
-                "uitype": "enum_colors",
-                "enabled": true,
-                "type": "String",
-                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
-                "category": "style"
-            },
-            {
-                "label": "selected-color",
-                "name": "selected-color",
-                "options": "${supportedColors}",
-                "examples": [
-                    "primary",
-                    "teal",
-                    "teal-10"
-                ],
-                "uitype": "enum_colors",
-                "enabled": true,
-                "type": "String",
-                "desc": "Color name for selected nodes (from the Quasar Color Palette)",
-                "category": "style"
-            },
-            {
-                "label": "dense",
-                "name": "dense",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Dense mode; occupies less space",
-                "category": "style"
-            },
-            {
-                "label": "dark",
-                "name": "dark",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Notify the component that the background is a dark color",
-                "category": "style"
-            },
-            {
-                "label": "icon",
-                "name": "icon",
-                "options": "${supportedIcons}",
-                "examples": [
-                    "map",
-                    "ion-add",
-                    "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
-                    "img:path/to/some_image.png"
-                ],
-                "uitype": "enum_icons",
-                "enabled": true,
-                "type": "String",
-                "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
-                "category": "content"
-            },
-            {
-                "label": "tick-strategy",
-                "name": "tick-strategy",
-                "enabled": true,
-                "type": "String",
-                "desc": "The type of strategy to use for the selection of the nodes",
-                "category": "behavior"
-            },
-            {
-                "label": "ticked",
-                "name": "ticked",
-                "examples": [
-                    "v-model:ticked=\"tickedKeys\""
-                ],
-                "enabled": true,
-                "type": "Array",
-                "desc": "Keys of nodes that are ticked",
-                "category": "state"
-            },
-            {
-                "label": "expanded",
-                "name": "expanded",
-                "examples": [
-                    "v-model:expanded=\"expandedKeys\""
-                ],
-                "enabled": true,
-                "type": "Array",
-                "desc": "Keys of nodes that are expanded",
-                "category": "state"
-            },
-            {
-                "label": "selected",
-                "name": "selected",
-                "examples": [
-                    "v-model:selected=\"selectedKey\""
-                ],
-                "enabled": true,
-                "type": "Any",
-                "desc": "Key of node currently selected",
-                "category": "state"
-            },
-            {
-                "label": "no-selection-unset",
-                "name": "no-selection-unset",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Do not allow un-selection when clicking currently selected node",
-                "category": "behavior"
-            },
-            {
-                "label": "default-expand-all",
-                "name": "default-expand-all",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Allow the tree to have all its branches expanded, when first rendered",
-                "category": "behavior"
-            },
-            {
-                "label": "accordion",
-                "name": "accordion",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Allows the tree to be set in accordion mode",
-                "category": "behavior"
-            },
-            {
-                "label": "no-transition",
-                "name": "no-transition",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Turn off transition effects when expanding/collapsing nodes; Also enhances perf by a lot as a side-effect; Recommended for big trees",
-                "category": "behavior"
-            },
-            {
-                "label": "filter",
-                "name": "filter",
-                "examples": [
-                    ":filter=\"searchText\""
-                ],
-                "enabled": true,
-                "type": "String",
-                "desc": "The text value to be used for filtering nodes",
-                "category": "filter"
-            },
-            {
-                "label": "filter-method",
-                "name": "filter-method",
-                "enabled": true,
-                "type": "Function",
-                "desc": "The function to use to filter the tree nodes; For best performance, reference it from your scope and do not define it inline",
-                "category": "filter"
-            },
-            {
-                "label": "duration",
-                "name": "duration",
-                "enabled": true,
-                "type": "Number",
-                "desc": "Toggle animation duration (in milliseconds)",
-                "category": "style"
-            },
-            {
-                "label": "no-nodes-label",
-                "name": "no-nodes-label",
-                "examples": [
-                    "No nodes to show!"
-                ],
-                "enabled": true,
-                "type": "String",
-                "desc": "Override default such label for when no nodes are available",
-                "category": "content"
-            },
-            {
-                "label": "no-results-label",
-                "name": "no-results-label",
-                "examples": [
-                    "No results"
-                ],
-                "enabled": true,
-                "type": "String",
-                "desc": "Override default such label for when no nodes are available due to filtering",
-                "category": "content"
-            }
-        ],
-        "category": "Widgets",
-        "hideFromLibrary": false,
-        "enabled": false,
-        "media": "images/icons/components/ui_components/tree.png",
-        "type": "q-tree"
-    },
-    {
-        "label": "Popup Proxy",
-        "draggable": true,
-        "editable": false,
-        "description": "QPopupProxy should be used when you need either a [QMenu](/vue-components/menu) (on bigger screens) or a [QDialog](/vue-components/dialog) (on smaller screens) to be displayed. It acts as a proxy which picks either of the two components to use. QPopupProxy also handles context-menus.\n\n\n",
-        "tagName": "Q-POPUP-PROXY",
-        "content": "<q-popup-proxy></q-popup-proxy>",
-        "droppable": false,
-        "properties": [
-            {
-                "label": "Data Binding",
-                "name": "v-model",
-                "options": [],
-                "type": "select"
-            },
-            {
-                "label": "target",
-                "name": "target",
-                "examples": [
-                    ":target=\"false\"",
-                    ":target=\"$refs.target\"",
-                    "target=\".my-parent\"",
-                    "target=\"#target-id\""
-                ],
-                "enabled": true,
-                "type": [
-                    "Boolean",
-                    "String",
-                    "Element"
-                ],
-                "desc": "Configure a target element to trigger component toggle; 'true' means it enables the parent DOM element, 'false' means it disables attaching events to any DOM elements; By using a String (CSS selector) or a DOM element it attaches the events to the specified DOM element (if it exists)",
-                "category": "behavior"
-            },
-            {
-                "label": "no-parent-event",
-                "name": "no-parent-event",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Skips attaching events to the target DOM element (that trigger the element to get shown)",
-                "category": "behavior"
-            },
-            {
-                "label": "context-menu",
-                "name": "context-menu",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Allows the component to behave like a context menu, which opens with a right mouse click (or long tap on mobile)",
-                "category": "behavior"
-            },
-            {
-                "label": "model-value",
-                "name": "model-value",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Defines the state of the component (shown/hidden); Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
-                "category": "model"
-            },
-            {
-                "label": "breakpoint",
-                "name": "breakpoint",
-                "enabled": true,
-                "type": [
-                    "Number",
-                    "String"
-                ],
-                "desc": "Breakpoint (in pixels) of window width/height (whichever is smaller) from where a Menu will get to be used instead of a Dialog",
-                "category": "behavior"
-            }
-        ],
-        "category": "Utilities",
-        "hideFromLibrary": true,
-        "enabled": true,
-        "media": "images/icons/components/ui_components/popup-proxy.png",
-        "type": "q-popup-proxy"
-    },
-    {
         "label": "Timeline",
         "draggable": true,
         "editable": false,
@@ -8977,348 +8668,5 @@
         "enabled": true,
         "media": "images/icons/components/ui_components/square.png",
         "type": "q-scroll-area"
-    },
-    {
-        "label": "Uploader",
-        "draggable": true,
-        "editable": false,
-        "description": "Stipple supplies a way for you to upload files through the QUploader component.\n\n\n\n",
-        "tagName": "Q-UPLOADER",
-        "content": "<q-uploader gb_c__url=\"&#39;/____/upload/&#39; + channel_\"></q-uploader>",
-        "droppable": false,
-        "properties": [
-            {
-                "label": "Data Binding",
-                "name": "v-model",
-                "options": [],
-                "type": "select"
-            },
-            {
-                "label": "factory",
-                "name": "factory",
-                "enabled": true,
-                "type": "Function",
-                "desc": "Function which should return an Object or a Promise resolving with an Object; For best performance, reference it from your scope and do not define it inline",
-                "category": "upload"
-            },
-            {
-                "label": "url",
-                "name": "url",
-                "examples": [
-                    "https://example.com/path",
-                    "files => `https://example.com?count=${files.length}`"
-                ],
-                "enabled": true,
-                "type": [
-                    "String",
-                    "Function"
-                ],
-                "desc": "URL or path to the server which handles the upload. Takes String or factory function, which returns String. Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
-                "category": "upload"
-            },
-            {
-                "label": "method",
-                "name": "method",
-                "examples": [
-                    "POST",
-                    ":method=\"files => files.length > 10 ? 'POST' : 'PUT'\""
-                ],
-                "enabled": true,
-                "type": [
-                    "String",
-                    "Function"
-                ],
-                "desc": "HTTP method to use for upload; Takes String or factory function which returns a String; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
-                "category": "upload"
-            },
-            {
-                "label": "field-name",
-                "name": "field-name",
-                "examples": [
-                    "backgroundFile",
-                    ":field-name=\"(file) => 'background' + file.name\""
-                ],
-                "enabled": true,
-                "type": [
-                    "String",
-                    "Function"
-                ],
-                "desc": "Field name for each file upload; This goes into the following header: 'Content-Disposition: form-data; name=\"__HERE__\"; filename=\"somefile.png\"; If using a function then for best performance, reference it from your scope and do not define it inline",
-                "category": "upload"
-            },
-            {
-                "label": "headers",
-                "name": "headers",
-                "examples": [
-                    "[{name: 'Content-Type', value: 'application/json'}, {name: 'Accept', value: 'application/json'}]",
-                    "() => [{name: 'X-Custom-Timestamp', value: Date.now()}]",
-                    "files => [{name: 'X-Custom-Count', value: files.length}]"
-                ],
-                "enabled": true,
-                "type": [
-                    "Array",
-                    "Function"
-                ],
-                "desc": "Array or a factory function which returns an array; Array consists of objects with header definitions; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
-                "category": "upload"
-            },
-            {
-                "label": "form-fields",
-                "name": "form-fields",
-                "examples": [
-                    "[{name: 'my-field', value: 'my-value'}]",
-                    "() => [{name: 'my-field', value: 'my-value'}]",
-                    "files => [{name: 'my-field', value: 'my-value' + files.length}]"
-                ],
-                "enabled": true,
-                "type": [
-                    "Array",
-                    "Function"
-                ],
-                "desc": "Array or a factory function which returns an array; Array consists of objects with additional fields definitions (used by Form to be uploaded); Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
-                "category": "upload"
-            },
-            {
-                "label": "with-credentials",
-                "name": "with-credentials",
-                "examples": [
-                    "with-credentials",
-                    ":with-credentials=\"files => ...\""
-                ],
-                "enabled": true,
-                "type": [
-                    "Boolean",
-                    "Function"
-                ],
-                "desc": "Sets withCredentials to true on the XHR that manages the upload; Takes boolean or factory function for Boolean; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
-                "category": "upload"
-            },
-            {
-                "label": "send-raw",
-                "name": "send-raw",
-                "examples": [
-                    "send-raw",
-                    ":send-raw=\"files => ...\""
-                ],
-                "enabled": true,
-                "type": [
-                    "Boolean",
-                    "Function"
-                ],
-                "desc": "Send raw files without wrapping into a Form(); Takes boolean or factory function for Boolean; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
-                "category": "upload"
-            },
-            {
-                "label": "batch",
-                "name": "batch",
-                "examples": [
-                    "files => files.length > 10"
-                ],
-                "enabled": true,
-                "type": [
-                    "Boolean",
-                    "Function"
-                ],
-                "desc": "Upload files in batch (in one XHR request); Takes boolean or factory function for Boolean; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
-                "category": "upload"
-            },
-            {
-                "label": "multiple",
-                "name": "multiple",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Allow multiple file uploads",
-                "category": "behavior"
-            },
-            {
-                "label": "accept",
-                "name": "accept",
-                "examples": [
-                    ".jpg, .pdf, image/*",
-                    "image/jpeg, .pdf"
-                ],
-                "enabled": true,
-                "type": "String",
-                "desc": "Comma separated list of unique file type specifiers. Maps to 'accept' attribute of native input type=file element",
-                "category": "behavior"
-            },
-            {
-                "label": "capture",
-                "name": "capture",
-                "enabled": true,
-                "type": "String",
-                "desc": "Optionally, specify that a new file should be captured, and which device should be used to capture that new media of a type defined by the 'accept' prop. Maps to 'capture' attribute of native input type=file element",
-                "category": "behavior"
-            },
-            {
-                "label": "max-file-size",
-                "name": "max-file-size",
-                "examples": [
-                    1024,
-                    1048576
-                ],
-                "enabled": true,
-                "type": [
-                    "Number",
-                    "String"
-                ],
-                "desc": "Maximum size of individual file in bytes",
-                "category": "behavior"
-            },
-            {
-                "label": "max-total-size",
-                "name": "max-total-size",
-                "enabled": true,
-                "type": [
-                    "Number",
-                    "String"
-                ],
-                "desc": "Maximum size of all files combined in bytes",
-                "category": "behavior"
-            },
-            {
-                "label": "max-files",
-                "name": "max-files",
-                "enabled": true,
-                "type": [
-                    "Number",
-                    "String"
-                ],
-                "desc": "Maximum number of files to contain",
-                "category": "behavior"
-            },
-            {
-                "label": "filter",
-                "name": "filter",
-                "examples": [
-                    ":filter=\"files => files.filter(file => file.size === 1024)\""
-                ],
-                "enabled": true,
-                "type": "Function",
-                "desc": "Custom filter for added files; Only files that pass this filter will be added to the queue and uploaded; For best performance, reference it from your scope and do not define it inline",
-                "category": "behavior"
-            },
-            {
-                "label": "label",
-                "name": "label",
-                "examples": [
-                    "Upload photo here"
-                ],
-                "enabled": true,
-                "type": "String",
-                "desc": "Label for the uploader",
-                "category": "content"
-            },
-            {
-                "label": "color",
-                "name": "color",
-                "options": "${supportedColors}",
-                "examples": [
-                    "primary",
-                    "teal",
-                    "teal-10"
-                ],
-                "uitype": "enum_colors",
-                "enabled": true,
-                "type": "String",
-                "desc": "Color name for component from the Quasar Color Palette",
-                "category": "style"
-            },
-            {
-                "label": "text-color",
-                "name": "text-color",
-                "options": "${supportedColors}",
-                "examples": [
-                    "primary",
-                    "teal",
-                    "teal-10"
-                ],
-                "uitype": "enum_colors",
-                "enabled": true,
-                "type": "String",
-                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
-                "category": "style"
-            },
-            {
-                "label": "dark",
-                "name": "dark",
-                "enabled": true,
-                "type": [
-                    "Boolean",
-                    "null"
-                ],
-                "desc": "Notify the component that the background is a dark color",
-                "category": "style"
-            },
-            {
-                "label": "square",
-                "name": "square",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Removes border-radius so borders are squared",
-                "category": "style"
-            },
-            {
-                "label": "flat",
-                "name": "flat",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Applies a 'flat' design (no default shadow)",
-                "category": "style"
-            },
-            {
-                "label": "bordered",
-                "name": "bordered",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Applies a default border to the component",
-                "category": "style"
-            },
-            {
-                "label": "no-thumbnails",
-                "name": "no-thumbnails",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Don't display thumbnails for image files",
-                "category": "content"
-            },
-            {
-                "label": "auto-upload",
-                "name": "auto-upload",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Upload files immediately when added",
-                "category": "behavior"
-            },
-            {
-                "label": "hide-upload-btn",
-                "name": "hide-upload-btn",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Don't show the upload button",
-                "category": "behavior"
-            },
-            {
-                "label": "disable",
-                "name": "disable",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Put component in disabled mode",
-                "category": "state"
-            },
-            {
-                "label": "readonly",
-                "name": "readonly",
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Put component in readonly mode",
-                "category": "state"
-            }
-        ],
-        "category": "Utilities",
-        "hideFromLibrary": false,
-        "enabled": true,
-        "media": "images/icons/components/ui_components/uploader.png",
-        "type": "q-uploader"
     }
 ]
