@@ -220,6 +220,11 @@ function register_routes()
     ApplicationsController.status()
   end
 
+  # returns the settings of the GenieBuilder server
+  route("$gb_route/settings") do
+    ApplicationsController.settings()
+  end
+
   nothing
 end
 

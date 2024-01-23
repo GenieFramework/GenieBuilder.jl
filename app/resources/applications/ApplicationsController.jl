@@ -15,6 +15,7 @@ using Dates
 using Scratch
 using ZipFile
 using TOML
+using Logging
 
 import StippleUI
 import GeniePackageManager
@@ -469,6 +470,8 @@ function start(app::Application)
                                                 using Pkg;
                                                 Pkg._auto_gc_enabled[] = false;
                                                 Pkg.activate(".");
+
+                                                isfile("Manifest.toml") || Pkg.instantiate();
 
                                                 using GenieFramework;
                                                 using GenieFramework.Revise;
@@ -969,6 +972,27 @@ Confirms that GenieBuilder is running
 """
 function status()
   (:status => OKSTATUS) |> json
+end
+
+
+"""
+  settings()
+
+Returns the settings of the GenieBuilder server
+"""
+function settings()
+  logger_description = string(Logging.global_logger())
+  m = match(r"IOStream\(<file (.*)>\)", logger_description)
+  log_file = ""
+  if m !== nothing
+    log_file = m.captures[1]
+  end
+
+  Dict(
+    :settings => Dict(
+      :logfile => log_file,
+    )
+  ) |> json
 end
 
 
