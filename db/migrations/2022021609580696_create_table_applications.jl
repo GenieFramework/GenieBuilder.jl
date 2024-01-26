@@ -19,7 +19,6 @@ function up()
     ]
   end
 
-  # add_index(:applications, :column_name)
   add_indices(:applications, :name, :port, :path, :status)
 end
 

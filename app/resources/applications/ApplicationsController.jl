@@ -471,7 +471,7 @@ function start(app::Application)
                                                 Pkg._auto_gc_enabled[] = false;
                                                 Pkg.activate(".");
 
-                                                isfile("Manifest.toml") || Pkg.instantiate();
+                                                isfile("Manifest.toml") || (isfile("Project.toml") && Pkg.instantiate());
 
                                                 using GenieFramework;
                                                 using GenieFramework.Revise;
@@ -982,10 +982,11 @@ Returns the settings of the GenieBuilder server
 """
 function settings()
   logger_description = string(Logging.global_logger())
-  m = match(r"IOStream\(<file (.*)>\)", logger_description)
+  m = match(r"IOStream\(<file (.*)\.log>\)", logger_description)
   log_file = ""
   if m !== nothing
-    log_file = m.captures[1]
+    log_file = m.captures[1] * ".log"
+    isfile(log_file) || (log_file = "")
   end
 
   Dict(
