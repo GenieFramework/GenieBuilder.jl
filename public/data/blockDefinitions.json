@@ -35,7 +35,7 @@
         "editable": false,
         "description": "The QInput component is used to capture text input from the user. It uses `v-model`, similar to a regular input. It has support for errors and validation, and comes in a variety of styles, colors, and types.\n\n\n",
         "tagName": "Q-INPUT",
-        "content": "<q-input gb_b__v-model=\"\" gb_c__dense=\"true\" gb_c__label=\"Input\"></q-input>",
+        "content": "<q-input gb_b__v-model=\"undefined\" gb_c__dense=\"true\" gb_c__label=\"Input\"></q-input>",
         "droppable": false,
         "properties": [
             {
@@ -1009,7 +1009,7 @@
         "editable": false,
         "description": "The QSelect component has two types of selection: single or multiple. This component opens up a menu for the selection list and action. A filter can also be used for longer lists.\n\nIn case you are looking for a dropdown \"button\" instead of \"input\" use [Button Dropdown](/vue-components/button-dropdown) instead.\n\n\n",
         "tagName": "Q-SELECT",
-        "content": "<q-select gb_b__v-model=\"\" gb_c__clearable=\"true\" gb_c__label=\"Choices\" gb_c__options=\"[]\" gb_c__use-chips=\"false\" gb_c__use-input=\"true\"></q-select>",
+        "content": "<q-select gb_b__v-model=\"undefined\" gb_c__clearable=\"true\" gb_c__label=\"Choices\" gb_c__options=\"[]\" gb_c__use-chips=\"false\" gb_c__use-input=\"true\"></q-select>",
         "droppable": false,
         "properties": [
             {
@@ -1883,7 +1883,7 @@
         "editable": false,
         "description": "The QRadio component is another basic element for user input. You can use this to supply a way for the user to pick an option from multiple choices.\n\n\n\n",
         "tagName": "Q-RADIO",
-        "content": "<q-radio gb_b__v-model=\"\" gb_c__color=\"primary\" gb_c__label=\"1\" gb_c__val=\"1\"></q-radio>",
+        "content": "<q-radio gb_b__v-model=\"undefined\" gb_c__color=\"primary\" gb_c__label=\"1\" gb_c__val=\"1\"></q-radio>",
         "droppable": false,
         "properties": [
             {
@@ -2145,7 +2145,7 @@
         "editable": false,
         "description": "The QCheckbox component is another basic element for user input. You can use this to supply a way for the user to toggle an option.\n\n\n\n\n",
         "tagName": "Q-CHECKBOX",
-        "content": "<q-checkbox gb_b__v-model=\"\" gb_c__color=\"primary\" gb_c__label=\"Checked\"></q-checkbox>",
+        "content": "<q-checkbox gb_b__v-model=\"undefined\" gb_c__color=\"primary\" gb_c__label=\"Checked\"></q-checkbox>",
         "droppable": false,
         "properties": [
             {
@@ -2783,7 +2783,7 @@
         "editable": false,
         "description": "The QToggle component is another basic element for user input. You can use this for turning settings, features or true/false inputs on and off.\n\n\n\n",
         "tagName": "Q-TOGGLE",
-        "content": "<q-toggle gb_b__v-model=\"\" gb_c__color=\"blue\" gb_c__label=\"Toggle!\"></q-toggle>",
+        "content": "<q-toggle gb_b__v-model=\"undefined\" gb_c__color=\"blue\" gb_c__label=\"Toggle!\"></q-toggle>",
         "droppable": false,
         "properties": [
             {
@@ -3065,7 +3065,7 @@
         "editable": false,
         "description": "The QSlider is a great way for the user to specify a number value between a minimum and maximum value, with optional steps between valid values. The slider also has a focus indicator (highlighted slider button), which allows for keyboard adjustments of the slider.\n\nAlso check its “sibling”, the [QRange](/vue-components/range) component.\n\n\n",
         "tagName": "Q-SLIDER",
-        "content": "<q-slider gb_b__v-model=\"\" gb_c__color=\"primary\" gb_c__label=\"true\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-slider>",
+        "content": "<q-slider gb_b__v-model=\"undefined\" gb_c__color=\"primary\" gb_c__label=\"true\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-slider>",
         "droppable": false,
         "properties": [
             {
@@ -3494,7 +3494,7 @@
         "editable": false,
         "description": "The QRange component is a great way to offer the user the selection of a sub-range of values between a minimum and maximum value, with optional steps to select those values. An example use case for the Range component would be to offer a price range selection.\n\nAlso check out its “sibling”, the [QSlider](/vue-components/slider) component.\n\n\n",
         "tagName": "Q-RANGE",
-        "content": "<q-range gb_b__v-model=\"\" gb_c__color=\"primary\" gb_c__label=\"true\" gb_c__marker-labels=\"true\" gb_c__markers=\"true\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-range>",
+        "content": "<q-range gb_b__v-model=\"undefined\" gb_c__color=\"primary\" gb_c__label=\"true\" gb_c__marker-labels=\"true\" gb_c__markers=\"true\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-range>",
         "droppable": false,
         "properties": [
             {
@@ -4043,7 +4043,7 @@
         "editable": false,
         "description": "The QDate component provides a method to input date. Currently it supports Gregorian (default) and Persian calendars.\n\n\n\n",
         "tagName": "Q-DATE",
-        "content": "<q-date gb_b__v-model=\"\" gb_c__mask=\"YYYY-MM-DD\"></q-date>",
+        "content": "<q-date gb_b__v-model=\"undefined\" gb_c__mask=\"YYYY-MM-DD\"></q-date>",
         "droppable": false,
         "properties": [
             {
@@ -4394,7 +4394,7 @@
         "editable": false,
         "description": "The QDate component provides a method to input date. Currently it supports Gregorian (default) and Persian calendars.\n\n\n\n",
         "tagName": "S-DATEFIELD",
-        "content": "<q-input gb_b__v-model=\"\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a date\"><q-icon class=\"cursor-pointer\" gb_c__name=\"event\" style=\"height: 100%;\"><q-popup-proxy><q-date gb_b__v-model=\"\" gb_c__mask=\"YYYY-MM-DD\" gb_c__no-unset=\"true\" gb_c__today-btn=\"true\"></q-date></q-popup-proxy></q-icon></q-input>",
+        "content": "<q-input gb_b__v-model=\"undefined\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a date\"><q-icon class=\"cursor-pointer\" gb_c__name=\"event\" style=\"height: 100%;\"><q-popup-proxy><q-date gb_b__v-model=\"undefined\" gb_c__mask=\"YYYY-MM-DD\" gb_c__no-unset=\"true\" gb_c__today-btn=\"true\"></q-date></q-popup-proxy></q-icon></q-input>",
         "droppable": false,
         "properties": [
             {
@@ -4913,7 +4913,7 @@
         "editable": false,
         "description": "",
         "tagName": "Q-TIME",
-        "content": "<q-time gb_b__v-model=\"\" gb_c__mask=\"HH:mm\"></q-time>",
+        "content": "<q-time gb_b__v-model=\"undefined\" gb_c__mask=\"HH:mm\"></q-time>",
         "droppable": false,
         "properties": [
             {
@@ -5158,7 +5158,7 @@
         "editable": false,
         "description": "The QTime component provides a method to input time.\n\n\n\n",
         "tagName": "S-TIMEFIELD",
-        "content": "<q-input gb_b__v-model=\"\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a time\"><q-icon class=\"cursor-pointer\" gb_c__name=\"alarm\" style=\"height: 100%;\"><q-popup-proxy><q-time gb_b__v-model=\"\" gb_c__mask=\"HH:mm:ss\"></q-time></q-popup-proxy></q-icon></q-input>",
+        "content": "<q-input gb_b__v-model=\"undefined\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a time\"><q-icon class=\"cursor-pointer\" gb_c__name=\"alarm\" style=\"height: 100%;\"><q-popup-proxy><q-time gb_b__v-model=\"undefined\" gb_c__mask=\"HH:mm:ss\"></q-time></q-popup-proxy></q-icon></q-input>",
         "droppable": false,
         "properties": [
             {
@@ -5677,7 +5677,7 @@
         "editable": false,
         "description": "The QKnob component is used to take a number input from the user through mouse/touch panning. It is based on [QCircularProgress](/vue-components/circular-progress) and inherits all its properties and behavior.\n\n\n",
         "tagName": "Q-KNOB",
-        "content": "<q-knob gb_b__v-model=\"\" gb_c__color=\"primary\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-knob>",
+        "content": "<q-knob gb_b__v-model=\"undefined\" gb_c__color=\"primary\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-knob>",
         "droppable": false,
         "properties": [
             {
@@ -7969,12 +7969,14 @@
             {
                 "label": "name",
                 "name": "name",
+                "options": "${supportedIcons}",
                 "examples": [
                     "map",
                     "ion-add",
                     "img:https://cdn.quasar.dev/logo-v2/svg/logo.svg",
                     "img:path/to/some_image.png"
                 ],
+                "uitype": "enum_icons",
                 "enabled": true,
                 "type": "String",
                 "desc": "Icon name following Quasar convention; Make sure you have the icon library installed unless you are using 'img:' prefix; If 'none' (String) is used as value then no icon is rendered (but screen real estate will still be used for it)",
@@ -8024,7 +8026,7 @@
         "editable": false,
         "description": "Stipple Rating is a Component which allows users to rate items, usually known as “Star Rating”.\n\n\n",
         "tagName": "Q-RATING",
-        "content": "<q-rating gb_b__v-model=\"\" gb_c__icon=\"star\"></q-rating>",
+        "content": "<q-rating gb_b__v-model=\"undefined\" gb_c__icon=\"star\"></q-rating>",
         "droppable": false,
         "properties": [
             {
