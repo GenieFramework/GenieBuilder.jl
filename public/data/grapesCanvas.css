@@ -80,6 +80,7 @@ q-img {
 #gbTemplateContainer{
     min-height: 100% !important; 
     padding: 20px !important;
+    padding-bottom: 100px !important;
 }
 /* 
 .gjs-dashed *[data-gjs-highlightable] {
