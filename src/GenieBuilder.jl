@@ -1,6 +1,6 @@
 module GenieBuilder
 
-using Genie, Logging
+using Genie, Logging, TOML
 
 include("Generators.jl")
 using .Generators
@@ -11,6 +11,7 @@ const DB_CONFIG_FILE = Ref{String}("")
 const LOG_FOLDER = Ref{String}("")
 const RUN_STATUS = Ref{Symbol}() # :install or :update
 const WS_PORT = 10102
+const VERSION = "0.16.x"
 
 function __init__()
   GBDIR[] = joinpath(Base.DEPOT_PATH[1], "geniebuilder")
@@ -34,7 +35,7 @@ function main()
 end
 
 function go(; port = get!(ENV, "GB_PORT", -1))
-  @info "Starting GenieBuilder"
+  @info "Starting GenieBuilder v$(get_version())"
   _go(port)
 end
 
@@ -96,6 +97,17 @@ function install(installpath::String = pwd()) :: Nothing
   cd(current_dir)
 
   nothing
+end
+
+function get_version()
+  try
+    project_toml = abspath(normpath(joinpath(@__DIR__, "..", "Project.toml")))
+    p = TOML.parsefile(project_toml)
+    get(p, "version", VERSION)
+  catch ex
+    @error ex
+    VERSION
+  end
 end
 
 function exit()

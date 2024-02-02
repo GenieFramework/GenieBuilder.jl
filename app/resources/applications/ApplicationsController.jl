@@ -471,7 +471,28 @@ function start(app::Application)
                                                 Pkg._auto_gc_enabled[] = false;
                                                 Pkg.activate(".");
 
-                                                isfile("Manifest.toml") || (isfile("Project.toml") && Pkg.instantiate());
+                                                function autoinstantiate!()
+                                                  if isfile("Project.toml")
+                                                    try
+                                                      p = Pkg.TOML.parsefile("Project.toml")
+                                                      haskey(p, "Genie") || (p["Genie"] = Dict())
+                                                      isa(p["Genie"], Dict) || (p["Genie"] = Dict())
+                                                      if haskey(p["Genie"], "instantiated_pwd") && p["Genie"]["instantiated_pwd"] == abspath(pwd());
+                                                        # do nothing, it is instantiated
+                                                      else
+                                                        @info "Instantiating the app"
+                                                        Pkg.instantiate()
+                                                        p["Genie"]["instantiated_pwd"] = abspath(pwd())
+                                                        open("Project.toml", "w") do io
+                                                          Pkg.TOML.print(io, p)
+                                                        end
+                                                      end
+                                                    catch ex
+                                                      @error ex
+                                                    end
+                                                  end
+                                                end
+                                                autoinstantiate!()
 
                                                 using GenieFramework;
                                                 using GenieFramework.Revise;
