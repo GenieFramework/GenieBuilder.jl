@@ -1016,7 +1016,7 @@
         "editable": false,
         "description": "The QSelect component has two types of selection: single or multiple. This component opens up a menu for the selection list and action. A filter can also be used for longer lists.\n\nIn case you are looking for a dropdown \"button\" instead of \"input\" use [Button Dropdown](/vue-components/button-dropdown) instead.\n\n\n",
         "tagName": "Q-SELECT",
-        "content": "<q-select gb_b__v-model=\"undefined\" gb_c__clearable=\"true\" gb_c__label=\"Choices\" gb_c__options=\"[]\" gb_c__use-chips=\"false\" gb_c__use-input=\"true\"></q-select>",
+        "content": "<q-select gb_b__v-model=\"undefined\" gb_c__label=\"Choices\" gb_c__options=\"[]\" ></q-select>",
         "droppable": false,
         "properties": [
             {
