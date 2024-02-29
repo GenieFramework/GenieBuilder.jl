@@ -633,6 +633,13 @@
                 "type": "select"
             },
             {
+                "label": "Click Event",
+                "name": "v-on:click",
+                "enabled": true, 
+                "type": "Function", 
+                "category": "Events"
+            },
+            {
                 "label": "size",
                 "name": "size",
                 "examples": [
@@ -1009,7 +1016,7 @@
         "editable": false,
         "description": "The QSelect component has two types of selection: single or multiple. This component opens up a menu for the selection list and action. A filter can also be used for longer lists.\n\nIn case you are looking for a dropdown \"button\" instead of \"input\" use [Button Dropdown](/vue-components/button-dropdown) instead.\n\n\n",
         "tagName": "Q-SELECT",
-        "content": "<q-select gb_b__v-model=\"undefined\" gb_c__clearable=\"true\" gb_c__label=\"Choices\" gb_c__options=\"[]\" gb_c__use-chips=\"false\" gb_c__use-input=\"true\"></q-select>",
+        "content": "<q-select gb_b__v-model=\"undefined\" gb_c__label=\"Choices\" gb_c__options=\"[]\" ></q-select>",
         "droppable": false,
         "properties": [
             {
@@ -4394,7 +4401,7 @@
         "editable": false,
         "description": "The QDate component provides a method to input date. Currently it supports Gregorian (default) and Persian calendars.\n\n\n\n",
         "tagName": "S-DATEFIELD",
-        "content": "<q-input gb_b__v-model=\"undefined\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a date\"><q-icon class=\"cursor-pointer\" gb_c__name=\"event\" style=\"height: 100%;\"><q-popup-proxy><q-date gb_b__v-model=\"undefined\" gb_c__mask=\"YYYY-MM-DD\" gb_c__no-unset=\"true\" gb_c__today-btn=\"true\"></q-date></q-popup-proxy></q-icon></q-input>",
+        "content": "<q-input iscomposite=\"true\" gb_b__v-model=\"undefined\" gb_c__clearable=\"true\" gb_c__filled=\"true\" gb_c__label=\"Pick a date\"><q-icon class=\"cursor-pointer\" gb_c__name=\"event\" style=\"height: 100%;\"><q-popup-proxy><q-date gb_b__v-model=\"undefined\" gb_c__mask=\"YYYY-MM-DD\" gb_c__no-unset=\"true\" gb_c__today-btn=\"true\"></q-date></q-popup-proxy></q-icon></q-input>",
         "droppable": false,
         "properties": [
             {
