@@ -503,16 +503,20 @@ function start(app::Application)
                                                 Core.eval(Main, :(const UserApp = $(@__MODULE__)));
                                                 Genie.genie(context = @__MODULE__);
 
-                                                up(;  async = true,
-                                                      open_browser = (ENV["GENIE_OPEN_BROWSER"] == "true"),
-                                                      query = Dict("CHANNEL__" => ENV["GENIE_CHANNEL"])
-                                                ); # end up
+                                                try
+                                                  up(;  async = true,
+                                                        open_browser = (ENV["GENIE_OPEN_BROWSER"] == "true"),
+                                                        query = Dict("CHANNEL__" => ENV["GENIE_CHANNEL"])
+                                                  ); # end up
 
-                                                while true
-                                                  revise()
-                                                  Genie.HTTPUtils.HTTP.get("http://$(ENV["GENIE_HOST"]):$(ENV["PORT"])/?CHANNEL__=$(ENV["GENIE_CHANNEL"])");
-                                                  revise()
-                                                  sleep(1)
+                                                  while true
+                                                    revise()
+                                                    Genie.HTTPUtils.HTTP.get("http://$(ENV["GENIE_HOST"]):$(ENV["PORT"])/?CHANNEL__=$(ENV["GENIE_CHANNEL"])");
+                                                    revise()
+                                                    sleep(1)
+                                                  end
+                                                catch ex
+                                                  @error ex
                                                 end
                   '`; dir = fullpath(app), detach = false)
         cmd = addenv(cmd, "PORT" => Base.get(ENV, "GB_APP_PORT", app.port),
