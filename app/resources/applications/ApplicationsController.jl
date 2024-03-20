@@ -1022,6 +1022,14 @@ function settings()
 end
 
 
+function platform_info()
+  Dict(
+    :gb_version => GenieBuilder.get_version(),
+    :julia_version => VERSION,
+  ) |> json
+end
+
+
 function download(app::Application)
   app_path = fullpath(app)
   endswith(app_path, "/") && (app_path = app_path[1:end-1])
@@ -1049,6 +1057,16 @@ function download(app::Application)
   end
 
   Genie.Router.download("$appname.zip", root = zip_temp_path)
+end
+
+function send_user_message(; text, button_text = "", button_link = "")
+  notify(; message = JSON3.write(
+                                  Dict( :message => text,
+                                        :button_text => button_text,
+                                        :button_link => button_link
+                                      )
+                                ),
+            type = "show_info_message")
 end
 
 end

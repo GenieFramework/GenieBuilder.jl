@@ -1,6 +1,9 @@
 module GenieBuilder
 
 using Genie, Logging, TOML
+using GenieCache, GenieCacheFileCache
+
+import Pkg
 
 include("Generators.jl")
 using .Generators
@@ -20,6 +23,7 @@ function __init__()
   Genie.config.server_document_root = abspath(joinpath(@__DIR__, "..", "public"))
   LOG_FOLDER[] = joinpath(GBDIR[], "log")
   Genie.config.path_log = LOG_FOLDER[]
+  GenieCacheFileCache.cache_path!(joinpath(Base.DEPOT_PATH[1], "geniebuilder", "cache"))
   install()
 
   get!(ENV, "GENIE_BANNER", "false")
@@ -34,8 +38,19 @@ function main()
   Core.eval(Main, :(using Genie))
 end
 
+function update()
+  @info "Updating GenieBuilder"
+  Pkg.update()
+
+  nothing
+end
+
 function go(; port = get!(ENV, "GB_PORT", -1))
   @info "Starting GenieBuilder v$(get_version())"
+  @async withcache(; key="system_update_GB", expiration=60*60*24) do # 24 hours cache
+    update()
+  end
+
   _go(port)
 end
 

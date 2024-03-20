@@ -225,6 +225,16 @@ function register_routes()
     ApplicationsController.settings()
   end
 
+  route("$gb_route/platform_info") do
+    ApplicationsController.platform_info()
+  end
+
+  route("mocks/send_user_message") do
+    ApplicationsController.send_user_message(;  text = "This is a test message from GenieBuilder",
+                                                button_text = "Do stuff",
+                                                button_link = "https://genieframework.com")
+  end
+
   nothing
 end
 
