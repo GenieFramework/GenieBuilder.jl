@@ -13,6 +13,10 @@ partial, q-select, q-input, q-range, q-slider, q-table, q-editor, q-date, q-vide
     min-height: 20px;
 }
 
+q-select {
+    padding-left: 10px;
+}
+
 q-timeline, q-timeline-entry, q-item{
     display: block;
     border: 1px black;
