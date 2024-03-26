@@ -1,7 +1,7 @@
 name = "GenieBuilder"
 uuid = "c9453c14-af8a-11ec-351d-c7c9a2035d70"
 authors = ["Adrian Salceanu"]
-version = "0.16.68"
+version = "0.16.69"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -28,7 +28,7 @@ ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 
 [compat]
 Dates = "1.6"
-Genie = "5.24.0"
+Genie = "5.29.0"
 GenieAutoReload = "2.2.2"
 GenieDevTools = "2.9.1"
 GeniePackageManager = "1.1.0"

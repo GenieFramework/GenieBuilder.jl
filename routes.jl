@@ -14,6 +14,9 @@ const api_route = "/api/v1"
 const app_route = "/apps/:appid"
 const gb_route  = "/geniebuilder"
 
+Genie.config.cors_headers["Access-Control-Allow-Origin"] = "*"
+Genie.Configuration.add_cors_header!("Access-Control-Allow-Headers", "GB-SessionId")
+
 # GenieBuilder API
 
 app!(name::String = "", path::String = pwd()) = findone(Application, name = isempty(name) ?

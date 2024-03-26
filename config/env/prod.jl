@@ -13,5 +13,4 @@ Genie.Configuration.config!(
   cors_allowed_origins            = ["*"]
 )
 
-Genie.config.cors_headers["Access-Control-Allow-Origin"] = "*"
-Genie.config.cors_headers["Access-Control-Allow-Headers"] = "Content-Type"
+ENV["JULIA_REVISE"] = "off"
