@@ -462,25 +462,29 @@ end
 
 function has_valid_lock_file(app::Application) :: Bool
   # file does not exist
-  isfile(lock_file_path |> app) || return false
+  isfile(lock_file_path(app)) || return false
 
   # file is not stale
-  time() - Base.Filesystem.mtime(lock_file_path |> app) < MAX_START_LOCK_TIME && return true
+  time() - Base.Filesystem.mtime(lock_file_path(app)) < MAX_START_LOCK_TIME && return true
 
   # stale lock file -- remove it
-  rm(lock_file_path |> app)
+  rm(lock_file_path(app))
 
   return false
 end
 
 
 function create_lock_file(app::Application)
-  touch(lock_file_path |> app)
+  touch(lock_file_path(app))
+
+  nothing
 end
 
 
 function remove_lock_file(app::Application)
-  isfile(lock_file_path |> app) && rm(lock_file_path |> app)
+  isfile(lock_file_path(app)) && rm(lock_file_path(app))
+
+  nothing
 end
 
 
@@ -550,11 +554,6 @@ function start(app::Application)
                                                         query = Dict("CHANNEL__" => ENV["GENIE_CHANNEL"])
                                                   ); # end up
 
-                                                  # app started successfully
-                                                  # wait a bit for server to come online and cleanup lockfile
-                                                  sleep(5)
-                                                  isfile("$(lock_file_path(app))") && rm("$(lock_file_path(app))")
-
                                                   # force revising the app
                                                   while true
                                                     revise()
@@ -601,20 +600,22 @@ function start(app::Application)
       end
     end
 
-    # @async begin
     notify("ended:start", app.id)
-    persist_status(app, ONLINE_STATUS)
     @async watch(fullpath(app), app.id.value) |> errormonitor
     @async tailapplog(app) |> errormonitor
     @async begin
       Base.with_logger(NullLogger()) do
-        while status_request(app, false; statuscheck = !has_valid_lock_file(app), persist = false) in [STARTING_STATUS, OFFLINE_STATUS]
-          touch(start_lockfile)
-          sleep(3)
+        while status_request(app, false; statuscheck = true, persist = false) in [STARTING_STATUS, OFFLINE_STATUS]
+          touch(lock_file_path(app))
+          sleep(2)
         end
+
+        # app started successfully
+        remove_lock_file(app)
+        sleep(3)
+        status_request(app, true)
       end
     end |> errormonitor
-    # end
   catch ex
     if Genie.Configuration.isdev()
       rethrow(ex)
@@ -627,7 +628,7 @@ function start(app::Application)
     return (:status => FAILSTATUS) |> json
   end
 
-  app.status = ""
+  # app.status = ""
   save!(app)
 
   (:status => OKSTATUS) |> json
