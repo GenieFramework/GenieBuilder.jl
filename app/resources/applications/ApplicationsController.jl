@@ -451,6 +451,39 @@ function real_base_path(pattern::AbstractString, port)
 end
 
 
+const START_LOCKFILE = ".lock-starting"
+const MAX_START_LOCK_TIME = 10
+
+
+@inline function lock_file_path(app::Application)
+  joinpath(fullpath(app), START_LOCKFILE)
+end
+
+
+function has_valid_lock_file(app::Application) :: Bool
+  # file does not exist
+  isfile(lock_file_path |> app) || return false
+
+  # file is not stale
+  time() - Base.Filesystem.mtime(lock_file_path |> app) < MAX_START_LOCK_TIME && return true
+
+  # stale lock file -- remove it
+  rm(lock_file_path |> app)
+
+  return false
+end
+
+
+function create_lock_file(app::Application)
+  touch(lock_file_path |> app)
+end
+
+
+function remove_lock_file(app::Application)
+  isfile(lock_file_path |> app) && rm(lock_file_path |> app)
+end
+
+
 """
   start(app)
 
@@ -460,11 +493,18 @@ function start(app::Application)
   app.status in [STARTING_STATUS, ONLINE_STATUS] && return (:status => OKSTATUS) |> json
   app.status == ERROR_STATUS && return (:status => ERROR_STATUS, :error => "App is in error state") |> json
 
+  if has_valid_lock_file(app)
+    persist_status(app, STARTING_STATUS)
+    return (:status => OKSTATUS) |> json
+  end
+
   try
     notify("started:start", app.id)
     persist_status(app, STARTING_STATUS)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
+      create_lock_file(app) # set a lock file to know that the app is starting
+
       try
         cmd = Cmd(`julia --startup-file=no -e '
                                                 using Pkg;
@@ -504,16 +544,23 @@ function start(app::Application)
                                                 Genie.genie(context = @__MODULE__);
 
                                                 try
+                                                  # start the server
                                                   up(;  async = true,
                                                         open_browser = (ENV["GENIE_OPEN_BROWSER"] == "true"),
                                                         query = Dict("CHANNEL__" => ENV["GENIE_CHANNEL"])
                                                   ); # end up
 
+                                                  # app started successfully
+                                                  # wait a bit for server to come online and cleanup lockfile
+                                                  sleep(5)
+                                                  isfile("$(lock_file_path(app))") && rm("$(lock_file_path(app))")
+
+                                                  # force revising the app
                                                   while true
                                                     revise()
                                                     Genie.HTTPUtils.HTTP.get("http://$(ENV["GENIE_HOST"]):$(ENV["PORT"])/?CHANNEL__=$(ENV["GENIE_CHANNEL"])");
                                                     revise()
-                                                    sleep(1)
+                                                    sleep(3)
                                                   end
                                                 catch ex
                                                   @error ex
@@ -561,8 +608,9 @@ function start(app::Application)
     @async tailapplog(app) |> errormonitor
     @async begin
       Base.with_logger(NullLogger()) do
-        while status_request(app, false; statuscheck = true, persist = false) in [STARTING_STATUS, OFFLINE_STATUS]
-          sleep(1)
+        while status_request(app, false; statuscheck = !has_valid_lock_file(app), persist = false) in [STARTING_STATUS, OFFLINE_STATUS]
+          touch(start_lockfile)
+          sleep(3)
         end
       end
     end |> errormonitor
@@ -657,6 +705,8 @@ function stop(app::Application)
 
     status = ERROR_STATUS
   end
+
+  remove_lock_file(app)
 
   if haskey(appsthreads, fullpath(app))
     try
