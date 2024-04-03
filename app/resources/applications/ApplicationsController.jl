@@ -328,6 +328,8 @@ function persist_status(app::Union{Application,Nothing}, status::AbstractString)
     return false
   end
 
+  println("Status persisted: $status")
+
   true
 end
 
@@ -337,7 +339,7 @@ end
 Makes a HTTP request to an app to check its status.
 """
 function status_request(app, donotify::Bool = true; statuscheck::Bool = false, persist::Bool = true) :: String
-  params(:statuscheck, statuscheck) || return app.status
+  (params(:statuscheck, statuscheck) && app.status !== "") || return app.status
 
   status = try
     donotify && notify("started:status_request", app.id)
@@ -360,6 +362,8 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
 
   donotify && notify("ended:status_request", app.id)
   persist && persist_status(app, status)
+
+  println("Status request: $status")
 
   status |> string
 end
@@ -605,7 +609,9 @@ function start(app::Application)
     @async tailapplog(app) |> errormonitor
     @async begin
       Base.with_logger(NullLogger()) do
+        println("Status request 1: ", status_request(app, false; statuscheck = true, persist = false))
         while status_request(app, false; statuscheck = true, persist = false) in [STARTING_STATUS, OFFLINE_STATUS]
+          println("Status request 2: ", status_request(app, false; statuscheck = true, persist = false))
           touch(lock_file_path(app))
           sleep(2)
         end

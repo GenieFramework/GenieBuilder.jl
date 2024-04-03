@@ -1,7 +1,7 @@
 name = "GenieBuilder"
 uuid = "c9453c14-af8a-11ec-351d-c7c9a2035d70"
 authors = ["Adrian Salceanu"]
-version = "0.16.70"
+version = "0.16.71"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
