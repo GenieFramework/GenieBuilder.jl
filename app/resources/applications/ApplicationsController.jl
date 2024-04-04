@@ -338,8 +338,11 @@ end
 
 Makes a HTTP request to an app to check its status.
 """
-function status_request(app, donotify::Bool = true; statuscheck::Bool = false, persist::Bool = true) :: String
-  (params(:statuscheck, statuscheck) && app.status !== "") || return app.status
+function status_request(app, donotify::Bool = true; statuscheck::Bool = false, persist::Bool = true, startup_lock::Bool = true) :: String
+  if (! params(:statuscheck, statuscheck) && app.status !== "")
+    println("No status check, returning directly app status: ", app.status)
+    return app.status
+  end
 
   status = try
     donotify && notify("started:status_request", app.id)
@@ -358,6 +361,11 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
       donotify && notify("failed:status_request", app.id, FAILSTATUS, ERROR_STATUS)
       ERROR_STATUS
     end
+  end
+
+  if startup_lock && has_valid_lock_file(app) && status == OFFLINE_STATUS
+    println("App is starting, returning status: ", STARTING_STATUS)
+    status = STARTING_STATUS
   end
 
   donotify && notify("ended:status_request", app.id)
@@ -479,6 +487,7 @@ end
 
 
 function create_lock_file(app::Application)
+  println("Creating lock file")
   touch(lock_file_path(app))
 
   nothing
@@ -486,6 +495,7 @@ end
 
 
 function remove_lock_file(app::Application)
+  println("Removing lock file")
   isfile(lock_file_path(app)) && rm(lock_file_path(app))
 
   nothing
@@ -502,7 +512,7 @@ function start(app::Application)
   app.status == ERROR_STATUS && return (:status => ERROR_STATUS, :error => "App is in error state") |> json
 
   if has_valid_lock_file(app)
-    persist_status(app, STARTING_STATUS)
+    app.status != STARTING_STATUS && persist_status(app, STARTING_STATUS)
     return (:status => OKSTATUS) |> json
   end
 
@@ -605,12 +615,14 @@ function start(app::Application)
     end
 
     notify("ended:start", app.id)
+
     @async watch(fullpath(app), app.id.value) |> errormonitor
     @async tailapplog(app) |> errormonitor
+
     @async begin
       Base.with_logger(NullLogger()) do
-        println("Status request 1: ", status_request(app, false; statuscheck = true, persist = false))
-        while status_request(app, false; statuscheck = true, persist = false) in [STARTING_STATUS, OFFLINE_STATUS]
+        println("Status request 1: ", status_request(app, false; statuscheck = true, persist = false, startup_lock = true))
+        while status_request(app, false; statuscheck = true, persist = false, startup_lock = true) in [STARTING_STATUS, OFFLINE_STATUS]
           println("Status request 2: ", status_request(app, false; statuscheck = true, persist = false))
           touch(lock_file_path(app))
           sleep(2)
@@ -618,8 +630,8 @@ function start(app::Application)
 
         # app started successfully
         remove_lock_file(app)
-        sleep(3)
-        status_request(app, true)
+        # sleep(3)
+        status_request(app, true; statuscheck = true)
       end
     end |> errormonitor
   catch ex
