@@ -588,7 +588,7 @@ function start(app::Application)
                           "GENIE_HOST" => Base.get(ENV, "GENIE_HOST", "0.0.0.0"),
                           "GENIE_BANNER" => "false",
                           "GENIE_PUSH_ERRORS" => "false",
-                          "GENIE_OPEN_BROWSER" => Base.get(ENV, "GENIE_OPEN_BROWSER", "true"),
+                          "GENIE_OPEN_BROWSER" => Base.get(ENV, "GENIE_OPEN_BROWSER", !Base.get(ENV, "GB_HEADLESS", false)) |> string,
                           "BASEPATH" => real_base_path(Base.get(ENV, "GB_APP_BASEPATH", ""), app.port),
                           "WSBASEPATH" => real_base_path(Base.get(ENV, "GB_APP_WSBASEPATH", ""), app.port),
                         )
