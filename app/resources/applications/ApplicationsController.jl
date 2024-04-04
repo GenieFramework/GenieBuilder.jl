@@ -328,7 +328,7 @@ function persist_status(app::Union{Application,Nothing}, status::AbstractString)
     return false
   end
 
-  println("Status persisted: $status")
+  # println("Status persisted: $status")
 
   true
 end
@@ -340,7 +340,7 @@ Makes a HTTP request to an app to check its status.
 """
 function status_request(app, donotify::Bool = true; statuscheck::Bool = false, persist::Bool = true, startup_lock::Bool = true) :: String
   if (! params(:statuscheck, statuscheck) && app.status !== "")
-    println("No status check, returning directly app status: ", app.status)
+    # println("No status check, returning directly app status: ", app.status)
     return app.status
   end
 
@@ -364,14 +364,14 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
   end
 
   if startup_lock && has_valid_lock_file(app) && status == OFFLINE_STATUS
-    println("App is starting, returning status: ", STARTING_STATUS)
+    # println("App is starting, returning status: ", STARTING_STATUS)
     status = STARTING_STATUS
   end
 
   donotify && notify("ended:status_request", app.id)
   persist && persist_status(app, status)
 
-  println("Status request: $status")
+  # println("Status request: $status")
 
   status |> string
 end
@@ -487,7 +487,7 @@ end
 
 
 function create_lock_file(app::Application)
-  println("Creating lock file")
+  # println("Creating lock file")
   touch(lock_file_path(app))
 
   nothing
@@ -495,7 +495,7 @@ end
 
 
 function remove_lock_file(app::Application)
-  println("Removing lock file")
+  # println("Removing lock file")
   isfile(lock_file_path(app)) && rm(lock_file_path(app))
 
   nothing
@@ -621,9 +621,9 @@ function start(app::Application)
 
     @async begin
       Base.with_logger(NullLogger()) do
-        println("Status request 1: ", status_request(app, false; statuscheck = true, persist = false, startup_lock = true))
+        # println("Status request 1: ", status_request(app, false; statuscheck = true, persist = false, startup_lock = true))
         while status_request(app, false; statuscheck = true, persist = false, startup_lock = true) in [STARTING_STATUS, OFFLINE_STATUS]
-          println("Status request 2: ", status_request(app, false; statuscheck = true, persist = false))
+          # println("Status request 2: ", status_request(app, false; statuscheck = true, persist = false))
           touch(lock_file_path(app))
           sleep(2)
         end
