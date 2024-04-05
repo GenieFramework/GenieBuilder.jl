@@ -194,7 +194,7 @@ function register(name::AbstractString = "", path::AbstractString = pwd(); autos
   try
     notify("started:register_app")
 
-    path = abspath(normpath(path))
+    path = abspath(normpath(path)) |> realpath
     isdir(path) || throw(ArgumentError("Path $path is not a directory"))
 
     endswith(path, "/") || (path = "$path/")
@@ -276,7 +276,7 @@ create(name::AbstractString = "", path::AbstractString = pwd()) = create(findone
 """
 function boilerplate(app_path::String)
   # set up the Julia environment
-  app_path = abspath(normpath(app_path))
+  app_path = abspath(normpath(app_path)) |> realpath
   isdir(app_path) || mkpath(app_path)
 
   try
