@@ -194,7 +194,7 @@ function register(name::AbstractString = "", path::AbstractString = pwd(); autos
   try
     notify("started:register_app")
 
-    path = abspath(normpath(path)) |> realpath
+    path = abspath(normpath(path)) # |> realpath #TODO: put back in next release
     isdir(path) || throw(ArgumentError("Path $path is not a directory"))
 
     endswith(path, "/") || (path = "$path/")
