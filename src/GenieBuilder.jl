@@ -48,9 +48,13 @@ end
 
 function go(; port = get!(ENV, "GB_PORT", -1))
   @info "Starting GenieBuilder v$(get_version())"
-  @async withcache(; key="system_update_GB", expiration=60*60*24) do # 24 hours cache
-    update()
+
+  if Genie.Configuration.isprod()
+    @async withcache(; key="system_update_GB", expiration=60*60*24) do # 24 hours cache
+      update()
+    end
   end
+
   @async GenieLicensing.start_session() |> errormonitor
 
   _go(port)
