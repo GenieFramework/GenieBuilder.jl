@@ -48,6 +48,7 @@ end
 
 function go(; port = get!(ENV, "GB_PORT", -1))
   @info "Starting GenieBuilder v$(get_version())"
+  @async set_starting_flag() |> errormonitor
 
   if Genie.Configuration.isprod()
     @async withcache(; key="system_update_GB", expiration=60*60*24) do # 24 hours cache
@@ -78,6 +79,11 @@ function _go(port)
 
   Genie.go()
   cd(current_path)
+
+  @async begin
+    sleep(3)
+    clear_starting_flag()
+  end |> errormonitor
 
   port = port == -1 ? Genie.config.server_port : port
   try
@@ -134,6 +140,32 @@ end
 function exit()
   Genie.Server.down!()
   Base.exit()
+end
+
+const configdir = joinpath(homedir(), ".geniebuilder")
+const starting_flag = joinpath(configdir, "gbstarting")
+
+function set_starting_flag()
+  try
+    isdir(configdir) || mkpath(configdir)
+    touch(starting_flag)
+  catch ex
+    @warn "Could not create starting flag file"
+    @error ex
+  end
+end
+
+function clear_starting_flag()
+  try
+    isfile(starting_flag) && rm(starting_flag)
+  catch ex
+    @warn "Could not remove starting flag file"
+    @error ex
+  end
+end
+
+atexit() do
+  clear_starting_flag()
 end
 
 end
