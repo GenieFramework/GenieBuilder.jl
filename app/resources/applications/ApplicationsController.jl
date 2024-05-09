@@ -585,7 +585,7 @@ function start(app::Application)
                           "CHANNEL__" => app.channel,
                           "GENIE_CHANNEL" => app.channel,
                           "GENIE_ENV" => "dev",
-                          "GENIE_HOST" => Base.get(ENV, "GENIE_HOST", "0.0.0.0"),
+                          "GENIE_HOST" => Base.get(ENV, "GENIE_HOST", (Sys.iswindows() ? "127.0.0.1" : "0.0.0.0")), # no 0.0.0.0 on Windows
                           "GENIE_BANNER" => "false",
                           "GENIE_PUSH_ERRORS" => "false",
                           "GENIE_OPEN_BROWSER" => Base.get(ENV, "GENIE_OPEN_BROWSER", Base.get(ENV, "GB_HEADLESS", "false") == "true" ? "false" : "true"), # if it's headless, don't open browser.
