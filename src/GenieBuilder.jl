@@ -50,15 +50,26 @@ function go(; port = get!(ENV, "GB_PORT", -1))
   @info "Starting GenieBuilder v$(get_version())"
   @async set_starting_flag() |> errormonitor
 
-  if Genie.Configuration.isprod()
-    @async withcache(; key="system_update_GB", expiration=60*60*24) do # 24 hours cache
-      update()
+  try
+    if Genie.Configuration.isprod()
+      @async withcache(; key="system_update_GB", expiration=60*60*24) do # 24 hours cache
+        @async update()  |> errormonitor
+      end  |> errormonitor
     end
+  catch
   end
 
-  @async GenieLicensing.start_session() |> errormonitor
+  try
+    @async GenieLicensing.start_session() |> errormonitor
+  catch
+  end
 
-  _go(port)
+  try
+    _go(port)
+  catch ex
+    @error ex
+    exit(1)
+  end
 end
 
 function _go(port)
@@ -74,24 +85,24 @@ function _go(port)
   current_path = normpath(pwd())
   cd(normpath(@__DIR__, ".."))
 
-  Genie.config.log_to_file = true
-  Genie.config.path_log = LOG_FOLDER[]
-
-  Genie.go()
-  cd(current_path)
-
-  @async begin
-    sleep(3)
-    clear_starting_flag()
-  end |> errormonitor
-
-  port = port == -1 ? Genie.config.server_port : port
   try
+    Genie.config.log_to_file = true
+    Genie.config.path_log = LOG_FOLDER[]
+
+    Genie.go()
+    cd(current_path)
+
+    @async begin
+      sleep(3)
+      clear_starting_flag()
+    end |> errormonitor
+
+    port = port == -1 ? Genie.config.server_port : port
+
     Genie.up(port; async = false)
   catch ex
     @error ex
-  finally
-    exit()
+    exit(1)
   end
 end
 

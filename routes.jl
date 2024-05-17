@@ -282,4 +282,10 @@ function main()
   ready()
 end
 
-main()
+try
+  main()
+catch e
+  @error("Error starting GenieBuilder")
+  @error(e)
+  exit(1)
+end
