@@ -570,8 +570,10 @@ function start(app::Application)
 
                                                   # force revising the app
                                                   while true
-                                                    revise()
-                                                    Genie.HTTPUtils.HTTP.get("http://$(ENV["GENIE_HOST"]):$(ENV["PORT"])/?CHANNEL__=$(ENV["GENIE_CHANNEL"])");
+                                                    # Using .get(...) causes the vars to reset - to investigate
+                                                    # revise()
+                                                    # Genie.HTTPUtils.HTTP.get("http://$(ENV["GENIE_HOST"]):$(ENV["PORT"])/?CHANNEL__=$(ENV["GENIE_CHANNEL"])");
+
                                                     revise()
                                                     sleep(3)
                                                   end
