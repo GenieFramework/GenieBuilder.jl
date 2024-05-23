@@ -6,7 +6,7 @@ using RemoteREPL
 using JSON3
 import GenieDevTools
 using Logging
-using GenieLicensing
+using GenieBuilder.Licensing
 
 Genie.config.websockets_server = true
 
@@ -99,16 +99,25 @@ function register_routes()
 
   # registers a new path as a GenieBuilder app
   route("$api_route/apps/register") do
-    @async GenieLicensing.log("GenieBuilder.jl", "apps-register",
-                              Dict("name" => params(:name, ""), "path" => params(:path, pwd()))) |> errormonitor
+    @async GenieBuilder.Licensing.log("GenieBuilder.jl",
+                                      "apps-register",
+                                      Dict(
+                                        "name" => params(:name, ""),
+                                        "path" => params(:path, pwd())
+                                      )
+                                    ) |> errormonitor
 
     register(params(:name, ""), params(:path, pwd()))
   end
 
   # creates the Genie app skeleton
   route("$api_route/apps/create") do
-    @async GenieLicensing.log("GenieBuilder.jl", "apps-create",
-                              Dict("name" => params(:name, ""), "path" => params(:path, pwd()))) |> errormonitor
+    @async GenieBuilder.Licensing.log("GenieBuilder.jl",
+                                      "apps-create",
+                                      Dict(
+                                        "name" => params(:name, ""),
+                                        "path" => params(:path, pwd())
+                                      )) |> errormonitor
 
     create(params(:name, ""), params(:path, pwd()))
   end

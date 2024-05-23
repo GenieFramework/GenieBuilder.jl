@@ -2,12 +2,13 @@ module GenieBuilder
 
 using Genie, Logging, TOML
 using GenieCache, GenieCacheFileCache
-using GenieLicensing
 
 import Pkg
 
 include("Generators.jl")
+include("Licensing.jl")
 using .Generators
+using .Licensing
 
 const GBDIR = Ref{String}("")
 const DB_FOLDER = Ref{String}("")
@@ -60,7 +61,7 @@ function go(; port = get!(ENV, "GB_PORT", -1))
   end
 
   try
-    @async GenieLicensing.start_session() |> errormonitor
+    @async GenieBuilder.Licensing.start_session() |> errormonitor
   catch
   end
 
