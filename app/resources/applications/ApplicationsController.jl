@@ -1140,4 +1140,8 @@ function send_user_message(; text, button_text = "", button_link = "")
             type = "show_info_message")
 end
 
+function start_session()
+  GenieBuilder.Licensing.start_session() |> json
+end
+
 end

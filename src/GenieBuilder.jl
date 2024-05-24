@@ -60,10 +60,10 @@ function go(; port = get!(ENV, "GB_PORT", -1))
   catch
   end
 
-  try
-    @async GenieBuilder.Licensing.start_session() |> errormonitor
-  catch
-  end
+  # try
+  #   @async GenieBuilder.Licensing.start_session() |> errormonitor
+  # catch
+  # end
 
   try
     _go(port)

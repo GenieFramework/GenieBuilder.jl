@@ -1,30 +1,41 @@
+"""
+Licensing integration for JuliaHub
+"""
 module Licensing
 
 using HTTP, JSON, Logging, Random
 
-# const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "https://genielicensing.hosting.genieframework.com/api/v1") # no trailing slash
-const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "http://127.0.0.1:3333/api/v1") # no trailing slash
-const USER_EMAIL = get!(ENV, "GENIE_USER_EMAIL", "__UNKNWON__@juliahub.com")
-const USER_FULL_NAME = get!(ENV, "GENIE_USER_FULL_NAME", "JuliaHub User")
-const ORIGIN = get!(ENV, "GENIE_ORIGIN", "JULIAHUB")
-const METADATA = get!(ENV, "GENIE_METADATA", "")
-const FAILED_SESSION_ID = "__failed_session_id__"
+const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "https://genielicensing.hosting.genieframework.com/api/v1") # no trailing slash
+# const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "http://127.0.0.1:3333/api/v1") # no trailing slash
+const FAILED_SESSION_ID = ""
 
 const GBFOLDER = joinpath(homedir(), ".geniebuilder")
 const GBPASSFILE = joinpath(GBFOLDER, "pass")
 const GBSESSIONFILE = joinpath(GBFOLDER, "sessionid")
 
-@inline function is_failed_session()
-  return ENV["GENIE_SESSION"] == FAILED_SESSION_ID
+@inline function is_failed_session() :: Bool
+  get(ENV, "GENIE_SESSION", FAILED_SESSION_ID) == FAILED_SESSION_ID
 end
 
-function isregistered()
+function isregistered() :: Bool
   isfile(GBPASSFILE)
+end
+
+function isloggedin() :: Bool
+  if isfile(GBSESSIONFILE)
+    token = read(GBSESSIONFILE, String)
+    if token != ""
+      ENV["GENIE_SESSION"] = token
+      ! isempty(status()) && return true
+    end
+  end
+
+  false
 end
 
 function password()
   isdir(GBFOLDER) || mkpath(GBFOLDER)
-  pass = randstring('a':'z', 20) * "1!A"
+  pass = randstring('a':'z', 20) * "1!A" # add the postfix to pass the password validation
 
   if ! isfile(GBPASSFILE)
     touch(GBPASSFILE)
@@ -38,6 +49,10 @@ function password()
   readline(GBPASSFILE)
 end
 
+function rmpassword()
+  isfile(GBPASSFILE) && rm(GBPASSFILE)
+end
+
 function first_last_name(full_name = USER_FULL_NAME)
   parts = split(full_name, " ")
   if length(parts) == 1
@@ -48,7 +63,7 @@ function first_last_name(full_name = USER_FULL_NAME)
 end
 
 function register()
-  response = HTTP.post( LICENSE_API * "/register";
+  response = try HTTP.post( LICENSE_API * "/register";
                 body = Dict(
                   "username" => randstring('a':'z', 12),
                   "password" => password(),
@@ -60,6 +75,11 @@ function register()
                 ),
                 status_exception = true
               )
+  catch ex
+    @warn("Failed to register: $ex")
+    rmpassword()
+    rethrow(ex)
+  end
 end
 
 function login()
@@ -74,18 +94,31 @@ function login()
               )
 end
 
-function start_session()
-  session_data = try
-    if ! isregistered()
-      register()
-    else
-      login()
-    end
-  catch ex
-    @warn("Failed to start session. Giving up. $ex")
-    ENV["GENIE_SESSION"] = FAILED_SESSION_ID
+function logoff() :: Nothing
+  rm(GBSESSIONFILE)
+  ENV["GENIE_SESSION"] = FAILED_SESSION_ID
 
-    return
+  nothing
+end
+
+function start_session()
+  subscription_info = fetch_subscription_info() # fetch JH subscription info TODO:
+  @async update_user_info(subscription_info) |> errormonitor # update user info in the GLS backend TODO:
+
+  if is_subscription_expired(subscription_info)
+    @warn("Subscription expired")
+    logoff()
+
+    return ENV["GENIE_SESSION"]
+  end
+
+  isloggedin() && return ENV["GENIE_SESSION"]
+
+  session_data = try
+    isregistered() ? login() : register()
+  catch ex
+    @warn("Failed to start session. $ex")
+    return ENV["GENIE_SESSION"] = FAILED_SESSION_ID
   end
 
   if session_data.status == 200
@@ -93,7 +126,7 @@ function start_session()
       ENV["GENIE_SESSION"] = (session_data.body |> String |> JSON.parse)["token"]
     catch ex
       @warn("Failed to parse session data: $ex")
-      ENV["GENIE_SESSION"] = FAILED_SESSION_ID
+      return ENV["GENIE_SESSION"] = FAILED_SESSION_ID
     end
 
     try
@@ -113,6 +146,25 @@ function headers()
     "Authorization" => "Bearer " * ENV["GENIE_SESSION"],
     "Content-Type" => "application/json"
   )
+end
+
+# TODO: implement this
+function fetch_subscription_info()
+  # 1/ retrieve the subscription info from JuliaHub API and return it
+
+  Dict()
+end
+
+# TODO: implement this
+function update_user_info(subscription_info) :: Nothing
+  # 1/ update the user info in the GLS backend
+
+  nothing
+end
+
+function is_subscription_expired(subscription_info) :: Bool
+  # 1/ check if the subscription is expired
+  false
 end
 
 function log(origin, type, payload::AbstractDict)
@@ -200,18 +252,15 @@ function status()
 end
 
 function __init__() #TODO: uncouple this
-  if get(ENV, "JULIAHUB_USEREMAIL", "") != ""
-    ENV["GENIE_USER_EMAIL"] = ENV["JULIAHUB_USEREMAIL"]
-  end
-  if get(ENV, "JULIAHUB_USER_FULL_NAME", "") != ""
-    ENV["GENIE_USER_FULL_NAME"] = ENV["JULIAHUB_USER_FULL_NAME"]
-  end
-  if get(ENV, "JULIA_PKG_SERVER", "") != ""
-    ENV["GENIE_ORIGIN"] = ENV["JULIA_PKG_SERVER"]
-  end
-  if get(ENV, "JULIAHUB_APP_URL", "") != ""
-    ENV["GENIE_METADATA"] = ENV["JULIAHUB_APP_URL"]
-  end
+  ENV["GENIE_USER_EMAIL"] = get(ENV, "JULIAHUB_USEREMAIL", "")
+  ENV["GENIE_USER_FULL_NAME"] =  get(ENV, "JULIAHUB_USER_FULL_NAME", "")
+  ENV["GENIE_ORIGIN"] = get(ENV, "JULIA_PKG_SERVER", "")
+  ENV["GENIE_METADATA"] = get(ENV, "JULIAHUB_APP_URL", "")
+
+  @eval const USER_EMAIL = get!(ENV, "GENIE_USER_EMAIL", "")
+  @eval const USER_FULL_NAME = get!(ENV, "GENIE_USER_FULL_NAME", "")
+  @eval const ORIGIN = get!(ENV, "GENIE_ORIGIN", "JULIAHUB")
+  @eval const METADATA = get!(ENV, "GENIE_METADATA", "")
 end
 
 

@@ -254,6 +254,10 @@ function register_routes()
                                                 button_link = "https://genieframework.com")
   end
 
+  route("$api_route/licensing/start_session") do
+    ApplicationsController.start_session()
+  end
+
   nothing
 end
 
