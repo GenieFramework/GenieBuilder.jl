@@ -1102,9 +1102,12 @@ end
 
 
 function download(app::Application)
+  path_separator = Sys.iswindows() ? "\\" : "/"
+
   app_path = fullpath(app)
-  endswith(app_path, "/") && (app_path = app_path[1:end-1])
+  endswith(app_path, path_separator) && (app_path = app_path[1:end-1])
   appname = basename(app_path)
+
   zip_temp_path = Base.tempdir()
   w = ZipFile.Writer(joinpath(zip_temp_path, "$appname.zip"))
 
@@ -1112,17 +1115,19 @@ function download(app::Application)
     for (root, dirs, files) in walkdir(app_path)
       for file in files
         filepath = joinpath(root, file)
+
         f = open(filepath, "r")
         content = read(f, String)
         close(f)
-        filename = Sys.iswindows() ? split(filepath, "$appname\\")[2] : split(filepath, "$appname/")[2]
+
+        filename = split(filepath, "$appname$path_separator")[2]
         zipfilepath = joinpath(appname, filename)
         zf = ZipFile.addfile(w, zipfilepath; method=ZipFile.Deflate)
         write(zf, content)
       end
     end
   catch ex
-    @error "failed to write zip file: ", ex
+    @error "Failed to write zip file: ", ex
   finally
     close(w)
   end
