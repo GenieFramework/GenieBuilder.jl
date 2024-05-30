@@ -88,8 +88,8 @@ function register()
 
       # email already exists
       if haskey(r, "messages") && haskey(r["messages"], "email") && ("Email is already taken" in r["messages"]["email"])
-        reset_password()
-        return login()
+        pass = reset_password()
+        ! isempty(pass) && return login()
       end
     catch ex
       @error("Failed to parse registration response: $ex")
