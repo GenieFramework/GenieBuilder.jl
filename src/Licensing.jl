@@ -5,8 +5,8 @@ module Licensing
 
 using HTTP, JSON, Logging, Random
 
-# const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "https://genielicensing.hosting.genieframework.com/api/v1") # no trailing slash
-const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "http://127.0.0.1:3333/api/v1") # no trailing slash #TODO: change this to the production URL
+const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "https://genielicensing.hosting.genieframework.com/api/v1") # no trailing slash
+# const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "http://127.0.0.1:3333/api/v1") # no trailing slash #TODO: change this to the production URL
 const FAILED_SESSION_ID = ""
 
 const GBFOLDER = joinpath(homedir(), ".geniebuilder")
