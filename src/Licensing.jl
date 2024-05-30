@@ -5,8 +5,8 @@ module Licensing
 
 using HTTP, JSON, Logging, Random
 
-const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "https://genielicensing.hosting.genieframework.com/api/v1") # no trailing slash
-# const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "http://127.0.0.1:3333/api/v1") # no trailing slash
+# const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "https://genielicensing.hosting.genieframework.com/api/v1") # no trailing slash
+const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "http://127.0.0.1:3333/api/v1") # no trailing slash #TODO: change this to the production URL
 const FAILED_SESSION_ID = ""
 
 const GBFOLDER = joinpath(homedir(), ".geniebuilder")
@@ -73,25 +73,103 @@ function register()
                   "origin" => ORIGIN,
                   "metadata" => Dict("app_url" => METADATA) |> JSON.json
                 ),
-                status_exception = true
+                status_exception = false
               )
   catch ex
-    @warn("Failed to register: $ex")
+    @error("Failed to make registration request: $ex")
     rmpassword()
-    rethrow(ex)
+
+    return ""
   end
+
+  if response.status == 400
+    body = try
+      r = JSON.parse(String(response.body))
+
+      # email already exists
+      if haskey(r, "messages") && haskey(r["messages"], "email") && ("Email is already taken" in r["messages"]["email"])
+        reset_password()
+        return login()
+      end
+    catch ex
+      @error("Failed to parse registration response: $ex")
+      rmpassword()
+
+      return ""
+    end
+  end
+
+  if response.status == 200
+    return String(response.body)
+  end
+
+  rmpassword()
+  throw("Failed to register: $(response.status) $(String(response.body))")
 end
 
 function login()
-  HTTP.post( LICENSE_API * "/login";
+  response = try HTTP.post( LICENSE_API * "/login";
                 body = Dict(
                   "password" => password(),
                   "email" => USER_EMAIL,
                   "origin" => ORIGIN,
                   "metadata" => Dict("app_url" => METADATA) |> JSON.json
                 ),
-                status_exception = true
+                status_exception = false
               )
+  catch ex
+    @error("Failed to make login request: $ex")
+
+    return ""
+  end
+
+  if response.status == 401
+    message = try
+      r = JSON.parse(String(response.body))
+
+      if haskey(r, "error") && r["error"] == "Invalid email or password"
+        return register()
+      end
+    catch ex
+      @error("Failed to login")
+      return ""
+    end
+  end
+
+  if response.status != 200
+    @error("Failed to login: $(response.status) $(String(response.body))")
+
+    return ""
+  end
+
+  return String(response.body)
+end
+
+function reset_password()
+  response = try HTTP.post( LICENSE_API * "/reset_password";
+                body = Dict(
+                  "email" => USER_EMAIL,
+                  "password" => password(),
+                  "firstName"  => first_last_name(USER_FULL_NAME)[1],
+                  "lastName" => first_last_name(USER_FULL_NAME)[2],
+                  "origin" => ORIGIN,
+                  "metadata" => Dict("app_url" => METADATA) |> JSON.json
+                ),
+                status_exception = false
+              )
+  catch ex
+    @error("Failed to make login request: $ex")
+
+    return ""
+  end
+
+  if response.status != 200
+    @error("Failed to login: $(response.status) $(String(response.body))")
+
+    return ""
+  end
+
+  return String(response.body)
 end
 
 function logoff() :: Nothing
@@ -121,9 +199,9 @@ function start_session()
     return ENV["GENIE_SESSION"] = FAILED_SESSION_ID
   end
 
-  if session_data.status == 200
+  if ! isempty(session_data)
     try
-      ENV["GENIE_SESSION"] = (session_data.body |> String |> JSON.parse)["token"]
+      ENV["GENIE_SESSION"] = (session_data |> JSON.parse)["token"]
     catch ex
       @warn("Failed to parse session data: $ex")
       return ENV["GENIE_SESSION"] = FAILED_SESSION_ID
@@ -246,7 +324,7 @@ function status()
   try
     (quotas_data.body |> String |> JSON.parse)
   catch ex
-    @warn("Failed to parse status data: $ex")
+    # @warn("Failed to parse status data: $ex")
     return Dict()
   end
 end
@@ -254,7 +332,7 @@ end
 function __init__() #TODO: uncouple this
   ENV["GENIE_USER_EMAIL"] = get(ENV, "JULIAHUB_USEREMAIL", "")
   ENV["GENIE_USER_FULL_NAME"] =  get(ENV, "JULIAHUB_USER_FULL_NAME", "")
-  ENV["GENIE_ORIGIN"] = get(ENV, "JULIA_PKG_SERVER", "")
+  ENV["GENIE_ORIGIN"] = get(ENV, "JULIA_PKG_SERVER", "JULIAHUB")
   ENV["GENIE_METADATA"] = get(ENV, "JULIAHUB_APP_URL", "")
 
   @eval const USER_EMAIL = get!(ENV, "GENIE_USER_EMAIL", "")
