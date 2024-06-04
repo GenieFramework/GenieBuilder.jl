@@ -103,3 +103,11 @@ JULIA_CODE {
     padding: 10px;
     display: inline-block;
 }
+
+.st-col{
+    min-height: 30px;
+}
+
+.row{
+    min-height: 30px;
+}
