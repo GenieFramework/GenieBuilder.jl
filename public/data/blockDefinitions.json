@@ -8752,8 +8752,56 @@
         ],
         "category": "Other",
         "hideFromLibrary": false,
-        "enabled": false,
+        "enabled": true,
         "icon": "lineChart.png",
         "type": "dynamic-plotly"
+    }, 
+
+
+    {
+        "label": "ReactPoc",
+        "draggable": true,
+        "editable": false,
+        "description": "",
+        "tagName": "REACT-POC",
+        "content": "<react-poc gb_c__message=\"I'm a message\" ></react-poc>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Message",
+                "name": "message",
+                "enabled": true,
+                "type": ["String"]
+            }
+        ], 
+        "category": "Other",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "icon": "lineChart.png",
+        "type": "react-poc"
+    }, 
+
+    {
+        "label": "ReactWrapper",
+        "draggable": true,
+        "editable": false,
+        "description": "",
+        "tagName": "REACT-WRAPPER",
+        "content": "<react-wrapper gb_c__message=\"I'm a message\" ></react-wrapper>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Message",
+                "name": "message",
+                "enabled": true,
+                "type": ["String"]
+            }
+        ], 
+        "category": "Other",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "icon": "lineChart.png",
+        "type": "react-wrapper"
     }
+
 ]
