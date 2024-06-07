@@ -73,6 +73,9 @@ get(appid::Int) = begin
   appid
 end
 
+const NOTIFICATION_QUEUE = Dict{String,Float64}()
+const NOTIFICATION_THROTTLE = 3.0 # seconds
+
 """
   notify(...)
 
@@ -83,16 +86,12 @@ function notify(message::String,
                 status::String = OKSTATUS,
                 type::Union{String,Symbol} = "info",
                 eventid::String = params(:eventid, "0")) :: Bool
+  queue_key = "$appid-$message"
+  haskey(NOTIFICATION_QUEUE, queue_key) && NOTIFICATION_QUEUE[queue_key] > time() - NOTIFICATION_THROTTLE && return true
+  NOTIFICATION_QUEUE[queue_key] = time() # block parallel notifications
+
   type = string(type)
   isa(appid, SearchLight.DbId) && (appid = appid.value)
-
-  # println(Dict(
-  #   :message    => message,
-  #   :appid      => isnothing(appid) ? 0 : appid.value,
-  #   :status     => status,
-  #   :type       => type,
-  #   :eventid    => eventid
-  # ))
 
   try
     Genie.WebChannels.unsubscribe_disconnected_clients()
@@ -119,8 +118,10 @@ function notify(message::String,
       ) |> JSON3.write
     )
     @debug "Notification from app id $appid : $message"
+    NOTIFICATION_QUEUE[queue_key] = time()
   catch ex
     @error ex
+    delete!(NOTIFICATION_QUEUE, queue_key)
   end
 
   true
@@ -405,19 +406,22 @@ function watch(path::AbstractString, appid::Int)
     return
   end
 
+  setupwatch(path, appid, app)
+end
+
+
+function setupwatch(path::AbstractString, appid::Int, app::Application)
   Genie.Watch.handlers!("$(appid)", [
     () -> begin
             try
               HTTP.request("GET", "$(apphost):$(app.port)")
             catch ex
-              @error ex
+              # @error ex
             end
           end,
     () -> begin
-            ApplicationsController.notify("changed:files", appid)
-          end,
-    () -> begin
             current_time = time()
+            timedelta = 3 # seconds
             max_time = 0
             newest_file = ""
             ext = ""
@@ -430,22 +434,26 @@ function watch(path::AbstractString, appid::Int)
 
                 # Get file creation time
                 file_time = Base.Filesystem.mtime(joinpath(root, file))
-                if file_time > max_time && file_time <= current_time
+                # @warn "Debug. Checking creation time for file: $file at $file_time vs current time: $current_time vs max time: $max_time"
+                # ApplicationsController.notify("Debug. Checking creation time for file: $file with time diff $(current_time - file_time)", appid)
+                if file_time > max_time && file_time <= current_time && file_time >= current_time - timedelta
                   max_time = file_time
                   newest_file = abspath(joinpath(root, file))
                 end
               end
             end
             isempty(newest_file) && return
+            ApplicationsController.notify("changed:files", appid)
             ApplicationsController.notify("filechanged:$newest_file", appid)
           end
   ])
 
   Genie.Watch.watchpath(path)
-  Genie.Watch.watch()
+  @async Genie.Watch.watch()
 
   nothing
 end
+
 
 """
   unwatch(path, appid)
@@ -623,16 +631,13 @@ function start(app::Application)
 
     @async begin
       Base.with_logger(NullLogger()) do
-        # println("Status request 1: ", status_request(app, false; statuscheck = true, persist = false, startup_lock = true))
         while status_request(app, false; statuscheck = true, persist = false, startup_lock = true) in [STARTING_STATUS, OFFLINE_STATUS]
-          # println("Status request 2: ", status_request(app, false; statuscheck = true, persist = false))
           touch(lock_file_path(app))
           sleep(2)
         end
 
         # app started successfully
         remove_lock_file(app)
-        # sleep(3)
         status_request(app, true; statuscheck = true)
       end
     end |> errormonitor
