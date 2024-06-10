@@ -874,8 +874,8 @@ function save(app::Application)
     notify("ended:save", app.id)
 
     if ! is_existing_file && fp !== nothing
-      Genie.Watch.watchpath(dirname(fp))
-      @async Genie.Watch.watch()
+      unwatch(app.path, app.id)
+      watch(app.path, app.id.value)
     end
 
     res |> json2json
