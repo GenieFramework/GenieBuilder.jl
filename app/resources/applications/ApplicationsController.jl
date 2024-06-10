@@ -853,6 +853,13 @@ Saves the contents of a file from an app
 """
 function save(app::Application)
   if @isonline(app)
+
+    is_existing_file = true
+    fp = params(:path, nothing)
+    if fp !== nothing
+      is_existing_file = isfile(fp)
+    end
+
     res = try
       notify("started:save", app.id)
 
@@ -865,6 +872,11 @@ function save(app::Application)
     end
 
     notify("ended:save", app.id)
+
+    if ! is_existing_file && fp !== nothing
+      Genie.Watch.watchpath(dirname(fp))
+      @async Genie.Watch.watch()
+    end
 
     res |> json2json
   end
