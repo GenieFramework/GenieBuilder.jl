@@ -7,8 +7,10 @@ import Pkg
 
 include("Generators.jl")
 include("Licensing.jl")
+include("Actions.jl")
 using .Generators
 using .Licensing
+using .Actions
 
 const GBDIR = Ref{String}("")
 const DB_FOLDER = Ref{String}("")
@@ -100,6 +102,14 @@ function _go(port)
 
     port = port == -1 ? Genie.config.server_port : port
 
+    @async Licensing.log(
+      type = Actions.ACTION_START_SESSION,
+      payload = Dict(
+        :port => port,
+        :version => get_version()
+      )
+    ) |> errormonitor
+
     Genie.up(port; async = false)
   catch ex
     @error ex
@@ -150,6 +160,7 @@ function get_version()
 end
 
 function exit()
+  @async GenieBuilder.Licensing.log(type = Actions.ACTION_END_SESSION) |> errormonitor
   Genie.Server.down!()
   Base.exit()
 end

@@ -16,6 +16,7 @@ using Scratch
 using ZipFile
 using TOML
 using Logging
+using GenieBuilder.Licensing, GenieBuilder.Actions
 
 import StippleUI
 import GeniePackageManager
@@ -193,7 +194,7 @@ Registers a file system path as an app with GenieBuilder
 """
 function register(name::AbstractString = "", path::AbstractString = pwd(); autostart::Bool = true)
   try
-    notify("started:register_app")
+    @async notify("started:register_app") |> errormonitor
 
     path = abspath(normpath(path)) # |> realpath #TODO: put back in next release
     isdir(path) || throw(ArgumentError("Path $path is not a directory"))
@@ -207,14 +208,22 @@ function register(name::AbstractString = "", path::AbstractString = pwd(); autos
     app = save!(app)
 
     persist_status(app, OFFLINE_STATUS)
-    notify("ended:register_app", app.id)
+    @async notify("ended:register_app", app.id) |> errormonitor
+
+    @async GenieBuilder.Licensing.log(;
+                                      type = Actions.ACTION_REGISTER_APP,
+                                      metadata = Dict(
+                                        "name" => app.name,
+                                        "path" => app.path,
+                                      )
+                                    ) |> errormonitor
 
     autostart && start(app)
 
     return app |> json
   catch ex
     @error(ex)
-    notify("failed:register_app", nothing, FAILSTATUS, ERROR_STATUS)
+    @async notify("failed:register_app", nothing, FAILSTATUS, ERROR_STATUS) |> errormonitor
 
     return (:status => FAILSTATUS, :error => ex) |> json
   end
@@ -228,10 +237,20 @@ Unregisters an app with GenieBuilder
 function unregister(app::Application)
   app_id = app.id
 
-  notify("started:unregister", app_id)
+  @async notify("started:unregister", app_id) |> errormonitor
   stop(app)
+
+  @async GenieBuilder.Licensing.log(;
+                                      type = Actions.ACTION_UNREGISTER_APP,
+                                      metadata = Dict(
+                                        "name" => app.name,
+                                        "path" => app.path,
+                                      )
+                                    ) |> errormonitor
+
   SearchLight.delete(app)
-  notify("ended:unregister", app_id)
+
+  @async notify("ended:unregister", app_id) |> errormonitor
 
   (:status => OKSTATUS) |> json
 end
@@ -242,14 +261,14 @@ end
 Creates the Genie app skeleton
 """
 function create(app::Application; name::AbstractString = "", path::AbstractString = pwd())
-  notify("started:create", app.id)
+  @async notify("started:create", app.id) |> errormonitor
 
   try
     boilerplate(app.path)
-    notify("ended:create", app.id)
+    @async notify("ended:create", app.id) |> errormonitor
   catch ex
     @error ex
-    notify("failed:create", app.id, FAILSTATUS, ERROR_STATUS)
+    @async notify("failed:create", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
 
     return (:status => FAILSTATUS, :error => ex) |> json
   end
@@ -346,7 +365,7 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
   end
 
   status = try
-    donotify && notify("started:status_request", app.id)
+    donotify && (@async notify("started:status_request", app.id) |> errormonitor)
     res = HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/id")
     if res.status >= 500
       ERROR_STATUS
@@ -359,7 +378,7 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
     if isa(ex, HTTP.Exceptions.ConnectError)
       OFFLINE_STATUS
     else
-      donotify && notify("failed:status_request", app.id, FAILSTATUS, ERROR_STATUS)
+      donotify && (@async notify("failed:status_request", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor)
       ERROR_STATUS
     end
   end
@@ -369,7 +388,7 @@ function status_request(app, donotify::Bool = true; statuscheck::Bool = false, p
     status = STARTING_STATUS
   end
 
-  donotify && notify("ended:status_request", app.id)
+  donotify && (@async notify("ended:status_request", app.id) |> errormonitor)
   persist && persist_status(app, status)
 
   # println("Status request: $status")
@@ -383,10 +402,10 @@ end
 REST endpoint to check the status of an app
 """
 function status(app::Application)
-  notify("started:status", app.id)
+  @async notify("started:status", app.id) |> errormonitor
   status = status_request(app; statuscheck = true)
 
-  notify("ended:status:$status", app.id)
+  @async notify("ended:status:$status", app.id) |> errormonitor
   (:status => status) |> json
 end
 function status(_::Nothing)
@@ -443,8 +462,8 @@ function setupwatch(path::AbstractString, appid::Int, app::Application)
               end
             end
             isempty(newest_file) && return
-            ApplicationsController.notify("changed:files", appid)
-            ApplicationsController.notify("filechanged:$newest_file", appid)
+            @async ApplicationsController.notify("changed:files", appid) |> errormonitor
+            @async ApplicationsController.notify("filechanged:$newest_file", appid) |> errormonitor
           end
   ])
 
@@ -525,7 +544,7 @@ function start(app::Application)
   end
 
   try
-    notify("started:start", app.id)
+    @async notify("started:start", app.id) |> errormonitor
     persist_status(app, STARTING_STATUS)
 
     appsthreads[fullpath(app)] = Base.Threads.@spawn begin
@@ -613,7 +632,7 @@ function start(app::Application)
         save!(app)
       catch ex
         @error ex
-        notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
+        @async notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
 
         if isempty(app.error)
           app.error = ex
@@ -624,7 +643,15 @@ function start(app::Application)
       end
     end
 
-    notify("ended:start", app.id)
+    @async notify("ended:start", app.id) |> errormonitor
+
+    @async GenieBuilder.Licensing.log(;
+                                      type = Actions.ACTION_START_APP,
+                                      metadata = Dict(
+                                        "name" => app.name,
+                                        "path" => app.path,
+                                      )
+                                    ) |> errormonitor
 
     @async watch(fullpath(app), app.id.value) |> errormonitor
     @async tailapplog(app) |> errormonitor
@@ -648,7 +675,7 @@ function start(app::Application)
       @error ex
     end
 
-    notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS)
+    @async notify("failed:start", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
 
     return (:status => FAILSTATUS) |> json
   end
@@ -677,11 +704,11 @@ function tailapplog(app::Application)
     type = GenieDevTools.logtype(line)
     line = "log:message $line"
     line = Genie.WebChannels.tagbase64encode(line)
-    notify(;  message = line,
+    @async notify(;  message = line,
               appid = app.id,
               type = type,
               status = type == :error ? ERROR_STATUS : OKSTATUS,
-          )
+          ) |> errormonitor
     if type == :error
       app.error = line
       persist_status(app, ERROR_STATUS)
@@ -694,11 +721,11 @@ end
 function parselog(; line::AbstractString, type::Symbol, appid) :: Nothing
   output = GenieDevTools.parselog(line)
   if ! isnothing(output)
-    notify(;  message = output,
+    @async notify(;  message = output,
               appid = appid,
               type = type,
               status = ERROR_STATUS
-          )
+          ) |> errormonitor
   end
 
   return
@@ -714,20 +741,20 @@ function stop(app::Application)
 
   try
     persist_status(app, STOPPING_STATUS)
-    notify("started:stop", app.id)
+    @async notify("started:stop", app.id) |> errormonitor
 
     @async HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/exit") |> errormonitor
 
     sleep(2)
 
     if status_request(app, false; statuscheck = true) == OFFLINE_STATUS
-      notify("ended:stop", app.id)
+      @async notify("ended:stop", app.id) |> errormonitor
       app.error = ""
       persist_status(app, OFFLINE_STATUS)
     end
   catch ex
     @error ex
-    notify("failed:stop", app.id, FAILSTATUS, ERROR_STATUS)
+    @async notify("failed:stop", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
 
     status = ERROR_STATUS
   end
@@ -745,6 +772,14 @@ function stop(app::Application)
   end
 
   unwatch(fullpath(app), app.id)
+
+  @async GenieBuilder.Licensing.log(;
+                                      type = Actions.ACTION_STOP_APP,
+                                      metadata = Dict(
+                                        "name" => app.name,
+                                        "path" => app.path,
+                                      )
+                                    ) |> errormonitor
 
   (:status => status) |> json
 end
@@ -810,15 +845,15 @@ Returns the contents of a directory from an app
 function dir(app::Application)
   if @isonline(app)
     res = try
-      notify("started:dir", app.id)
+      @async notify("started:dir", app.id) |> errormonitor
 
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/dir?path=$(params(:path, "."))")
     catch ex
       @error ex
-      notify("failed:dir", app.id, FAILSTATUS, ERROR_STATUS)
+      @async notify("failed:dir", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
     end
 
-    notify("ended:dir", app.id)
+    @async notify("ended:dir", app.id) |> errormonitor
 
     res |> json2json
   end
@@ -832,15 +867,15 @@ Returns the contents of a file from an app
 function edit(app::Application)
   if @isonline(app)
     res = try
-      notify("started:edit", app.id)
+      @async notify("started:edit", app.id) |> errormonitor
 
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/edit?path=$(params(:path, "."))")
     catch ex
       @error ex
-      notify("failed:edit", app.id, FAILSTATUS, ERROR_STATUS)
+      @async notify("failed:edit", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
     end
 
-    notify("ended:edit", app.id)
+    @async notify("ended:edit", app.id) |> errormonitor
 
     res |> json2json
   end
@@ -861,17 +896,17 @@ function save(app::Application)
     end
 
     res = try
-      notify("started:save", app.id)
+      @async notify("started:save", app.id) |> errormonitor
 
       HTTP.request( "POST",
                     "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/save?path=$(params(:path, "."))",
                       [], HTTP.Form(Dict("payload" => jsonpayload()["payload"])))
     catch ex
       @error ex
-      notify("failed:save", app.id, FAILSTATUS, ERROR_STATUS)
+      @async notify("failed:save", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
     end
 
-    notify("ended:save", app.id)
+    @async notify("ended:save", app.id) |> errormonitor
 
     if ! is_existing_file && fp !== nothing
       unwatch(app.path, app.id)
@@ -890,17 +925,17 @@ Returns the pages of an app
 function pages(app::Application)
   if @isonline(app)
     res = try
-      notify("started:pages", app.id)
+      @async notify("started:pages", app.id) |> errormonitor
 
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/pages?CHANNEL__=$(app.channel)") |> json2json
     catch ex
       @error ex
-      notify("failed:pages", app.id, FAILSTATUS, ERROR_STATUS)
+      @async notify("failed:pages", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
 
       (:status => :error) |> json
     end
 
-    notify("ended:pages", app.id)
+    @async notify("ended:pages", app.id) |> errormonitor
 
     res
   end
@@ -938,12 +973,12 @@ Starts a remote REPL for an app
 function startrepl(app::Application)
   if @isonline(app)
     res = try
-      notify("started:startrepl", app.id)
+      @async notify("started:startrepl", app.id) |> errormonitor
 
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/startrepl?port=$(app.replport != 0 ? app.replport : available_port())")
     catch ex
       @error ex
-      notify("failed:startrepl", app.id, FAILSTATUS, ERROR_STATUS)
+      @async notify("failed:startrepl", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
     end
 
     status = try
@@ -958,7 +993,7 @@ function startrepl(app::Application)
       @error ex
     end
 
-    notify("ended:startrepl", app.id)
+    @async notify("ended:startrepl", app.id) |> errormonitor
 
     status |> json
   end
@@ -971,7 +1006,8 @@ Starts the package manager web app for an app
 """
 function startpkgmng(app::Application)
   try
-    notify("started:pkgmng", app.id)
+    @async notify("started:pkgmng", app.id) |> errormonitor
+
     cmd = Cmd(`julia --startup-file=no -e '
                 using Pkg;
                 Pkg._auto_gc_enabled[] = false;
@@ -989,11 +1025,13 @@ function startpkgmng(app::Application)
     @async cmd |> run |> errormonitor
   catch ex
     @error ex
-    notify("failed:pkgmng", app.id, FAILSTATUS, ERROR_STATUS)
+    @async notify("failed:pkgmng", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
     rethrow(ex)
   end
 
-  notify("ended:startrepl", app.id)
+  @async notify("ended:startpkgmng", app.id) |> errormonitor
+
+  @async GenieBuilder.Licensing.log(type = Actions.ACTION_START_PKG_MNG) |> errormonitor
 
   Dict(
     :status => OKSTATUS,
@@ -1008,15 +1046,17 @@ Stops the package manager web app for an app
 """
 function stoppkgmng(app::Application)
   res = try
-    notify("started:stoppkgmng", app.id)
+    @async notify("started:stoppkgmng", app.id) |> errormonitor
 
     HTTP.request("GET", "$(apphost):$(app.pkgmngport)$(GeniePackageManager.defaultroute)/exit")
   catch ex
     @error ex
-    notify("failed:stoppkgmng", app.id, FAILSTATUS, ERROR_STATUS)
+    @async notify("failed:stoppkgmng", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
   end
 
-  notify("ended:stoppkgmng", app.id)
+  @async notify("ended:stoppkgmng", app.id) |> errormonitor
+
+  @async GenieBuilder.Licensing.log(type = Actions.ACTION_STOP_PKG_MNG) |> errormonitor
 
   (:status => OKSTATUS) |> json
 end
@@ -1073,7 +1113,7 @@ Notifies the GenieBuilder UI that it is ready to receive requests
 """
 function ready() :: Nothing
   @info "GenieBuilder ready! RUN_STATUS = $(GenieBuilder.RUN_STATUS[])"
-  notify("ended:gbstart", nothing)
+  @async notify("ended:gbstart", nothing) |> errormonitor
 
   nothing
 end
@@ -1149,17 +1189,26 @@ function download(app::Application)
     close(w)
   end
 
+  @async GenieBuilder.Licensing.log(;
+                                      type = Actions.ACTION_DOWNLOAD_APP,
+                                      metadata = Dict(
+                                        "name" => app.name,
+                                        "path" => app.path,
+                                      )
+                                    ) |> errormonitor
+
   Genie.Router.download("$appname.zip", root = zip_temp_path)
 end
 
-function send_user_message(; text, button_text = "", button_link = "")
-  notify(; message = JSON3.write(
+function send_user_message(; text, button_text = "", button_link = "") :: Nothing
+  @async notify(; message = JSON3.write(
                                   Dict( :message => text,
                                         :button_text => button_text,
                                         :button_link => button_link
                                       )
                                 ),
-            type = "show_info_message")
+            type = "show_info_message") |> errormonitor
+  nothing
 end
 
 function start_session()

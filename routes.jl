@@ -6,7 +6,7 @@ using RemoteREPL
 using JSON3
 import GenieDevTools
 using Logging
-using GenieBuilder.Licensing
+using GenieBuilder.Licensing, GenieBuilder.Actions
 
 Genie.config.websockets_server = true
 
@@ -62,6 +62,8 @@ function startrepl()
   port = ApplicationsController.available_port() |> first
   @async serve_repl(port) |> errormonitor
 
+  @async GenieBuilder.Licensing.log(type = Actions.ACTION_START_REPL) |> errormonitor
+
   port
 end
 
@@ -99,22 +101,14 @@ function register_routes()
 
   # registers a new path as a GenieBuilder app
   route("$api_route/apps/register") do
-    @async GenieBuilder.Licensing.log("GenieBuilder.jl",
-                                      "apps-register",
-                                      Dict(
-                                        "name" => params(:name, ""),
-                                        "path" => params(:path, pwd())
-                                      )
-                                    ) |> errormonitor
-
     register(params(:name, ""), params(:path, pwd()))
   end
 
   # creates the Genie app skeleton
   route("$api_route/apps/create") do
-    @async GenieBuilder.Licensing.log("GenieBuilder.jl",
-                                      "apps-create",
-                                      Dict(
+    @async GenieBuilder.Licensing.log(;
+                                      type = Actions.ACTION_CREATE_APP,
+                                      metadata = Dict(
                                         "name" => params(:name, ""),
                                         "path" => params(:path, pwd())
                                       )) |> errormonitor
@@ -164,14 +158,6 @@ function register_routes()
   # saves the contents of a file from an app
   route("$api_route$app_route/save", method = POST) do
     ApplicationsController.save(params(:appid) |> ApplicationsController.get)
-  end
-
-  route("$api_route$app_route/log") do
-    ApplicationsController.log(params(:appid) |> ApplicationsController.get)
-  end
-
-  route("$api_route$app_route/errors") do
-    ApplicationsController.errors(params(:appid) |> ApplicationsController.get)
   end
 
   # returns the pages of an app

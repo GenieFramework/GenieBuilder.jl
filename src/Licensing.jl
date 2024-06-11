@@ -3,19 +3,14 @@ Licensing integration for JuliaHub
 """
 module Licensing
 
-using HTTP, JSON, Logging, Random
+using Base64, HTTP, JSON, Logging, Random
 
-const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "https://genielicensing.hosting.genieframework.com/api/v1") # no trailing slash
-# const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "http://127.0.0.1:3333/api/v1") # no trailing slash #TODO: change this to the production URL
-const FAILED_SESSION_ID = ""
+# const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "https://genielicensing.hosting.genieframework.com/api/v1") # no trailing slash
+const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "http://127.0.0.1:3333/api/v1") # no trailing slash #TODO: change this to the production URL
 
 const GBFOLDER = joinpath(homedir(), ".geniebuilder")
 const GBPASSFILE = joinpath(GBFOLDER, "pass")
 const GBSESSIONFILE = joinpath(GBFOLDER, "sessionid")
-
-@inline function is_failed_session() :: Bool
-  get(ENV, "GENIE_SESSION", FAILED_SESSION_ID) == FAILED_SESSION_ID
-end
 
 function isregistered() :: Bool
   isfile(GBPASSFILE)
@@ -180,9 +175,6 @@ function logoff() :: Nothing
 end
 
 function start_session()
-  subscription_info = fetch_subscription_info() # fetch JH subscription info TODO:
-  @async update_user_info(subscription_info) |> errormonitor # update user info in the GLS backend TODO:
-
   if is_subscription_expired(subscription_info)
     @warn("Subscription expired")
     logoff()
@@ -219,25 +211,11 @@ function start_session()
   ENV["GENIE_SESSION"]
 end
 
-function headers()
+function headers(; content_type::AbstractString = "application/json")
   Dict(
     "Authorization" => "Bearer " * ENV["GENIE_SESSION"],
-    "Content-Type" => "application/json"
+    "Content-Type" => content_type
   )
-end
-
-# TODO: implement this
-function fetch_subscription_info()
-  # 1/ retrieve the subscription info from JuliaHub API and return it
-
-  Dict()
-end
-
-# TODO: implement this
-function update_user_info(subscription_info) :: Nothing
-  # 1/ update the user info in the GLS backend
-
-  nothing
 end
 
 function is_subscription_expired(subscription_info) :: Bool
@@ -245,21 +223,29 @@ function is_subscription_expired(subscription_info) :: Bool
   false
 end
 
-function log(origin, type, payload::AbstractDict)
-  if is_failed_session()
-    @warn("No session found, skipping logging")
+# log an action
+function log(;
+              type::Union{AbstractString,Symbol},
+              metadata::AbstractDict = Dict(),
+              origin::AbstractString = ORIGIN)
+  if ! isloggedin()
+    @warn("User not logged in, skipping logging")
     return
   end
 
+  payload = Dict(
+    "origin" => origin,
+    "type" => type,
+    "metadata" => metadata
+  )
+
   response = try
-    HTTP.post(LICENSE_API * "/action";
-              body = Dict(
-                "origin" => origin,
-                "type" => type,
-                "metadata" => payload |> JSON.json
-              ),
+    HTTP.get(LICENSE_API * "/action?payload=$(JSON.json(payload) |> base64encode)";
               headers = headers(),
-              status_exception = true
+              status_exception = true,
+              detect_content_type = true,
+              verbose = true,
+              cookies = false,
     )
   catch ex
     @warn("Failed to log action: $ex")
@@ -267,13 +253,12 @@ function log(origin, type, payload::AbstractDict)
     return
   end
 
-  @show response
-
   nothing
 end
 
 function quotas()
-  if is_failed_session()
+  if ! isloggedin()
+    @warn("User not logged in, skipping quotas")
     return Dict()
   end
 
@@ -302,10 +287,6 @@ function quotas()
 end
 
 function status()
-  if is_failed_session()
-    return Dict()
-  end
-
   quotas_data = try
     HTTP.get(LICENSE_API * "/status";
               status_exception = true,
@@ -318,13 +299,14 @@ function status()
   end
 
   if quotas_data.status != 200
+    @warn("Failed to get status: $(quotas_data.status)")
     return Dict()
   end
 
   try
     (quotas_data.body |> String |> JSON.parse)
   catch ex
-    # @warn("Failed to parse status data: $ex")
+    @warn("Failed to parse status data: $ex")
     return Dict()
   end
 end
@@ -332,13 +314,13 @@ end
 function __init__() #TODO: uncouple this
   ENV["GENIE_USER_EMAIL"] = get(ENV, "JULIAHUB_USEREMAIL", "")
   ENV["GENIE_USER_FULL_NAME"] =  get(ENV, "JULIAHUB_USER_FULL_NAME", "")
-  ENV["GENIE_ORIGIN"] = get(ENV, "JULIA_PKG_SERVER", "JULIAHUB")
+  ENV["GENIE_ORIGIN"] = get(ENV, "JULIA_PKG_SERVER", "local")
   ENV["GENIE_METADATA"] = get(ENV, "JULIAHUB_APP_URL", "")
 
-  @eval const USER_EMAIL = get!(ENV, "GENIE_USER_EMAIL", "")
-  @eval const USER_FULL_NAME = get!(ENV, "GENIE_USER_FULL_NAME", "")
-  @eval const ORIGIN = get!(ENV, "GENIE_ORIGIN", "JULIAHUB")
-  @eval const METADATA = get!(ENV, "GENIE_METADATA", "")
+  @eval const USER_EMAIL = ENV["GENIE_USER_EMAIL"]
+  @eval const USER_FULL_NAME = ENV["GENIE_USER_FULL_NAME"]
+  @eval const ORIGIN = ENV["GENIE_ORIGIN"]
+  @eval const METADATA = ENV["GENIE_METADATA"]
 end
 
 
