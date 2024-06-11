@@ -62,11 +62,6 @@ function go(; port = get!(ENV, "GB_PORT", -1))
   catch
   end
 
-  # try
-  #   @async GenieBuilder.Licensing.start_session() |> errormonitor
-  # catch
-  # end
-
   try
     _go(port)
   catch ex
@@ -104,7 +99,7 @@ function _go(port)
 
     @async Licensing.log(
       type = Actions.ACTION_START_SESSION,
-      payload = Dict(
+      metadata = Dict(
         :port => port,
         :version => get_version()
       )
@@ -160,7 +155,7 @@ function get_version()
 end
 
 function exit()
-  @async GenieBuilder.Licensing.log(type = Actions.ACTION_END_SESSION) |> errormonitor
+  GenieBuilder.Licensing.log(type = Actions.ACTION_END_SESSION)
   Genie.Server.down!()
   Base.exit()
 end
