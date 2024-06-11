@@ -29,11 +29,11 @@ ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 
 [compat]
 Dates = "1.6"
-Genie = "5.30.1"
+Genie = "5.30.3"
 GenieAutoReload = "2.2.2"
 GenieCache = "2"
 GenieCacheFileCache = "2"
-GenieDevTools = "2.9.5"
+GenieDevTools = "2.9.6"
 GeniePackageManager = "1.1.0"
 HTTP = "1"
 Inflector = "1"
