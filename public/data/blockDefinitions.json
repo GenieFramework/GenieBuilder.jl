@@ -2791,6 +2791,7 @@
         "tagName": "Q-TOGGLE",
         "content": "<q-toggle gb_b__v-model=\"undefined\" gb_c__color=\"blue\" gb_c__label=\"Toggle!\"></q-toggle>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -3059,7 +3060,7 @@
                 "category": "style"
             }
         ],
-        "category": "Widgets",
+        "category": "Forms",
         "hideFromLibrary": false,
         "enabled": true,
         "media": "images/icons/components/ui_components/toggle.png",
@@ -3502,6 +3503,7 @@
         "tagName": "Q-RANGE",
         "content": "<q-range gb_b__v-model=\"undefined\" gb_c__color=\"primary\" gb_c__label=\"true\" gb_c__marker-labels=\"true\" gb_c__markers=\"true\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-range>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -4051,6 +4053,7 @@
         "tagName": "Q-DATE",
         "content": "<q-date gb_b__v-model=\"undefined\" gb_c__mask=\"YYYY-MM-DD\"></q-date>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -4921,6 +4924,7 @@
         "tagName": "Q-TIME",
         "content": "<q-time gb_b__v-model=\"undefined\" gb_c__mask=\"HH:mm\"></q-time>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -5685,6 +5689,7 @@
         "tagName": "Q-KNOB",
         "content": "<q-knob gb_b__v-model=\"undefined\" gb_c__color=\"primary\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-knob>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -6306,6 +6311,7 @@
         "tagName": "Q-TABLE",
         "content": "<q-table gb_c__data=\"[]\" gb_c__dense=\"true\"></q-table>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "fullscreen",
@@ -7388,6 +7394,7 @@
         "tagName": "Q-AVATAR",
         "content": "<q-avatar gb_c__color=\"primary\" gb_c__icon=\"arrow_downward\"></q-avatar>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -7672,6 +7679,7 @@
         "tagName": "Q-CHIP",
         "content": "<q-chip gb_c__color=\"secondary\" gb_c__icon=\"event\">Add to calendar</q-chip>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -7936,6 +7944,7 @@
         "tagName": "Q-ICON",
         "content": "<q-icon class=\"text-red\" gb_c__color=\"primary\" gb_c__name=\"warning\"></q-icon>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -8034,6 +8043,7 @@
         "tagName": "Q-RATING",
         "content": "<q-rating gb_b__v-model=\"undefined\" gb_c__icon=\"star\"></q-rating>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -8258,6 +8268,7 @@
         "tagName": "Q-SPINNER",
         "content": "<q-spinner gb_c__color=\"primary\" gb_c__size=\"20px\"></q-spinner>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -8507,6 +8518,7 @@
         "tagName": "Q-SCROLL-AREA",
         "content": "<q-scroll-area style=\"height: 200px; max-width: 400px;\">scrollarea text</q-scroll-area>",
         "droppable": false,
+        "proRequired": true, 
         "properties": [
             {
                 "label": "Data Binding",
