@@ -244,7 +244,7 @@ function log(;
               headers = headers(),
               status_exception = true,
               detect_content_type = true,
-              verbose = true,
+              verbose = false,
               cookies = false,
     )
   catch ex
