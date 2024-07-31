@@ -108,12 +108,23 @@ function view()
   open("app.jl.html", "w") do io
     write(io,
     """
-    <h4> Hello Genie! </h4>
-    <p> Generated {{N}} random numbers. </p>
-    <p>{{msg}}</p>
-    <q-slider v-model="N" :label="true"></q-slider>
-    <p>This is the default view for the application.</p>
-    <p>You can change this view by editing the file <code>app.jl.html</code>.</p>
+    <header>
+        <h4> Hello Genie! </h4>
+    </header>
+    <div class="row">
+        <div class="st-col col-12 col-sm st-module">
+            <h6>Message</h6>
+            <p> Generated {{N}} random numbers. </p>
+            <p>{{msg}}</p>
+        </div>
+        <div class="st-col col-12 col-sm st-module">
+            <h6>Controls</h6>
+            <p><strong>x</strong> vector length:</p>
+            <q-slider id="ivz19" v-model="N" color="primary" :label="true" :max="100" :min="1" :step="1" :markers="true"></q-slider>
+            <q-btn id="i1x6y" color="primary" icon="arrow_forward" label="Shift x vector" v-on:click="shift = true"></q-btn>
+        </div>
+    </div>
+    <plotly id="izduj" data="W3siZ2J0eXBlIjoiTGluZSBDaGFydCIsIngiOiIkX3t4fSIsInkiOiIkX3t5fSIsInR5cGUiOiJzY2F0dGVyIiwibW9kZSI6ImxpbmVzIiwibmFtZSI6IlRyYWNlIn1d" config="e30=" layout="eyJ0aXRsZSI6IkxpbmUgY2hhcnQifQ=="></plotly>
     """
     )
   end
@@ -122,41 +133,67 @@ end
 function app()
   isfile("app.jl") && return
 
+  mkdir("lib")
   open("app.jl", "w") do io
     write(io,
     """
     module App
-    # set up Genie development environment
+    # == Packages ==
+    # set up Genie development environment. Use the Package Manager to install new packages
     using GenieFramework
     @genietools
 
-    # add your data analysis code
+    # == Code import ==
+    # add your data analysis code here or in the lib folder. Code in lib/ will be
+    # automatically loaded 
     function mean_value(x)
         sum(x) / length(x)
     end
 
+    # == Reactive code ==
     # add reactive code to make the UI interactive
     @app begin
-        # reactive variables are tagged with @in and @out
-        @in N = 0
+        # == Reactive variables ==
+        # reactive variables exist in both the Julia backend and the browser with two-way synchronization
+        # @out variables can only be modified by the backend
+        # @in variables can be modified by both the backend and the browser
+        # variables must be initialized with constant values, or variables defined outside of the @app block
+        @in N = 10
+        @out x = collect(1:10)
+        @out y = randn(10) # plot data must be an array or a DataFrame
         @out msg = "The average is 0."
-        # @private defines a non-reactive variable
-        @private result = 0.0
+        @in shift = false
 
-        # watch a variable and execute a block of code when
+        # == Reactive handlers ==
+        # reactive handlers watch a variable and execute a block of code when
         # its value changes
         @onchange N begin
-            # the values of result and msg in the UI will
+            # the values of x, result and msg in the UI will
             # be automatically updated
+            x = collect(1:N)
+            y = rand(N)
             result = mean_value(rand(N))
             msg = "The average is \$result."
         end
+        # the onbutton handler will set the variable to false after the block is executed
+        @onbutton shift begin
+            y = circshift(y, 1)
+        end
     end
 
-    # register a new route and the page that will be
-    # loaded on access
+    # == Pages ==
+    # register a new route and the page that will be loaded on access
     @page("/", "app.jl.html")
     end
+
+    # == Advanced features ==
+    #=
+    - The @private macro defines a reactive variable that is not sent to the browser. 
+    This is useful for storing data that is unique to each user session but is not needed
+    in the UI.
+        @private table = DataFrame(a = 1:10, b = 10:19, c = 20:29)
+
+    =#
     """
     )
   end

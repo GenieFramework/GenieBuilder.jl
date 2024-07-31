@@ -1,4 +1,4 @@
-q-knob > *, q-select > *, q-input > *, q-range > *, q-slider > *, q-btn > *, q-editor > *, q-radio > *, q-checkbox > *, q-toggle > *, q-table > *, q-date > *, q-video > *, q-avatar > *, q-badge > *{
+q-knob > *, q-select > *, q-input > *, q-range > *, q-slider > *, q-btn > *, q-editor > *, q-radio > *, q-checkbox > *, q-toggle > *, q-table > *, q-date > *, q-video > *, q-avatar > *, q-badge > *, react-poc > *, mui-slider > *, mui-line-chart > *, markdowntext > *{
     /* background-color: #ff0000; */
     pointer-events: none;
 }
@@ -17,7 +17,7 @@ q-select {
     padding-left: 10px;
 }
 
-q-timeline, q-timeline-entry, q-item{
+q-timeline, q-timeline-entry, q-item, mui-slider, mui-line-chart, markdowntext, q-knob{
     display: block;
     border: 1px black;
 }
