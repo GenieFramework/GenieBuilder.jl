@@ -233,6 +233,11 @@ function log(;
     return
   end
 
+  if ! TELEMETRY
+    @warn("Telemetry is disabled, skipping logging")
+    return
+  end
+
   payload = Dict(
     "origin" => origin,
     "type" => type,
@@ -259,6 +264,11 @@ end
 function quotas()
   if ! isloggedin()
     @warn("User not logged in, skipping quotas")
+    return Dict()
+  end
+
+  if ! TELEMETRY
+    @warn("Telemetry is disabled, skipping quotas")
     return Dict()
   end
 
@@ -316,11 +326,13 @@ function __init__() #TODO: uncouple this
   ENV["GENIE_USER_FULL_NAME"] =  get(ENV, "JULIAHUB_USER_FULL_NAME", "")
   ENV["GENIE_ORIGIN"] = get(ENV, "JULIA_PKG_SERVER", "local")
   ENV["GENIE_METADATA"] = get(ENV, "JULIAHUB_APP_URL", "")
+  ENV["GENIE_TELEMETRY"] = get(ENV, "GENIE_TELEMETRY", "true")
 
   @eval const USER_EMAIL = ENV["GENIE_USER_EMAIL"]
   @eval const USER_FULL_NAME = ENV["GENIE_USER_FULL_NAME"]
   @eval const ORIGIN = ENV["GENIE_ORIGIN"]
   @eval const METADATA = ENV["GENIE_METADATA"]
+  @eval const TELEMETRY = lowercase(ENV["GENIE_TELEMETRY"]) == "true"
 end
 
 
