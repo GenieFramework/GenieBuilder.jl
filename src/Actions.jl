@@ -11,5 +11,6 @@ ACTION_START_REPL = "start_repl"        # start REPL
 ACTION_START_PKG_MNG = "start_pkg_mng"  # start package manager
 ACTION_STOP_PKG_MNG = "stop_pkg_mng"    # stop package manager
 ACTION_DOWNLOAD_APP = "download_app"    # download app
+ACTION_TELEMETRY_DISABLED = "telemetry_disabled"  # telemetry disabled
 
 end

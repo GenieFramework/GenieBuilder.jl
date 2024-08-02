@@ -4,13 +4,22 @@ Licensing integration for JuliaHub
 module Licensing
 
 using Base64, HTTP, JSON, Logging, Random
+import GenieBuilder, GenieBuilder.Settings
+import Base: log
 
 const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "https://genielicensing.hosting.genieframework.com/api/v1") # no trailing slash
 # const LICENSE_API = get!(ENV, "GENIE_LICENSE_API", "http://127.0.0.1:3333/api/v1") # no trailing slash #TODO: change this to the production URL
 
-const GBFOLDER = joinpath(homedir(), ".geniebuilder")
+const GBFOLDER = GenieBuilder.GBFOLDER
 const GBPASSFILE = joinpath(GBFOLDER, "pass")
 const GBSESSIONFILE = joinpath(GBFOLDER, "sessionid")
+
+const COMMERCIAL_LICENSE = Ref{Union{Bool,Nothing}}(nothing)
+function commercial_license()
+  isnothing(COMMERCIAL_LICENSE[]) && status()
+  # @show COMMERCIAL_LICENSE[]
+  COMMERCIAL_LICENSE[] == true
+end
 
 function isregistered() :: Bool
   isfile(GBPASSFILE)
@@ -227,14 +236,14 @@ end
 function log(;
               type::Union{AbstractString,Symbol},
               metadata::AbstractDict = Dict(),
-              origin::AbstractString = ORIGIN)
+              origin::AbstractString = ORIGIN,
+              force::Bool = false)
+  # we check the telemetry settings only if the force flag is not set and the user has a commercial license
+  # otherwise we log the action regardless of the telemetry settings
+  ! force && commercial_license() && GenieBuilder.Settings.@check_telemetry
+
   if ! isloggedin()
     @warn("User not logged in, skipping logging")
-    return
-  end
-
-  if ! TELEMETRY
-    @warn("Telemetry is disabled, skipping logging")
     return
   end
 
@@ -262,13 +271,12 @@ function log(;
 end
 
 function quotas()
+  # TODO: review this, quotas should not be affected by telemetry settings
+  # but let's understand how much traffic this generates first
+  GenieBuilder.Settings.@check_telemetry
+
   if ! isloggedin()
     @warn("User not logged in, skipping quotas")
-    return Dict()
-  end
-
-  if ! TELEMETRY
-    @warn("Telemetry is disabled, skipping quotas")
     return Dict()
   end
 
@@ -297,7 +305,7 @@ function quotas()
 end
 
 function status()
-  quotas_data = try
+  status_data = try
     HTTP.get(LICENSE_API * "/status";
               status_exception = true,
               headers = headers()
@@ -308,14 +316,17 @@ function status()
     return Dict()
   end
 
-  if quotas_data.status != 200
-    @warn("Failed to get status: $(quotas_data.status)")
+  if status_data.status != 200
+    @warn("Failed to get status: $(status_data.status)")
     return Dict()
   end
 
   try
-    (quotas_data.body |> String |> JSON.parse)
+    user_status = (status_data.body |> String |> JSON.parse)
+    COMMERCIAL_LICENSE[] = user_status["license"] != "trial" && user_status["license"] != "edu" && user_status["license_status"] != "expired"
+    return user_status
   catch ex
+    @error ex
     @warn("Failed to parse status data: $ex")
     return Dict()
   end
@@ -326,13 +337,11 @@ function __init__() #TODO: uncouple this
   ENV["GENIE_USER_FULL_NAME"] =  get(ENV, "JULIAHUB_USER_FULL_NAME", "")
   ENV["GENIE_ORIGIN"] = get(ENV, "JULIA_PKG_SERVER", "local")
   ENV["GENIE_METADATA"] = get(ENV, "JULIAHUB_APP_URL", "")
-  ENV["GENIE_TELEMETRY"] = get(ENV, "GENIE_TELEMETRY", "true")
 
   @eval const USER_EMAIL = ENV["GENIE_USER_EMAIL"]
   @eval const USER_FULL_NAME = ENV["GENIE_USER_FULL_NAME"]
   @eval const ORIGIN = ENV["GENIE_ORIGIN"]
   @eval const METADATA = ENV["GENIE_METADATA"]
-  @eval const TELEMETRY = lowercase(ENV["GENIE_TELEMETRY"]) == "true"
 end
 
 

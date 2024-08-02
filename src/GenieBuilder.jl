@@ -5,13 +5,6 @@ using GenieCache, GenieCacheFileCache
 
 import Pkg
 
-include("Generators.jl")
-include("Licensing.jl")
-include("Actions.jl")
-using .Generators
-using .Licensing
-using .Actions
-
 const GBDIR = Ref{String}("")
 const DB_FOLDER = Ref{String}("")
 const DB_CONFIG_FILE = Ref{String}("")
@@ -19,6 +12,19 @@ const LOG_FOLDER = Ref{String}("")
 const RUN_STATUS = Ref{Symbol}() # :install or :update
 const WS_PORT = 10102
 const VERSION = "0.16.x"
+const GBFOLDER = joinpath(homedir(), ".geniebuilder")
+
+include("Generators.jl")
+using .Generators
+
+include("Settings.jl")
+using .Settings
+
+include("Licensing.jl")
+using .Licensing
+
+include("Actions.jl")
+using .Actions
 
 function __init__()
   GBDIR[] = joinpath(Base.DEPOT_PATH[1], "geniebuilder")
@@ -52,6 +58,14 @@ end
 function go(; port = get!(ENV, "GB_PORT", -1))
   @info "Starting GenieBuilder v$(get_version())"
   @async set_starting_flag() |> errormonitor
+
+  try
+    if ! GenieBuilder.Settings.data("telemetry")
+      GenieBuilder.Licensing.log(type = GenieBuilder.Actions.ACTION_TELEMETRY_DISABLED, force = true)
+    end
+  catch ex
+    @error ex
+  end
 
   try
     if Genie.Configuration.isprod()
@@ -155,7 +169,12 @@ function get_version()
 end
 
 function exit()
-  GenieBuilder.Licensing.log(type = Actions.ACTION_END_SESSION)
+  try
+    GenieBuilder.Licensing.log(type = Actions.ACTION_END_SESSION)
+  catch ex
+    @error ex
+  end
+
   Genie.Server.down!()
   Base.exit()
 end
