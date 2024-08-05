@@ -60,6 +60,8 @@ struct UnavailablePortException <: Exception
   msg::String
 end
 
+juliabin() = get!(ENV, "GB_JULIA_PATH", "julia")
+
 Base.showerror(io::IO, e::UnavailablePortException) = print(io, e.msg, " \nplease free Ports to create GenieBuilder App")
 
 fullpath(app::Application) = abspath(app.path)
@@ -300,13 +302,14 @@ function boilerplate(app_path::String)
   isdir(app_path) || mkpath(app_path)
 
   try
-    cmd = Cmd(`julia --startup-file=no -e '
+    cmd = Cmd(`$(juliabin()) --startup-file=no -e '
                 using Pkg;
                 Pkg._auto_gc_enabled[] = false;
                 Pkg.activate(".");
                 Pkg.add("GenieFramework");
                 exit(0);
     '`; dir = app_path)
+    cmd = addenv(cmd, "GB_JULIA_PATH" => juliabin())
     cmd |> run
   catch ex
     @error ex
@@ -551,7 +554,7 @@ function start(app::Application)
       create_lock_file(app) # set a lock file to know that the app is starting
 
       try
-        cmd = Cmd(`julia --startup-file=no -e '
+        cmd = Cmd(`$(juliabin()) --startup-file=no -e '
                                                 using Pkg;
                                                 Pkg._auto_gc_enabled[] = false;
                                                 Pkg.activate(".");
@@ -620,6 +623,7 @@ function start(app::Application)
                           "GENIE_OPEN_BROWSER" => Base.get(ENV, "GENIE_OPEN_BROWSER", Base.get(ENV, "GB_HEADLESS", "false") == "true" ? "false" : "true"), # if it's headless, don't open browser.
                           "BASEPATH" => real_base_path(Base.get(ENV, "GB_APP_BASEPATH", ""), app.port),
                           "WSBASEPATH" => real_base_path(Base.get(ENV, "GB_APP_WSBASEPATH", ""), app.port),
+                          "GB_JULIA_PATH" => juliabin(),
                         )
 
         # in the cloud the :<port> becomes /<path>
@@ -1008,7 +1012,7 @@ function startpkgmng(app::Application)
   try
     @async notify("started:pkgmng", app.id) |> errormonitor
 
-    cmd = Cmd(`julia --startup-file=no -e '
+    cmd = Cmd(`$(juliabin()) --startup-file=no -e '
                 using Pkg;
                 Pkg._auto_gc_enabled[] = false;
                 Pkg.activate(".");
@@ -1021,7 +1025,9 @@ function startpkgmng(app::Application)
     cmd = addenv(cmd, "PORT" => app.pkgmngport,
                       "HOST" => apphost,
                       "GENIE_ENV" => "dev",
-                      "GENIE_BANNER" => "false")
+                      "GENIE_BANNER" => "false",
+                      "GB_JULIA_PATH" => juliabin(),
+                )
     @async cmd |> run |> errormonitor
   catch ex
     @error ex

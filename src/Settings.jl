@@ -50,7 +50,7 @@ end
 
 function data()
   haskey(SETTINGS[], "settings") || load_settings()
-  @show SETTINGS[]
+  # @show SETTINGS[]
   return SETTINGS[]["settings"]
 end
 
