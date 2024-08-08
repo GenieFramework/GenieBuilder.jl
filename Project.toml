@@ -1,7 +1,7 @@
 name = "GenieBuilder"
 uuid = "c9453c14-af8a-11ec-351d-c7c9a2035d70"
 authors = ["Adrian Salceanu"]
-version = "0.17.6"
+version = "0.17.7"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
@@ -30,11 +30,11 @@ ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 
 [compat]
 Dates = "1.6"
-Genie = "5.30.3"
+Genie = "5.30.4"
 GenieAutoReload = "2.2.2"
 GenieCache = "2"
 GenieCacheFileCache = "2"
-GenieDevTools = "2.9.6"
+GenieDevTools = "2.10.0"
 GeniePackageManager = "1.1.0"
 HTTP = "1"
 Inflector = "1"
@@ -44,7 +44,7 @@ RemoteREPL = "0.2"
 Scratch = "1.1"
 SearchLight = "2.10"
 SearchLightSQLite = "2.2.2"
-Stipple = "0.28"
+Stipple = "0.28.13"
 StippleUI = "0.23"
 TOML = "1"
 ZipFile = "0.10.1"

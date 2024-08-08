@@ -623,12 +623,8 @@ function start(app::Application)
                           "GENIE_OPEN_BROWSER" => Base.get(ENV, "GENIE_OPEN_BROWSER", Base.get(ENV, "GB_HEADLESS", "false") == "true" ? "false" : "true"), # if it's headless, don't open browser.
                           "BASEPATH" => real_base_path(Base.get(ENV, "GB_APP_BASEPATH", ""), app.port),
                           "WSBASEPATH" => real_base_path(Base.get(ENV, "GB_APP_WSBASEPATH", ""), app.port),
-                          "GB_JULIA_PATH" => juliabin(),
+                          "GB_JULIA_PATH" => juliabin(), # don't remove, this is used as a flag that the app runs inside GB!
                         )
-
-        # in the cloud the :<port> becomes /<path>
-        # haskey(ENV, "GB_SOURCE") && ENV["GB_SOURCE"] == "cloud" && (cmd = addenv(cmd, "BASEPATH" => "/$(app.port)"))
-        # haskey(ENV, "GB_HOST") && ENV["GB_HOST"] == "JuliaHub" && (cmd = addenv(cmd, "BASEPATH" => "/proxy/$(app.port)"))
 
         cmd |> run
 
