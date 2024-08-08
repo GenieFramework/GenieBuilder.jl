@@ -184,13 +184,6 @@ function logoff() :: Nothing
 end
 
 function start_session()
-  if is_subscription_expired(subscription_info)
-    @warn("Subscription expired")
-    logoff()
-
-    return ENV["GENIE_SESSION"]
-  end
-
   isloggedin() && return ENV["GENIE_SESSION"]
 
   session_data = try
@@ -225,11 +218,6 @@ function headers(; content_type::AbstractString = "application/json")
     "Authorization" => "Bearer " * ENV["GENIE_SESSION"],
     "Content-Type" => content_type
   )
-end
-
-function is_subscription_expired(subscription_info) :: Bool
-  # 1/ check if the subscription is expired
-  false
 end
 
 # log an action
