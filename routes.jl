@@ -244,6 +244,18 @@ function register_routes()
     ApplicationsController.start_session()
   end
 
+  # logs an action
+  route("$gb_route/log_action") do
+    @async GenieBuilder.Licensing.log(;
+                                      type = params(:type, "UNKNOWN_EVENT"),
+                                      origin = params(:origin, nothing),
+                                      metadata = JSON3.read(params(:metadata, "{}")),
+                                      force = params(:force, false)
+                                    ) |> errormonitor
+
+    return "OK"
+  end
+
   nothing
 end
 

@@ -224,7 +224,7 @@ end
 function log(;
               type::Union{AbstractString,Symbol},
               metadata::AbstractDict = Dict(),
-              origin::AbstractString = ORIGIN,
+              origin::Union{AbstractString,Nothing} = ORIGIN,
               force::Bool = false)
   # we check the telemetry settings only if the force flag is not set and the user has a commercial license
   # otherwise we log the action regardless of the telemetry settings
