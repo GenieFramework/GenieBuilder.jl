@@ -1,4 +1,4 @@
-using Genie.Router
+using Genie.Router, Genie.Requests
 using GenieBuilder
 using GenieBuilder.ApplicationsController
 using GenieBuilder.ApplicationsController.Applications
@@ -246,12 +246,19 @@ function register_routes()
 
   # logs an action
   route("$gb_route/log_action") do
-    @async GenieBuilder.Licensing.log(;
-                                      type = params(:type, "UNKNOWN_EVENT"),
-                                      origin = params(:origin, nothing),
-                                      metadata = JSON3.read(params(:metadata, "{}")),
-                                      force = params(:force, false)
-                                    ) |> errormonitor
+    try
+      GenieBuilder.Licensing.log(;
+                      type = getpayload(:type, "UNKNOWN_EVENT"),
+                      origin = getpayload(:origin, "UNKNOWN_ORIGIN"),
+                      metadata = JSON3.read(getpayload(:metadata, "{}")),
+                      force = getpayload(:force, false)
+                    )
+    catch e
+      @error("Error logging action")
+      @error(e)
+
+      return "ERROR"
+    end
 
     return "OK"
   end
