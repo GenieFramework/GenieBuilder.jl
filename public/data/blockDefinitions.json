@@ -1,5 +1,199 @@
 [
     {
+        "label": "Tabs Menu",
+        "draggable": true,
+        "editable": false,
+        "description": "TBD.\n\n\n\n",
+        "tagName": "Q-TABS",
+        "content": " <q-tabs gb_b__v-model=\"undefined\" class=\"bg-purple text-white shadow-2\"></q-tabs>", 
+        "droppable": false,
+        "nestable": true, 
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            }, 
+            {
+                "label": "Tabs",
+                "name": "tabs",                
+                "enabled": true,
+                "type": [
+                    "Array"
+                ],
+                "desc": "List of tabs",
+                "category": "content"
+            }, 
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "v-model=\"selectedTabId\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number",
+                    "null",
+                    "undefined"
+                ],
+                "desc": "Model of the component; Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+                "category": "model"
+            }
+        ],
+        "category": "Content",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "media": "images/icons/components/ui_components/tabs.png",
+        "type": "q-tabs"
+    },
+    {
+        "label": "Tab Item",
+        "draggable": true,
+        "editable": false,
+        "description": "TBD.\n\n\n\n",
+        "tagName": "Q-TAB",
+        "content": " <q-tab gb_c__name=\"tabName\" gb_c__label=\"Tab Name\"></q-tab>", 
+        "droppable": false,
+        "properties": [
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "tabName"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Unique name for the tab",
+                "category": "content"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "examples": [
+                    "Tab Name"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Label for the tab",
+                "category": "content"
+            }
+        ],
+        "category": "Content",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "media": "images/icons/components/ui_components/tab.png",
+        "type": "q-tab"
+    },
+    {
+        "label": "Tab Panels",
+        "draggable": true,
+        "editable": false,
+        "description": "TBD.\n\n\n\n",
+        "tagName": "Q-TAB-PANELS",
+        "content": " <q-tab-panels gb_b__v-model=\"undefined\"></q-tab-panels>", 
+        "droppable": true,
+        "nestable": true, 
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            }, 
+            {
+                "label": "model-value",
+                "name": "model-value",
+                "examples": [
+                    "v-model=\"selectedTabId\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Number",
+                    "null",
+                    "undefined"
+                ],
+                "desc": "Model of the component; Either use this property (along with a listener for 'update:modelValue' event) OR use v-model directive",
+                "category": "model"
+            }
+        ],
+        "category": "Content",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "icon": "tabs.png",
+        "type": "q-tab-panels"
+    },
+    {
+        "label": "Tab Panel",
+        "draggable": true,
+        "editable": false,
+        "description": "TBD.\n\n\n\n",
+        "tagName": "Q-TAB-PANEL",
+        "content": " <q-tab-panel name=\"default\"></q-tab-panel>", 
+        "droppable": true,
+        "nestable": true, 
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            }, 
+            {
+                "label": "name",
+                "name": "name",
+                "examples": [
+                    "name=\"myTabContent\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String"
+                ],
+                "desc": "Name of the tab",
+                "category": "model"
+            }
+        ],
+        "category": "Content",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "icon": "tab.png",
+        "type": "q-tab-panel"
+    },
+    {
+        "label": "Conditional",
+        "draggable": true,
+        "editable": false,
+        "description": "conditional\n\n\n\n",
+        "tagName": "DIV",
+        "content": "<div conditional gb_c__v-if=\"true\" iscomposite=\"true\" ></div>",
+        "droppable": true,
+        "native": true, 
+        "attributeMatch": "conditional",
+        "properties": [],
+        "category": "Control Flow",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "type": "conditional"
+    },
+    {
+        "label": "Looper",
+        "draggable": true,
+        "editable": false,
+        "description": "looper\n\n\n\n",
+        "tagName": "DIV",
+        "content": "<div looper gb_c__v-for=\"item in [1,2,3,4,5,6,7,8,9,10]\" iscomposite=\"true\" ></div>",
+        "droppable": true,
+        "native": true, 
+        "attributeMatch": "looper",
+        "properties": [],
+        "category": "Control Flow",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "type": "looper"
+    },
+    {
         "label": "Toolbar",
         "draggable": true,
         "editable": false,
@@ -37,6 +231,7 @@
         "tagName": "Q-INPUT",
         "content": "<q-input gb_b__v-model=\"undefined\" gb_c__dense=\"true\" gb_c__label=\"Input\"></q-input>",
         "droppable": false,
+        "nestable": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -625,6 +820,7 @@
         "tagName": "Q-BTN",
         "content": "<q-btn gb_c__color=\"primary\" gb_c__icon=\"true\" gb_c__label=\"button\" gb_c__v-on:click=\"\"></q-btn>",
         "droppable": false,
+        "nestable": true,
         "properties": [
             {
                 "label": "Data Binding",
@@ -2077,8 +2273,9 @@
         "editable": false,
         "description": "The QCard component is a great way to display important pieces of grouped content. This pattern is quickly emerging as a core design pattern for Apps, website previews and email content. It assists the viewer by containing and organizing information, while also setting up predictable expectations.\n\nWith so much content to display at once, and often so little screen real-estate, Cards have fast become the design pattern of choice for many companies, including the likes of Google and Twitter.\n\nThe QCard component is intentionally lightweight and essentially a containing element that is capable of \"hosting\" any other component that is appropriate.\n\n\n\n\n",
         "tagName": "Q-CARD",
-        "content": "<q-card>Card text</q-card>",
+        "content": "<q-card><p>Card text</p></q-card>",
         "droppable": false,
+        "nestable": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -2141,9 +2338,31 @@
         ],
         "category": "Content",
         "hideFromLibrary": false,
-        "enabled": false,
+        "enabled": true,
         "media": "images/icons/components/ui_components/card.png",
         "type": "q-card"
+    },
+    {
+        "label": "Card Section",
+        "draggable": true,
+        "editable": false,
+        "description": "",
+        "tagName": "Q-CARD-SECTION",
+        "content": " <q-card-section gb_b__v-model=\"undefined\"></q-card-section>", 
+        "droppable": true,
+        "nestable": true, 
+        "properties": [
+            {
+                "label": "horizontal",
+                "name": "horizontal",
+                "type": ["Boolean"]
+            }
+        ],
+        "category": "Content",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "icon": "card.png",
+        "type": "q-card-section"
     },
     {
         "label": "Checkbox",
@@ -3896,7 +4115,6 @@
                 ],
                 "enabled": true,
                 "type": [
-                    "Array",
                     "Object",
                     "null",
                     "undefined"
@@ -6249,6 +6467,7 @@
         "tagName": "Q-ITEM-SECTION",
         "content": "<q-item-section><q-item-label>Item</q-item-label><q-item-label gb_c__caption=\"true\">Item content</q-item-label></q-item-section>",
         "droppable": false,
+        "nestable": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -8516,9 +8735,10 @@
         "editable": false,
         "description": "",
         "tagName": "Q-SCROLL-AREA",
-        "content": "<q-scroll-area style=\"height: 200px; max-width: 400px;\">scrollarea text</q-scroll-area>",
+        "content": "<q-scroll-area style=\"height: 200px; max-width: 400px;\"><p>scrollarea text</p></q-scroll-area>",
         "droppable": false,
         "proRequired": true, 
+        "nestable": true, 
         "properties": [
             {
                 "label": "Data Binding",
@@ -8711,5 +8931,80 @@
         "enabled": false,
         "media": "images/icons/components/ui_components/toolbar.png",
         "type": "component-props"
+    }, 
+    {
+        "label": "H1", "tagName": "H1", "type": "h1", "description": "", "category": "Text", "media": "", 
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "h1.png", 
+        "properties": [
+            {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
+        ], 
+        "content": "<h1>head 1 Content</h1>"   
+    }, 
+    {
+        "label": "H2", "tagName": "H2", "type": "h2", "description": "", "category": "Text", "media": "", 
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "h2.png", 
+        "properties": [
+            {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
+        ], 
+        "content": "<h2>head 2 Content</h2>"   
+    }, 
+    {
+        "label": "H3", "tagName": "H3", "type": "h3", "description": "", "category": "Text", "media": "", 
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "h3.png", 
+        "properties": [
+            {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
+        ], 
+        "content": "<h3>head 1 Content</h1>"   
+    }, 
+    {
+        "label": "H4", "tagName": "H4", "type": "h4", "description": "", "category": "Text", "media": "", 
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "h4.png", 
+        "properties": [
+            {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
+        ], 
+        "content": "<h4>head 4 Content</h4>"   
+    }, 
+    {
+        "label": "H5", "tagName": "H5", "type": "h5", "description": "", "category": "Text", "media": "", 
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "h5.png", 
+        "properties": [
+            {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
+        ], 
+        "content": "<h5>head 1 Content</h1>"   
+    }, 
+    {
+        "label": "H6", "tagName": "H6", "type": "h6", "description": "", "category": "Text", "media": "", 
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "h6.png", 
+        "properties": [
+            {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
+        ], 
+        "content": "<h6>head 1 Content</h1>"   
+    }, 
+    {
+        "label": "Paragraph", "tagName": "P", "type": "p", "description": "", "category": "Text", "media": "", 
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "paragraph.png", 
+        "properties": [
+            {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }, 
+            {   "label": "V-HTML", "name": "v-html", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
+        ], 
+        "content": "<p>Paragraph Content</p>"   
+    }, 
+    {
+        "label": "Span", "tagName": "SPAN", "type": "span", "description": "", "category": "Text", "media": "", "hideFromLibrary": true,
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "paragraph.png", 
+        "properties": [
+            {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
+        ], 
+        "content": "<span>Paragraph Content</span>"   
+    }, 
+    {
+        "label": "Link", "tagName": "A", "type": "a", "description": "", "category": "Text", "media": "", "hideFromLibrary": true,
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "paragraph.png", 
+        "properties": [
+            {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }, 
+            {   "label": "Href", "name": "href", "enabled": true, "type": ["String"], "desc": "", "category": "General" }, 
+            {   "label": "Target", "name": "target", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
+        ], 
+        "content": "<a href=\"https://genieframework.com\">Link</a>"   
     }
 ]

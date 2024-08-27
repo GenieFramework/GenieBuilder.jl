@@ -1,4 +1,4 @@
-q-knob > *, q-select > *, q-input > *, q-range > *, q-slider > *, q-btn > *, q-editor > *, q-radio > *, q-checkbox > *, q-toggle > *, q-table > *, q-date > *, q-video > *, q-avatar > *, q-badge > *, react-poc > *, mui-slider > *, mui-line-chart > *, markdowntext > *{
+q-knob > *, q-select > *, q-input > *, q-range > *, q-slider > *, q-btn > *, q-editor > *, q-radio > *, q-checkbox > *, q-toggle > *, q-table > *, q-date > *, q-video > *, q-avatar > *, q-badge > *, react-poc > *, mui-slider > *, mui-line-chart > *, markdowntext > *, q-tabs > *, pivottable > *, q-scroll-area > *, q-card > *, waferplot > *, waferplot > *, q-tab-panels > *, q-tab-panel > *{
     /* background-color: #ff0000; */
     pointer-events: none;
 }
@@ -8,7 +8,7 @@ button{
     min-height: 20px;
 }
 
-partial, q-select, q-input, q-range, q-slider, q-table, q-editor, q-date, q-video, q-list {
+partial, q-select, q-input, q-range, q-slider, q-table, q-editor, q-date, q-video, q-list, q-tab-panels {
     display: block;
     min-height: 20px;
 }
@@ -17,7 +17,7 @@ q-select {
     padding-left: 10px;
 }
 
-q-timeline, q-timeline-entry, q-item, mui-slider, mui-line-chart, markdowntext, q-knob{
+q-timeline, q-timeline-entry, q-item, mui-slider, mui-line-chart, markdowntext, q-knob, q-tabs, pivottable{
     display: block;
     border: 1px black;
 }
@@ -34,7 +34,7 @@ partial{
     padding: 20px;
 }
 
-plotly{
+plotly, q-tab-panels, q-tab-panel{
     display: block;
     padding: 2px;   /* This is needed so that the blue highlight border shows up in GrapesJS */
 }
@@ -60,7 +60,8 @@ q-card {
 q-scroll-area{
     border: 1px dashed black;
     display: block;
-  background: linear-gradient(to right, white, lightgray);
+  /* background: linear-gradient(to right, white, lightgray); */
+    min-height: 100px;
 }
 
 q-img {
@@ -68,6 +69,18 @@ q-img {
     background:lightgray;
 }
 
+div[looper] {
+    border: dashed 2px rgb(59 130 246);
+    padding: 10px;
+    min-height: 40px;
+    margin: 2px;
+}
+div[conditional] {
+    border: dashed 2px rgb(246, 171, 59);
+    padding: 10px;
+    min-height: 40px;
+    margin: 2px;
+}
 /* ---- layout container for gbTemplatecontainer ---- */
 .layoutMockRoot{
     
@@ -110,4 +123,9 @@ JULIA_CODE {
 
 .row{
     min-height: 30px;
+}
+
+
+#gbTemplateContainer > img{
+    width: 100%;
 }
