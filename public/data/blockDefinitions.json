@@ -43,7 +43,7 @@
             }
         ],
         "category": "Content",
-        "hideFromLibrary": false,
+        "hideFromLibrary": true,
         "enabled": true,
         "media": "images/icons/components/ui_components/tabs.png",
         "type": "q-tabs"
@@ -81,7 +81,7 @@
             }
         ],
         "category": "Content",
-        "hideFromLibrary": false,
+        "hideFromLibrary": true,
         "enabled": true,
         "media": "images/icons/components/ui_components/tab.png",
         "type": "q-tab"
@@ -120,7 +120,7 @@
             }
         ],
         "category": "Content",
-        "hideFromLibrary": false,
+        "hideFromLibrary": true,
         "enabled": true,
         "icon": "tabs.png",
         "type": "q-tab-panels"
@@ -156,7 +156,7 @@
             }
         ],
         "category": "Content",
-        "hideFromLibrary": false,
+        "hideFromLibrary": true,
         "enabled": true,
         "icon": "tab.png",
         "type": "q-tab-panel"
