@@ -120,9 +120,9 @@
             }
         ],
         "category": "Content",
-        "hideFromLibrary": true,
+        "hideFromLibrary": false,
         "enabled": true,
-        "icon": "tabs.png",
+        "icon": "tab-panels.png",
         "type": "q-tab-panels"
     },
     {
@@ -156,9 +156,9 @@
             }
         ],
         "category": "Content",
-        "hideFromLibrary": true,
+        "hideFromLibrary": false,
         "enabled": true,
-        "icon": "tab.png",
+        "icon": "tab-panel.png",
         "type": "q-tab-panel"
     },
     {

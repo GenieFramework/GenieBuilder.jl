@@ -110,11 +110,25 @@ JULIA_CODE {
     display: inline-block;
 }
 
+/* any element (*) which has .componentError as an immediate child */
+*:has(>.componentError){
+    width: 100%;
+}
+
+
 .componentError{
-    background-color: #d06b6b;
-    color: #ffffff;
+    background-color: #f4e1b0;
+    color: #000000a0;
     padding: 10px;
     display: inline-block;
+    position: relative;
+}
+
+.componentErrorIcon{
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-size: 20px;
 }
 
 .st-col{
