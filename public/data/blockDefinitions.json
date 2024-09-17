@@ -1,5 +1,21 @@
 [
     {
+        "label": "PopUp Proxy",
+        "draggable": true,
+        "editable": false,
+        "description": "QPopupProxy should be used when you need either a QMenu (on bigger screens) or a QDialog (on smaller screens) to be displayed.\nIt acts as a proxy which picks either of the two components to use. QPopupProxy also handles context-menus.\n\n\n\n",
+        "tagName": "Q-POPUP-PROXY",
+        "content": " <q-popup-proxy></q-popup-proxy>", 
+        "droppable": false,
+        "nestable": true, 
+        "properties": [],
+        "category": "Content",
+        "hideFromLibrary": true,
+        "enabled": true,
+        "media": "images/icons/components/ui_components/tabs.png",
+        "type": "q-popup-proxy"
+    },
+    {
         "label": "Tabs Menu",
         "draggable": true,
         "editable": false,
