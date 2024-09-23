@@ -8,11 +8,24 @@
         "content": " <q-popup-proxy></q-popup-proxy>", 
         "droppable": false,
         "nestable": true, 
-        "properties": [],
+        "isComposite": true, 
+        "properties": [
+            {
+                "label": "No Parent Event",
+                "name": "no-parent-event",
+                "type": "Boolean", 
+                "category": "behavior"
+            },  
+            {
+                "label": "Context Menu",
+                "name": "context-menu",
+                "type": "Boolean", 
+                "category": "behavior"
+            } 
+        ],
         "category": "Content",
-        "hideFromLibrary": true,
+        "hideFromLibrary": false,
         "enabled": true,
-        "media": "images/icons/components/ui_components/tabs.png",
         "type": "q-popup-proxy"
     },
     {
@@ -7742,6 +7755,7 @@
         "description": "The QBadge component allows you to create a small badge for adding information like contextual data that needs to stand out and get noticed. It is also often useful in combination with other elements like a user avatar to show a number of new messages.\n\n\n",
         "tagName": "Q-BADGE",
         "content": "<q-badge gb_c__color=\"primary\" gb_c__icon=\"danger\" gb_c__label=\"Text\"></q-badge>",
+        "nestable": true,
         "droppable": false,
         "properties": [
             {

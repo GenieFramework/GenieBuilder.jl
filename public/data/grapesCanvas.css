@@ -64,6 +64,12 @@ q-scroll-area{
     min-height: 100px;
 }
 
+q-popup-proxy{
+    display: inline-block;
+    width: max-content;
+    padding: 1px;
+}
+
 q-img {
     display: block;
     background:lightgray;
