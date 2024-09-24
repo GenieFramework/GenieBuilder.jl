@@ -160,7 +160,7 @@
         "editable": false,
         "description": "TBD.\n\n\n\n",
         "tagName": "Q-TAB-PANEL",
-        "content": " <q-tab-panel name=\"default\"></q-tab-panel>", 
+        "content": " <q-tab-panel gb_c__name=\"default\"></q-tab-panel>", 
         "droppable": true,
         "nestable": true, 
         "properties": [
@@ -2303,7 +2303,7 @@
         "description": "The QCard component is a great way to display important pieces of grouped content. This pattern is quickly emerging as a core design pattern for Apps, website previews and email content. It assists the viewer by containing and organizing information, while also setting up predictable expectations.\n\nWith so much content to display at once, and often so little screen real-estate, Cards have fast become the design pattern of choice for many companies, including the likes of Google and Twitter.\n\nThe QCard component is intentionally lightweight and essentially a containing element that is capable of \"hosting\" any other component that is appropriate.\n\n\n\n\n",
         "tagName": "Q-CARD",
         "content": "<q-card><p>Card text</p></q-card>",
-        "droppable": false,
+        "droppable": true,
         "nestable": true, 
         "properties": [
             {
