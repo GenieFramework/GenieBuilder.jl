@@ -252,7 +252,23 @@ function log(;
   catch ex
     @warn("Failed to log action: $ex")
     @async start_session() |> errormonitor
-    return
+  end
+
+  nothing
+end
+
+# logoff user from GBL
+function logoff()
+  response = try
+    HTTP.get(LICENSE_API * "/logoff";
+      headers = headers(),
+      status_exception = true,
+      detect_content_type = true,
+      verbose = false,
+      cookies = false,
+    )
+  catch ex
+    @warn("Failed to logoff: $ex")
   end
 
   nothing

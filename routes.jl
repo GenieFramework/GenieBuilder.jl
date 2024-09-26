@@ -244,6 +244,10 @@ function register_routes()
     ApplicationsController.start_session()
   end
 
+  route("$api_route/logoff") do
+    ApplicationsController.logoff()
+  end
+
   # logs an action
   route("$gb_route/log_action") do
     try
