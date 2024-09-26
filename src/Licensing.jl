@@ -14,6 +14,8 @@ const GBFOLDER = GenieBuilder.GBFOLDER
 const GBPASSFILE = joinpath(GBFOLDER, "pass")
 const GBSESSIONFILE = joinpath(GBFOLDER, "sessionid")
 
+const FAILED_SESSION_ID = "__failed_session_id__"
+
 const COMMERCIAL_LICENSE = Ref{Union{Bool,Nothing}}(nothing)
 function commercial_license()
   isnothing(COMMERCIAL_LICENSE[]) && status()
@@ -258,14 +260,13 @@ function log(;
 end
 
 # logoff user from GBL
-function logoff()
+function logoff_gbl()
+  isloggedin() || return
+
   response = try
     HTTP.get(LICENSE_API * "/logoff";
       headers = headers(),
-      status_exception = true,
-      detect_content_type = true,
-      verbose = false,
-      cookies = false,
+      status_exception = true
     )
   catch ex
     @warn("Failed to logoff: $ex")
@@ -330,7 +331,7 @@ function status()
     COMMERCIAL_LICENSE[] = user_status["license"] != "trial" && user_status["license"] != "edu" && user_status["license_status"] != "expired"
     return user_status
   catch ex
-    @error ex
+    # @error ex
     @warn("Failed to parse status data: $ex")
     return Dict()
   end

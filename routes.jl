@@ -245,7 +245,10 @@ function register_routes()
   end
 
   route("$api_route/logoff") do
-    ApplicationsController.logoff()
+    ApplicationsController.Licensing.logoff_gbl()
+    ApplicationsController.Licensing.logoff()
+
+    return "OK"
   end
 
   # logs an action
