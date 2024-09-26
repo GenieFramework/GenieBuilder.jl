@@ -149,3 +149,8 @@ JULIA_CODE {
 #gbTemplateContainer > img{
     width: 100%;
 }
+div .container {
+    min-height: 30px;
+    padding: 5px;
+    display: block;
+}

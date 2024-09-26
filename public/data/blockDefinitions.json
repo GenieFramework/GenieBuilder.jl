@@ -9028,13 +9028,13 @@
         "content": "<span>Paragraph Content</span>"   
     }, 
     {
-        "label": "Link", "tagName": "A", "type": "a", "description": "", "category": "Text", "media": "", "hideFromLibrary": true,
-        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "paragraph.png", 
+        "label": "Link", "tagName": "A", "type": "link", "description": "", "category": "Text", "media": "", "hideFromLibrary": false,
+        "draggable": true, "droppable": true, "editable": true, "enabled": true, "icon": "link.png", 
         "properties": [
             {   "label": "Title", "name": "title", "enabled": true, "type": ["String"], "desc": "", "category": "General" }, 
             {   "label": "Href", "name": "href", "enabled": true, "type": ["String"], "desc": "", "category": "General" }, 
             {   "label": "Target", "name": "target", "enabled": true, "type": ["String"], "desc": "", "category": "General" }
         ], 
-        "content": "<a href=\"https://genieframework.com\">Link</a>"   
+        "content": "<a gb_c__href=\"\">Link</a>"   
     }
 ]
