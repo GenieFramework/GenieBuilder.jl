@@ -1,5 +1,375 @@
 [
-    {
+{
+        "label": "Uploader",
+        "draggable": true,
+        "editable": false,
+        "description": "Stipple supplies a way for you to upload files through the QUploader component.\n\n\n\n",
+        "tagName": "Q-UPLOADER",
+        "content": "<q-uploader gb_c__accept=\"*\" gb_c__auto-upload=\"true\" gb_c__hide-upload-btn=\"true\" gb_c__label=\"Upload files\" gb_c__max-file-size=\"10000000\" gb_c__max-files=\"10\" gb_c__multiple=\"true\" gb_c__no-thumbnails=\"true\"  gb_c__v-on:failed=\"function(event) { handle_event(event, 'failed') }\" gb_c__v-on:uploaded=\"function(event) { handle_event(event, 'uploaded') }\" gb_c__no-thumbnails=\"\" gb_c__v-on:finish=\"function(event) { handle_event(event, 'finished') }\" gb_c__url=\"'/____/upload/' + channel_\" gb_c__v-on:rejected=\"function(event) { handle_event(event, 'rejected') }\" style=\"max-width: 95%; width: 95%; margin: 0 auto;\"></q-uploader>",
+        "droppable": false,
+        "properties": [
+            {
+                "label": "Data Binding",
+                "name": "v-model",
+                "options": [],
+                "type": "select"
+            },
+            {
+                "label": "Uploaded Event",
+                "name": "v-on:uploaded",
+                "enabled": false, 
+                "type": "Function", 
+                "category": "Events"
+            },
+            {
+                "label": "Rejected Event",
+                "name": "v-on:rejected",
+                "enabled": false, 
+                "type": "Function", 
+                "category": "Events"
+            },
+            {
+                "label": "Failed Event",
+                "name": "v-on:failed",
+                "enabled": false, 
+                "type": "Function", 
+                "category": "Events"
+            },
+            {
+                "label": "Finish Event",
+                "name": "v-on:finish",
+                "enabled": false, 
+                "type": "Function", 
+                "category": "Events"
+            },
+            {
+                "label": "factory",
+                "name": "factory",
+                "enabled": true,
+                "type": "Function",
+                "desc": "Function which should return an Object or a Promise resolving with an Object; For best performance, reference it from your scope and do not define it inline",
+                "category": "upload"
+            },
+            {
+                "label": "url",
+                "name": "url",
+                "examples": [
+                    "https://example.com/path",
+                    "files => `https://example.com?count=${files.length}`"
+                ],
+                "enabled": false,
+                "type": [
+                    "Function"
+                ],
+                "desc": "URL or path to the server which handles the upload. Takes String or factory function, which returns String. Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "upload"
+            },
+            {
+                "label": "method",
+                "name": "method",
+                "examples": [
+                    "POST",
+                    ":method=\"files => files.length > 10 ? 'POST' : 'PUT'\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Function"
+                ],
+                "desc": "HTTP method to use for upload; Takes String or factory function which returns a String; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "upload"
+            },
+            {
+                "label": "field-name",
+                "name": "field-name",
+                "examples": [
+                    "backgroundFile",
+                    ":field-name=\"(file) => 'background' + file.name\""
+                ],
+                "enabled": true,
+                "type": [
+                    "String",
+                    "Function"
+                ],
+                "desc": "Field name for each file upload; This goes into the following header: 'Content-Disposition: form-data; name=\"__HERE__\"; filename=\"somefile.png\"; If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "upload"
+            },
+            {
+                "label": "headers",
+                "name": "headers",
+                "examples": [
+                    "[{name: 'Content-Type', value: 'application/json'}, {name: 'Accept', value: 'application/json'}]",
+                    "() => [{name: 'X-Custom-Timestamp', value: Date.now()}]",
+                    "files => [{name: 'X-Custom-Count', value: files.length}]"
+                ],
+                "enabled": true,
+                "type": [
+                    "Array",
+                    "Function"
+                ],
+                "desc": "Array or a factory function which returns an array; Array consists of objects with header definitions; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "upload"
+            },
+            {
+                "label": "form-fields",
+                "name": "form-fields",
+                "examples": [
+                    "[{name: 'my-field', value: 'my-value'}]",
+                    "() => [{name: 'my-field', value: 'my-value'}]",
+                    "files => [{name: 'my-field', value: 'my-value' + files.length}]"
+                ],
+                "enabled": true,
+                "type": [
+                    "Array",
+                    "Function"
+                ],
+                "desc": "Array or a factory function which returns an array; Array consists of objects with additional fields definitions (used by Form to be uploaded); Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "upload"
+            },
+            {
+                "label": "with-credentials",
+                "name": "with-credentials",
+                "examples": [
+                    "with-credentials",
+                    ":with-credentials=\"files => ...\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "Function"
+                ],
+                "desc": "Sets withCredentials to true on the XHR that manages the upload; Takes boolean or factory function for Boolean; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "upload"
+            },
+            {
+                "label": "send-raw",
+                "name": "send-raw",
+                "examples": [
+                    "send-raw",
+                    ":send-raw=\"files => ...\""
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "Function"
+                ],
+                "desc": "Send raw files without wrapping into a Form(); Takes boolean or factory function for Boolean; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "upload"
+            },
+            {
+                "label": "batch",
+                "name": "batch",
+                "examples": [
+                    "files => files.length > 10"
+                ],
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "Function"
+                ],
+                "desc": "Upload files in batch (in one XHR request); Takes boolean or factory function for Boolean; Function is called right before upload; If using a function then for best performance, reference it from your scope and do not define it inline",
+                "category": "upload"
+            },
+            {
+                "label": "multiple",
+                "name": "multiple",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Allow multiple file uploads",
+                "category": "behavior"
+            },
+            {
+                "label": "accept",
+                "name": "accept",
+                "examples": [
+                    ".jpg, .pdf, image/*",
+                    "image/jpeg, .pdf"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Comma separated list of unique file type specifiers. Maps to 'accept' attribute of native input type=file element",
+                "category": "behavior"
+            },
+            {
+                "label": "capture",
+                "name": "capture",
+                "enabled": true,
+                "type": "String",
+                "desc": "Optionally, specify that a new file should be captured, and which device should be used to capture that new media of a type defined by the 'accept' prop. Maps to 'capture' attribute of native input type=file element",
+                "category": "behavior"
+            },
+            {
+                "label": "max-file-size",
+                "name": "max-file-size",
+                "examples": [
+                    1024,
+                    1048576
+                ],
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Maximum size of individual file in bytes",
+                "category": "behavior"
+            },
+            {
+                "label": "max-total-size",
+                "name": "max-total-size",
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Maximum size of all files combined in bytes",
+                "category": "behavior"
+            },
+            {
+                "label": "max-files",
+                "name": "max-files",
+                "enabled": true,
+                "type": [
+                    "Number",
+                    "String"
+                ],
+                "desc": "Maximum number of files to contain",
+                "category": "behavior"
+            },
+            {
+                "label": "filter",
+                "name": "filter",
+                "examples": [
+                    ":filter=\"files => files.filter(file => file.size === 1024)\""
+                ],
+                "enabled": true,
+                "type": "Function",
+                "desc": "Custom filter for added files; Only files that pass this filter will be added to the queue and uploaded; For best performance, reference it from your scope and do not define it inline",
+                "category": "behavior"
+            },
+            {
+                "label": "label",
+                "name": "label",
+                "examples": [
+                    "Upload photo here"
+                ],
+                "enabled": true,
+                "type": "String",
+                "desc": "Label for the uploader",
+                "category": "content"
+            },
+            {
+                "label": "color",
+                "name": "color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Color name for component from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "text-color",
+                "name": "text-color",
+                "options": "${supportedColors}",
+                "examples": [
+                    "primary",
+                    "teal",
+                    "teal-10"
+                ],
+                "uitype": "enum_colors",
+                "enabled": true,
+                "type": "String",
+                "desc": "Overrides text color (if needed); Color name from the Quasar Color Palette",
+                "category": "style"
+            },
+            {
+                "label": "dark",
+                "name": "dark",
+                "enabled": true,
+                "type": [
+                    "Boolean",
+                    "null"
+                ],
+                "desc": "Notify the component that the background is a dark color",
+                "category": "style"
+            },
+            {
+                "label": "square",
+                "name": "square",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Removes border-radius so borders are squared",
+                "category": "style"
+            },
+            {
+                "label": "flat",
+                "name": "flat",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a 'flat' design (no default shadow)",
+                "category": "style"
+            },
+            {
+                "label": "bordered",
+                "name": "bordered",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Applies a default border to the component",
+                "category": "style"
+            },
+            {
+                "label": "no-thumbnails",
+                "name": "no-thumbnails",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Don't display thumbnails for image files",
+                "category": "content"
+            },
+            {
+                "label": "auto-upload",
+                "name": "auto-upload",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Upload files immediately when added",
+                "category": "behavior"
+            },
+            {
+                "label": "hide-upload-btn",
+                "name": "hide-upload-btn",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Don't show the upload button",
+                "category": "behavior"
+            },
+            {
+                "label": "disable",
+                "name": "disable",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in disabled mode",
+                "category": "state"
+            },
+            {
+                "label": "readonly",
+                "name": "readonly",
+                "enabled": true,
+                "type": "Boolean",
+                "desc": "Put component in readonly mode",
+                "category": "state"
+            }
+        ],
+        "category": "Utilities",
+        "hideFromLibrary": false,
+        "enabled": true,
+        "media": "images/icons/components/ui_components/uploader.png",
+        "type": "q-uploader"
+    },
+  {
         "label": "PopUp Proxy",
         "draggable": true,
         "editable": false,
@@ -171,7 +541,7 @@
                 "type": "select"
             }, 
             {
-                "label": "name",
+                "label": "Name (Id)",
                 "name": "name",
                 "examples": [
                     "name=\"myTabContent\""
@@ -180,7 +550,7 @@
                 "type": [
                     "String"
                 ],
-                "desc": "Name of the tab",
+                "desc": "Name of the tab. If using this component in tandem with Tab Menu, this name should match the id of the tab in the Tab Menu",
                 "category": "model"
             }
         ],
@@ -2377,7 +2747,7 @@
         "editable": false,
         "description": "",
         "tagName": "Q-CARD-SECTION",
-        "content": " <q-card-section gb_b__v-model=\"undefined\"></q-card-section>", 
+        "content": " <q-card-section><p>Card Section text</p></q-card-section>", 
         "droppable": true,
         "nestable": true, 
         "properties": [
@@ -2648,8 +3018,9 @@
         "editable": false,
         "description": "The QExpansionItem component allows the hiding of content that is not immediately relevant to the user. Think of them as accordion elements that expand when clicked on. It's also known as a collapsible.\n\nThey are basically [QItem](/vue-components/list-and-list-items) components wrapped with additional functionality. So they can be included in QLists and inherit QItem component properties.\n\n\n",
         "tagName": "Q-EXPANSION-ITEM",
-        "content": "<q-expansion-item gb_c__dense=\"true\" gb_c__dense-toggle=\"true\" gb_c__expand-separator=\"true\" gb_c__header-class=\"bg-blue-1\" gb_c__label=\"Click here\"><p>Lorem ipsum dolor sit amet.</p></q-expansion-item>",
+        "content": "<q-expansion-item gb_c__dense=\"true\" gb_c__dense-toggle=\"true\" gb_c__expand-separator=\"true\" gb_c__label=\"Click here\"><p>Lorem ipsum dolor sit amet.</p></q-expansion-item>",
         "droppable": false,
+        "nestable": true,
         "properties": [
             {
                 "label": "Data Binding",
@@ -3027,7 +3398,7 @@
         ],
         "category": "Other",
         "hideFromLibrary": false,
-        "enabled": false,
+        "enabled": true,
         "media": "images/icons/components/ui_components/expansion_item.png",
         "type": "q-expansion-item"
     },
