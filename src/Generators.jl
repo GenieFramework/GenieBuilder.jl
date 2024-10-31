@@ -112,19 +112,27 @@ function view()
         <h4> Hello Genie! </h4>
     </header>
     <div class="row">
-        <div class="st-col col-12 col-sm st-module">
-            <h6>Message</h6>
-            <p> Generated {{N}} random numbers. </p>
+        <div class="col-12 st-module">
+          <div class="st-card-title">Message</div>
+          <div class="st-field-label">
+            Generated <b>{{N}}</b> random numbers.
             <p>{{msg}}</p>
+          </div>
         </div>
-        <div class="st-col col-12 col-sm st-module">
-            <h6>Controls</h6>
-            <p><strong>x</strong> vector length:</p>
-            <q-slider id="ivz19" v-model="N" color="primary" :label="true" :max="100" :min="1" :step="1" :markers="true"></q-slider>
-            <q-btn id="i1x6y" color="primary" icon="arrow_forward" label="Shift x vector" v-on:click="shift = true"></q-btn>
+        <div class="col-12 st-module">
+          <div class="st-card-title">Controls</div>
+          <div class="st-field-label">
+            <strong>X</strong> Vector Length
+          </div>
+          <q-slider id="ivz19" v-model="N" color="primary" :label="true" :max="100" :min="1" :step="1"></q-slider>
+          <q-btn id="i1x6y" color="primary" icon="arrow_forward" label="Shift x vector" v-on:click="shift = true"></q-btn>
         </div>
     </div>
-    <plotly id="izduj" data="W3siZ2J0eXBlIjoiTGluZSBDaGFydCIsIngiOiIkX3t4fSIsInkiOiIkX3t5fSIsInR5cGUiOiJzY2F0dGVyIiwibW9kZSI6ImxpbmVzIiwibmFtZSI6IlRyYWNlIn1d" config="e30=" layout="eyJ0aXRsZSI6IkxpbmUgY2hhcnQifQ=="></plotly>
+    <div class="row">
+        <div class="st-col col-12 st-module">
+            <plotly id="izduj" data="W3siZ2J0eXBlIjoiTGluZSBDaGFydCIsIngiOiIkX3t4fSIsInkiOiIkX3t5fSIsInR5cGUiOiJzY2F0dGVyIiwibW9kZSI6ImxpbmVzIiwibmFtZSI6IlRyYWNlIn1d" config="e30=" layout="eyJ0aXRsZSI6IkxpbmUgY2hhcnQifQ=="></plotly>
+        </div>
+    </div>
     """
     )
   end
