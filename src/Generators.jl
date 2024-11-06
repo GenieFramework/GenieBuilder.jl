@@ -142,6 +142,9 @@ function app()
   isfile("app.jl") && return
 
   mkdir("lib")
+  mkpath("public/css/themes")
+  mkpath("public/js")
+
   open("app.jl", "w") do io
     write(io,
     """
@@ -153,7 +156,7 @@ function app()
 
     # == Code import ==
     # add your data analysis code here or in the lib folder. Code in lib/ will be
-    # automatically loaded 
+    # automatically loaded
     function mean_value(x)
         sum(x) / length(x)
     end
@@ -196,7 +199,7 @@ function app()
 
     # == Advanced features ==
     #=
-    - The @private macro defines a reactive variable that is not sent to the browser. 
+    - The @private macro defines a reactive variable that is not sent to the browser.
     This is useful for storing data that is unique to each user session but is not needed
     in the UI.
         @private table = DataFrame(a = 1:10, b = 10:19, c = 20:29)
