@@ -50,7 +50,6 @@ q-separator, q-space{
 }
 
 q-card {
-    background-color: white;
     display:block;
     border-radius: 4px;
     box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
@@ -102,7 +101,7 @@ div[conditional] {
 
 #gbTemplateContainer{
     min-height: 100% !important; 
-    padding: 20px !important;
+    /* padding: 20px !important; */
     padding-bottom: 100px !important;
 }
 /* 
@@ -145,6 +144,9 @@ JULIA_CODE {
     min-height: 30px;
 }
 
+st-table{
+    border: none !important;
+}
 
 #gbTemplateContainer > img{
     width: 100%;

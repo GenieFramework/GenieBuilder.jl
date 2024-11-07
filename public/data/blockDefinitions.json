@@ -5,7 +5,7 @@
         "editable": false,
         "description": "Stipple supplies a way for you to upload files through the QUploader component.\n\n\n\n",
         "tagName": "Q-UPLOADER",
-        "content": "<q-uploader gb_c__accept=\"*\" gb_c__auto-upload=\"true\" gb_c__hide-upload-btn=\"true\" gb_c__label=\"Upload files\" gb_c__max-file-size=\"10000000\" gb_c__max-files=\"10\" gb_c__multiple=\"true\" gb_c__no-thumbnails=\"true\"  gb_c__v-on:failed=\"function(event) { handle_event(event, 'failed') }\" gb_c__v-on:uploaded=\"function(event) { handle_event(event, 'uploaded') }\" gb_c__no-thumbnails=\"\" gb_c__v-on:finish=\"function(event) { handle_event(event, 'finished') }\" gb_c__url=\"'/____/upload/' + channel_\" gb_c__v-on:rejected=\"function(event) { handle_event(event, 'rejected') }\" style=\"max-width: 95%; width: 95%; margin: 0 auto;\"></q-uploader>",
+        "content": "<q-uploader gb_c__accept=\"*\" gb_c__auto-upload=\"true\" gb_c__hide-upload-btn=\"true\" gb_c__label=\"Upload files\" gb_c__max-file-size=\"10000000\" gb_c__max-files=\"10\" gb_c__multiple=\"true\" gb_c__no-thumbnails=\"true\"  gb_c__v-on:failed=\"function(event) { handle_event(event, 'failed') }\" gb_c__v-on:uploaded=\"function(event) { handle_event(event, 'uploaded') }\" gb_c__no-thumbnails=\"\" gb_c__v-on:finish=\"function(event) { handle_event(event, 'finished') }\" gb_c__url=\"'/____/upload/' + channel_\" gb_c__v-on:rejected=\"function(event) { handle_event(event, 'rejected') }\" ></q-uploader>",
         "droppable": false,
         "properties": [
             {
