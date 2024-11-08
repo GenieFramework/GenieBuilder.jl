@@ -160,6 +160,11 @@ function register_routes()
     ApplicationsController.save(params(:appid) |> ApplicationsController.get)
   end
 
+  # returns the contents of a file from an app
+  route("$api_route$app_route/delete") do
+    ApplicationsController.delete(params(:appid) |> ApplicationsController.get)
+  end
+
   # returns the pages of an app
   route("$api_route$app_route/pages") do
     ApplicationsController.pages(params(:appid) |> ApplicationsController.get)

@@ -918,6 +918,28 @@ function save(app::Application)
 end
 
 """
+  delete(app)
+
+Deletes a file from an app
+"""
+function delete(app::Application)
+  if @isonline(app)
+    res = try
+      @async notify("started:delete", app.id) |> errormonitor
+
+      HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/delete?path=$(params(:path, "."))")
+    catch ex
+      @error ex
+      @async notify("failed:delete", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
+    end
+
+    @async notify("ended:delete", app.id) |> errormonitor
+
+    res |> json2json
+  end
+end
+
+"""
   pages(app)
 
 Returns the pages of an app
