@@ -951,10 +951,15 @@ function pages(app::Application)
 
       HTTP.request("GET", "$(apphost):$(app.port)$(GenieDevTools.defaultroute)/pages?CHANNEL__=$(app.channel)") |> json2json
     catch ex
-      @error ex
-      @async notify("failed:pages", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
+      if isa(ex, HTTP.Exceptions.ConnectError)
+        # do nothing
+        return (:status => :offline) |> json
+      else
+        @error ex
+        @async notify("failed:pages", app.id, FAILSTATUS, ERROR_STATUS) |> errormonitor
 
-      (:status => :error) |> json
+        (:status => :error) |> json
+      end
     end
 
     @async notify("ended:pages", app.id) |> errormonitor
