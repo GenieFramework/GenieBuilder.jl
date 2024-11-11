@@ -156,3 +156,6 @@ div .container {
     padding: 5px;
     display: block;
 }
+div.max-width-xs, div.max-width-sm, div.max-width-md, div.max-width-lg,  div.max-width-xl {
+    min-height: 30px;
+}
