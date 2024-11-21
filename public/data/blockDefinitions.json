@@ -628,7 +628,7 @@
         "editable": false,
         "description": "The QInput component is used to capture text input from the user. It uses `v-model`, similar to a regular input. It has support for errors and validation, and comes in a variety of styles, colors, and types.\n\n\n",
         "tagName": "Q-INPUT",
-        "content": "<q-input gb_b__v-model=\"undefined\" gb_c__dense=\"true\" gb_c__label=\"Input\"></q-input>",
+        "content": "<q-input gb_b__v-model=\"undefined\" gb_c__label=\"Input\"></q-input>",
         "droppable": false,
         "nestable": true, 
         "properties": [
@@ -1217,7 +1217,7 @@
         "editable": false,
         "description": "Stipple has a component called QBtn which is a button with a few extra useful features. For instance, it comes in two shapes: rectangle (default) and round. It also has the material ripple effect baked in (which can be disabled).\n\nThe button component also comes with a spinner or loading effect. You would use this for times when app execution may cause a delay and you want to give the user some feedback about that delay. When used, the button will display a spinning animation as soon as the user clicks the button.\n\nWhen not disabled or spinning, QBtn emits a `@click` event, as soon as it is clicked or tapped.\n\n\n",
         "tagName": "Q-BTN",
-        "content": "<q-btn gb_c__color=\"primary\" gb_c__icon=\"true\" gb_c__label=\"button\" gb_c__v-on:click=\"\"></q-btn>",
+        "content": "<q-btn gb_c__color=\"primary\" gb_c__label=\"button\" gb_c__v-on:click=\"\"></q-btn>",
         "droppable": false,
         "nestable": true,
         "properties": [
