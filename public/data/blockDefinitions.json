@@ -6301,7 +6301,7 @@
         "editable": false,
         "description": "The QKnob component is used to take a number input from the user through mouse/touch panning. It is based on [QCircularProgress](/vue-components/circular-progress) and inherits all its properties and behavior.\n\n\n",
         "tagName": "Q-KNOB",
-        "content": "<q-knob gb_b__v-model=\"undefined\" gb_b__show-value=\"true\" gb_c__color=\"primary\" gb_c__track-color=\"grey\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-knob>",
+        "content": "<q-knob gb_b__v-model=\"undefined\" gb_c__show-value=\"true\" gb_c__color=\"primary\" gb_c__track-color=\"grey\" gb_c__max=\"10\" gb_c__min=\"1\" gb_c__step=\"1\"></q-knob>",
         "droppable": false,
         "properties": [
             {

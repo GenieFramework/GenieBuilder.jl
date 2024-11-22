@@ -17,7 +17,7 @@ q-select {
     padding-left: 10px;
 }
 
-q-timeline, q-timeline-entry, q-item, mui-slider, mui-line-chart, markdowntext, q-knob, q-tabs, pivottable, q-expansion-item{
+q-timeline, q-timeline-entry, q-item, mui-slider, mui-line-chart, markdowntext, q-knob, q-tabs, pivottable, q-expansion-item, st-big-number{
     display: block;
     border: 1px black;
 }
