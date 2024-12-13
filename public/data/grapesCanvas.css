@@ -1,4 +1,4 @@
-q-knob > *, q-select > *, q-input > *, q-range > *, q-slider > *, q-btn > *, q-editor > *, q-radio > *, q-checkbox > *, q-toggle > *, q-table > *, q-date > *, q-video > *, q-avatar > *, q-badge > *, react-poc > *, mui-slider > *, mui-line-chart > *, markdowntext > *, q-tabs > *, pivottable > *, q-scroll-area > *, q-card > *, waferplot > *, waferplot > *, q-tab-panels > *, q-tab-panel > *, q-card-section > *, q-expansion-item > *, q-uploader > *{
+q-knob > *, q-select > *, q-input > *, q-range > *, q-slider > *, q-btn > *, q-editor > *, q-radio > *, q-checkbox > *, q-toggle > *, q-table > *, q-date > *, q-video > *, q-avatar > *, q-badge > *, react-poc > *, mui-slider > *, mui-line-chart > *, markdowntext > *, q-tabs > *, pivottable > *, q-scroll-area > *, q-card > *, waferplot > *, waferplot > *, q-tab-panels > *, q-tab-panel > *, q-card-section > *, q-expansion-item > *, q-uploader > *, q-list > *, q-item > *{
     /* background-color: #ff0000; */
     pointer-events: none;
 }
@@ -11,6 +11,10 @@ button{
 partial, q-select, q-input, q-range, q-slider, q-table, q-editor, q-date, q-video, q-list, q-tab-panels, q-card-section, q-uploader {
     display: block;
     min-height: 20px;
+}
+
+q-slider{
+    width: 100%;
 }
 
 q-select {
@@ -63,7 +67,7 @@ q-scroll-area{
     min-height: 100px;
 }
 
-q-popup-proxy{
+q-popup-proxy, q-tooltip{
     display: inline-block;
     width: max-content;
     padding: 1px;
