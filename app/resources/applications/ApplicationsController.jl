@@ -296,6 +296,7 @@ create(name::AbstractString = "", path::AbstractString = pwd()) = create(findone
 """
   boilerplate(app_path::String)
 """
+const GENIEFRAMEWORK_VERSION_COMPAT = 2 # TODO not dry but it's a quick fix for now
 function boilerplate(app_path::String)
   # set up the Julia environment
   app_path = abspath(normpath(app_path)) |> realpath
@@ -306,7 +307,7 @@ function boilerplate(app_path::String)
                 using Pkg;
                 Pkg._auto_gc_enabled[] = false;
                 Pkg.activate(".");
-                Pkg.add("GenieFramework");
+                Pkg.add(Pkg.PackageSpec(name="GenieFramework", version="2"));
                 exit(0);
     '`; dir = app_path)
     cmd = addenv(cmd, "GB_JULIA_PATH" => juliabin())
