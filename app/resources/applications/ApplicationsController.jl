@@ -308,6 +308,7 @@ function boilerplate(app_path::String)
                 Pkg._auto_gc_enabled[] = false;
                 Pkg.activate(".");
                 Pkg.add(Pkg.PackageSpec(name="GenieFramework", version="2"));
+                isdefined(Pkg, :compat) && Pkg.compat("GenieFramework", "2");
                 exit(0);
     '`; dir = app_path)
     cmd = addenv(cmd, "GB_JULIA_PATH" => juliabin())
