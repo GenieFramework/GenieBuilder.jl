@@ -7018,15 +7018,12 @@
         "droppable": false,
         "properties": [
             {
-                "label": "fullscreen",
-                "name": "fullscreen",
-                "examples": [
-                    "v-model:fullscreen=\"isFullscreen\""
-                ],
-                "enabled": true,
-                "type": "Boolean",
-                "desc": "Fullscreen mode",
-                "category": "behavior"
+                "label": "Table Click",
+                "name": "v-on:row-click",
+                "enabled": true, 
+                "type": "Function", 
+                "category": "Events", 
+                "desc": "Click event for the table"
             },
             {
                 "label": "no-route-fullscreen-exit",
