@@ -3,11 +3,11 @@ import GenieBuilder
 using SearchLight
 using Genie
 
-SearchLight.Configuration.load(joinpath(DB_FOLDER[], DB_CONFIG_FILE[]))
+@delay SearchLight.Configuration.load(joinpath(GenieBuilder.DB_FOLDER[], GenieBuilder.DB_CONFIG_FILE[]))
 
 if SearchLight.config.db_config_settings["adapter"] !== nothing
-  eval(Meta.parse("using SearchLight$(SearchLight.config.db_config_settings["adapter"])"))
-  SearchLight.connect()
-  SearchLight.Migrations.init()
-  SearchLight.Migrations.allup()
+  @delay Core.eval(@__MODULE__, Meta.parse("using SearchLight$(SearchLight.config.db_config_settings["adapter"])"))
+  @delay SearchLight :connect
+  @delay SearchLight.Migrations :init
+  @delay SearchLight.Migrations :allup
 end
