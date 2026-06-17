@@ -3,7 +3,7 @@ using GenieBuilder
 using GenieBuilder.ApplicationsController
 using GenieBuilder.ApplicationsController.Applications
 using RemoteREPL
-using JSON3
+using JSON
 import GenieDevTools
 using Logging
 using GenieBuilder.Licensing, GenieBuilder.Actions
@@ -262,7 +262,7 @@ function register_routes()
       GenieBuilder.Licensing.log(;
                       type = getpayload(:type, "UNKNOWN_EVENT"),
                       origin = getpayload(:origin, "UNKNOWN_ORIGIN"),
-                      metadata = JSON3.read(getpayload(:metadata, "{}")),
+                      metadata = JSON.parse(getpayload(:metadata, "{}")),
                       force = getpayload(:force, false)
                     )
     catch e

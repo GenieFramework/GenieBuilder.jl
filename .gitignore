@@ -8,6 +8,7 @@ sessions/*
 !*.gitkeep
 Manifest.toml
 .env
+.theme
 
 # Vagrant
 .vagrant

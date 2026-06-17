@@ -8,7 +8,7 @@ using Genie
 using Genie.Renderers.Json
 using Genie.Requests
 using HTTP
-using JSON3
+using JSON
 using GenieDevTools
 using Genie.WebChannels
 using Dates
@@ -72,7 +72,7 @@ get(appid::Int) = begin
   isnothing(appid) && throw(Genie.Exceptions.ExceptionalResponse(404,
                                                                 ["Content-Type" => "application/json"],
                                                                 Dict(:status => FAILSTATUS,
-                                                                      :error => "App not found") |> JSON3.write))
+                                                                      :error => "App not found") |> JSON.json))
   appid
 end
 
@@ -118,7 +118,7 @@ function notify(message::String,
         :type       => type,
         :eventid    => eventid,
         :timestamp  => Dates.now()
-      ) |> JSON3.write
+      ) |> JSON.json
     )
     @debug "Notification from app id $appid : $message"
     NOTIFICATION_QUEUE[queue_key] = time()
@@ -836,7 +836,7 @@ function uuid()
 end
 
 function json2json(res::HTTP.Response)
-  String(res.body) |> JSON3.read |> json
+  String(res.body) |> JSON.parse |> json
 end
 
 """
@@ -1011,7 +1011,7 @@ function startrepl(app::Application)
     end
 
     status = try
-      status = String(res.body) |> JSON3.read
+      status = String(res.body) |> JSON.parse
       if status.status == OKSTATUS
         app.replport = status.port
         save!(app)
@@ -1111,12 +1111,12 @@ Subscribes websockets client to GenieBuilder UI push notifications
 function subscribe()
   try
     Genie.WebChannels.subscribe(params(:WS_CLIENT), "geniebuilder")
-    (:status => OKSTATUS) |> JSON3.write
+    (:status => OKSTATUS) |> JSON.json
   catch ex
     Dict(
       :status => FAILSTATUS,
       :error => ex
-    ) |> JSON3.write
+    ) |> JSON.json
   end
 end
 
@@ -1128,12 +1128,12 @@ Unsubscribes websockets client from GenieBuilder UI push notifications
 function unsubscribe()
   try
     Genie.WebChannels.unsubscribe(params(:WS_CLIENT), "geniebuilder")
-    (:status => OKSTATUS) |> JSON3.write
+    (:status => OKSTATUS) |> JSON.json
   catch ex
     Dict(
       :status => FAILSTATUS,
       :error => ex
-    ) |> JSON3.write
+    ) |> JSON.json
   end
 end
 
@@ -1232,7 +1232,7 @@ function download(app::Application)
 end
 
 function send_user_message(; text, button_text = "", button_link = "") :: Nothing
-  @async notify(; message = JSON3.write(
+  @async notify(; message = JSON.json(
                                   Dict( :message => text,
                                         :button_text => button_text,
                                         :button_link => button_link
